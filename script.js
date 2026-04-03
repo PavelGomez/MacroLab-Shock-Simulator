@@ -3,688 +3,81 @@ const EPS = 1e-9;
 
 const dashboardData = {
   years: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025],
-  gdp: [5.851415538936799, 6.223896785104821, 6.155340018560951, 3.308508247064812, 1.792649471410468, 2.1519424998116987, 1.7530387490482635, 1.3576953734787622, 3.9900294778549616, 0.6442234026743154, -6.139696941208294, 11.337403240996924, 2.0639186425519096, 0.6770248315859373, 2.8051263710562324, 2.4592547478091253],
-  inflation: [2.972868111, 4.437732798, 1.486964626, 2.838074806, 4.646381038, 4.378512128, 2.70872463, 2.269593636, 2.14098658, 3.000480211, 2.972870899, 7.17284093, 12.78165415, 3.37450056, 4.527165172795, 3.45240376149631],
-  unemployment: [7.2101288890971, 6.8146096671283, 6.2246556879872, 5.7817319689281, 6.2055968190967, 5.8704192154739, 6.2004127300428, 6.5126532130199, 7.1464633153887, 7.0631690877494, 10.286318749044, 7.1898934478904, 7.8627488308129, 8.4756393474728, 8.079730080387, 8.049513652087],
-  tpm: [1.422, 4.66666666666667, 5.00910931174089, 4.92237903225806, 3.75602409638554, 3.06, 3.5, 2.73684210526316, 2.54979674796748, 2.49497991967871, 0.785856573705179, 1.195, 8.508, 10.5, 6.21975806451613, 4.88608870967742],
-  fx: [510.37664, 483.364047619048, 486.746558704453, 494.995161290323, 570.005903614458, 654.249, 676.83242063492, 649.3287854251, 640.290772357724, 702.631048387097, 792.221832669323, 759.27284, 872.33152, 839.073400809716, 943.582419354839, 951.641209677419]
+  gdp: [5.851416, 6.223897, 6.15534, 3.308508, 1.792649, 2.151942, 1.753039, 1.357695, 3.990029, 0.644223, -6.139697, 11.337403, 2.063919, 0.677025, 2.805126, 2.459255],
+  inflation: [2.972868, 4.437733, 1.486965, 2.838075, 4.646381, 4.378512, 2.708725, 2.269594, 2.140987, 3.00048, 2.972871, 7.172841, 12.781654, 3.374501, 4.527165, 3.452404],
+  unemployment: [7.210129, 6.81461, 6.224656, 5.781732, 6.205597, 5.870419, 6.200413, 6.512653, 7.146463, 7.063169, 10.286319, 7.189893, 7.862749, 8.475639, 8.07973, 8.049514],
+  fx: [510.37664, 483.364048, 486.746559, 494.995161, 570.005904, 654.249, 676.832421, 649.328785, 640.290772, 702.631048, 792.221833, 759.27284, 872.33152, 839.073401, 943.582419, 951.64121],
+  tpm: [1.422, 4.666667, 5.009109, 4.922379, 3.756024, 3.06, 3.5, 2.736842, 2.549797, 2.49498, 0.785857, 1.195, 8.508, 10.5, 6.219758, 4.886089],
+  copper: [348.823308, 394.397167, 360.625583, 329.457917, 305.5595, 241.669231, 230.498417, 288.622167, 288.90875, 270.593667, 297.549917, 437.196692, 387.864667, 379.345083, 423.095833, 450.836667],
+  wti: [80.196154, 95.978333, 93.738333, 97.93, 89.308333, 46.08, 46.808333, 52.5475, 63.305, 57.128333, 39.475833, 76.013077, 90.1925, 78.006667, 75.119167, 64.626667]
 };
 
-const dashboardRanges = {
+const ranges = {
   full: [0, dashboardData.years.length - 1],
   mid: [9, dashboardData.years.length - 1],
   recent: [11, dashboardData.years.length - 1]
 };
 
-const sequenceItems = [
-  {
-    title: 'Shock',
-    body: 'Es el disparador identificable del episodio: guerra, alza del petróleo, pandemia, terremoto, endurecimiento de la Fed, ajuste fiscal o aumento de incertidumbre. No debe confundirse con sus manifestaciones posteriores, como depreciación, inflación o recesión.'
-  },
-  {
-    title: 'Variable exógena',
-    body: 'Es la magnitud que el modelo toma como dada para esa vuelta analítica: gasto público, dinero real, tasa externa, productividad, costo importado, demanda externa, confianza o precio del cobre.'
-  },
-  {
-    title: 'Parámetro',
-    body: 'Resume una regularidad de comportamiento: propensión a consumir, sensibilidad de la inversión a la tasa, demanda de dinero, pendiente de exportaciones netas o sensibilidad de precios a la brecha.'
-  },
-  {
-    title: 'Curva',
-    body: 'Representa de forma disciplinada una relación relevante. No agota la realidad, pero ayuda a ver qué combinaciones dejaron de ser compatibles con el equilibrio previo.'
-  },
-  {
-    title: 'Equilibrio',
-    body: 'Debe leerse como punto focal comparativo y no como estado real e inmutable. Permite responder hacia dónde tendería la economía si ese mecanismo dominara el ajuste.'
-  },
-  {
-    title: 'Mecanismo de transmisión',
-    body: 'Es la cadena causal: petróleo → costos → inflación → BCCh; cobre → exportaciones → tipo de cambio → recaudación; Fed → flujos de capital → depreciación → pass-through.'
-  },
-  {
-    title: 'Trayectoria probable',
-    body: 'Entre el primer impacto y el punto focal hay rezagos, compensaciones, segundas vueltas, fricciones y cambios de comportamiento. Por eso importa pensar en persistencia, convergencia o escalamiento.'
-  },
-  {
-    title: 'Filtro institucional chileno',
-    body: 'BCCh autónomo, flotación cambiaria, regla fiscal, CFA, CMF, competencia y estadísticas oficiales funcionan como una filigrana de incentivos que modifica la transmisión y el costo de la indisciplina.'
-  },
-  {
-    title: 'Dato que conviene mirar',
-    body: 'El cierre del análisis exige un observable: IPC, IPC SAE, TPM, CLP/USD, cobre, IMACEC, desempleo, crédito, spreads, exportaciones o balance fiscal. Sin eso, el análisis queda en intuición verbal.'
-  }
-];
-
-const shockExamples = [
-  {
-    tipo: 'Shock de oferta / costos',
-    disparador: 'Conflicto Irán / Hormuz 2026 o salto del petróleo',
-    exogena: 'Costos energéticos, combustibles, seguros, fletes, costos importados',
-    modelos: 'OA-DA + IS-LM-BP',
-    mecanismo: 'Suben costos, se encarecen importados y puede aparecer depreciación con pass-through.',
-    ejemplo: 'Guerra en Medio Oriente y presión sobre combustibles.',
-    dato: 'Combustibles, IPC, IPC SAE, CLP/USD, costos logísticos',
-    implicancia: 'Empresas: márgenes y costos; hogares: transporte e inflación; gobierno: presión distributiva y fiscal.'
-  },
-  {
-    tipo: 'Shock de demanda',
-    disparador: 'Expansión fiscal o monetaria relevante',
-    exogena: 'G, M/P, confianza, crédito',
-    modelos: 'IS-LM + OA-DA',
-    mecanismo: 'Aumenta la demanda agregada, sube Y y eventualmente aparecen presiones de tasa y precios.',
-    ejemplo: 'Transferencias extraordinarias o fuerte relajación financiera.',
-    dato: 'PIB, IMACEC, inflación, tasas, crédito',
-    implicancia: 'Empresas: ventas y capacidad; hogares: ingreso y consumo; gobierno: brecha, inflación y financiamiento.'
-  },
-  {
-    tipo: 'Shock mixto oferta-demanda',
-    disparador: 'Pandemia o reapertura abrupta',
-    exogena: 'Productividad, movilidad, demanda reprimida, confianza',
-    modelos: 'OA-DA + IS-LM',
-    mecanismo: 'Primero cae la oferta y la movilidad; luego la reapertura puede empujar demanda y precios.',
-    ejemplo: 'COVID-19 2020–2022.',
-    dato: 'IMACEC, empleo, inflación subyacente, servicios, TPM',
-    implicancia: 'Empresas: operación y ventas; hogares: empleo e ingresos; gobierno: estabilización y apoyo transitorio.'
-  },
-  {
-    tipo: 'Shock externo-financiero',
-    disparador: 'Subida de la tasa internacional o recesión global',
-    exogena: 'i*, demanda externa, flujos de capital, prima de riesgo',
-    modelos: 'IS-LM-BP',
-    mecanismo: 'Cambian flujos y condiciones financieras; se mueve el tipo de cambio y se ajustan NX y actividad.',
-    ejemplo: 'Endurecimiento de la Fed o desaceleración global.',
-    dato: 'CLP/USD, tasas largas, cobre, exportaciones, spreads',
-    implicancia: 'Empresas: financiamiento y exportaciones; hogares: crédito y empleo; gobierno: mayor costo de deuda.'
-  },
-  {
-    tipo: 'Shock socio-político / incertidumbre',
-    disparador: 'Estallido social, conflictividad o incertidumbre institucional',
-    exogena: 'b0, c0, spread, confianza, prima de riesgo',
-    modelos: 'IS-LM-BP + OA-DA',
-    mecanismo: 'Cae inversión, sube riesgo y puede depreciarse la moneda; también puede dañarse oferta o coordinación.',
-    ejemplo: 'Chile 2019–2023 en distintos momentos.',
-    dato: 'CLP/USD, inversión, encuestas de expectativas, desempleo, spreads',
-    implicancia: 'Empresas: posterga inversión; hogares: cautela y empleo; gobierno: presión de legitimidad y estabilización.'
-  },
-  {
-    tipo: 'Shock de política económica',
-    disparador: 'Endurecimiento o relajación de BCCh / ajuste fiscal',
-    exogena: 'TPM, M/P, G, T',
-    modelos: 'IS-LM, IS-LM-BP, OA-DA',
-    mecanismo: 'La política altera demanda, crédito, tasa, tipo de cambio y trayectoria inflacionaria.',
-    ejemplo: 'Endurecimiento 2021–2023 o consolidación fiscal.',
-    dato: 'TPM, inflación, IMACEC, balance fiscal, CLP/USD',
-    implicancia: 'Empresas: costo de capital; hogares: crédito y empleo; gobierno: credibilidad y sostenibilidad.'
-  }
-];
-
-const shockTypeCards = [
-  {
-    title: 'Oferta y costos',
-    body: 'Se ve mejor cuando el evento golpea energía, logística, capacidad, productividad o costos importados. Su firma típica es menor actividad con mayor presión de precios.'
-  },
-  {
-    title: 'Demanda',
-    body: 'Se observa cuando el episodio altera gasto autónomo, confianza, crédito o dinero real. Suele mover primero ventas, actividad y luego tasas o precios.'
-  },
-  {
-    title: 'Mixto',
-    body: 'Combina restricciones de oferta con cambios de demanda. Es frecuente en episodios grandes y secuenciales, como pandemia, reapertura o crisis político-social.'
-  },
-  {
-    title: 'Externo-financiero',
-    body: 'Fed, recesión global, cobre, riesgo geopolítico o reversión de flujos. Para Chile suele importar mucho el CLP/USD, la tasa y el canal de NX.'
-  },
-  {
-    title: 'Socio-político',
-    body: 'Afecta coordinación, inversión, legitimidad, confianza y prima de riesgo. No siempre aparece primero en precios; a veces la primera señal es la espera o el freno inversor.'
-  },
-  {
-    title: 'Política económica',
-    body: 'Cambios de TPM, liquidez, gasto o impuestos alteran el entorno macro desde dentro del sistema de política. Su eficacia depende del régimen y del punto del ciclo.'
-  }
-];
-
-const transmissionRows = [
-  {
-    canal: 'Energía y combustibles',
-    disparador: 'Guerra, sanciones, cuellos marítimos, alza del petróleo',
-    primeras: 'Combustibles, fletes, costos importados, expectativas de inflación',
-    modelos: 'OA-DA + IS-LM-BP',
-    sector: 'Transporte, alimentos, agro, logística, manufactura intensiva en energía'
-  },
-  {
-    canal: 'Cobre y términos de intercambio',
-    disparador: 'Cambio en demanda china o precio internacional',
-    primeras: 'Exportaciones, CLP/USD, recaudación, inversión minera',
-    modelos: 'IS-LM-BP',
-    sector: 'Minería, proveedores, regiones mineras, ingresos fiscales'
-  },
-  {
-    canal: 'Tipo de cambio',
-    disparador: 'Alza de i*, caída del cobre, riesgo local o shock externo',
-    primeras: 'CLP/USD, precios importados, competitividad, costo de deuda',
-    modelos: 'IS-LM-BP + OA-DA',
-    sector: 'Importadores, exportadores, retail, consumo durable, deuda en dólares'
-  },
-  {
-    canal: 'Tasas y crédito',
-    disparador: 'Cambio en TPM o condiciones financieras',
-    primeras: 'Tasas de mercado, crédito comercial, hipotecario y consumo',
-    modelos: 'IS-LM + IS-LM-BP',
-    sector: 'Construcción, inversión, consumo durable, pequeñas empresas'
-  },
-  {
-    canal: 'Empleo y salarios',
-    disparador: 'Desaceleración, shock sectorial o rebote cíclico',
-    primeras: 'Vacantes, contratación, desempleo, salarios reales',
-    modelos: 'OA-DA + IS-LM',
-    sector: 'Servicios, comercio, construcción, sectores transables'
-  },
-  {
-    canal: 'Consumo y confianza',
-    disparador: 'Transferencias, caída de ingresos, incertidumbre o crédito',
-    primeras: 'Ventas minoristas, consumo, encuestas de expectativas',
-    modelos: 'IS-LM',
-    sector: 'Retail, servicios personales, consumo durable'
-  },
-  {
-    canal: 'Inversión e incertidumbre',
-    disparador: 'Incertidumbre institucional, prima de riesgo, costo de capital',
-    primeras: 'b0, proyectos postergados, importación de bienes de capital',
-    modelos: 'IS-LM-BP + IS-LM',
-    sector: 'Minería, infraestructura, construcción, M&A'
-  },
-  {
-    canal: 'Exportaciones netas',
-    disparador: 'Recesión global, depreciación, apreciación o shock comercial',
-    primeras: 'Exportaciones, importaciones, balanza comercial',
-    modelos: 'IS-LM-BP',
-    sector: 'Minería, agro, salmones, forestal, comercio importador'
-  }
-];
-
-const institutionRows = [
-  {
-    institucion: 'Banco Central de Chile',
-    funcion: 'Velar por la estabilidad de la moneda y el normal funcionamiento de los pagos internos y externos; conducir la política monetaria y contribuir a la estabilidad financiera.',
-    credibilidad: 'Ancla nominal, baja inflación, previsibilidad monetaria y funcionamiento del sistema de pagos.',
-    oportunismo: 'Contiene la tentación de monetizar desequilibrios o usar la política monetaria con fines coyunturales de corto plazo.',
-    senales: 'TPM, IPoM, RPM, IEF, minutas, regulación cambiaria excepcional.',
-    rol: 'Amortigua shocks vía tasa, liquidez y comunicación; bajo flotación permite que el tipo de cambio absorba parte del ajuste.'
-  },
-  {
-    institucion: 'Ministerio de Hacienda',
-    funcion: 'Define y coordina la política fiscal y la conducción general de las finanzas públicas.',
-    credibilidad: 'Sostiene reputación fiscal, financiamiento soberano y previsibilidad del manejo presupuestario.',
-    oportunismo: 'Limita el sesgo procíclico y el uso discrecional del gasto sin justificación intertemporal.',
-    senales: 'Presupuesto, metas fiscales, informes de finanzas públicas, deuda y estrategia de financiamiento.',
-    rol: 'En shocks severos puede amortiguar con gasto y medidas transitorias, pero bajo disciplina fiscal.'
-  },
-  {
-    institucion: 'Dirección de Presupuestos / marco fiscal',
-    funcion: 'Opera el presupuesto y los cálculos del balance estructural; articula el marco fiscal de mediano plazo.',
-    credibilidad: 'Ayuda a sostener consistencia entre ingresos estructurales, gasto y deuda.',
-    oportunismo: 'Contiene la tentación de gastar ingresos transitorios como si fueran permanentes.',
-    senales: 'Ejecución presupuestaria, IFP, balance estructural y trayectoria de deuda.',
-    rol: 'Permite distinguir amortiguación legítima de deterioro fiscal persistente.'
-  },
-  {
-    institucion: 'Consejo Fiscal Autónomo',
-    funcion: 'Evalúa y monitorea reglas fiscales vigentes, sostenibilidad y metodología del balance estructural.',
-    credibilidad: 'Aumenta transparencia, vigilancia técnica y costo reputacional de desvíos fiscales.',
-    oportunismo: 'Contiene sesgos de maquillaje contable o relajación silenciosa de metas.',
-    senales: 'Informes trimestrales, opiniones sobre reglas, advertencias de sostenibilidad.',
-    rol: 'En shocks ayuda a separar respuesta contracíclica de riesgo fiscal acumulado.'
-  },
-  {
-    institucion: 'Comisión para el Mercado Financiero',
-    funcion: 'Regula, supervisa y fiscaliza el mercado financiero con foco en correcto funcionamiento, desarrollo y estabilidad.',
-    credibilidad: 'Fortalece confianza en intermediarios, fe pública y estabilidad del sistema financiero.',
-    oportunismo: 'Reduce arbitrajes, riesgo excesivo, problemas de conducta y fragilidad prudencial.',
-    senales: 'Normativa, supervisión, comunicados y reportes del sistema financiero.',
-    rol: 'Clave cuando el shock viaja por crédito, spreads, liquidez o stress financiero.'
-  },
-  {
-    institucion: 'Grupo de Política Monetaria',
-    funcion: 'Entrega una referencia académica no vinculante sobre la TPM y el entorno macro.',
-    credibilidad: 'Aporta benchmarking externo y disciplina el debate público sobre inflación y actividad.',
-    oportunismo: 'Reduce opacidad y facilita evaluación crítica de la decisión monetaria.',
-    senales: 'Comunicados previos a reuniones de TPM y recomendaciones públicas.',
-    rol: 'Útil para contrastar decisiones del BCCh con una referencia técnica externa.'
-  },
-  {
-    institucion: 'Fiscalía Nacional Económica',
-    funcion: 'Defiende y promueve la libre competencia en representación del interés público.',
-    credibilidad: 'Ayuda a sostener mercados más competitivos y menos propensos a abusos de poder de mercado.',
-    oportunismo: 'Contiene colusión, abusos de posición dominante y concentraciones dañinas.',
-    senales: 'Investigaciones, control de concentraciones, acciones ante TDLC, advocacy.',
-    rol: 'Importa cuando shocks de costos o precios se mezclan con márgenes o estructura de mercado.'
-  },
-  {
-    institucion: 'TDLC',
-    funcion: 'Órgano jurisdiccional especializado en libre competencia.',
-    credibilidad: 'Vuelve creíble el enforcement de reglas de competencia y la corrección de conductas anticompetitivas.',
-    oportunismo: 'Contiene prácticas que restrinjan oferta, eleven precios o distorsionen mercados.',
-    senales: 'Sentencias, resoluciones, acuerdos extrajudiciales e instrucciones generales.',
-    rol: 'Relevante para analizar persistencia de márgenes, concentración y rigideces sectoriales.'
-  },
-  {
-    institucion: 'INE',
-    funcion: 'Produce y difunde estadísticas oficiales del país y articula el sistema estadístico nacional.',
-    credibilidad: 'Compra verificabilidad: sin datos confiables no hay evaluación seria de coyuntura ni política.',
-    oportunismo: 'Reduce opacidad informativa y arbitrariedad diagnóstica.',
-    senales: 'IPC, desempleo, encuestas y estadísticas oficiales.',
-    rol: 'Provee la evidencia mínima para cerrar el circuito entre modelo, hipótesis y realidad.'
-  },
-  {
-    institucion: 'Apertura comercial + flotación cambiaria',
-    funcion: 'Arreglo institucional que expone a Chile a shocks globales, pero también facilita ajuste de precios relativos y reasignación.',
-    credibilidad: 'Permite política monetaria independiente y una señal de precios externos más transparente.',
-    oportunismo: 'Hace más visible el costo de desequilibrios y de políticas inconsistentes.',
-    senales: 'CLP/USD, TCR, cuenta corriente, balanza comercial y términos de intercambio.',
-    rol: 'Bajo shock externo, el tipo de cambio absorbe parte del ajuste y revela tensiones internas y globales.'
-  }
-];
-
-const glossaryGroups = [
-  {
-    title: 'Bloque 1 · Núcleo analítico',
-    items: [
-      ['Shock', 'Perturbación exógena que altera el equilibrio previo. Ejemplo: guerra, alza del petróleo, pandemia o ajuste fiscal.'],
-      ['Variable exógena', 'Magnitud tomada como dada por el modelo en esa vuelta analítica: G, M/P, i*, costo importado o productividad.'],
-      ['Variable endógena', 'Magnitud determinada dentro del modelo: producción, tasa, precios o exportaciones netas.'],
-      ['Parámetro', 'Coeficiente que resume una regularidad de comportamiento: c1, b2, x1, γ.'],
-      ['Intercepto', 'Nivel base de una relación cuando otras variables relevantes se mantienen constantes.'],
-      ['Pendiente', 'Mide cuánto cambia una variable ante la variación de otra; define inclinación y sensibilidad.'],
-      ['Equilibrio', 'Punto donde las relaciones del modelo se satisfacen simultáneamente; sirve como foco comparativo.'],
-      ['Mecanismo de transmisión', 'Cadena causal que conecta el shock con sus efectos económicos.'],
-      ['Trayectoria', 'Camino plausible entre el impacto inicial y un resultado posterior, con rezagos y fricciones.'],
-      ['Dato que conviene mirar', 'Observable que permite contrastar la lectura del modelo con la realidad.']
-    ]
-  },
-  {
-    title: 'Bloque 2 · Modelos y curvas',
-    items: [
-      ['IS', 'Conjunto de combinaciones de Y e i compatibles con equilibrio en bienes.'],
-      ['LM', 'Conjunto de combinaciones de Y e i compatibles con equilibrio monetario.'],
-      ['BP', 'Condición externa; en el MVP es horizontal por alta movilidad de capitales.'],
-      ['OA', 'Oferta agregada; relaciona producción y precios consistentes con costos y expectativas.'],
-      ['DA', 'Demanda agregada; combina producción y precios compatibles con equilibrio del lado de la demanda.'],
-      ['Crowding-out', 'Desplazamiento de inversión privada por alza de tasa o apreciación asociada a impulso fiscal.'],
-      ['Acelerador', 'Mecanismo por el cual una mayor actividad empuja inversión inducida.'],
-      ['Producto natural', 'Nivel de producción consistente con inflación estable en el mediano plazo.'],
-      ['Brecha de producto', 'Diferencia entre producción observada y producto natural.'],
-      ['Shock de oferta', 'Golpea capacidad, costos o productividad.'],
-      ['Shock de demanda', 'Mueve gasto autónomo, dinero o confianza.'],
-      ['Shock mixto', 'Combina oferta y demanda en secuencia o simultáneamente.']
-    ]
-  },
-  {
-    title: 'Bloque 3 · Economía abierta, precios y política',
-    items: [
-      ['Tipo de cambio nominal', 'Precio de la moneda extranjera en pesos; un valor mayor implica depreciación del peso.'],
-      ['Tipo de cambio real', 'Indicador de competitividad que ajusta el tipo de cambio por precios internos y externos.'],
-      ['Inflación', 'Aumento sostenido del nivel general de precios.'],
-      ['Desinflación', 'Caída de la inflación sin que los precios necesariamente retrocedan.'],
-      ['Pass-through', 'Grado en que una depreciación se transmite a precios internos.'],
-      ['Costos importados', 'Costo en pesos de insumos o bienes externos; sube con depreciación o shock global.'],
-      ['Productividad', 'Producción obtenida por unidad de insumo; si mejora, eleva capacidad y reduce presión de costos.'],
-      ['TPM', 'Tasa de Política Monetaria definida por el BCCh.'],
-      ['Credibilidad', 'Creencia de que autoridades e instituciones harán lo que anuncian de forma consistente.'],
-      ['Expectativas', 'Proyecciones de agentes sobre inflación, actividad, tipo de cambio o política.'],
-      ['Prima de riesgo', 'Compensación adicional exigida por incertidumbre o vulnerabilidad.'],
-      ['Flotación cambiaria', 'Régimen donde el tipo de cambio se determina principalmente por mercado.']
-    ]
-  },
-  {
-    title: 'Bloque 4 · Instituciones y orden macro',
-    items: [
-      ['Autonomía del banco central', 'Diseño que separa la política monetaria de incentivos políticos de corto plazo.'],
-      ['Regla fiscal', 'Conjunto de criterios que disciplina el comportamiento del gasto, balance o deuda pública.'],
-      ['Apertura comercial', 'Exposición de la economía al comercio global; abre oportunidades y transmite shocks externos.'],
-      ['Coordinación', 'Capacidad de actores para ajustar expectativas y acciones de forma compatible con estabilidad.'],
-      ['Enforcement', 'Capacidad efectiva de supervisar, exigir cumplimiento y sancionar desviaciones.'],
-      ['Auditabilidad', 'Posibilidad de verificar decisiones, cifras y procedimientos.'],
-      ['Transparencia', 'Disponibilidad de información suficiente para evaluar diagnósticos y políticas.'],
-      ['Rendición de cuentas', 'Obligación de justificar decisiones y responder por sus resultados.']
-    ]
-  }
-];
-
 const ISLM_DEFAULTS = {
   c0: 120,
-  c1: 0.68,
-  b0: 95,
-  b1: 0.08,
+  c1: 0.65,
+  b0: 90,
+  b1: 0.10,
   b2: 22,
   G: 220,
   T: 180,
-  MP: 390,
-  d1: 0.9,
-  d2: 55,
+  MP: 380,
+  d1: 0.90,
+  d2: 60,
   iFixed: 4.5
 };
 
 const ISLM_REGIMES = {
   upward: 'LM con pendiente positiva',
-  horizontal: 'LM horizontal con i fijada exógenamente'
+  horizontal: 'LM horizontal (i exógena)'
 };
 
 const ISLM_SHOCKS = {
-  none: {
-    label: 'Sin shock',
-    delta: {},
-    trigger: 'No hay cambio exógeno adicional.',
-    exogenous: 'Ninguna variable exógena cambia.',
-    parameters: 'Se mantienen constantes los parámetros base.',
-    curves: 'No se desplaza ninguna curva.',
-    mechanism: 'La economía permanece en la configuración docente base.',
-    trajectory: 'La trayectoria probable es de continuidad de la configuración inicial.',
-    filter: 'El filtro institucional no cambia la lectura de base.',
-    watch: 'PIB/IMACEC, tasas de mercado, crédito e inversión.',
-    sector: 'Sirve como benchmark para comparar sensibilidad de consumo, inversión y tasa.',
-    reality: 'Base pedagógica coherente con una economía cerrada simplificada.'
-  },
-  fiscalExpand: {
-    label: 'Expansión fiscal',
-    delta: { G: 30 },
-    trigger: 'Aumenta el gasto público autónomo.',
-    exogenous: 'Sube G.',
-    parameters: 'Aumenta el gasto autónomo agregado.',
-    curves: 'IS se desplaza a la derecha.',
-    mechanism: 'El mayor gasto empuja la demanda agregada; si la LM tiene pendiente positiva, sube la tasa.',
-    trajectory: 'Primero sube la actividad; luego puede aparecer crowding-out parcial si el costo del dinero sube.',
-    filter: 'En Chile, la regla fiscal y la credibilidad del marco presupuestario condicionan cuán persistente puede ser este impulso.',
-    watch: 'Actividad, balance fiscal, tasas largas, inversión y empleo.',
-    sector: 'Favorece sectores ligados al gasto público y demanda interna; puede tensionar financiamiento.',
-    reality: 'Puede venir de reconstrucción, mayor ejecución o una respuesta contracíclica intensa.'
-  },
-  fiscalContract: {
-    label: 'Contracción fiscal',
-    delta: { G: -30 },
-    trigger: 'Cae el gasto público autónomo.',
-    exogenous: 'Baja G.',
-    parameters: 'Disminuye el gasto autónomo agregado.',
-    curves: 'IS se desplaza a la izquierda.',
-    mechanism: 'La demanda agregada se enfría y la tasa puede ceder si la LM es positiva.',
-    trajectory: 'La actividad cae primero; luego puede mejorar la lectura de sostenibilidad o aliviar presiones de tasa.',
-    filter: 'En Chile, una consolidación creíble puede comprar disciplina, pero su costo real depende del punto del ciclo.',
-    watch: 'Actividad, empleo, balance fiscal y tasas.',
-    sector: 'Golpea sectores dependientes del gasto interno y puede debilitar inversión complementaria.',
-    reality: 'Útil para discutir ajuste, credibilidad y costo cíclico.'
-  },
-  monetaryExpand: {
-    label: 'Expansión monetaria',
-    delta: { MP: 55 },
-    trigger: 'Aumenta el dinero real disponible o baja la tasa de política.',
-    exogenous: 'Sube M/P.',
-    parameters: 'Mejoran las condiciones monetarias.',
-    curves: 'LM se desplaza a la derecha si tiene pendiente positiva; con LM horizontal el cambio es absorbido por la acomodación.',
-    mechanism: 'Baja la tasa compatible con equilibrio monetario y mejora el gasto sensible al interés.',
-    trajectory: 'En el corto plazo sube la actividad; si la economía estuviera cerca de capacidad, luego conviene mirar precios con OA-DA.',
-    filter: 'En Chile, el BCCh ajusta este canal dentro de un régimen de metas de inflación y comunicación explícita.',
-    watch: 'TPM, tasas de mercado, crédito, inversión y actividad.',
-    sector: 'Favorece construcción, durables, inversión y consumo financiado.',
-    reality: 'Sirve para leer relajación monetaria o abundancia de liquidez.'
-  },
-  monetaryContract: {
-    label: 'Contracción monetaria',
-    delta: { MP: -55 },
-    trigger: 'Se reduce el dinero real o se endurecen condiciones monetarias.',
-    exogenous: 'Baja M/P.',
-    parameters: 'Se restringe la liquidez.',
-    curves: 'LM se desplaza a la izquierda si tiene pendiente positiva; con LM horizontal domina la tasa fijada.',
-    mechanism: 'Sube el costo del dinero y cae el gasto sensible a la tasa.',
-    trajectory: 'Primero se enfría la actividad y la inversión; luego puede ayudar a reordenar presiones de precios.',
-    filter: 'En Chile, el BCCh endurece cuando detecta riesgos de persistencia inflacionaria o desanclaje.',
-    watch: 'TPM, crédito, inversión, actividad y expectativas.',
-    sector: 'Golpea inversión, durables, inmobiliario y negocios apalancados.',
-    reality: 'Es el lenguaje básico para discutir endurecimiento monetario.'
-  },
-  betterExpectations: {
-    label: 'Mejora de expectativas empresariales',
-    delta: { b0: 25 },
-    trigger: 'Mejora la confianza o cae la incertidumbre.',
-    exogenous: 'Sube la inversión autónoma.',
-    parameters: 'Aumenta b0.',
-    curves: 'IS se desplaza a la derecha.',
-    mechanism: 'La inversión se adelanta y puede activar además el acelerador por mayor actividad.',
-    trajectory: 'El impulso inicial puede realimentarse si la mejora de confianza persiste y la tasa no sube demasiado.',
-    filter: 'En Chile, reglas creíbles y menor incertidumbre regulatoria pueden amplificar este canal.',
-    watch: 'Inversión, confianza empresarial, bienes de capital y empleo.',
-    sector: 'Favorece inversión privada, construcción, maquinaria y sectores cíclicos.',
-    reality: 'Útil para discutir recuperación de confianza.'
-  },
-  worseExpectations: {
-    label: 'Deterioro de expectativas empresariales',
-    delta: { b0: -25 },
-    trigger: 'Sube la incertidumbre o empeora la lectura de futuro.',
-    exogenous: 'Cae la inversión autónoma.',
-    parameters: 'Disminuye b0.',
-    curves: 'IS se desplaza a la izquierda.',
-    mechanism: 'La inversión se posterga y la caída de actividad puede amplificar el freno.',
-    trajectory: 'La retracción puede persistir si se instala una espera prolongada de proyectos o crédito más caro.',
-    filter: 'En Chile, la incertidumbre institucional o regulatoria puede reforzar este freno vía prima de riesgo.',
-    watch: 'Inversión, confianza empresarial, CLP/USD y empleo.',
-    sector: 'Golpea inversión, proyectos de largo plazo y empleo asociado.',
-    reality: 'Sirve para formalizar el canal de incertidumbre.'
-  }
+  none: { label: 'Sin shock', delta: {}, watch: 'PIB/IMACEC, tasas de mercado, crédito e inversión', changedText: 'No cambia ningún parámetro.', reality: 'Base docente de referencia.' },
+  fiscalExpand: { label: 'Expansión fiscal', delta: { G: 30 }, watch: 'actividad, balance fiscal, tasas largas, inversión y empleo', changedText: 'Aumenta G.', reality: 'Puede venir de reconstrucción, mayor gasto cíclico o transferencias.' },
+  fiscalContract: { label: 'Contracción fiscal', delta: { G: -30 }, watch: 'actividad, consolidación fiscal, consumo y tasas', changedText: 'Disminuye G.', reality: 'Puede venir de consolidación, caída de ingresos permanentes o disciplina fiscal.' },
+  monetaryExpand: { label: 'Expansión monetaria', delta: { MP: 55 }, watch: 'TPM, crédito, tasas de mercado y actividad', changedText: 'Aumenta M/P.', reality: 'Puede reflejar recorte de TPM o relajación del tono monetario.' },
+  monetaryContract: { label: 'Contracción monetaria', delta: { MP: -55 }, watch: 'TPM, costo de financiamiento, crédito e inversión', changedText: 'Disminuye M/P.', reality: 'Suele venir de respuesta a inflación persistente o riesgo de desanclaje.' },
+  betterExpectations: { label: 'Mejora de expectativas empresariales', delta: { b0: 25 }, watch: 'inversión, confianza empresarial, empleo y actividad', changedText: 'Aumenta b0.', reality: 'Puede venir de mejora política, recuperación externa o mayor visibilidad regulatoria.' },
+  worseExpectations: { label: 'Deterioro de expectativas empresariales', delta: { b0: -25 }, watch: 'inversión, confianza empresarial y empleo', changedText: 'Disminuye b0.', reality: 'Puede provenir de incertidumbre política, shock externo o tensión financiera.' }
 };
 
 const ISLMBP_DEFAULTS = {
   c0: 120,
   c1: 0.62,
-  b0: 92,
+  b0: 90,
   b1: 0.08,
   b2: 18,
-  x0: 78,
+  x0: 70,
   x1: 0.10,
-  x2: 0.30,
+  x2: 0.28,
   G: 220,
   T: 180,
   MP: 420,
-  d1: 1.02,
-  d2: 72,
+  d1: 1.05,
+  d2: 75,
   iStar: 4.5
 };
 
 const ISLMBP_SHOCKS = {
-  none: {
-    label: 'Sin shock',
-    delta: {},
-    fxShock: 0,
-    trigger: 'No cambia el entorno externo ni la política.',
-    exogenous: 'Se mantiene i*, el entorno externo y el régimen base.',
-    parameters: 'No cambia ningún parámetro.',
-    curves: 'No se desplazan las curvas base.',
-    mechanism: 'Se conserva la configuración inicial.',
-    trajectory: 'La trayectoria probable es continuidad del benchmark docente.',
-    filter: 'La flotación y el BCCh siguen operando como amortiguadores de base.',
-    watch: 'CLP/USD, cobre, exportaciones, TPM y tasas largas.',
-    sector: 'Referencia útil para comparar sensibilidad de transables y no transables.',
-    reality: 'Base pedagógica de economía abierta con flotación.'
-  },
-  fiscalExpand: {
-    label: 'Expansión fiscal',
-    delta: { G: 30 },
-    fxShock: -9,
-    trigger: 'Aumenta el gasto público.',
-    exogenous: 'Sube G.',
-    parameters: 'Aumenta la demanda autónoma interna.',
-    curves: 'IS se desplaza a la derecha; E tiende a apreciarse relativamente.',
-    mechanism: 'Parte del impulso se fuga vía apreciación y menor NX.',
-    trajectory: 'La actividad mejora, pero el sector externo absorbe parte del ajuste bajo flotación.',
-    filter: 'En Chile, disciplina fiscal y flotación moderan el impacto y hacen visible el costo externo.',
-    watch: 'Balance fiscal, CLP/USD, cuenta corriente, tasas y actividad.',
-    sector: 'Favorece demanda interna y no transables; puede perjudicar exportadores por apreciación.',
-    reality: 'Buen caso para comparar con tipo de cambio fijo.'
-  },
-  fiscalContract: {
-    label: 'Contracción fiscal',
-    delta: { G: -30 },
-    fxShock: 8,
-    trigger: 'Cae el gasto público.',
-    exogenous: 'Baja G.',
-    parameters: 'Se reduce la demanda autónoma interna.',
-    curves: 'IS se desplaza a la izquierda; el tipo de cambio puede depreciarse relativamente.',
-    mechanism: 'La menor demanda enfría actividad, pero puede aliviar tensiones externas y mejorar credibilidad.',
-    trajectory: 'Primero cae la demanda; luego pueden corregirse vulnerabilidades si la consolidación es creíble.',
-    filter: 'La regla fiscal y el monitoreo del CFA importan para separar disciplina de ajuste procíclico excesivo.',
-    watch: 'Actividad, balance fiscal, CLP/USD, spreads y empleo.',
-    sector: 'Golpea sectores internos; puede aliviar presión sobre transables si mejora E.',
-    reality: 'Útil para pensar consolidación y trade-offs.'
-  },
-  monetaryExpand: {
-    label: 'Expansión monetaria',
-    delta: { MP: 60 },
-    fxShock: 16,
-    trigger: 'Aumenta el dinero real o baja la tasa interna relativa.',
-    exogenous: 'Sube M/P.',
-    parameters: 'Se relajan las condiciones monetarias.',
-    curves: 'LM se desplaza a la derecha; el peso tiende a depreciarse.',
-    mechanism: 'La depreciación mejora NX y amplifica la expansión de la actividad.',
-    trajectory: 'En flotación la política monetaria suele ser relativamente más potente que la fiscal.',
-    filter: 'En Chile, BCCh autónomo y flotación permiten usar este canal con mayor independencia.',
-    watch: 'TPM, CLP/USD, crédito, exportaciones netas e inflación.',
-    sector: 'Favorece transables, crédito e inversión, pero puede elevar presión inflacionaria importada.',
-    reality: 'Es el caso clásico de eficacia monetaria bajo flotación.'
-  },
-  monetaryContract: {
-    label: 'Contracción monetaria',
-    delta: { MP: -60 },
-    fxShock: -14,
-    trigger: 'Se reduce la liquidez o sube la tasa interna relativa.',
-    exogenous: 'Baja M/P.',
-    parameters: 'Se endurecen las condiciones monetarias.',
-    curves: 'LM se desplaza a la izquierda; el peso tiende a apreciarse o a depreciarse menos.',
-    mechanism: 'Se encarece el crédito, cae demanda y el tipo de cambio alivia parte de la inflación importada.',
-    trajectory: 'La actividad se enfría primero; luego mejora la convergencia inflacionaria si el shock no persiste.',
-    filter: 'En Chile, el BCCh usa este canal cuando el escenario de inflación lo exige.',
-    watch: 'TPM, crédito, CLP/USD, inflación y actividad.',
-    sector: 'Golpea demanda interna y apalancamiento; alivia parte del costo importado.',
-    reality: 'Buen caso para unir IS-LM-BP con OA-DA.'
-  },
-  higherWorldRate: {
-    label: 'Subida de tasa internacional',
-    delta: { iStar: 1.0 },
-    fxShock: 18,
-    trigger: 'Endurece la tasa externa relevante.',
-    exogenous: 'Sube i*.',
-    parameters: 'Aumenta la referencia internacional.',
-    curves: 'BP se desplaza hacia arriba; cae Y compatible con LM-BP y el peso tiende a depreciarse.',
-    mechanism: 'Mayor exigencia externa tensiona capitales, tipo de cambio y costo de financiamiento.',
-    trajectory: 'La primera señal suele verse en CLP/USD, spreads y tasas largas; luego en inversión y actividad.',
-    filter: 'Flotación ayuda a absorber parte del shock, pero no elimina su costo sobre financiamiento e inflación importada.',
-    watch: 'Fed, CLP/USD, tasas largas, spreads y actividad.',
-    sector: 'Afecta financiamiento corporativo, construcción, activos durables y deuda.',
-    reality: 'Muy útil para Chile como economía pequeña y abierta.'
-  },
-  lowerWorldRate: {
-    label: 'Baja de tasa internacional',
-    delta: { iStar: -1.0 },
-    fxShock: -12,
-    trigger: 'Se relaja la tasa externa relevante.',
-    exogenous: 'Baja i*.',
-    parameters: 'Mejoran las condiciones financieras globales.',
-    curves: 'BP se desplaza hacia abajo; mejora Y compatible con LM-BP y el peso tiende a apreciarse.',
-    mechanism: 'Se alivian los costos de financiamiento y la presión sobre el tipo de cambio.',
-    trajectory: 'Puede apoyar actividad y bajar inflación importada, aunque con posible costo para transables.',
-    filter: 'Bajo flotación, Chile gana margen monetario propio cuando el entorno externo afloja.',
-    watch: 'Tasas internacionales, CLP/USD, crédito, actividad e inflación.',
-    sector: 'Favorece financiamiento y demanda interna; puede restar algo de competitividad externa.',
-    reality: 'Sirve para pensar ciclos globales benignos.'
-  },
-  copperDown: {
-    label: 'Caída del precio del cobre',
-    delta: { x0: -18 },
-    fxShock: 20,
-    trigger: 'Empeoran los términos de intercambio.',
-    exogenous: 'Cae x0 externo.',
-    parameters: 'Disminuye la demanda externa neta compatible con Chile.',
-    curves: 'IS se desplaza a la izquierda y el peso tiende a depreciarse.',
-    mechanism: 'Bajan exportaciones e ingresos asociados; el tipo de cambio compensa parcialmente.',
-    trajectory: 'La señal aparece rápido en CLP/USD y recaudación; luego en inversión minera y actividad.',
-    filter: 'La apertura y la flotación transparentan el shock; la regla fiscal importa para no gastar como si fuera transitorio favorable.',
-    watch: 'Cobre, CLP/USD, ingresos fiscales, exportaciones e inversión.',
-    sector: 'Golpea minería, proveedores y regiones mineras; puede mejorar algo la competitividad de otros transables vía depreciación.',
-    reality: 'Shock clásico para la economía chilena.'
-  },
-  copperUp: {
-    label: 'Aumento del precio del cobre',
-    delta: { x0: 18 },
-    fxShock: -16,
-    trigger: 'Mejoran los términos de intercambio.',
-    exogenous: 'Sube x0 externo.',
-    parameters: 'Aumenta la demanda externa neta compatible con Chile.',
-    curves: 'IS se desplaza a la derecha y el peso tiende a apreciarse.',
-    mechanism: 'Mejoran exportaciones e ingresos; la apreciación modera parte del impulso por NX.',
-    trajectory: 'Primero mejora el entorno externo; luego aparece el dilema entre impulso, apreciación y gasto fiscal.',
-    filter: 'La disciplina fiscal ayuda a no convertir un ingreso transitorio en gasto permanente.',
-    watch: 'Cobre, CLP/USD, recaudación, inversión minera y cuenta corriente.',
-    sector: 'Favorece minería y proveedores; puede dificultar a otros transables por apreciación.',
-    reality: 'Permite discutir bonanza y disciplina.'
-  },
-  globalRecession: {
-    label: 'Recesión global',
-    delta: { x0: -22, b0: -10 },
-    fxShock: 22,
-    trigger: 'Se debilita la demanda mundial y sube la cautela financiera.',
-    exogenous: 'Cae demanda externa y empeoran expectativas.',
-    parameters: 'Bajan x0 y b0.',
-    curves: 'IS se desplaza a la izquierda y el peso tiende a depreciarse.',
-    mechanism: 'Caen exportaciones y confianza; la depreciación amortigua, pero no compensa por completo.',
-    trajectory: 'El golpe comienza en comercio exterior y expectativas; luego se propaga a inversión y empleo.',
-    filter: 'Flotación ayuda a absorber parte del shock; política monetaria puede ganar relevancia si la inflación lo permite.',
-    watch: 'PIB global, cobre, CLP/USD, exportaciones, expectativas y empleo.',
-    sector: 'Golpea exportadores, inversión y empleo ligado al ciclo global.',
-    reality: 'Escenario de alta relevancia para Chile.'
-  },
-  pesoDepreciation: {
-    label: 'Depreciación del peso',
-    delta: {},
-    fxShock: 35,
-    trigger: 'Aumenta la presión cambiaria por motivos financieros o externos.',
-    exogenous: 'Sube E.',
-    parameters: 'Cambia directamente el entorno cambiario.',
-    curves: 'IS se mueve por mejora relativa de NX.',
-    mechanism: 'Mejora competitividad externa, pero puede encarecer importados y presionar inflación.',
-    trajectory: 'Primero cambia CLP/USD; luego se observa su efecto sobre precios y volumen externo.',
-    filter: 'La flotación permite este ajuste; el BCCh reacciona si el pass-through amenaza la convergencia inflacionaria.',
-    watch: 'CLP/USD, IPC transable, NX y expectativas.',
-    sector: 'Favorece exportadores y castiga importadores y consumidores de bienes transables.',
-    reality: 'Shock útil para estudiar competitividad versus pass-through.'
-  },
-  pesoAppreciation: {
-    label: 'Apreciación del peso',
-    delta: {},
-    fxShock: -30,
-    trigger: 'Cede la presión cambiaria o mejora abruptamente el entorno financiero/external.',
-    exogenous: 'Baja E.',
-    parameters: 'Cambia directamente el entorno cambiario.',
-    curves: 'IS se mueve por menor impulso de NX.',
-    mechanism: 'Alivia inflación importada, pero resta competitividad a exportadores y sustitutos de importación.',
-    trajectory: 'Primero baja CLP/USD; luego se ven efectos sobre inflación y sectores transables.',
-    filter: 'La flotación transparenta el ajuste y obliga a leer el trade-off entre inflación y competitividad.',
-    watch: 'CLP/USD, inflación, exportaciones y márgenes de importadores.',
-    sector: 'Favorece importadores y consumo; puede perjudicar transables.',
-    reality: 'Caso útil para leer desinflación importada.'
-  },
-  oilUp: {
-    label: 'Alza del petróleo',
-    delta: { x0: -10 },
-    fxShock: 14,
-    trigger: 'Sube el precio internacional del petróleo.',
-    exogenous: 'Empeora el costo externo y presiona el tipo de cambio.',
-    parameters: 'Baja x0 neto y aumenta presión cambiaria.',
-    curves: 'IS se desplaza algo a la izquierda y E tiende a subir.',
-    mechanism: 'Se deteriora el entorno externo y aparecen mayores costos; conviene leerlo junto con OA-DA.',
-    trajectory: 'El primer golpe se ve en combustibles y CLP/USD; luego en inflación, costos y consumo.',
-    filter: 'En Chile el mecanismo institucional clave es el BCCh bajo metas de inflación y el rol de precios regulados/combustibles.',
-    watch: 'Combustibles, IPC, CLP/USD, transporte y costos logísticos.',
-    sector: 'Golpea transporte, alimentos, importadores y márgenes empresariales.',
-    reality: 'Es un shock externo con pata real y de precios.'
-  }
+  none: { label: 'Sin shock', delta: {}, fxShock: 0, watch: 'CLP/USD, cobre, exportaciones, balanza comercial y TPM', changedText: 'No cambia ningún parámetro.', reality: 'Base docente con flotación cambiaria.' },
+  fiscalExpand: { label: 'Expansión fiscal', delta: { G: 30 }, fxShock: -10, watch: 'balance fiscal, tasas, CLP/USD y cuenta corriente', changedText: 'Aumenta G.', reality: 'En flotación suele apreciarse el tipo de cambio y aparecer crowding-out externo parcial.' },
+  fiscalContract: { label: 'Contracción fiscal', delta: { G: -30 }, fxShock: 8, watch: 'actividad, gasto, CLP/USD y riesgo soberano', changedText: 'Disminuye G.', reality: 'Puede aliviar presión externa y ayudar a credibilidad, aunque enfría demanda.' },
+  monetaryExpand: { label: 'Expansión monetaria', delta: { MP: 60 }, fxShock: 18, watch: 'TPM, CLP/USD, crédito y exportaciones netas', changedText: 'Aumenta M/P.', reality: 'En flotación suele ser una política especialmente eficaz en el corto plazo.' },
+  monetaryContract: { label: 'Contracción monetaria', delta: { MP: -60 }, fxShock: -14, watch: 'TPM, crédito, CLP/USD e inflación', changedText: 'Disminuye M/P.', reality: 'Endurece condiciones financieras y suele apreciar o frenar depreciaciones.' },
+  higherWorldRate: { label: 'Subida de la tasa internacional', delta: { iStar: 1.0 }, fxShock: 18, watch: 'Fed, CLP/USD, spreads, tasas largas y capitales', changedText: 'Aumenta i*.', reality: 'Eleva la exigencia externa y puede tensionar el CLP/USD y el costo de financiamiento.' },
+  lowerWorldRate: { label: 'Caída de la tasa internacional', delta: { iStar: -1.0 }, fxShock: -14, watch: 'flujos de capital, CLP/USD y condiciones financieras internas', changedText: 'Disminuye i*.', reality: 'Relaja el entorno financiero internacional y puede aliviar presión sobre el tipo de cambio.' },
+  copperDown: { label: 'Caída del precio del cobre', delta: { x0: -20 }, fxShock: 22, watch: 'cobre, CLP/USD, ingresos fiscales y exportaciones', changedText: 'Disminuye x0 neto y empeora el entorno externo.', reality: 'Chile lo siente rápido por exportaciones, tipo de cambio y recaudación.' },
+  copperUp: { label: 'Aumento del precio del cobre', delta: { x0: 20 }, fxShock: -16, watch: 'cobre, CLP/USD, inversión minera y recaudación', changedText: 'Aumenta x0 neto y mejora el entorno externo.', reality: 'Mejora exportaciones y tiende a apreciar el peso.' },
+  globalRecession: { label: 'Recesión global', delta: { x0: -24, b0: -10 }, fxShock: 24, watch: 'actividad global, exportaciones, CLP/USD y confianza', changedText: 'Cae la demanda externa y se enfría la inversión.', reality: 'Golpea fuerte a sectores exportadores y transables.' },
+  oilUp: { label: 'Alza del petróleo', delta: { x0: -12 }, fxShock: 15, watch: 'combustibles, CLP/USD, IPC y costos logísticos', changedText: 'Empeora x0 neto y aumenta presión cambiaria.', reality: 'Conviene cruzarlo con OA-DA para capturar mejor el canal de costos.' },
+  pesoDepreciation: { label: 'Depreciación del peso', delta: {}, fxShock: 40, watch: 'CLP/USD, precios importados, NX y expectativas', changedText: 'Aumenta E mediante un shock cambiario directo.', reality: 'Sirve para estudiar competitividad versus pass-through.' },
+  pesoAppreciation: { label: 'Apreciación del peso', delta: {}, fxShock: -35, watch: 'CLP/USD, inflación transable y competitividad exportadora', changedText: 'Disminuye E mediante un shock cambiario directo.', reality: 'Alivia inflación importada, pero puede dañar transables.' }
 };
 
 const OADA_DEFAULTS = {
@@ -694,686 +87,422 @@ const OADA_DEFAULTS = {
   mu: 0.20,
   gamma: 0.0020,
   z: 0.50,
-  L: 1000,
-  A: 1.00,
-  costShock: 0
+  L: 950,
+  A: 1.0,
+  costShock: 0.00
 };
 
 const OADA_SHOCKS = {
-  none: {
-    label: 'Sin shock',
-    delta: {},
-    trigger: 'No hay perturbación adicional.',
-    exogenous: 'Se mantiene la configuración base.',
-    parameters: 'No cambian interceptos ni pendientes.',
-    curves: 'DA y OA permanecen iguales.',
-    mechanism: 'No hay cambio en la combinación base de producción y precios.',
-    trajectory: 'La trayectoria probable es convergencia estable hacia la configuración inicial.',
-    filter: 'El filtro institucional solo recuerda que la estabilidad requiere credibilidad y datos.',
-    watch: 'IPC, IPC SAE, actividad y expectativas.',
-    mediumRun: 'Si Y coincide con Yₙ, la presión de ajuste de mediano plazo es mínima.',
-    sector: 'Funciona como benchmark para comparar shocks de demanda, costos o productividad.',
-    reality: 'Base docente con inflación y producto ordenados.'
+  none: { label: 'Sin shock', delta: {}, watch: 'IPC, actividad y expectativas', changedText: 'No cambia ningún parámetro.', mediumRun: 'La economía se mantiene en su configuración base y la discusión relevante es qué tan cerca está de Yₙ.', reality: 'Base pedagógica de referencia.' },
+  fiscalExpand: { label: 'Expansión fiscal', delta: { daA: 60 }, watch: 'actividad, empleo e inflación', changedText: 'Aumenta la demanda agregada autónoma.', mediumRun: 'Si la economía ya está cerca de capacidad, el efecto se vuelve más inflacionario que real.', reality: 'Útil para pensar estímulos fuertes o gasto de reconstrucción.' },
+  fiscalContract: { label: 'Contracción fiscal', delta: { daA: -60 }, watch: 'actividad, empleo e inflación', changedText: 'Disminuye la demanda agregada autónoma.', mediumRun: 'Si Y queda bajo Yₙ, cede presión inflacionaria y el ajuste puede venir con holguras.', reality: 'Útil para pensar consolidación y costo real de corto plazo.' },
+  monetaryExpand: { label: 'Expansión monetaria', delta: { daA: 50 }, watch: 'TPM, crédito, IPC y actividad', changedText: 'Se desplaza la DA hacia la derecha.', mediumRun: 'Si la brecha es positiva y persistente, aumentan precios y expectativas.', reality: 'Ilustra cómo un impulso de demanda puede reabrir actividad y luego tensionar precios.' },
+  monetaryContract: { label: 'Contracción monetaria', delta: { daA: -50 }, watch: 'TPM, IPC SAE, crédito e inversión', changedText: 'Se desplaza la DA hacia la izquierda.', mediumRun: 'Ayuda a cerrar brechas positivas y a devolver la inflación hacia la meta.', reality: 'El ciclo 2021–2023 del BCCh es el ejemplo más claro.' },
+  oilUp: { label: 'Alza del petróleo', delta: { costShock: 0.50 }, watch: 'combustibles, transporte, IPC y márgenes', changedText: 'Sube el shock de costos y desplaza OA hacia arriba.', mediumRun: 'Si el shock persiste, puede contaminar expectativas y salarios.', reality: 'Útil para leer shocks geopolíticos sobre energía y sus efectos estanflacionarios.' },
+  productivityUp: { label: 'Mejora de productividad', delta: { A: 0.07, gamma: -0.0005 }, watch: 'productividad, costos unitarios y crecimiento tendencial', changedText: 'Aumenta A y la OA se vuelve menos empinada.', mediumRun: 'Eleva Yₙ y reduce tensión inflacionaria para un mismo nivel de actividad.', reality: 'Es el tipo de shock que mejora crecimiento sin castigar inflación.' },
+  productivityDown: { label: 'Caída de productividad', delta: { A: -0.07, gamma: 0.0006 }, watch: 'productividad, inversión y crecimiento potencial', changedText: 'Disminuye A y la OA se vuelve más restrictiva.', mediumRun: 'Reduce Yₙ y hace más costoso sostener actividad sin inflación.', reality: 'Puede venir de trabas, daño de capital o deterioro del entorno productivo.' },
+  socialUnrest: { label: 'Estallido social / incertidumbre institucional', delta: { daA: -40, costShock: 0.25, z: 0.12 }, watch: 'EMBI, CLP/USD, inversión, empleo e inflación', changedText: 'Cae DA y suben costos/rigideces.', mediumRun: 'Puede dejar una economía con menor inversión y menor producto natural si daña capital y coordinación.', reality: 'Combina demanda, incertidumbre y costos.' },
+  earthquake: { label: 'Terremoto', delta: { daA: -25, A: -0.05, costShock: 0.35 }, watch: 'capacidad productiva, reconstrucción, precios y empleo', changedText: 'Cae capacidad y suben costos; luego puede aparecer demanda de reconstrucción.', mediumRun: 'En el primer momento domina la restricción de oferta; después la reconstrucción cambia la trayectoria.', reality: 'Sirve para pensar 2010 y shocks naturales severos.' },
+  pandemic: { label: 'Pandemia / shock mixto', delta: { daA: -35, A: -0.04, costShock: 0.18 }, watch: 'movilidad, desempleo, inflación, servicios y política', changedText: 'Se combinan caída de demanda con restricción de oferta.', mediumRun: 'La secuencia temporal importa: primero domina oferta/caída; luego la reapertura puede activar demanda e inflación.', reality: 'Es el ejemplo clásico de shock mixto reciente.' }
+};
+
+const GUIDED_CASES = {
+  iran: {
+    kicker: 'Caso guiado · geopolítica y costos',
+    title: 'Irán / energía / inflación',
+    episode: 'Episodio: un conflicto en Medio Oriente tensiona petróleo, seguros, fletes y expectativas. Para Chile, la primera manifestación puede aparecer antes como costos importados más altos, presión inflacionaria y discusión sobre tasa de política.',
+    why: 'Importa porque permite entrar a la macro desde una pregunta muy vigente: cómo un episodio geopolítico lejano termina alterando precios, tasa, actividad y márgenes en una economía abierta como la chilena.',
+    manifestations: 'Se vuelve relevante cuando aparecen alzas en petróleo y combustibles, mayor presión sobre importados, dudas sobre inflación futura y un debate más duro sobre cuánto espacio tiene la política monetaria para acompañar actividad sin perder credibilidad.',
+    questions: '¿Por qué el alza de energía no pega igual sobre producción y precios? ¿Cuándo domina primero el canal de costos y cuándo aparece el de actividad? ¿Qué papel juegan el BCCh, el pass-through y las expectativas?',
+    mechanism: 'Shock de costos externos → suben petróleo, fletes y seguros → aumentan costos importados → OA se desplaza → cambian P, Y y la brecha respecto de Yₙ → la política monetaria, los márgenes y las expectativas condicionan la trayectoria posterior.',
+    modelWhy: 'OA-DA ayuda más como primera entrada porque deja ver simultáneamente producción, precios y brecha respecto de Yₙ. IS-LM-BP sirve después para abrir el canal cambiario y externo, pero aquí conviene empezar por el corazón estanflacionario del episodio.',
+    observe: 'Al llegar verás el simulador OA-DA. Primero mira si OA se desplazó hacia arriba; luego ubica el nuevo equilibrio; después compara la brecha respecto de Yₙ; y finalmente usa la lectura automática para pensar qué haría el BCCh y qué observarías después en combustibles, IPC y actividad.',
+    targetTab: 'oada',
+    targetShock: 'oilUp',
+    highlight: '#oada .chart-card',
+    arrival: {
+      title: 'OA-DA · shock de costos energéticos',
+      what: 'Estás entrando al simulador OA-DA. Esta página muestra cómo un shock puede mover simultáneamente precios y producción, y si además acerca o aleja a la economía de su producto natural Yₙ.',
+      shock: 'Aquí estás analizando un shock geopolítico que sube costos energéticos e importados. La pregunta no es solo si sube la inflación, sino si el deterioro también erosiona actividad y cuánto de eso puede volverse persistente.',
+      graph: 'En el gráfico, el eslabón central se ve cuando OA se desplaza hacia arriba. Ese movimiento cambia el punto de equilibrio: normalmente sube P, cae Y y la brecha respecto de Yₙ se vuelve más negativa o menos positiva.',
+      next: 'Después de leer el gráfico, revisa la brecha respecto de Yₙ y la nota de mediano plazo. Luego vuelve a “Qué mirar en Chile” y pregunta: ¿están subiendo primero combustibles e IPC transable, o ya aparece daño en actividad y empleo?'
+    }
   },
-  fiscalExpand: {
-    label: 'Expansión fiscal',
-    delta: { daA: 55 },
-    trigger: 'Aumenta la demanda autónoma.',
-    exogenous: 'Sube el componente autónomo de DA.',
-    parameters: 'Aumenta el intercepto de DA.',
-    curves: 'DA se desplaza a la derecha.',
-    mechanism: 'Suben actividad y precios; la magnitud relativa depende de la cercanía a capacidad.',
-    trajectory: 'Si Y supera Yₙ, con el tiempo las expectativas y costos pueden empujar más OA hacia arriba.',
-    filter: 'En Chile, regla fiscal y BCCh importan para que el impulso no se vuelva persistencia inflacionaria.',
-    watch: 'PIB, IMACEC, inflación, balance fiscal y TPM.',
-    mediumRun: 'Si la brecha final es positiva, la convergencia exige enfriamiento posterior o una oferta que responda mejor.',
-    sector: 'Favorece demanda interna y empleo; puede tensionar precios si la oferta es rígida.',
-    reality: 'Buen caso para explicar por qué el mismo impulso puede ser más real o más inflacionario según contexto.'
+  copper: {
+    kicker: 'Caso guiado · apertura y sector externo',
+    title: 'Cobre / CLP-USD / sector externo',
+    episode: 'Episodio: el precio del cobre cae o pierde impulso y el shock entra por exportaciones, ingresos externos, recaudación y tipo de cambio. Aquí la historia no se entiende bien en una economía cerrada.',
+    why: 'Importa porque obliga a pensar a Chile como economía abierta: el ajuste no ocurre solo en producto o tasa; también pasa por E, NX, portafolios y vulnerabilidad externa.',
+    manifestations: 'El caso se vuelve visible cuando el cobre pierde fuerza, el peso se deprecia, cambian expectativas sobre ingresos fiscales y aparece una discusión más intensa sobre cuenta corriente, inversión minera y disciplina externa.',
+    questions: '¿Cómo se transmite una caída del cobre al peso? ¿Qué parte del ajuste la absorbe el tipo de cambio y qué parte termina en actividad? ¿Qué cambia cuando el shock afecta ingresos fiscales y expectativas?',
+    mechanism: 'Deterioro de términos de intercambio → cae x₀ y empeora el entorno externo → presión sobre E y NX → cambian IS y el nuevo equilibrio bajo BP horizontal.',
+    modelWhy: 'IS-LM-BP ayuda más porque hace visible algo crucial para Chile: parte importante del ajuste no se ve primero en Y, sino en el tipo de cambio y en exportaciones netas bajo flotación cambiaria.',
+    observe: 'Al llegar verás IS-LM-BP. Mira la IS inicial y final, compara E y NX, y pregunta si el equilibrio final casi coincide con el inicial porque el ajuste principal está ocurriendo en el tipo de cambio.',
+    targetTab: 'islmbp',
+    targetShock: 'copperDown',
+    highlight: '#islmbp .chart-card',
+    arrival: {
+      title: 'IS-LM-BP · términos de intercambio y flotación',
+      what: 'Estás entrando al simulador IS-LM-BP. Esta página muestra cómo interactúan demanda, dinero, sector externo y tipo de cambio cuando la economía está abierta y opera con alta movilidad de capitales.',
+      shock: 'Aquí analizas una caída del cobre. En Chile eso no es solo un problema exportador: también afecta ingresos externos, recaudación, expectativas y el precio relativo clave para absorber el shock, el tipo de cambio.',
+      graph: 'En el gráfico, ubica primero la IS final y luego mira si el nuevo equilibrio cambia poco en Y pero mucho en E y NX. Esa es precisamente una de las enseñanzas centrales del modelo bajo flotación.',
+      next: 'Después revisa “Qué mirar en Chile” y prueba la comparación con otros shocks externos. La pregunta útil es: ¿se está ajustando primero el peso, la cuenta externa o la actividad real?'
+    }
   },
-  fiscalContract: {
-    label: 'Contracción fiscal',
-    delta: { daA: -55 },
-    trigger: 'Cae la demanda autónoma.',
-    exogenous: 'Baja el componente autónomo de DA.',
-    parameters: 'Disminuye el intercepto de DA.',
-    curves: 'DA se desplaza a la izquierda.',
-    mechanism: 'Bajan actividad y precios relativos al escenario base.',
-    trajectory: 'Si Y queda bajo Yₙ, con el tiempo cede presión de costos y puede facilitar desinflación.',
-    filter: 'En Chile, la calidad del ajuste y la credibilidad fiscal son decisivas para evaluar su costo y retorno.',
-    watch: 'Actividad, empleo, inflación y balance fiscal.',
-    mediumRun: 'Una brecha negativa prolongada reduce presión inflacionaria, pero puede castigar empleo y capacidad futura.',
-    sector: 'Golpea demanda interna; puede aliviar algo de inflación y tasas a mediano plazo.',
-    reality: 'Sirve para discutir consolidación y costo cíclico.'
+  fiscal: {
+    kicker: 'Caso guiado · política fiscal y demanda',
+    title: 'Ajuste fiscal / actividad / tasas',
+    episode: 'Episodio: el gobierno reduce impulso fiscal o acelera consolidación. El punto de partida no es moralizar el ajuste, sino entender qué canal domina primero y cómo reaccionan actividad, tasa e inversión.',
+    why: 'Importa porque muestra con claridad qué sí y qué no entrega IS-LM: multiplicador, crowding-out, acelerador y límites de una lectura en economía cerrada.',
+    manifestations: 'Se vuelve relevante cuando el debate público gira en torno a menor gasto, credibilidad fiscal, desaceleración y posible alivio de tasas. Es una puerta de entrada muy útil para ver por qué el mismo ajuste puede leerse distinto según el peso del acelerador y del crowding-out.',
+    questions: '¿Qué cae primero cuando disminuye G? ¿La tasa se mueve suficiente como para aliviar inversión? ¿Cuándo el acelerador vuelve más intensa la desaceleración?',
+    mechanism: 'Menor G → se desplaza IS → cambian Y e i → la inversión reacciona por tasa y por nivel de actividad. La comparación entre crowding-out y acelerador ayuda a ordenar el diagnóstico.',
+    modelWhy: 'IS-LM ayuda más porque deja ver con nitidez el juego entre mercado de bienes y mercado de dinero. No resuelve toda la historia, pero sí muestra el núcleo del ajuste sobre demanda, tasa e inversión.',
+    observe: 'Al llegar verás IS-LM. Mira el desplazamiento de la IS, el cambio en Y, i e inversión, y luego compara en la caja lateral cuánto del resultado parece dominado por crowding-out y cuánto por acelerador.',
+    targetTab: 'islm',
+    targetShock: 'fiscalContract',
+    highlight: '#islm .chart-card',
+    arrival: {
+      title: 'IS-LM · ajuste fiscal y demanda agregada',
+      what: 'Estás entrando al simulador IS-LM. Esta página muestra cómo se determina el equilibrio conjunto entre mercado de bienes y mercado de dinero, y cómo un cambio fiscal altera producción, tasa e inversión.',
+      shock: 'Aquí analizas una contracción fiscal. La pregunta central es si la caída de demanda domina, si la tasa baja lo suficiente para amortiguar el golpe y cómo responde la inversión en ese balance.',
+      graph: 'En el gráfico, localiza la IS inicial y final. El mecanismo principal está allí: al caer G, se desplaza la IS y cambian simultáneamente Y e i. Luego mira si la inversión cae por menor actividad, por la tasa o por ambas.',
+      next: 'Después revisa la comparación crowding-out vs acelerador y la caja de “Qué mirar en Chile”. La siguiente pregunta útil es: ¿la menor presión sobre tasas alcanza a compensar la desaceleración de la demanda?'
+    }
   },
-  monetaryExpand: {
-    label: 'Expansión monetaria',
-    delta: { daA: 42 },
-    trigger: 'Se relajan condiciones monetarias y de crédito.',
-    exogenous: 'Sube la demanda agregada compatible con menores tasas.',
-    parameters: 'Aumenta el intercepto de DA.',
-    curves: 'DA se desplaza a la derecha.',
-    mechanism: 'Suben producción y precios; la persistencia depende del punto del ciclo y de expectativas.',
-    trajectory: 'Si la economía ya estaba cerca de Yₙ, el efecto adicional será más visible en precios que en actividad.',
-    filter: 'BCCh evalúa este canal dentro de metas de inflación; la credibilidad evita que un impulso transitorio desancle expectativas.',
-    watch: 'TPM, crédito, inflación, actividad y expectativas.',
-    mediumRun: 'Una brecha positiva sostenida tiende a corregirse mediante mayor inflación o política monetaria más restrictiva después.',
-    sector: 'Favorece crédito, inversión y consumo durable; puede tensionar importados y precios.',
-    reality: 'Útil para conectar OA-DA con decisiones monetarias.'
-  },
-  monetaryContract: {
-    label: 'Contracción monetaria',
-    delta: { daA: -42 },
-    trigger: 'Se endurecen condiciones monetarias y financieras.',
-    exogenous: 'Baja la demanda agregada compatible con mayores tasas.',
-    parameters: 'Disminuye el intercepto de DA.',
-    curves: 'DA se desplaza a la izquierda.',
-    mechanism: 'Se enfrían actividad y precios; la desinflación gana fuerza si las expectativas responden.',
-    trajectory: 'El costo aparece primero en demanda, crédito e inversión; luego ayuda a reconducir inflación.',
-    filter: 'En Chile, el BCCh aplica este canal cuando la meta de inflación está en riesgo.',
-    watch: 'TPM, IPC SAE, crédito, actividad y desempleo.',
-    mediumRun: 'Cerrar una brecha positiva requiere tiempo; el beneficio es mayor si evita segunda vuelta y persistencia.',
-    sector: 'Golpea construcción, durables y financiamiento; ayuda a estabilizar poder adquisitivo.',
-    reality: 'Clave para entender 2021–2024.'
-  },
-  oilUp: {
-    label: 'Alza del petróleo',
-    delta: { costShock: 0.40 },
-    trigger: 'Sube el costo energético global.',
-    exogenous: 'Aumentan costos importados.',
-    parameters: 'Aumenta shock de costos.',
-    curves: 'OA se desplaza hacia arriba / izquierda.',
-    mechanism: 'Suben precios y cae la producción relativa al escenario base.',
-    trajectory: 'Si el shock persiste, puede contaminar expectativas y salarios; si revierte, la presión cede gradualmente.',
-    filter: 'BCCh y la flotación cambiaria importan para evitar que un shock de costos transitorio se vuelva persistente.',
-    watch: 'Combustibles, IPC, IPC SAE, CLP/USD, costos logísticos.',
-    mediumRun: 'El ajuste de mediano plazo depende de cuánto del shock se propaga a expectativas y contratos.',
-    sector: 'Golpea transporte, alimentos, logística y márgenes empresariales.',
-    reality: 'Ejemplo claro de shock estanflacionario.'
-  },
-  productivityUp: {
-    label: 'Mejora de productividad',
-    delta: { A: 0.05, gamma: -0.0003 },
-    trigger: 'Mejora capacidad productiva o eficiencia.',
-    exogenous: 'Sube A y cae rigidez relativa.',
-    parameters: 'Aumenta Yₙ y OA se vuelve menos empinada.',
-    curves: 'OA se desplaza hacia abajo / derecha y Yₙ aumenta.',
-    mechanism: 'La economía puede producir más con menor presión de precios.',
-    trajectory: 'Si la mejora persiste, la ganancia no es solo cíclica: cambia la capacidad del sistema.',
-    filter: 'Un buen diseño institucional favorece que estas mejoras se materialicen y no se frenen por incertidumbre.',
-    watch: 'Productividad, costos unitarios, inversión, crecimiento tendencial.',
-    mediumRun: 'Mejorar Yₙ es el modo más sano de crecer sin inflación persistente.',
-    sector: 'Favorece competitividad, salarios reales sostenibles e inversión.',
-    reality: 'Es el shock más deseable desde la perspectiva de bienestar.'
-  },
-  productivityDown: {
-    label: 'Caída de productividad',
-    delta: { A: -0.05, gamma: 0.0004 },
-    trigger: 'Se deteriora la capacidad productiva o la eficiencia.',
-    exogenous: 'Baja A y aumenta rigidez relativa.',
-    parameters: 'Cae Yₙ y OA se vuelve más restrictiva.',
-    curves: 'OA se desplaza hacia arriba / izquierda y Yₙ cae.',
-    mechanism: 'La economía produce menos y enfrenta más presión de precios para un mismo nivel de demanda.',
-    trajectory: 'Puede dejar daños persistentes si cae inversión, aprendizaje o coordinación.',
-    filter: 'Instituciones que favorezcan certeza, inversión y competencia ayudan a contener este deterioro.',
-    watch: 'Productividad, inversión, costos, empleo y crecimiento tendencial.',
-    mediumRun: 'La corrección exige recomponer capacidad, no solo enfriar demanda.',
-    sector: 'Golpea crecimiento potencial, márgenes y salarios reales.',
-    reality: 'Útil para pensar estancamiento o daño de capacidad.'
-  },
-  socialUnrest: {
-    label: 'Estallido social / incertidumbre',
-    delta: { daA: -32, costShock: 0.22, z: 0.10 },
-    trigger: 'Sube la incertidumbre y se daña coordinación u operación.',
-    exogenous: 'Cae DA y suben rigideces/costos.',
-    parameters: 'Baja intercepto de DA y sube OA.',
-    curves: 'DA cae y OA sube.',
-    mechanism: 'Se combinan menor actividad, mayor cautela y presiones de costos o disrupción.',
-    trajectory: 'El episodio puede dejar cicatrices vía inversión y confianza, incluso si el daño físico es acotado.',
-    filter: 'La solidez institucional define si el shock se contiene o escala a riesgo macro persistente.',
-    watch: 'Inversión, empleo, CLP/USD, spreads, inflación y expectativas.',
-    mediumRun: 'La recuperación depende tanto de la normalización política como del reanclaje de expectativas.',
-    sector: 'Golpea comercio, inversión, turismo, transporte y coordinación económica.',
-    reality: 'Caso muy relevante para la experiencia chilena reciente.'
-  },
-  earthquake: {
-    label: 'Terremoto',
-    delta: { daA: -20, A: -0.04, costShock: 0.30 },
-    trigger: 'Se daña capacidad productiva y logística.',
-    exogenous: 'Baja productividad y suben costos.',
-    parameters: 'Cae A y sube shock de costos.',
-    curves: 'OA se desplaza arriba/izquierda; DA puede caer al inicio.',
-    mechanism: 'En el impacto domina la restricción de oferta; luego puede aparecer demanda de reconstrucción.',
-    trajectory: 'La secuencia es importante: daño inicial, disrupción, reconstrucción y posible recuperación de demanda.',
-    filter: 'La capacidad fiscal, institucional y logística define la velocidad de recuperación.',
-    watch: 'Actividad sectorial, empleo, reconstrucción, precios y gasto público.',
-    mediumRun: 'La convergencia depende de la velocidad con que se recupere capacidad y se coordine reconstrucción.',
-    sector: 'Golpea infraestructura, comercio y capacidad; luego favorece construcción y materiales.',
-    reality: 'Sirve para pensar shocks naturales severos.'
-  },
-  geopolitical: {
-    label: 'Shock geopolítico externo',
-    delta: { costShock: 0.25, daA: -10 },
-    trigger: 'Conflicto externo eleva costos y deteriora confianza.',
-    exogenous: 'Suben costos importados y cae algo la demanda.',
-    parameters: 'Aumenta OA y cae levemente DA.',
-    curves: 'OA sube y DA puede retroceder.',
-    mechanism: 'Aparece presión de costos con debilidad de actividad: patrón estanflacionario.',
-    trajectory: 'Primero suben precios de insumos; luego se ajustan márgenes, consumo y política monetaria.',
-    filter: 'En Chile importa mucho el canal de combustibles, CLP/USD y la reacción del BCCh.',
-    watch: 'Combustibles, IPC, inflación subyacente, CLP/USD y TPM.',
-    mediumRun: 'Si el shock se vuelve persistente, la desinflación se retrasa y el costo real aumenta.',
-    sector: 'Golpea intensivos en energía, importadores y hogares por costo de vida.',
-    reality: 'Caso útil para conectar Medio Oriente 2026 con Chile.'
-  },
-  reopening: {
-    label: 'Reapertura / normalización de oferta',
-    delta: { A: 0.03, costShock: -0.15, daA: 15 },
-    trigger: 'Se normalizan cadenas logísticas y capacidad.',
-    exogenous: 'Mejora productividad y cede el shock de costos; además mejora algo la demanda.',
-    parameters: 'Sube A, cae shock de costos y mejora modestamente DA.',
-    curves: 'OA se desplaza hacia abajo/derecha y DA sube algo.',
-    mechanism: 'La actividad mejora sin tanto castigo inflacionario; incluso puede ayudar a desinflar.',
-    trajectory: 'Se alivian cuellos de botella y presiones de oferta; luego la política puede normalizarse con menor costo.',
-    filter: 'Bajo credibilidad monetaria, este tipo de normalización acelera la convergencia inflacionaria.',
-    watch: 'Costos logísticos, inflación de bienes, actividad y TPM.',
-    mediumRun: 'Es la mejor combinación para crecer y desinflar al mismo tiempo.',
-    sector: 'Favorece importadores, manufactura, retail y hogares por menores costos.',
-    reality: 'Clave para leer normalización post-pandemia o post-disrupción.'
+  dashboard: {
+    kicker: 'Entrada directa al tablero',
+    title: 'Tablero Macro',
+    episode: 'Episodio: antes de elegir un modelo, conviene ubicar el presente dentro del ciclo chileno. El tablero resume crecimiento, inflación, desempleo, TPM, tipo de cambio, cobre y petróleo.',
+    why: 'Importa porque evita leer cada dato como si estuviera aislado. El tablero ayuda a ver quiebres, rezagos y coexistencia de shocks antes de bajar al lente formal.',
+    manifestations: 'La relevancia aparece cuando varias series parecen contar historias distintas al mismo tiempo: crecimiento moderado, inflación en baja, tipo de cambio alto, cobre y petróleo moviéndose por fuerzas globales y TPM todavía condicionando el ajuste.',
+    questions: '¿Qué series reaccionan primero? ¿Qué cambios parecen venir de demanda, cuáles de costos y cuáles del sector externo? ¿Qué quiebres dominan el período?',
+    mechanism: 'Observación histórica guiada → identificación de quiebres → selección del modelo útil.',
+    modelWhy: 'El tablero ayuda más cuando todavía no sabes qué modelo elegir. Su valor está en obligarte a mirar secuencias, desacoples y convivencias de shocks antes de pasar a una formalización.',
+    observe: 'Al llegar verás el tablero macro. Empieza por la lectura general, luego revisa snapshots 2025 y después compara las tres franjas de gráficos: actividad-precios-empleo; TPM y tipo de cambio; cobre y WTI.',
+    targetTab: 'tablero',
+    targetShock: '',
+    highlight: '#tablero .dashboard-shell-v2',
+    arrival: {
+      title: 'Tablero Macro · secuencia y quiebres',
+      what: 'Estás entrando al tablero histórico. Esta página no reemplaza los modelos: los prepara. Su función es mostrar qué variables reaccionan primero, cuáles con rezago y qué quiebres del período ayudan a escoger mejor el lente formal.',
+      shock: 'Aquí no analizas un solo shock, sino una secuencia de episodios: desaceleración, estallido, pandemia, rebote inflacionario, endurecimiento monetario, términos de intercambio y energía.',
+      graph: 'Mira primero la franja 1 para actividad, precios y empleo; luego la franja 2 para TPM y tipo de cambio; y termina en la franja 3 para cobre y petróleo. El mecanismo aparece en cómo esas series se desacoplan o se sincronizan.',
+      next: 'Después elige un caso guiado o baja al modelo que mejor capture el canal dominante. La regla es simple: si domina precios y costos, parte por OA-DA; si domina apertura y tipo de cambio, parte por IS-LM-BP; si domina demanda interna, parte por IS-LM.'
+    }
   }
 };
 
-function safeDiv(a, b) {
-  const denom = Math.abs(b) < EPS ? (b >= 0 ? EPS : -EPS) : b;
-  return a / denom;
-}
+const WATCH_GUIDES = {
+  islm: {
+    none: 'Pregunta clave: ¿qué combinación de actividad, tasa e inversión describe mejor la base? Mira IMACEC, tasas de mercado y formación bruta de capital para construir una línea de referencia antes de meter shocks.',
+    fiscalExpand: 'Pregunta clave: ¿el impulso fiscal está levantando actividad más rápido de lo que suben las tasas? Mira IMACEC, ejecución fiscal, tasas largas e inversión. Si actividad sube pero la inversión privada no acompaña, el crowding-out puede estar ganando terreno.',
+    fiscalContract: 'Pregunta clave: ¿la menor presión fiscal enfría demanda más rápido de lo que aliviana tasas? Mira IMACEC, inversión, empleo, tasas largas y balance estructural. Si las tasas ceden pero la inversión no repunta, el canal dominante sigue siendo la debilidad de actividad.',
+    monetaryExpand: 'Pregunta clave: ¿la relajación monetaria está empujando crédito e inversión o solo estabilizando? Mira TPM, colocaciones, ventas e inversión. La trayectoria mejora si el crédito empieza a moverse antes que el empleo.',
+    monetaryContract: 'Pregunta clave: ¿el enfriamiento entra primero por tasa, crédito o inversión? Mira TPM, tasas bancarias, crédito comercial e IPC. Si la inflación cede antes que la actividad, el ajuste está operando por el canal esperado.',
+    betterExpectations: 'Pregunta clave: ¿la mejora de expectativas se traduce en inversión efectiva? Mira encuestas de confianza, anuncios de inversión, ventas y tasas. Si mejora la confianza pero no la inversión, el mecanismo sigue incompleto.',
+    worseExpectations: 'Pregunta clave: ¿la caída de confianza ya está frenando gasto e inversión? Mira confianza empresarial, IMACEC, inversión y empleo. La señal fuerte aparece cuando el deterioro de expectativas empieza a contaminar decisiones reales.'
+  },
+  islmbp: {
+    none: 'Pregunta clave: ¿la base se está moviendo más por tasa interna, por el entorno externo o por el tipo de cambio? Mira TPM, CLP/USD, cobre y balanza comercial para identificar cuál es la bisagra dominante.',
+    fiscalExpand: 'Pregunta clave: ¿el impulso fiscal se está filtrando hacia apreciación y deterioro externo? Mira gasto, CLP/USD, cuenta corriente, tasas e importaciones. Si la demanda sube pero el peso se aprecia y NX empeora, estás viendo la fuga externa del impulso.',
+    fiscalContract: 'Pregunta clave: ¿la consolidación fiscal reduce demanda más rápido de lo que mejora la percepción externa? Mira actividad, CLP/USD, riesgo soberano y cuenta corriente. Si mejora el peso o el riesgo, el filtro institucional puede estar amortiguando parte del costo real.',
+    monetaryExpand: 'Pregunta clave: ¿la política monetaria está operando sobre E y NX además de Y? Mira TPM, CLP/USD, crédito y exportaciones netas. Bajo flotación, una parte clave del mecanismo debería aparecer primero en el tipo de cambio.',
+    monetaryContract: 'Pregunta clave: ¿la contracción está apreciando el peso o frenando una depreciación previa? Mira CLP/USD, inflación transable, crédito e inversión. La trayectoria se clarifica cuando baja la presión cambiaria y luego cede la inflación.',
+    higherWorldRate: 'Pregunta clave: ¿el shock global entra primero por spreads, por el peso o por el costo de financiamiento? Mira Fed, tasas largas locales, CLP/USD y spreads. Si el peso se deprecia rápido, el ajuste externo ya está en marcha.',
+    lowerWorldRate: 'Pregunta clave: ¿la relajación internacional abre espacio para un alivio local sin tensionar el peso? Mira flujos, CLP/USD, tasas largas y crédito. El canal se confirma si mejoran condiciones financieras antes que actividad.',
+    copperDown: 'Pregunta clave: ¿la caída del cobre ya está pasando al CLP/USD y a la percepción sobre ingresos externos? Mira cobre, CLP/USD, balanza comercial, recaudación minera y spreads. Si el peso se mueve primero y NX tarda, el ajuste está entrando por precios relativos.',
+    copperUp: 'Pregunta clave: ¿la mejora del cobre se está traduciendo en apreciación, mayor inversión minera o más espacio fiscal? Mira cobre, CLP/USD, anuncios de inversión y recaudación. La trayectoria se fortalece si la mejora externa no se agota solo en el tipo de cambio.',
+    globalRecession: 'Pregunta clave: ¿el golpe externo está entrando por exportaciones, confianza o ambas? Mira actividad global, exportaciones chilenas, CLP/USD e inversión. Si caen exportaciones y sube el dólar, el canal externo domina claramente.',
+    oilUp: 'Pregunta clave: ¿el shock energético está entrando primero por el tipo de cambio, por importados o por ambos? Mira WTI, combustibles, CLP/USD, IPC transable y TPM. Si sube el dólar y también los combustibles, el canal externo y el de costos se están reforzando.',
+    pesoDepreciation: 'Pregunta clave: ¿la depreciación está ayudando a NX más rápido de lo que daña inflación? Mira CLP/USD, balanza comercial, inflación transable y expectativas. La clave es ver si el pass-through domina o si aparece una mejora neta externa.',
+    pesoAppreciation: 'Pregunta clave: ¿la apreciación alivia inflación más rápido de lo que erosiona competitividad? Mira CLP/USD, inflación transable, exportaciones y márgenes en transables. Si baja inflación importada pero empeora el sector exportador, el trade-off se vuelve visible.'
+  },
+  oada: {
+    none: 'Pregunta clave: ¿la economía parece cerca, arriba o abajo de Yₙ? Mira inflación, actividad y expectativas. La utilidad del modelo empieza cuando puedes separar presiones de demanda de holguras o restricciones de oferta.',
+    fiscalExpand: 'Pregunta clave: ¿el impulso está levantando más Y o más P? Mira IMACEC, empleo, IPC y expectativas. Si el producto ya estaba cerca de Yₙ, el mismo impulso se vuelve más inflacionario.',
+    fiscalContract: 'Pregunta clave: ¿la consolidación está cerrando una brecha inflacionaria o abriendo holgura excesiva? Mira actividad, empleo, inflación y expectativas. La trayectoria importa más que el primer impacto aislado.',
+    monetaryExpand: 'Pregunta clave: ¿la mayor demanda reabre actividad sin desanclar precios? Mira crédito, ventas, empleo e inflación subyacente. Si sube actividad pero también reaparece presión inflacionaria, DA ya está chocando con capacidad.',
+    monetaryContract: 'Pregunta clave: ¿la desinflación viene con caída acotada de actividad o con brecha demasiado negativa? Mira TPM, IPC SAE, IMACEC, desempleo y expectativas. El equilibrio es mejor cuando baja la inflación sin un deterioro excesivo de Y frente a Yₙ.',
+    oilUp: 'Pregunta clave: ¿domina el canal de costos o ya hay segunda vuelta en salarios y márgenes? Mira WTI, combustibles, IPC transable, expectativas, reajustes salariales y márgenes. Si primero suben combustibles y luego la inflación subyacente, el shock se está propagando.',
+    productivityUp: 'Pregunta clave: ¿la mejora eleva Yₙ o solo empuja actividad transitoria? Mira productividad, costos unitarios, inversión y salarios reales. La señal fuerte es cuando mejora capacidad sin castigar inflación.',
+    productivityDown: 'Pregunta clave: ¿la caída de productividad está achicando Yₙ o solo frenando demanda? Mira productividad, costos unitarios, inversión y márgenes. Si suben costos con crecimiento débil, el problema es más de oferta que de demanda.',
+    socialUnrest: 'Pregunta clave: ¿predomina la caída de demanda o el daño sobre oferta, coordinación y riesgo? Mira EMBI, CLP/USD, inversión, empleo, inflación y daño físico. Si caen inversión y confianza mientras suben algunos costos, el shock es mixto y persistente.',
+    earthquake: 'Pregunta clave: ¿domina primero la pérdida de capacidad o la demanda de reconstrucción? Mira capacidad productiva, empleo, precios, inversión pública y reconstrucción. La secuencia temporal es esencial: primero oferta, luego demanda.',
+    pandemic: 'Pregunta clave: ¿el episodio está operando como caída de demanda, restricción de oferta o ambas? Mira movilidad, empleo, servicios, inflación y política. La composición del shock cambia en el tiempo y por eso el mismo episodio puede mover OA y DA sucesivamente.'
+  }
+};
 
-function formatNumber(value, digits = 2) {
-  if (!Number.isFinite(value)) return '—';
-  return Number(value).toFixed(digits);
+function safeDiv(a, b) { return a / (Math.abs(b) < EPS ? (b < 0 ? -EPS : EPS) : b); }
+function round(value, digits = 2) { return Number.isFinite(value) ? Number(value).toFixed(digits) : '—'; }
+function clampPositive(v) { return Math.max(0, v); }
+function signWord(delta, pos, neg, neutral='se mantiene aproximadamente estable') {
+  if (Math.abs(delta) < 0.03) return neutral;
+  return delta > 0 ? pos : neg;
 }
-
-function clampMinZero(v) {
-  return Math.max(0, v);
+function applyDelta(base, delta={}) {
+  const out = {...base};
+  Object.entries(delta).forEach(([k,v]) => out[k] = (out[k] ?? 0) + v);
+  return out;
 }
-
-function wordDirection(delta, up, down, flat = 'se mantiene casi estable') {
-  if (Math.abs(delta) < 0.03) return flat;
-  return delta > 0 ? up : down;
-}
-
-function applyDelta(base, delta = {}) {
-  const copy = { ...base };
-  Object.entries(delta).forEach(([k, v]) => {
-    copy[k] = (copy[k] ?? 0) + v;
-  });
-  return copy;
-}
-
-function setText(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = value;
-}
-
-function setHTML(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.innerHTML = value;
-}
-
-function fillInputs(prefix, defaults) {
-  Object.keys(defaults).forEach((key) => {
-    const input = document.getElementById(`${prefix}-${key}`);
-    if (input) input.value = defaults[key];
-  });
-}
-
-function readInputs(prefix, defaults) {
+function readParams(prefix, defaults) {
   const out = {};
-  Object.keys(defaults).forEach((key) => {
-    const input = document.getElementById(`${prefix}-${key}`);
-    out[key] = input ? Number(input.value) : defaults[key];
+  Object.keys(defaults).forEach((k) => {
+    const el = document.getElementById(`${prefix}-${k}`);
+    out[k] = el ? Number(el.value) : defaults[k];
   });
   return out;
 }
-
-function bindInputs(prefix, defaults, callback) {
-  Object.keys(defaults).forEach((key) => {
-    const input = document.getElementById(`${prefix}-${key}`);
-    if (input) input.addEventListener('input', callback);
+function fillInputs(prefix, defaults) {
+  Object.keys(defaults).forEach((k) => {
+    const el = document.getElementById(`${prefix}-${k}`);
+    if (el) el.value = defaults[k];
   });
 }
-
 function populateSelect(id, optionsMap) {
   const select = document.getElementById(id);
   select.innerHTML = '';
   Object.entries(optionsMap).forEach(([key, obj]) => {
-    const option = document.createElement('option');
-    option.value = key;
-    option.textContent = typeof obj === 'string' ? obj : obj.label;
-    select.appendChild(option);
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = typeof obj === 'string' ? obj : obj.label;
+    select.appendChild(opt);
   });
 }
-
-function initTabs() {
+function bindInputs(prefix, defaults, callback) {
+  Object.keys(defaults).forEach((k) => {
+    const el = document.getElementById(`${prefix}-${k}`);
+    if (el) el.addEventListener('input', callback);
+  });
+}
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+function setHTML(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = value;
+}
+function activateTab(target) {
   const buttons = [...document.querySelectorAll('.tab-button')];
   const panels = [...document.querySelectorAll('.tab-panel')];
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      buttons.forEach((b) => b.classList.toggle('active', b === btn));
-      panels.forEach((panel) => panel.classList.toggle('active', panel.id === btn.dataset.tab));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
+  buttons.forEach(b => b.classList.toggle('active', b.dataset.tab === target));
+  panels.forEach(p => p.classList.toggle('active', p.id === target));
 }
-
-function buildLine(fn, xMin, xMax, n = 60) {
+function initTabs() {
+  document.querySelectorAll('.tab-button').forEach((btn) => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+}
+function buildLine(fn, xMin, xMax, n=50) {
   const points = [];
   const step = (xMax - xMin) / n;
-  for (let i = 0; i <= n; i += 1) {
-    const x = xMin + i * step;
-    const y = fn(x);
-    points.push({ x, y });
+  for (let i=0;i<=n;i++) {
+    const x = xMin + i*step;
+    points.push({x, y: fn(x)});
   }
   return points;
 }
-
-function chartRange(values, floor = 0, allowNegative = false) {
-  const finite = values.filter((v) => Number.isFinite(v));
-  const min = Math.min(...finite);
-  const max = Math.max(...finite);
-  const spread = Math.max(max - min, 1);
-  const pad = spread * 0.18 + 2;
+function centeredRange(values, minSpan=100, floor=0) {
+  const vals = values.filter(v => Number.isFinite(v));
+  const min = Math.min(...vals);
+  const max = Math.max(...vals);
+  const span = Math.max(max - min, minSpan);
+  const center = (min + max) / 2;
+  return { min: Math.max(floor, center - span * 0.7), max: center + span * 0.7 };
+}
+function drawChart(key, canvasId, config) {
+  if (charts[key]) charts[key].destroy();
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  charts[key] = new Chart(ctx, config);
+}
+function pointDataset(label, x, y, style) {
   return {
-    min: allowNegative ? min - pad : Math.max(floor, min - pad),
-    max: max + pad
+    label,
+    data: [{x,y}],
+    showLine: false,
+    pointRadius: style.radius,
+    pointHoverRadius: style.radius + 1,
+    pointBackgroundColor: style.bg,
+    pointBorderColor: style.border,
+    pointBorderWidth: style.borderWidth,
+    pointStyle: style.pointStyle || 'circle'
   };
 }
 
-function destroyChart(key) {
-  if (charts[key]) {
-    charts[key].destroy();
-    charts[key] = null;
-  }
-}
-
-function createChart(key, canvasId, config) {
-  destroyChart(key);
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  charts[key] = new Chart(canvas.getContext('2d'), config);
-}
-
-function baseChartOptions(xTitle, yTitle, xRange, yRange, allowNegativeY = false) {
-  return {
-    responsive: true,
-    maintainAspectRatio: false,
-    interaction: { mode: 'nearest', intersect: false },
-    plugins: {
-      legend: { position: 'bottom' },
-      tooltip: { enabled: true }
-    },
-    scales: {
-      x: {
-        type: 'linear',
-        min: xRange.min,
-        max: xRange.max,
-        title: { display: true, text: xTitle },
-        grid: { color: '#e8eef6' }
-      },
-      y: {
-        min: allowNegativeY ? yRange.min : clampMinZero(yRange.min),
-        max: yRange.max,
-        title: { display: true, text: yTitle },
-        grid: { color: '#e8eef6' }
-      }
-    }
-  };
-}
-
-function renderSimpleTable(id, headers, rows) {
-  const table = document.getElementById(id);
-  const head = `<thead><tr>${headers.map((h) => `<th>${h}</th>`).join('')}</tr></thead>`;
-  const body = `<tbody>${rows.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>`;
-  table.innerHTML = head + body;
-}
-
-function renderSequenceCards() {
-  const container = document.getElementById('sequence-cards');
-  container.innerHTML = sequenceItems.map((item) => `
-    <article class="sequence-card">
-      <strong>${item.title}</strong>
-      <p>${item.body}</p>
-    </article>
-  `).join('');
-}
-
-function renderShockExampleTable() {
-  renderSimpleTable(
-    'shock-examples-table',
-    ['Tipo de shock', 'Disparador primario', 'Variable(s) exógena(s) afectada(s)', 'Modelo(s) donde se ve mejor', 'Mecanismo principal', 'Ejemplo chileno o internacional', 'Qué dato conviene mirar', 'Implicancia para empresas / hogares / gobierno'],
-    shockExamples.map((item) => [item.tipo, item.disparador, item.exogena, item.modelos, item.mecanismo, item.ejemplo, item.dato, item.implicancia])
-  );
-}
-
-function renderShockCards() {
-  const container = document.getElementById('shock-cards');
-  container.innerHTML = shockTypeCards.map((item) => `
-    <article class="card">
-      <h3>${item.title}</h3>
-      <p>${item.body}</p>
-    </article>
-  `).join('');
-}
-
-function renderTransmissionTable() {
-  renderSimpleTable(
-    'transmission-table',
-    ['Canal', 'Disparador típico', 'Variables que reaccionan primero', 'Modelo(s) donde mejor se observan', 'Implicancias sectoriales'],
-    transmissionRows.map((row) => [row.canal, row.disparador, row.primeras, row.modelos, row.sector])
-  );
-}
-
-function renderInstitutionTable() {
-  renderSimpleTable(
-    'institution-table',
-    ['Institución', 'Función macro relevante', 'Qué credibilidad ayuda a comprar o sostener', 'Qué problema de comportamiento oportunista ayuda a contener', 'Qué datos / decisiones / señales produce', 'Qué rol cumple en escenarios de shock'],
-    institutionRows.map((row) => [row.institucion, row.funcion, row.credibilidad, row.oportunismo, row.senales, row.rol])
-  );
-}
-
-function renderGlossary() {
-  const root = document.getElementById('glossary-groups');
-  root.innerHTML = glossaryGroups.map((group) => `
-    <section class="glossary-group">
-      <h3>${group.title}</h3>
-      <div class="glossary-grid">
-        ${group.items.map(([term, definition]) => `
-          <article class="glossary-item">
-            <strong>${term}</strong>
-            <p>${definition}</p>
-          </article>
-        `).join('')}
-      </div>
-    </section>
-  `).join('');
+function highlightElement(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  el.classList.remove('highlight-card');
+  void el.offsetWidth;
+  el.classList.add('highlight-card');
+  setTimeout(() => el.classList.remove('highlight-card'), 2200);
 }
 
 function calcISLM(params, regime) {
   const A = 1 - params.c1 - params.b1;
-  const K = params.c0 - params.c1 * params.T + params.b0 + params.G;
+  const K = params.c0 - params.c1*params.T + params.b0 + params.G;
   let Y, i;
   if (regime === 'horizontal') {
     i = params.iFixed;
-    Y = safeDiv(K - params.b2 * i, A);
+    Y = safeDiv(K - params.b2*i, A);
   } else {
-    Y = safeDiv(params.d2 * K + params.b2 * params.MP, params.d2 * A + params.b2 * params.d1);
-    i = safeDiv(params.d1 * Y - params.MP, params.d2);
+    Y = safeDiv(params.d2*K + params.b2*params.MP, params.d2*A + params.b2*params.d1);
+    i = safeDiv(params.d1*Y - params.MP, params.d2);
   }
-  const investment = params.b0 + params.b1 * Y - params.b2 * i;
-  const accelerator = params.b1 * Y;
-  return { A, K, Y, i, investment, accelerator };
+  const investment = params.b0 + params.b1*Y - params.b2*i;
+  const acceleratorComponent = params.b1 * Y;
+  return {A, K, Y, i, investment, acceleratorComponent};
 }
-
 function isCurve(params) {
   const A = 1 - params.c1 - params.b1;
-  const K = params.c0 - params.c1 * params.T + params.b0 + params.G;
-  return (Y) => safeDiv(K - A * Y, params.b2);
+  const K = params.c0 - params.c1*params.T + params.b0 + params.G;
+  return (Y) => safeDiv(K - A*Y, params.b2);
 }
-
 function lmCurve(params, regime) {
   if (regime === 'horizontal') return () => params.iFixed;
-  return (Y) => safeDiv(params.d1 * Y - params.MP, params.d2);
+  return (Y) => safeDiv(params.d1*Y - params.MP, params.d2);
 }
-
 function renderISLM() {
   const regime = document.getElementById('islm-regime').value;
   const shockKey = document.getElementById('islm-shock').value;
   const shock = ISLM_SHOCKS[shockKey];
-  const base = readInputs('islm', ISLM_DEFAULTS);
+  const base = readParams('islm', ISLM_DEFAULTS);
   const fin = applyDelta(base, shock.delta);
-
   const initial = calcISLM(base, regime);
   const final = calcISLM(fin, regime);
 
-  const xRange = chartRange([initial.Y, final.Y, 650, 1100], 0);
-  const yRange = chartRange([initial.i, final.i, base.iFixed, fin.iFixed, 0.5], 0);
+  const xr = centeredRange([initial.Y, final.Y], 320, 0);
+  const yr = centeredRange([initial.i, final.i, base.iFixed, fin.iFixed], 4.5, 0);
 
-  createChart('islm', 'islm-chart', {
+  drawChart('islm','islm-chart',{
     type: 'scatter',
     data: {
       datasets: [
-        {
-          type: 'line',
-          label: 'IS inicial',
-          data: buildLine(isCurve(base), xRange.min, xRange.max),
-          borderColor: '#2563eb',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'IS final',
-          data: buildLine(isCurve(fin), xRange.min, xRange.max),
-          borderColor: '#60a5fa',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'LM inicial',
-          data: buildLine(lmCurve(base, regime), xRange.min, xRange.max),
-          borderColor: '#16a34a',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'LM final',
-          data: buildLine(lmCurve(fin, regime), xRange.min, xRange.max),
-          borderColor: '#86efac',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          label: 'Equilibrio inicial',
-          data: [{ x: initial.Y, y: initial.i }],
-          backgroundColor: '#10283f',
-          pointRadius: 6
-        },
-        {
-          label: 'Equilibrio final',
-          data: [{ x: final.Y, y: final.i }],
-          backgroundColor: '#f59e0b',
-          pointRadius: 6
-        }
+        {type:'line', label:'IS inicial', data:buildLine(isCurve(base), xr.min, xr.max), borderColor:'#2d6ea3', borderWidth:2.4, pointRadius:0},
+        {type:'line', label:'IS final', data:buildLine(isCurve(fin), xr.min, xr.max), borderColor:'#7cb4df', borderWidth:2.4, borderDash:[6,6], pointRadius:0},
+        {type:'line', label:'LM inicial', data:buildLine(lmCurve(base, regime), xr.min, xr.max), borderColor:'#16a34a', borderWidth:2.4, pointRadius:0},
+        {type:'line', label:'LM final', data:buildLine(lmCurve(fin, regime), xr.min, xr.max), borderColor:'#8ad1a3', borderWidth:2.4, borderDash:[6,6], pointRadius:0},
+        pointDataset('Eq. inicial', initial.Y, initial.i, {radius:5, bg:'#0f2740', border:'#0f2740', borderWidth:1}),
+        pointDataset('Eq. final', final.Y, final.i, {radius:8, bg:'rgba(245,158,11,0.18)', border:'#f59e0b', borderWidth:3})
       ]
     },
-    options: baseChartOptions('Producción (Y)', 'Tasa de interés (i)', xRange, yRange)
+    options: chartOptions('Producción (Y)', 'Tasa de interés (i)', xr, yr)
   });
 
-  setText('islm-y0', formatNumber(initial.Y));
-  setText('islm-y1', formatNumber(final.Y));
-  setText('islm-i0', formatNumber(initial.i));
-  setText('islm-i1', formatNumber(final.i));
-  setText('islm-inv0', formatNumber(initial.investment));
-  setText('islm-inv1', formatNumber(final.investment));
+  setText('islm-y0', round(initial.Y));
+  setText('islm-y1', round(final.Y));
+  setText('islm-i0', round(initial.i));
+  setText('islm-i1', round(final.i));
+  setText('islm-inv0', round(initial.investment));
+  setText('islm-inv1', round(final.investment));
+  setText('islm-equilibrium', `Equilibrio inicial: (Y=${round(initial.Y)}, i=${round(initial.i)}). Equilibrio final: (Y=${round(final.Y)}, i=${round(final.i)}).`);
 
   const dY = final.Y - initial.Y;
   const di = final.i - initial.i;
   const dI = final.investment - initial.investment;
-  const crowding = regime === 'horizontal' ? 0 : Math.max(0, fin.b2 * Math.max(di, 0));
-  const acceleratorGain = Math.max(0, fin.b1 * Math.max(dY, 0));
-  let crowdingText = '';
+  const curves = [];
+  if (Object.keys(shock.delta).some(k => ['G','T','b0','c0','c1','b1','b2'].includes(k))) curves.push('IS');
+  if (regime === 'upward' && Object.keys(shock.delta).some(k => ['MP','d1','d2'].includes(k))) curves.push('LM');
+  if (regime === 'horizontal' && Object.keys(shock.delta).some(k => ['MP'].includes(k))) curves.push('el ajuste pasa por el nivel de Y con tasa fijada');
+  const curveText = curves.length ? `Curvas afectadas: ${curves.join(', ')}.` : 'No se desplaza ninguna curva.';
+
+  setText('islm-explanation',
+    `Shock: ${shock.label}. ${shock.changedText} ${curveText} ` +
+    `La producción ${signWord(dY,'sube','baja')} y la tasa ${signWord(di,'sube','baja')}. ` +
+    `La inversión ${signWord(dI,'aumenta','cae')} y la lectura relevante es: ${shock.reality}`
+  );
+
+  const crowding = Math.max(0, fin.b2 * Math.max(0, di));
+  const accelerator = Math.max(0, fin.b1 * Math.max(0, dY));
+  let dominance = '';
   if (regime === 'horizontal') {
-    crowdingText = 'Con LM horizontal, la tasa queda fijada exógenamente: el crowding-out vía interés prácticamente desaparece y el acelerador domina si la actividad aumenta.';
+    dominance = 'Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.';
+  } else if (di <= 0 && dY > 0) {
+    dominance = 'No aparece crowding-out relevante; domina el aumento de actividad.';
   } else if (dI > 0) {
-    crowdingText = acceleratorGain >= crowding
-      ? 'Predomina el acelerador: el mayor nivel de actividad compensa o supera el encarecimiento del dinero.'
-      : 'Hay crowding-out parcial: la tasa sube y resta parte del impulso inversor, aunque no lo revierte del todo.';
+    dominance = accelerator >= crowding ?
+      'El acelerador prima: la mejora de actividad compensa o supera el encarecimiento del dinero.' :
+      'Hay crowding-out parcial, pero no alcanza a revertir totalmente el impulso de inversión.';
   } else if (dI < 0) {
-    crowdingText = crowding > acceleratorGain
-      ? 'Predomina el crowding-out o el freno financiero: la tasa castiga suficientemente la inversión.'
-      : 'La inversión cae por combinación de menor actividad y condiciones financieras menos favorables.';
+    dominance = crowding > accelerator ?
+      'Prima el crowding-out: la tasa sube lo suficiente como para frenar la inversión pese al mayor nivel de actividad.' :
+      'La inversión cae por combinación de menor actividad y/o tasas más altas.';
   } else {
-    crowdingText = 'El balance entre acelerador y crowding-out es casi neutro en esta calibración.';
+    dominance = 'El balance entre acelerador y crowding-out es casi neutro.';
   }
-  setText('islm-crowding', `Acelerador aproximado = b1·ΔY = ${formatNumber(acceleratorGain)}. Crowding-out aproximado = b2·Δi = ${formatNumber(crowding)}. ${crowdingText}`);
-  setText('islm-sector', shock.sector);
-
-  const auto = `
-    <ol>
-      <li><strong>Shock seleccionado:</strong> ${shock.label}.</li>
-      <li><strong>Disparador y variable exógena afectada:</strong> ${shock.trigger} ${shock.exogenous}</li>
-      <li><strong>Parámetros que cambian:</strong> ${shock.parameters}</li>
-      <li><strong>Curvas que se desplazan:</strong> ${shock.curves}</li>
-      <li><strong>Qué ocurre con el equilibrio:</strong> Y ${wordDirection(dY, 'sube', 'baja')} y la tasa ${wordDirection(di, 'sube', 'baja')}. La inversión ${wordDirection(dI, 'aumenta', 'cae')}.</li>
-      <li><strong>Mecanismo de transmisión dominante:</strong> ${shock.mechanism}</li>
-      <li><strong>Trayectoria probable:</strong> ${shock.trajectory}</li>
-      <li><strong>Filtro institucional chileno:</strong> ${shock.filter}</li>
-      <li><strong>Dato que conviene mirar:</strong> ${shock.watch}</li>
-    </ol>
-  `;
-  setHTML('islm-auto', auto);
+  setText('islm-crowd', `Acelerador aproximado: b1·ΔY = ${round(accelerator)}. Crowding-out aproximado: b2·Δi = ${round(crowding)}. ${dominance}`);
+  setHTML('islm-watch', `<strong>Dato a mirar en Chile.</strong> ${watchCopy('islm', shockKey, shock.watch)}`);
 }
 
-function calcISLMBP(params, fxShock = 0) {
+function calcISLMBP(params, fxShock=0) {
+  const Y = safeDiv(params.MP + params.d2*params.iStar, params.d1);
   const A = 1 - params.c1 - params.b1 + params.x1;
-  const Y = safeDiv(params.MP + params.d2 * params.iStar, params.d1);
-  const K = params.c0 - params.c1 * params.T + params.b0 + params.G + params.x0;
-  const eRaw = safeDiv(A * Y - K + params.b2 * params.iStar, params.x2) + fxShock;
-  const NX = params.x0 - params.x1 * Y + params.x2 * eRaw;
-  return { A, K, Y, i: params.iStar, eRaw, NX };
+  const K = params.c0 - params.c1*params.T + params.b0 + params.G + params.x0;
+  const eRaw = safeDiv(A*Y - K + params.b2*params.iStar, params.x2) + fxShock;
+  const eIndex = 100 + eRaw;
+  const NX = params.x0 - params.x1*Y + params.x2*eRaw;
+  return {A, K, Y, i: params.iStar, eRaw, eIndex, NX};
 }
-
 function isCurveBP(params, eRaw) {
   const A = 1 - params.c1 - params.b1 + params.x1;
-  const K = params.c0 - params.c1 * params.T + params.b0 + params.G + params.x0 + params.x2 * eRaw;
-  return (Y) => safeDiv(K - A * Y, params.b2);
+  const K = params.c0 - params.c1*params.T + params.b0 + params.G + params.x0 + params.x2*eRaw;
+  return (Y) => safeDiv(K - A*Y, params.b2);
 }
-
-function lmCurveBP(params) {
-  return (Y) => safeDiv(params.d1 * Y - params.MP, params.d2);
-}
-
-function bpCurve(params) {
-  return () => params.iStar;
-}
-
+function lmCurveBP(params) { return (Y) => safeDiv(params.d1*Y - params.MP, params.d2); }
+function bpCurve(params) { return () => params.iStar; }
 function renderISLMBP() {
   const shockKey = document.getElementById('islmbp-shock').value;
   const shock = ISLMBP_SHOCKS[shockKey];
-  const base = readInputs('islmbp', ISLMBP_DEFAULTS);
+  const base = readParams('islmbp', ISLMBP_DEFAULTS);
   const fin = applyDelta(base, shock.delta);
-
   const initial = calcISLMBP(base, 0);
   const final = calcISLMBP(fin, shock.fxShock);
-  const eBaseIndex = 100;
-  const eFinalIndex = 100 + (final.eRaw - initial.eRaw);
 
-  const xRange = chartRange([initial.Y, final.Y, 550, 860], 0);
-  const yRange = chartRange([initial.i, final.i, 1, 9], 0);
+  const xr = centeredRange([initial.Y, final.Y], 90, 0);
+  const yr = centeredRange([initial.i, final.i], 0.8, 0);
+  const overlap = Math.abs(initial.Y - final.Y) < 0.01 && Math.abs(initial.i - final.i) < 0.01;
 
-  createChart('islmbp', 'islmbp-chart', {
-    type: 'scatter',
-    data: {
-      datasets: [
-        {
-          type: 'line',
-          label: 'IS inicial',
-          data: buildLine(isCurveBP(base, initial.eRaw), xRange.min, xRange.max),
-          borderColor: '#2563eb',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'IS final',
-          data: buildLine(isCurveBP(fin, final.eRaw), xRange.min, xRange.max),
-          borderColor: '#60a5fa',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'LM inicial',
-          data: buildLine(lmCurveBP(base), xRange.min, xRange.max),
-          borderColor: '#16a34a',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'LM final',
-          data: buildLine(lmCurveBP(fin), xRange.min, xRange.max),
-          borderColor: '#86efac',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'BP inicial',
-          data: buildLine(bpCurve(base), xRange.min, xRange.max),
-          borderColor: '#7c3aed',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'BP final',
-          data: buildLine(bpCurve(fin), xRange.min, xRange.max),
-          borderColor: '#c4b5fd',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          label: 'Equilibrio inicial',
-          data: [{ x: initial.Y, y: initial.i }],
-          backgroundColor: '#10283f',
-          pointRadius: 6
-        },
-        {
-          label: 'Equilibrio final',
-          data: [{ x: final.Y, y: final.i }],
-          backgroundColor: '#f59e0b',
-          pointRadius: 6
-        }
+  drawChart('islmbp','islmbp-chart',{
+    type:'scatter',
+    data:{
+      datasets:[
+        {type:'line', label:'IS inicial', data:buildLine(isCurveBP(base, initial.eRaw), xr.min, xr.max), borderColor:'#2d6ea3', borderWidth:2.4, pointRadius:0},
+        {type:'line', label:'IS final', data:buildLine(isCurveBP(fin, final.eRaw), xr.min, xr.max), borderColor:'#7cb4df', borderWidth:2.4, borderDash:[6,6], pointRadius:0},
+        {type:'line', label:'LM inicial', data:buildLine(lmCurveBP(base), xr.min, xr.max), borderColor:'#16a34a', borderWidth:2.4, pointRadius:0},
+        {type:'line', label:'LM final', data:buildLine(lmCurveBP(fin), xr.min, xr.max), borderColor:'#8ad1a3', borderWidth:2.4, borderDash:[6,6], pointRadius:0},
+        {type:'line', label:'BP inicial', data:buildLine(bpCurve(base), xr.min, xr.max), borderColor:'#7c3aed', borderWidth:2.4, pointRadius:0},
+        {type:'line', label:'BP final', data:buildLine(bpCurve(fin), xr.min, xr.max), borderColor:'#b89af6', borderWidth:2.4, borderDash:[6,6], pointRadius:0},
+        pointDataset('Eq. inicial', initial.Y, initial.i, {radius:5, bg:'#0f2740', border:'#0f2740', borderWidth:1}),
+        pointDataset('Eq. final', final.Y, final.i, {radius: overlap ? 11 : 9, bg:'rgba(255,255,255,0.01)', border:'#f59e0b', borderWidth:3.5})
       ]
     },
-    options: baseChartOptions('Producción (Y)', 'Tasa de interés (i)', xRange, yRange)
+    options: chartOptions('Producción (Y)', 'Tasa de interés (i)', xr, yr)
   });
 
-  setText('islmbp-y0', formatNumber(initial.Y));
-  setText('islmbp-y1', formatNumber(final.Y));
-  setText('islmbp-i0', formatNumber(initial.i));
-  setText('islmbp-i1', formatNumber(final.i));
-  setText('islmbp-e0', formatNumber(eBaseIndex));
-  setText('islmbp-e1', formatNumber(eFinalIndex));
-  setText('islmbp-nx0', formatNumber(initial.NX));
-  setText('islmbp-nx1', formatNumber(final.NX));
+  setText('islmbp-y0', round(initial.Y));
+  setText('islmbp-y1', round(final.Y));
+  setText('islmbp-i0', round(initial.i));
+  setText('islmbp-i1', round(final.i));
+  setText('islmbp-e0', round(initial.eIndex));
+  setText('islmbp-e1', round(final.eIndex));
+  setText('islmbp-nx0', round(initial.NX));
+  setText('islmbp-nx1', round(final.NX));
+  setText('islmbp-eq0', `(Y=${round(initial.Y)}, i=${round(initial.i)})`);
+  setText('islmbp-eq1', `(Y=${round(final.Y)}, i=${round(final.i)})`);
 
   const dY = final.Y - initial.Y;
+  const dE = final.eIndex - initial.eIndex;
   const dNX = final.NX - initial.NX;
-  const dE = eFinalIndex - eBaseIndex;
-
-  const auto = `
-    <ol>
-      <li><strong>Shock seleccionado:</strong> ${shock.label}.</li>
-      <li><strong>Disparador y variable exógena afectada:</strong> ${shock.trigger} ${shock.exogenous}</li>
-      <li><strong>Parámetros que cambian:</strong> ${shock.parameters}</li>
-      <li><strong>Curvas que se desplazan:</strong> ${shock.curves}</li>
-      <li><strong>Qué ocurre con el equilibrio:</strong> Y ${wordDirection(dY, 'sube', 'baja')}, E ${wordDirection(dE, 'sube', 'baja')} y NX ${wordDirection(dNX, 'mejora', 'empeora')}.</li>
-      <li><strong>Mecanismo de transmisión dominante:</strong> ${shock.mechanism}</li>
-      <li><strong>Trayectoria probable:</strong> ${shock.trajectory}</li>
-      <li><strong>Filtro institucional chileno:</strong> ${shock.filter}</li>
-      <li><strong>Dato que conviene mirar:</strong> ${shock.watch}</li>
-    </ol>
-  `;
-  setHTML('islmbp-auto', auto);
-  setText('islmbp-filter', shock.filter);
+  const moved = [];
+  if (Object.keys(shock.delta).some(k => ['c0','c1','b0','b1','b2','x0','x1','x2','G','T'].includes(k)) || shock.fxShock !== 0) moved.push('IS');
+  if (Object.keys(shock.delta).some(k => ['MP','d1','d2'].includes(k))) moved.push('LM');
+  if (Object.keys(shock.delta).some(k => ['iStar'].includes(k))) moved.push('BP');
+  let extra = '';
+  if (overlap) extra = ' En este régimen, el nuevo equilibrio casi se superpone con el inicial: el ajuste principal se ve en E y en NX más que en grandes cambios de Y.';
+  setText('islmbp-explanation',
+    `Shock: ${shock.label}. ${shock.changedText} ${moved.length ? `Curvas afectadas: ${moved.join(', ')}.` : ''} ` +
+    `La producción ${signWord(dY,'sube','baja')}, el tipo de cambio índice ${signWord(dE,'sube','baja')} y las exportaciones netas ${signWord(dNX,'mejoran','empeoran')}. ${shock.reality}${extra}`
+  );
+  setHTML('islmbp-watch', `<strong>Dato a mirar en Chile.</strong> ${watchCopy('islmbp', shockKey, shock.watch)}`);
 }
 
 function calcOADA(params) {
@@ -1382,223 +511,333 @@ function calcOADA(params) {
   const Y = safeDiv(params.daA - params.daB * oaBase + params.daB * params.gamma * Yn, 1 + params.daB * params.gamma);
   const P = safeDiv(params.daA - Y, params.daB);
   const gap = Y - Yn;
-  return { Yn, oaBase, Y, P, gap };
+  return {Yn, oaBase, Y, P, gap};
 }
-
-function daCurve(params) {
-  return (Y) => safeDiv(params.daA - Y, params.daB);
-}
-
+function daCurve(params) { return (Y) => safeDiv(params.daA - Y, params.daB); }
 function oaCurve(params) {
   const Yn = params.A * params.L;
   const oaBase = params.Pe * (1 + params.mu) + params.z + params.costShock;
   return (Y) => oaBase + params.gamma * (Y - Yn);
 }
+function setGapBar(fillId, labelId, gap, maxAbsGap) {
+  const fill = document.getElementById(fillId);
+  const label = document.getElementById(labelId);
+  const share = Math.max(6, Math.min(100, Math.abs(gap) / maxAbsGap * 100));
+  fill.style.width = `${share}%`;
+  fill.className = 'gap-fill ' + (gap > 0 ? 'positive' : gap < 0 ? 'negative' : 'neutral');
+  label.textContent = gap > 0 ? `Sobre Yₙ (${round(gap)})` : gap < 0 ? `Bajo Yₙ (${round(gap)})` : 'En Yₙ';
+}
+
+function describeOADAPattern(dY, dP, initial, final, moved, shock) {
+  const oaMoved = moved.includes('OA / Yₙ');
+  const daMoved = moved.includes('DA');
+  let title = 'Patrón mixto o de transición';
+  let body = 'El shock está moviendo simultáneamente precios y producción de una manera que conviene leer con cautela: puede haber interacción entre demanda, costos y cambios en la capacidad o en Yₙ.';
+  let graph = 'Busca primero qué curva cambió más. Si OA se desplaza hacia arriba, producir la misma cantidad exige un precio mayor; si DA se mueve, cambia el gasto compatible con cada nivel de precios.';
+  let meaning = 'Cuando se mueven varias piezas a la vez, el valor del modelo está en obligarte a separar canales: demanda, costos, expectativas y capacidad no son sinónimos.';
+  let next = 'Después de esta primera lectura, mira la brecha respecto de Yₙ, revisa la nota de mediano plazo y termina en “Qué mirar en Chile” para decidir qué datos conviene monitorear.';
+
+  if (dY > 0.05 && dP > 0.05 && daMoved && !oaMoved) {
+    title = 'Patrón compatible con presión de demanda';
+    body = 'Suben producción y precios al mismo tiempo porque la demanda agregada empuja el equilibrio hacia arriba y a la derecha. La pregunta siguiente es si la economía se acerca demasiado a Yₙ y vuelve más inflacionario el mismo impulso.';
+    graph = 'En el gráfico, la pista principal es una DA final desplazada hacia afuera. El nuevo cruce con OA queda con mayor Y y mayor P.';
+    meaning = 'Este patrón suele leerse como expansión de demanda: el producto sube, pero también aumenta la presión sobre precios a medida que la economía se acerca a capacidad.';
+  } else if (dY < -0.05 && dP > 0.05 && oaMoved) {
+    title = 'Patrón compatible con shock de costos u oferta adversa';
+    body = 'La combinación de menor producción y mayor nivel de precios es la señal clásica de un episodio estanflacionario. El interés analítico está en entender por qué producir se volvió más costoso o más difícil.';
+    graph = 'La pista principal es una OA final más alta o más a la izquierda: para cualquier nivel de producción, ahora se requiere un precio mayor. El nuevo equilibrio combina más P con menos Y.';
+    meaning = 'Este patrón es típico de energía, costos importados, interrupciones productivas o deterioro de productividad. No conviene tratarlo como un simple problema de demanda.';
+  } else if (dY > 0.05 && dP < -0.05 && oaMoved) {
+    title = 'Patrón compatible con mejora de oferta o productividad';
+    body = 'La producción sube mientras los precios caen o se moderan. La economía puede producir más sin empujar tanto los costos, y eso vuelve menos tensionada la brecha respecto de Yₙ.';
+    graph = 'La OA final se desplaza hacia abajo o hacia la derecha: el cruce con DA queda con más Y y menor P.';
+    meaning = 'Este patrón sugiere alivio de costos, mejora tecnológica, normalización logística o aumento de capacidad. Es el caso más cómodo para una política macro que busca actividad sin inflación.';
+  } else if (dY < -0.05 && dP < -0.05 && daMoved && !oaMoved) {
+    title = 'Patrón compatible con enfriamiento o contracción de demanda';
+    body = 'Caen producción y precios porque la demanda agregada se debilita. La pregunta crítica es si esto corrige una brecha inflacionaria previa o si abre demasiada holgura.';
+    graph = 'La pista principal es una DA final desplazada hacia adentro. El nuevo equilibrio queda con menor Y y menor P.';
+    meaning = 'Este patrón suele aparecer con consolidación fiscal, endurecimiento monetario o caída fuerte de confianza y gasto. La trayectoria importa más que la fotografía inicial.';
+  }
+
+  if (Math.abs(final.gap) > Math.abs(initial.gap) + 0.05) {
+    next = 'La brecha final se amplía. Eso te obliga a preguntar si el shock aleja a la economía de Yₙ y qué mecanismo podría cerrar o agrandar esa distancia en el tiempo. Revisa luego la trayectoria de mediano plazo y los datos sugeridos para Chile.';
+  } else if (Math.abs(final.gap) + 0.05 < Math.abs(initial.gap)) {
+    next = 'La brecha final se reduce. Eso sugiere una economía más cerca de Yₙ, pero todavía debes decidir si esa convergencia ocurre por una mejora sana de oferta o por un enfriamiento costoso de demanda.';
+  }
+
+  return { title, body, graph, meaning, next };
+}
 
 function renderOADA() {
   const shockKey = document.getElementById('oada-shock').value;
   const shock = OADA_SHOCKS[shockKey];
-  const base = readInputs('oada', OADA_DEFAULTS);
+  const base = readParams('oada', OADA_DEFAULTS);
   const fin = applyDelta(base, shock.delta);
-
   const initial = calcOADA(base);
   const final = calcOADA(fin);
 
-  const xRange = chartRange([initial.Y, final.Y, initial.Yn, final.Yn, 850, 1120], 0);
-  const yRange = chartRange([initial.P, final.P, 0.8, 2.6], 0);
+  const xr = centeredRange([initial.Y, final.Y, initial.Yn, final.Yn], 70, 0);
+  const yr = centeredRange([initial.P, final.P, base.Pe, fin.Pe], 0.35, 0);
 
-  createChart('oada', 'oada-chart', {
-    type: 'scatter',
-    data: {
-      datasets: [
-        {
-          type: 'line',
-          label: 'DA inicial',
-          data: buildLine(daCurve(base), xRange.min, xRange.max),
-          borderColor: '#2563eb',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'DA final',
-          data: buildLine(daCurve(fin), xRange.min, xRange.max),
-          borderColor: '#60a5fa',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'OA inicial',
-          data: buildLine(oaCurve(base), xRange.min, xRange.max),
-          borderColor: '#dc2626',
-          borderWidth: 2.2,
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'OA final',
-          data: buildLine(oaCurve(fin), xRange.min, xRange.max),
-          borderColor: '#fca5a5',
-          borderWidth: 2.2,
-          borderDash: [6, 6],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'Yₙ inicial',
-          data: [{ x: initial.Yn, y: yRange.min }, { x: initial.Yn, y: yRange.max }],
-          borderColor: '#16a34a',
-          borderWidth: 1.6,
-          borderDash: [4, 4],
-          pointRadius: 0
-        },
-        {
-          type: 'line',
-          label: 'Yₙ final',
-          data: [{ x: final.Yn, y: yRange.min }, { x: final.Yn, y: yRange.max }],
-          borderColor: '#86efac',
-          borderWidth: 1.6,
-          borderDash: [4, 4],
-          pointRadius: 0
-        },
-        {
-          label: 'Equilibrio inicial',
-          data: [{ x: initial.Y, y: initial.P }],
-          backgroundColor: '#10283f',
-          pointRadius: 6
-        },
-        {
-          label: 'Equilibrio final',
-          data: [{ x: final.Y, y: final.P }],
-          backgroundColor: '#f59e0b',
-          pointRadius: 6
-        }
+  drawChart('oada','oada-chart',{
+    type:'scatter',
+    data:{
+      datasets:[
+        {type:'line', label:'DA inicial', data:buildLine(daCurve(base), xr.min, xr.max), borderColor:'#2d6ea3', borderWidth:2.5, pointRadius:0},
+        {type:'line', label:'DA final', data:buildLine(daCurve(fin), xr.min, xr.max), borderColor:'#7cb4df', borderWidth:2.5, borderDash:[6,6], pointRadius:0},
+        {type:'line', label:'OA inicial', data:buildLine(oaCurve(base), xr.min, xr.max), borderColor:'#ef4444', borderWidth:2.5, pointRadius:0},
+        {type:'line', label:'OA final', data:buildLine(oaCurve(fin), xr.min, xr.max), borderColor:'#fca5a5', borderWidth:2.5, borderDash:[6,6], pointRadius:0},
+        {type:'line', label:'Yₙ inicial', data:[{x:initial.Yn, y:yr.min},{x:initial.Yn, y:yr.max}], borderColor:'#16a34a', borderWidth:1.8, borderDash:[4,4], pointRadius:0},
+        {type:'line', label:'Yₙ final', data:[{x:final.Yn, y:yr.min},{x:final.Yn, y:yr.max}], borderColor:'#86efac', borderWidth:1.8, borderDash:[4,4], pointRadius:0},
+        pointDataset('Eq. inicial', initial.Y, initial.P, {radius:5, bg:'#0f2740', border:'#0f2740', borderWidth:1}),
+        pointDataset('Eq. final', final.Y, final.P, {radius:9, bg:'rgba(255,255,255,0.01)', border:'#f59e0b', borderWidth:3.4})
       ]
     },
-    options: baseChartOptions('Producción (Y)', 'Nivel de precios (P)', xRange, yRange)
+    options: chartOptions('Producción (Y)', 'Nivel de precios (P)', xr, yr)
   });
 
-  setText('oada-y0', formatNumber(initial.Y));
-  setText('oada-y1', formatNumber(final.Y));
-  setText('oada-p0', formatNumber(initial.P));
-  setText('oada-p1', formatNumber(final.P));
-  setText('oada-gap0', formatNumber(initial.gap));
-  setText('oada-gap1', formatNumber(final.gap));
+  setText('oada-y0', round(initial.Y));
+  setText('oada-y1', round(final.Y));
+  setText('oada-p0', round(initial.P));
+  setText('oada-p1', round(final.P));
+  setText('oada-gap0', round(initial.gap));
+  setText('oada-gap1', round(final.gap));
+  setText('oada-equilibrium', `Equilibrio inicial: (Y=${round(initial.Y)}, P=${round(initial.P)}). Equilibrio final: (Y=${round(final.Y)}, P=${round(final.P)}).`);
 
   const dY = final.Y - initial.Y;
   const dP = final.P - initial.P;
+  const moved = [];
+  if (Object.keys(shock.delta).some(k => ['daA','daB'].includes(k))) moved.push('DA');
+  if (Object.keys(shock.delta).some(k => ['Pe','mu','gamma','z','L','A','costShock'].includes(k))) moved.push('OA / Yₙ');
+  setText('oada-explanation',
+    `Shock: ${shock.label}. ${shock.changedText} ${moved.length ? `Se afectan ${moved.join(' y ')}.` : ''} ` +
+    `La producción ${signWord(dY,'sube','baja')} y el nivel de precios ${signWord(dP,'sube','baja')}. ${shock.reality}`
+  );
+  const pattern = describeOADAPattern(dY, dP, initial, final, moved, shock);
+  setText('oada-pattern-title', pattern.title);
+  setText('oada-pattern-body', pattern.body);
+  setText('oada-graphread', pattern.graph);
+  setText('oada-meaning', pattern.meaning);
+  setText('oada-nextstep', pattern.next);
+  setText('oada-mediumrun', `${shock.mediumRun} En esta simulación, Yₙ pasa de ${round(initial.Yn)} a ${round(final.Yn)} y la brecha final queda en ${round(final.gap)}.`);
+  setHTML('oada-watch', `<strong>Dato a mirar en Chile.</strong> ${watchCopy('oada', shockKey, shock.watch)}`);
 
-  const auto = `
-    <ol>
-      <li><strong>Shock seleccionado:</strong> ${shock.label}.</li>
-      <li><strong>Disparador y variable exógena afectada:</strong> ${shock.trigger} ${shock.exogenous}</li>
-      <li><strong>Parámetros que cambian:</strong> ${shock.parameters}</li>
-      <li><strong>Curvas que se desplazan:</strong> ${shock.curves}</li>
-      <li><strong>Qué ocurre con el equilibrio:</strong> Y ${wordDirection(dY, 'sube', 'baja')} y P ${wordDirection(dP, 'sube', 'baja')}.</li>
-      <li><strong>Mecanismo de transmisión dominante:</strong> ${shock.mechanism}</li>
-      <li><strong>Trayectoria probable:</strong> ${shock.trajectory}</li>
-      <li><strong>Filtro institucional chileno:</strong> ${shock.filter}</li>
-      <li><strong>Dato que conviene mirar:</strong> ${shock.watch}</li>
-    </ol>
-  `;
-  setHTML('oada-auto', auto);
-  setText('oada-medium', `${shock.mediumRun} En esta calibración, Yₙ pasa de ${formatNumber(initial.Yn)} a ${formatNumber(final.Yn)} y la brecha final queda en ${formatNumber(final.gap)}.`);
-  setText('oada-watch', `${shock.watch} ${shock.sector}`);
+  setText('oada-deltaY', `${dY >= 0 ? '+' : ''}${round(dY)} en Y`);
+  setText('oada-deltaP', `${dP >= 0 ? '+' : ''}${round(dP)} en P`);
+  const maxAbsGap = Math.max(Math.abs(initial.gap), Math.abs(final.gap), 40);
+  setGapBar('oada-gapbar0', 'oada-gap-label0', initial.gap, maxAbsGap);
+  setGapBar('oada-gapbar1', 'oada-gap-label1', final.gap, maxAbsGap);
 }
 
-function dashboardSummary(rangeKey) {
-  const summaries = {
-    full: '2010–2025 muestra una secuencia nítida: alto crecimiento tras reconstrucción, desaceleración prolongada desde mediados de la década, shock político en 2019, pandemia en 2020, rebote excepcional e inflación en 2021–2022, endurecimiento monetario fuerte y una convergencia posterior todavía sensible al entorno externo.',
-    mid: '2019–2025 permite ver muy bien la cadena estallido social → pandemia → rebote → sobrecalentamiento e inflación → ajuste monetario y fiscal → desinflación con crecimiento más ordenado.',
-    recent: '2021–2025 concentra el período más útil para Macro II: exceso de demanda, shock externo de costos, salto de inflación, TPM alta y posterior normalización con un CLP/USD todavía sensible a shocks internacionales.'
+function chartOptions(xLabel, yLabel, xr, yr) {
+  return {
+    responsive:true,
+    maintainAspectRatio:false,
+    animation:false,
+    plugins:{
+      legend:{position:'bottom', labels:{usePointStyle:true, boxWidth:10}},
+      tooltip:{mode:'nearest'}
+    },
+    scales:{
+      x:{type:'linear', min:clampPositive(xr.min), max:xr.max, title:{display:true, text:xLabel}, grid:{color:'#edf2f7'}, ticks:{maxTicksLimit:7}},
+      y:{min:clampPositive(yr.min), max:yr.max, title:{display:true, text:yLabel}, grid:{color:'#edf2f7'}, ticks:{maxTicksLimit:7}}
+    }
   };
-  return summaries[rangeKey];
 }
 
-function renderMiniLine(key, canvasId, labels, values, color, yTitle, rangeKey, allowNegative = false) {
-  destroyChart(key);
-  const [start, end] = dashboardRanges[rangeKey];
-  const subLabels = labels.slice(start, end + 1);
-  const subValues = values.slice(start, end + 1);
-  const min = Math.min(...subValues);
-  const max = Math.max(...subValues);
-  const spread = Math.max(max - min, 1);
-  const pad = spread * 0.18 + 0.5;
-
-  charts[key] = new Chart(document.getElementById(canvasId).getContext('2d'), {
+function formatSignedDelta(delta, suffix='pp') {
+  const sign = delta > 0 ? '+' : '';
+  return `${sign}${round(delta, 2)} ${suffix}`;
+}
+function updateSnapshot(idBase, current, previous, suffix, deltaSuffix='pp') {
+  setText(`snap-${idBase}-value`, `${round(current, idBase === 'fx' ? 1 : 2)}${suffix}`);
+  setText(`snap-${idBase}-delta`, `vs 2024: ${formatSignedDelta(current - previous, deltaSuffix)}`);
+  setText(`badge-${idBase}`, `${round(current, idBase === 'fx' ? 0 : 2)}${suffix.trim()}`);
+}
+function miniLineChart(key, canvasId, labels, values, color, yTitle, rangeKey) {
+  if (charts[key]) charts[key].destroy();
+  const [start, end] = ranges[rangeKey];
+  const slicedLabels = labels.slice(start, end + 1);
+  const slicedValues = values.slice(start, end + 1);
+  const min = Math.min(...slicedValues);
+  const max = Math.max(...slicedValues);
+  const span = Math.max(max - min, 1);
+  const pad = span * 0.18;
+  const yMin = min - pad;
+  const yMax = max + pad;
+  const ctx = document.getElementById(canvasId).getContext('2d');
+  charts[key] = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: subLabels,
+      labels: slicedLabels,
       datasets: [{
-        data: subValues,
+        data: slicedValues,
         borderColor: color,
-        backgroundColor: `${color}22`,
-        pointRadius: 0,
-        tension: 0.22,
+        backgroundColor: color + '12',
+        pointRadius: (context) => context.dataIndex === slicedValues.length - 1 ? 3.6 : 0,
+        pointHoverRadius: 4.8,
+        pointBackgroundColor: color,
         fill: true,
-        borderWidth: 2.2
+        tension: 0.16,
+        borderWidth: 3.4
       }]
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: {
-          title: { display: true, text: 'Año' },
-          ticks: { color: '#627487', maxTicksLimit: 6 },
-          grid: { display: false }
-        },
-        y: {
-          min: allowNegative ? min - pad : clampMinZero(min - pad),
-          max: max + pad,
-          title: { display: true, text: yTitle },
-          ticks: { color: '#627487' },
-          grid: { color: '#e8eef6' }
+      responsive:true,
+      maintainAspectRatio:false,
+      animation:false,
+      devicePixelRatio: window.devicePixelRatio || 2,
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#10263f',
+          displayColors:false,
+          callbacks:{ label:(context)=> `${context.formattedValue} ${yTitle}` }
         }
+      },
+      interaction:{mode:'index', intersect:false},
+      scales:{
+        x:{ ticks:{autoSkip:true, maxTicksLimit: rangeKey === 'full' ? 8 : 6, color:'#5e7184', maxRotation:0}, title:{display:true, text:'Año', color:'#5e7184', font:{weight:'700'}}, grid:{display:false}},
+        y:{ min:yMin, max:yMax, title:{display:true, text:yTitle, color:'#5e7184', font:{weight:'700'}}, ticks:{color:'#5e7184'}, grid:{color:'#e7eef5'} }
       }
     }
   });
 }
 
-function renderDashboard(rangeKey = 'full') {
-  renderMiniLine('dash-gdp', 'dash-gdp', dashboardData.years, dashboardData.gdp, '#2563eb', '% anual', rangeKey, true);
-  renderMiniLine('dash-inflation', 'dash-inflation', dashboardData.years, dashboardData.inflation, '#f59e0b', '% anual', rangeKey, false);
-  renderMiniLine('dash-unemployment', 'dash-unemployment', dashboardData.years, dashboardData.unemployment, '#16a34a', '% anual', rangeKey, false);
-  renderMiniLine('dash-tpm', 'dash-tpm', dashboardData.years, dashboardData.tpm, '#7c3aed', '% anual', rangeKey, false);
-  renderMiniLine('dash-fx', 'dash-fx', dashboardData.years, dashboardData.fx, '#dc2626', 'CLP/USD', rangeKey, false);
-  setText('dashboard-summary', dashboardSummary(rangeKey));
+function renderDashboard(rangeKey='full') {
+  miniLineChart('dash-gdp','dash-gdp',dashboardData.years,dashboardData.gdp,'#2563eb','% anual',rangeKey);
+  miniLineChart('dash-inflation','dash-inflation',dashboardData.years,dashboardData.inflation,'#f59e0b','% anual',rangeKey);
+  miniLineChart('dash-tpm','dash-tpm',dashboardData.years,dashboardData.tpm,'#7c3aed','% anual',rangeKey);
+  miniLineChart('dash-unemployment','dash-unemployment',dashboardData.years,dashboardData.unemployment,'#16a34a','% anual',rangeKey);
+  miniLineChart('dash-fx','dash-fx',dashboardData.years,dashboardData.fx,'#ef4444','CLP/USD',rangeKey);
+  miniLineChart('dash-copper','dash-copper',dashboardData.years,dashboardData.copper,'#0ea5a0','cUSD/lb',rangeKey);
+  miniLineChart('dash-wti','dash-wti',dashboardData.years,dashboardData.wti,'#c2410c','USD/barril',rangeKey);
+
+  const last = dashboardData.years.length - 1;
+  const prev = last - 1;
+  updateSnapshot('gdp', dashboardData.gdp[last], dashboardData.gdp[prev], '%', 'pp');
+  updateSnapshot('inflation', dashboardData.inflation[last], dashboardData.inflation[prev], '%', 'pp');
+  updateSnapshot('unemployment', dashboardData.unemployment[last], dashboardData.unemployment[prev], '%', 'pp');
+  updateSnapshot('tpm', dashboardData.tpm[last], dashboardData.tpm[prev], '%', 'pp');
+  updateSnapshot('fx', dashboardData.fx[last], dashboardData.fx[prev], ' CLP/USD', 'CLP');
+  updateSnapshot('copper', dashboardData.copper[last], dashboardData.copper[prev], ' cUSD/lb', 'cUSD/lb');
+  updateSnapshot('wti', dashboardData.wti[last], dashboardData.wti[prev], ' USD/barril', 'USD/barril');
+
+  const summaries = {
+    full: '2010–2025 muestra una economía que sale de reconstrucción y crecimiento relativamente alto, entra en una fase de desaceleración más larga, atraviesa estallido y pandemia, vive un rebote extraordinario con inflación muy alta y luego transita por endurecimiento monetario, desinflación y una normalización todavía expuesta a cobre, energía y tasa internacional.',
+    mid: '2019–2025 permite leer la secuencia estallido → pandemia → rebote → inflación → TPM alta → desinflación, pero agrega algo importante: el cobre y el petróleo ayudan a ver que no todo se explica por demanda interna; también importan energía, términos de intercambio y vulnerabilidad externa.',
+    recent: '2021–2025 concentra sobrecalentamiento, salto inflacionario, endurecimiento monetario y convergencia posterior. Aquí el tablero es especialmente útil para contrastar cuánto del episodio viene de demanda, cuánto de energía y cuánto del ajuste del entorno externo.'
+  };
+  setText('dashboard-summary', summaries[rangeKey]);
 }
 
 function initDashboardButtons() {
   document.querySelectorAll('.range-button').forEach((btn) => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.range-button').forEach((b) => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.range-button').forEach(b => b.classList.toggle('active', b === btn));
       renderDashboard(btn.dataset.range);
     });
   });
 }
 
+
+function openGuidedCase(caseKey) {
+  const config = GUIDED_CASES[caseKey];
+  if (!config) return;
+  setText('case-modal-kicker', config.kicker);
+  setText('case-modal-title', config.title);
+  setText('case-modal-episode', config.episode);
+  setText('case-modal-why', config.why);
+  setText('case-modal-manifest', config.manifestations);
+  setText('case-modal-questions', config.questions);
+  setText('case-modal-mechanism', config.mechanism);
+  setText('case-modal-modelwhy', config.modelWhy);
+  setText('case-modal-observe', config.observe);
+  const modal = document.getElementById('case-modal');
+  modal.classList.remove('hidden');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+  const continueBtn = document.getElementById('case-modal-continue');
+  continueBtn.onclick = () => {
+    closeGuidedCase();
+    activateTab(config.targetTab);
+    if (config.targetTab === 'islm' && config.targetShock) {
+      document.getElementById('islm-shock').value = config.targetShock;
+      renderISLM();
+    }
+    if (config.targetTab === 'islmbp' && config.targetShock) {
+      document.getElementById('islmbp-shock').value = config.targetShock;
+      renderISLMBP();
+    }
+    if (config.targetTab === 'oada' && config.targetShock) {
+      document.getElementById('oada-shock').value = config.targetShock;
+      renderOADA();
+    }
+    if (config.targetTab === 'tablero') {
+      renderDashboard(document.querySelector('.range-button.active')?.dataset.range || 'full');
+    }
+    showGuidedArrival(config.targetTab, config);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      highlightElement(`#${config.targetTab}-guided-arrival`);
+      highlightElement(config.highlight);
+    }, 220);
+  };
+}
+function closeGuidedCase() {
+  const modal = document.getElementById('case-modal');
+  modal.classList.add('hidden');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+function initQuickstartButtons() {
+  document.querySelectorAll('.quickstart-button').forEach((button) => {
+    button.addEventListener('click', () => openGuidedCase(button.dataset.case));
+  });
+  document.getElementById('case-modal-close').addEventListener('click', closeGuidedCase);
+  document.querySelectorAll('[data-close-case]').forEach(el => el.addEventListener('click', closeGuidedCase));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeGuidedCase();
+  });
+}
+
+function showGuidedArrival(tabId, config) {
+  const prefix = `${tabId}-guided-`;
+  const box = document.getElementById(`${tabId}-guided-arrival`);
+  if (!box || !config.arrival) return;
+  setText(`${prefix}title`, config.arrival.title);
+  setText(`${prefix}what`, config.arrival.what);
+  setText(`${prefix}shock`, config.arrival.shock);
+  setText(`${prefix}graph`, config.arrival.graph);
+  setText(`${prefix}next`, config.arrival.next);
+  box.classList.remove('hidden');
+}
+function initGuidedArrivalClose() {
+  document.querySelectorAll('[data-close-guided]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.closeGuided;
+      document.getElementById(id)?.classList.add('hidden');
+    });
+  });
+}
+function watchCopy(model, shockKey, fallback) {
+  return WATCH_GUIDES[model]?.[shockKey] || `Pregunta clave: ${fallback}`;
+}
+
 function attachReset(buttonId, prefix, defaults, callback) {
-  const button = document.getElementById(buttonId);
-  if (!button) return;
-  button.addEventListener('click', () => {
+  document.getElementById(buttonId).addEventListener('click', () => {
     fillInputs(prefix, defaults);
     callback();
   });
 }
 
 function init() {
+  if (window.Chart) {
+    Chart.defaults.font.family = 'Inter, system-ui, sans-serif';
+    Chart.defaults.color = '#5e7184';
+    Chart.defaults.devicePixelRatio = Math.max(2, window.devicePixelRatio || 1);
+  }
   initTabs();
-  renderSequenceCards();
-  renderShockExampleTable();
-  renderShockCards();
-  renderTransmissionTable();
-  renderInstitutionTable();
-  renderGlossary();
-
   populateSelect('islm-regime', ISLM_REGIMES);
   populateSelect('islm-shock', ISLM_SHOCKS);
   populateSelect('islmbp-shock', ISLMBP_SHOCKS);
@@ -1617,16 +856,17 @@ function init() {
   document.getElementById('islmbp-shock').addEventListener('change', renderISLMBP);
   document.getElementById('oada-shock').addEventListener('change', renderOADA);
 
-  attachReset('islm-reset', 'islm', ISLM_DEFAULTS, renderISLM);
-  attachReset('islmbp-reset', 'islmbp', ISLMBP_DEFAULTS, renderISLMBP);
-  attachReset('oada-reset', 'oada', OADA_DEFAULTS, renderOADA);
+  attachReset('islm-reset','islm',ISLM_DEFAULTS,renderISLM);
+  attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
+  attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
 
   initDashboardButtons();
+  initQuickstartButtons();
+  initGuidedArrivalClose();
 
   renderISLM();
   renderISLMBP();
   renderOADA();
   renderDashboard('full');
 }
-
 document.addEventListener('DOMContentLoaded', init);

@@ -1,110 +1,41 @@
-# MacroLab Shock Simulator · Macroeconomía II · Profesor Pável Gómez · 2026
+# MacroLab Shock Simulator · Curso 2026 · v1.5
 
-Versión publicable, estática y pedagógicamente reforzada del laboratorio web **MacroLab Shock Simulator**.
-
-## Qué es
-
-Aplicación web educativa para ordenar mecanismos macroeconómicos, comparar shocks y practicar lectura de coyuntura chilena usando tres lentes base:
-
-- IS-LM
-- IS-LM-BP
-- OA-DA
-
-La app está pensada como:
-
-> **Laboratorio de análisis macro y evaluación de escenarios de coyuntura: una herramienta de aprendizaje para identificar mecanismos, interpretar shocks y explicar trayectorias plausibles del entorno económico chileno.**
-
-## Alcance de esta versión
-
-Esta versión incluye:
-
-- pestaña **Inicio** con secuencia analítica detallada;
-- pestaña **Instrucciones de uso** con errores frecuentes y tabla de ejemplos por tipo de shock;
-- simulador **IS-LM** con shocks fiscales, monetarios y de expectativas;
-- simulador **IS-LM-BP** con shocks externos, cambiarios, fiscales y monetarios;
-- simulador **OA-DA** reforzado con capa de oferta agregada y nota de ajuste de mediano plazo;
-- pestaña **Shocks y transmisión**;
-- pestaña **Marco institucional · Chile 2026**;
-- pestaña **Tablero Macro** con datos anuales 2010–2025;
-- **Glosario ampliado**;
-- diseño sobrio, responsive y publicable directamente en GitHub Pages.
-
-## Stack
-
-- HTML
-- CSS
-- JavaScript puro
-- Chart.js vía CDN
+Versión prototípica v1.5 para evaluación preliminar por estudiantes.
 
 ## Archivos
-
 - `index.html`
 - `styles.css`
 - `script.js`
 - `README.md`
 
-## Datos del Tablero Macro
+## Qué cambia en esta versión
+- Inicio con entrada rápida más potente y orientada al usuario.
+- Casos guiados con ventana intermedia explicativa antes de abrir el modelo.
+- Sección **Shocks y transmisión** ampliada con cadenas mecanísticas y lectura por modelo.
+- **IS-LM-BP** y **OA-DA** ajustados para hacer más visibles desplazamientos y equilibrio final.
+- **Tablero macro** ampliado a 7 series con cobre y petróleo WTI.
+- Fuente base explicitada: **Banco Central de Chile, Base de Datos Estadísticos**.
+- Complementos del archivo actualizado: cobre (Cochilco) y WTI (Federal Reserve Bank of St. Louis vía FRED).
+- Explicaciones de tablero más profundas, con quiebres y episodios.
 
-La versión publicada usa la serie contenida en el archivo suministrado:
+## Dependencias
+La app usa `Chart.js` vía CDN.
 
-- `Data Macro Chile 2010-2025.xlsx`
+## Publicación rápida en GitHub Pages
+1. Sube `index.html`, `styles.css`, `script.js` y `README.md` al directorio raíz del repositorio.
+2. En `Settings > Pages`, selecciona `Deploy from a branch`.
+3. Elige `main` y `/(root)`.
+4. Guarda y espera la publicación.
+5. Abre la URL pública y realiza hard refresh si no ves los cambios.
 
-Variables incluidas:
+## Nota de uso
+El tablero macro está pensado como panel anual de referencia docente: su valor principal es conectar shocks, mecanismos, trayectorias y datos observables.
 
-- crecimiento PIB real anual (%)
-- inflación anual (%)
-- tasa de desempleo (%)
-- TPM promedio anual (%)
-- tipo de cambio nominal promedio anual (CLP/USD)
 
-Ventana temporal:
-
-- 2010–2025
-
-## Criterio de diseño
-
-La app privilegia:
-
-- robustez antes que sobreingeniería;
-- claridad visual para proyección en clase;
-- pedagogía con formalización mínima robusta;
-- conexión entre modelos, instituciones y coyuntura;
-- uso estático inmediato sin backend.
-
-## Fuentes institucionales y de contexto usadas para la capa conceptual
-
-Fuentes oficiales y de referencia utilizadas para orientar textos institucionales y el posicionamiento macro de la versión publicada:
-
-- https://www.bcentral.cl/areas/politica-monetaria
-- https://www.bcentral.cl/el-banco/gobierno-corporativo/funciones-del-banco
-- https://www.bcentral.cl/contenido/-/detalle/ver-mas-preguntas-frecuentes-7-3
-- https://www.bcentral.cl/contenido/-/detalle/ver-mas-preguntas-frecuentes-8-4
-- https://www.hacienda.cl/areas-de-trabajo/presupuesto-nacional/estado-de-la-hacienda-publica/estado-de-la-hacienda-publica-2022/capitulo-2-politica-fiscal
-- https://old.hacienda.cl/preguntas-frecuentes/deberes-y-funciones/en-que-consiste-la-regla-del-balance.html
-- https://cfachile.cl/acerca-del-consejo/funciones-y-atribuciones
-- https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-25539.html
-- https://www.cmfchile.cl/educa/621/w3-article-49525.html
-- https://www.fne.gob.cl/nosotros/fne/mision-institucional/
-- https://www.tdlc.cl/atribuciones-del-tdlc/
-- https://www.ine.gob.cl/institucional/plan-estrategico-2022-2026/mision-vision-institucional-y-vision-superior
-- https://gpm.fen.uchile.cl/
-
-## Instrucciones paso a paso para publicar en GitHub Pages
-
-1. Crear un repositorio nuevo en GitHub.
-2. Subir `index.html`, `styles.css`, `script.js` y `README.md` al directorio raíz.
-3. Ir a **Settings**.
-4. Ir a **Pages**.
-5. En **Build and deployment**:
-   - **Source:** Deploy from a branch
-   - **Branch:** `main`
-   - **Folder:** `/root`
-6. Guardar.
-7. Esperar la publicación.
-8. Abrir la URL pública.
-9. Probar en desktop y en iPhone/Safari.
-10. Si un cambio no se refleja, verificar que los archivos estén realmente en la rama publicada y hacer **hard refresh**.
-
-## Nota pedagógica
-
-MacroLab es una herramienta de aprendizaje, no de predicción. Simplifica relaciones macroeconómicas para entrenar lectura de mecanismos, comparación de escenarios y evaluación de trayectorias plausibles. No reemplaza análisis econométrico, proyecciones oficiales ni diagnóstico de coyuntura detallado.
+## Ajustes de esta iteración
+- casos guiados con explicación previa más completa y banner de llegada dentro del modelo;
+- sección **Shocks y transmisión** más mecanística, con secuencia de lectura y referencias a ecuaciones/canales;
+- tablero macro reorganizado en franjas 3-2-2;
+- profundización de la lectura de cada gráfico del tablero;
+- mejora visual de la comparación de formas de OA;
+- caja **Qué mirar en Chile** más desarrollada en los simuladores.
