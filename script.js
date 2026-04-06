@@ -406,6 +406,22 @@ function initQuickstartButtons(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuidedCase()});
 }
 function initGuidedArrivalClose(){document.querySelectorAll('[data-close-guided]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.closeGuided)?.classList.add('hidden')}))}
+function initDarkMode(){
+  const btn=document.getElementById('dark-toggle');if(!btn)return;
+  btn.addEventListener('click',()=>{
+    document.body.classList.toggle('dark-mode');
+    const isDark=document.body.classList.contains('dark-mode');
+    btn.textContent=isDark?'Modo claro':'Modo proyección';
+    const fontColor=isDark?'#8fa3b8':'#5e7184';
+    const gridColor=isDark?'#243447':'#edf2f7';
+    if(window.Chart){Chart.defaults.color=fontColor}
+    Object.values(charts).forEach(c=>{
+      if(c.options?.scales?.x){c.options.scales.x.grid.color=gridColor;c.options.scales.x.ticks.color=fontColor;if(c.options.scales.x.title)c.options.scales.x.title.color=fontColor}
+      if(c.options?.scales?.y){c.options.scales.y.grid.color=gridColor;c.options.scales.y.ticks.color=fontColor;if(c.options.scales.y.title)c.options.scales.y.title.color=fontColor}
+      c.update();
+    });
+  });
+}
 function initMechanismSimButtons(){
   document.querySelectorAll('.mechanism-sim-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -423,7 +439,7 @@ function attachReset(buttonId,prefix,defaults,cb){document.getElementById(button
 /* ========== INIT ========== */
 function init(){
   if(window.Chart){Chart.defaults.font.family='Inter, system-ui, sans-serif';Chart.defaults.color='#5e7184';Chart.defaults.devicePixelRatio=Math.max(2,window.devicePixelRatio||1)}
-  initTabs();initWelcomeModal();
+  initTabs();initWelcomeModal();initDarkMode();
   populateSelect('islm-regime',ISLM_REGIMES);
   populateSelect('islm-shock',ISLM_SHOCKS);
   populateSelect('islmbp-shock',ISLMBP_SHOCKS);
