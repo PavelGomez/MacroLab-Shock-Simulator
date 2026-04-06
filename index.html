@@ -638,6 +638,7 @@
               <span>Política: BCCh reevalúa TPM</span>
               <span>Feedback: expectativas y reajustes (+ / –)</span>
             </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp">simular en OA-DA →</button></div>
           </article>
           <article class="mechanism-card">
             <h4>Cobre / CLP-USD / sector externo</h4>
@@ -649,6 +650,7 @@
               <span>Política: flotación redistribuye</span>
               <span>Feedback: recaudación, inversión minera (–)</span>
             </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown">simular en IS-LM-BP →</button></div>
           </article>
           <article class="mechanism-card">
             <h4>Ajuste fiscal / demanda</h4>
@@ -660,7 +662,89 @@
               <span>Política: ¿bajan tasas lo suficiente?</span>
               <span>Feedback: acelerador puede amplificar (–)</span>
             </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalContract">simular en IS-LM →</button></div>
           </article>
+          <article class="mechanism-card">
+            <h4>Pandemia / shock mixto</h4>
+            <div class="mechanism-chain">
+              <span>Shock: restricción sanitaria global</span>
+              <span>Canal 1 (oferta): movilidad cae, capacidad se restringe (–)</span>
+              <span>Canal 2 (demanda): consumo y servicios colapsan (–)</span>
+              <span>Macro: OA sube + DA cae → shock mixto</span>
+              <span>Modelo: OA-DA → primero oferta, luego demanda</span>
+              <span>Política: estímulo fiscal masivo + TPM a mínimos</span>
+              <span>Feedback: reapertura activa demanda, inflación con rezago (+)</span>
+            </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic">simular en OA-DA →</button></div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Estallido social / incertidumbre</h4>
+            <div class="mechanism-chain">
+              <span>Shock: crisis socio-política doméstica</span>
+              <span>Canal: confianza cae, inversión se frena (–)</span>
+              <span>Macro: DA cae + costos suben (destrucción, primas)</span>
+              <span>Modelo: OA-DA + IS-LM-BP → E↑, spreads↑</span>
+              <span>Política: BCCh interviene, fisco busca contención</span>
+              <span>Feedback: incertidumbre institucional amplifica (–)</span>
+            </div>
+            <div class="mechanism-sim-links">
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest">simular en OA-DA →</button>
+              <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="globalRecession" style="margin-left:6px">simular en IS-LM-BP →</button>
+            </div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Fed endurece / tasa internacional sube</h4>
+            <div class="mechanism-chain">
+              <span>Shock: Fed sube tasa de política</span>
+              <span>Canal: i* sube → presión sobre CLP/USD (+)</span>
+              <span>Macro: spreads suben, financiamiento externo se encarece</span>
+              <span>Modelo: IS-LM-BP → E↑, flujos salen</span>
+              <span>Política: BCCh puede necesitar endurecer más</span>
+              <span>Feedback: dólar global fuerte castiga emergentes (–)</span>
+            </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="higherWorldRate">simular en IS-LM-BP →</button></div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Mejora / caída de productividad</h4>
+            <div class="mechanism-chain">
+              <span>Shock: cambio tecnológico, regulatorio o de capital humano</span>
+              <span>Canal: A cambia → Yₙ sube o baja</span>
+              <span>Macro: OA se desplaza, cambia capacidad de largo plazo</span>
+              <span>Modelo: OA-DA → más (o menos) producción sin presión inflacionaria</span>
+              <span>Política: reformas estructurales, inversión, educación</span>
+              <span>Feedback: afecta crecimiento tendencial y sostenibilidad fiscal (+/–)</span>
+            </div>
+            <div class="mechanism-sim-links">
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityUp">simular mejora →</button>
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityDown" style="margin-left:6px">simular caída →</button>
+            </div>
+          </article>
+        </div>
+        <p class="muted-paragraph" style="margin-top:14px">Cada cadena simplifica: en la realidad los canales se cruzan. El valor está en disciplinar el primer canal dominante y luego agregar complejidad.</p>
+      </section>
+
+      <!-- TABLA CLASIFICATORIA DE SHOCKS -->
+      <section class="card" style="margin-bottom:20px">
+        <h3>Clasificación de shocks disponibles</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Todos los shocks que puedes simular en MacroLab, organizados por tipo, canal de entrada y modelo recomendado.</p>
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead><tr><th>Shock</th><th>Tipo</th><th>Canal dominante</th><th>Modelo</th><th>Ejemplo Chile</th><th>Simular</th></tr></thead>
+            <tbody>
+              <tr><td>Expansión fiscal</td><td>Demanda</td><td>Gasto → IS/DA</td><td>IS-LM, OA-DA</td><td>Reconstrucción 2010, transferencias 2020</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalExpand">IS-LM</button></td></tr>
+              <tr><td>Contracción fiscal</td><td>Demanda</td><td>Gasto → IS/DA</td><td>IS-LM, OA-DA</td><td>Consolidación post-pandemia</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalContract">IS-LM</button></td></tr>
+              <tr><td>Expansión monetaria</td><td>Demanda / financiera</td><td>Tasa → crédito → DA</td><td>IS-LM, IS-LM-BP</td><td>Estímulo 2020, recortes TPM</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryExpand">IS-LM</button></td></tr>
+              <tr><td>Contracción monetaria</td><td>Demanda / financiera</td><td>Tasa → crédito → DA</td><td>IS-LM, IS-LM-BP</td><td>Ciclo hawkish BCCh 2021–2023</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="monetaryContract">IS-LM-BP</button></td></tr>
+              <tr><td>Alza del petróleo</td><td>Oferta / costos</td><td>Costos → OA</td><td>OA-DA, IS-LM-BP</td><td>Guerra Rusia-Ucrania 2022, Medio Oriente 2025</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp">OA-DA</button></td></tr>
+              <tr><td>Caída del cobre</td><td>Externo</td><td>TdI → E, NX, fiscal</td><td>IS-LM-BP</td><td>Fin del súper ciclo 2013–2016</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown">IS-LM-BP</button></td></tr>
+              <tr><td>Subida de i*</td><td>Externo / financiero</td><td>i* → E, spreads, capitales</td><td>IS-LM-BP</td><td>Endurecimiento Fed 2022–2024</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="higherWorldRate">IS-LM-BP</button></td></tr>
+              <tr><td>Pandemia</td><td>Mixto</td><td>Oferta + demanda simultáneas</td><td>OA-DA</td><td>COVID-19 2020</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic">OA-DA</button></td></tr>
+              <tr><td>Estallido social</td><td>Mixto</td><td>Confianza + costos</td><td>OA-DA, IS-LM-BP</td><td>Octubre 2019</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest">OA-DA</button></td></tr>
+              <tr><td>Terremoto</td><td>Oferta → demanda</td><td>Capacidad → reconstrucción</td><td>OA-DA</td><td>2010</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="earthquake">OA-DA</button></td></tr>
+              <tr><td>Mejora de productividad</td><td>Oferta positiva</td><td>A → Yₙ → OA</td><td>OA-DA</td><td>Digitalización, inversión en capital</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityUp">OA-DA</button></td></tr>
+              <tr><td>Recesión global</td><td>Externo</td><td>x₀ + confianza → IS, E</td><td>IS-LM-BP</td><td>Crisis financiera 2008–2009</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="globalRecession">IS-LM-BP</button></td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -668,14 +752,14 @@
         <h3>Mapa de transmisión ampliado</h3>
         <div class="table-wrap">
           <table class="info-table small">
-            <thead><tr><th>Canal</th><th>Qué reacciona primero</th><th>Indicadores</th><th>Modelo</th></tr></thead>
+            <thead><tr><th>Canal</th><th>Qué reacciona primero</th><th>Indicadores</th><th>Rezago típico</th><th>Modelo</th></tr></thead>
             <tbody>
-              <tr><td>Actividad</td><td>Órdenes, ventas, producción</td><td>IMACEC, PIB, confianza</td><td>IS-LM / OA-DA</td></tr>
-              <tr><td>Inflación / costos</td><td>Combustibles, importados, salarios</td><td>IPC, IPC SAE, IPP</td><td>OA-DA</td></tr>
-              <tr><td>Tasa de interés</td><td>TPM, tasas de mercado, spreads</td><td>TPM, tasas largas, crédito</td><td>IS-LM / IS-LM-BP</td></tr>
-              <tr><td>Tipo de cambio</td><td>CLP/USD y precios transables</td><td>CLP/USD, TCR</td><td>IS-LM-BP</td></tr>
-              <tr><td>Empleo</td><td>Vacantes, horas, contrataciones</td><td>Desempleo, ocupación</td><td>IS-LM / OA-DA</td></tr>
-              <tr><td>Sector externo</td><td>Exportaciones, cuenta corriente</td><td>Cobre, balanza comercial</td><td>IS-LM-BP</td></tr>
+              <tr><td>Actividad</td><td>Órdenes, ventas, producción</td><td>IMACEC, PIB, confianza</td><td>1–3 meses</td><td>IS-LM / OA-DA</td></tr>
+              <tr><td>Inflación / costos</td><td>Combustibles, importados, salarios</td><td>IPC, IPC SAE, IPP</td><td>3–6 meses para segunda vuelta</td><td>OA-DA</td></tr>
+              <tr><td>Tasa de interés</td><td>TPM, tasas de mercado, spreads</td><td>TPM, tasas largas, crédito</td><td>TPM inmediato; transmisión 2–4 trimestres</td><td>IS-LM / IS-LM-BP</td></tr>
+              <tr><td>Tipo de cambio</td><td>CLP/USD y precios transables</td><td>CLP/USD, TCR</td><td>Inmediato en E; pass-through 3–9 meses</td><td>IS-LM-BP</td></tr>
+              <tr><td>Empleo</td><td>Vacantes, horas, contrataciones</td><td>Desempleo, ocupación</td><td>2–4 trimestres (rezagado)</td><td>IS-LM / OA-DA</td></tr>
+              <tr><td>Sector externo</td><td>Exportaciones, cuenta corriente</td><td>Cobre, balanza comercial</td><td>1–2 trimestres</td><td>IS-LM-BP</td></tr>
             </tbody>
           </table>
         </div>

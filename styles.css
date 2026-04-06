@@ -179,6 +179,8 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .mechanism-chain { display: grid; gap: 8px; margin-bottom: 12px; }
 .mechanism-chain span { display: block; background: #f8fbfd; border: 1px solid #dde7f0; border-radius: 12px; padding: 10px 12px; position: relative; line-height: 1.5; }
 .mechanism-chain span:not(:last-child)::after { content: "↓"; position: absolute; left: 50%; bottom: -15px; transform: translateX(-50%); color: #7a8da1; font-weight: 800; }
+.mechanism-sim-links { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.mechanism-sim-btn { font-size: .82rem !important; padding: 6px 12px !important; }
 
 /* OA-DA INSIGHT */
 .oada-insight-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,0.95fr); gap: 16px; align-items: start; margin-bottom: 16px; }

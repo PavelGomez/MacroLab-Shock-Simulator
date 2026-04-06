@@ -406,6 +406,18 @@ function initQuickstartButtons(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuidedCase()});
 }
 function initGuidedArrivalClose(){document.querySelectorAll('[data-close-guided]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.closeGuided)?.classList.add('hidden')}))}
+function initMechanismSimButtons(){
+  document.querySelectorAll('.mechanism-sim-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const tab=btn.dataset.tab;const shock=btn.dataset.shock;
+      activateTab(tab);
+      if(tab==='islm'&&shock){document.getElementById('islm-shock').value=shock;renderISLM()}
+      if(tab==='islmbp'&&shock){document.getElementById('islmbp-shock').value=shock;renderISLMBP()}
+      if(tab==='oada'&&shock){document.getElementById('oada-shock').value=shock;renderOADA()}
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+}
 function attachReset(buttonId,prefix,defaults,cb){document.getElementById(buttonId).addEventListener('click',()=>{fillInputs(prefix,defaults);cb()})}
 
 /* ========== INIT ========== */
@@ -426,7 +438,7 @@ function init(){
   attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
   attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
   document.querySelectorAll('.range-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.range-button').forEach(b=>b.classList.toggle('active',b===btn));renderDashboard(btn.dataset.range)}));
-  initQuickstartButtons();initGuidedArrivalClose();renderAtlas();
+  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
 }
 document.addEventListener('DOMContentLoaded',init);
