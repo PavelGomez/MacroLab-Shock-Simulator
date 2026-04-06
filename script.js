@@ -406,6 +406,18 @@ function initQuickstartButtons(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuidedCase()});
 }
 function initGuidedArrivalClose(){document.querySelectorAll('[data-close-guided]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.closeGuided)?.classList.add('hidden')}))}
+function initExportButtons(){
+  document.querySelectorAll('.export-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const key=btn.dataset.chart;const chart=charts[key];
+      if(!chart)return;
+      const link=document.createElement('a');
+      link.download=`macrolab-${key}-${new Date().toISOString().slice(0,10)}.png`;
+      link.href=chart.toBase64Image('image/png',1);
+      link.click();
+    });
+  });
+}
 function initDarkMode(){
   const btn=document.getElementById('dark-toggle');if(!btn)return;
   btn.addEventListener('click',()=>{
@@ -439,7 +451,7 @@ function attachReset(buttonId,prefix,defaults,cb){document.getElementById(button
 /* ========== INIT ========== */
 function init(){
   if(window.Chart){Chart.defaults.font.family='Inter, system-ui, sans-serif';Chart.defaults.color='#5e7184';Chart.defaults.devicePixelRatio=Math.max(2,window.devicePixelRatio||1)}
-  initTabs();initWelcomeModal();initDarkMode();
+  initTabs();initWelcomeModal();initDarkMode();initExportButtons();
   populateSelect('islm-regime',ISLM_REGIMES);
   populateSelect('islm-shock',ISLM_SHOCKS);
   populateSelect('islmbp-shock',ISLMBP_SHOCKS);
