@@ -379,6 +379,27 @@
         <article class="card"><h3>Cómo leer el mecanismo aquí</h3><p>El equilibrio final puede parecer cercano al inicial. Eso enseña algo: bajo flotación, gran parte del ajuste pasa por el tipo de cambio E y las exportaciones netas, no necesariamente por grandes cambios en Y.</p></article>
       </div>
 
+      <section class="card hypothesis-card" style="margin-bottom:18px">
+        <h4>La trinidad imposible y la elección chilena</h4>
+        <p>Un país no puede tener simultáneamente <strong>(1) tipo de cambio fijo</strong>, <strong>(2) libre movilidad de capitales</strong> y <strong>(3) política monetaria autónoma</strong>. Solo puede elegir dos de tres.</p>
+        <p style="margin-top:8px"><strong>Chile eligió (2) + (3):</strong> libre movilidad de capitales y política monetaria autónoma (meta de inflación, TPM), sacrificando el tipo de cambio fijo. Por eso el CLP/USD flota: es el precio de ajuste que permite al BCCh fijar la TPM sin defender una paridad.</p>
+        <p style="margin-top:8px">Esta elección explica los resultados del simulador: bajo flotación, la política monetaria es muy eficaz (deprecia, mejora NX, expande) mientras la fiscal se debilita (parte del impulso se fuga vía apreciación). Un país con tipo de cambio fijo y movilidad tendría los resultados opuestos.</p>
+        <div class="home-grid three" style="margin-top:14px">
+          <article class="card compact-card" style="background:#f8fbfd">
+            <h4 style="font-size:.92rem">TC fijo + movilidad</h4>
+            <p style="font-size:.88rem">Política monetaria ineficaz. Fiscal potente. BC pierde autonomía monetaria (ej: Hong Kong, dolarizaciones).</p>
+          </article>
+          <article class="card compact-card" style="background:#f8fbfd; border-color:var(--accent)">
+            <h4 style="font-size:.92rem">Flotación + movilidad <span style="color:var(--accent)">(Chile)</span></h4>
+            <p style="font-size:.88rem">Monetaria potente. Fiscal más débil. TC absorbe shocks. BCCh fija TPM autónomamente.</p>
+          </article>
+          <article class="card compact-card" style="background:#f8fbfd">
+            <h4 style="font-size:.92rem">TC fijo + controles de capital</h4>
+            <p style="font-size:.88rem">BC conserva autonomía monetaria a costa de restringir flujos. Raro en economías abiertas modernas.</p>
+          </article>
+        </div>
+      </section>
+
       <div class="simulator-layout">
         <aside class="controls-panel">
           <div class="card">
@@ -578,6 +599,26 @@
               </svg>
             </article>
           </div>
+
+          <section class="card hypothesis-card" style="margin-bottom:16px">
+            <h4>Expectativas, segunda vuelta y convergencia</h4>
+            <p>El modelo OA-DA muestra el impacto inicial, pero la trayectoria posterior depende de si las expectativas se ajustan. Tres escenarios clave:</p>
+            <div class="home-grid three" style="margin-top:12px">
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Expectativas ancladas</h4>
+                <p style="font-size:.88rem">Pᵉ no se mueve. El shock de costos sube P una vez, pero no contamina salarios ni contratos. OA no sigue subiendo. BCCh creíble = ancla fuerte.</p>
+              </article>
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Segunda vuelta salarial</h4>
+                <p style="font-size:.88rem">Pᵉ sube porque los agentes revisan expectativas. OA sigue desplazándose. El shock transitorio se vuelve persistente. Espiral precios-salarios.</p>
+              </article>
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Convergencia a Yₙ</h4>
+                <p style="font-size:.88rem">Si Y > Yₙ, la presión de precios sube Pᵉ hasta que la demanda se enfría. Si Y < Yₙ, Pᵉ baja y OA cede. La brecha cierra, pero el camino puede ser largo.</p>
+              </article>
+            </div>
+            <p style="margin-top:10px; font-size:.9rem; color:var(--muted)"><strong>En el simulador:</strong> Pᵉ es editable. Prueba subir Pᵉ después de un shock de costos para simular segunda vuelta, o bájalo para simular convergencia con expectativas ancladas.</p>
+          </section>
 
           <div class="analysis-grid">
             <article class="card"><h3>Interpretación</h3><p id="oada-equilibrium" class="equilibrium-line"></p><p id="oada-explanation" class="details-body"></p></article>
