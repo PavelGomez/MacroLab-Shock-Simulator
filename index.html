@@ -305,20 +305,24 @@
             <div class="field-group"><label for="islm-shock">Shock</label><select id="islm-shock"></select></div>
             <div class="button-row"><button class="action-button" id="islm-reset">Restablecer base 2026</button></div>
           </div>
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Los valores base representan una economía con consumo moderado (c₁=0.65), inversión sensible a tasa (b₂=22), gasto fiscal de ~220 y oferta monetaria que refleja TPM cercana a 5%. No son estimaciones econométricas: son puntos de partida pedagógicos calibrados para que los shocks produzcan movimientos visibles y plausibles.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
-              <label>c0 <input id="islm-c0" type="number" step="0.1"></label>
-              <label>c1 <input id="islm-c1" type="number" step="0.01"></label>
-              <label>b0 <input id="islm-b0" type="number" step="0.1"></label>
-              <label>b1 <input id="islm-b1" type="number" step="0.01"></label>
-              <label>b2 <input id="islm-b2" type="number" step="0.1"></label>
-              <label>G <input id="islm-G" type="number" step="0.1"></label>
-              <label>T <input id="islm-T" type="number" step="0.1"></label>
-              <label>M/P <input id="islm-MP" type="number" step="0.1"></label>
-              <label>d1 <input id="islm-d1" type="number" step="0.01"></label>
-              <label>d2 <input id="islm-d2" type="number" step="0.1"></label>
-              <label>i fija <input id="islm-iFixed" type="number" step="0.1"></label>
+              <label title="Consumo autónomo: gasto de consumo que no depende del ingreso disponible">c₀ · consumo autónomo <input id="islm-c0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a consumir: fracción de cada peso adicional de ingreso que se consume">c₁ · prop. marginal consumo <input id="islm-c1" type="number" step="0.01"></label>
+              <label title="Inversión autónoma: componente de la inversión que no depende de Y ni de i (confianza, expectativas)">b₀ · inversión autónoma <input id="islm-b0" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la inversión al ingreso (acelerador): cuánto sube I cuando sube Y">b₁ · acelerador <input id="islm-b1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la inversión a la tasa de interés: cuánto cae I cuando sube i">b₂ · sens. inversión a i <input id="islm-b2" type="number" step="0.1"></label>
+              <label title="Gasto público: componente fiscal exógeno de la demanda agregada">G · gasto público <input id="islm-G" type="number" step="0.1"></label>
+              <label title="Impuestos netos: recaudación menos transferencias">T · impuestos netos <input id="islm-T" type="number" step="0.1"></label>
+              <label title="Oferta real de dinero: masa monetaria dividida por nivel de precios">M/P · oferta real dinero <input id="islm-MP" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la demanda de dinero al ingreso: cuánto sube Md cuando sube Y">d₁ · sens. Md a Y <input id="islm-d1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la demanda de dinero a la tasa: cuánto baja Md cuando sube i">d₂ · sens. Md a i <input id="islm-d2" type="number" step="0.1"></label>
+              <label title="Tasa de interés fija: valor de i cuando se usa régimen LM horizontal (tasa exógena, como meta de TPM)">i fija · tasa exógena <input id="islm-iFixed" type="number" step="0.1"></label>
             </div>
           </div>
         </aside>
@@ -382,23 +386,27 @@
             <div class="field-group"><label for="islmbp-shock">Shock</label><select id="islmbp-shock"></select></div>
             <div class="button-row"><button class="action-button" id="islmbp-reset">Restablecer base 2026</button></div>
           </div>
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Base Mundell-Fleming con alta movilidad de capitales e i ≈ i*. Las exportaciones netas base (x₀=70) y la sensibilidad cambiaria (x₂=0.28) están calibradas para que shocks como caída del cobre o alza de i* produzcan movimientos visibles en E y NX. i*=4.5% refleja el entorno post-endurecimiento global.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
-              <label>c0 <input id="islmbp-c0" type="number" step="0.1"></label>
-              <label>c1 <input id="islmbp-c1" type="number" step="0.01"></label>
-              <label>b0 <input id="islmbp-b0" type="number" step="0.1"></label>
-              <label>b1 <input id="islmbp-b1" type="number" step="0.01"></label>
-              <label>b2 <input id="islmbp-b2" type="number" step="0.1"></label>
-              <label>x0 <input id="islmbp-x0" type="number" step="0.1"></label>
-              <label>x1 <input id="islmbp-x1" type="number" step="0.01"></label>
-              <label>x2 <input id="islmbp-x2" type="number" step="0.01"></label>
-              <label>G <input id="islmbp-G" type="number" step="0.1"></label>
-              <label>T <input id="islmbp-T" type="number" step="0.1"></label>
-              <label>M/P <input id="islmbp-MP" type="number" step="0.1"></label>
-              <label>d1 <input id="islmbp-d1" type="number" step="0.01"></label>
-              <label>d2 <input id="islmbp-d2" type="number" step="0.1"></label>
-              <label>i* <input id="islmbp-iStar" type="number" step="0.1"></label>
+              <label title="Consumo autónomo">c₀ · consumo autónomo <input id="islmbp-c0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a consumir">c₁ · prop. marginal consumo <input id="islmbp-c1" type="number" step="0.01"></label>
+              <label title="Inversión autónoma (confianza, expectativas)">b₀ · inversión autónoma <input id="islmbp-b0" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la inversión al ingreso (acelerador)">b₁ · acelerador <input id="islmbp-b1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la inversión a la tasa de interés">b₂ · sens. inversión a i <input id="islmbp-b2" type="number" step="0.1"></label>
+              <label title="Exportaciones netas autónomas: componente base de NX que no depende de Y ni de E">x₀ · export. netas autónomas <input id="islmbp-x0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a importar: fracción de cada peso adicional de Y que se va a importaciones">x₁ · prop. marginal importar <input id="islmbp-x1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de NX al tipo de cambio: cuánto mejoran NX cuando E sube (depreciación)">x₂ · sens. NX a tipo de cambio <input id="islmbp-x2" type="number" step="0.01"></label>
+              <label title="Gasto público">G · gasto público <input id="islmbp-G" type="number" step="0.1"></label>
+              <label title="Impuestos netos">T · impuestos netos <input id="islmbp-T" type="number" step="0.1"></label>
+              <label title="Oferta real de dinero">M/P · oferta real dinero <input id="islmbp-MP" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la demanda de dinero al ingreso">d₁ · sens. Md a Y <input id="islmbp-d1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la demanda de dinero a la tasa">d₂ · sens. Md a i <input id="islmbp-d2" type="number" step="0.1"></label>
+              <label title="Tasa de interés internacional (Fed, BCE): ancla externa bajo alta movilidad de capitales">i* · tasa internacional <input id="islmbp-iStar" type="number" step="0.1"></label>
             </div>
           </div>
         </aside>
@@ -479,18 +487,22 @@
             <div class="field-group"><label for="oada-shock">Shock</label><select id="oada-shock"></select></div>
             <div class="button-row"><button class="action-button" id="oada-reset">Restablecer base 2026</button></div>
           </div>
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Yₙ = A × L = 950 refleja producción potencial. Pᵉ=1.0 ancla expectativas en el nivel base. γ=0.002 genera una OA con pendiente positiva pero no vertical, permitiendo ver el trade-off producción/precios. El mark-up μ=0.20 y z=0.50 reflejan rigideces moderadas del mercado laboral chileno.</p>
+          </div>
           <div class="card">
             <h3>Parámetros de demanda y oferta</h3>
             <div class="inputs-grid two-columns">
-              <label>Intercepto DA <input id="oada-daA" type="number" step="0.1"></label>
-              <label>Pendiente DA <input id="oada-daB" type="number" step="0.1"></label>
-              <label>Pe <input id="oada-Pe" type="number" step="0.1"></label>
-              <label>Mark-up μ <input id="oada-mu" type="number" step="0.01"></label>
-              <label>Sensibilidad γ <input id="oada-gamma" type="number" step="0.0001"></label>
-              <label>Rigidez / costos z <input id="oada-z" type="number" step="0.1"></label>
-              <label>Fuerza laboral L <input id="oada-L" type="number" step="1"></label>
-              <label>Productividad A <input id="oada-A" type="number" step="0.01"></label>
-              <label>Shock de costos <input id="oada-costShock" type="number" step="0.1"></label>
+              <label title="Componente autónomo de la demanda agregada: gasto, consumo e inversión que no dependen del nivel de precios">DA intercepto · demanda autónoma <input id="oada-daA" type="number" step="0.1"></label>
+              <label title="Pendiente de la DA: cuánto cae Y cuando sube P (sensibilidad de demanda a precios)">DA pendiente · sens. demanda a P <input id="oada-daB" type="number" step="0.1"></label>
+              <label title="Precio esperado por los agentes: ancla de expectativas de inflación que posiciona la OA">Pᵉ · precio esperado <input id="oada-Pe" type="number" step="0.1"></label>
+              <label title="Mark-up sobre costos: margen que fijan las empresas por encima del costo laboral unitario">μ · mark-up <input id="oada-mu" type="number" step="0.01"></label>
+              <label title="Sensibilidad de OA a la brecha: cuánto suben precios cuando Y supera Yₙ (pendiente de OA)">γ · pendiente OA <input id="oada-gamma" type="number" step="0.0001"></label>
+              <label title="Rigideces, costos de ajuste y factores institucionales del mercado laboral">z · rigidez / costos laborales <input id="oada-z" type="number" step="0.1"></label>
+              <label title="Fuerza laboral: tamaño del empleo potencial. Junto con A determina Yₙ = A × L">L · fuerza laboral <input id="oada-L" type="number" step="1"></label>
+              <label title="Productividad del trabajo: producción por trabajador. Yₙ = A × L">A · productividad <input id="oada-A" type="number" step="0.01"></label>
+              <label title="Shock exógeno de costos: petróleo, fletes, insumos importados. Desplaza OA hacia arriba">Shock costos · energía / insumos <input id="oada-costShock" type="number" step="0.1"></label>
             </div>
           </div>
         </aside>
