@@ -1009,51 +1009,82 @@
         <div class="dashboard-brief-grid">
           <article class="card executive-brief"><h4>Lectura del tablero</h4><p id="dashboard-summary">—</p></article>
           <article class="card timeline-card"><h4>Quiebres y episodios</h4>
+            <p class="muted-paragraph" style="margin-bottom:10px; font-size:.88rem">Cada quiebre se puede leer con un modelo. Haz clic para ir al simulador con el shock correspondiente.</p>
             <div class="timeline-chips">
-              <span>2010 · terremoto</span><span>2014–2017 · desaceleración</span><span>2019 · estallido</span><span>2020 · pandemia</span><span>2021–22 · rebote + inflación</span><span>2022–23 · guerra / energía</span><span>2024–25 · desinflación</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="earthquake" style="cursor:pointer">2010 · terremoto → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown" style="cursor:pointer">2014–17 · desaceleración → IS-LM-BP</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest" style="cursor:pointer">2019 · estallido → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="cursor:pointer">2020 · pandemia → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="fiscalExpand" style="cursor:pointer">2021–22 · rebote → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="cursor:pointer">2022–23 · guerra / energía → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="monetaryContract" style="cursor:pointer">2024–25 · desinflación → OA-DA</span>
             </div>
           </article>
         </div>
+
+        <!-- LECTURA CRUZADA -->
+        <section class="card" style="margin-bottom:16px; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%)">
+          <h4>Lectura cruzada de series</h4>
+          <p class="muted-paragraph" style="margin-bottom:12px">Las series no se leen aisladas. Los quiebres se entienden cuando se cruzan:</p>
+          <div class="home-grid two" style="margin-bottom:0">
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">2021–2022: el salto inflacionario</strong>
+              <p style="font-size:.88rem; margin:0">El PIB rebotó +11.3% en 2021 mientras la inflación saltó a 12.8% en 2022. El WTI subió por guerra y el CLP/USD se depreció. Tres canales simultáneos: demanda excesiva (retiros+estímulo), costos energéticos y depreciación. OA-DA es el modelo natural.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">2022–2024: TPM como ancla</strong>
+              <p style="font-size:.88rem; margin:0">La TPM subió de ~1% a 11.25% y la inflación empezó a ceder. El desempleo se mantuvo alto (~8%). Esto muestra el costo real de la desinflación: la política monetaria enfría precios, pero el empleo tarda en recuperarse. IS-LM captura la mecánica tasa/actividad.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">Cobre vs CLP/USD</strong>
+              <p style="font-size:.88rem; margin:0">Cuando el cobre cae (2013–2016), el CLP/USD sube. Cuando el cobre se recupera (2021), el CLP/USD debería bajar, pero no baja porque hay otros shocks (retiros, inflación, riesgo político). IS-LM-BP ayuda a separar canales.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">Desempleo rezagado</strong>
+              <p style="font-size:.88rem; margin:0">El desempleo sube con rezago respecto de la caída del PIB (2020: PIB –6.1%, desempleo 10.3%) y baja lento incluso cuando el PIB se recupera. Es la variable más lenta del tablero. Importa para OA-DA: mide holgura real.</p>
+            </article>
+          </div>
+        </section>
 
         <div class="dashboard-grid-v3 dashboard-row row-3">
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-blue">PIB real anual</h4><span>%</span></div>
             <canvas id="dash-gdp"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> reconstrucción, desaceleración, colapso 2020, rebote 2021 y normalización débil.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> reconstrucción post-terremoto, desaceleración 2014–2017 por fin del súper ciclo, colapso –6.1% en 2020 (pandemia), rebote +11.3% en 2021 (estímulo+reapertura), normalización débil 2023–2025. <em>Modelo:</em> IS-LM para demanda; OA-DA para brecha.</p>
           </article>
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-orange">Inflación anual</h4><span>%</span></div>
             <canvas id="dash-inflation"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> salto 2021–2023 mezcla rebote, oferta, depreciación y energía.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> salto a 12.8% en 2022 mezcla tres canales: rebote de demanda (retiros, estímulo), costos (WTI, guerra) y depreciación (CLP/USD). La desinflación 2023–2025 refleja TPM alta y normalización de oferta. <em>Modelo:</em> OA-DA.</p>
           </article>
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-green">Desempleo</h4><span>%</span></div>
             <canvas id="dash-unemployment"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> salto 2020 y recuperación incompleta.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> salto a 10.3% en 2020. Recuperación incompleta: aún ~8% en 2024–2025, pese a que PIB ya creció. El empleo es la variable más rezagada del ciclo. <em>Lectura:</em> mide holgura real en OA-DA.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-purple">TPM promedio</h4><span>%</span></div>
             <canvas id="dash-tpm"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> estímulo, endurecimiento fuerte 2021–2023, relajación gradual.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> estímulo a 0.5% (2020), endurecimiento a 11.25% (2023), relajación gradual 2024–2025. El ciclo completo de TPM es la variable que mejor refleja la respuesta del BCCh a la secuencia pandemia→inflación→desinflación. <em>Modelo:</em> IS-LM para tasa/actividad.</p>
           </article>
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-red">CLP/USD promedio</h4><span>CLP/USD</span></div>
             <canvas id="dash-fx"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> depreciación por cobre, estallido, pandemia, energía.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> depreciación gradual 2013–2016 (cobre), salto 2019 (estallido), pico 2022 (guerra+inflación). Cada episodio entra por canales distintos: TdI, riesgo, diferenciales de tasa. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-copper">Cobre promedio</h4><span>cUSD/lb</span></div>
             <canvas id="dash-copper"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> fin del súper ciclo, recuperación 2021–2022.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> fin del súper ciclo 2013–2016, recuperación 2021–2022, estabilización ~430–450 cUSD/lb. El cobre es el principal canal de transmisión de China a Chile vía TdI, fiscal y CLP/USD. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
           <article class="dashboard-card-v2">
             <div class="dashboard-card-head"><h4 class="series-wti">Petróleo WTI</h4><span>USD/barril</span></div>
             <canvas id="dash-wti"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> desplome 2020, salto 2022, sensibilidad geopolítica.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> desplome a ~39 USD en 2020, salto a ~90 USD en 2022 (guerra Rusia-Ucrania), tensiones Medio Oriente 2025. Canal: costos importados → OA → inflación. Chile importador neto de energía. <em>Modelo:</em> OA-DA.</p>
           </article>
         </div>
       </div>

@@ -257,6 +257,8 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .timeline-card { background: #f7fafc; }
 .timeline-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .timeline-chips span { display: inline-flex; padding: 8px 10px; border-radius: 999px; background: #eef3f7; border: 1px solid #d8e2eb; color: var(--navy); font-size: .88rem; }
+.timeline-chip-link { cursor: pointer; transition: .18s; }
+.timeline-chip-link:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
 .dashboard-grid-v3 { display: grid; gap: 14px; margin-bottom: 16px; }
 .dashboard-row.row-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
 .dashboard-row.row-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
