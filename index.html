@@ -1003,8 +1003,8 @@
           <article class="snapshot-card"><span>Desempleo 2025</span><strong id="snap-unemployment-value">—</strong><small id="snap-unemployment-delta">—</small><div class="chart-badge" id="badge-unemployment">—</div></article>
           <article class="snapshot-card"><span>TPM 2025</span><strong id="snap-tpm-value">—</strong><small id="snap-tpm-delta">—</small><div class="chart-badge" id="badge-tpm">—</div></article>
           <article class="snapshot-card"><span>CLP/USD 2025</span><strong id="snap-fx-value">—</strong><small id="snap-fx-delta">—</small><div class="chart-badge" id="badge-fx">—</div></article>
-          <article class="snapshot-card"><span>Cobre 2025</span><strong id="snap-copper-value">—</strong><small id="snap-copper-delta">—</small><div class="chart-badge" id="badge-copper">—</div></article>
-          <article class="snapshot-card"><span>WTI 2025</span><strong id="snap-wti-value">—</strong><small id="snap-wti-delta">—</small><div class="chart-badge" id="badge-wti">—</div></article>
+          <article class="snapshot-card"><span>Precio cobre 2025</span><strong id="snap-copper-value">—</strong><small id="snap-copper-delta">—</small><div class="chart-badge" id="badge-copper">—</div></article>
+          <article class="snapshot-card"><span>Precio WTI 2025</span><strong id="snap-wti-value">—</strong><small id="snap-wti-delta">—</small><div class="chart-badge" id="badge-wti">—</div></article>
         </div>
 
         <div class="dashboard-brief-grid">
@@ -1049,41 +1049,41 @@
 
         <div class="dashboard-grid-v3 dashboard-row row-3">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-blue">PIB real anual</h4><span>%</span></div>
+            <div class="dashboard-card-head"><h4 class="series-blue">PIB real anual</h4><span>% · BCCh</span></div>
             <canvas id="dash-gdp"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> reconstrucción post-terremoto, desaceleración 2014–2017 por fin del súper ciclo, colapso –6.1% en 2020 (pandemia), rebote +11.3% en 2021 (estímulo+reapertura), normalización débil 2023–2025. <em>Modelo:</em> IS-LM para demanda; OA-DA para brecha.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-orange">Inflación anual</h4><span>%</span></div>
+            <div class="dashboard-card-head"><h4 class="series-orange">Inflación anual (IPC)</h4><span>% · INE</span></div>
             <canvas id="dash-inflation"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> salto a 12.8% en 2022 mezcla tres canales: rebote de demanda (retiros, estímulo), costos (WTI, guerra) y depreciación (CLP/USD). La desinflación 2023–2025 refleja TPM alta y normalización de oferta. <em>Modelo:</em> OA-DA.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-green">Desempleo</h4><span>%</span></div>
+            <div class="dashboard-card-head"><h4 class="series-green">Tasa de desempleo</h4><span>% · INE</span></div>
             <canvas id="dash-unemployment"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> salto a 10.3% en 2020. Recuperación incompleta: aún ~8% en 2024–2025, pese a que PIB ya creció. El empleo es la variable más rezagada del ciclo. <em>Lectura:</em> mide holgura real en OA-DA.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-purple">TPM promedio</h4><span>%</span></div>
+            <div class="dashboard-card-head"><h4 class="series-purple">Tasa de política monetaria (TPM)</h4><span>% · BCCh</span></div>
             <canvas id="dash-tpm"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> estímulo a 0.5% (2020), endurecimiento a 11.25% (2023), relajación gradual 2024–2025. El ciclo completo de TPM es la variable que mejor refleja la respuesta del BCCh a la secuencia pandemia→inflación→desinflación. <em>Modelo:</em> IS-LM para tasa/actividad.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-red">CLP/USD promedio</h4><span>CLP/USD</span></div>
+            <div class="dashboard-card-head"><h4 class="series-red">Tipo de cambio CLP/USD</h4><span>CLP/USD · BCCh</span></div>
             <canvas id="dash-fx"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> depreciación gradual 2013–2016 (cobre), salto 2019 (estallido), pico 2022 (guerra+inflación). Cada episodio entra por canales distintos: TdI, riesgo, diferenciales de tasa. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-copper">Cobre promedio</h4><span>cUSD/lb</span></div>
+            <div class="dashboard-card-head"><h4 class="series-copper">Precio del cobre</h4><span>cUSD/lb · Cochilco</span></div>
             <canvas id="dash-copper"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> fin del súper ciclo 2013–2016, recuperación 2021–2022, estabilización ~430–450 cUSD/lb. El cobre es el principal canal de transmisión de China a Chile vía TdI, fiscal y CLP/USD. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-wti">Petróleo WTI</h4><span>USD/barril</span></div>
+            <div class="dashboard-card-head"><h4 class="series-wti">Precio del petróleo WTI</h4><span>USD/barril · FRED</span></div>
             <canvas id="dash-wti"></canvas>
             <p class="dashboard-note"><strong>Quiebres:</strong> desplome a ~39 USD en 2020, salto a ~90 USD en 2022 (guerra Rusia-Ucrania), tensiones Medio Oriente 2025. Canal: costos importados → OA → inflación. Chile importador neto de energía. <em>Modelo:</em> OA-DA.</p>
           </article>
