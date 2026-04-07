@@ -317,8 +317,8 @@ body.dark-mode .l2-toggle { background: linear-gradient(180deg, #152238 0%, #1a2
 .welcome-route-card h4 { margin: 0 0 6px; font-size: .95rem; color: var(--navy); }
 .welcome-route-card p { margin: 0; color: var(--muted); font-size: .88rem; line-height: 1.5; }
 .welcome-return { color: var(--muted); font-size: .92rem; margin: 0 0 16px; }
-.welcome-actions { display: flex; align-items: center; gap: 16px; }
-.welcome-check { display: flex; align-items: center; gap: 6px; font-size: .88rem; color: var(--muted); cursor: pointer; }
+.welcome-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.welcome-check { display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; color: var(--muted); cursor: pointer; white-space: nowrap; }
 
 /* CASE MODAL */
 .case-modal.hidden { display: none; }
