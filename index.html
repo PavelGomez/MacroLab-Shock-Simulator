@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MacroLab Shock Simulator · Curso 2026</title>
+  <title>MacroLab Shock Simulator · Curso 2026 · v1.6</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,6 +11,39 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+  <!-- ============ WELCOME MODAL ============ -->
+  <div class="welcome-modal" id="welcome-modal">
+    <div class="welcome-modal-backdrop" id="welcome-backdrop"></div>
+    <div class="welcome-modal-dialog">
+      <h2>Bienvenido a MacroLab</h2>
+      <p class="welcome-lead">MacroLab es un laboratorio para leer shocks, mecanismos de transmisión y trayectorias plausibles de la economía chilena.</p>
+      <div class="welcome-routes">
+        <div class="welcome-route-card">
+          <span class="welcome-route-number">1</span>
+          <h4>Entrar por un caso contemporáneo</h4>
+          <p>Guerra y energía, caída del cobre o ajuste fiscal: parte desde un episodio real y llega al modelo que mejor lo explica.</p>
+        </div>
+        <div class="welcome-route-card">
+          <span class="welcome-route-number">2</span>
+          <h4>Entrar por un modelo</h4>
+          <p>IS-LM, IS-LM-BP u OA-DA: elige el lente formal y explora shocks, mecanismos y trayectorias desde la teoría.</p>
+        </div>
+        <div class="welcome-route-card">
+          <span class="welcome-route-number">3</span>
+          <h4>Entrar por datos y contexto</h4>
+          <p>Tablero Macro, Atlas de shocks o Marco institucional: ubica el presente dentro del ciclo chileno antes de elegir modelo.</p>
+        </div>
+      </div>
+      <p class="welcome-return">Puedes volver al Inicio en cualquier momento para tomar otra ruta.</p>
+      <div class="welcome-actions">
+        <button class="action-button" id="welcome-start">Comenzar</button>
+        <label class="welcome-check"><input type="checkbox" id="welcome-dismiss"> No mostrar de nuevo en esta sesión</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HEADER ============ -->
   <header class="app-header">
     <div class="header-copy">
       <p class="eyebrow">Macroeconomía II · Profesor Pável Gómez · 2026</p>
@@ -19,19 +52,25 @@
     </div>
   </header>
 
+  <!-- ============ NAV ============ -->
   <nav class="tabs" aria-label="Secciones del laboratorio">
+    <button class="tab-button" id="dark-toggle" title="Modo oscuro para proyección" style="margin-left:auto; background:var(--navy); color:#fff; border-color:var(--navy); font-size:.82rem; padding:8px 12px">Modo proyección</button>
     <button class="tab-button active" data-tab="inicio">Inicio</button>
     <button class="tab-button" data-tab="instrucciones">Instrucciones</button>
-    <button class="tab-button" data-tab="institucional">Marco institucional</button>
     <button class="tab-button" data-tab="islm">IS-LM</button>
     <button class="tab-button" data-tab="islmbp">IS-LM-BP</button>
     <button class="tab-button" data-tab="oada">OA-DA</button>
     <button class="tab-button" data-tab="shocks">Shocks y transmisión</button>
+    <button class="tab-button" data-tab="atlas">Atlas de shocks</button>
+    <button class="tab-button" data-tab="institucional">Marco institucional</button>
     <button class="tab-button" data-tab="tablero">Tablero macro</button>
+    <button class="tab-button" data-tab="lectura">Lectura de datos</button>
     <button class="tab-button" data-tab="glosario">Glosario</button>
   </nav>
 
   <main class="app-shell">
+
+    <!-- ============ INICIO ============ -->
     <section id="inicio" class="tab-panel active">
       <div class="panel-block">
         <h2>Inicio</h2>
@@ -43,84 +82,93 @@
         Esta es una herramienta de aprendizaje, no de predicción. Simplifica relaciones macroeconómicas para ordenar mecanismos, comparar escenarios y practicar interpretación. No reemplaza análisis econométrico, proyecciones oficiales ni diagnóstico de coyuntura real detallado.
       </div>
 
-      <section class="card quickstart-card">
-        <div class="quickstart-copy">
-          <p class="kicker">Entrada rápida</p>
-          <h3>Empieza por una pregunta que hoy sí importa</h3>
-          <div class="signal-ribbon" aria-label="Temas clave del laboratorio">
-            <span class="signal-pill"><span class="signal-icon">⚡</span><span class="signal-label">Energía</span></span>
-            <span class="signal-pill"><span class="signal-icon">↗</span><span class="signal-label">Inflación</span></span>
-            <span class="signal-pill"><span class="signal-icon">％</span><span class="signal-label">Tasas</span></span>
-            <span class="signal-pill"><span class="signal-icon">$</span><span class="signal-label">Tipo de cambio</span></span>
-            <span class="signal-pill"><span class="signal-icon">◔</span><span class="signal-label">Crecimiento</span></span>
+      <!-- TRES RUTAS DE ENTRADA -->
+      <div class="route-grid">
+        <div class="route-column">
+          <h3 class="route-column-title">Casos contemporáneos</h3>
+          <p class="route-column-desc">Parte desde un episodio real y descubre qué modelo lo explica mejor.</p>
+          <div class="route-cards">
+            <article class="route-card">
+              <h4>Irán / energía / inflación</h4>
+              <p>¿Cómo una guerra lejana puede aparecer aquí como presión sobre combustibles, inflación y tasas?</p>
+              <button class="route-btn quickstart-button" data-case="iran">abrir caso →</button>
+            </article>
+            <article class="route-card">
+              <h4>Cobre / CLP-USD / apertura</h4>
+              <p>¿Por qué una caída del cobre no es solo un problema exportador, sino también cambiario y fiscal?</p>
+              <button class="route-btn quickstart-button" data-case="copper">abrir caso →</button>
+            </article>
+            <article class="route-card">
+              <h4>Ajuste fiscal / demanda</h4>
+              <p>¿Qué ocurre con actividad, tasa e inversión cuando el gobierno recorta gasto?</p>
+              <button class="route-btn quickstart-button" data-case="fiscal">abrir caso →</button>
+            </article>
           </div>
-          <p class="muted-paragraph">Empieza con fenómenos que hoy sí generan preguntas reales. Los casos guiados no son atajos arbitrarios: están elegidos porque condensan mecanismos decisivos para Chile en abril de 2026. Cada uno toma un episodio reconocible, lo traduce a una secuencia causal, muestra por qué un modelo ayuda a entenderlo mejor que otro y te deja mejor preparado para usar el laboratorio con criterio propio.</p>
         </div>
-        <div class="quickstart-actions">
-          <button class="action-button quickstart-button" data-case="iran">Caso guiado · Irán / energía / inflación</button>
-          <button class="action-button quickstart-button secondary" data-case="copper">Caso guiado · cobre / CLP-USD / sector externo</button>
-          <button class="action-button quickstart-button secondary" data-case="fiscal">Caso guiado · ajuste fiscal / actividad / tasas</button>
-          <button class="action-button quickstart-button ghost" data-case="dashboard">Entrar por el Tablero Macro</button>
+        <div class="route-column">
+          <h3 class="route-column-title">Modelos</h3>
+          <p class="route-column-desc">Elige el lente formal y explora shocks desde la teoría.</p>
+          <div class="route-cards">
+            <article class="route-card">
+              <h4>IS-LM · economía cerrada</h4>
+              <p>¿Cómo interactúan demanda, dinero, tasa e inversión?</p>
+              <button class="route-btn" data-tab="islm">ver modelo →</button>
+            </article>
+            <article class="route-card">
+              <h4>IS-LM-BP · economía abierta</h4>
+              <p>¿Cómo entran cobre, tipo de cambio y tasa internacional?</p>
+              <button class="route-btn" data-tab="islmbp">ver modelo →</button>
+            </article>
+            <article class="route-card">
+              <h4>OA-DA · precios y producción</h4>
+              <p>¿Cuánto del shock se absorbe en inflación y cuánto en actividad?</p>
+              <button class="route-btn" data-tab="oada">ver modelo →</button>
+            </article>
+          </div>
         </div>
-        <div class="home-grid four quick-question-grid">
-          <article class="card compact-card focus-card">
-            <h3>Irán / energía / inflación</h3>
-            <p><strong>Pregunta guía:</strong> ¿cómo una guerra que ocurre fuera de Chile puede aparecer aquí como presión sobre combustibles, inflación, tasas y actividad? Este caso ayuda a ver el mecanismo de propagación de un shock de costos y por qué OA-DA es una puerta de entrada potente.</p>
-          </article>
-          <article class="card compact-card focus-card">
-            <h3>Cobre / CLP-USD / apertura</h3>
-            <p><strong>Pregunta guía:</strong> ¿por qué una caída del cobre no es solo una mala noticia exportadora, sino también un problema de tipo de cambio, recaudación, vulnerabilidad externa y ajuste macro? Este caso abre IS-LM-BP desde la lógica de economía abierta.</p>
-          </article>
-          <article class="card compact-card focus-card">
-            <h3>Ajuste fiscal / demanda</h3>
-            <p><strong>Pregunta guía:</strong> ¿qué ocurre con actividad, tasa e inversión cuando el gobierno recorta gasto o acelera consolidación? Este recorrido sirve para descubrir lo que IS-LM entrega y también sus límites.</p>
-          </article>
-          <article class="card compact-card focus-card">
-            <h3>Tablero Macro</h3>
-            <p><strong>Pregunta guía:</strong> ¿dónde se ubica el presente dentro del ciclo chileno 2010–2025? Entrar por el tablero ayuda a distinguir quiebres, rezagos y coexistencia de shocks antes de elegir el modelo adecuado.</p>
-          </article>
+        <div class="route-column">
+          <h3 class="route-column-title">Datos y contexto</h3>
+          <p class="route-column-desc">Ubica el presente dentro del ciclo chileno antes de modelar.</p>
+          <div class="route-cards">
+            <article class="route-card">
+              <h4>Tablero Macro</h4>
+              <p>¿Dónde se ubica el presente dentro del ciclo 2010–2025?</p>
+              <button class="route-btn quickstart-button" data-case="dashboard">ir al tablero →</button>
+            </article>
+            <article class="route-card">
+              <h4>Atlas de shocks 2009–2026</h4>
+              <p>¿Qué episodios marcaron la macro chilena y cómo se conectan?</p>
+              <button class="route-btn" data-tab="atlas">ver atlas →</button>
+            </article>
+            <article class="route-card">
+              <h4>Marco institucional</h4>
+              <p>¿Por qué las reglas e instituciones cambian la trayectoria de un shock?</p>
+              <button class="route-btn" data-tab="institucional">ver marco →</button>
+            </article>
+          </div>
         </div>
-      </section>
+      </div>
 
+      <!-- SECUENCIA ANALÍTICA -->
       <section class="card hero-card">
         <div class="section-headline">
           <div>
             <h3>Secuencia analítica MacroLab</h3>
-            <p class="muted-paragraph">La potencia del marco no está en “mover curvas”, sino en obligar a disciplinar la causalidad. Sirve para pasar de titulares, intuiciones rápidas o descripciones pintorescas a una lectura macroeconómica que identifica qué cambió, por qué importa, cómo se transmite y qué dato conviene mirar.</p>
+            <p class="muted-paragraph">La potencia del marco no está en "mover curvas", sino en obligar a disciplinar la causalidad. Sirve para pasar de titulares, intuiciones rápidas o descripciones pintorescas a una lectura macroeconómica que identifica qué cambió, por qué importa, cómo se transmite y qué dato conviene mirar.</p>
           </div>
         </div>
         <div class="sequence-wrap">
           <div class="sequence-track">
-            <span class="sequence-pill">Shock</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Variable exógena afectada</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Parámetro(s) del modelo</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Curva(s) que se desplazan</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Nuevo equilibrio</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Mecanismo de transmisión</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Trayectoria probable</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Filtro institucional chileno</span>
-            <span class="sequence-arrow">→</span>
-            <span class="sequence-pill">Dato que conviene mirar</span>
+            <span class="sequence-pill">Shock</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Variable exógena</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Parámetro(s)</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Curva(s)</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Nuevo equilibrio</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Mecanismo</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Trayectoria</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Filtro institucional</span><span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Dato a mirar</span>
           </div>
-        </div>
-
-        <div class="sequence-grid detailed-grid">
-          <article><strong>Shock</strong><p>Es el disparador identificable del episodio: guerra, pandemia, recesión global, terremoto, salto de tasa externa, deterioro de confianza o cambio de política. No debe confundirse con sus efectos posteriores.</p></article>
-          <article><strong>Variable exógena</strong><p>Es la pieza que el modelo toma como dada en esa vuelta analítica: gasto público, dinero real, productividad, precio del cobre, costos importados o tasa internacional.</p></article>
-          <article><strong>Parámetro</strong><p>Resume una forma de comportamiento: propensión a consumir, sensibilidad de la inversión a la tasa, demanda de dinero, sensibilidad de precios a la brecha o pass-through cambiario.</p></article>
-          <article><strong>Curva</strong><p>La curva no es “la realidad”, sino una representación ordenada de una relación. Permite ver qué combinaciones dejan de ser compatibles con el equilibrio anterior.</p></article>
-          <article><strong>Equilibrio</strong><p>Debe leerse como punto focal comparativo, no como fotografía inmutable del mundo. Ayuda a responder hacia dónde tendería el sistema si domina ese mecanismo.</p></article>
-          <article><strong>Mecanismo de transmisión</strong><p>Es la cadena causal dominante: petróleo → costos → inflación → BCCh; cobre → exportaciones → CLP/USD → ingresos fiscales; Fed → capitales → depreciación → pass-through.</p></article>
-          <article><strong>Trayectoria probable</strong><p>Entre el primer impacto y el nuevo punto focal hay rezagos, compensaciones, segundas vueltas, amplificadores y límites. La trayectoria importa tanto como el shock inicial.</p></article>
-          <article><strong>Filtro institucional chileno</strong><p>Autonomía del BCCh, flotación, regla fiscal, monitoreo del CFA, supervisión financiera y enforcement competitivo alteran la persistencia y el costo del shock.</p></article>
-          <article><strong>Dato que conviene mirar</strong><p>La secuencia obliga a cerrar con observables: IPC, IPC SAE, TPM, CLP/USD, IMACEC, empleo, cobre, cuenta corriente, spreads, crédito o expectativas.</p></article>
         </div>
       </section>
 
@@ -139,280 +187,222 @@
         </article>
       </div>
 
-      <div class="home-grid four">
-        <article class="card"><h3>Qué incluye realmente</h3><ul class="simple-list"><li>Tres lentes base: <strong>IS-LM</strong>, <strong>IS-LM-BP</strong> y <strong>OA-DA</strong>.</li><li>Simulación de shocks con cambio automático de parámetros, curvas y métricas.</li><li>Lectura de equilibrio, mecanismo, trayectoria probable e implicancias sectoriales.</li><li>Una capa institucional chilena explícita.</li></ul></article>
-        <article class="card"><h3>Propósito del laboratorio</h3><p>Desarrollar análisis del entorno como competencia de un ingeniero comercial: elegir el lente correcto, traducir eventos a mecanismos y convertir esa lectura en criterio de gestión y decisión.</p></article>
-        <article class="card"><h3>Cómo usarlo bien</h3><ol class="simple-list ordered"><li>Parte con un caso guiado o el tablero.</li><li>Identifica el shock primario.</li><li>Escoge el modelo donde mejor se ve el mecanismo dominante.</li><li>Compara equilibrio, transmisión, trayectoria e instituciones.</li><li>Cierra con un dato chileno observable.</li></ol></article>
-        <article class="card"><h3>Competencia que se busca desarrollar</h3><p>Pasar de escuchar una noticia macro a producir una lectura estructurada: qué cambió, por qué importa, qué mecanismo domina y qué implica para empresas, hogares y política.</p></article>
-      </div>
-
       <section class="card cta-card">
         <h3>Explora el laboratorio desde tu propia curiosidad</h3>
         <p>Si hoy te intriga la guerra, parte por energía e inflación. Si te preocupa Chile como economía abierta, entra por cobre y tipo de cambio. Si quieres entender gasto, inversión y tasas, parte por IS-LM. La herramienta está hecha para que una pregunta real te lleve a un mecanismo claro.</p>
       </section>
     </section>
 
+    <!-- ============ INSTRUCCIONES ============ -->
     <section id="instrucciones" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>Instrucciones de uso</h2>
-        <p class="section-intro">Úsala como laboratorio, no como calculadora ciega. En abril de 2026, titulares sobre guerra, energía, inflación, tasas y vulnerabilidad externa vuelven a dominar la conversación. MacroLab está hecho justamente para pasar de esos titulares a una lectura ordenada.</p>
+        <p class="section-intro">Úsala como laboratorio, no como calculadora ciega. MacroLab está hecho para pasar de titulares a una lectura ordenada.</p>
       </div>
 
       <div class="notice-box">
         <strong>Si vienes por primera vez.</strong>
-        Empieza por un caso guiado si quieres entrar rápido; luego vuelve a esta pestaña para entender por qué el laboratorio distingue entre shock, mecanismo, trayectoria e instituciones. Esa secuencia es la que convierte curiosidad contemporánea en aprendizaje durable.
+        Empieza por un caso guiado si quieres entrar rápido; luego vuelve a esta pestaña para entender por qué el laboratorio distingue entre shock, mecanismo, trayectoria e instituciones.
       </div>
 
-      <section class="card case-bridge-card">
-        <h3>Del titular al modelo: por qué los casos guiados valen la pena</h3>
-        <div class="home-grid three">
-          <article class="compact-card">
-            <h4>1. El episodio</h4>
-            <p>La guerra, la caída del cobre o el ajuste fiscal no interesan por sí solos. Interesan porque activan preguntas sobre precios, producto, empleo, tipo de cambio, credibilidad y márgenes de política.</p>
-          </article>
-          <article class="compact-card">
-            <h4>2. El mecanismo</h4>
-            <p>El laboratorio no se queda en la anécdota: obliga a preguntarse qué variable exógena cambia, qué ecuación de conducta resulta afectada y qué canal domina primero.</p>
-          </article>
-          <article class="compact-card">
-            <h4>3. El lente útil</h4>
-            <p>Un mismo episodio puede pedir más de un modelo, pero casi siempre hay un lente que ordena mejor la primera lectura. Ese es el objetivo del caso guiado: ayudarte a descubrirlo con rapidez.</p>
-          </article>
+      <!-- SI VIENES DESDE UNA NOTICIA -->
+      <section class="card news-bridge-card">
+        <h3>Si vienes desde una noticia</h3>
+        <p class="muted-paragraph">Usa estas mini-secuencias para pasar de un titular a un modelo útil:</p>
+        <div class="news-routes">
+          <div class="news-route">
+            <span class="news-trigger">Guerra / energía / petróleo</span>
+            <span class="news-arrow">→</span>
+            <span class="news-path">shock de costos → OA sube → P↑ Y↓</span>
+            <span class="news-arrow">→</span>
+            <span class="news-model">OA-DA o IS-LM-BP</span>
+          </div>
+          <div class="news-route">
+            <span class="news-trigger">Caída del cobre / dólar sube</span>
+            <span class="news-arrow">→</span>
+            <span class="news-path">x₀↓ → E↑ → NX cambia</span>
+            <span class="news-arrow">→</span>
+            <span class="news-model">IS-LM-BP</span>
+          </div>
+          <div class="news-route">
+            <span class="news-trigger">Debate fiscal / gasto público</span>
+            <span class="news-arrow">→</span>
+            <span class="news-path">G cambia → IS se desplaza → Y, i</span>
+            <span class="news-arrow">→</span>
+            <span class="news-model">IS-LM</span>
+          </div>
+          <div class="news-route">
+            <span class="news-trigger">Inflación / desempleo / tensión precios-actividad</span>
+            <span class="news-arrow">→</span>
+            <span class="news-path">brecha vs Yₙ → P y Y simultáneos</span>
+            <span class="news-arrow">→</span>
+            <span class="news-model">OA-DA</span>
+          </div>
+          <div class="news-route">
+            <span class="news-trigger">Contexto histórico / ciclo</span>
+            <span class="news-arrow">→</span>
+            <span class="news-path">ubicar quiebres y episodios</span>
+            <span class="news-arrow">→</span>
+            <span class="news-model">Tablero Macro o Atlas</span>
+          </div>
         </div>
       </section>
 
       <div class="home-grid three">
-        <article class="card"><h3>Qué es MacroLab Shock Simulator</h3><p>Es un laboratorio de macroeconomía aplicada para Chile. Ayuda a ordenar el paso desde un shock identificable hacia variables exógenas, parámetros, curvas, equilibrios, trayectorias, instituciones y datos a monitorear.</p></article>
-        <article class="card"><h3>Qué incluye realmente</h3><p>Tres simuladores, una guía de shocks y transmisión, una sección institucional, un tablero macro con datos reales anuales y un glosario amplio. No es solo un simulador gráfico.</p></article>
-        <article class="card"><h3>Qué NO hace</h3><ul class="simple-list"><li>No predice el futuro.</li><li>No reemplaza un IPoM, un informe de coyuntura o un modelo econométrico.</li><li>No recoge todos los canales simultáneos de una economía real.</li><li>No sustituye juicio analítico ni verificación con datos.</li></ul></article>
+        <article class="card"><h3>Qué es MacroLab</h3><p>Un laboratorio de macroeconomía aplicada para Chile. Ayuda a ordenar el paso desde un shock hacia variables, parámetros, curvas, equilibrios, trayectorias, instituciones y datos.</p></article>
+        <article class="card"><h3>Qué incluye</h3><p>Tres simuladores, shocks y transmisión, atlas de shocks, sección institucional, tablero macro con datos reales y glosario amplio.</p></article>
+        <article class="card"><h3>Qué NO hace</h3><ul class="simple-list"><li>No predice el futuro.</li><li>No reemplaza un IPoM ni un modelo econométrico.</li><li>No recoge todos los canales simultáneos.</li><li>No sustituye juicio analítico.</li></ul></article>
       </div>
 
       <section class="card">
         <h3>Cómo usarlo paso a paso</h3>
         <div class="sequence-grid">
-          <article><strong>1. Formula el episodio</strong><p>Escribe el shock en una frase precisa: “sube el petróleo por conflicto en Medio Oriente”, “cae el cobre”, “la Fed endurece”, “el gobierno consolida gasto”, “aumenta la incertidumbre política”.</p></article>
-          <article><strong>2. Elige el mecanismo dominante</strong><p>Demanda, dinero, sector externo, costos, expectativas o shock mixto. La elección del mecanismo decide qué modelo conviene usar.</p></article>
-          <article><strong>3. Escoge el lente</strong><p><strong>IS-LM</strong> si domina demanda y dinero; <strong>IS-LM-BP</strong> si el shock entra por apertura, cobre, CLP/USD o tasa externa; <strong>OA-DA</strong> si la pregunta central es inflación, costos, brecha o expectativas.</p></article>
+          <article><strong>1. Formula el episodio</strong><p>Escribe el shock en una frase precisa: "sube el petróleo por conflicto en Medio Oriente", "cae el cobre", "la Fed endurece".</p></article>
+          <article><strong>2. Elige el mecanismo dominante</strong><p>Demanda, dinero, sector externo, costos, expectativas o shock mixto.</p></article>
+          <article><strong>3. Escoge el lente</strong><p><strong>IS-LM</strong> si domina demanda; <strong>IS-LM-BP</strong> si entra por apertura; <strong>OA-DA</strong> si la pregunta es inflación y brecha.</p></article>
           <article><strong>4. Compara base y shock</strong><p>Usa los botones de restablecer. La comparación disciplinada vale más que apilar shocks sin control.</p></article>
-          <article><strong>5. Lee trayectoria e instituciones</strong><p>No te quedes en el nuevo equilibrio. Revisa rezagos, segundas vueltas, reglas, credibilidad y restricciones del caso chileno.</p></article>
-          <article><strong>6. Cierra con evidencia</strong><p>Vuelve al tablero y al dato que conviene mirar: IPC, TPM, CLP/USD, IMACEC, empleo, cobre, spreads, crédito o balance fiscal.</p></article>
+          <article><strong>5. Lee trayectoria e instituciones</strong><p>No te quedes en el nuevo equilibrio. Revisa rezagos, segundas vueltas y restricciones del caso chileno.</p></article>
+          <article><strong>6. Cierra con evidencia</strong><p>Vuelve al tablero y al dato que conviene mirar: IPC, TPM, CLP/USD, IMACEC, empleo, cobre.</p></article>
         </div>
       </section>
 
-      <section class="card table-card">
-        <h3>Ejemplos por tipo de shock</h3>
-        <p class="micro-note">Tabla homologada para la lógica del laboratorio: disparador, variable exógena, modelo donde se ve mejor, mecanismo dominante, dato relevante e implicancia práctica.</p>
-        <div class="table-wrap">
-          <table class="info-table">
-            <thead>
-              <tr>
-                <th>Tipo de shock</th>
-                <th>Disparador primario</th>
-                <th>Variable(s) exógena(s) afectada(s)</th>
-                <th>Modelo(s) donde se ve mejor</th>
-                <th>Mecanismo principal</th>
-                <th>Ejemplo chileno o internacional</th>
-                <th>Qué dato conviene mirar</th>
-                <th>Implicancia para empresas / hogares / gobierno</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Oferta / costos</strong></td>
-                <td>Riesgo sobre energía y transporte</td>
-                <td>Costos importados, combustibles, fletes, seguros, pass-through</td>
-                <td>OA-DA + IS-LM-BP</td>
-                <td>Suben costos, se tensiona la inflación y aparece dilema entre actividad y estabilidad de precios</td>
-                <td>Irán / Ormuz 2026</td>
-                <td>Combustibles, IPC, CLP/USD, costos logísticos</td>
-                <td>Presión sobre márgenes, costos de transporte y decisiones de cobertura</td>
-              </tr>
-              <tr>
-                <td><strong>Demanda</strong></td>
-                <td>Mayor o menor gasto autónomo</td>
-                <td>G, T, confianza, inversión inducida</td>
-                <td>IS-LM + OA-DA</td>
-                <td>Se mueve la demanda agregada, cambian Y, i e inversión; luego puede trasladarse a precios</td>
-                <td>Reconstrucción, transferencias extraordinarias o consolidación</td>
-                <td>PIB, empleo, tasas largas, inflación</td>
-                <td>Impacto sobre ventas, empleo, financiamiento y balance fiscal</td>
-              </tr>
-              <tr>
-                <td><strong>Mixto oferta-demanda</strong></td>
-                <td>Disrupción sanitaria o cierre de movilidad</td>
-                <td>Productividad, demanda de servicios, gasto, liquidez</td>
-                <td>OA-DA + IS-LM</td>
-                <td>Caen capacidad y demanda; la secuencia temporal importa mucho</td>
-                <td>Pandemia</td>
-                <td>IMACEC, desempleo, inflación subyacente, TPM</td>
-                <td>Planificación operativa incierta y alta heterogeneidad sectorial</td>
-              </tr>
-              <tr>
-                <td><strong>Externo-financiero</strong></td>
-                <td>Sube la tasa internacional o cae el cobre</td>
-                <td>i*, x0, CLP/USD, spreads, exportaciones netas</td>
-                <td>IS-LM-BP</td>
-                <td>Se tensiona el financiamiento externo y el tipo de cambio absorbe parte del ajuste</td>
-                <td>Fed restrictiva, caída del cobre</td>
-                <td>CLP/USD, tasas largas, cobre, cuenta corriente</td>
-                <td>Encarece financiamiento y reordena el mapa entre sectores transables y no transables</td>
-              </tr>
-              <tr>
-                <td><strong>Socio-político / incertidumbre</strong></td>
-                <td>Pérdida de coordinación, legitimidad o visibilidad regulatoria</td>
-                <td>b0, c0, spreads, prima de riesgo, tipo de cambio</td>
-                <td>IS-LM-BP + OA-DA</td>
-                <td>Se frena inversión, sube el premio por riesgo y puede aparecer presión cambiaria</td>
-                <td>Estallido social y procesos constitucionales</td>
-                <td>EMBI, inversión, CLP/USD, expectativas</td>
-                <td>Postergación de proyectos, mayor cautela financiera y de contratación</td>
-              </tr>
-              <tr>
-                <td><strong>Política económica</strong></td>
-                <td>Cambio de TPM o cambio del tono fiscal</td>
-                <td>M/P, i, G, T, expectativas</td>
-                <td>IS-LM, IS-LM-BP, OA-DA</td>
-                <td>La política altera actividad, crédito, tipo de cambio, inflación y credibilidad</td>
-                <td>Ciclo BCCh 2021–2023 / consolidación fiscal</td>
-                <td>TPM, IPC SAE, crédito, balance estructural</td>
-                <td>Relevante para financiamiento, consumo durable, inversión y reputación macro</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-    </section>
+      <!-- EJERCICIOS DE DIAGNÓSTICO -->
+      <section class="card" style="margin-bottom:18px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%)">
+        <h3>Ejercicios de diagnóstico: del Tablero al modelo</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Estos ejercicios simulan el proceso real de un analista: parten de una observación en el Tablero, formulan una hipótesis y la testean en un simulador. Intenta resolverlos antes de leer la respuesta.</p>
 
-    <section id="institucional" class="tab-panel">
-      <div class="panel-block">
-        <h2>Marco institucional · Chile 2026</h2>
-        <p class="section-intro">Las instituciones macroeconómicas chilenas pueden leerse como una arquitectura de reglas, transparencia, auditabilidad, rendición de cuentas y enforcement diseñada para hacer más costosa la indisciplina y más creíble la política.</p>
-      </div>
-
-      <div class="notice-box">
-        <strong>Intuición central.</strong>
-        El conocimiento básico suele sobrevalorar la voluntad de líderes, ministros o presidentes del banco central. MacroLab insiste en otra idea: el mismo shock tiene trayectorias distintas cuando existe un diseño institucional que reduce arbitrariedad, eleva costos reputacionales y vuelve más predecibles las respuestas.
-      </div>
-
-      <section class="card institution-visual-card">
-        <h3>Del liderazgo individual al diseño institucional</h3>
-        <div class="institution-diagram">
-          <div class="diagram-node diagram-shock">Shock externo o interno</div>
-          <div class="diagram-lane">
-            <div class="diagram-column weak">
-              <h4>Lectura ingenua</h4>
-              <p>“Todo depende de la fuerza del líder o del ministro de turno”.</p>
-              <ul class="simple-list"><li>Más discrecionalidad</li><li>Más sorpresa</li><li>Más oportunismo posible</li></ul>
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 1 · ¿Por qué la inflación subió en 2022 pero el desempleo no bajó?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>En el Tablero: inflación salta a 12.8% en 2022 (máximo en décadas). Pero el desempleo permanece en ~7.9%, sin caer significativamente desde 2021. Si fuera solo demanda excesiva, esperarías desempleo bajo.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿La inflación de 2022 es de demanda, de costos o mixta? ¿Qué combinación de Y y P es consistente con desempleo alto e inflación alta?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>Si domina costos (OA sube): P↑ Y↓ o estancado. Es consistente con desempleo alto + inflación alta = <strong>estanflación incipiente</strong>. Si dominara demanda pura: P↑ Y↑ y desempleo bajo.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a OA-DA → shock de costos (alza petróleo). Verificar que OA sube, P↑, Y cae o se estanca. Luego probar shock mixto (pandemia) para ver qué pasa cuando se cruzan oferta y demanda.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="margin-top:8px; font-size:.82rem">probar en OA-DA →</button></p>
+              </article>
             </div>
-            <div class="diagram-versus">vs</div>
-            <div class="diagram-column strong">
-              <h4>Lectura institucional</h4>
-              <p>Reglas + datos + minutas + auditoría + reputación + enforcement.</p>
-              <ul class="simple-list"><li>Menor inconsistencia temporal</li><li>Más disciplina de expectativas</li><li>Trayectorias más predecibles</li></ul>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> La respuesta es mixta: la inflación de 2022 mezcla (1) exceso de demanda del rebote 2021, (2) costos energéticos por guerra, (3) depreciación del CLP. El IPC SAE alto confirma que no era solo energía volátil. El modelo OA-DA con shock de costos captura la parte de oferta; cruzarlo con IS-LM-BP captura la depreciación.
             </div>
           </div>
-          <div class="diagram-output">Resultado: cambia no solo el impacto del shock, sino también su persistencia, su costo y el margen para respuestas oportunistas.</div>
-        </div>
-      </section>
+        </details>
 
-      <section class="card">
-        <h3>Instituciones macro relevantes en Chile</h3>
-        <div class="table-wrap">
-          <table class="info-table">
-            <thead>
-              <tr>
-                <th>Institución</th>
-                <th>Función macro relevante</th>
-                <th>Qué credibilidad ayuda a sostener</th>
-                <th>Qué oportunismo ayuda a contener</th>
-                <th>Qué datos / decisiones / señales produce</th>
-                <th>Qué rol cumple en escenarios de shock</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Banco Central de Chile</strong></td>
-                <td>Estabilidad de precios y normal funcionamiento de pagos internos y externos.</td>
-                <td>Ancla nominal, manejo de expectativas y coherencia antiinflacionaria.</td>
-                <td>Sesgo inflacionario, dominancia política de corto plazo, respuestas improvisadas.</td>
-                <td>TPM, IPoM, IEF, comunicados, minutas, liquidez.</td>
-                <td>Principal filtro macro frente a inflación, crédito, liquidez y shocks externos.</td>
-              </tr>
-              <tr>
-                <td><strong>Ministerio de Hacienda / Dipres</strong></td>
-                <td>Política fiscal, programación financiera y marco presupuestario.</td>
-                <td>Solvencia fiscal y coherencia intertemporal.</td>
-                <td>Prociclicidad, sobre-ejecución oportunista, gasto sin ancla permanente.</td>
-                <td>Presupuesto, balance estructural, metas fiscales, informes.</td>
-                <td>Determina cuánto amortiguador fiscal existe y cuánto cuesta usarlo.</td>
-              </tr>
-              <tr>
-                <td><strong>Consejo Fiscal Autónomo</strong></td>
-                <td>Monitoreo técnico y consultivo del manejo fiscal.</td>
-                <td>Reputación de la regla fiscal y transparencia de la trayectoria de deuda.</td>
-                <td>Desvíos persistentes, opacidad metodológica, complacencia fiscal.</td>
-                <td>Informes, alertas, recomendaciones y evaluación del balance estructural.</td>
-                <td>Aumenta el costo reputacional de la indisciplina fiscal en contextos de shock.</td>
-              </tr>
-              <tr>
-                <td><strong>CMF</strong></td>
-                <td>Supervisión del sistema financiero y protección de usuarios.</td>
-                <td>Estabilidad y transparencia financiera.</td>
-                <td>Arbitrajes regulatorios, mala conducta, fragilidad no monitoreada.</td>
-                <td>Normativa, supervisión, reportes prudenciales y de conducta.</td>
-                <td>Importa para crédito, spreads, solvencia e interrupciones financieras.</td>
-              </tr>
-              <tr>
-                <td><strong>GPM</strong></td>
-                <td>Referencia técnica externa no vinculante sobre TPM.</td>
-                <td>Calidad del debate monetario y benchmark experto externo.</td>
-                <td>Discusión pública opaca o excesivamente politizada.</td>
-                <td>Comunicados, recomendaciones y material público.</td>
-                <td>Sirve para comparar la decisión del BCCh con una referencia académica externa.</td>
-              </tr>
-              <tr>
-                <td><strong>FNE / TDLC</strong></td>
-                <td>Enforcement y resolución de controversias de competencia.</td>
-                <td>Mercados más disciplinados y menor persistencia de abusos de poder de mercado.</td>
-                <td>Colusión, barreras anticompetitivas y márgenes oportunistas.</td>
-                <td>Investigaciones, sentencias, recomendaciones, control de concentraciones.</td>
-                <td>Ayudan a separar shocks de costos de conductas de mercado que amplifican precios.</td>
-              </tr>
-              <tr>
-                <td><strong>INE</strong></td>
-                <td>Producción de estadísticas oficiales.</td>
-                <td>Calidad de la información pública y capacidad de monitoreo.</td>
-                <td>Improvisación diagnóstica, opacidad y discusión sin evidencia.</td>
-                <td>IPC, empleo, censos y otras estadísticas base.</td>
-                <td>Permite verificar trayectorias en vez de discutir solo con intuiciones.</td>
-              </tr>
-              <tr>
-                <td><strong>Apertura comercial y flotación cambiaria</strong></td>
-                <td>Arreglos que permiten ajuste de precios relativos y absorción externa.</td>
-                <td>Capacidad de ajuste sin fijar un precio político del dólar.</td>
-                <td>Subsidio artificial al desequilibrio externo y atrasos de ajuste.</td>
-                <td>CLP/USD, cuenta corriente, precios transables, redes de comercio.</td>
-                <td>Hacen visible el shock y redistribuyen sus costos entre sectores.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 2 · ¿Por qué la TPM subió a 11.25% y no causó recesión?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>La TPM pasó de 0.5% a 11.25% entre 2021 y 2023. Es el endurecimiento más agresivo en la historia del BCCh. Pero el PIB de 2023 creció +0.7% (débil, pero positivo). ¿Por qué no hubo recesión?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿Qué otros factores compensaron el efecto contractivo de la TPM? ¿Es posible que el punto de partida (rebote de 2021) influyera?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>IS-LM dice: TPM↑ → LM sube → i↑ → Y↓. Pero si la base de partida era un rebote excesivo (Y >> potencial), el endurecimiento cerró brecha sin llevar Y debajo de potencial. El desempleo alto sugiere que Yₙ era menor de lo que parecía.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a IS-LM → contracción monetaria. Mira cuánto cae Y y si la tasa de equilibrio sube mucho. Luego ir a OA-DA → contracción monetaria y verificar si la brecha se cierra sin hundir Y.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryContract" style="margin-top:8px; font-size:.82rem">probar en IS-LM →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> El endurecimiento no causó recesión porque partió de un nivel de actividad muy por encima de potencial (post-rebote). Además, el cobre se mantuvo relativamente alto, compensando parte del freno interno vía sector externo. La combinación IS-LM + OA-DA es la lectura más completa.
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 3 · ¿Por qué el cobre subió en 2021 pero el peso no se apreció?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>El cobre pasó de ~298 a ~437 cUSD/lb entre 2020 y 2021. Históricamente, cobre↑ → CLP/USD↓ (apreciación). Pero el CLP/USD promedió ~759 en 2021, solo levemente por debajo de 2020 (~792).</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿Qué fuerzas compensaron el efecto apreciador del cobre? ¿El canal cobre→CLP estaba dominado por otro canal?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>IS-LM-BP dice: x₀↑ → apreciación. Pero si simultáneamente hay retiros de fondos (liquidity shock), incertidumbre política y expectativas de inflación, hay presión depreciatoria que anula el efecto cobre. Múltiples shocks en direcciones opuestas.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a IS-LM-BP → alza del cobre. Ver apreciación teórica. Luego pensar: ¿qué otro shock simultáneo deprecia? (Depreciación del peso, recesión global). Los modelos son de un shock a la vez; la realidad combina.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperUp" style="margin-top:8px; font-size:.82rem">probar en IS-LM-BP →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> El cobre subió, pero en paralelo operaban retiros de fondos de pensiones, incertidumbre constitucional, inflación doméstica y Fed endureciendo. El tipo de cambio es la resultante de múltiples fuerzas. IS-LM-BP captura una a la vez; la lectura cruzada del Tablero permite ver por qué el resultado neto no coincide con el modelo de un solo shock.
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 4 · ¿Cómo se lee la secuencia pandemia → rebote → inflación → desinflación?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>PIB: –6.1% (2020) → +11.3% (2021) → +2.1% (2022) → +0.7% (2023).<br>Inflación: 3.0% (2020) → 7.2% (2021) → 12.8% (2022) → 3.4% (2023).<br>TPM: 0.8% (2020) → 1.2% (2021) → 8.5% (2022) → 10.5% (2023).</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta</h4>
+                <p>¿Qué modelo y en qué secuencia explica los 4 años? ¿Es un shock o son varios? ¿Cómo interactúan oferta, demanda y política?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Lectura secuencial</h4>
+                <p><strong>2020:</strong> shock mixto (OA+DA caen). <strong>2021:</strong> demanda explota (retiros, estímulo) → DA domina. <strong>2022:</strong> costos se suman (guerra, energía) → OA sube mientras DA sigue alta. <strong>2023:</strong> TPM alta enfría demanda → DA se contrae, inflación cede.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Modelos en secuencia</h4>
+                <p>2020: OA-DA (pandemia). 2021: OA-DA (expansión fiscal). 2022: OA-DA (costos) + IS-LM-BP (depreciación). 2023: IS-LM (contracción monetaria). La secuencia completa requiere los 3 modelos.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="margin-top:8px; font-size:.82rem">2020: OA-DA →</button>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="fiscalExpand" style="margin-top:4px; font-size:.82rem">2021: OA-DA →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> Este ejercicio muestra que la macro chilena 2020–2023 no se explica con un solo modelo ni un solo shock. Es una secuencia de shocks encadenados donde cada episodio hereda el estado dejado por el anterior. La potencia de MacroLab está en recorrer esa secuencia paso a paso, cambiando de modelo cuando el canal dominante cambia.
+            </div>
+          </div>
+        </details>
       </section>
     </section>
 
+    <!-- ============ IS-LM ============ -->
     <section id="islm" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>IS-LM · economía cerrada</h2>
         <p class="section-intro">Este modelo representa el equilibrio simultáneo en el mercado de bienes y en el mercado de dinero. Es el mejor primer lente cuando domina la pregunta por demanda agregada, política fiscal, política monetaria, inversión y tasa de interés.</p>
       </div>
 
+      <div class="notice-box">
+        <strong>Cuándo usar este modelo.</strong>
+        Cuando la pregunta central es sobre demanda interna, tasa de interés, inversión o política fiscal/monetaria en economía cerrada. No sirve para preguntas sobre tipo de cambio, inflación ni sector externo.
+      </div>
 
       <div class="guided-arrival hidden" id="islm-guided-arrival">
         <div class="guided-arrival-head">
-          <div>
-            <p class="kicker">Llegaste desde un caso guiado</p>
-            <h3 id="islm-guided-title">—</h3>
-          </div>
+          <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="islm-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="islm-guided-arrival" aria-label="Ocultar guía">×</button>
         </div>
         <div class="guided-arrival-grid">
@@ -424,57 +414,44 @@
       </div>
 
       <div class="model-intro-grid">
-        <article class="card"><h3>Qué muestra</h3><p>La <strong>IS</strong> reúne combinaciones de producción y tasa donde el mercado de bienes está en equilibrio. La <strong>LM</strong> reúne combinaciones consistentes con el mercado de dinero. Su intersección entrega un punto focal para <strong>Y</strong> e <strong>i</strong>.</p></article>
-        <article class="card"><h3>Potencia del modelo</h3><p>Sirve para visualizar multiplicador, crowding-out, acelerador y el rol de la política monetaria. Bien usado, ordena con nitidez shocks fiscales, monetarios y de expectativas.</p></article>
-        <article class="card"><h3>Límites y lectura crítica</h3><p>No incorpora sector externo ni inflación. Por eso es un gran primer lente, pero no la última palabra. La potencia está en saber cuándo usarlo y cuándo pasar a IS-LM-BP u OA-DA.</p></article>
+        <article class="card"><h3>Qué muestra</h3><p>La <strong>IS</strong> reúne combinaciones de Y e i donde el mercado de bienes está en equilibrio. La <strong>LM</strong> donde el mercado de dinero lo está. Su intersección entrega un punto focal.</p></article>
+        <article class="card"><h3>Qué gana y qué pierde</h3><p><strong>Gana:</strong> multiplicador, crowding-out, acelerador y rol de política monetaria. <strong>Pierde:</strong> no incorpora sector externo ni inflación. Gran primer lente, pero no última palabra.</p></article>
       </div>
 
       <div class="simulator-layout">
         <aside class="controls-panel">
           <div class="card">
             <h3>Configuración</h3>
-            <div class="field-group">
-              <label for="islm-regime">Régimen LM</label>
-              <select id="islm-regime"></select>
-            </div>
-            <div class="field-group">
-              <label for="islm-shock">Shock</label>
-              <select id="islm-shock"></select>
-            </div>
-            <div class="button-row">
-              <button class="action-button" id="islm-reset">Restablecer base 2026</button>
-            </div>
+            <div class="field-group"><label for="islm-regime">Régimen LM</label><select id="islm-regime"></select></div>
+            <div class="field-group"><label for="islm-shock">Shock</label><select id="islm-shock"></select></div>
+            <div class="button-row"><button class="action-button" id="islm-reset">Restablecer base 2026</button></div>
           </div>
-
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Los valores base representan una economía con consumo moderado (c₁=0.65), inversión sensible a tasa (b₂=22), gasto fiscal de ~220 y oferta monetaria que refleja TPM cercana a 5%. No son estimaciones econométricas: son puntos de partida pedagógicos calibrados para que los shocks produzcan movimientos visibles y plausibles.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
-              <label>c0 <input id="islm-c0" type="number" step="0.1"></label>
-              <label>c1 <input id="islm-c1" type="number" step="0.01"></label>
-              <label>b0 <input id="islm-b0" type="number" step="0.1"></label>
-              <label>b1 <input id="islm-b1" type="number" step="0.01"></label>
-              <label>b2 <input id="islm-b2" type="number" step="0.1"></label>
-              <label>G <input id="islm-G" type="number" step="0.1"></label>
-              <label>T <input id="islm-T" type="number" step="0.1"></label>
-              <label>M/P <input id="islm-MP" type="number" step="0.1"></label>
-              <label>d1 <input id="islm-d1" type="number" step="0.01"></label>
-              <label>d2 <input id="islm-d2" type="number" step="0.1"></label>
-              <label>i fija <input id="islm-iFixed" type="number" step="0.1"></label>
+              <label title="Consumo autónomo: gasto de consumo que no depende del ingreso disponible">c₀ · consumo autónomo <input id="islm-c0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a consumir: fracción de cada peso adicional de ingreso que se consume">c₁ · prop. marginal consumo <input id="islm-c1" type="number" step="0.01"></label>
+              <label title="Inversión autónoma: componente de la inversión que no depende de Y ni de i (confianza, expectativas)">b₀ · inversión autónoma <input id="islm-b0" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la inversión al ingreso (acelerador): cuánto sube I cuando sube Y">b₁ · acelerador <input id="islm-b1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la inversión a la tasa de interés: cuánto cae I cuando sube i">b₂ · sens. inversión a i <input id="islm-b2" type="number" step="0.1"></label>
+              <label title="Gasto público: componente fiscal exógeno de la demanda agregada">G · gasto público <input id="islm-G" type="number" step="0.1"></label>
+              <label title="Impuestos netos: recaudación menos transferencias">T · impuestos netos <input id="islm-T" type="number" step="0.1"></label>
+              <label title="Oferta real de dinero: masa monetaria dividida por nivel de precios">M/P · oferta real dinero <input id="islm-MP" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la demanda de dinero al ingreso: cuánto sube Md cuando sube Y">d₁ · sens. Md a Y <input id="islm-d1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la demanda de dinero a la tasa: cuánto baja Md cuando sube i">d₂ · sens. Md a i <input id="islm-d2" type="number" step="0.1"></label>
+              <label title="Tasa de interés fija: valor de i cuando se usa régimen LM horizontal (tasa exógena, como meta de TPM)">i fija · tasa exógena <input id="islm-iFixed" type="number" step="0.1"></label>
             </div>
           </div>
-
-          <div class="card tone-card">
-            <h3>MacroLab · interceptos y pendientes</h3>
-            <p class="details-body"><strong>c0</strong> y <strong>b0</strong> mueven el gasto autónomo. <strong>c1</strong> refleja la propensión marginal a consumir. <strong>b1</strong> recoge el acelerador: si la actividad sube, la inversión inducida puede subir con ella. <strong>b2</strong> mide cuánto castiga la tasa a la inversión. <strong>d1</strong> y <strong>d2</strong> regulan la pendiente de la LM y, con ello, cuánta probabilidad hay de crowding-out.</p>
-          </div>
         </aside>
-
         <div class="output-panel">
           <div class="card chart-card">
-            <div class="chart-header"><h3>Gráfico IS-LM</h3><p>Plano Y-i. Se muestran curvas iniciales y finales más ambos equilibrios. El objetivo no es solo mirar el desplazamiento, sino entender qué canal domina.</p></div>
+            <div class="chart-header"><div><h3>Gráfico IS-LM</h3><p>Plano Y-i. Se muestran curvas iniciales y finales más ambos equilibrios.</p></div><button class="export-btn" data-chart="islm">Exportar PNG</button></div>
             <canvas id="islm-chart"></canvas>
           </div>
-
           <div class="summary-grid cols-6">
             <div class="metric-card"><span>Y inicial</span><strong id="islm-y0">—</strong></div>
             <div class="metric-card"><span>Y final</span><strong id="islm-y1">—</strong></div>
@@ -483,39 +460,31 @@
             <div class="metric-card"><span>Inversión inicial</span><strong id="islm-inv0">—</strong></div>
             <div class="metric-card"><span>Inversión final</span><strong id="islm-inv1">—</strong></div>
           </div>
-
           <div class="analysis-grid">
-            <article class="card">
-              <h3>Interpretación</h3>
-              <p id="islm-equilibrium" class="equilibrium-line"></p>
-              <p id="islm-explanation" class="details-body"></p>
-            </article>
-            <article class="card">
-              <h3>Crowding-out vs acelerador</h3>
-              <p id="islm-crowd" class="details-body"></p>
-            </article>
-            <article class="card">
-              <h3>Qué mirar en Chile</h3>
-              <p id="islm-watch" class="details-body muted"></p>
-            </article>
+            <article class="card"><h3>Interpretación</h3><p id="islm-equilibrium" class="equilibrium-line"></p><p id="islm-explanation" class="details-body"></p></article>
+            <article class="card"><h3>Crowding-out vs acelerador</h3><p id="islm-crowd" class="details-body"></p></article>
+            <article class="card"><h3>Qué mirar en Chile</h3><p id="islm-watch" class="details-body muted"></p></article>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ============ IS-LM-BP ============ -->
     <section id="islmbp" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>IS-LM-BP · economía abierta con flotación</h2>
-        <p class="section-intro">Este módulo usa la lógica de Mundell-Fleming: incorpora sector externo, movilidad de capitales y tipo de cambio. Con BP horizontal e <strong>i = i*</strong>, la pregunta central pasa a ser cómo interactúan política monetaria, shock externo y CLP/USD en una economía pequeña y abierta como Chile.</p>
+        <p class="section-intro">Mundell-Fleming: incorpora sector externo, movilidad de capitales y tipo de cambio. Con BP horizontal e i = i*, la pregunta central es cómo interactúan política monetaria, shock externo y CLP/USD.</p>
       </div>
 
+      <div class="notice-box">
+        <strong>Cuándo conviene usar IS-LM-BP.</strong>
+        Cuando el shock entra por cobre, tipo de cambio, tasa internacional, exportaciones netas o vulnerabilidad externa. Es el lente para pensar a Chile como economía abierta.
+      </div>
 
       <div class="guided-arrival hidden" id="islmbp-guided-arrival">
         <div class="guided-arrival-head">
-          <div>
-            <p class="kicker">Llegaste desde un caso guiado</p>
-            <h3 id="islmbp-guided-title">—</h3>
-          </div>
+          <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="islmbp-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="islmbp-guided-arrival" aria-label="Ocultar guía">×</button>
         </div>
         <div class="guided-arrival-grid">
@@ -527,56 +496,67 @@
       </div>
 
       <div class="model-intro-grid">
-        <article class="card"><h3>Qué muestra</h3><p>Agrega a IS-LM la condición externa <strong>BP</strong>. En alta movilidad de capitales, la BP es horizontal: desviaciones entre la tasa doméstica y la internacional gatillan presiones cambiarias y reacomodos de portafolio.</p></article>
-        <article class="card"><h3>Potencia del modelo</h3><p>Permite pensar cobre, petróleo, Fed, CLP/USD, competitividad, exportaciones netas y vulnerabilidad externa sin tratar a Chile como economía cerrada.</p></article>
-        <article class="card"><h3>Límites y advertencia</h3><p>Bajo flotación y BP horizontal, algunos shocks se ajustan más por tipo de cambio y exportaciones netas que por grandes cambios en Y. Si los puntos quedan cerca, eso también enseña algo.</p></article>
+        <article class="card"><h3>Qué muestra</h3><p>Agrega a IS-LM la condición externa BP. En alta movilidad de capitales, la BP es horizontal: desviaciones entre tasa doméstica e internacional gatillan presiones cambiarias.</p></article>
+        <article class="card"><h3>Cómo leer el mecanismo aquí</h3><p>El equilibrio final puede parecer cercano al inicial. Eso enseña algo: bajo flotación, gran parte del ajuste pasa por el tipo de cambio E y las exportaciones netas, no necesariamente por grandes cambios en Y.</p></article>
       </div>
+
+      <section class="card hypothesis-card" style="margin-bottom:18px">
+        <h4>La trinidad imposible y la elección chilena</h4>
+        <p>Un país no puede tener simultáneamente <strong>(1) tipo de cambio fijo</strong>, <strong>(2) libre movilidad de capitales</strong> y <strong>(3) política monetaria autónoma</strong>. Solo puede elegir dos de tres.</p>
+        <p style="margin-top:8px"><strong>Chile eligió (2) + (3):</strong> libre movilidad de capitales y política monetaria autónoma (meta de inflación, TPM), sacrificando el tipo de cambio fijo. Por eso el CLP/USD flota: es el precio de ajuste que permite al BCCh fijar la TPM sin defender una paridad.</p>
+        <p style="margin-top:8px">Esta elección explica los resultados del simulador: bajo flotación, la política monetaria es muy eficaz (deprecia, mejora NX, expande) mientras la fiscal se debilita (parte del impulso se fuga vía apreciación). Un país con tipo de cambio fijo y movilidad tendría los resultados opuestos.</p>
+        <div class="home-grid three" style="margin-top:14px">
+          <article class="card compact-card" style="background:#f8fbfd">
+            <h4 style="font-size:.92rem">TC fijo + movilidad</h4>
+            <p style="font-size:.88rem">Política monetaria ineficaz. Fiscal potente. BC pierde autonomía monetaria (ej: Hong Kong, dolarizaciones).</p>
+          </article>
+          <article class="card compact-card" style="background:#f8fbfd; border-color:var(--accent)">
+            <h4 style="font-size:.92rem">Flotación + movilidad <span style="color:var(--accent)">(Chile)</span></h4>
+            <p style="font-size:.88rem">Monetaria potente. Fiscal más débil. TC absorbe shocks. BCCh fija TPM autónomamente.</p>
+          </article>
+          <article class="card compact-card" style="background:#f8fbfd">
+            <h4 style="font-size:.92rem">TC fijo + controles de capital</h4>
+            <p style="font-size:.88rem">BC conserva autonomía monetaria a costa de restringir flujos. Raro en economías abiertas modernas.</p>
+          </article>
+        </div>
+      </section>
 
       <div class="simulator-layout">
         <aside class="controls-panel">
           <div class="card">
             <h3>Configuración</h3>
-            <div class="field-group">
-              <label for="islmbp-shock">Shock</label>
-              <select id="islmbp-shock"></select>
-            </div>
-            <div class="button-row">
-              <button class="action-button" id="islmbp-reset">Restablecer base 2026</button>
-            </div>
+            <div class="field-group"><label for="islmbp-shock">Shock</label><select id="islmbp-shock"></select></div>
+            <div class="button-row"><button class="action-button" id="islmbp-reset">Restablecer base 2026</button></div>
           </div>
-
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Base Mundell-Fleming con alta movilidad de capitales e i ≈ i*. Las exportaciones netas base (x₀=70) y la sensibilidad cambiaria (x₂=0.28) están calibradas para que shocks como caída del cobre o alza de i* produzcan movimientos visibles en E y NX. i*=4.5% refleja el entorno post-endurecimiento global.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
-              <label>c0 <input id="islmbp-c0" type="number" step="0.1"></label>
-              <label>c1 <input id="islmbp-c1" type="number" step="0.01"></label>
-              <label>b0 <input id="islmbp-b0" type="number" step="0.1"></label>
-              <label>b1 <input id="islmbp-b1" type="number" step="0.01"></label>
-              <label>b2 <input id="islmbp-b2" type="number" step="0.1"></label>
-              <label>x0 <input id="islmbp-x0" type="number" step="0.1"></label>
-              <label>x1 <input id="islmbp-x1" type="number" step="0.01"></label>
-              <label>x2 <input id="islmbp-x2" type="number" step="0.01"></label>
-              <label>G <input id="islmbp-G" type="number" step="0.1"></label>
-              <label>T <input id="islmbp-T" type="number" step="0.1"></label>
-              <label>M/P <input id="islmbp-MP" type="number" step="0.1"></label>
-              <label>d1 <input id="islmbp-d1" type="number" step="0.01"></label>
-              <label>d2 <input id="islmbp-d2" type="number" step="0.1"></label>
-              <label>i* <input id="islmbp-iStar" type="number" step="0.1"></label>
+              <label title="Consumo autónomo">c₀ · consumo autónomo <input id="islmbp-c0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a consumir">c₁ · prop. marginal consumo <input id="islmbp-c1" type="number" step="0.01"></label>
+              <label title="Inversión autónoma (confianza, expectativas)">b₀ · inversión autónoma <input id="islmbp-b0" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la inversión al ingreso (acelerador)">b₁ · acelerador <input id="islmbp-b1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la inversión a la tasa de interés">b₂ · sens. inversión a i <input id="islmbp-b2" type="number" step="0.1"></label>
+              <label title="Exportaciones netas autónomas: componente base de NX que no depende de Y ni de E">x₀ · export. netas autónomas <input id="islmbp-x0" type="number" step="0.1"></label>
+              <label title="Propensión marginal a importar: fracción de cada peso adicional de Y que se va a importaciones">x₁ · prop. marginal importar <input id="islmbp-x1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de NX al tipo de cambio: cuánto mejoran NX cuando E sube (depreciación)">x₂ · sens. NX a tipo de cambio <input id="islmbp-x2" type="number" step="0.01"></label>
+              <label title="Gasto público">G · gasto público <input id="islmbp-G" type="number" step="0.1"></label>
+              <label title="Impuestos netos">T · impuestos netos <input id="islmbp-T" type="number" step="0.1"></label>
+              <label title="Oferta real de dinero">M/P · oferta real dinero <input id="islmbp-MP" type="number" step="0.1"></label>
+              <label title="Sensibilidad de la demanda de dinero al ingreso">d₁ · sens. Md a Y <input id="islmbp-d1" type="number" step="0.01"></label>
+              <label title="Sensibilidad de la demanda de dinero a la tasa">d₂ · sens. Md a i <input id="islmbp-d2" type="number" step="0.1"></label>
+              <label title="Tasa de interés internacional (Fed, BCE): ancla externa bajo alta movilidad de capitales">i* · tasa internacional <input id="islmbp-iStar" type="number" step="0.1"></label>
             </div>
           </div>
-
-          <div class="card tone-card">
-            <h3>Lectura del tipo de cambio</h3>
-            <p class="details-body">En este simulador, <strong>E</strong> es un índice pedagógico de tipo de cambio nominal: un valor mayor implica depreciación. Eso suele ayudar a <strong>NX</strong>, pero puede encarecer importados y presionar inflación vía pass-through. Por eso conviene cruzarlo con OA-DA.</p>
-          </div>
         </aside>
-
         <div class="output-panel">
           <div class="card chart-card">
-            <div class="chart-header"><h3>Gráfico IS-LM-BP</h3><p>Plano Y-i. Se muestran IS, LM y BP iniciales y finales. Cuando el punto final casi coincide con el inicial, el mensaje suele ser que el ajuste del shock cayó sobre E y NX más que sobre Y.</p></div>
+            <div class="chart-header"><div><h3>Gráfico IS-LM-BP</h3><p>Plano Y-i. IS, LM y BP iniciales y finales.</p></div><button class="export-btn" data-chart="islmbp">Exportar PNG</button></div>
             <canvas id="islmbp-chart"></canvas>
           </div>
-
           <div class="summary-grid cols-6">
             <div class="metric-card"><span>Y inicial</span><strong id="islmbp-y0">—</strong></div>
             <div class="metric-card"><span>Y final</span><strong id="islmbp-y1">—</strong></div>
@@ -589,50 +569,43 @@
             <div class="metric-card"><span>Eq. inicial</span><strong id="islmbp-eq0">—</strong></div>
             <div class="metric-card"><span>Eq. final</span><strong id="islmbp-eq1">—</strong></div>
           </div>
-
           <div class="analysis-grid">
+            <article class="card"><h3>Interpretación</h3><p id="islmbp-explanation" class="details-body"></p></article>
             <article class="card">
-              <h3>Interpretación</h3>
-              <p id="islmbp-explanation" class="details-body"></p>
-            </article>
-            <article class="card">
-              <h3>Resultados: eficacia de políticas según régimen</h3>
+              <h3>Eficacia de políticas según régimen</h3>
               <div class="table-wrap compact-wrap">
                 <table class="info-table small">
-                  <thead>
-                    <tr><th>Política</th><th>TC flotante</th><th>TC fijo</th></tr>
-                  </thead>
+                  <thead><tr><th>Política</th><th>TC flotante</th><th>TC fijo</th></tr></thead>
                   <tbody>
-                    <tr><td>Expansión fiscal</td><td>Más débil: parte del impulso se fuga vía apreciación o menor NX.</td><td>Más fuerte: la autoridad monetaria tiende a acomodar para sostener la paridad.</td></tr>
-                    <tr><td>Contracción fiscal</td><td>Enfría demanda, pero puede aliviar tensiones externas y de credibilidad.</td><td>Más contractiva si la regla de paridad no deja compensación monetaria.</td></tr>
-                    <tr><td>Expansión monetaria</td><td>Más potente: deprecia, mejora NX y expande actividad.</td><td>Poco eficaz: la defensa del tipo de cambio absorbe la expansión.</td></tr>
-                    <tr><td>Contracción monetaria</td><td>Frena fuerte: aprecia, encarece crédito y enfría demanda.</td><td>Difícilmente autónoma: la paridad condiciona el margen.</td></tr>
+                    <tr><td>Expansión fiscal</td><td>Más débil: parte del impulso se fuga vía apreciación.</td><td>Más fuerte: la autoridad monetaria acomoda.</td></tr>
+                    <tr><td>Expansión monetaria</td><td>Más potente: deprecia, mejora NX y expande actividad.</td><td>Poco eficaz: la defensa del TC absorbe la expansión.</td></tr>
+                    <tr><td>Contracción monetaria</td><td>Frena fuerte: aprecia, encarece crédito.</td><td>Difícilmente autónoma.</td></tr>
                   </tbody>
                 </table>
               </div>
             </article>
-            <article class="card">
-              <h3>Filtro institucional chileno</h3>
-              <p id="islmbp-watch" class="details-body muted"></p>
-            </article>
+            <article class="card"><h3>Qué mirar en Chile</h3><p id="islmbp-watch" class="details-body muted"></p></article>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ============ OA-DA ============ -->
     <section id="oada" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>OA-DA · producción, precios y expectativas</h2>
-        <p class="section-intro">Este módulo integra demanda y oferta para determinar simultáneamente producción y nivel de precios. Es el lente natural cuando la pregunta central es inflación, brecha de producto, costos, capacidad, expectativas o convergencia de mediano plazo.</p>
+        <p class="section-intro">Integra demanda y oferta para determinar simultáneamente producción y nivel de precios. Es el lente natural cuando la pregunta central es inflación, brecha de producto, costos, capacidad o convergencia.</p>
       </div>
 
+      <div class="notice-box">
+        <strong>Cuándo usar este modelo.</strong>
+        Cuando la pregunta es sobre inflación, costos, brecha de producto, capacidad instalada o convergencia de mediano plazo. No es el primer lente para tipo de cambio ni sector externo.
+      </div>
 
       <div class="guided-arrival hidden" id="oada-guided-arrival">
         <div class="guided-arrival-head">
-          <div>
-            <p class="kicker">Llegaste desde un caso guiado</p>
-            <h3 id="oada-guided-title">—</h3>
-          </div>
+          <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="oada-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="oada-guided-arrival" aria-label="Ocultar guía">×</button>
         </div>
         <div class="guided-arrival-grid">
@@ -644,60 +617,42 @@
       </div>
 
       <div class="home-grid three">
-        <article class="card">
-          <h3>Qué muestra el modelo</h3>
-          <p>La <strong>DA</strong> reúne combinaciones de producción y precios compatibles con equilibrio del lado de la demanda. La <strong>OA de corto plazo</strong> recoge el lado de costos, capacidad y expectativas. La línea <strong>Yₙ</strong> es la referencia de producto natural.</p>
-        </article>
-        <article class="card">
-          <h3>Potencia visual del módulo</h3>
-          <p>OA-DA permite ver, en una sola imagen, si el shock pega sobre todo en precios, sobre todo en producto o en ambos. También ayuda a entender por qué no es lo mismo sobrecalentamiento que shock de costos.</p>
-        </article>
-        <article class="card">
-          <h3>Límites y valor crítico</h3>
-          <p>No formaliza toda la dinámica inflacionaria ni la heterogeneidad sectorial, pero sí entrega una base potente para discutir inflación, producto, brecha y ajuste de mediano plazo bajo restricciones analíticas reconocidas.</p>
-        </article>
+        <article class="card"><h3>Qué muestra el modelo</h3><p>La <strong>DA</strong> reúne combinaciones de Y y P compatibles con equilibrio de demanda. La <strong>OA</strong> recoge costos, capacidad y expectativas. La línea <strong>Yₙ</strong> es la referencia de producto natural.</p></article>
+        <article class="card"><h3>Potencia visual</h3><p>Permite ver, en una sola imagen, si el shock pega sobre todo en precios, en producto o en ambos. Distingue sobrecalentamiento de shock de costos.</p></article>
+        <article class="card"><h3>Límites</h3><p>No formaliza toda la dinámica inflacionaria ni heterogeneidad sectorial, pero entrega base potente para discutir inflación, producto, brecha y ajuste de mediano plazo.</p></article>
       </div>
 
       <div class="simulator-layout">
         <aside class="controls-panel">
           <div class="card">
             <h3>Configuración</h3>
-            <div class="field-group">
-              <label for="oada-shock">Shock</label>
-              <select id="oada-shock"></select>
-            </div>
-            <div class="button-row">
-              <button class="action-button" id="oada-reset">Restablecer base 2026</button>
-            </div>
+            <div class="field-group"><label for="oada-shock">Shock</label><select id="oada-shock"></select></div>
+            <div class="button-row"><button class="action-button" id="oada-reset">Restablecer base 2026</button></div>
           </div>
-
+          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
+            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
+            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Yₙ = A × L = 950 refleja producción potencial. Pᵉ=1.0 ancla expectativas en el nivel base. γ=0.002 genera una OA con pendiente positiva pero no vertical, permitiendo ver el trade-off producción/precios. El mark-up μ=0.20 y z=0.50 reflejan rigideces moderadas del mercado laboral chileno.</p>
+          </div>
           <div class="card">
             <h3>Parámetros de demanda y oferta</h3>
             <div class="inputs-grid two-columns">
-              <label>Intercepto DA <input id="oada-daA" type="number" step="0.1"></label>
-              <label>Pendiente DA <input id="oada-daB" type="number" step="0.1"></label>
-              <label>Pe <input id="oada-Pe" type="number" step="0.1"></label>
-              <label>Mark-up μ <input id="oada-mu" type="number" step="0.01"></label>
-              <label>Sensibilidad γ <input id="oada-gamma" type="number" step="0.0001"></label>
-              <label>Rigidez / costos z <input id="oada-z" type="number" step="0.1"></label>
-              <label>Fuerza laboral L <input id="oada-L" type="number" step="1"></label>
-              <label>Productividad A <input id="oada-A" type="number" step="0.01"></label>
-              <label>Shock de costos <input id="oada-costShock" type="number" step="0.1"></label>
+              <label title="Componente autónomo de la demanda agregada: gasto, consumo e inversión que no dependen del nivel de precios">DA intercepto · demanda autónoma <input id="oada-daA" type="number" step="0.1"></label>
+              <label title="Pendiente de la DA: cuánto cae Y cuando sube P (sensibilidad de demanda a precios)">DA pendiente · sens. demanda a P <input id="oada-daB" type="number" step="0.1"></label>
+              <label title="Precio esperado por los agentes: ancla de expectativas de inflación que posiciona la OA">Pᵉ · precio esperado <input id="oada-Pe" type="number" step="0.1"></label>
+              <label title="Mark-up sobre costos: margen que fijan las empresas por encima del costo laboral unitario">μ · mark-up <input id="oada-mu" type="number" step="0.01"></label>
+              <label title="Sensibilidad de OA a la brecha: cuánto suben precios cuando Y supera Yₙ (pendiente de OA)">γ · pendiente OA <input id="oada-gamma" type="number" step="0.0001"></label>
+              <label title="Rigideces, costos de ajuste y factores institucionales del mercado laboral">z · rigidez / costos laborales <input id="oada-z" type="number" step="0.1"></label>
+              <label title="Fuerza laboral: tamaño del empleo potencial. Junto con A determina Yₙ = A × L">L · fuerza laboral <input id="oada-L" type="number" step="1"></label>
+              <label title="Productividad del trabajo: producción por trabajador. Yₙ = A × L">A · productividad <input id="oada-A" type="number" step="0.01"></label>
+              <label title="Shock exógeno de costos: petróleo, fletes, insumos importados. Desplaza OA hacia arriba">Shock costos · energía / insumos <input id="oada-costShock" type="number" step="0.1"></label>
             </div>
           </div>
-
-          <div class="card tone-card">
-            <h3>Qué representan los parámetros</h3>
-            <p class="details-body"><strong>Pe</strong> ancla expectativas. <strong>μ</strong> recoge mark-up o poder de mercado. <strong>γ</strong> mide cuánto se empina la OA cuando la producción se aleja de <strong>Yₙ</strong>. <strong>z</strong> resume rigideces, salarios o costos. <strong>A</strong> y <strong>L</strong> determinan el producto natural. Esto permite pensar desde energía y pass-through hasta productividad, capacidad y mercado laboral.</p>
-          </div>
         </aside>
-
         <div class="output-panel">
           <div class="card chart-card chart-card-tall">
-            <div class="chart-header"><h3>Gráfico OA-DA</h3><p>Plano Y-P. Se muestran DA, OA de corto plazo, producto natural y equilibrios inicial y final. Aquí conviene mirar no solo la dirección del cambio, sino también si la brecha respecto de Yₙ se amplía o se corrige.</p></div>
+            <div class="chart-header"><div><h3>Gráfico OA-DA</h3><p>Plano Y-P. DA, OA, Yₙ y equilibrios inicial y final.</p></div><button class="export-btn" data-chart="oada">Exportar PNG</button></div>
             <canvas id="oada-chart"></canvas>
           </div>
-
           <div class="summary-grid cols-6">
             <div class="metric-card"><span>Y inicial</span><strong id="oada-y0">—</strong></div>
             <div class="metric-card"><span>Y final</span><strong id="oada-y1">—</strong></div>
@@ -708,201 +663,262 @@
           </div>
 
           <div class="oada-insight-grid">
-  <article class="card gap-card expanded-gap-card">
-    <div class="card-headline-block">
-      <h3>Lectura visual del cambio</h3>
-      <p class="muted-paragraph">Esta lectura no sirve solo para decir si suben o bajan <strong>Y</strong> y <strong>P</strong>. Sirve para inferir <em>qué tipo de mecanismo</em> está dominando: presión de demanda, shock de costos, mejora de oferta o combinación de fuerzas. La pregunta útil es esta: <strong>¿el shock mueve sobre todo precios, sobre todo producción, o ambas cosas a la vez?</strong></p>
-    </div>
-    <div class="delta-chip-row large">
-      <span class="delta-chip" id="oada-deltaY">ΔY —</span>
-      <span class="delta-chip" id="oada-deltaP">ΔP —</span>
-    </div>
-    <div class="gap-stack">
-      <div class="gap-label-row"><span>Brecha inicial</span><strong id="oada-gap-label0">—</strong></div>
-      <div class="gap-track"><span id="oada-gapbar0" class="gap-fill neutral"></span></div>
-      <div class="gap-label-row"><span>Brecha final</span><strong id="oada-gap-label1">—</strong></div>
-      <div class="gap-track"><span id="oada-gapbar1" class="gap-fill neutral"></span></div>
-    </div>
-    <div class="pattern-box">
-      <strong id="oada-pattern-title">—</strong>
-      <p id="oada-pattern-body" class="details-body">—</p>
-    </div>
-    <div class="oada-read-grid">
-      <article>
-        <strong>Dónde está el mecanismo en el gráfico</strong>
-        <p id="oada-graphread">—</p>
-      </article>
-      <article>
-        <strong>Qué sugiere este patrón</strong>
-        <p id="oada-meaning">—</p>
-      </article>
-      <article>
-        <strong>Qué hacer después</strong>
-        <p id="oada-nextstep">—</p>
-      </article>
-    </div>
-  </article>
-  <article class="card slope-card">
-    <div class="card-headline-block">
-      <h3>Cómo leer distintas pendientes de OA</h3>
-      <p class="muted-paragraph">La pendiente de OA no es un detalle gráfico. Cambia <strong>cuánto del mismo impulso termina reflejándose en producción</strong> y <strong>cuánto se transforma en precios</strong>. Por eso la forma de la curva importa para discutir rigideces, capacidad, costos y velocidad del ajuste.</p>
-    </div>
-    <div class="oa-slope-grid">
-      <div>
-        <strong>OA más plana</strong>
-        <p>Una misma expansión de demanda mueve más <strong>Y</strong> y menos <strong>P</strong>. Esta lectura es útil cuando hay holguras, rigideces nominales o capacidad ociosa relevante.</p>
-      </div>
-      <div>
-        <strong>OA intermedia</strong>
-        <p>Suben producción y precios al mismo tiempo. Es la forma pedagógica más útil para enseñar trade-offs sin asumir ni plena rigidez ni pleno ajuste de precios.</p>
-      </div>
-      <div>
-        <strong>OA muy empinada o casi vertical</strong>
-        <p>El mismo impulso mueve poco <strong>Y</strong> y mucho <strong>P</strong>. Esta lectura importa cuando la capacidad está muy tensionada o el producto potencial actúa como restricción dura.</p>
-      </div>
-    </div>
-    <svg class="oa-svg" viewBox="0 0 560 270" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-      <rect x="0" y="0" width="560" height="270" fill="#ffffff"/>
-      <line x1="74" y1="210" x2="498" y2="210" stroke="#9fb1c4" stroke-width="2.3"/>
-      <line x1="74" y1="210" x2="74" y2="34" stroke="#9fb1c4" stroke-width="2.3"/>
-      <text x="34" y="32" font-size="14" fill="#5e7184">P</text>
-      <text x="500" y="234" font-size="14" fill="#5e7184">Y</text>
-      <path d="M94 168 C 178 164, 254 150, 374 118" fill="none" stroke="#2d6ea3" stroke-width="5.5" stroke-linecap="round"/>
-      <path d="M94 184 C 190 175, 284 136, 408 82" fill="none" stroke="#f59e0b" stroke-width="5.5" stroke-linecap="round"/>
-      <line x1="444" y1="202" x2="444" y2="54" stroke="#ef4444" stroke-width="5.5" stroke-linecap="round"/>
-      <text x="244" y="120" font-size="15" fill="#2d6ea3" font-weight="700">OA más plana</text>
-      <text x="312" y="86" font-size="15" fill="#f59e0b" font-weight="700">OA intermedia</text>
-      <text x="454" y="70" font-size="15" fill="#ef4444" font-weight="700">OA casi vertical</text>
-      <line x1="124" y1="236" x2="248" y2="236" stroke="#2d6ea3" stroke-width="2.4" marker-end="url(#arrowBlue)"/>
-      <line x1="430" y1="236" x2="306" y2="236" stroke="#ef4444" stroke-width="2.4" marker-end="url(#arrowRed)"/>
-      <defs>
-        <marker id="arrowBlue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#2d6ea3"></path>
-        </marker>
-        <marker id="arrowRed" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 z" fill="#ef4444"></path>
-        </marker>
-      </defs>
-      <text x="100" y="254" font-size="13" fill="#2d6ea3" font-weight="700">Más ajuste en Y</text>
-      <text x="338" y="254" font-size="13" fill="#ef4444" font-weight="700">Más ajuste en P</text>
-    </svg>
-    <p class="details-body muted">Lectura útil: si el gráfico que generas parece moverse “poco” en producción pero mucho en precios, no siempre es que el shock sea pequeño; puede ser que estés pensando una OA relativamente empinada o una economía más cerca de capacidad.</p>
-  </article>
-</div>
+            <article class="card gap-card expanded-gap-card">
+              <div class="card-headline-block">
+                <h3>Lectura visual del cambio</h3>
+                <p class="muted-paragraph">¿El shock mueve sobre todo precios, sobre todo producción, o ambas cosas a la vez?</p>
+              </div>
+              <div class="delta-chip-row large">
+                <span class="delta-chip" id="oada-deltaY">ΔY —</span>
+                <span class="delta-chip" id="oada-deltaP">ΔP —</span>
+              </div>
+              <div class="gap-stack">
+                <div class="gap-label-row"><span>Brecha inicial</span><strong id="oada-gap-label0">—</strong></div>
+                <div class="gap-track"><span id="oada-gapbar0" class="gap-fill neutral"></span></div>
+                <div class="gap-label-row"><span>Brecha final</span><strong id="oada-gap-label1">—</strong></div>
+                <div class="gap-track"><span id="oada-gapbar1" class="gap-fill neutral"></span></div>
+              </div>
+              <div class="pattern-box">
+                <strong id="oada-pattern-title">—</strong>
+                <p id="oada-pattern-body" class="details-body">—</p>
+              </div>
+              <div class="oada-read-grid">
+                <article><strong>Dónde está el mecanismo en el gráfico</strong><p id="oada-graphread">—</p></article>
+                <article><strong>Qué sugiere este patrón</strong><p id="oada-meaning">—</p></article>
+                <article><strong>Qué hacer después</strong><p id="oada-nextstep">—</p></article>
+              </div>
+            </article>
+
+            <article class="card slope-card">
+              <div class="card-headline-block">
+                <h3>Qué cambia cuando la OA es más plana o más empinada</h3>
+                <p class="muted-paragraph">La pendiente de OA cambia cuánto del shock se absorbe en producción y cuánto en precios.</p>
+              </div>
+              <div class="oa-slope-grid">
+                <div><strong>OA más plana</strong><p>Más ajuste en Y, menos en P. Útil cuando hay holguras o capacidad ociosa.</p></div>
+                <div><strong>OA intermedia</strong><p>Suben Y y P al mismo tiempo. Forma pedagógica para enseñar trade-offs.</p></div>
+                <div><strong>OA más empinada</strong><p>Menos ajuste en Y, más en P. Capacidad tensionada o restricción dura.</p></div>
+                <div><strong>OA casi vertical</strong><p>Predominan precios, poca respuesta de producción. Producto potencial actúa como techo.</p></div>
+              </div>
+              <p class="details-body muted">Estas diferencias pueden reflejar rigideces, capacidad instalada o supuestos teóricos distintos.</p>
+              <svg class="oa-svg" viewBox="0 0 560 270" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <rect x="0" y="0" width="560" height="270" fill="#ffffff"/>
+                <line x1="74" y1="210" x2="498" y2="210" stroke="#9fb1c4" stroke-width="2.3"/>
+                <line x1="74" y1="210" x2="74" y2="34" stroke="#9fb1c4" stroke-width="2.3"/>
+                <text x="34" y="32" font-size="14" fill="#5e7184">P</text>
+                <text x="500" y="234" font-size="14" fill="#5e7184">Y</text>
+                <path d="M94 168 C 178 164, 254 150, 374 118" fill="none" stroke="#2d6ea3" stroke-width="5.5" stroke-linecap="round"/>
+                <path d="M94 184 C 190 175, 284 136, 408 82" fill="none" stroke="#f59e0b" stroke-width="5.5" stroke-linecap="round"/>
+                <line x1="444" y1="202" x2="444" y2="54" stroke="#ef4444" stroke-width="5.5" stroke-linecap="round"/>
+                <text x="244" y="120" font-size="15" fill="#2d6ea3" font-weight="700">OA más plana</text>
+                <text x="312" y="86" font-size="15" fill="#f59e0b" font-weight="700">OA intermedia</text>
+                <text x="454" y="70" font-size="15" fill="#ef4444" font-weight="700">OA casi vertical</text>
+                <line x1="124" y1="236" x2="248" y2="236" stroke="#2d6ea3" stroke-width="2.4"/>
+                <line x1="430" y1="236" x2="306" y2="236" stroke="#ef4444" stroke-width="2.4"/>
+                <text x="100" y="254" font-size="13" fill="#2d6ea3" font-weight="700">Más ajuste en Y</text>
+                <text x="338" y="254" font-size="13" fill="#ef4444" font-weight="700">Más ajuste en P</text>
+              </svg>
+            </article>
+          </div>
+
+          <section class="card hypothesis-card" style="margin-bottom:16px">
+            <h4>Expectativas, segunda vuelta y convergencia</h4>
+            <p>El modelo OA-DA muestra el impacto inicial, pero la trayectoria posterior depende de si las expectativas se ajustan. Tres escenarios clave:</p>
+            <div class="home-grid three" style="margin-top:12px">
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Expectativas ancladas</h4>
+                <p style="font-size:.88rem">Pᵉ no se mueve. El shock de costos sube P una vez, pero no contamina salarios ni contratos. OA no sigue subiendo. BCCh creíble = ancla fuerte.</p>
+              </article>
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Segunda vuelta salarial</h4>
+                <p style="font-size:.88rem">Pᵉ sube porque los agentes revisan expectativas. OA sigue desplazándose. El shock transitorio se vuelve persistente. Espiral precios-salarios.</p>
+              </article>
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Convergencia a Yₙ</h4>
+                <p style="font-size:.88rem">Si Y > Yₙ, la presión de precios sube Pᵉ hasta que la demanda se enfría. Si Y < Yₙ, Pᵉ baja y OA cede. La brecha cierra, pero el camino puede ser largo.</p>
+              </article>
+            </div>
+            <p style="margin-top:10px; font-size:.9rem; color:var(--muted)"><strong>En el simulador:</strong> Pᵉ es editable. Prueba subir Pᵉ después de un shock de costos para simular segunda vuelta, o bájalo para simular convergencia con expectativas ancladas.</p>
+          </section>
 
           <div class="analysis-grid">
-            <article class="card">
-              <h3>Interpretación</h3>
-              <p id="oada-equilibrium" class="equilibrium-line"></p>
-              <p id="oada-explanation" class="details-body"></p>
-            </article>
-            <article class="card">
-              <h3>Trayectoria de mediano plazo</h3>
-              <p id="oada-mediumrun" class="details-body"></p>
-            </article>
-            <article class="card">
-              <h3>Qué mirar en Chile</h3>
-              <p id="oada-watch" class="details-body muted"></p>
-            </article>
+            <article class="card"><h3>Interpretación</h3><p id="oada-equilibrium" class="equilibrium-line"></p><p id="oada-explanation" class="details-body"></p></article>
+            <article class="card"><h3>Trayectoria de mediano plazo</h3><p id="oada-mediumrun" class="details-body"></p></article>
+            <article class="card"><h3>Qué mirar en Chile</h3><p id="oada-watch" class="details-body muted"></p></article>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ============ SHOCKS Y TRANSMISIÓN ============ -->
     <section id="shocks" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>Shocks y transmisión</h2>
-        <p class="section-intro">Esta es la sección pedagógica más importante del laboratorio. Un shock no “entra” a la economía de una sola manera: se propaga por ecuaciones de conducta, respuestas de política, restricciones institucionales y feedbacks entre agentes. El objetivo aquí es ver esas trayectorias, no quedarse en una etiqueta vaga.</p>
+        <p class="section-intro">Un shock no "entra" a la economía de una sola manera: se propaga por ecuaciones de conducta, respuestas de política, restricciones institucionales y feedbacks entre agentes.</p>
       </div>
 
       <section class="card question-stage-card">
         <h3>Cómo leer esta página</h3>
         <div class="question-stage-grid">
-          <article><strong>1. Nombra el episodio</strong><p>No partas diciendo “sube la inflación” o “se deprecia el peso”. Parte por el shock: guerra, caída del cobre, pandemia, terremoto, alza de tasa internacional o crisis de confianza.</p></article>
-          <article><strong>2. Ubica el primer canal</strong><p>Pregunta qué reacciona primero: costos, demanda, exportaciones, capitales, expectativas o capacidad productiva. Ese primer canal ordena qué modelo conviene usar.</p></article>
-          <article><strong>3. Sigue la secuencia</strong><p>Del shock pasa a la variable exógena, de ahí al parámetro, luego a la curva, después al nuevo equilibrio y finalmente a la trayectoria. Sin esa disciplina, el análisis se queda en titulares o adjetivos.</p></article>
-          <article><strong>4. Pregunta por política e instituciones</strong><p>La respuesta del BCCh, la regla fiscal, la flotación y el sistema financiero cambian la persistencia del shock. La trayectoria nunca depende solo del impulso inicial.</p></article>
-          <article><strong>5. Cierra con observables</strong><p>Siempre termina preguntando qué dato conviene mirar primero y cuál después. Un buen mecanismo produce una lista mejor de indicadores a monitorear.</p></article>
+          <article><strong>1. Nombra el episodio</strong><p>Parte por el shock: guerra, caída del cobre, pandemia, terremoto.</p></article>
+          <article><strong>2. Ubica el primer canal</strong><p>¿Qué reacciona primero: costos, demanda, exportaciones, capitales?</p></article>
+          <article><strong>3. Sigue la secuencia</strong><p>Del shock a la variable exógena, al parámetro, a la curva, al equilibrio.</p></article>
+          <article><strong>4. Pregunta por política e instituciones</strong><p>BCCh, regla fiscal, flotación y sistema financiero cambian la persistencia.</p></article>
+          <article><strong>5. Cierra con observables</strong><p>¿Qué dato conviene mirar primero y cuál después?</p></article>
         </div>
       </section>
 
-      <div class="home-grid three">
-        <article class="card"><h3>Shock geopolítico de oferta</h3><p><strong>Ejemplo:</strong> Irán / Ormuz. El episodio empieza por energía, rutas, seguros y tiempos de entrega. En Chile suele manifestarse primero en combustibles, transporte, costos importados e inflación antes de verse con igual fuerza en actividad.</p></article>
-        <article class="card"><h3>Shock mixto</h3><p><strong>Ejemplo:</strong> pandemia. Combina caída de demanda con restricción de oferta. La clave no es etiquetarlo una vez, sino seguir cómo cambia su composición en el tiempo y cómo la política modifica esa trayectoria.</p></article>
-        <article class="card"><h3>Shock socio-político</h3><p><strong>Ejemplo:</strong> estallido social e incertidumbre constitucional. Puede mover inversión, prima de riesgo, coordinación, daño físico y expectativas al mismo tiempo. El reto es separar qué canal domina primero y cuáles aparecen después.</p></article>
+      <!-- PREGUNTAS GUÍA -->
+      <div class="notice-box">
+        <strong>Preguntas guía para cualquier shock.</strong>
+        ¿Qué variable reacciona primero? ¿Cuál es el canal dominante? ¿El shock pega más por precios, cantidades o expectativas? ¿Qué política corrige y qué política puede agravar? ¿Qué feedbacks amplifican o amortiguan?
       </div>
 
+      <!-- HIPÓTESIS RIVALES -->
+      <div class="home-grid three">
+        <article class="card hypothesis-card">
+          <h4>¿Oferta o demanda?</h4>
+          <p>Si suben P y cae Y → oferta. Si suben P y Y → demanda. Si caen ambos → enfriamiento de demanda. La clasificación importa porque la respuesta de política es distinta.</p>
+        </article>
+        <article class="card hypothesis-card">
+          <h4>¿Costos o credibilidad?</h4>
+          <p>Un alza de precios puede venir de energía/insumos (costos) o de desanclaje de expectativas (credibilidad). El mecanismo es distinto y la política necesaria también.</p>
+        </article>
+        <article class="card hypothesis-card">
+          <h4>¿Transitorio o cambio de régimen?</h4>
+          <p>Un shock puede disiparse o alterar permanentemente parámetros. Un terremoto destruye capital; una reforma cambia reglas. La persistencia condiciona toda la trayectoria.</p>
+        </article>
+      </div>
+
+      <!-- MECANISMOS -->
       <section class="card mechanism-stage-card">
         <h3>Mecánicas de propagación: del shock al sistema</h3>
         <div class="mechanism-legend">
-          <span class="legend-pill shock">Shock</span>
-          <span class="legend-arrow">→</span>
-          <span class="legend-pill channel">Canal dominante</span>
-          <span class="legend-arrow">→</span>
-          <span class="legend-pill model">Modelo donde mejor se ve</span>
-          <span class="legend-arrow">→</span>
-          <span class="legend-pill policy">Respuesta de política</span>
-          <span class="legend-arrow">→</span>
-          <span class="legend-pill feedback">Feedback sistémico</span>
+          <span class="legend-pill shock">Shock</span><span class="legend-arrow">→</span>
+          <span class="legend-pill channel">Canal</span><span class="legend-arrow">→</span>
+          <span class="legend-pill model">Modelo</span><span class="legend-arrow">→</span>
+          <span class="legend-pill policy">Política</span><span class="legend-arrow">→</span>
+          <span class="legend-pill feedback">Feedback</span>
         </div>
         <div class="mechanism-grid">
           <article class="mechanism-card">
             <h4>Irán / energía / inflación</h4>
             <div class="mechanism-chain">
-              <span>Shock inicial: guerra y riesgo de interrupción energética</span>
-              <span>Canal 1: ↑ petróleo, fletes, seguros y costos logísticos</span>
-              <span>Puerta de entrada macro: ↑ costos importados, combustibles y pass-through</span>
-              <span>Modelo útil: OA-DA para ver P, Y y la brecha respecto de Yₙ</span>
-              <span>Respuesta: BCCh y agentes privados reevalúan inflación, tasas, márgenes y salarios</span>
-              <span>Feedback: si expectativas y reajustes se contagian, el shock deja de ser “solo energía”</span>
+              <span>Shock: guerra y riesgo energético</span>
+              <span>Canal: ↑ petróleo, fletes, seguros (+)</span>
+              <span>Macro: ↑ costos importados → OA sube</span>
+              <span>Modelo: OA-DA → P↑ Y↓</span>
+              <span>Política: BCCh reevalúa TPM</span>
+              <span>Feedback: expectativas y reajustes (+ / –)</span>
             </div>
-            <p class="mechanism-math"><strong>Dónde entra:</strong> primero en OA vía <em>costShock</em>; luego puede contaminar expectativas, negociación salarial y persistencia inflacionaria.</p>
-            <p><strong>Qué mirar:</strong> ¿suben primero combustibles e IPC transable, o ya aparece daño en actividad? Mira WTI, combustibles, CLP/USD, IPC, expectativas, TPM y márgenes.</p>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp">simular en OA-DA →</button></div>
           </article>
           <article class="mechanism-card">
             <h4>Cobre / CLP-USD / sector externo</h4>
             <div class="mechanism-chain">
-              <span>Shock inicial: ↓ precio del cobre / ↓ términos de intercambio</span>
-              <span>Canal 1: cae x₀, baja ingreso externo y empeoran exportaciones esperadas</span>
-              <span>Puerta de entrada macro: presión sobre CLP/USD, NX y expectativas de ingreso</span>
-              <span>Modelo útil: IS-LM-BP para ver qué se absorbe en E y qué se traslada a Y</span>
-              <span>Respuesta: flotación, tasas y portafolios privados redistribuyen el ajuste</span>
-              <span>Feedback: inversión, recaudación minera y riesgo país pueden alargar el shock</span>
+              <span>Shock: ↓ precio del cobre</span>
+              <span>Canal: cae x₀, baja ingreso externo (–)</span>
+              <span>Macro: presión sobre E↑ y NX</span>
+              <span>Modelo: IS-LM-BP → ajuste en E</span>
+              <span>Política: flotación redistribuye</span>
+              <span>Feedback: recaudación, inversión minera (–)</span>
             </div>
-            <p class="mechanism-math"><strong>Dónde entra:</strong> principalmente por <em>x₀</em>, por el entorno externo y por el ajuste del tipo de cambio <em>E</em> bajo BP horizontal.</p>
-            <p><strong>Qué mirar:</strong> ¿se mueve primero el peso, las exportaciones o la confianza? Mira cobre, CLP/USD, balanza comercial, cuenta corriente, recaudación minera y spreads.</p>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown">simular en IS-LM-BP →</button></div>
           </article>
           <article class="mechanism-card">
-            <h4>Ajuste fiscal / demanda / inversión</h4>
+            <h4>Ajuste fiscal / demanda</h4>
             <div class="mechanism-chain">
-              <span>Shock inicial: ↓ gasto público o ↑ consolidación</span>
-              <span>Canal 1: cae G y se debilita la demanda agregada</span>
-              <span>Puerta de entrada macro: se desplaza IS; cambian Y e i</span>
-              <span>Modelo útil: IS-LM para comparar multiplicador, crowding-out y acelerador</span>
-              <span>Respuesta: puede bajar presión sobre tasas, pero también enfriar inversión y empleo</span>
-              <span>Feedback: si la actividad cae fuerte, el acelerador puede volver más persistente la desaceleración</span>
+              <span>Shock: ↓ gasto público</span>
+              <span>Canal: cae G → IS se desplaza (–)</span>
+              <span>Macro: cambian Y e i</span>
+              <span>Modelo: IS-LM → multiplicador</span>
+              <span>Política: ¿bajan tasas lo suficiente?</span>
+              <span>Feedback: acelerador puede amplificar (–)</span>
             </div>
-            <p class="mechanism-math"><strong>Dónde entra:</strong> por <em>G</em> en demanda; luego la inversión reacciona por dos vías: tasa de interés y nivel de actividad.</p>
-            <p><strong>Qué mirar:</strong> ¿el alivio de tasas compensa la caída de actividad? Mira IMACEC, inversión, empleo, tasas largas, ejecución fiscal y confianza empresarial.</p>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalContract">simular en IS-LM →</button></div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Pandemia / shock mixto</h4>
+            <div class="mechanism-chain">
+              <span>Shock: restricción sanitaria global</span>
+              <span>Canal 1 (oferta): movilidad cae, capacidad se restringe (–)</span>
+              <span>Canal 2 (demanda): consumo y servicios colapsan (–)</span>
+              <span>Macro: OA sube + DA cae → shock mixto</span>
+              <span>Modelo: OA-DA → primero oferta, luego demanda</span>
+              <span>Política: estímulo fiscal masivo + TPM a mínimos</span>
+              <span>Feedback: reapertura activa demanda, inflación con rezago (+)</span>
+            </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic">simular en OA-DA →</button></div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Estallido social / incertidumbre</h4>
+            <div class="mechanism-chain">
+              <span>Shock: crisis socio-política doméstica</span>
+              <span>Canal: confianza cae, inversión se frena (–)</span>
+              <span>Macro: DA cae + costos suben (destrucción, primas)</span>
+              <span>Modelo: OA-DA + IS-LM-BP → E↑, spreads↑</span>
+              <span>Política: BCCh interviene, fisco busca contención</span>
+              <span>Feedback: incertidumbre institucional amplifica (–)</span>
+            </div>
+            <div class="mechanism-sim-links">
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest">simular en OA-DA →</button>
+              <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="globalRecession" style="margin-left:6px">simular en IS-LM-BP →</button>
+            </div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Fed endurece / tasa internacional sube</h4>
+            <div class="mechanism-chain">
+              <span>Shock: Fed sube tasa de política</span>
+              <span>Canal: i* sube → presión sobre CLP/USD (+)</span>
+              <span>Macro: spreads suben, financiamiento externo se encarece</span>
+              <span>Modelo: IS-LM-BP → E↑, flujos salen</span>
+              <span>Política: BCCh puede necesitar endurecer más</span>
+              <span>Feedback: dólar global fuerte castiga emergentes (–)</span>
+            </div>
+            <div class="mechanism-sim-links"><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="higherWorldRate">simular en IS-LM-BP →</button></div>
+          </article>
+          <article class="mechanism-card">
+            <h4>Mejora / caída de productividad</h4>
+            <div class="mechanism-chain">
+              <span>Shock: cambio tecnológico, regulatorio o de capital humano</span>
+              <span>Canal: A cambia → Yₙ sube o baja</span>
+              <span>Macro: OA se desplaza, cambia capacidad de largo plazo</span>
+              <span>Modelo: OA-DA → más (o menos) producción sin presión inflacionaria</span>
+              <span>Política: reformas estructurales, inversión, educación</span>
+              <span>Feedback: afecta crecimiento tendencial y sostenibilidad fiscal (+/–)</span>
+            </div>
+            <div class="mechanism-sim-links">
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityUp">simular mejora →</button>
+              <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityDown" style="margin-left:6px">simular caída →</button>
+            </div>
           </article>
         </div>
+        <p class="muted-paragraph" style="margin-top:14px">Cada cadena simplifica: en la realidad los canales se cruzan. El valor está en disciplinar el primer canal dominante y luego agregar complejidad.</p>
       </section>
 
-      <section class="card table-card">
-        <h3>Cómo entran los shocks en cada modelo</h3>
-        <div class="home-grid three model-entry-grid">
-          <article class="card compact-card">
-            <h4>IS-LM</h4>
-            <p><strong>Ecuaciones clave:</strong> C, I, G y M/P. Un shock fiscal o de expectativas entra por la IS; uno monetario, por la LM. La lectura potente no es solo “sube o baja Y”, sino cuánto del cambio en inversión viene por tasa y cuánto por actividad.</p>
-          </article>
-          <article class="card compact-card">
-            <h4>IS-LM-BP</h4>
-            <p><strong>Ecuaciones clave:</strong> NX, i = i* y ajuste del tipo de cambio E. Un shock externo entra por términos de intercambio, tasa internacional, demanda externa o CLP/USD. El poder explicativo está en distinguir si el ajuste principal aparece en Y o si la flotación lo absorbe primero en E.</p>
-          </article>
-          <article class="card compact-card">
-            <h4>OA-DA</h4>
-            <p><strong>Relaciones clave:</strong> demanda agregada, costos, expectativas y brecha respecto de Yₙ. Aquí conviene mirar no solo si P sube o baja, sino si el shock aleja la economía de Yₙ, si cambia el producto natural y si la inflación refleja sobrecalentamiento, costos o ambos.</p>
-          </article>
+      <!-- TABLA CLASIFICATORIA DE SHOCKS -->
+      <section class="card" style="margin-bottom:20px">
+        <h3>Clasificación de shocks disponibles</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Todos los shocks que puedes simular en MacroLab, organizados por tipo, canal de entrada y modelo recomendado.</p>
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead><tr><th>Shock</th><th>Tipo</th><th>Canal dominante</th><th>Modelo</th><th>Ejemplo Chile</th><th>Simular</th></tr></thead>
+            <tbody>
+              <tr><td>Expansión fiscal</td><td>Demanda</td><td>Gasto → IS/DA</td><td>IS-LM, OA-DA</td><td>Reconstrucción 2010, transferencias 2020</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalExpand">IS-LM</button></td></tr>
+              <tr><td>Contracción fiscal</td><td>Demanda</td><td>Gasto → IS/DA</td><td>IS-LM, OA-DA</td><td>Consolidación post-pandemia</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="fiscalContract">IS-LM</button></td></tr>
+              <tr><td>Expansión monetaria</td><td>Demanda / financiera</td><td>Tasa → crédito → DA</td><td>IS-LM, IS-LM-BP</td><td>Estímulo 2020, recortes TPM</td><td><button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryExpand">IS-LM</button></td></tr>
+              <tr><td>Contracción monetaria</td><td>Demanda / financiera</td><td>Tasa → crédito → DA</td><td>IS-LM, IS-LM-BP</td><td>Ciclo hawkish BCCh 2021–2023</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="monetaryContract">IS-LM-BP</button></td></tr>
+              <tr><td>Alza del petróleo</td><td>Oferta / costos</td><td>Costos → OA</td><td>OA-DA, IS-LM-BP</td><td>Guerra Rusia-Ucrania 2022, Medio Oriente 2025</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp">OA-DA</button></td></tr>
+              <tr><td>Caída del cobre</td><td>Externo</td><td>TdI → E, NX, fiscal</td><td>IS-LM-BP</td><td>Fin del súper ciclo 2013–2016</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown">IS-LM-BP</button></td></tr>
+              <tr><td>Subida de i*</td><td>Externo / financiero</td><td>i* → E, spreads, capitales</td><td>IS-LM-BP</td><td>Endurecimiento Fed 2022–2024</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="higherWorldRate">IS-LM-BP</button></td></tr>
+              <tr><td>Pandemia</td><td>Mixto</td><td>Oferta + demanda simultáneas</td><td>OA-DA</td><td>COVID-19 2020</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic">OA-DA</button></td></tr>
+              <tr><td>Estallido social</td><td>Mixto</td><td>Confianza + costos</td><td>OA-DA, IS-LM-BP</td><td>Octubre 2019</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest">OA-DA</button></td></tr>
+              <tr><td>Terremoto</td><td>Oferta → demanda</td><td>Capacidad → reconstrucción</td><td>OA-DA</td><td>2010</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="earthquake">OA-DA</button></td></tr>
+              <tr><td>Mejora de productividad</td><td>Oferta positiva</td><td>A → Yₙ → OA</td><td>OA-DA</td><td>Digitalización, inversión en capital</td><td><button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="productivityUp">OA-DA</button></td></tr>
+              <tr><td>Recesión global</td><td>Externo</td><td>x₀ + confianza → IS, E</td><td>IS-LM-BP</td><td>Crisis financiera 2008–2009</td><td><button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="globalRecession">IS-LM-BP</button></td></tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
@@ -910,41 +926,174 @@
         <h3>Mapa de transmisión ampliado</h3>
         <div class="table-wrap">
           <table class="info-table small">
-            <thead>
-              <tr>
-                <th>Canal</th>
-                <th>Qué suele reaccionar primero</th>
-                <th>Indicadores clave</th>
-                <th>Modelo donde se ve mejor</th>
-                <th>Hipótesis rival que conviene descartar</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Canal</th><th>Qué reacciona primero</th><th>Indicadores</th><th>Rezago típico</th><th>Modelo</th></tr></thead>
             <tbody>
-              <tr><td>Actividad</td><td>Órdenes, ventas, producción, inversión</td><td>IMACEC, PIB, ventas, confianza</td><td>IS-LM / OA-DA</td><td>Que el problema sea solo de precios y no de demanda real</td></tr>
-              <tr><td>Inflación / costos</td><td>Combustibles, importados, salarios, márgenes</td><td>IPC, IPC SAE, IPP</td><td>OA-DA</td><td>Que todo sea sobrecalentamiento de demanda</td></tr>
-              <tr><td>Tasa de interés / dinero</td><td>TPM, tasas de mercado, spreads</td><td>TPM, tasas largas, crédito</td><td>IS-LM / IS-LM-BP</td><td>Que el canal dominante sea fiscal o externo</td></tr>
-              <tr><td>Tipo de cambio</td><td>CLP/USD y precios transables</td><td>CLP/USD, TCR, inflación transable</td><td>IS-LM-BP</td><td>Que el ajuste sea puramente doméstico</td></tr>
-              <tr><td>Empleo</td><td>Vacantes, horas y contrataciones</td><td>Desempleo, ocupación, informalidad</td><td>IS-LM / OA-DA</td><td>Que el rezago laboral esconda un shock ya activo</td></tr>
-              <tr><td>Sector externo</td><td>Exportaciones, importaciones, cuenta corriente</td><td>Cobre, balanza comercial, cuenta corriente</td><td>IS-LM-BP</td><td>Que el shock sea solo interno y no de términos de intercambio</td></tr>
-              <tr><td>Incertidumbre / riesgo</td><td>Spreads, postergación de proyectos, cobertura</td><td>EMBI, inversión, encuestas, CLP/USD</td><td>IS-LM-BP / OA-DA</td><td>Que el daño sea solo físico o puramente reputacional</td></tr>
+              <tr><td>Actividad</td><td>Órdenes, ventas, producción</td><td>IMACEC, PIB, confianza</td><td>1–3 meses</td><td>IS-LM / OA-DA</td></tr>
+              <tr><td>Inflación / costos</td><td>Combustibles, importados, salarios</td><td>IPC, IPC SAE, IPP</td><td>3–6 meses para segunda vuelta</td><td>OA-DA</td></tr>
+              <tr><td>Tasa de interés</td><td>TPM, tasas de mercado, spreads</td><td>TPM, tasas largas, crédito</td><td>TPM inmediato; transmisión 2–4 trimestres</td><td>IS-LM / IS-LM-BP</td></tr>
+              <tr><td>Tipo de cambio</td><td>CLP/USD y precios transables</td><td>CLP/USD, TCR</td><td>Inmediato en E; pass-through 3–9 meses</td><td>IS-LM-BP</td></tr>
+              <tr><td>Empleo</td><td>Vacantes, horas, contrataciones</td><td>Desempleo, ocupación</td><td>2–4 trimestres (rezagado)</td><td>IS-LM / OA-DA</td></tr>
+              <tr><td>Sector externo</td><td>Exportaciones, cuenta corriente</td><td>Cobre, balanza comercial</td><td>1–2 trimestres</td><td>IS-LM-BP</td></tr>
             </tbody>
           </table>
         </div>
       </section>
     </section>
-    <section id="tablero" class="tab-panel">
+
+    <!-- ============ ATLAS DE SHOCKS 2009–2026 ============ -->
+    <section id="atlas" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
-        <h2>Tablero macro del curso</h2>
-        <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal más útil. La fuente base del tablero es <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; en esta versión se agregan además cobre y petróleo WTI para no perder el vínculo con términos de intercambio y energía.</p>
+        <h2>Atlas de shocks 2009–2026</h2>
+        <p class="section-intro">Episodios históricos y contemporáneos que marcaron la macroeconomía chilena. Cada ficha conecta el shock con variables, mecanismos, modelos y datos observables.</p>
+      </div>
+      <div class="atlas-grid" id="atlas-grid">
+        <!-- Cards generadas por JS -->
+      </div>
+    </section>
+
+    <!-- ============ MARCO INSTITUCIONAL ============ -->
+    <section id="institucional" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
+      <div class="panel-block">
+        <h2>Marco institucional · Chile 2026</h2>
+        <p class="section-intro">Las instituciones macroeconómicas chilenas pueden leerse como una arquitectura de reglas, transparencia y enforcement diseñada para hacer más costosa la indisciplina y más creíble la política.</p>
       </div>
 
+      <!-- FRANJA INICIAL -->
+      <div class="notice-box">
+        <strong>Por qué importa el diseño institucional.</strong>
+        Sin reglas, transparencia, medición creíble y límites a la discreción: aumenta la arbitrariedad, se amplifican shocks, empeoran trayectorias y sube el costo del oportunismo. El mismo shock tiene trayectorias distintas cuando existe un diseño institucional que reduce arbitrariedad y eleva costos reputacionales.
+      </div>
+
+      <!-- ARGUMENTO CENTRAL -->
+      <section class="card hypothesis-card" style="margin-bottom:20px">
+        <h4>Por qué las instituciones cambian la trayectoria de un shock</h4>
+        <p>El mismo shock externo tiene trayectorias muy distintas según existan o no reglas creíbles, transparencia, enforcement y límites a la discreción. Las instituciones no eliminan shocks: reducen la amplificación, elevan el costo reputacional del oportunismo y hacen posible coordinar expectativas. Sin ese marco, el equilibrio dominante es no cooperativo: cada agente anticipa que los demás van a desviar, y la profecía se autocumple.</p>
+        <p style="margin-top:8px"><strong>En lenguaje de juegos:</strong> las instituciones funcionan como mecanismos que sostienen equilibrios cooperativos. La autonomía del BCCh es un compromiso creíble; la regla fiscal, una restricción intertemporal verificable; la flotación, un precio de ajuste que evita acumular desequilibrios ocultos. Sin estos dispositivos, la tentación de corto plazo domina y el costo acumulado se paga después.</p>
+      </section>
+
+      <!-- BIENES PÚBLICOS INSTITUCIONALES -->
+      <h3 class="section-subhead">Bienes públicos institucionales</h3>
+      <div class="home-grid three inst-goods-grid">
+        <article class="card inst-good-card">
+          <h4>Ancla nominal y credibilidad monetaria</h4>
+          <p>El BCCh autónomo reduce la tentación inflacionaria. Su independencia no es un lujo técnico: es el mecanismo que ancla expectativas y vuelve predecible la respuesta a shocks de precios.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> El ciclo 2021–2023 del BCCh muestra cómo la autonomía permite subir la TPM agresivamente sin subordinarse a presión política de corto plazo.</p>
+          <p class="inst-org">BCCh · GPM</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Disciplina fiscal e intertemporal</h4>
+          <p>La regla fiscal y el balance estructural buscan que el gobierno no gaste ingresos transitorios como si fueran permanentes. La disciplina fiscal reduce prociclicidad y protege espacio para shocks futuros.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Si el cobre sube y el gobierno gasta todo el excedente, pierde el amortiguador para cuando el cobre caiga.</p>
+          <p class="inst-org">Hacienda · Dipres · Consejo Fiscal Autónomo</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Estadísticas creíbles y base común de observación</h4>
+          <p>Sin datos creíbles el debate macro se degrada. El IPC, el empleo y los censos son bienes públicos que permiten verificar trayectorias en vez de discutir solo con intuiciones.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Si el IPC no es confiable, ni el BCCh ni los agentes pueden anclar expectativas con evidencia.</p>
+          <p class="inst-org">INE</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Supervisión y estabilidad financiera</h4>
+          <p>La CMF supervisa el sistema financiero. Sin supervisión, los shocks pueden amplificarse por fragilidad bancaria, crédito irresponsable o falta de transparencia en riesgos.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> La supervisión prudencial evita que un shock externo se convierta en crisis bancaria doméstica.</p>
+          <p class="inst-org">CMF</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Competencia y control de oportunismo</h4>
+          <p>La FNE y el TDLC limitan abusos de poder de mercado. Ayudan a separar shocks de costos genuinos de conductas oportunistas que amplifican precios.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Distinguir si el alza de un producto es shock de costos o colusión requiere enforcement competitivo.</p>
+          <p class="inst-org">FNE · TDLC</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Apertura comercial, flotación y disciplina externa</h4>
+          <p>La apertura y la flotación cambiaria hacen visible el desequilibrio externo y redistribuyen el costo del shock entre sectores. El tipo de cambio absorbe parte del ajuste que de otro modo caería solo sobre producto.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Bajo flotación, una caída del cobre deprecia el peso y mejora competitividad exportadora, en vez de acumular reservas y postergar el ajuste.</p>
+          <p class="inst-org">Apertura comercial · Flotación cambiaria</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Estabilización financiera soberana</h4>
+          <p>Los fondos soberanos (FEES y FRP) son el colchón fiscal que permite suavizar shocks sin recurrir a endeudamiento de emergencia. El FEES acumula excedentes del cobre; el FRP resguarda obligaciones previsionales. Juntos hacen creíble la promesa de que el fisco puede responder sin improvisación.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Durante la pandemia 2020, Chile pudo financiar transferencias masivas en parte porque existía ahorro soberano acumulado.</p>
+          <p class="inst-org">FEES · FRP · Hacienda</p>
+        </article>
+        <article class="card inst-good-card">
+          <h4>Evaluación fiscal independiente</h4>
+          <p>El Consejo Fiscal Autónomo (CFA) evalúa los supuestos estructurales de la regla fiscal: precio del cobre de largo plazo y PIB tendencial. Su independencia técnica reduce el riesgo de que el gobierno manipule parámetros para gastar más.</p>
+          <p class="inst-example"><strong>Ejemplo:</strong> Si el gobierno sobreestima el precio del cobre de largo plazo, puede gastar ingresos que no son permanentes. El CFA limita esa tentación.</p>
+          <p class="inst-org">CFA</p>
+        </article>
+      </div>
+
+      <!-- TABLA ANALÍTICA INSTITUCIONAL -->
+      <section class="card" style="margin-bottom:20px">
+        <h3>Mapa analítico de instituciones clave</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Cada institución se puede leer como un dispositivo que altera incentivos: eleva costos de desvío, reduce información asimétrica o limita discrecionalidad.</p>
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead><tr><th>Institución</th><th>Mandato central</th><th>Instrumento principal</th><th>Enforcement</th><th>Qué pasa si falla</th><th>Ejemplo reciente</th></tr></thead>
+            <tbody>
+              <tr><td><strong>BCCh</strong></td><td>Estabilidad de precios y sistema de pagos</td><td>TPM, comunicación, intervención cambiaria excepcional</td><td>Autonomía constitucional, accountability vía IPoM y Congreso</td><td>Desanclaje de expectativas, inflación persistente, pérdida de credibilidad</td><td>Ciclo 2021–2023: TPM de 0.5% a 11.25% sin subordinación política</td></tr>
+              <tr><td><strong>Hacienda / Dipres</strong></td><td>Disciplina fiscal y sostenibilidad de deuda</td><td>Regla de balance estructural, Ley de Responsabilidad Fiscal</td><td>CFA evalúa supuestos; mercado castiga desviaciones vía spreads</td><td>Prociclicidad, pérdida de espacio fiscal, deterioro de rating</td><td>Debate post-pandemia sobre velocidad de consolidación fiscal</td></tr>
+              <tr><td><strong>CFA</strong></td><td>Evaluación independiente de parámetros fiscales</td><td>Informes sobre precio cobre LP y PIB tendencial</td><td>Reputación técnica; sus informes son públicos y citados</td><td>Gobierno manipula supuestos y gasta ingresos no permanentes</td><td>Revisión de precio del cobre de largo plazo 2024</td></tr>
+              <tr><td><strong>CMF</strong></td><td>Supervisión y estabilidad del sistema financiero</td><td>Regulación prudencial, requerimientos de capital, stress tests</td><td>Sanciones, intervención de entidades, normas de provisión</td><td>Fragilidad bancaria amplifica shocks reales; riesgo sistémico</td><td>Implementación de Basilea III y supervisión de fintech</td></tr>
+              <tr><td><strong>INE</strong></td><td>Estadísticas oficiales creíbles</td><td>IPC, empleo, censos, cuentas nacionales</td><td>Protocolos metodológicos, revisión internacional</td><td>Debate macro se degrada; pierde base común de verificación</td><td>Reforma metodológica IPC 2019 y actualización de canasta</td></tr>
+              <tr><td><strong>FNE / TDLC</strong></td><td>Libre competencia</td><td>Investigaciones, acusaciones, multas, remedios estructurales</td><td>TDLC con facultades jurisdiccionales; FNE con delación compensada</td><td>Poder de mercado amplifica precios; confunde shock genuino con abuso</td><td>Casos de colusión y control de fusiones en retail y farmacias</td></tr>
+              <tr><td><strong>FEES / FRP</strong></td><td>Ahorro soberano y estabilización</td><td>Acumulación de excedentes del cobre; inversión conservadora</td><td>Reglas de acumulación y retiro; transparencia de portafolio</td><td>Sin buffer, cada shock obliga a ajuste abrupto o deuda</td><td>Uso de FEES en pandemia 2020 para financiar transferencias</td></tr>
+              <tr><td><strong>Flotación cambiaria</strong></td><td>Precio de ajuste externo</td><td>Tipo de cambio determinado por mercado</td><td>Intervención BCCh solo excepcional y comunicada</td><td>Acumulación de desequilibrios, pérdida de competitividad o reservas</td><td>Depreciación 2022 como amortiguador ante caída de TdI</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FILTRO INSTITUCIONAL: CONEXIÓN CON MODELOS -->
+      <section class="card" style="margin-bottom:20px; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%)">
+        <h3>El filtro institucional en la secuencia analítica</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">La secuencia MacroLab termina en "Filtro institucional → Dato a mirar". Esto significa que el modelo entrega una trayectoria teórica, pero las instituciones la modifican. Aquí van tres ejemplos de cómo leer ese filtro:</p>
+        <div class="home-grid three">
+          <article class="card compact-card">
+            <h4>Shock de costos → OA-DA</h4>
+            <p>El modelo dice: OA sube, P↑ Y↓. <strong>Filtro:</strong> ¿El BCCh es creíble? Si sí, las expectativas no se desanclan y la segunda vuelta salarial es menor. Si no, el shock transitorio se vuelve persistente. <strong>Dato:</strong> expectativas de inflación a 2 años.</p>
+          </article>
+          <article class="card compact-card">
+            <h4>Caída del cobre → IS-LM-BP</h4>
+            <p>El modelo dice: x₀↓, E↑, NX cambia. <strong>Filtro:</strong> ¿La regla fiscal ahorró excedentes? Si sí, el fisco no necesita ajustar abruptamente. Si no, el shock externo se amplifica con contracción fiscal. <strong>Dato:</strong> saldo FEES, balance efectivo vs estructural.</p>
+          </article>
+          <article class="card compact-card">
+            <h4>Expansión fiscal → IS-LM</h4>
+            <p>El modelo dice: G↑, IS se desplaza, Y↑ i↑. <strong>Filtro:</strong> ¿El CFA validó los supuestos? ¿El mercado cree que es sostenible? Si no, los spreads suben y el crowding-out es mayor que el teórico. <strong>Dato:</strong> EMBI Chile, tasas largas, rating.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TENSIONES INSTITUCIONALES -->
+      <section class="card tensions-card">
+        <h3>Tensiones institucionales</h3>
+        <p class="muted-paragraph">El diseño institucional no elimina tensiones; las hace visibles y manejables. Las siguientes son específicas del caso chileno.</p>
+        <div class="tensions-grid">
+          <div class="tension-item"><strong>Corto plazo vs largo plazo</strong><p>El alivio político inmediato puede destruir credibilidad futura. Ejemplo: retiros de fondos de pensiones aliviaron liquidez pero dañaron el ahorro previsional y presionaron inflación.</p></div>
+          <div class="tension-item"><strong>Autonomía técnica vs presión política</strong><p>La autonomía del BCCh es costosa políticamente, pero reduce volatilidad macro. Cuando la TPM subió a 11.25%, la presión por bajarla fue intensa.</p></div>
+          <div class="tension-item"><strong>Transparencia vs conveniencia opaca</strong><p>Publicar datos incómodos es mejor que la alternativa: pérdida de confianza. La credibilidad del IPC es un activo que se destruye rápido y se reconstruye lento.</p></div>
+          <div class="tension-item"><strong>Apertura vs costos distributivos</strong><p>La flotación y la apertura ayudan al agregado pero pueden castigar sectores específicos. Una depreciación mejora exportaciones pero encarece la canasta importada de los hogares.</p></div>
+          <div class="tension-item"><strong>Regla fiscal vs demanda de gasto</strong><p>Ahorrar en bonanza es impopular. Gastar todo en bonanza deja al fisco sin espacio cuando llega el shock adverso. El FEES solo funciona si se respeta la regla de acumulación.</p></div>
+          <div class="tension-item"><strong>Coordinación BCCh-Hacienda vs independencia</strong><p>Política monetaria y fiscal deben ser coherentes, pero coordinar no significa subordinar. Si Hacienda gasta agresivamente, el BCCh debe endurecer más para compensar.</p></div>
+          <div class="tension-item"><strong>Estabilidad financiera vs innovación</strong><p>La regulación prudencial protege, pero puede frenar innovación financiera. Supervisar fintech sin sofocarlas es un equilibrio difícil.</p></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ TABLERO MACRO ============ -->
+    <section id="tablero" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
+      <div class="panel-block">
+        <h2>Tablero macro del curso</h2>
+        <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
+      </div>
 
       <div class="guided-arrival hidden" id="tablero-guided-arrival">
         <div class="guided-arrival-head">
-          <div>
-            <p class="kicker">Llegaste desde un caso guiado</p>
-            <h3 id="tablero-guided-title">—</h3>
-          </div>
+          <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="tablero-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="tablero-guided-arrival" aria-label="Ocultar guía">×</button>
         </div>
         <div class="guided-arrival-grid">
@@ -959,7 +1108,7 @@
         <div class="dashboard-top">
           <div>
             <h3>Tablero macro del curso</h3>
-            <p class="dashboard-source"><strong>Fuente base:</strong> Banco Central de Chile, Base de Datos Estadísticos. Complementos del archivo actualizado: cobre (Cochilco) y WTI (Federal Reserve Bank of St. Louis vía FRED).</p>
+            <p class="dashboard-source"><strong>Fuente base:</strong> Banco Central de Chile, Base de Datos Estadísticos. Cobre (Cochilco), WTI (FRED).</p>
           </div>
           <div class="range-controls">
             <button class="range-button active" data-range="full">2010–2025</button>
@@ -972,135 +1121,380 @@
           <article class="snapshot-card"><span>PIB real 2025</span><strong id="snap-gdp-value">—</strong><small id="snap-gdp-delta">—</small><div class="chart-badge" id="badge-gdp">—</div></article>
           <article class="snapshot-card"><span>Inflación 2025</span><strong id="snap-inflation-value">—</strong><small id="snap-inflation-delta">—</small><div class="chart-badge" id="badge-inflation">—</div></article>
           <article class="snapshot-card"><span>Desempleo 2025</span><strong id="snap-unemployment-value">—</strong><small id="snap-unemployment-delta">—</small><div class="chart-badge" id="badge-unemployment">—</div></article>
-          <article class="snapshot-card"><span>TPM promedio 2025</span><strong id="snap-tpm-value">—</strong><small id="snap-tpm-delta">—</small><div class="chart-badge" id="badge-tpm">—</div></article>
+          <article class="snapshot-card"><span>TPM 2025</span><strong id="snap-tpm-value">—</strong><small id="snap-tpm-delta">—</small><div class="chart-badge" id="badge-tpm">—</div></article>
           <article class="snapshot-card"><span>CLP/USD 2025</span><strong id="snap-fx-value">—</strong><small id="snap-fx-delta">—</small><div class="chart-badge" id="badge-fx">—</div></article>
-          <article class="snapshot-card"><span>Cobre 2025</span><strong id="snap-copper-value">—</strong><small id="snap-copper-delta">—</small><div class="chart-badge" id="badge-copper">—</div></article>
-          <article class="snapshot-card"><span>WTI 2025</span><strong id="snap-wti-value">—</strong><small id="snap-wti-delta">—</small><div class="chart-badge" id="badge-wti">—</div></article>
+          <article class="snapshot-card"><span>Precio cobre 2025</span><strong id="snap-copper-value">—</strong><small id="snap-copper-delta">—</small><div class="chart-badge" id="badge-copper">—</div></article>
+          <article class="snapshot-card"><span>Precio WTI 2025</span><strong id="snap-wti-value">—</strong><small id="snap-wti-delta">—</small><div class="chart-badge" id="badge-wti">—</div></article>
         </div>
 
         <div class="dashboard-brief-grid">
-          <article class="card executive-brief">
-            <h4>Lectura del tablero</h4>
-            <p id="dashboard-summary">—</p>
-          </article>
-          <article class="card timeline-card">
-            <h4>Quiebres y episodios dominantes</h4>
+          <article class="card executive-brief"><h4>Lectura del tablero</h4><p id="dashboard-summary">—</p></article>
+          <article class="card timeline-card"><h4>Quiebres y episodios</h4>
+            <p class="muted-paragraph" style="margin-bottom:10px; font-size:.88rem">Cada quiebre se puede leer con un modelo. Haz clic para ir al simulador con el shock correspondiente.</p>
             <div class="timeline-chips">
-              <span>2010 · terremoto y reconstrucción</span>
-              <span>2014–2017 · desaceleración</span>
-              <span>2019 · estallido social</span>
-              <span>2020 · pandemia</span>
-              <span>2021–2022 · rebote + inflación</span>
-              <span>2022–2023 · guerra Ucrania / energía</span>
-              <span>2024–2025 · desinflación + fragilidad externa</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="earthquake" style="cursor:pointer">2010 · terremoto → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown" style="cursor:pointer">2014–17 · desaceleración → IS-LM-BP</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="socialUnrest" style="cursor:pointer">2019 · estallido → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="cursor:pointer">2020 · pandemia → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="fiscalExpand" style="cursor:pointer">2021–22 · rebote → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="cursor:pointer">2022–23 · guerra / energía → OA-DA</span>
+              <span class="timeline-chip-link mechanism-sim-btn" data-tab="oada" data-shock="monetaryContract" style="cursor:pointer">2024–25 · desinflación → OA-DA</span>
             </div>
           </article>
         </div>
 
+        <!-- LECTURA CRUZADA -->
+        <section class="card" style="margin-bottom:16px; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%)">
+          <h4>Lectura cruzada de series</h4>
+          <p class="muted-paragraph" style="margin-bottom:12px">Las series no se leen aisladas. Los quiebres se entienden cuando se cruzan:</p>
+          <div class="home-grid two" style="margin-bottom:0">
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">2021–2022: el salto inflacionario</strong>
+              <p style="font-size:.88rem; margin:0">El PIB rebotó +11.3% en 2021 mientras la inflación saltó a 12.8% en 2022. El WTI subió por guerra y el CLP/USD se depreció. Tres canales simultáneos: demanda excesiva (retiros+estímulo), costos energéticos y depreciación. OA-DA es el modelo natural.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">2022–2024: TPM como ancla</strong>
+              <p style="font-size:.88rem; margin:0">La TPM subió de ~1% a 11.25% y la inflación empezó a ceder. El desempleo se mantuvo alto (~8%). Esto muestra el costo real de la desinflación: la política monetaria enfría precios, pero el empleo tarda en recuperarse. IS-LM captura la mecánica tasa/actividad.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">Cobre vs CLP/USD</strong>
+              <p style="font-size:.88rem; margin:0">Cuando el cobre cae (2013–2016), el CLP/USD sube. Cuando el cobre se recupera (2021), el CLP/USD debería bajar, pero no baja porque hay otros shocks (retiros, inflación, riesgo político). IS-LM-BP ayuda a separar canales.</p>
+            </article>
+            <article class="card compact-card" style="background:#f9fbfd">
+              <strong style="display:block; margin-bottom:4px; font-size:.92rem">Desempleo rezagado</strong>
+              <p style="font-size:.88rem; margin:0">El desempleo sube con rezago respecto de la caída del PIB (2020: PIB –6.1%, desempleo 10.3%) y baja lento incluso cuando el PIB se recupera. Es la variable más lenta del tablero. Importa para OA-DA: mide holgura real.</p>
+            </article>
+          </div>
+        </section>
+
         <div class="dashboard-grid-v3 dashboard-row row-3">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-blue">Crecimiento PIB real anual</h4><span>% anual</span></div>
+            <div class="dashboard-card-head"><h4 class="series-blue">PIB real anual</h4><span>% · BCCh</span></div>
             <canvas id="dash-gdp"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> reconstrucción y alto crecimiento al inicio de la década, desaceleración 2014–2017, colapso 2020, rebote extraordinario 2021 y normalización más débil después. <strong>Pregunta útil:</strong> ¿cuánto del menor crecimiento reciente refleja shock transitorio y cuánto un problema más estructural de inversión, productividad y potencial?</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> reconstrucción post-terremoto, desaceleración 2014–2017 por fin del súper ciclo, colapso –6.1% en 2020 (pandemia), rebote +11.3% en 2021 (estímulo+reapertura), normalización débil 2023–2025. <em>Modelo:</em> IS-LM para demanda; OA-DA para brecha.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-orange">Inflación anual</h4><span>% anual</span></div>
+            <div class="dashboard-card-head"><h4 class="series-orange">Inflación anual (IPC)</h4><span>% · INE</span></div>
             <canvas id="dash-inflation"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> tramos largos cerca de la meta y gran salto 2021–2023. <strong>Lectura:</strong> ese episodio mezcla rebote de demanda, cuellos de oferta, depreciación y energía. La desinflación posterior muestra credibilidad y ajuste, pero también recuerda que Chile sigue siendo sensible a shocks importados.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> salto a 12.8% en 2022 mezcla tres canales: rebote de demanda (retiros, estímulo), costos (WTI, guerra) y depreciación (CLP/USD). La desinflación 2023–2025 refleja TPM alta y normalización de oferta. <em>Modelo:</em> OA-DA.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-green">Tasa de desempleo</h4><span>% anual</span></div>
+            <div class="dashboard-card-head"><h4 class="series-green">Tasa de desempleo</h4><span>% · INE</span></div>
             <canvas id="dash-unemployment"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> relativa baja prepandemia, salto fuerte en 2020 y recuperación incompleta posterior. <strong>Lectura:</strong> el empleo reacciona con rezago frente a actividad y tasas; por eso sirve para distinguir entre shock transitorio, persistencia de holguras y cambios en composición del mercado laboral.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> salto a 10.3% en 2020. Recuperación incompleta: aún ~8% en 2024–2025, pese a que PIB ya creció. El empleo es la variable más rezagada del ciclo. <em>Lectura:</em> mide holgura real en OA-DA.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-purple">TPM promedio anual</h4><span>% anual</span></div>
+            <div class="dashboard-card-head"><h4 class="series-purple">Tasa de política monetaria (TPM)</h4><span>% · BCCh</span></div>
             <canvas id="dash-tpm"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> estímulo extraordinario, endurecimiento muy fuerte 2021–2023 y relajación gradual posterior. <strong>Lectura:</strong> esta serie resume la reacción del BCCh frente a inflación, brecha y credibilidad. También permite discutir cuándo la política monetaria acompaña y cuándo contiene la demanda.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> estímulo a 0.5% (2020), endurecimiento a 11.25% (2023), relajación gradual 2024–2025. El ciclo completo de TPM es la variable que mejor refleja la respuesta del BCCh a la secuencia pandemia→inflación→desinflación. <em>Modelo:</em> IS-LM para tasa/actividad.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-red">Tipo de cambio nominal promedio anual</h4><span>CLP/USD</span></div>
+            <div class="dashboard-card-head"><h4 class="series-red">Tipo de cambio CLP/USD</h4><span>CLP/USD · BCCh</span></div>
             <canvas id="dash-fx"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> episodios de depreciación por cobre, estallido, pandemia, inflación global, energía y tasa internacional. <strong>Lectura:</strong> bajo flotación, Chile no ajusta solo por producto o tasas; también ajusta por precios relativos. Aquí se ven rápido shocks externos, riesgo y pass-through potencial.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> depreciación gradual 2013–2016 (cobre), salto 2019 (estallido), pico 2022 (guerra+inflación). Cada episodio entra por canales distintos: TdI, riesgo, diferenciales de tasa. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
         </div>
         <div class="dashboard-grid-v3 dashboard-row row-2">
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-copper">Precio cobre promedio anual</h4><span>cUSD/lb</span></div>
+            <div class="dashboard-card-head"><h4 class="series-copper">Precio del cobre</h4><span>cUSD/lb · Cochilco</span></div>
             <canvas id="dash-copper"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> final del súper ciclo, recuperación 2021–2022 y moderación posterior. <strong>Lectura:</strong> el cobre no es solo exportaciones: también es recaudación, inversión minera, CLP/USD y percepción sobre fortaleza externa de Chile. Ayuda a separar shocks globales de problemas puramente internos.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> fin del súper ciclo 2013–2016, recuperación 2021–2022, estabilización ~430–450 cUSD/lb. El cobre es el principal canal de transmisión de China a Chile vía TdI, fiscal y CLP/USD. <em>Modelo:</em> IS-LM-BP.</p>
           </article>
           <article class="dashboard-card-v2">
-            <div class="dashboard-card-head"><h4 class="series-wti">Petróleo WTI promedio anual</h4><span>USD/barril</span></div>
+            <div class="dashboard-card-head"><h4 class="series-wti">Precio del petróleo WTI</h4><span>USD/barril · FRED</span></div>
             <canvas id="dash-wti"></canvas>
-            <p class="dashboard-note"><strong>Quiebres:</strong> desplome 2020, rebote posterior, salto 2022 y sensibilidad persistente después. <strong>Lectura:</strong> es la mejor serie para conectar geopolítica, costos importados, combustibles, transporte e inflación. Sirve además para contrastar si el shock energético coincide o no con mejoras en cobre y actividad.</p>
+            <p class="dashboard-note"><strong>Quiebres:</strong> desplome a ~39 USD en 2020, salto a ~90 USD en 2022 (guerra Rusia-Ucrania), tensiones Medio Oriente 2025. Canal: costos importados → OA → inflación. Chile importador neto de energía. <em>Modelo:</em> OA-DA.</p>
           </article>
         </div>
 
-        <div class="home-grid three dashboard-bottom-grid">
-          <article class="card">
-            <h3>Cómo usar bien este tablero</h3>
-            <p>No sirve solo para “mirar series”. Sirve para ubicar un episodio dentro de una secuencia: crecimiento, precios, mercado laboral, tasa, tipo de cambio, cobre y petróleo no se mueven al mismo tiempo ni con la misma velocidad. Ese desacople es parte central del análisis.</p>
-          </article>
-          <article class="card">
-            <h3>Qué preguntas ayuda a disparar</h3>
-            <p>¿El shock dominante es de demanda, costos o sector externo? ¿La TPM responde a sobrecalentamiento o a pass-through? ¿El CLP/USD está absorbiendo un deterioro externo? ¿El cobre y el petróleo se mueven en la misma dirección o están contando historias distintas?</p>
-          </article>
-          <article class="card">
-            <h3>Qué conviene discutir después</h3>
-            <p>Una vez visto el tablero, la pregunta útil es qué lente formal ordena mejor el episodio. El tablero no reemplaza al modelo; le da contexto histórico y evita leer cada dato como si fuera un mundo separado.</p>
-          </article>
-        </div>
+        <!-- INDICADORES DE SEGUNDO NIVEL -->
+        <details class="l2-panel">
+          <summary class="l2-toggle">
+            <strong>Indicadores de segundo nivel</strong>
+            <span class="l2-hint">IMACEC, IPC subyacente, EMBI Chile, Cuenta corriente / PIB</span>
+          </summary>
+          <div class="l2-content">
+            <p class="muted-paragraph" style="margin-bottom:14px">Estas series complementan el tablero principal. Son las variables que aparecen en los "Qué mirar en Chile" de los simuladores: permiten afinar el diagnóstico cuando el primer nivel no alcanza.</p>
+            <div class="dashboard-grid-v3 dashboard-row row-2">
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-blue">IMACEC (proxy mensual de PIB)</h4><span>% anual · BCCh</span></div>
+                <canvas id="dash-imacec"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el IMACEC es la serie de mayor frecuencia para seguir actividad. Captura rezagos, estacionalidad y quiebres que el PIB anual suaviza. Aquí se muestra anualizado; en la práctica, conviene mirar la serie mensual desestacionalizada.</p>
+              </article>
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-orange">IPC subyacente (SAE)</h4><span>% anual · INE/BCCh</span></div>
+                <canvas id="dash-ipcsae"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el IPC SAE (sin alimentos ni energía) separa la inflación de tendencia de los shocks volátiles. Si el SAE sube, la presión es más persistente que un salto puntual de combustibles. Es la variable que el BCCh mira para decidir si un shock es transitorio o requiere respuesta.</p>
+              </article>
+            </div>
+            <div class="dashboard-grid-v3 dashboard-row row-2">
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-purple">EMBI Chile</h4><span>puntos base · JP Morgan</span></div>
+                <canvas id="dash-embi"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el EMBI mide la prima de riesgo soberano. Sube con incertidumbre política (estallido 2019), crisis global (pandemia) o deterioro fiscal. Es el termómetro de cómo el mercado percibe la credibilidad institucional. Cuando sube, el financiamiento externo se encarece.</p>
+              </article>
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-red">Cuenta corriente / PIB</h4><span>% · BCCh</span></div>
+                <canvas id="dash-ccpib"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> déficit de CC = el país gasta más de lo que produce respecto del exterior. Un déficit alto sostenido señala vulnerabilidad externa. El salto a –8.4% en 2022 refleja importaciones infladas (energía, consumo post-retiros). IS-LM-BP es el lente natural.</p>
+              </article>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
+
+    <!-- ============ LECTURA DE DATOS ============ -->
+    <section id="lectura" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
+      <div class="panel-block">
+        <h2>Lectura de datos · del número a la pregunta</h2>
+        <p class="section-intro">Esta sección no enseña a usar Excel ni R. Enseña el criterio económico que debe guiar la lectura de datos macro: por dónde empezar, qué transformación usar y cuándo, y cómo construir un gráfico que diga algo. El objetivo es que pases de mirar números a formular preguntas con estructura.</p>
+      </div>
+
+      <div class="notice-box">
+        <strong>El problema real.</strong>
+        Los estudiantes suelen enfrentar datos sin saber por dónde empezar. Aplican transformaciones por imitación, construyen gráficos que no dicen nada y terminan opinando de coyuntura sin evidencia que respalde. Esta sección busca cerrar esa brecha: no la mecánica técnica, sino el criterio de lectura.
+      </div>
+
+      <!-- PROTOCOLO DE LECTURA -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Protocolo de lectura: 5 pasos ante cualquier serie</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Cuando enfrentas una serie de datos macro por primera vez, sigue esta secuencia antes de hacer cualquier transformación:</p>
+        <div class="sequence-grid">
+          <article>
+            <strong>1. Nivel</strong>
+            <p>¿Cuál es el valor actual? ¿Es alto o bajo respecto de la historia? No te apures a calcular variaciones: primero ubica dónde estás. <em>Ejemplo: "El CLP/USD está en ~950. ¿Eso es mucho? En 2012 estaba en ~487. En 2020 llegó a ~792."</em></p>
+          </article>
+          <article>
+            <strong>2. Tendencia</strong>
+            <p>¿La serie sube, baja o está plana en el horizonte relevante? No te fijes en un dato puntual: mira la dirección general. <em>Ejemplo: "El desempleo lleva 4 años sobre 7.5%. La tendencia es persistentemente alta."</em></p>
+          </article>
+          <article>
+            <strong>3. Quiebres</strong>
+            <p>¿Hay algún punto donde la serie cambia abruptamente de dirección o nivel? Los quiebres son la huella de un shock. <em>Ejemplo: "La inflación estaba en ~3% hasta 2020. En 2022 saltó a 12.8%. Ese quiebre necesita explicación."</em></p>
+          </article>
+          <article>
+            <strong>4. Pregunta</strong>
+            <p>Formula una pregunta económica que el dato dispara. No describas el dato: pregunta por qué. <em>Ejemplo: "¿El salto inflacionario de 2022 viene de demanda, costos, depreciación o las tres cosas?"</em></p>
+          </article>
+          <article>
+            <strong>5. Modelo</strong>
+            <p>¿Qué modelo ayuda a responder esa pregunta? Ahora sí elige: IS-LM si es demanda/tasa, IS-LM-BP si es sector externo/cambio, OA-DA si es inflación/brecha. <em>Ejemplo: "Inflación + costos → OA-DA. Voy al simulador con shock de costos."</em></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TRANSFORMACIONES CON CRITERIO -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Transformaciones: cuándo y por qué</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">No apliques transformaciones por imitación. Cada una responde a una pregunta distinta:</p>
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead><tr><th>Transformación</th><th>Qué responde</th><th>Cuándo usarla</th><th>Cuándo NO usarla</th><th>Ejemplo con datos del Tablero</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Nivel</strong></td>
+                <td>¿Dónde estamos?</td>
+                <td>Siempre como primer paso. Para ubicarse en contexto histórico.</td>
+                <td>No sirve para comparar velocidades de cambio.</td>
+                <td>CLP/USD en 2025: ~952. ¿Es alto históricamente? Sí, el promedio 2010–2019 fue ~590.</td>
+              </tr>
+              <tr>
+                <td><strong>Variación anual (%)</strong></td>
+                <td>¿Cuánto cambió respecto del año anterior?</td>
+                <td>Para medir velocidad del cambio. Para inflación, crecimiento.</td>
+                <td>No sirve si la base de comparación es anómala (ej: 2021 vs 2020).</td>
+                <td>PIB 2021: +11.3%. Parece espectacular, pero la base es 2020 (–6.1%). El rebote exagera la lectura.</td>
+              </tr>
+              <tr>
+                <td><strong>Variación acumulada</strong></td>
+                <td>¿Cuánto cambió desde un punto de referencia?</td>
+                <td>Para medir recuperación post-shock o tendencia de largo plazo.</td>
+                <td>No sirve si el punto de referencia es arbitrario.</td>
+                <td>PIB acumulado 2019–2025: el rebote de 2021 no compensó todo lo perdido en 2020.</td>
+              </tr>
+              <tr>
+                <td><strong>Promedio móvil</strong></td>
+                <td>¿Cuál es la tendencia suavizada?</td>
+                <td>Cuando la serie es muy volátil y quieres ver la dirección.</td>
+                <td>No sirve si quieres captar un quiebre puntual (el promedio lo suaviza).</td>
+                <td>Un promedio móvil de 3 años del IPC suaviza el salto de 2022, pero pierde el timing del shock.</td>
+              </tr>
+              <tr>
+                <td><strong>Ratio sobre PIB</strong></td>
+                <td>¿Cuánto pesa X en la economía?</td>
+                <td>Para comparar magnitudes relativas: gasto fiscal, cuenta corriente, deuda.</td>
+                <td>No sirve para medir velocidad de cambio.</td>
+                <td>Cuenta corriente / PIB: –8.4% en 2022. Es una señal de vulnerabilidad externa fuerte.</td>
+              </tr>
+              <tr>
+                <td><strong>Desestacionalización</strong></td>
+                <td>¿El movimiento es genuino o es patrón estacional?</td>
+                <td>Para series mensuales/trimestrales: empleo, IMACEC, ventas.</td>
+                <td>No tiene sentido para datos anuales.</td>
+                <td>El desempleo siempre sube en invierno. La serie desestacionalizada permite ver si subió "de verdad".</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GRÁFICOS QUE DICEN ALGO -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Gráficos que dicen algo vs gráficos que solo muestran datos</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">La diferencia entre un gráfico útil y uno decorativo no está en la herramienta: está en las decisiones del analista.</p>
+        <div class="home-grid two">
+          <article class="card compact-card" style="background:#fff2f2; border-color:#f3c7c5">
+            <h4 style="color:#b42318">Gráfico que no dice nada</h4>
+            <ul class="simple-list" style="font-size:.9rem">
+              <li>Título genérico: "Gráfico 1" o "Datos de inflación"</li>
+              <li>Sin período ni fuente</li>
+              <li>Escala que empieza en 0 cuando la variable varía entre 2% y 13%</li>
+              <li>Sin anotación de quiebres ni eventos</li>
+              <li>Dos series superpuestas sin explicar por qué se comparan</li>
+              <li>Conclusión: "la inflación subió" (obvio mirando el gráfico)</li>
+            </ul>
+          </article>
+          <article class="card compact-card" style="background:#f0faf2; border-color:#b6e2c0">
+            <h4 style="color:#146c43">Gráfico que cuenta una historia</h4>
+            <ul class="simple-list" style="font-size:.9rem">
+              <li>Título con pregunta o hallazgo: "El salto inflacionario de 2022 mezcló tres canales"</li>
+              <li>Período explícito, fuente y unidad</li>
+              <li>Escala ajustada al rango relevante</li>
+              <li>Anotaciones: "guerra Rusia-Ucrania", "TPM a 11.25%"</li>
+              <li>Comparación justificada: IPC total vs IPC SAE para separar volátiles</li>
+              <li>Conclusión: "el SAE sugiere que la presión no fue solo energía"</li>
+            </ul>
+          </article>
+        </div>
+        <div class="notice-box" style="margin-top:14px">
+          <strong>Regla práctica.</strong>
+          Si alguien mira tu gráfico 5 segundos y no puede decir qué pregunta responde, el gráfico no está listo. Un buen gráfico tiene: título informativo, período, fuente, escala honesta, anotación de quiebres y una frase de lectura.
+        </div>
+      </section>
+
+      <!-- ERRORES FRECUENTES -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Errores frecuentes en lectura de datos macro</h3>
+        <div class="home-grid two">
+          <article class="card compact-card hypothesis-card">
+            <h4>Confundir nivel con variación</h4>
+            <p>"El PIB creció 11.3% en 2021, la economía está en auge." No: la base es 2020 (–6.1%). El nivel de 2021 apenas recupera lo perdido. Siempre pregunta: ¿respecto de qué?</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Ignorar la base de comparación</h4>
+            <p>"La inflación bajó de 12.8% a 3.4%." Bien, pero ¿qué pasó con el IPC SAE? Si el SAE sigue alto, la baja puede ser solo por energía volátil, no por presión genuinamente menor.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Apilar transformaciones sin criterio</h4>
+            <p>"Calculé la variación del promedio móvil de la tasa de crecimiento." Cada transformación pierde información. Si no puedes explicar por qué necesitas cada capa, estás añadiendo ruido.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Leer una serie aislada</h4>
+            <p>"El cobre subió, todo bien." ¿Y el CLP/USD? ¿Y la inflación importada? ¿Y la cuenta corriente? Las series se leen cruzadas. Una variable aislada no es diagnóstico.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Confundir correlación temporal con causalidad</h4>
+            <p>"La TPM subió y el desempleo subió, entonces la TPM causa desempleo." El desempleo sube con rezago de trimestres; puede ser consecuencia de la pandemia, no de la TPM. Secuencia ≠ causa.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Describir sin interpretar</h4>
+            <p>"El gráfico muestra que la inflación subió en 2022." Eso no es análisis: es descripción. Análisis es: "subió porque confluyeron demanda excesiva, costos energéticos y depreciación, y la descomposición por SAE sugiere que no fue solo volátiles."</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- DE LA LECTURA AL MODELO -->
+      <section class="card" style="margin-bottom:18px; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%)">
+        <h3>De la lectura de datos al modelo: el puente</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">La lectura de datos no termina en describir. Termina en una pregunta que un modelo puede responder. Aquí van 4 ejemplos de cómo pasar del tablero al simulador:</p>
+        <div class="home-grid two">
+          <article class="card compact-card">
+            <h4>Dato → PIB cae 6.1% en 2020</h4>
+            <p><strong>Protocolo:</strong> nivel bajo, quiebre abrupto, pregunta: ¿oferta, demanda o ambas?<br><strong>Transformación útil:</strong> comparar con IMACEC mensual para ver timing.<br><strong>Modelo:</strong> OA-DA (shock mixto). <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → CLP/USD salta a 872 en 2022</h4>
+            <p><strong>Protocolo:</strong> nivel históricamente alto, tendencia alcista desde 2019, quiebre por guerra + retiros.<br><strong>Transformación útil:</strong> cruzar con cobre y EMBI.<br><strong>Modelo:</strong> IS-LM-BP. <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → Inflación 12.8% en 2022</h4>
+            <p><strong>Protocolo:</strong> quiebre masivo, pregunta: ¿demanda, costos o expectativas?<br><strong>Transformación útil:</strong> IPC total vs IPC SAE para separar volátiles.<br><strong>Modelo:</strong> OA-DA. <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → TPM sube de 0.5% a 11.25%</h4>
+            <p><strong>Protocolo:</strong> nivel máximo histórico, tendencia alcista agresiva 2021–2023, quiebre por inflación.<br><strong>Transformación útil:</strong> cruzar con inflación para ver si el endurecimiento funcionó.<br><strong>Modelo:</strong> IS-LM. <button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryContract" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ GLOSARIO AMPLIADO ============ -->
     <section id="glosario" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block"><h2>Glosario ampliado</h2></div>
+
+      <h3 class="glossary-section-title">A. Modelos y piezas analíticas</h3>
       <div class="glossary-grid">
         <article class="card"><h3>Shock</h3><p>Perturbación exógena que altera el equilibrio previo. Puede ser geopolítica, sanitaria, financiera, climática o socio-política.</p></article>
         <article class="card"><h3>Variable exógena</h3><p>Magnitud que el modelo toma como dada: G, i*, precio del cobre, productividad o costos energéticos.</p></article>
-        <article class="card"><h3>Variable endógena</h3><p>Variable determinada dentro del modelo: Y, i, P, NX o la brecha de producto, según el caso.</p></article>
+        <article class="card"><h3>Variable endógena</h3><p>Variable determinada dentro del modelo: Y, i, P, NX o la brecha de producto.</p></article>
         <article class="card"><h3>Parámetro</h3><p>Número que resume una relación de comportamiento: c1, b2, x2, γ o pass-through.</p></article>
-        <article class="card"><h3>Intercepto</h3><p>Componente autónomo de una relación: gasto autónomo, demanda externa base o demanda agregada autónoma.</p></article>
+        <article class="card"><h3>Intercepto</h3><p>Componente autónomo de una relación: gasto autónomo, demanda externa base o DA autónoma.</p></article>
         <article class="card"><h3>Pendiente</h3><p>Sensibilidad de una variable frente a otra. Cambiar la pendiente cambia la forma de la curva y su respuesta a shocks.</p></article>
         <article class="card"><h3>Equilibrio</h3><p>Punto focal donde las relaciones del modelo se satisfacen simultáneamente. Es comparativo, no eterno.</p></article>
         <article class="card"><h3>Mecanismo de transmisión</h3><p>Cadena causal dominante que conecta el shock con la economía real y los precios.</p></article>
         <article class="card"><h3>Trayectoria</h3><p>Secuencia probable entre el primer impacto y el ajuste posterior, con rezagos y segundas vueltas.</p></article>
-        <article class="card"><h3>IS</h3><p>Curva del mercado de bienes. Relaciona Y e i cuando producción = demanda planeada.</p></article>
-        <article class="card"><h3>LM</h3><p>Curva del mercado de dinero. Relaciona Y e i cuando oferta real de dinero = demanda de dinero.</p></article>
-        <article class="card"><h3>BP</h3><p>Condición externa; aquí se presenta horizontal con alta movilidad de capitales.</p></article>
-        <article class="card"><h3>OA</h3><p>Oferta agregada. Relaciona nivel de precios y producción compatible con costos, expectativas y capacidad.</p></article>
-        <article class="card"><h3>DA</h3><p>Demanda agregada. Resume combinaciones de Y y P compatibles con equilibrio del lado de demanda.</p></article>
+        <article class="card"><h3>Pass-through</h3><p>Grado en que una depreciación del tipo de cambio se traduce en precios internos. Depende de competencia, estructura de costos y expectativas.</p></article>
         <article class="card"><h3>Crowding-out</h3><p>Caída o menor expansión de la inversión privada por alza de la tasa de interés ante expansión fiscal.</p></article>
-        <article class="card"><h3>Acelerador</h3><p>Canal por el cual una mayor actividad induce más inversión.</p></article>
-        <article class="card"><h3>Tipo de cambio nominal</h3><p>Precio de la moneda extranjera en pesos. Mayor E = depreciación del peso.</p></article>
-        <article class="card"><h3>Tipo de cambio real</h3><p>Indicador de competitividad que ajusta el tipo de cambio por precios internos y externos.</p></article>
-        <article class="card"><h3>Producto natural</h3><p>Nivel de producción consistente con inflación estable en el mediano plazo.</p></article>
-        <article class="card"><h3>Brecha de producto</h3><p>Diferencia entre producción observada y natural. Positiva = presión inflacionaria; negativa = holgura.</p></article>
-        <article class="card"><h3>Shock de oferta</h3><p>Shock que pega sobre costos, capacidad o productividad.</p></article>
-        <article class="card"><h3>Shock de demanda</h3><p>Shock que altera gasto autónomo, consumo, inversión o política de demanda.</p></article>
-        <article class="card"><h3>Shock mixto</h3><p>Shock que pega simultáneamente por oferta y demanda, o lo hace en secuencia.</p></article>
-        <article class="card"><h3>Inflación</h3><p>Aumento sostenido del nivel general de precios.</p></article>
-        <article class="card"><h3>Desinflación</h3><p>Caída de la inflación, no necesariamente del nivel de precios.</p></article>
-        <article class="card"><h3>TPM</h3><p>Tasa de Política Monetaria fijada por el BCCh como instrumento principal.</p></article>
-        <article class="card"><h3>Credibilidad</h3><p>Capacidad de una autoridad o regla para anclar expectativas porque se la considera coherente y creíble.</p></article>
-        <article class="card"><h3>Expectativas</h3><p>Anticipaciones sobre inflación, actividad, tasas o tipo de cambio que afectan decisiones presentes.</p></article>
-        <article class="card"><h3>Autonomía del banco central</h3><p>Diseño institucional que busca proteger la política monetaria de presiones de corto plazo.</p></article>
-        <article class="card"><h3>Regla fiscal</h3><p>Marco que disciplina la política fiscal y busca reducir sesgo procíclico y deterioro reputacional.</p></article>
-        <article class="card"><h3>Prima de riesgo</h3><p>Premio exigido por financiar a un deudor o país percibido como más riesgoso.</p></article>
-        <article class="card"><h3>Apertura comercial</h3><p>Grado de integración de la economía con comercio exterior y cadenas globales.</p></article>
-        <article class="card"><h3>Flotación cambiaria</h3><p>Régimen en que el tipo de cambio lo determina el mercado, con intervención excepcional.</p></article>
-        <article class="card"><h3>Pass-through</h3><p>Grado en que una depreciación del tipo de cambio se traduce en precios internos.</p></article>
-        <article class="card"><h3>Productividad</h3><p>Capacidad de producir más con una misma cantidad de factores.</p></article>
-        <article class="card"><h3>Costos importados</h3><p>Parte de la estructura de costos que depende de bienes o insumos externos.</p></article>
-        <article class="card"><h3>Coordinación</h3><p>Capacidad de agentes e instituciones para alinear expectativas y acciones sin caos ni oportunismo excesivo.</p></article>
-        <article class="card"><h3>Enforcement</h3><p>Capacidad efectiva de hacer cumplir reglas, contratos o normas regulatorias.</p></article>
+        <article class="card"><h3>Acelerador</h3><p>Canal por el cual una mayor actividad induce más inversión. Amplifica shocks de demanda.</p></article>
+      </div>
+
+      <h3 class="glossary-section-title">B. Economía abierta y macro avanzada</h3>
+      <div class="glossary-grid">
+        <article class="card"><h3>Términos de intercambio</h3><p>Relación entre precios de exportación e importación. Mejoran cuando sube el cobre o baja el petróleo.</p></article>
+        <article class="card"><h3>Cuenta corriente</h3><p>Registro de transacciones de bienes, servicios y rentas con el resto del mundo. Déficit implica financiamiento externo neto.</p></article>
+        <article class="card"><h3>Movilidad de capitales</h3><p>Capacidad de los capitales para entrar y salir del país. Alta movilidad implica que la tasa doméstica converge a la internacional.</p></article>
+        <article class="card"><h3>Prima de riesgo</h3><p>Premio exigido por financiar a un deudor o país percibido como más riesgoso. Se refleja en spreads y EMBI.</p></article>
+        <article class="card"><h3>Depreciación real</h3><p>Aumento del tipo de cambio real. Mejora competitividad pero puede encarecer importados y presionar inflación.</p></article>
+        <article class="card"><h3>Apreciación real</h3><p>Caída del tipo de cambio real. Alivia inflación importada pero puede dañar sector transable.</p></article>
+        <article class="card"><h3>Paridad</h3><p>Condición de equilibrio entre tasas o precios domésticos y externos. La paridad de interés domina en IS-LM-BP con alta movilidad.</p></article>
+        <article class="card"><h3>Flotación cambiaria</h3><p>Régimen en que el tipo de cambio lo determina el mercado. Permite que E absorba parte de los shocks externos.</p></article>
+        <article class="card"><h3>Dominancia fiscal</h3><p>Situación en que la política fiscal condiciona la monetaria. Si la deuda crece sin control, el banco central pierde margen.</p></article>
+        <article class="card"><h3>Ancla nominal</h3><p>Variable que el banco central compromete a estabilizar (en Chile, la inflación). Sin ancla, las expectativas se desanclean.</p></article>
+        <article class="card"><h3>Holgura</h3><p>Diferencia entre capacidad productiva disponible y producción efectiva. Más holgura = menos presión inflacionaria.</p></article>
+        <article class="card"><h3>Producto potencial</h3><p>Nivel de producción sostenible sin presiones inflacionarias persistentes. Es Yₙ en OA-DA.</p></article>
+      </div>
+
+      <h3 class="glossary-section-title">C. Política e instituciones</h3>
+      <div class="glossary-grid">
+        <article class="card"><h3>Credibilidad</h3><p>Capacidad de una autoridad o regla para anclar expectativas porque se la considera coherente y sostenible en el tiempo.</p></article>
+        <article class="card"><h3>Enforcement</h3><p>Capacidad efectiva de hacer cumplir reglas, contratos o normas regulatorias. Sin enforcement, las reglas son papel.</p></article>
+        <article class="card"><h3>Captura</h3><p>Cuando un regulador actúa en beneficio del regulado en vez del interés público. Deteriora credibilidad institucional.</p></article>
+        <article class="card"><h3>Transparencia</h3><p>Disponibilidad y calidad de la información pública sobre decisiones, datos y fundamentos de política.</p></article>
+        <article class="card"><h3>Rendición de cuentas</h3><p>Obligación de explicar y justificar decisiones ante la sociedad y el sistema institucional.</p></article>
+        <article class="card"><h3>Balance estructural</h3><p>Indicador fiscal que corrige ingresos por ciclo y precio del cobre. Base de la regla fiscal chilena.</p></article>
+        <article class="card"><h3>Autonomía del banco central</h3><p>Diseño institucional que protege la política monetaria de presiones políticas de corto plazo.</p></article>
+      </div>
+
+      <h3 class="glossary-section-title">D. Coyuntura y propagación</h3>
+      <div class="glossary-grid">
+        <article class="card"><h3>Shock de oferta</h3><p>Shock que pega sobre costos, capacidad o productividad. Típicamente mueve OA.</p></article>
+        <article class="card"><h3>Shock de demanda</h3><p>Shock que altera gasto autónomo, consumo, inversión o política de demanda. Mueve IS o DA.</p></article>
+        <article class="card"><h3>Shock mixto</h3><p>Shock que pega simultáneamente por oferta y demanda. La composición puede cambiar en el tiempo.</p></article>
+        <article class="card"><h3>Shock geopolítico</h3><p>Perturbación originada en conflictos, guerras o tensiones internacionales que altera energía, rutas comerciales o confianza global.</p></article>
+        <article class="card"><h3>Shock regulatorio</h3><p>Cambio abrupto en reglas que altera incentivos, costos o expectativas de los agentes.</p></article>
+        <article class="card"><h3>Desanclaje</h3><p>Pérdida de la capacidad del ancla nominal para contener expectativas inflacionarias. Señal de alerta para el banco central.</p></article>
+        <article class="card"><h3>Brecha externa</h3><p>Diferencia entre ingreso y gasto del país con el exterior. Un déficit de cuenta corriente es la manifestación más visible.</p></article>
       </div>
     </section>
+
   </main>
 
-
+  <!-- ============ CASE MODAL ============ -->
   <div class="case-modal hidden" id="case-modal" aria-hidden="true">
     <div class="case-modal-backdrop" data-close-case></div>
     <div class="case-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="case-modal-title">
@@ -1109,34 +1503,14 @@
       <h3 id="case-modal-title">—</h3>
       <p class="case-modal-episode" id="case-modal-episode">—</p>
       <div class="home-grid two modal-grid">
-        <article class="compact-card">
-          <h4>Por qué importa hoy</h4>
-          <p id="case-modal-why">—</p>
-        </article>
-        <article class="compact-card">
-          <h4>Manifestaciones que vuelven relevante el caso</h4>
-          <p id="case-modal-manifest">—</p>
-        </article>
-        <article class="compact-card">
-          <h4>Qué preguntas dispara</h4>
-          <p id="case-modal-questions">—</p>
-        </article>
-        <article class="compact-card">
-          <h4>Qué mecanismo domina primero</h4>
-          <p id="case-modal-mechanism">—</p>
-        </article>
-        <article class="compact-card">
-          <h4>Por qué este modelo ayuda más</h4>
-          <p id="case-modal-modelwhy">—</p>
-        </article>
-        <article class="compact-card">
-          <h4>Qué verás al llegar y qué hacer después</h4>
-          <p id="case-modal-observe">—</p>
-        </article>
+        <article class="compact-card"><h4>Por qué importa hoy</h4><p id="case-modal-why">—</p></article>
+        <article class="compact-card"><h4>Manifestaciones relevantes</h4><p id="case-modal-manifest">—</p></article>
+        <article class="compact-card"><h4>Qué preguntas dispara</h4><p id="case-modal-questions">—</p></article>
+        <article class="compact-card"><h4>Qué mecanismo domina</h4><p id="case-modal-mechanism">—</p></article>
+        <article class="compact-card"><h4>Por qué este modelo ayuda más</h4><p id="case-modal-modelwhy">—</p></article>
+        <article class="compact-card"><h4>Qué verás al llegar</h4><p id="case-modal-observe">—</p></article>
       </div>
-      <div class="button-row">
-        <button class="action-button" id="case-modal-continue">Abrir caso en el laboratorio</button>
-      </div>
+      <div class="button-row"><button class="action-button" id="case-modal-continue">Abrir caso en el laboratorio</button></div>
     </div>
   </div>
 
