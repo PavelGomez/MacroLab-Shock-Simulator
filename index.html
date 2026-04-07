@@ -266,6 +266,125 @@
           <article><strong>6. Cierra con evidencia</strong><p>Vuelve al tablero y al dato que conviene mirar: IPC, TPM, CLP/USD, IMACEC, empleo, cobre.</p></article>
         </div>
       </section>
+
+      <!-- EJERCICIOS DE DIAGNÓSTICO -->
+      <section class="card" style="margin-bottom:18px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%)">
+        <h3>Ejercicios de diagnóstico: del Tablero al modelo</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Estos ejercicios simulan el proceso real de un analista: parten de una observación en el Tablero, formulan una hipótesis y la testean en un simulador. Intenta resolverlos antes de leer la respuesta.</p>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 1 · ¿Por qué la inflación subió en 2022 pero el desempleo no bajó?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>En el Tablero: inflación salta a 12.8% en 2022 (máximo en décadas). Pero el desempleo permanece en ~7.9%, sin caer significativamente desde 2021. Si fuera solo demanda excesiva, esperarías desempleo bajo.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿La inflación de 2022 es de demanda, de costos o mixta? ¿Qué combinación de Y y P es consistente con desempleo alto e inflación alta?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>Si domina costos (OA sube): P↑ Y↓ o estancado. Es consistente con desempleo alto + inflación alta = <strong>estanflación incipiente</strong>. Si dominara demanda pura: P↑ Y↑ y desempleo bajo.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a OA-DA → shock de costos (alza petróleo). Verificar que OA sube, P↑, Y cae o se estanca. Luego probar shock mixto (pandemia) para ver qué pasa cuando se cruzan oferta y demanda.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="margin-top:8px; font-size:.82rem">probar en OA-DA →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> La respuesta es mixta: la inflación de 2022 mezcla (1) exceso de demanda del rebote 2021, (2) costos energéticos por guerra, (3) depreciación del CLP. El IPC SAE alto confirma que no era solo energía volátil. El modelo OA-DA con shock de costos captura la parte de oferta; cruzarlo con IS-LM-BP captura la depreciación.
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 2 · ¿Por qué la TPM subió a 11.25% y no causó recesión?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>La TPM pasó de 0.5% a 11.25% entre 2021 y 2023. Es el endurecimiento más agresivo en la historia del BCCh. Pero el PIB de 2023 creció +0.7% (débil, pero positivo). ¿Por qué no hubo recesión?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿Qué otros factores compensaron el efecto contractivo de la TPM? ¿Es posible que el punto de partida (rebote de 2021) influyera?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>IS-LM dice: TPM↑ → LM sube → i↑ → Y↓. Pero si la base de partida era un rebote excesivo (Y >> potencial), el endurecimiento cerró brecha sin llevar Y debajo de potencial. El desempleo alto sugiere que Yₙ era menor de lo que parecía.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a IS-LM → contracción monetaria. Mira cuánto cae Y y si la tasa de equilibrio sube mucho. Luego ir a OA-DA → contracción monetaria y verificar si la brecha se cierra sin hundir Y.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryContract" style="margin-top:8px; font-size:.82rem">probar en IS-LM →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> El endurecimiento no causó recesión porque partió de un nivel de actividad muy por encima de potencial (post-rebote). Además, el cobre se mantuvo relativamente alto, compensando parte del freno interno vía sector externo. La combinación IS-LM + OA-DA es la lectura más completa.
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 3 · ¿Por qué el cobre subió en 2021 pero el peso no se apreció?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>El cobre pasó de ~298 a ~437 cUSD/lb entre 2020 y 2021. Históricamente, cobre↑ → CLP/USD↓ (apreciación). Pero el CLP/USD promedió ~759 en 2021, solo levemente por debajo de 2020 (~792).</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta bien formulada</h4>
+                <p>¿Qué fuerzas compensaron el efecto apreciador del cobre? ¿El canal cobre→CLP estaba dominado por otro canal?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Hipótesis</h4>
+                <p>IS-LM-BP dice: x₀↑ → apreciación. Pero si simultáneamente hay retiros de fondos (liquidity shock), incertidumbre política y expectativas de inflación, hay presión depreciatoria que anula el efecto cobre. Múltiples shocks en direcciones opuestas.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Test en simulador</h4>
+                <p>Ir a IS-LM-BP → alza del cobre. Ver apreciación teórica. Luego pensar: ¿qué otro shock simultáneo deprecia? (Depreciación del peso, recesión global). Los modelos son de un shock a la vez; la realidad combina.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperUp" style="margin-top:8px; font-size:.82rem">probar en IS-LM-BP →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> El cobre subió, pero en paralelo operaban retiros de fondos de pensiones, incertidumbre constitucional, inflación doméstica y Fed endureciendo. El tipo de cambio es la resultante de múltiples fuerzas. IS-LM-BP captura una a la vez; la lectura cruzada del Tablero permite ver por qué el resultado neto no coincide con el modelo de un solo shock.
+            </div>
+          </div>
+        </details>
+
+        <details class="exercise-block">
+          <summary class="exercise-toggle"><strong>Ejercicio 4 · ¿Cómo se lee la secuencia pandemia → rebote → inflación → desinflación?</strong></summary>
+          <div class="exercise-content">
+            <div class="home-grid two">
+              <article class="card compact-card">
+                <h4>Observación</h4>
+                <p>PIB: –6.1% (2020) → +11.3% (2021) → +2.1% (2022) → +0.7% (2023).<br>Inflación: 3.0% (2020) → 7.2% (2021) → 12.8% (2022) → 3.4% (2023).<br>TPM: 0.8% (2020) → 1.2% (2021) → 8.5% (2022) → 10.5% (2023).</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Pregunta</h4>
+                <p>¿Qué modelo y en qué secuencia explica los 4 años? ¿Es un shock o son varios? ¿Cómo interactúan oferta, demanda y política?</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Lectura secuencial</h4>
+                <p><strong>2020:</strong> shock mixto (OA+DA caen). <strong>2021:</strong> demanda explota (retiros, estímulo) → DA domina. <strong>2022:</strong> costos se suman (guerra, energía) → OA sube mientras DA sigue alta. <strong>2023:</strong> TPM alta enfría demanda → DA se contrae, inflación cede.</p>
+              </article>
+              <article class="card compact-card">
+                <h4>Modelos en secuencia</h4>
+                <p>2020: OA-DA (pandemia). 2021: OA-DA (expansión fiscal). 2022: OA-DA (costos) + IS-LM-BP (depreciación). 2023: IS-LM (contracción monetaria). La secuencia completa requiere los 3 modelos.<br>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="margin-top:8px; font-size:.82rem">2020: OA-DA →</button>
+                <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="fiscalExpand" style="margin-top:4px; font-size:.82rem">2021: OA-DA →</button></p>
+              </article>
+            </div>
+            <div class="notice-box" style="margin-top:10px">
+              <strong>Cierre.</strong> Este ejercicio muestra que la macro chilena 2020–2023 no se explica con un solo modelo ni un solo shock. Es una secuencia de shocks encadenados donde cada episodio hereda el estado dejado por el anterior. La potencia de MacroLab está en recorrer esa secuencia paso a paso, cambiando de modelo cuando el canal dominante cambia.
+            </div>
+          </div>
+        </details>
+      </section>
     </section>
 
     <!-- ============ IS-LM ============ -->
