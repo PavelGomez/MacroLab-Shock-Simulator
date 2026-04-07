@@ -279,6 +279,18 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .series-copper { color: #0ea5a0; }
 .series-wti { color: #c2410c; }
 
+/* L2 PANEL — second-level indicators */
+.l2-panel { margin-top: 16px; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.l2-toggle { display: flex; align-items: center; gap: 12px; padding: 16px 20px; cursor: pointer; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%); font: inherit; list-style: none; }
+.l2-toggle::-webkit-details-marker { display: none; }
+.l2-toggle::before { content: "▸"; font-weight: 800; color: var(--accent); transition: transform .2s; }
+details[open].l2-panel > .l2-toggle::before { transform: rotate(90deg); }
+.l2-toggle strong { color: var(--navy); font-size: 1rem; }
+.l2-hint { color: var(--muted); font-size: .88rem; }
+.l2-content { padding: 0 20px 20px; }
+body.dark-mode .l2-panel { border-color: var(--line); }
+body.dark-mode .l2-toggle { background: linear-gradient(180deg, #152238 0%, #1a2a3d 100%); }
+
 /* WELCOME MODAL — v1.6 */
 .welcome-modal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; }
 .welcome-modal.hidden { display: none; }

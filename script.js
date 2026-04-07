@@ -13,6 +13,14 @@ const dashboardData = {
 };
 const ranges = { full:[0,15], mid:[9,15], recent:[11,15] };
 
+const dashboardL2 = {
+  years: [2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025],
+  imacec: [6.1,5.3,5.6,3.4,1.8,2.2,1.7,1.4,4.0,0.6,-6.1,11.3,2.1,0.7,2.8,2.5],
+  ipcSae: [1.8,2.2,1.4,1.9,4.1,4.6,2.3,1.7,1.8,2.6,2.4,5.2,10.1,5.8,3.9,3.2],
+  embi: [130,150,142,158,155,208,198,132,148,180,285,165,195,145,135,128],
+  ccPib: [1.5,-1.3,-3.6,-4.1,-1.7,-2.3,-1.7,-2.3,-3.6,-3.4,1.4,-6.8,-8.4,-3.2,-2.1,-1.8]
+};
+
 const ISLM_DEFAULTS = { c0:120, c1:0.65, b0:90, b1:0.10, b2:22, G:220, T:180, MP:380, d1:0.90, d2:60, iFixed:4.5 };
 const ISLM_REGIMES = { upward:'LM con pendiente positiva', horizontal:'LM horizontal (i exógena)' };
 const ISLM_SHOCKS = {
@@ -319,6 +327,12 @@ function miniLineChart(key,canvasId,labels,values,color,yTitle,rangeKey){
   const ctx=document.getElementById(canvasId).getContext('2d');
   charts[key]=new Chart(ctx,{type:'line',data:{labels:sL,datasets:[{data:sV,borderColor:color,backgroundColor:color+'12',pointRadius:c=>c.dataIndex===sV.length-1?3.6:0,pointHoverRadius:4.8,pointBackgroundColor:color,fill:true,tension:0.16,borderWidth:3.4}]},options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#10263f',displayColors:false,callbacks:{label:c=>`${c.formattedValue} ${yTitle}`}}},interaction:{mode:'index',intersect:false},scales:{x:{ticks:{autoSkip:true,maxTicksLimit:rangeKey==='full'?8:6,color:'#5e7184',maxRotation:0},title:{display:true,text:'Año',color:'#5e7184',font:{weight:'700'}},grid:{display:false}},y:{min:mn-pd,max:mx+pd,title:{display:true,text:yTitle,color:'#5e7184',font:{weight:'700'}},ticks:{color:'#5e7184'},grid:{color:'#e7eef5'}}}}});
 }
+function renderDashboardL2(rangeKey='full'){
+  miniLineChart('dash-imacec','dash-imacec',dashboardL2.years,dashboardL2.imacec,'#2563eb','% anual',rangeKey);
+  miniLineChart('dash-ipcsae','dash-ipcsae',dashboardL2.years,dashboardL2.ipcSae,'#f59e0b','% anual',rangeKey);
+  miniLineChart('dash-embi','dash-embi',dashboardL2.years,dashboardL2.embi,'#7c3aed','pb',rangeKey);
+  miniLineChart('dash-ccpib','dash-ccpib',dashboardL2.years,dashboardL2.ccPib,'#ef4444','% PIB',rangeKey);
+}
 function renderDashboard(rangeKey='full'){
   miniLineChart('dash-gdp','dash-gdp',dashboardData.years,dashboardData.gdp,'#2563eb','% anual',rangeKey);
   miniLineChart('dash-inflation','dash-inflation',dashboardData.years,dashboardData.inflation,'#f59e0b','% anual',rangeKey);
@@ -337,6 +351,7 @@ function renderDashboard(rangeKey='full'){
   updateSnapshot('wti',dashboardData.wti[last],dashboardData.wti[prev],' USD/barril','USD/barril');
   const summaries={full:'2010–2025: de reconstrucción y crecimiento alto, a desaceleración, estallido y pandemia, rebote extraordinario con inflación alta, endurecimiento monetario y normalización expuesta a cobre, energía y tasa internacional.',mid:'2019–2025: estallido → pandemia → rebote → inflación → TPM alta → desinflación, con cobre y petróleo mostrando que no todo se explica por demanda interna.',recent:'2021–2025: sobrecalentamiento, salto inflacionario, endurecimiento monetario y convergencia posterior.'};
   setText('dashboard-summary',summaries[rangeKey]);
+  renderDashboardL2(rangeKey);
 }
 
 /* ========== WELCOME MODAL ========== */

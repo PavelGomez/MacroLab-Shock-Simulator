@@ -1088,6 +1088,41 @@
             <p class="dashboard-note"><strong>Quiebres:</strong> desplome a ~39 USD en 2020, salto a ~90 USD en 2022 (guerra Rusia-Ucrania), tensiones Medio Oriente 2025. Canal: costos importados → OA → inflación. Chile importador neto de energía. <em>Modelo:</em> OA-DA.</p>
           </article>
         </div>
+
+        <!-- INDICADORES DE SEGUNDO NIVEL -->
+        <details class="l2-panel">
+          <summary class="l2-toggle">
+            <strong>Indicadores de segundo nivel</strong>
+            <span class="l2-hint">IMACEC, IPC subyacente, EMBI Chile, Cuenta corriente / PIB</span>
+          </summary>
+          <div class="l2-content">
+            <p class="muted-paragraph" style="margin-bottom:14px">Estas series complementan el tablero principal. Son las variables que aparecen en los "Qué mirar en Chile" de los simuladores: permiten afinar el diagnóstico cuando el primer nivel no alcanza.</p>
+            <div class="dashboard-grid-v3 dashboard-row row-2">
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-blue">IMACEC (proxy mensual de PIB)</h4><span>% anual · BCCh</span></div>
+                <canvas id="dash-imacec"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el IMACEC es la serie de mayor frecuencia para seguir actividad. Captura rezagos, estacionalidad y quiebres que el PIB anual suaviza. Aquí se muestra anualizado; en la práctica, conviene mirar la serie mensual desestacionalizada.</p>
+              </article>
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-orange">IPC subyacente (SAE)</h4><span>% anual · INE/BCCh</span></div>
+                <canvas id="dash-ipcsae"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el IPC SAE (sin alimentos ni energía) separa la inflación de tendencia de los shocks volátiles. Si el SAE sube, la presión es más persistente que un salto puntual de combustibles. Es la variable que el BCCh mira para decidir si un shock es transitorio o requiere respuesta.</p>
+              </article>
+            </div>
+            <div class="dashboard-grid-v3 dashboard-row row-2">
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-purple">EMBI Chile</h4><span>puntos base · JP Morgan</span></div>
+                <canvas id="dash-embi"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> el EMBI mide la prima de riesgo soberano. Sube con incertidumbre política (estallido 2019), crisis global (pandemia) o deterioro fiscal. Es el termómetro de cómo el mercado percibe la credibilidad institucional. Cuando sube, el financiamiento externo se encarece.</p>
+              </article>
+              <article class="dashboard-card-v2">
+                <div class="dashboard-card-head"><h4 class="series-red">Cuenta corriente / PIB</h4><span>% · BCCh</span></div>
+                <canvas id="dash-ccpib"></canvas>
+                <p class="dashboard-note"><strong>Lectura:</strong> déficit de CC = el país gasta más de lo que produce respecto del exterior. Un déficit alto sostenido señala vulnerabilidad externa. El salto a –8.4% en 2022 refleja importaciones infladas (energía, consumo post-retiros). IS-LM-BP es el lente natural.</p>
+              </article>
+            </div>
+          </div>
+        </details>
       </div>
     </section>
 
