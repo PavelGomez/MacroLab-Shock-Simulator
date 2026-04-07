@@ -64,6 +64,7 @@
     <button class="tab-button" data-tab="atlas">Atlas de shocks</button>
     <button class="tab-button" data-tab="institucional">Marco institucional</button>
     <button class="tab-button" data-tab="tablero">Tablero macro</button>
+    <button class="tab-button" data-tab="lectura">Lectura de datos</button>
     <button class="tab-button" data-tab="glosario">Glosario</button>
   </nav>
 
@@ -1124,6 +1125,192 @@
           </div>
         </details>
       </div>
+    </section>
+
+    <!-- ============ LECTURA DE DATOS ============ -->
+    <section id="lectura" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
+      <div class="panel-block">
+        <h2>Lectura de datos · del número a la pregunta</h2>
+        <p class="section-intro">Esta sección no enseña a usar Excel ni R. Enseña el criterio económico que debe guiar la lectura de datos macro: por dónde empezar, qué transformación usar y cuándo, y cómo construir un gráfico que diga algo. El objetivo es que pases de mirar números a formular preguntas con estructura.</p>
+      </div>
+
+      <div class="notice-box">
+        <strong>El problema real.</strong>
+        Los estudiantes suelen enfrentar datos sin saber por dónde empezar. Aplican transformaciones por imitación, construyen gráficos que no dicen nada y terminan opinando de coyuntura sin evidencia que respalde. Esta sección busca cerrar esa brecha: no la mecánica técnica, sino el criterio de lectura.
+      </div>
+
+      <!-- PROTOCOLO DE LECTURA -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Protocolo de lectura: 5 pasos ante cualquier serie</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">Cuando enfrentas una serie de datos macro por primera vez, sigue esta secuencia antes de hacer cualquier transformación:</p>
+        <div class="sequence-grid">
+          <article>
+            <strong>1. Nivel</strong>
+            <p>¿Cuál es el valor actual? ¿Es alto o bajo respecto de la historia? No te apures a calcular variaciones: primero ubica dónde estás. <em>Ejemplo: "El CLP/USD está en ~950. ¿Eso es mucho? En 2012 estaba en ~487. En 2020 llegó a ~792."</em></p>
+          </article>
+          <article>
+            <strong>2. Tendencia</strong>
+            <p>¿La serie sube, baja o está plana en el horizonte relevante? No te fijes en un dato puntual: mira la dirección general. <em>Ejemplo: "El desempleo lleva 4 años sobre 7.5%. La tendencia es persistentemente alta."</em></p>
+          </article>
+          <article>
+            <strong>3. Quiebres</strong>
+            <p>¿Hay algún punto donde la serie cambia abruptamente de dirección o nivel? Los quiebres son la huella de un shock. <em>Ejemplo: "La inflación estaba en ~3% hasta 2020. En 2022 saltó a 12.8%. Ese quiebre necesita explicación."</em></p>
+          </article>
+          <article>
+            <strong>4. Pregunta</strong>
+            <p>Formula una pregunta económica que el dato dispara. No describas el dato: pregunta por qué. <em>Ejemplo: "¿El salto inflacionario de 2022 viene de demanda, costos, depreciación o las tres cosas?"</em></p>
+          </article>
+          <article>
+            <strong>5. Modelo</strong>
+            <p>¿Qué modelo ayuda a responder esa pregunta? Ahora sí elige: IS-LM si es demanda/tasa, IS-LM-BP si es sector externo/cambio, OA-DA si es inflación/brecha. <em>Ejemplo: "Inflación + costos → OA-DA. Voy al simulador con shock de costos."</em></p>
+          </article>
+        </div>
+      </section>
+
+      <!-- TRANSFORMACIONES CON CRITERIO -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Transformaciones: cuándo y por qué</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">No apliques transformaciones por imitación. Cada una responde a una pregunta distinta:</p>
+        <div class="table-wrap">
+          <table class="info-table">
+            <thead><tr><th>Transformación</th><th>Qué responde</th><th>Cuándo usarla</th><th>Cuándo NO usarla</th><th>Ejemplo con datos del Tablero</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><strong>Nivel</strong></td>
+                <td>¿Dónde estamos?</td>
+                <td>Siempre como primer paso. Para ubicarse en contexto histórico.</td>
+                <td>No sirve para comparar velocidades de cambio.</td>
+                <td>CLP/USD en 2025: ~952. ¿Es alto históricamente? Sí, el promedio 2010–2019 fue ~590.</td>
+              </tr>
+              <tr>
+                <td><strong>Variación anual (%)</strong></td>
+                <td>¿Cuánto cambió respecto del año anterior?</td>
+                <td>Para medir velocidad del cambio. Para inflación, crecimiento.</td>
+                <td>No sirve si la base de comparación es anómala (ej: 2021 vs 2020).</td>
+                <td>PIB 2021: +11.3%. Parece espectacular, pero la base es 2020 (–6.1%). El rebote exagera la lectura.</td>
+              </tr>
+              <tr>
+                <td><strong>Variación acumulada</strong></td>
+                <td>¿Cuánto cambió desde un punto de referencia?</td>
+                <td>Para medir recuperación post-shock o tendencia de largo plazo.</td>
+                <td>No sirve si el punto de referencia es arbitrario.</td>
+                <td>PIB acumulado 2019–2025: el rebote de 2021 no compensó todo lo perdido en 2020.</td>
+              </tr>
+              <tr>
+                <td><strong>Promedio móvil</strong></td>
+                <td>¿Cuál es la tendencia suavizada?</td>
+                <td>Cuando la serie es muy volátil y quieres ver la dirección.</td>
+                <td>No sirve si quieres captar un quiebre puntual (el promedio lo suaviza).</td>
+                <td>Un promedio móvil de 3 años del IPC suaviza el salto de 2022, pero pierde el timing del shock.</td>
+              </tr>
+              <tr>
+                <td><strong>Ratio sobre PIB</strong></td>
+                <td>¿Cuánto pesa X en la economía?</td>
+                <td>Para comparar magnitudes relativas: gasto fiscal, cuenta corriente, deuda.</td>
+                <td>No sirve para medir velocidad de cambio.</td>
+                <td>Cuenta corriente / PIB: –8.4% en 2022. Es una señal de vulnerabilidad externa fuerte.</td>
+              </tr>
+              <tr>
+                <td><strong>Desestacionalización</strong></td>
+                <td>¿El movimiento es genuino o es patrón estacional?</td>
+                <td>Para series mensuales/trimestrales: empleo, IMACEC, ventas.</td>
+                <td>No tiene sentido para datos anuales.</td>
+                <td>El desempleo siempre sube en invierno. La serie desestacionalizada permite ver si subió "de verdad".</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GRÁFICOS QUE DICEN ALGO -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Gráficos que dicen algo vs gráficos que solo muestran datos</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">La diferencia entre un gráfico útil y uno decorativo no está en la herramienta: está en las decisiones del analista.</p>
+        <div class="home-grid two">
+          <article class="card compact-card" style="background:#fff2f2; border-color:#f3c7c5">
+            <h4 style="color:#b42318">Gráfico que no dice nada</h4>
+            <ul class="simple-list" style="font-size:.9rem">
+              <li>Título genérico: "Gráfico 1" o "Datos de inflación"</li>
+              <li>Sin período ni fuente</li>
+              <li>Escala que empieza en 0 cuando la variable varía entre 2% y 13%</li>
+              <li>Sin anotación de quiebres ni eventos</li>
+              <li>Dos series superpuestas sin explicar por qué se comparan</li>
+              <li>Conclusión: "la inflación subió" (obvio mirando el gráfico)</li>
+            </ul>
+          </article>
+          <article class="card compact-card" style="background:#f0faf2; border-color:#b6e2c0">
+            <h4 style="color:#146c43">Gráfico que cuenta una historia</h4>
+            <ul class="simple-list" style="font-size:.9rem">
+              <li>Título con pregunta o hallazgo: "El salto inflacionario de 2022 mezcló tres canales"</li>
+              <li>Período explícito, fuente y unidad</li>
+              <li>Escala ajustada al rango relevante</li>
+              <li>Anotaciones: "guerra Rusia-Ucrania", "TPM a 11.25%"</li>
+              <li>Comparación justificada: IPC total vs IPC SAE para separar volátiles</li>
+              <li>Conclusión: "el SAE sugiere que la presión no fue solo energía"</li>
+            </ul>
+          </article>
+        </div>
+        <div class="notice-box" style="margin-top:14px">
+          <strong>Regla práctica.</strong>
+          Si alguien mira tu gráfico 5 segundos y no puede decir qué pregunta responde, el gráfico no está listo. Un buen gráfico tiene: título informativo, período, fuente, escala honesta, anotación de quiebres y una frase de lectura.
+        </div>
+      </section>
+
+      <!-- ERRORES FRECUENTES -->
+      <section class="card" style="margin-bottom:18px">
+        <h3>Errores frecuentes en lectura de datos macro</h3>
+        <div class="home-grid two">
+          <article class="card compact-card hypothesis-card">
+            <h4>Confundir nivel con variación</h4>
+            <p>"El PIB creció 11.3% en 2021, la economía está en auge." No: la base es 2020 (–6.1%). El nivel de 2021 apenas recupera lo perdido. Siempre pregunta: ¿respecto de qué?</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Ignorar la base de comparación</h4>
+            <p>"La inflación bajó de 12.8% a 3.4%." Bien, pero ¿qué pasó con el IPC SAE? Si el SAE sigue alto, la baja puede ser solo por energía volátil, no por presión genuinamente menor.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Apilar transformaciones sin criterio</h4>
+            <p>"Calculé la variación del promedio móvil de la tasa de crecimiento." Cada transformación pierde información. Si no puedes explicar por qué necesitas cada capa, estás añadiendo ruido.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Leer una serie aislada</h4>
+            <p>"El cobre subió, todo bien." ¿Y el CLP/USD? ¿Y la inflación importada? ¿Y la cuenta corriente? Las series se leen cruzadas. Una variable aislada no es diagnóstico.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Confundir correlación temporal con causalidad</h4>
+            <p>"La TPM subió y el desempleo subió, entonces la TPM causa desempleo." El desempleo sube con rezago de trimestres; puede ser consecuencia de la pandemia, no de la TPM. Secuencia ≠ causa.</p>
+          </article>
+          <article class="card compact-card hypothesis-card">
+            <h4>Describir sin interpretar</h4>
+            <p>"El gráfico muestra que la inflación subió en 2022." Eso no es análisis: es descripción. Análisis es: "subió porque confluyeron demanda excesiva, costos energéticos y depreciación, y la descomposición por SAE sugiere que no fue solo volátiles."</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- DE LA LECTURA AL MODELO -->
+      <section class="card" style="margin-bottom:18px; background: linear-gradient(180deg, #f8fbff 0%, #fff 100%)">
+        <h3>De la lectura de datos al modelo: el puente</h3>
+        <p class="muted-paragraph" style="margin-bottom:14px">La lectura de datos no termina en describir. Termina en una pregunta que un modelo puede responder. Aquí van 4 ejemplos de cómo pasar del tablero al simulador:</p>
+        <div class="home-grid two">
+          <article class="card compact-card">
+            <h4>Dato → PIB cae 6.1% en 2020</h4>
+            <p><strong>Protocolo:</strong> nivel bajo, quiebre abrupto, pregunta: ¿oferta, demanda o ambas?<br><strong>Transformación útil:</strong> comparar con IMACEC mensual para ver timing.<br><strong>Modelo:</strong> OA-DA (shock mixto). <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="pandemic" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → CLP/USD salta a 872 en 2022</h4>
+            <p><strong>Protocolo:</strong> nivel históricamente alto, tendencia alcista desde 2019, quiebre por guerra + retiros.<br><strong>Transformación útil:</strong> cruzar con cobre y EMBI.<br><strong>Modelo:</strong> IS-LM-BP. <button class="route-btn mechanism-sim-btn" data-tab="islmbp" data-shock="copperDown" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → Inflación 12.8% en 2022</h4>
+            <p><strong>Protocolo:</strong> quiebre masivo, pregunta: ¿demanda, costos o expectativas?<br><strong>Transformación útil:</strong> IPC total vs IPC SAE para separar volátiles.<br><strong>Modelo:</strong> OA-DA. <button class="route-btn mechanism-sim-btn" data-tab="oada" data-shock="oilUp" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+          <article class="card compact-card">
+            <h4>Dato → TPM sube de 0.5% a 11.25%</h4>
+            <p><strong>Protocolo:</strong> nivel máximo histórico, tendencia alcista agresiva 2021–2023, quiebre por inflación.<br><strong>Transformación útil:</strong> cruzar con inflación para ver si el endurecimiento funcionó.<br><strong>Modelo:</strong> IS-LM. <button class="route-btn mechanism-sim-btn" data-tab="islm" data-shock="monetaryContract" style="margin-top:6px; font-size:.82rem">simular →</button></p>
+          </article>
+        </div>
+      </section>
     </section>
 
     <!-- ============ GLOSARIO AMPLIADO ============ -->
