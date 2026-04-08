@@ -421,6 +421,22 @@ function initQuickstartButtons(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuidedCase()});
 }
 function initGuidedArrivalClose(){document.querySelectorAll('[data-close-guided]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.closeGuided)?.classList.add('hidden')}))}
+function initQuizzes(){
+  document.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const question=btn.closest('.quiz-question');
+      if(question.classList.contains('answered'))return;
+      question.classList.add('answered');
+      const isCorrect=btn.dataset.correct==='true';
+      const feedbackEl=question.querySelector('.quiz-feedback');
+      btn.classList.add(isCorrect?'correct':'incorrect');
+      if(!isCorrect){question.querySelectorAll('.quiz-opt').forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct')})}
+      question.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);
+      feedbackEl.textContent=btn.dataset.feedback;
+      feedbackEl.className=`quiz-feedback ${isCorrect?'is-correct':'is-incorrect'}`;
+    });
+  });
+}
 function initExportButtons(){
   document.querySelectorAll('.export-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -466,7 +482,7 @@ function attachReset(buttonId,prefix,defaults,cb){document.getElementById(button
 /* ========== INIT ========== */
 function init(){
   if(window.Chart){Chart.defaults.font.family='Inter, system-ui, sans-serif';Chart.defaults.color='#5e7184';Chart.defaults.devicePixelRatio=Math.max(2,window.devicePixelRatio||1)}
-  initTabs();initWelcomeModal();initDarkMode();initExportButtons();
+  initTabs();initWelcomeModal();initDarkMode();initExportButtons();initQuizzes();
   populateSelect('islm-regime',ISLM_REGIMES);
   populateSelect('islm-shock',ISLM_SHOCKS);
   populateSelect('islmbp-shock',ISLMBP_SHOCKS);
