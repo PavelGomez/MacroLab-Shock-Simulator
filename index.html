@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MacroLab Shock Simulator · Curso 2026 · v1.6</title>
+  <title>MacroLab Shock Simulator · Curso 2026 · v1.7</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -49,6 +49,17 @@
       <p class="eyebrow">Macroeconomía II · Profesor Pável Gómez · 2026</p>
       <h1>MacroLab Shock Simulator</h1>
       <p class="subtitle">Laboratorio de análisis macro y evaluación de escenarios de coyuntura: una herramienta de aprendizaje para identificar mecanismos, interpretar shocks y explicar trayectorias plausibles del entorno económico chileno.</p>
+      <div class="header-pills">
+        <span class="header-pill">Chile</span>
+        <span class="header-pill">Caso + modelo + dato + institución</span>
+        <span class="header-pill">Simulación pedagógica, no pronóstico</span>
+      </div>
+      <div class="header-actions">
+        <button class="route-btn quickstart-button" data-case="dashboard">Ruta sugerida → tablero</button>
+        <button class="route-btn quickstart-button" data-case="iran">Entrar por caso actual</button>
+        <button class="route-btn" data-tab="instrucciones">Ver guía de uso</button>
+      </div>
+      <p class="header-meta">Datos observados 2010–2025 · base docente calibrada en 2026 · sitio publicado en GitHub Pages</p>
     </div>
   </header>
 
@@ -80,6 +91,55 @@
       <div class="notice-box">
         <strong>Aviso pedagógico.</strong>
         Esta es una herramienta de aprendizaje, no de predicción. Simplifica relaciones macroeconómicas para ordenar mecanismos, comparar escenarios y practicar interpretación. No reemplaza análisis econométrico, proyecciones oficiales ni diagnóstico de coyuntura real detallado.
+      </div>
+
+      <section class="card first-run-card">
+        <div class="card-headline-block">
+          <p class="kicker">Ruta sugerida de primer uso</p>
+          <h3>Haz visible el valor del laboratorio en 60–90 segundos</h3>
+          <p class="muted-paragraph">Si vienes por primera vez, usa esta secuencia breve antes de explorar libremente. Conserva la lógica completa del sitio, pero reduce la fricción de arranque.</p>
+        </div>
+        <div class="first-run-grid">
+          <article>
+            <strong>1. Ubica el ciclo chileno</strong>
+            <p>Parte por el Tablero para ver qué se está moviendo hoy y qué cambió en 2010–2025.</p>
+            <button class="route-btn quickstart-button" data-case="dashboard">abrir tablero →</button>
+          </article>
+          <article>
+            <strong>2. Entra por un caso</strong>
+            <p>Abre un episodio contemporáneo y mira qué pregunta macro concreta dispara.</p>
+            <button class="route-btn quickstart-button" data-case="iran">abrir caso guiado →</button>
+          </article>
+          <article>
+            <strong>3. Prueba un shock</strong>
+            <p>Compara base vs shock en un simulador y revisa interpretación, trayectoria y dato relevante.</p>
+            <button class="route-btn" data-tab="oada">ir a OA-DA →</button>
+          </article>
+        </div>
+      </section>
+
+      <div class="home-grid four signal-grid">
+        <article class="card compact-card signal-card">
+          <h3>Qué puedes hacer aquí</h3>
+          <p>Convertir una noticia o intuición en una secuencia disciplinada: shock → lente → canal → dato → institución.</p>
+        </article>
+        <article class="card compact-card signal-card">
+          <h3>Si vienes por una noticia</h3>
+          <p>Entra por un caso contemporáneo o por “Shocks y transmisión” para pasar del titular al mecanismo dominante.</p>
+        </article>
+        <article class="card compact-card signal-card">
+          <h3>Si quieres escoger modelo</h3>
+          <p>Parte por IS-LM, IS-LM-BP u OA-DA y usa el estado base 2026 como punto de comparación antes del shock.</p>
+        </article>
+        <article class="card compact-card signal-card">
+          <h3>Si quieres mirar datos y contexto</h3>
+          <p>Usa Tablero, Atlas y Marco institucional para leer la coyuntura chilena antes de tocar parámetros.</p>
+        </article>
+      </div>
+
+      <div class="notice-box temporal-note">
+        <strong>Coherencia temporal.</strong>
+        El Tablero usa series anuales observadas 2010–2025. El curso y la calibración base se sitúan en 2026: por eso el Atlas y los casos incluyen episodios abiertos o en desarrollo, pero el sitio no inventa series observadas para 2026.
       </div>
 
       <!-- TRES RUTAS DE ENTRADA -->
@@ -132,12 +192,12 @@
           <div class="route-cards">
             <article class="route-card">
               <h4>Tablero Macro</h4>
-              <p>¿Dónde se ubica el presente dentro del ciclo 2010–2025?</p>
+              <p>¿Dónde se ubica el presente dentro del ciclo 2010–2025 y qué señales siguen abiertas en 2026?</p>
               <button class="route-btn quickstart-button" data-case="dashboard">ir al tablero →</button>
             </article>
             <article class="route-card">
               <h4>Atlas de shocks 2009–2026</h4>
-              <p>¿Qué episodios marcaron la macro chilena y cómo se conectan?</p>
+              <p>¿Qué episodios marcaron la macro chilena y cuáles siguen abiertos como casos de 2026?</p>
               <button class="route-btn" data-tab="atlas">ver atlas →</button>
             </article>
             <article class="route-card">
@@ -430,6 +490,21 @@
             <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
             <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Los valores base representan una economía con consumo moderado (c₁=0.65), inversión sensible a tasa (b₂=22), gasto fiscal de ~220 y oferta monetaria que refleja TPM cercana a 5%. No son estimaciones econométricas: son puntos de partida pedagógicos calibrados para que los shocks produzcan movimientos visibles y plausibles.</p>
           </div>
+          <div class="card scenario-brief-card">
+            <p class="kicker">Estado del escenario</p>
+            <h3 id="islm-scenario-headline">Base pedagógica 2026 activa</h3>
+            <p class="micro-note" id="islm-scenario-status">Usa este punto de partida para comparar antes y después. Si todavía no eliges shock, el sitio te guía sin dejar paneles mudos.</p>
+            <div class="scenario-brief-grid">
+              <article><strong>Shock o lente</strong><p id="islm-scenario-summary">IS-LM en economía cerrada: base lista para empezar.</p></article>
+              <article><strong>Qué mirar primero</strong><p id="islm-scenario-next">Empieza por un shock fiscal o monetario y luego contrasta actividad, tasa e inversión.</p></article>
+              <article><strong>Parámetros del escenario</strong><p id="islm-scenario-params">Parámetros base 2026. Si editas inputs, esta ficha mostrará tus ajustes.</p></article>
+            </div>
+            <div class="button-row share-row">
+              <button class="route-btn share-btn" data-share-model="islm" data-share-kind="summary">Copiar ficha</button>
+              <button class="route-btn share-btn secondary" data-share-model="islm" data-share-kind="link">Copiar enlace</button>
+            </div>
+            <p class="share-feedback" id="islm-share-feedback">La ficha resume shock, parámetros y resultados actuales.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
@@ -465,6 +540,27 @@
             <article class="card"><h3>Crowding-out vs acelerador</h3><p id="islm-crowd" class="details-body"></p></article>
             <article class="card"><h3>Qué mirar en Chile</h3><p id="islm-watch" class="details-body muted"></p></article>
           </div>
+          <section class="card trajectory-card">
+            <div class="card-headline-block">
+              <p class="kicker">Trayectoria pedagógica</p>
+              <h3>Base vs shock en 7 períodos</h3>
+              <p class="muted-paragraph">Trayectoria plausible para docencia, no pronóstico. La línea base se fija en índice 100 y el shock muestra cómo podría desplegarse el ajuste.</p>
+            </div>
+            <canvas id="islm-trajectory-chart"></canvas>
+            <div class="trajectory-grid">
+              <article><strong>Narrativa dominante</strong><p id="islm-trajectory-story">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+              <article><strong>Lectura de rezagos</strong><p id="islm-trajectory-lag">La tasa y la inversión suelen ajustarse con ritmos distintos a la actividad.</p></article>
+              <article><strong>Cierre del escenario</strong><p id="islm-trajectory-end">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+            </div>
+          </section>
+          <details class="card quiz-shell">
+            <summary class="exercise-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
+            <div class="quiz-content">
+              <p id="islm-quiz-question" class="muted-paragraph">Se carga una pregunta breve del modelo.</p>
+              <div class="quiz-options" id="islm-quiz-options"></div>
+              <div class="quiz-feedback" id="islm-quiz-feedback">Elige una respuesta para recibir feedback inmediato.</div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -532,6 +628,21 @@
             <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
             <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Base Mundell-Fleming con alta movilidad de capitales e i ≈ i*. Las exportaciones netas base (x₀=70) y la sensibilidad cambiaria (x₂=0.28) están calibradas para que shocks como caída del cobre o alza de i* produzcan movimientos visibles en E y NX. i*=4.5% refleja el entorno post-endurecimiento global.</p>
           </div>
+          <div class="card scenario-brief-card">
+            <p class="kicker">Estado del escenario</p>
+            <h3 id="islmbp-scenario-headline">Base pedagógica 2026 activa</h3>
+            <p class="micro-note" id="islmbp-scenario-status">Este estado base deja visible la lógica de economía abierta. Si aún no eliges shock, usa la ficha para orientarte y abrir un caso sin fricción.</p>
+            <div class="scenario-brief-grid">
+              <article><strong>Shock o lente</strong><p id="islmbp-scenario-summary">IS-LM-BP con flotación y alta movilidad de capitales.</p></article>
+              <article><strong>Qué mirar primero</strong><p id="islmbp-scenario-next">Prueba cobre, tipo de cambio o tasa internacional y luego compara E, NX y actividad.</p></article>
+              <article><strong>Parámetros del escenario</strong><p id="islmbp-scenario-params">Parámetros base 2026. Si editas inputs, esta ficha mostrará tus ajustes.</p></article>
+            </div>
+            <div class="button-row share-row">
+              <button class="route-btn share-btn" data-share-model="islmbp" data-share-kind="summary">Copiar ficha</button>
+              <button class="route-btn share-btn secondary" data-share-model="islmbp" data-share-kind="link">Copiar enlace</button>
+            </div>
+            <p class="share-feedback" id="islmbp-share-feedback">La ficha resume shock, parámetros y resultados actuales.</p>
+          </div>
           <div class="card">
             <h3>Parámetros editables</h3>
             <div class="inputs-grid two-columns">
@@ -586,6 +697,27 @@
             </article>
             <article class="card"><h3>Qué mirar en Chile</h3><p id="islmbp-watch" class="details-body muted"></p></article>
           </div>
+          <section class="card trajectory-card">
+            <div class="card-headline-block">
+              <p class="kicker">Trayectoria pedagógica</p>
+              <h3>Base vs shock en 7 períodos</h3>
+              <p class="muted-paragraph">Trayectoria plausible para docencia, no pronóstico. La base se fija en índice 100 y el shock muestra el ajuste relativo de Y, E y NX.</p>
+            </div>
+            <canvas id="islmbp-trajectory-chart"></canvas>
+            <div class="trajectory-grid">
+              <article><strong>Narrativa dominante</strong><p id="islmbp-trajectory-story">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+              <article><strong>Lectura de rezagos</strong><p id="islmbp-trajectory-lag">En economía abierta, el tipo de cambio suele reaccionar antes que la actividad.</p></article>
+              <article><strong>Cierre del escenario</strong><p id="islmbp-trajectory-end">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+            </div>
+          </section>
+          <details class="card quiz-shell">
+            <summary class="exercise-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
+            <div class="quiz-content">
+              <p id="islmbp-quiz-question" class="muted-paragraph">Se carga una pregunta breve del modelo.</p>
+              <div class="quiz-options" id="islmbp-quiz-options"></div>
+              <div class="quiz-feedback" id="islmbp-quiz-feedback">Elige una respuesta para recibir feedback inmediato.</div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -632,6 +764,21 @@
           <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
             <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
             <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Yₙ = A × L = 950 refleja producción potencial. Pᵉ=1.0 ancla expectativas en el nivel base. γ=0.002 genera una OA con pendiente positiva pero no vertical, permitiendo ver el trade-off producción/precios. El mark-up μ=0.20 y z=0.50 reflejan rigideces moderadas del mercado laboral chileno.</p>
+          </div>
+          <div class="card scenario-brief-card">
+            <p class="kicker">Estado del escenario</p>
+            <h3 id="oada-scenario-headline">Base pedagógica 2026 activa</h3>
+            <p class="micro-note" id="oada-scenario-status">La base muestra el punto de partida antes del shock. Si todavía no aplicas uno, úsala para leer precios, producción y brecha sin sensación de panel vacío.</p>
+            <div class="scenario-brief-grid">
+              <article><strong>Shock o lente</strong><p id="oada-scenario-summary">OA-DA lista para comparar producción, precios y Yₙ.</p></article>
+              <article><strong>Qué mirar primero</strong><p id="oada-scenario-next">Prueba costos, demanda o productividad y luego mira si el ajuste cae en P, en Y o en ambos.</p></article>
+              <article><strong>Parámetros del escenario</strong><p id="oada-scenario-params">Parámetros base 2026. Si editas inputs, esta ficha mostrará tus ajustes.</p></article>
+            </div>
+            <div class="button-row share-row">
+              <button class="route-btn share-btn" data-share-model="oada" data-share-kind="summary">Copiar ficha</button>
+              <button class="route-btn share-btn secondary" data-share-model="oada" data-share-kind="link">Copiar enlace</button>
+            </div>
+            <p class="share-feedback" id="oada-share-feedback">La ficha resume shock, parámetros y resultados actuales.</p>
           </div>
           <div class="card">
             <h3>Parámetros de demanda y oferta</h3>
@@ -746,6 +893,27 @@
             <article class="card"><h3>Trayectoria de mediano plazo</h3><p id="oada-mediumrun" class="details-body"></p></article>
             <article class="card"><h3>Qué mirar en Chile</h3><p id="oada-watch" class="details-body muted"></p></article>
           </div>
+          <section class="card trajectory-card">
+            <div class="card-headline-block">
+              <p class="kicker">Trayectoria pedagógica</p>
+              <h3>Base vs shock en 7 períodos</h3>
+              <p class="muted-paragraph">Trayectoria plausible para docencia, no pronóstico. La base se fija en índice 100 y el shock muestra cómo podrían moverse Y, P y Yₙ a lo largo del ajuste.</p>
+            </div>
+            <canvas id="oada-trajectory-chart"></canvas>
+            <div class="trajectory-grid">
+              <article><strong>Narrativa dominante</strong><p id="oada-trajectory-story">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+              <article><strong>Lectura de rezagos</strong><p id="oada-trajectory-lag">Precios, producción y capacidad pueden reaccionar con ritmos distintos.</p></article>
+              <article><strong>Cierre del escenario</strong><p id="oada-trajectory-end">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+            </div>
+          </section>
+          <details class="card quiz-shell">
+            <summary class="exercise-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
+            <div class="quiz-content">
+              <p id="oada-quiz-question" class="muted-paragraph">Se carga una pregunta breve del modelo.</p>
+              <div class="quiz-options" id="oada-quiz-options"></div>
+              <div class="quiz-feedback" id="oada-quiz-feedback">Elige una respuesta para recibir feedback inmediato.</div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -945,7 +1113,7 @@
       <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>Atlas de shocks 2009–2026</h2>
-        <p class="section-intro">Episodios históricos y contemporáneos que marcaron la macroeconomía chilena. Cada ficha conecta el shock con variables, mecanismos, modelos y datos observables.</p>
+        <p class="section-intro">Episodios históricos y contemporáneos que marcaron la macroeconomía chilena. Cada ficha conecta el shock con variables, mecanismos, modelos y datos observables. Cuando aparece 2026, se trata de episodios abiertos o en curso, no de series anuales observadas ya cerradas.</p>
       </div>
       <div class="atlas-grid" id="atlas-grid">
         <!-- Cards generadas por JS -->
@@ -1088,7 +1256,7 @@
       <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>Tablero macro del curso</h2>
-        <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
+        <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Las series observadas llegan a 2025; 2026 se usa como año docente de calibración y para episodios abiertos del Atlas. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
       </div>
 
       <div class="guided-arrival hidden" id="tablero-guided-arrival">
@@ -1109,6 +1277,7 @@
           <div>
             <h3>Tablero macro del curso</h3>
             <p class="dashboard-source"><strong>Fuente base:</strong> Banco Central de Chile, Base de Datos Estadísticos. Cobre (Cochilco), WTI (FRED).</p>
+            <p class="dashboard-temporal-note">Serie anual observada 2010–2025. El curso 2026 usa este tablero como referencia y deja los episodios abiertos para Atlas y casos guiados.</p>
           </div>
           <div class="range-controls">
             <button class="range-button active" data-range="full">2010–2025</button>

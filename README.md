@@ -1,10 +1,20 @@
-# MacroLab Shock Simulator · Curso 2026 · v1.6
+# MacroLab Shock Simulator · Curso 2026 · v1.7
 
 Simulador pedagógico de macroeconomía para Chile. Herramienta docente publicable en GitHub Pages.
 
+## Cambios incrementales v1.7
+
+- Home reforzada para comunicar valor en 60–90 segundos sin perder densidad analítica
+- Coherencia temporal explícita: datos observados 2010–2025, base docente 2026, episodios 2026 como casos abiertos
+- Ficha de escenario en cada modelo: shock activo, qué mirar primero, parámetros editados
+- Capa docente ligera: copiar ficha y enlace compartible del escenario actual
+- Chequeo rápido de comprensión por modelo con feedback inmediato
+- Trayectoria pedagógica ligera base vs shock en 7 períodos para IS-LM, IS-LM-BP y OA-DA
+- Corrección de navegación: el botón de modo proyección ya no compite con las tabs
+
 ## Descripción general
 
-MacroLab v1.6 integra **11 ciclos de mejora** (C1–C11) organizados en **11 pestañas de navegación** y un stack puro de HTML + CSS + JavaScript + Chart.js (CDN). 
+MacroLab integra **11 ciclos de mejora** (C1–C11) organizados en **11 pestañas de navegación** y un stack puro de HTML + CSS + JavaScript + Chart.js (CDN). 
 
 Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de lectura de datos en 5 pasos, ejercicios diagnósticos navegables, y modo oscuro para proyección.
 
@@ -150,5 +160,5 @@ Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de l
 
 ---
 
-**Última actualización**: 7 de abril de 2026 (v1.6 + C11)  
+**Última actualización**: 7 de abril de 2026 (v1.7)  
 **Estado**: Publicado en GitHub Pages
