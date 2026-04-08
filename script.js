@@ -491,6 +491,73 @@ function initQuizzes(){
     });
   });
 }
+/* ========== SCENARIO EXPORT & SHARE ========== */
+function buildScenarioText(model){
+  const now=new Date().toISOString().slice(0,10);
+  let lines=[`MacroLab Shock Simulator — Escenario exportado (${now})`,`Modelo: ${model}`,``];
+  if(model==='IS-LM'){
+    const regime=document.getElementById('islm-regime').value;
+    const shockKey=document.getElementById('islm-shock').value;
+    const shock=ISLM_SHOCKS[shockKey];
+    const p=readParams('islm',ISLM_DEFAULTS);
+    const eq=calcISLM(p,regime);
+    const fin=calcISLM(applyDelta(p,shock.delta),regime);
+    lines.push(`Régimen: ${ISLM_REGIMES[regime]}`,`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, i=${round(eq.i)}, Inv=${round(eq.investment)}`,`Equilibrio final: Y=${round(fin.Y)}, i=${round(fin.i)}, Inv=${round(fin.investment)}`,``,`Qué mirar: ${shock.watch}`);
+  } else if(model==='IS-LM-BP'){
+    const shockKey=document.getElementById('islmbp-shock').value;
+    const shock=ISLMBP_SHOCKS[shockKey];
+    const p=readParams('islmbp',ISLMBP_DEFAULTS);
+    const eq=calcISLMBP(p,0);
+    const fin=calcISLMBP(applyDelta(p,shock.delta),shock.fxShock);
+    lines.push(`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, i=${round(eq.i)}, E=${round(eq.eIndex)}, NX=${round(eq.NX)}`,`Equilibrio final: Y=${round(fin.Y)}, i=${round(fin.i)}, E=${round(fin.eIndex)}, NX=${round(fin.NX)}`,``,`Qué mirar: ${shock.watch}`);
+  } else if(model==='OA-DA'){
+    const shockKey=document.getElementById('oada-shock').value;
+    const shock=OADA_SHOCKS[shockKey];
+    const p=readParams('oada',OADA_DEFAULTS);
+    const eq=calcOADA(p);
+    const fin=calcOADA(applyDelta(p,shock.delta));
+    lines.push(`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, P=${round(eq.P)}, Brecha=${round(eq.gap)}, Yₙ=${round(eq.Yn)}`,`Equilibrio final: Y=${round(fin.Y)}, P=${round(fin.P)}, Brecha=${round(fin.gap)}, Yₙ=${round(fin.Yn)}`,``,`Mediano plazo: ${shock.mediumRun}`,`Qué mirar: ${shock.watch}`);
+  }
+  return lines.join('\n');
+}
+function buildShareHash(model){
+  let data={m:model};
+  if(model==='IS-LM'){data.r=document.getElementById('islm-regime').value;data.s=document.getElementById('islm-shock').value;const p=readParams('islm',ISLM_DEFAULTS);data.p=p}
+  else if(model==='IS-LM-BP'){data.s=document.getElementById('islmbp-shock').value;data.p=readParams('islmbp',ISLMBP_DEFAULTS)}
+  else if(model==='OA-DA'){data.s=document.getElementById('oada-shock').value;data.p=readParams('oada',OADA_DEFAULTS)}
+  return '#scenario='+encodeURIComponent(JSON.stringify(data));
+}
+function loadFromHash(){
+  if(!location.hash.startsWith('#scenario='))return;
+  try{
+    const data=JSON.parse(decodeURIComponent(location.hash.slice(10)));
+    if(data.m==='IS-LM'){activateTab('islm');if(data.r)document.getElementById('islm-regime').value=data.r;if(data.s)document.getElementById('islm-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islm-${k}`);if(el)el.value=v});renderISLM()}
+    else if(data.m==='IS-LM-BP'){activateTab('islmbp');if(data.s)document.getElementById('islmbp-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islmbp-${k}`);if(el)el.value=v});renderISLMBP()}
+    else if(data.m==='OA-DA'){activateTab('oada');if(data.s)document.getElementById('oada-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`oada-${k}`);if(el)el.value=v});renderOADA()}
+  }catch(e){/* ignore bad hash */}
+}
+function initScenarioButtons(){
+  document.querySelectorAll('.scenario-export-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const model=btn.dataset.model;
+      const text=buildScenarioText(model);
+      const blob=new Blob([text],{type:'text/plain'});
+      const link=document.createElement('a');
+      link.download=`macrolab-${model.toLowerCase().replace(/[^a-z]/g,'')}-${new Date().toISOString().slice(0,10)}.txt`;
+      link.href=URL.createObjectURL(blob);link.click();URL.revokeObjectURL(link.href);
+    });
+  });
+  document.querySelectorAll('.scenario-share-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const model=btn.dataset.model;
+      const hash=buildShareHash(model);
+      const url=location.origin+location.pathname+hash;
+      navigator.clipboard.writeText(url).then(()=>{
+        btn.textContent='¡Enlace copiado!';setTimeout(()=>btn.textContent='Copiar enlace',2000);
+      }).catch(()=>{prompt('Copia este enlace:',url)});
+    });
+  });
+}
 function initExportButtons(){
   document.querySelectorAll('.export-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -551,7 +618,8 @@ function init(){
   attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
   attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
   document.querySelectorAll('.range-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.range-button').forEach(b=>b.classList.toggle('active',b===btn));renderDashboard(btn.dataset.range)}));
-  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();
+  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();initScenarioButtons();renderAtlas();
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
+  loadFromHash();
 }
 document.addEventListener('DOMContentLoaded',init);
