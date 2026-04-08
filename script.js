@@ -222,7 +222,7 @@ const MODEL_META = {
   }
 };
 
-const TRAJECTORY_LABELS = ['t0','t1','t2','t3','t4','t5','t6'];
+const TRAJECTORY_LABELS = ['Inicio','1','2','3','4','5','6'];
 const TRAJECTORY_PROFILES = {
   flat:[0,0,0,0,0,0,0],
   immediate:[0,0.58,0.82,0.93,0.98,1,1],
@@ -346,16 +346,16 @@ function updateScenarioCard(modelKey,context){
   setText(`${modelKey}-scenario-params`,summarizeParameterChanges(context.params,meta.defaults));
 }
 
-function indexTarget(initialValue,finalValue){
-  if(!Number.isFinite(initialValue)||Math.abs(initialValue)<EPS)return 100;
-  return roundNum((finalValue/initialValue)*100,2);
+function percentChangeTarget(initialValue,finalValue){
+  if(!Number.isFinite(initialValue)||Math.abs(initialValue)<EPS)return 0;
+  return roundNum(((finalValue-initialValue)/initialValue)*100,2);
 }
 
 function buildTrajectorySeries(initialValue,finalValue,profileKey){
-  const target=indexTarget(initialValue,finalValue);
+  const target=percentChangeTarget(initialValue,finalValue);
   const profile=TRAJECTORY_PROFILES[profileKey]||TRAJECTORY_PROFILES.medium;
-  if(Math.abs(target-100)<0.05)return TRAJECTORY_LABELS.map(()=>100);
-  return profile.map(frac=>roundNum(100+((target-100)*frac),2));
+  if(Math.abs(target)<0.05)return TRAJECTORY_LABELS.map(()=>0);
+  return profile.map(frac=>roundNum(target*frac,2));
 }
 
 function getTrajectoryProfiles(modelKey,shockKey){
@@ -428,8 +428,8 @@ function renderTrajectory(modelKey,initial,final_,shockKey){
   const meta=MODEL_META[modelKey];
   const profileMap=getTrajectoryProfiles(modelKey,shockKey);
   const datasets=[{
-    label:'Base = 100',
-    data:TRAJECTORY_LABELS.map(()=>100),
+    label:'Base = 0%',
+    data:TRAJECTORY_LABELS.map(()=>0),
     borderColor:'#94a3b8',
     borderDash:[6,6],
     borderWidth:2,
@@ -461,11 +461,33 @@ function renderTrajectory(modelKey,initial,final_,shockKey){
       interaction:{mode:'index',intersect:false},
       plugins:{
         legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},
-        tooltip:{backgroundColor:'#10263f',displayColors:true}
+        tooltip:{
+          backgroundColor:'#10263f',
+          displayColors:true,
+          callbacks:{
+            label(context){
+              if(context.dataset.label==='Base = 0%')return 'Base = 0%';
+              const value=Number(context.raw);
+              const sign=value>0?'+':'';
+              return `${context.dataset.label}: ${sign}${round(value,2)}% vs base`;
+            }
+          }
+        }
       },
       scales:{
         x:{grid:{display:false},title:{display:true,text:'Períodos pedagógicos'}},
-        y:{min:roundNum(min-4,1),max:roundNum(max+4,1),title:{display:true,text:'Índice base = 100'},grid:{color:'#edf2f7'}}
+        y:{
+          min:roundNum(Math.min(min-2,-2),1),
+          max:roundNum(Math.max(max+2,2),1),
+          title:{display:true,text:'Desvío respecto de la base (%)'},
+          grid:{color:'#edf2f7'},
+          ticks:{
+            callback(value){
+              const num=Number(value);
+              return `${num>0?'+':''}${num}%`;
+            }
+          }
+        }
       }
     }
   });
