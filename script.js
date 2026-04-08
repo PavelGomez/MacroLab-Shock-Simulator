@@ -761,11 +761,65 @@ function renderOADA(){
   setText('oada-mediumrun',`${shock.mediumRun} Yₙ pasa de ${round(initial.Yn)} a ${round(final_.Yn)} y la brecha final queda en ${round(final_.gap)}.`);
   setHTML('oada-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('oada',shockKey,shock.watch)}`);
   setText('oada-deltaY',`${dY>=0?'+':''}${round(dY)} en Y`);setText('oada-deltaP',`${dP>=0?'+':''}${round(dP)} en P`);
+  renderTrajectory();
   const maxAbsGap=Math.max(Math.abs(initial.gap),Math.abs(final_.gap),40);
   setGapBar('oada-gapbar0','oada-gap-label0',initial.gap,maxAbsGap);setGapBar('oada-gapbar1','oada-gap-label1',final_.gap,maxAbsGap);
   scenarioState.oada={modelKey:'oada',shockKey,params:{...base},initial,final:final_};
   updateScenarioCard('oada',scenarioState.oada);
   renderTrajectory('oada',initial,final_,shockKey);
+}
+
+/* ========== TRAJECTORY MODE (OA-DA) ========== */
+function computeTrajectory(baseParams,shockDelta,periods=8){
+  const trajectory={base:[],shock:[]};
+  let bP={...baseParams};let sP=applyDelta({...baseParams},shockDelta);
+  for(let t=0;t<periods;t++){
+    const bEq=calcOADA(bP);const sEq=calcOADA(sP);
+    trajectory.base.push({t,Y:bEq.Y,P:bEq.P,gap:bEq.gap,Yn:bEq.Yn});
+    trajectory.shock.push({t,Y:sEq.Y,P:sEq.P,gap:sEq.gap,Yn:sEq.Yn});
+    // adaptive expectations: Pe adjusts toward actual P
+    const bAdj=0.3;const sAdj=0.3;
+    bP={...bP,Pe:bP.Pe+bAdj*(bEq.P-bP.Pe)};
+    sP={...sP,Pe:sP.Pe+sAdj*(sEq.P-sP.Pe)};
+    // cost shock fades 30% per period
+    if(sP.costShock>0.01)sP.costShock*=0.7;
+    else if(sP.costShock<-0.01)sP.costShock*=0.7;
+  }
+  return trajectory;
+}
+function renderTrajectory(){
+  const shockKey=document.getElementById('oada-shock').value;
+  const shock=OADA_SHOCKS[shockKey];
+  const base=readParams('oada',OADA_DEFAULTS);
+  const traj=computeTrajectory(base,shock.delta,8);
+  const labels=traj.base.map((_,i)=>`t${i}`);
+  const bY=traj.base.map(p=>p.Y);const sY=traj.shock.map(p=>p.Y);
+  const bP=traj.base.map(p=>p.P);const sP=traj.shock.map(p=>p.P);
+  const bGap=traj.base.map(p=>p.gap);const sGap=traj.shock.map(p=>p.gap);
+  function mkDatasets(baseD,shockD,bLabel,sLabel,bColor,sColor){
+    return[{label:bLabel,data:baseD,borderColor:bColor,borderWidth:2.4,pointRadius:3,tension:.2,borderDash:[6,4]},{label:sLabel,data:shockD,borderColor:sColor,borderWidth:3,pointRadius:4,tension:.2}];
+  }
+  const mkOpts=(yTitle)=>({responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{mode:'index',intersect:false}},scales:{x:{title:{display:true,text:'Período'},grid:{display:false}},y:{title:{display:true,text:yTitle},grid:{color:'#edf2f7'}}}});
+  if(charts['traj-y'])charts['traj-y'].destroy();
+  if(charts['traj-p'])charts['traj-p'].destroy();
+  if(charts['traj-gap'])charts['traj-gap'].destroy();
+  const ctxY=document.getElementById('traj-y-canvas');
+  const ctxP=document.getElementById('traj-p-canvas');
+  const ctxGap=document.getElementById('traj-gap-canvas');
+  if(!ctxY)return;
+  charts['traj-y']=new Chart(ctxY.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bY,sY,'Y base','Y shock','#2d6ea3','#f59e0b')},options:mkOpts('Producción (Y)')});
+  charts['traj-p']=new Chart(ctxP.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bP,sP,'P base','P shock','#16a34a','#ef4444')},options:mkOpts('Nivel de precios (P)')});
+  charts['traj-gap']=new Chart(ctxGap.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bGap,sGap,'Brecha base','Brecha shock','#7c3aed','#f59e0b')},options:mkOpts('Brecha (Y − Yₙ)')});
+  // narrative
+  const first=traj.shock[0];const last=traj.shock[traj.shock.length-1];
+  const dY=last.Y-first.Y;const dP=last.P-first.P;const dGap=last.gap-first.gap;
+  let narrative=`Trayectoria pedagógica de 8 períodos. Shock: ${shock.label}. `;
+  if(Math.abs(last.gap)<Math.abs(first.gap)*0.5)narrative+=`La brecha se cierra progresivamente: de ${round(first.gap)} a ${round(last.gap)}. `;
+  else narrative+=`La brecha se mantiene: de ${round(first.gap)} a ${round(last.gap)}. `;
+  if(dP>0.01)narrative+=`Los precios suben a lo largo de la trayectoria (+${round(dP)}). `;
+  else if(dP<-0.01)narrative+=`Los precios bajan a lo largo de la trayectoria (${round(dP)}). `;
+  narrative+=`Expectativas se ajustan adaptativamente (30% por período). Shocks de costos se disipan gradualmente.`;
+  setText('traj-narrative',narrative);
 }
 
 /* ========== DASHBOARD ========== */
@@ -872,6 +926,89 @@ function initQuickstartButtons(){
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGuidedCase()});
 }
 function initGuidedArrivalClose(){document.querySelectorAll('[data-close-guided]').forEach(btn=>btn.addEventListener('click',()=>{document.getElementById(btn.dataset.closeGuided)?.classList.add('hidden')}))}
+function initQuizzes(){
+  document.querySelectorAll('.quiz-opt').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const question=btn.closest('.quiz-question');
+      if(question.classList.contains('answered'))return;
+      question.classList.add('answered');
+      const isCorrect=btn.dataset.correct==='true';
+      const feedbackEl=question.querySelector('.quiz-feedback');
+      btn.classList.add(isCorrect?'correct':'incorrect');
+      if(!isCorrect){question.querySelectorAll('.quiz-opt').forEach(o=>{if(o.dataset.correct==='true')o.classList.add('correct')})}
+      question.querySelectorAll('.quiz-opt').forEach(o=>o.disabled=true);
+      feedbackEl.textContent=btn.dataset.feedback;
+      feedbackEl.className=`quiz-feedback ${isCorrect?'is-correct':'is-incorrect'}`;
+    });
+  });
+}
+/* ========== SCENARIO EXPORT & SHARE ========== */
+function buildScenarioText(model){
+  const now=new Date().toISOString().slice(0,10);
+  let lines=[`MacroLab Shock Simulator — Escenario exportado (${now})`,`Modelo: ${model}`,``];
+  if(model==='IS-LM'){
+    const regime=document.getElementById('islm-regime').value;
+    const shockKey=document.getElementById('islm-shock').value;
+    const shock=ISLM_SHOCKS[shockKey];
+    const p=readParams('islm',ISLM_DEFAULTS);
+    const eq=calcISLM(p,regime);
+    const fin=calcISLM(applyDelta(p,shock.delta),regime);
+    lines.push(`Régimen: ${ISLM_REGIMES[regime]}`,`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, i=${round(eq.i)}, Inv=${round(eq.investment)}`,`Equilibrio final: Y=${round(fin.Y)}, i=${round(fin.i)}, Inv=${round(fin.investment)}`,``,`Qué mirar: ${shock.watch}`);
+  } else if(model==='IS-LM-BP'){
+    const shockKey=document.getElementById('islmbp-shock').value;
+    const shock=ISLMBP_SHOCKS[shockKey];
+    const p=readParams('islmbp',ISLMBP_DEFAULTS);
+    const eq=calcISLMBP(p,0);
+    const fin=calcISLMBP(applyDelta(p,shock.delta),shock.fxShock);
+    lines.push(`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, i=${round(eq.i)}, E=${round(eq.eIndex)}, NX=${round(eq.NX)}`,`Equilibrio final: Y=${round(fin.Y)}, i=${round(fin.i)}, E=${round(fin.eIndex)}, NX=${round(fin.NX)}`,``,`Qué mirar: ${shock.watch}`);
+  } else if(model==='OA-DA'){
+    const shockKey=document.getElementById('oada-shock').value;
+    const shock=OADA_SHOCKS[shockKey];
+    const p=readParams('oada',OADA_DEFAULTS);
+    const eq=calcOADA(p);
+    const fin=calcOADA(applyDelta(p,shock.delta));
+    lines.push(`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, P=${round(eq.P)}, Brecha=${round(eq.gap)}, Yₙ=${round(eq.Yn)}`,`Equilibrio final: Y=${round(fin.Y)}, P=${round(fin.P)}, Brecha=${round(fin.gap)}, Yₙ=${round(fin.Yn)}`,``,`Mediano plazo: ${shock.mediumRun}`,`Qué mirar: ${shock.watch}`);
+  }
+  return lines.join('\n');
+}
+function buildShareHash(model){
+  let data={m:model};
+  if(model==='IS-LM'){data.r=document.getElementById('islm-regime').value;data.s=document.getElementById('islm-shock').value;const p=readParams('islm',ISLM_DEFAULTS);data.p=p}
+  else if(model==='IS-LM-BP'){data.s=document.getElementById('islmbp-shock').value;data.p=readParams('islmbp',ISLMBP_DEFAULTS)}
+  else if(model==='OA-DA'){data.s=document.getElementById('oada-shock').value;data.p=readParams('oada',OADA_DEFAULTS)}
+  return '#scenario='+encodeURIComponent(JSON.stringify(data));
+}
+function loadFromHash(){
+  if(!location.hash.startsWith('#scenario='))return;
+  try{
+    const data=JSON.parse(decodeURIComponent(location.hash.slice(10)));
+    if(data.m==='IS-LM'){activateTab('islm');if(data.r)document.getElementById('islm-regime').value=data.r;if(data.s)document.getElementById('islm-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islm-${k}`);if(el)el.value=v});renderISLM()}
+    else if(data.m==='IS-LM-BP'){activateTab('islmbp');if(data.s)document.getElementById('islmbp-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islmbp-${k}`);if(el)el.value=v});renderISLMBP()}
+    else if(data.m==='OA-DA'){activateTab('oada');if(data.s)document.getElementById('oada-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`oada-${k}`);if(el)el.value=v});renderOADA()}
+  }catch(e){/* ignore bad hash */}
+}
+function initScenarioButtons(){
+  document.querySelectorAll('.scenario-export-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const model=btn.dataset.model;
+      const text=buildScenarioText(model);
+      const blob=new Blob([text],{type:'text/plain'});
+      const link=document.createElement('a');
+      link.download=`macrolab-${model.toLowerCase().replace(/[^a-z]/g,'')}-${new Date().toISOString().slice(0,10)}.txt`;
+      link.href=URL.createObjectURL(blob);link.click();URL.revokeObjectURL(link.href);
+    });
+  });
+  document.querySelectorAll('.scenario-share-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const model=btn.dataset.model;
+      const hash=buildShareHash(model);
+      const url=location.origin+location.pathname+hash;
+      navigator.clipboard.writeText(url).then(()=>{
+        btn.textContent='¡Enlace copiado!';setTimeout(()=>btn.textContent='Copiar enlace',2000);
+      }).catch(()=>{prompt('Copia este enlace:',url)});
+    });
+  });
+}
 function initExportButtons(){
   document.querySelectorAll('.export-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -917,7 +1054,7 @@ function attachReset(buttonId,prefix,defaults,cb){document.getElementById(button
 /* ========== INIT ========== */
 function init(){
   if(window.Chart){Chart.defaults.font.family='Inter, system-ui, sans-serif';Chart.defaults.color='#5e7184';Chart.defaults.devicePixelRatio=Math.max(2,window.devicePixelRatio||1)}
-  initTabs();initWelcomeModal();initDarkMode();initExportButtons();
+  initTabs();initWelcomeModal();initDarkMode();initExportButtons();initQuizzes();
   populateSelect('islm-regime',ISLM_REGIMES);
   populateSelect('islm-shock',ISLM_SHOCKS);
   populateSelect('islmbp-shock',ISLMBP_SHOCKS);
