@@ -491,9 +491,22 @@
         </div>
       </div>
 
+      <!-- PEDAGOGIC TRAJECTORY IS-LM -->
+      <div class="ped-traj-section" data-model="islm">
+        <p class="ped-traj-kicker">TRAYECTORIA PEDAGÓGICA</p>
+        <h3 class="ped-traj-title">Base vs shock en 7 períodos</h3>
+        <p class="ped-traj-desc">Trayectoria plausible para docencia, no pronóstico. Cada línea muestra su desvío porcentual respecto de la base del modelo: sirve para ver dirección, magnitud relativa y rezagos, no para comparar niveles entre variables.</p>
+        <div class="ped-traj-chart-wrap"><canvas id="ped-traj-islm-canvas"></canvas></div>
+        <div class="home-grid three" style="margin-top:14px">
+          <article class="card compact-card"><h4>Narrativa dominante</h4><p id="ped-islm-narrative" class="ped-traj-card-body">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+          <article class="card compact-card"><h4>Lectura de rezagos</h4><p id="ped-islm-lag" class="ped-traj-card-body">La tasa y la inversión suelen ajustarse con ritmos distintos a la actividad.</p></article>
+          <article class="card compact-card"><h4>Cierre del escenario</h4><p id="ped-islm-close" class="ped-traj-card-body">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+        </div>
+      </div>
+
       <!-- QUIZ IS-LM -->
       <details class="quiz-block">
-        <summary class="quiz-toggle"><strong>Chequeo rápido — IS-LM</strong> ¿Entendiste el mecanismo?</summary>
+        <summary class="quiz-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
         <div class="quiz-content">
           <div class="quiz-question" data-quiz="islm-q1">
             <p class="quiz-stem"><strong>1.</strong> El gobierno aumenta G. En IS-LM con LM de pendiente positiva, ¿qué pasa con la inversión privada?</p>
@@ -641,9 +654,22 @@
         </div>
       </div>
 
+      <!-- PEDAGOGIC TRAJECTORY IS-LM-BP -->
+      <div class="ped-traj-section" data-model="islmbp">
+        <p class="ped-traj-kicker">TRAYECTORIA PEDAGÓGICA</p>
+        <h3 class="ped-traj-title">Base vs shock en 7 períodos</h3>
+        <p class="ped-traj-desc">Trayectoria plausible para docencia, no pronóstico. Cada línea muestra su desvío porcentual respecto de la base del modelo: sirve para ver dirección, magnitud relativa y rezagos, no para comparar niveles entre variables.</p>
+        <div class="ped-traj-chart-wrap"><canvas id="ped-traj-islmbp-canvas"></canvas></div>
+        <div class="home-grid three" style="margin-top:14px">
+          <article class="card compact-card"><h4>Narrativa dominante</h4><p id="ped-islmbp-narrative" class="ped-traj-card-body">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+          <article class="card compact-card"><h4>Lectura de rezagos</h4><p id="ped-islmbp-lag" class="ped-traj-card-body">En economía abierta, el tipo de cambio suele reaccionar antes que la actividad.</p></article>
+          <article class="card compact-card"><h4>Cierre del escenario</h4><p id="ped-islmbp-close" class="ped-traj-card-body">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+        </div>
+      </div>
+
       <!-- QUIZ IS-LM-BP -->
       <details class="quiz-block">
-        <summary class="quiz-toggle"><strong>Chequeo rápido — IS-LM-BP</strong> ¿Entendiste el mecanismo?</summary>
+        <summary class="quiz-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
         <div class="quiz-content">
           <div class="quiz-question" data-quiz="islmbp-q1">
             <p class="quiz-stem"><strong>1.</strong> Con flotación cambiaria y alta movilidad de capitales, ¿por qué la política fiscal es menos eficaz que la monetaria?</p>
@@ -830,6 +856,19 @@
         </div>
       </div>
 
+      <!-- PEDAGOGIC TRAJECTORY OA-DA -->
+      <div class="ped-traj-section" data-model="oada">
+        <p class="ped-traj-kicker">TRAYECTORIA PEDAGÓGICA</p>
+        <h3 class="ped-traj-title">Base vs shock en 7 períodos</h3>
+        <p class="ped-traj-desc">Trayectoria plausible para docencia, no pronóstico. Cada línea muestra su desvío porcentual respecto de la base del modelo: sirve para ver dirección, magnitud relativa y rezagos, no para comparar niveles entre variables.</p>
+        <div class="ped-traj-chart-wrap"><canvas id="ped-traj-oada-canvas"></canvas></div>
+        <div class="home-grid three" style="margin-top:14px">
+          <article class="card compact-card"><h4>Narrativa dominante</h4><p id="ped-oada-narrative" class="ped-traj-card-body">La trayectoria se actualiza al elegir un shock o editar parámetros.</p></article>
+          <article class="card compact-card"><h4>Lectura de rezagos</h4><p id="ped-oada-lag" class="ped-traj-card-body">Precios, producción y capacidad pueden reaccionar con ritmos distintos.</p></article>
+          <article class="card compact-card"><h4>Cierre del escenario</h4><p id="ped-oada-close" class="ped-traj-card-body">Usa este cierre para comparar el equilibrio final con el camino intermedio.</p></article>
+        </div>
+      </div>
+
       <!-- TRAJECTORY MODE -->
       <details class="traj-block">
         <summary class="traj-toggle"><strong>Modo trayectoria</strong> — 8 períodos, base vs shock, convergencia adaptativa</summary>
@@ -841,15 +880,15 @@
           <div class="home-grid three" style="margin-bottom:14px">
             <div class="card" style="padding:12px">
               <h4 style="font-size:.92rem; margin:0 0 6px">Producción (Y)</h4>
-              <canvas id="traj-y-canvas" style="width:100%!important; height:160px!important"></canvas>
+              <div style="position:relative; height:180px"><canvas id="traj-y-canvas"></canvas></div>
             </div>
             <div class="card" style="padding:12px">
               <h4 style="font-size:.92rem; margin:0 0 6px">Nivel de precios (P)</h4>
-              <canvas id="traj-p-canvas" style="width:100%!important; height:160px!important"></canvas>
+              <div style="position:relative; height:180px"><canvas id="traj-p-canvas"></canvas></div>
             </div>
             <div class="card" style="padding:12px">
               <h4 style="font-size:.92rem; margin:0 0 6px">Brecha (Y − Yₙ)</h4>
-              <canvas id="traj-gap-canvas" style="width:100%!important; height:160px!important"></canvas>
+              <div style="position:relative; height:180px"><canvas id="traj-gap-canvas"></canvas></div>
             </div>
           </div>
           <div class="card compact-card" style="background:#f8fbfd">
@@ -860,7 +899,7 @@
 
       <!-- QUIZ OA-DA -->
       <details class="quiz-block">
-        <summary class="quiz-toggle"><strong>Chequeo rápido — OA-DA</strong> ¿Entendiste el mecanismo?</summary>
+        <summary class="quiz-toggle"><strong>Chequeo rápido de comprensión</strong></summary>
         <div class="quiz-content">
           <div class="quiz-question" data-quiz="oada-q1">
             <p class="quiz-stem"><strong>1.</strong> Sube el precio del petróleo por conflicto geopolítico. En OA-DA, ¿qué combinación de P e Y esperas?</p>

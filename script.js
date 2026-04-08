@@ -223,6 +223,7 @@ function renderISLM(){
   let dom='';if(regime==='horizontal'){dom='Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='No aparece crowding-out relevante; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El acelerador prima.':'Hay crowding-out parcial.'}else if(dI<0){dom=crowding>accelerator?'Prima el crowding-out.':'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
   setText('islm-crowd',`Acelerador: b1·ΔY = ${round(accelerator)}. Crowding-out: b2·Δi = ${round(crowding)}. ${dom}`);
   setHTML('islm-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islm',shockKey,shock.watch)}`);
+  renderPedTraj('islm');
 }
 
 /* ========== IS-LM-BP ========== */
@@ -259,6 +260,7 @@ function renderISLMBP(){
   let extra='';if(overlap)extra=' El ajuste principal se ve en E y NX más que en Y.';
   setText('islmbp-explanation',`Shock: ${shock.label}. ${shock.changedText} La producción ${signWord(dY,'sube','baja')}, E ${signWord(dE,'sube','baja')} y NX ${signWord(dNX,'mejoran','empeoran')}. ${shock.reality}${extra}`);
   setHTML('islmbp-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islmbp',shockKey,shock.watch)}`);
+  renderPedTraj('islmbp');
 }
 
 /* ========== OA-DA ========== */
@@ -314,6 +316,7 @@ function renderOADA(){
   setHTML('oada-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('oada',shockKey,shock.watch)}`);
   setText('oada-deltaY',`${dY>=0?'+':''}${round(dY)} en Y`);setText('oada-deltaP',`${dP>=0?'+':''}${round(dP)} en P`);
   renderTrajectory();
+  renderPedTraj('oada');
   const maxAbsGap=Math.max(Math.abs(initial.gap),Math.abs(final_.gap),40);
   setGapBar('oada-gapbar0','oada-gap-label0',initial.gap,maxAbsGap);setGapBar('oada-gapbar1','oada-gap-label1',final_.gap,maxAbsGap);
 }
@@ -369,6 +372,101 @@ function renderTrajectory(){
   else if(dP<-0.01)narrative+=`Los precios bajan a lo largo de la trayectoria (${round(dP)}). `;
   narrative+=`Expectativas se ajustan adaptativamente (30% por período). Shocks de costos se disipan gradualmente.`;
   setText('traj-narrative',narrative);
+}
+
+/* ========== PEDAGOGIC TRAJECTORY (ALL MODELS) ========== */
+function computePedTraj(model,periods=7){
+  /* Returns {labels, series:[{name,color,data:[pct deviation from base]}]} */
+  const labels=['Inicio'];for(let i=1;i<periods;i++)labels.push(String(i));
+  /* Transmission speed factors: variable-specific convergence to final deviation.
+     f(t)=1-speed^t  where speed<1; smaller speed = faster convergence. */
+  if(model==='islm'){
+    const regime=document.getElementById('islm-regime').value;
+    const shockKey=document.getElementById('islm-shock').value;
+    const shock=ISLM_SHOCKS[shockKey];
+    const base=readParams('islm',ISLM_DEFAULTS);
+    const fin=applyDelta(base,shock.delta);
+    const eqBase=calcISLM(base,regime);
+    const eqFin=calcISLM(fin,regime);
+    const vars=[
+      {name:'Producción (Y)',val0:eqBase.Y,val1:eqFin.Y,speed:0.55,color:'#2563eb'},
+      {name:'Tasa de interés (i)',val0:eqBase.i,val1:eqFin.i,speed:0.35,color:'#16a34a'},
+      {name:'Inversión',val0:eqBase.investment,val1:eqFin.investment,speed:0.48,color:'#f59e0b'}
+    ];
+    return {labels,series:buildPedSeries(vars,periods),shockLabel:shock.label,lagNote:'La tasa y la inversión suelen ajustarse con ritmos distintos a la actividad.',model:'IS-LM'};
+  }
+  if(model==='islmbp'){
+    const shockKey=document.getElementById('islmbp-shock').value;
+    const shock=ISLMBP_SHOCKS[shockKey];
+    const base=readParams('islmbp',ISLMBP_DEFAULTS);
+    const fin=applyDelta(base,shock.delta);
+    const eqBase=calcISLMBP(base,0);
+    const eqFin=calcISLMBP(fin,shock.fxShock);
+    const vars=[
+      {name:'Producción (Y)',val0:eqBase.Y,val1:eqFin.Y,speed:0.55,color:'#2563eb'},
+      {name:'Tipo de cambio (E)',val0:eqBase.eIndex,val1:eqFin.eIndex,speed:0.30,color:'#ef4444'},
+      {name:'Export. netas (NX)',val0:eqBase.NX,val1:eqFin.NX,speed:0.45,color:'#f59e0b'}
+    ];
+    return {labels,series:buildPedSeries(vars,periods),shockLabel:shock.label,lagNote:'En economía abierta, el tipo de cambio suele reaccionar antes que la actividad.',model:'IS-LM-BP'};
+  }
+  if(model==='oada'){
+    const shockKey=document.getElementById('oada-shock').value;
+    const shock=OADA_SHOCKS[shockKey];
+    const base=readParams('oada',OADA_DEFAULTS);
+    const traj=computeTrajectory(base,shock.delta,periods);
+    const bY0=traj.base[0].Y;const bP0=traj.base[0].P;const bYn0=traj.base[0].Yn;
+    const series=[
+      {name:'Producción (Y)',color:'#2563eb',data:traj.shock.map((s,i)=>bY0!==0?((s.Y-traj.base[i].Y)/Math.abs(bY0))*100:0)},
+      {name:'Precios (P)',color:'#ef4444',data:traj.shock.map((s,i)=>bP0!==0?((s.P-traj.base[i].P)/Math.abs(bP0))*100:0)},
+      {name:'Producto potencial (Yₙ)',color:'#16a34a',data:traj.shock.map((s,i)=>bYn0!==0?((s.Yn-traj.base[i].Yn)/Math.abs(bYn0))*100:0)}
+    ];
+    return {labels:traj.base.map((_,i)=>i===0?'Inicio':String(i)),series,shockLabel:shock.label,lagNote:'Precios, producción y capacidad pueden reaccionar con ritmos distintos.',model:'OA-DA'};
+  }
+  return null;
+}
+function buildPedSeries(vars,periods){
+  return vars.map(v=>{
+    const pctFinal=v.val0!==0?((v.val1-v.val0)/Math.abs(v.val0))*100:0;
+    const data=[0];for(let t=1;t<periods;t++)data.push(pctFinal*(1-Math.pow(v.speed,t)));
+    return{name:v.name,color:v.color,data};
+  });
+}
+function renderPedTraj(model){
+  const canvasId=`ped-traj-${model}-canvas`;
+  const ctx=document.getElementById(canvasId);
+  if(!ctx)return;
+  const result=computePedTraj(model);
+  if(!result)return;
+  const chartKey=`ped-traj-${model}`;
+  if(charts[chartKey])charts[chartKey].destroy();
+  const datasets=[{label:'Base = 0%',data:result.labels.map(()=>0),borderColor:'#94a3b8',borderWidth:2,borderDash:[8,5],pointRadius:0,tension:0,fill:false}];
+  result.series.forEach(s=>{
+    datasets.push({label:s.name,data:s.data,borderColor:s.color,borderWidth:2.8,pointRadius:3.5,pointBackgroundColor:s.color,tension:0.2,fill:false});
+  });
+  const allVals=result.series.flatMap(s=>s.data).concat([0]);
+  const mn=Math.min(...allVals);const mx=Math.max(...allVals);
+  const span=Math.max(mx-mn,0.5);const pad=span*0.25;
+  charts[chartKey]=new Chart(ctx.getContext('2d'),{type:'line',data:{labels:result.labels,datasets},options:{
+    responsive:true,maintainAspectRatio:false,animation:false,
+    plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10,font:{size:11}}},tooltip:{mode:'index',intersect:false,callbacks:{label:c=>`${c.dataset.label}: ${c.parsed.y!==undefined?c.parsed.y.toFixed(2):'—'}%`}}},
+    scales:{x:{title:{display:true,text:'Períodos pedagógicos',font:{weight:'700'}},grid:{display:false}},y:{min:mn-pad,max:mx+pad,title:{display:true,text:'Desviación de base (%)',font:{weight:'700'}},grid:{color:'#e7eef5'},ticks:{callback:v=>v.toFixed(1)+'%'}}}
+  }});
+  /* Narrative cards */
+  const noShock=result.series.every(s=>s.data.every(d=>Math.abs(d)<0.01));
+  const narrativeId=`ped-${model}-narrative`;const lagId=`ped-${model}-lag`;const closeId=`ped-${model}-close`;
+  if(noShock){
+    setText(narrativeId,'Sin shock, la trayectoria coincide con la base 2026. Úsala como línea de referencia antes de interpretar un caso.');
+    setText(lagId,'La línea plana te ayuda a distinguir mecanismo, rezago y magnitud cuando actives un shock.');
+    setText(closeId,'El escenario base queda listo para comparación disciplinada.');
+  } else {
+    const fastest=result.series.reduce((a,b)=>Math.abs(b.data[1])>Math.abs(a.data[1])?b:a);
+    const largest=result.series.reduce((a,b)=>Math.abs(b.data[b.data.length-1])>Math.abs(a.data[a.data.length-1])?b:a);
+    const lastVal=largest.data[largest.data.length-1];
+    const dir=lastVal>0?'sube':'baja';
+    setText(narrativeId,`Shock: ${result.shockLabel}. La variable que más se mueve es ${largest.name} (${dir} ${Math.abs(lastVal).toFixed(1)}% respecto de la base). La primera en reaccionar es ${fastest.name}.`);
+    setText(lagId,result.lagNote);
+    setText(closeId,'Usa este cierre para comparar el equilibrio final con el camino intermedio.');
+  }
 }
 
 /* ========== DASHBOARD ========== */
@@ -621,5 +719,7 @@ function init(){
   initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();initScenarioButtons();renderAtlas();
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
   loadFromHash();
+  /* Re-render trajectory charts when their <details> opens (canvas needs visible dimensions) */
+  document.querySelector('.traj-block')?.addEventListener('toggle',function(){if(this.open)renderTrajectory()});
 }
 document.addEventListener('DOMContentLoaded',init);

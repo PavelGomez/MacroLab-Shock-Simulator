@@ -297,6 +297,16 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .series-copper { color: #0ea5a0; }
 .series-wti { color: #c2410c; }
 
+/* PEDAGOGIC TRAJECTORY SECTION */
+.ped-traj-section { background: linear-gradient(180deg, #f7fafd 0%, #fff 100%); border: 1px solid var(--line); border-radius: 18px; padding: 24px 28px; margin-top: 20px; }
+.ped-traj-kicker { font-size: .78rem; font-weight: 700; letter-spacing: .12em; color: var(--accent); margin: 0 0 4px; text-transform: uppercase; }
+.ped-traj-title { font-size: 1.18rem; font-weight: 700; margin: 0 0 6px; }
+.ped-traj-desc { font-size: .9rem; color: var(--muted); line-height: 1.55; margin: 0 0 16px; }
+.ped-traj-chart-wrap { position: relative; width: 100%; height: 260px; }
+.ped-traj-chart-wrap canvas { width: 100% !important; height: 100% !important; }
+.ped-traj-card-body { font-size: .88rem; color: var(--muted); line-height: 1.5; margin: 4px 0 0; }
+body.dark-mode .ped-traj-section { background: linear-gradient(180deg, #152238 0%, #1a2a3d 100%); border-color: var(--line); }
+
 /* TRAJECTORY PANEL */
 .traj-block { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 20px; }
 .traj-toggle { display: flex; align-items: center; gap: 10px; padding: 16px 20px; cursor: pointer; background: linear-gradient(180deg, #f0f7ff 0%, #fff 100%); font: inherit; list-style: none; }
