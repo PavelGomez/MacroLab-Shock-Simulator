@@ -1,54 +1,164 @@
-# MacroLab Shock Simulator · Curso 2026 · v1.6
+# MacroLab Shock Simulator · Curso 2026 · v1.7
 
 Simulador pedagógico de macroeconomía para Chile. Herramienta docente publicable en GitHub Pages.
 
-## Archivos
-- `index.html` — estructura completa
-- `styles.css` — estilos
-- `script.js` — lógica, simuladores y datos
-- `README.md` — documentación
+## Cambios incrementales v1.7
 
-## Qué cambia en v1.6
+- Home reforzada para comunicar valor en 60–90 segundos sin perder densidad analítica
+- Coherencia temporal explícita: datos observados 2010–2025, base docente 2026, episodios 2026 como casos abiertos
+- Ficha de escenario en cada modelo: shock activo, qué mirar primero, parámetros editados
+- Capa docente ligera: copiar ficha y enlace compartible del escenario actual
+- Chequeo rápido de comprensión por modelo con feedback inmediato
+- Trayectoria pedagógica ligera base vs shock en 7 períodos para IS-LM, IS-LM-BP y OA-DA
+- Corrección de navegación: el botón de modo proyección ya no compite con las tabs
 
-### Onboarding y navegación
-- **Modal de bienvenida** al abrir el sitio (una vez por sesión).
-- **Tres rutas de entrada** en el Inicio: casos contemporáneos, modelos, datos y contexto.
-- **"← Volver al Inicio"** visible en todas las secciones.
-- Diferenciación visual clara entre botones de navegación y contenido informativo.
+## Descripción general
 
-### Nuevas secciones
-- **Atlas de shocks 2009–2026**: fichas de 10 episodios históricos con variables, mecanismos, modelos útiles y enlaces internos.
-- **"Si vienes desde una noticia"**: mini-secuencias en Instrucciones para pasar de un titular a un modelo.
+MacroLab integra **11 ciclos de mejora** (C1–C11) organizados en **11 pestañas de navegación** y un stack puro de HTML + CSS + JavaScript + Chart.js (CDN). 
 
-### Mejoras a secciones existentes
-- **IS-LM**: recuadro "Cuándo usar este modelo", "Qué gana y qué pierde".
-- **IS-LM-BP**: recuadro "Cuándo conviene usar IS-LM-BP", "Cómo leer el mecanismo aquí".
-- **OA-DA**: bloque de interpretación más sustancioso con clasificación de patrones, cuarta pendiente "OA casi vertical".
-- **Shocks y transmisión**: hipótesis rivales (oferta vs demanda, transitorio vs régimen, costos vs credibilidad).
-- **Marco institucional**: reorganizado por bienes públicos institucionales + tensiones.
-- **Glosario**: expandido a 4 bloques temáticos (~45 términos).
-- **Tablero macro**: mantenido sin retrocesos.
+Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de lectura de datos en 5 pasos, ejercicios diagnósticos navegables, y modo oscuro para proyección.
 
-## Stack
-- HTML + CSS + JavaScript puro
-- Chart.js vía CDN
-- Sin frameworks, sin backend, sin almacenamiento persistente
+---
+
+## Arquitectura: 11 pestañas
+
+| Pestaña | Función | Origen |
+|---------|---------|--------|
+| **Inicio** | Modal de bienvenida, 3 rutas de entrada, diferenciación visual clara | C0 (base) |
+| **Instrucciones** | 4 ejercicios de diagnóstico (inflación+desempleo 2022, TPM sin recesión, cobre sin apreciación, 2020–2023) | C11 (hoy) |
+| **IS-LM** | Modelo canonical + bloques de contexto Chile | C0 + C5 |
+| **IS-LM-BP** | Trinidad imposible: 3 configuraciones comparadas (Chile = flotación + movilidad) | C5 |
+| **OA-DA** | Bloque de expectativas, segunda vuelta, convergencia con 3 escenarios | C5 |
+| **Shocks** | 12 shocks clasificados (tipo/canal/modelo/ejemplo) + 4 cadenas visuales nuevas | C2 |
+| **Atlas** | 10 episodios históricos 2009–2026 (variables, mecanismos, modelos, enlaces internos) | C2 |
+| **Marco institucional** | Argumento game-theoretic, 2 nuevos bienes públicos (FEES/FRP, CFA), tabla 8×6, filtro con 3 ejemplos, 7 tensiones Chile-específicas | C1 |
+| **Tablero** | 4 bloques de lectura cruzada, timeline chips navegables, notas enriquecidas, gráficos renombrados con fuente (BCCh, INE, Cochilco, FRED) | C4 + C8 |
+| **Lectura de datos** | Protocolo 5 pasos, tabla de transformaciones (6 tipos), contraste gráfico bueno vs malo, 6 errores, puente datos→modelo (4 ejemplos) | C10 (hoy) |
+| **Glosario** | ~45 términos temáticos (±4 bloques). Expandido a C7. | C0 + C7 |
+
+---
+
+## 11 ciclos de mejora (C1–C11)
+
+### **C1: Marco Institucional** (ayer)
+- Argumento game-theoretic de bienes públicos macroeconómicos
+- 2 nuevos bienes públicos: FEES/FRP (estabilidad cambiaria), CFA (credibilidad fiscal)
+- Tabla analítica: 8 instituciones × 6 columnas (mandato, instrumento, meta, horizonte, interacción, riesgo)
+- Sección "Filtro institucional": 3 ejemplos modelo→institución
+- 7 tensiones Chile-específicas (autonomía vs presión política, etc.)
+
+### **C2: Shocks y transmisión** (ayer)
+- 4 nuevas cadenas visuales: pandemia, estallido 2019, shock Fed, productividad
+- Tabla clasificatoria: 12 shocks (tipo / canal de transmisión / modelo sugerido / ejemplo histórico / botón simular)
+- Botones "simular en [modelo]": navegación con shock precargado
+- Mapa de transmisión con rezagos típicos
+
+### **C3: Tooltips** (ayer)
+- 34 parámetros editables: nombre descriptivo + tooltip explicativo
+- Nota de calibración 2026 en cada simulador
+- Mejora UX: claridad de inputs sin dejar la interfaz
+
+### **C4: Tablero (análisis de series)** (ayer)
+- 4 bloques de lectura cruzada de series macroeconómicas
+- Timeline chips navegables que llevan al simulador con shock precargado
+- Notas de gráficos enriquecidas con cifras + modelo recomendado
+
+### **C5: Modelos avanzados** (ayer)
+- **IS-LM-BP**: bloque completo de trinidad imposible con 3 configuraciones comparadas
+  - Configuración Chile: flotación + movilidad de capitales
+- **OA-DA**: bloque de expectativas, segunda vuelta, convergencia con 3 escenarios
+
+### **C6: Modo oscuro (Modo proyección)** (ayer)
+- Botón "Modo proyección" en navbar
+- CSS dark mode completo (~40 selectores)
+- JavaScript que actualiza colores de Chart.js en tiempo real
+- UX: preserva usabilidad en proyección de aula
+
+### **C7: Exportación PNG** (ayer)
+- Botón en cada gráfico del simulador
+- Descarga automática con nombre y fecha
+- Integración: permite incorporar outputs en reportes docentes
+
+### **C8: Gráficos renombrados + fuentes institucionales** (hoy)
+- Todos los gráficos del Tablero con nombres descriptivos completos
+- Fuente institucional en cada serie: BCCh, INE, Cochilco, FRED
+- Mejora transparencia metodológica
+
+### **C9: Panel desplegable de segundo nivel (Tablero)** (hoy)
+- IMACEC, IPC SAE, EMBI Chile, cuenta corriente/PIB
+- 4 mini-gráficos con notas de lectura
+- Cada nota explica: qué mide, cuándo usarlo, conexión con simuladores
+
+### **C10: Nueva pestaña "Lectura de datos"** (hoy)
+- Protocolo de 5 pasos para leer datos macroeconométricos
+- Tabla de transformaciones: 6 tipos (detrending, desestacionalización, diferenciación, deflación, normalización, rezagos)
+  - Cada uno: cuándo sí, cuándo no, ejemplo
+- Contraste gráfico: lectura buena vs lectura mala
+- 6 errores frecuentes (ej. no desestacionalizar series que ya lo están)
+- Puente datos→modelo: 4 ejemplos navegables hacia simulador
+
+### **C11: Ejercicios de diagnóstico en Instrucciones** (hoy)
+- **E1**: Inflación + desempleo 2022
+  - Observación, pregunta, hipótesis, test en simulador, cierre analítico
+- **E2**: TPM sin recesión
+- **E3**: Cobre sin apreciación
+- **E4**: Secuencia 2020–2023 (pandemia → recuperación → Fed)
+- Cada ejercicio oculta cierre analítico hasta que estudiante simule
+
+---
+
+## Stack técnico
+
+- **Frontend puro**: HTML + CSS + JavaScript (sin frameworks)
+- **Gráficos**: Chart.js vía CDN
+- **Sin backend, sin almacenamiento persistente**: todo en memoria + localStorage (opcional)
+- **Deployment**: GitHub Pages desde rama `main`, `/` (root)
+
+---
 
 ## Publicación en GitHub Pages
-1. Sube los 4 archivos al directorio raíz del repositorio.
-2. En Settings > Pages, selecciona Deploy from branch.
-3. Elige `main` y `/(root)`.
-4. Guarda y espera la publicación.
+
+1. Sube los 4 archivos al directorio raíz del repositorio:
+   - `index.html`
+   - `styles.css`
+   - `script.js`
+   - `README.md`
+
+2. En **Settings > Pages**, selecciona:
+   - **Deploy from branch**
+   - Branch: `main`
+   - Folder: `/ (root)`
+
+3. Guarda y espera la publicación (~2 min)
+
+---
 
 ## Fuentes de datos
-- **Banco Central de Chile**, Base de Datos Estadísticos (PIB, inflación, desempleo, TPM, CLP/USD).
-- **Cochilco** (cobre).
-- **Federal Reserve Bank of St. Louis vía FRED** (WTI).
+
+- **Banco Central de Chile**: PIB, inflación, desempleo, TPM, tipo de cambio (CLP/USD)
+- **INE (Instituto Nacional de Estadísticas)**: IMACEC, IPC, tasa de actividad
+- **Cochilco**: precio del cobre
+- **Federal Reserve (FRED)**: tasas de interés EE.UU., índices globales
+
+---
 
 ## Mejoras futuras posibles
-- Exportación de gráficos como imagen.
-- Modo oscuro para proyección.
-- Casos guiados adicionales.
-- Series trimestrales en el tablero.
-- Curva de Phillips como módulo separado.
-- Comparación simultánea de dos shocks.
+
+- Exportación de gráficos como imagen (PNG/SVG)
+- Modo oscuro para proyección
+- Casos guiados adicionales
+- Series trimestrales en el tablero
+- Curva de Phillips como módulo separado
+- Comparación simultánea de dos shocks
+
+---
+
+## Contribuidores
+
+- **PavelGomez**: diseño pedagógico, arquitectura de ciclos, integración institucional
+- **Claude**: asistencia técnica en HTML/CSS/JS, optimización de UX
+
+---
+
+**Última actualización**: 7 de abril de 2026 (v1.7)  
+**Estado**: Publicado en GitHub Pages
