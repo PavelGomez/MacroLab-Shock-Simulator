@@ -761,65 +761,11 @@ function renderOADA(){
   setText('oada-mediumrun',`${shock.mediumRun} Yₙ pasa de ${round(initial.Yn)} a ${round(final_.Yn)} y la brecha final queda en ${round(final_.gap)}.`);
   setHTML('oada-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('oada',shockKey,shock.watch)}`);
   setText('oada-deltaY',`${dY>=0?'+':''}${round(dY)} en Y`);setText('oada-deltaP',`${dP>=0?'+':''}${round(dP)} en P`);
-  renderTrajectory();
   const maxAbsGap=Math.max(Math.abs(initial.gap),Math.abs(final_.gap),40);
   setGapBar('oada-gapbar0','oada-gap-label0',initial.gap,maxAbsGap);setGapBar('oada-gapbar1','oada-gap-label1',final_.gap,maxAbsGap);
   scenarioState.oada={modelKey:'oada',shockKey,params:{...base},initial,final:final_};
   updateScenarioCard('oada',scenarioState.oada);
   renderTrajectory('oada',initial,final_,shockKey);
-}
-
-/* ========== TRAJECTORY MODE (OA-DA) ========== */
-function computeTrajectory(baseParams,shockDelta,periods=8){
-  const trajectory={base:[],shock:[]};
-  let bP={...baseParams};let sP=applyDelta({...baseParams},shockDelta);
-  for(let t=0;t<periods;t++){
-    const bEq=calcOADA(bP);const sEq=calcOADA(sP);
-    trajectory.base.push({t,Y:bEq.Y,P:bEq.P,gap:bEq.gap,Yn:bEq.Yn});
-    trajectory.shock.push({t,Y:sEq.Y,P:sEq.P,gap:sEq.gap,Yn:sEq.Yn});
-    // adaptive expectations: Pe adjusts toward actual P
-    const bAdj=0.3;const sAdj=0.3;
-    bP={...bP,Pe:bP.Pe+bAdj*(bEq.P-bP.Pe)};
-    sP={...sP,Pe:sP.Pe+sAdj*(sEq.P-sP.Pe)};
-    // cost shock fades 30% per period
-    if(sP.costShock>0.01)sP.costShock*=0.7;
-    else if(sP.costShock<-0.01)sP.costShock*=0.7;
-  }
-  return trajectory;
-}
-function renderTrajectory(){
-  const shockKey=document.getElementById('oada-shock').value;
-  const shock=OADA_SHOCKS[shockKey];
-  const base=readParams('oada',OADA_DEFAULTS);
-  const traj=computeTrajectory(base,shock.delta,8);
-  const labels=traj.base.map((_,i)=>`t${i}`);
-  const bY=traj.base.map(p=>p.Y);const sY=traj.shock.map(p=>p.Y);
-  const bP=traj.base.map(p=>p.P);const sP=traj.shock.map(p=>p.P);
-  const bGap=traj.base.map(p=>p.gap);const sGap=traj.shock.map(p=>p.gap);
-  function mkDatasets(baseD,shockD,bLabel,sLabel,bColor,sColor){
-    return[{label:bLabel,data:baseD,borderColor:bColor,borderWidth:2.4,pointRadius:3,tension:.2,borderDash:[6,4]},{label:sLabel,data:shockD,borderColor:sColor,borderWidth:3,pointRadius:4,tension:.2}];
-  }
-  const mkOpts=(yTitle)=>({responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{mode:'index',intersect:false}},scales:{x:{title:{display:true,text:'Período'},grid:{display:false}},y:{title:{display:true,text:yTitle},grid:{color:'#edf2f7'}}}});
-  if(charts['traj-y'])charts['traj-y'].destroy();
-  if(charts['traj-p'])charts['traj-p'].destroy();
-  if(charts['traj-gap'])charts['traj-gap'].destroy();
-  const ctxY=document.getElementById('traj-y-canvas');
-  const ctxP=document.getElementById('traj-p-canvas');
-  const ctxGap=document.getElementById('traj-gap-canvas');
-  if(!ctxY)return;
-  charts['traj-y']=new Chart(ctxY.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bY,sY,'Y base','Y shock','#2d6ea3','#f59e0b')},options:mkOpts('Producción (Y)')});
-  charts['traj-p']=new Chart(ctxP.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bP,sP,'P base','P shock','#16a34a','#ef4444')},options:mkOpts('Nivel de precios (P)')});
-  charts['traj-gap']=new Chart(ctxGap.getContext('2d'),{type:'line',data:{labels,datasets:mkDatasets(bGap,sGap,'Brecha base','Brecha shock','#7c3aed','#f59e0b')},options:mkOpts('Brecha (Y − Yₙ)')});
-  // narrative
-  const first=traj.shock[0];const last=traj.shock[traj.shock.length-1];
-  const dY=last.Y-first.Y;const dP=last.P-first.P;const dGap=last.gap-first.gap;
-  let narrative=`Trayectoria pedagógica de 8 períodos. Shock: ${shock.label}. `;
-  if(Math.abs(last.gap)<Math.abs(first.gap)*0.5)narrative+=`La brecha se cierra progresivamente: de ${round(first.gap)} a ${round(last.gap)}. `;
-  else narrative+=`La brecha se mantiene: de ${round(first.gap)} a ${round(last.gap)}. `;
-  if(dP>0.01)narrative+=`Los precios suben a lo largo de la trayectoria (+${round(dP)}). `;
-  else if(dP<-0.01)narrative+=`Los precios bajan a lo largo de la trayectoria (${round(dP)}). `;
-  narrative+=`Expectativas se ajustan adaptativamente (30% por período). Shocks de costos se disipan gradualmente.`;
-  setText('traj-narrative',narrative);
 }
 
 /* ========== DASHBOARD ========== */
