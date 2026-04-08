@@ -818,6 +818,34 @@
         </div>
       </div>
 
+      <!-- TRAJECTORY MODE -->
+      <details class="traj-block">
+        <summary class="traj-toggle"><strong>Modo trayectoria</strong> — 8 períodos, base vs shock, convergencia adaptativa</summary>
+        <div class="traj-content">
+          <div class="notice-box" style="margin-bottom:14px">
+            <strong>Trayectoria pedagógica, no pronóstico.</strong>
+            Muestra cómo evolucionan Y, P y la brecha a lo largo de 8 períodos bajo supuestos simplificados: expectativas adaptativas (30% de ajuste por período) y disipación gradual de shocks de costos. Útil para ver convergencia, persistencia y rezagos — no para predecir.
+          </div>
+          <div class="home-grid three" style="margin-bottom:14px">
+            <div class="card" style="padding:12px">
+              <h4 style="font-size:.92rem; margin:0 0 6px">Producción (Y)</h4>
+              <canvas id="traj-y-canvas" style="width:100%!important; height:160px!important"></canvas>
+            </div>
+            <div class="card" style="padding:12px">
+              <h4 style="font-size:.92rem; margin:0 0 6px">Nivel de precios (P)</h4>
+              <canvas id="traj-p-canvas" style="width:100%!important; height:160px!important"></canvas>
+            </div>
+            <div class="card" style="padding:12px">
+              <h4 style="font-size:.92rem; margin:0 0 6px">Brecha (Y − Yₙ)</h4>
+              <canvas id="traj-gap-canvas" style="width:100%!important; height:160px!important"></canvas>
+            </div>
+          </div>
+          <div class="card compact-card" style="background:#f8fbfd">
+            <p id="traj-narrative" style="margin:0; font-size:.9rem; line-height:1.6; color:var(--muted)">Selecciona un shock y los gráficos de trayectoria se actualizarán automáticamente.</p>
+          </div>
+        </div>
+      </details>
+
       <!-- QUIZ OA-DA -->
       <details class="quiz-block">
         <summary class="quiz-toggle"><strong>Chequeo rápido — OA-DA</strong> ¿Entendiste el mecanismo?</summary>

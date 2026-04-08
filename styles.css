@@ -297,6 +297,17 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .series-copper { color: #0ea5a0; }
 .series-wti { color: #c2410c; }
 
+/* TRAJECTORY PANEL */
+.traj-block { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 20px; }
+.traj-toggle { display: flex; align-items: center; gap: 10px; padding: 16px 20px; cursor: pointer; background: linear-gradient(180deg, #f0f7ff 0%, #fff 100%); font: inherit; list-style: none; }
+.traj-toggle::-webkit-details-marker { display: none; }
+.traj-toggle::before { content: "▸"; font-weight: 800; color: var(--accent); transition: transform .2s; }
+details[open].traj-block > .traj-toggle::before { transform: rotate(90deg); }
+details[open].traj-block > .traj-toggle { border-bottom: 1px solid var(--line); }
+.traj-content { padding: 18px 20px; }
+body.dark-mode .traj-block { border-color: var(--line); }
+body.dark-mode .traj-toggle { background: linear-gradient(180deg, #152238 0%, #1a2a3d 100%); }
+
 /* QUIZ BLOCKS */
 .quiz-block { border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 20px; }
 .quiz-toggle { display: flex; align-items: center; gap: 10px; padding: 16px 20px; cursor: pointer; background: linear-gradient(180deg, #fffbf0 0%, #fff 100%); font: inherit; list-style: none; border-bottom: 1px solid transparent; }
