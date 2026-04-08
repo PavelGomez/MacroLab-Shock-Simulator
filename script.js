@@ -169,9 +169,126 @@ const ATLAS_SHOCKS = [
   {name:'Tensiones arancelarias / fragmentación comercial',period:'2024–2026',origin:'Rivalidad EEUU-China, aranceles, nearshoring',vars:'Comercio internacional, cadenas de suministro, costos',mechanisms:'Fragmentación → encarece importaciones → altera ventajas comparativas → presión de costos',models:['IS-LM-BP','OA-DA'],effects:'Incertidumbre sobre cadenas de suministro, reconfiguración comercial.',watch:'Exportaciones, importaciones, costos de insumos, CLP/USD, inversión',tabs:['islmbp','oada','tablero']}
 ];
 
+const TAB_TITLES = {
+  inicio:'Inicio',
+  instrucciones:'Instrucciones',
+  islm:'IS-LM',
+  islmbp:'IS-LM-BP',
+  oada:'OA-DA',
+  shocks:'Shocks y transmisión',
+  atlas:'Atlas de shocks',
+  institucional:'Marco institucional',
+  tablero:'Tablero macro',
+  lectura:'Lectura de datos',
+  glosario:'Glosario'
+};
+
+const MODEL_META = {
+  islm: {
+    label:'IS-LM',
+    title:'IS-LM · economía cerrada',
+    defaults:ISLM_DEFAULTS,
+    shocks:ISLM_SHOCKS,
+    starter:'Prueba primero un shock fiscal o monetario y compara actividad, tasa e inversión antes de apilar complejidad.',
+    trajectoryVars:[
+      {key:'Y',label:'Actividad (Y)',color:'#2563eb'},
+      {key:'i',label:'Tasa (i)',color:'#16a34a'},
+      {key:'investment',label:'Inversión',color:'#f59e0b'}
+    ]
+  },
+  islmbp: {
+    label:'IS-LM-BP',
+    title:'IS-LM-BP · economía abierta con flotación',
+    defaults:ISLMBP_DEFAULTS,
+    shocks:ISLMBP_SHOCKS,
+    starter:'Prueba primero cobre, tipo de cambio o tasa internacional y compara E, NX y actividad antes de sacar conclusiones.',
+    trajectoryVars:[
+      {key:'Y',label:'Actividad (Y)',color:'#2563eb'},
+      {key:'eIndex',label:'Tipo de cambio (E)',color:'#ef4444'},
+      {key:'NX',label:'Exportaciones netas',color:'#7c3aed'}
+    ]
+  },
+  oada: {
+    label:'OA-DA',
+    title:'OA-DA · producción, precios y expectativas',
+    defaults:OADA_DEFAULTS,
+    shocks:OADA_SHOCKS,
+    starter:'Prueba primero un shock de costos o de demanda y mira si el ajuste cae en precios, en producto o en ambos.',
+    trajectoryVars:[
+      {key:'Y',label:'Producción (Y)',color:'#2563eb'},
+      {key:'P',label:'Precios (P)',color:'#ef4444'},
+      {key:'Yn',label:'Producto potencial (Yₙ)',color:'#16a34a'}
+    ]
+  }
+};
+
+const TRAJECTORY_LABELS = ['Inicio','1','2','3','4','5','6'];
+const TRAJECTORY_PROFILES = {
+  flat:[0,0,0,0,0,0,0],
+  immediate:[0,0.58,0.82,0.93,0.98,1,1],
+  frontloaded:[0,0.45,0.72,0.88,0.95,0.99,1],
+  medium:[0,0.32,0.58,0.78,0.91,0.97,1],
+  delayed:[0,0.18,0.38,0.62,0.82,0.94,1],
+  persistent:[0,0.28,0.52,0.74,0.88,0.96,1]
+};
+
+const QUIZ_BANK = {
+  islm: {
+    question:'Si el gobierno reduce gasto y la LM no se mueve, ¿cuál es la lectura más consistente dentro de IS-LM?',
+    choices:[
+      'Y cae e i tiende a bajar, porque la menor demanda reduce actividad y también presión sobre el mercado de dinero.',
+      'Y cae e i sube necesariamente, porque toda contracción fiscal encarece el crédito.',
+      'Y sube e i cae, porque la menor presión fiscal libera inversión privada de inmediato.'
+    ],
+    correctIndex:0,
+    correctExplanation:'Correcta. En IS-LM, una contracción fiscal desplaza la IS a la izquierda: cae Y y, si la LM no cambia, la menor demanda de dinero tiende a empujar i a la baja.',
+    distractorExplanation:'El distractor “Y cae e i sube” suena plausible si uno piensa sólo en recesión y spreads, pero dentro de este modelo la tasa no sube por una caída de G si la LM permanece fija.',
+    incorrectExplanations:[
+      '',
+      'No es la mejor respuesta. Ese razonamiento mezcla el modelo con un shock financiero distinto: aquí el ajuste viene por IS, no por una LM más contractiva.',
+      'No es la mejor respuesta. La inversión puede aliviarse por tasas menores, pero el efecto dominante de corto plazo sigue siendo la caída de la demanda agregada.'
+    ]
+  },
+  islmbp: {
+    question:'Con tipo de cambio flotante y alta movilidad de capitales, una expansión monetaria en IS-LM-BP tiende primero a...',
+    choices:[
+      'depreciar el tipo de cambio, mejorar NX y luego empujar la actividad.',
+      'fijar el tipo de cambio y volver irrelevante el canal externo.',
+      'mover sólo la tasa internacional, sin alterar el CLP/USD.'
+    ],
+    correctIndex:0,
+    correctExplanation:'Correcta. Bajo flotación, la expansión monetaria opera con fuerza vía depreciación: E sube, mejoran NX y luego aparece el impulso sobre Y.',
+    distractorExplanation:'El distractor del tipo de cambio fijo es plausible porque muchos manuales comparan ambos regímenes, pero Chile opera con flotación y allí el ajuste externo sí importa.',
+    incorrectExplanations:[
+      '',
+      'No es la mejor respuesta. Esa descripción correspondería a un régimen de tipo de cambio fijo o a otra elección de la trinidad imposible, no al caso chileno.',
+      'No es la mejor respuesta. La tasa internacional i* es un dato externo; el shock doméstico relevante aquí pasa por E, capitales y NX.'
+    ]
+  },
+  oada: {
+    question:'Si tras un alza del petróleo observas P↑ y Y↓ en OA-DA, ¿cuál es el diagnóstico más consistente?',
+    choices:[
+      'Shock de oferta/costos: la OA sube y aparece una lectura estanflacionaria.',
+      'Shock de demanda pura: la DA sube y por eso precios y actividad se mueven en direcciones opuestas.',
+      'Cambio sólo nominal: no se altera ninguna curva real y por eso el producto cae.'
+    ],
+    correctIndex:0,
+    correctExplanation:'Correcta. El patrón P↑ con Y↓ es la huella clásica de un shock de oferta adverso: la OA se desplaza y la economía enfrenta más inflación con menos actividad.',
+    distractorExplanation:'El distractor de demanda es plausible porque también puede haber inflación alta, pero un shock de demanda pura suele empujar P y Y en la misma dirección.',
+    incorrectExplanations:[
+      '',
+      'No es la mejor respuesta. Si la DA fuera la única que se desplaza, lo usual es ver Y y P subir juntos, no esa combinación estanflacionaria.',
+      'No es la mejor respuesta. Aquí sí cambia una relación real: suben costos, se desplaza la OA y por eso caen actividad y producto.'
+    ]
+  }
+};
+
+const scenarioState = {};
+
 /* ========== UTILITY FUNCTIONS ========== */
 function safeDiv(a,b){return a/(Math.abs(b)<EPS?(b<0?-EPS:EPS):b)}
 function round(v,d=2){return Number.isFinite(v)?Number(v).toFixed(d):'—'}
+function roundNum(v,d=2){return Number.isFinite(v)?Number(v.toFixed(d)):0}
 function clampPositive(v){return Math.max(0,v)}
 function signWord(d,p,n,neutral='se mantiene aproximadamente estable'){return Math.abs(d)<0.03?neutral:d>0?p:n}
 function applyDelta(base,delta={}){const o={...base};Object.entries(delta).forEach(([k,v])=>o[k]=(o[k]??0)+v);return o}
@@ -181,8 +298,16 @@ function populateSelect(id,optionsMap){const s=document.getElementById(id);s.inn
 function bindInputs(prefix,defaults,cb){Object.keys(defaults).forEach(k=>{const el=document.getElementById(`${prefix}-${k}`);if(el)el.addEventListener('input',cb)})}
 function setText(id,v){const el=document.getElementById(id);if(el)el.textContent=v}
 function setHTML(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
-function activateTab(target){document.querySelectorAll('.tab-button').forEach(b=>b.classList.toggle('active',b.dataset.tab===target));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===target))}
-function initTabs(){document.querySelectorAll('.tab-button').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab)));document.querySelectorAll('.back-to-inicio').forEach(a=>a.addEventListener('click',()=>{activateTab('inicio');window.scrollTo({top:0,behavior:'smooth'})}));document.querySelectorAll('.route-btn[data-tab]').forEach(btn=>{if(!btn.classList.contains('quickstart-button'))btn.addEventListener('click',()=>{activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})})})}
+function activateTab(target){
+  document.querySelectorAll('.tab-button').forEach(b=>{
+    const active=b.dataset.tab===target;
+    b.classList.toggle('active',active);
+    if(b.dataset.tab)b.setAttribute('aria-current',active?'page':'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===target));
+  document.title=`MacroLab Shock Simulator · ${TAB_TITLES[target]||'Inicio'} · v1.7`;
+}
+function initTabs(){document.querySelectorAll('.tab-button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab)));document.querySelectorAll('.back-to-inicio').forEach(a=>a.addEventListener('click',()=>{activateTab('inicio');window.scrollTo({top:0,behavior:'smooth'})}));document.querySelectorAll('.route-btn[data-tab]').forEach(btn=>{if(!btn.classList.contains('quickstart-button'))btn.addEventListener('click',()=>{activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})})})}
 function buildLine(fn,xMin,xMax,n=50){const pts=[];const step=(xMax-xMin)/n;for(let i=0;i<=n;i++){const x=xMin+i*step;pts.push({x,y:fn(x)})}return pts}
 function centeredRange(values,minSpan=100,floor=0){const vals=values.filter(v=>Number.isFinite(v));const min=Math.min(...vals);const max=Math.max(...vals);const span=Math.max(max-min,minSpan);const center=(min+max)/2;return{min:Math.max(floor,center-span*0.7),max:center+span*0.7}}
 function drawChart(key,canvasId,config){if(charts[key])charts[key].destroy();const ctx=document.getElementById(canvasId).getContext('2d');charts[key]=new Chart(ctx,config)}
@@ -190,6 +315,323 @@ function pointDataset(label,x,y,style){return{label,data:[{x,y}],showLine:false,
 function highlightElement(sel){const el=document.querySelector(sel);if(!el)return;el.classList.remove('highlight-card');void el.offsetWidth;el.classList.add('highlight-card');setTimeout(()=>el.classList.remove('highlight-card'),2200)}
 function watchCopy(model,shockKey,fallback){return WATCH_GUIDES[model]?.[shockKey]||`Pregunta clave: ${fallback}`}
 function chartOptions(xL,yL,xr,yr){return{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{mode:'nearest'}},scales:{x:{type:'linear',min:clampPositive(xr.min),max:xr.max,title:{display:true,text:xL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}},y:{min:clampPositive(yr.min),max:yr.max,title:{display:true,text:yL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}}}}}
+
+function summarizeParameterChanges(params,defaults){
+  const changes=Object.entries(defaults).filter(([k,base])=>Math.abs((params[k]??base)-base)>0.0001).map(([k])=>`${k}=${round(params[k],Math.abs(params[k])>=10?1:2)}`);
+  if(!changes.length)return'Parámetros base 2026. Si editas inputs, esta ficha mostrará tus ajustes.';
+  return`Ajustes manuales: ${changes.slice(0,4).join(', ')}${changes.length>4?` +${changes.length-4} más.`:'.'}`;
+}
+
+function buildResultLine(modelKey,initial,final_){
+  if(modelKey==='islm')return`Y ${round(initial.Y)} → ${round(final_.Y)}, i ${round(initial.i)} → ${round(final_.i)}, inversión ${round(initial.investment)} → ${round(final_.investment)}.`;
+  if(modelKey==='islmbp')return`Y ${round(initial.Y)} → ${round(final_.Y)}, E ${round(initial.eIndex)} → ${round(final_.eIndex)}, NX ${round(initial.NX)} → ${round(final_.NX)}.`;
+  return`Y ${round(initial.Y)} → ${round(final_.Y)}, P ${round(initial.P)} → ${round(final_.P)}, Yₙ ${round(initial.Yn)} → ${round(final_.Yn)}.`;
+}
+
+function updateScenarioCard(modelKey,context){
+  const meta=MODEL_META[modelKey];
+  const shock=meta.shocks[context.shockKey];
+  const baseScenario=context.shockKey==='none';
+  const headline=baseScenario?'Base pedagógica 2026 activa':`Escenario activo: ${shock.label}`;
+  const status=baseScenario
+    ?'Todavía no hay shock aplicado. Usa este equilibrio base como referencia y luego compara el antes/después con un caso concreto.'
+    :'Comparas un equilibrio base con un shock pedagógico. Revisa primero el gráfico, luego la trayectoria y finalmente el dato chileno relevante.';
+  const summary=baseScenario
+    ?`${meta.title}. ${modelKey==='islm'?`Régimen actual: ${ISLM_REGIMES[context.regime]}. `:''}${shock.reality}`
+    :`${shock.changedText} ${shock.reality} ${buildResultLine(modelKey,context.initial,context.final)}`;
+  setText(`${modelKey}-scenario-headline`,headline);
+  setText(`${modelKey}-scenario-status`,status);
+  setText(`${modelKey}-scenario-summary`,summary);
+  setText(`${modelKey}-scenario-next`,baseScenario?meta.starter:watchCopy(modelKey,context.shockKey,shock.watch));
+  setText(`${modelKey}-scenario-params`,summarizeParameterChanges(context.params,meta.defaults));
+}
+
+function percentChangeTarget(initialValue,finalValue){
+  if(!Number.isFinite(initialValue)||Math.abs(initialValue)<EPS)return 0;
+  return roundNum(((finalValue-initialValue)/initialValue)*100,2);
+}
+
+function buildTrajectorySeries(initialValue,finalValue,profileKey){
+  const target=percentChangeTarget(initialValue,finalValue);
+  const profile=TRAJECTORY_PROFILES[profileKey]||TRAJECTORY_PROFILES.medium;
+  if(Math.abs(target)<0.05)return TRAJECTORY_LABELS.map(()=>0);
+  return profile.map(frac=>roundNum(target*frac,2));
+}
+
+function getTrajectoryProfiles(modelKey,shockKey){
+  if(shockKey==='none'){
+    return modelKey==='islm'
+      ?{Y:'flat',i:'flat',investment:'flat'}
+      :modelKey==='islmbp'
+        ?{Y:'flat',eIndex:'flat',NX:'flat'}
+        :{Y:'flat',P:'flat',Yn:'flat'};
+  }
+  if(modelKey==='islm'){
+    if(['monetaryExpand','monetaryContract'].includes(shockKey))return{Y:'delayed',i:'immediate',investment:'medium'};
+    if(['fiscalExpand','fiscalContract'].includes(shockKey))return{Y:'frontloaded',i:'medium',investment:'delayed'};
+    return{Y:'medium',i:'delayed',investment:'frontloaded'};
+  }
+  if(modelKey==='islmbp'){
+    if(['copperDown','copperUp','higherWorldRate','lowerWorldRate','pesoDepreciation','pesoAppreciation','oilUp'].includes(shockKey))return{Y:'delayed',eIndex:'immediate',NX:'medium'};
+    if(['monetaryExpand','monetaryContract'].includes(shockKey))return{Y:'medium',eIndex:'immediate',NX:'medium'};
+    return{Y:'frontloaded',eIndex:'medium',NX:'delayed'};
+  }
+  if(['oilUp','socialUnrest','earthquake','pandemic'].includes(shockKey))return{Y:'delayed',P:'immediate',Yn:'persistent'};
+  if(['productivityUp','productivityDown'].includes(shockKey))return{Y:'medium',P:'delayed',Yn:'frontloaded'};
+  return{Y:'frontloaded',P:'medium',Yn:'flat'};
+}
+
+function describeTrajectory(modelKey,shockKey,initial,final_){
+  if(shockKey==='none'){
+    return{
+      story:'Sin shock, la trayectoria coincide con la base 2026. Úsala como línea de referencia antes de interpretar un caso.',
+      lag:'La línea plana te ayuda a distinguir mecanismo, rezago y magnitud cuando actives un shock.',
+      end:'El escenario base queda listo para comparación disciplinada.'
+    };
+  }
+  if(modelKey==='islm'){
+    if(['monetaryExpand','monetaryContract'].includes(shockKey)){
+      return{
+        story:'La tasa reacciona primero y la actividad ajusta después vía crédito e inversión.',
+        lag:'El canal financiero entra más rápido que el multiplicador sobre Y.',
+        end:`Al período 6, Y ${signWord(final_.Y-initial.Y,'queda por encima','queda por debajo')} de la base e i ${signWord(final_.i-initial.i,'termina más alta','termina más baja','termina cerca de la base')}.`
+      };
+    }
+    return{
+      story:'La demanda mueve primero la actividad; luego la tasa y la inversión acomodan parte del ajuste.',
+      lag:'El crowding-out o el alivio de tasas aparecen con algo más de rezago que el cambio inicial en Y.',
+      end:`Al período 6, la inversión ${signWord(final_.investment-initial.investment,'termina más alta','termina más baja','termina cerca de la base')}.`
+    };
+  }
+  if(modelKey==='islmbp'){
+    return{
+      story:'En economía abierta el tipo de cambio suele absorber primero el shock y luego reordenar actividad y exportaciones netas.',
+      lag:'E reacciona rápido; Y y NX suelen mostrar un ajuste más gradual que el del mercado cambiario.',
+      end:`Al período 6, E ${signWord(final_.eIndex-initial.eIndex,'permanece más alto','permanece más bajo','queda cerca de la base')} y NX ${signWord(final_.NX-initial.NX,'termina mejor','termina peor','queda cerca de la base')}.`
+    };
+  }
+  if(['oilUp','socialUnrest','earthquake','pandemic'].includes(shockKey)){
+    return{
+      story:'Los costos pegan primero en precios; la producción siente el ajuste con más rezago y la capacidad puede tardar en recomponerse.',
+      lag:'P reacciona rápido; Y y Yₙ absorben el costo del ajuste en un segundo momento.',
+      end:`Al período 6, P ${signWord(final_.P-initial.P,'permanece más alto','permanece más bajo','queda cerca de la base')} y Y ${signWord(final_.Y-initial.Y,'queda por encima','queda por debajo')} del punto inicial.`
+    };
+  }
+  return{
+    story:'La demanda o la productividad alteran el equilibrio y la trayectoria muestra cuánto del ajuste cae en producción versus precios.',
+    lag:'Y suele reaccionar antes; P y Yₙ terminan de revelar si el cambio era transitorio o más estructural.',
+    end:`Al período 6, Yₙ ${signWord(final_.Yn-initial.Yn,'termina por encima','termina por debajo','queda cerca de la base')} del valor inicial.`
+  };
+}
+
+function renderTrajectory(modelKey,initial,final_,shockKey){
+  const meta=MODEL_META[modelKey];
+  const profileMap=getTrajectoryProfiles(modelKey,shockKey);
+  const datasets=[{
+    label:'Base = 0%',
+    data:TRAJECTORY_LABELS.map(()=>0),
+    borderColor:'#94a3b8',
+    borderDash:[6,6],
+    borderWidth:2,
+    pointRadius:0,
+    tension:0
+  }];
+  meta.trajectoryVars.forEach(v=>{
+    datasets.push({
+      label:v.label,
+      data:buildTrajectorySeries(initial[v.key],final_[v.key],profileMap[v.key]),
+      borderColor:v.color,
+      backgroundColor:'transparent',
+      borderWidth:3,
+      pointRadius:2.8,
+      pointHoverRadius:4,
+      tension:0.24
+    });
+  });
+  const values=datasets.flatMap(d=>d.data);
+  const min=Math.min(...values);
+  const max=Math.max(...values);
+  drawChart(`${modelKey}Trajectory`,`${modelKey}-trajectory-chart`,{
+    type:'line',
+    data:{labels:TRAJECTORY_LABELS,datasets},
+    options:{
+      responsive:true,
+      maintainAspectRatio:false,
+      animation:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},
+        tooltip:{
+          backgroundColor:'#10263f',
+          displayColors:true,
+          callbacks:{
+            label(context){
+              if(context.dataset.label==='Base = 0%')return 'Base = 0%';
+              const value=Number(context.raw);
+              const sign=value>0?'+':'';
+              return `${context.dataset.label}: ${sign}${round(value,2)}% vs base`;
+            }
+          }
+        }
+      },
+      scales:{
+        x:{grid:{display:false},title:{display:true,text:'Períodos pedagógicos'}},
+        y:{
+          min:roundNum(Math.min(min-2,-2),1),
+          max:roundNum(Math.max(max+2,2),1),
+          title:{display:true,text:'Desvío respecto de la base (%)'},
+          grid:{color:'#edf2f7'},
+          ticks:{
+            callback(value){
+              const num=Number(value);
+              return `${num>0?'+':''}${num}%`;
+            }
+          }
+        }
+      }
+    }
+  });
+  const narrative=describeTrajectory(modelKey,shockKey,initial,final_);
+  setText(`${modelKey}-trajectory-story`,narrative.story);
+  setText(`${modelKey}-trajectory-lag`,narrative.lag);
+  setText(`${modelKey}-trajectory-end`,narrative.end);
+}
+
+function renderQuiz(modelKey){
+  const quiz=QUIZ_BANK[modelKey];
+  if(!quiz)return;
+  const questionEl=document.getElementById(`${modelKey}-quiz-question`);
+  const optionsEl=document.getElementById(`${modelKey}-quiz-options`);
+  const feedbackEl=document.getElementById(`${modelKey}-quiz-feedback`);
+  if(!questionEl||!optionsEl||!feedbackEl)return;
+  questionEl.textContent=quiz.question;
+  feedbackEl.textContent='Elige una respuesta para recibir feedback inmediato.';
+  feedbackEl.className='quiz-feedback neutral';
+  optionsEl.innerHTML='';
+  quiz.choices.forEach((choice,index)=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='quiz-option';
+    button.textContent=choice;
+    button.addEventListener('click',()=>{
+      optionsEl.querySelectorAll('.quiz-option').forEach((btn,btnIndex)=>{
+        btn.classList.toggle('is-correct',btnIndex===quiz.correctIndex);
+        btn.classList.toggle('is-incorrect',btnIndex===index&&btnIndex!==quiz.correctIndex);
+      });
+      if(index===quiz.correctIndex){
+        feedbackEl.textContent=`${quiz.correctExplanation} ${quiz.distractorExplanation}`;
+        feedbackEl.className='quiz-feedback success';
+      }else{
+        feedbackEl.textContent=`${quiz.incorrectExplanations[index]} ${quiz.correctExplanation}`;
+        feedbackEl.className='quiz-feedback caution';
+      }
+    });
+    optionsEl.appendChild(button);
+  });
+}
+
+function buildScenarioSummary(modelKey){
+  const state=scenarioState[modelKey];
+  if(!state)return'';
+  const meta=MODEL_META[modelKey];
+  const shock=meta.shocks[state.shockKey];
+  const lines=[
+    'MacroLab Shock Simulator',
+    meta.title,
+    `Shock: ${shock.label}`
+  ];
+  if(state.regime)lines.push(`Régimen: ${ISLM_REGIMES[state.regime]||state.regime}`);
+  lines.push(`Resultados: ${buildResultLine(modelKey,state.initial,state.final)}`);
+  lines.push(`Parámetros: ${summarizeParameterChanges(state.params,meta.defaults)}`);
+  lines.push('Nota: trayectoria pedagógica plausible, no pronóstico.');
+  return lines.join('\n');
+}
+
+function encodeScenarioState(modelKey){
+  const state=scenarioState[modelKey];
+  if(!state)return'';
+  return btoa(JSON.stringify({
+    modelKey:state.modelKey,
+    shockKey:state.shockKey,
+    regime:state.regime||'',
+    params:state.params
+  }));
+}
+
+function buildScenarioUrl(modelKey){
+  const encoded=encodeScenarioState(modelKey);
+  const url=new URL(window.location.href);
+  url.searchParams.set('tab',modelKey);
+  if(encoded)url.searchParams.set('scenario',encoded);
+  return url.toString();
+}
+
+function fallbackCopyText(text){
+  const textArea=document.createElement('textarea');
+  textArea.value=text;
+  textArea.setAttribute('readonly','');
+  textArea.style.position='absolute';
+  textArea.style.left='-9999px';
+  document.body.appendChild(textArea);
+  textArea.select();
+  document.execCommand('copy');
+  document.body.removeChild(textArea);
+}
+
+async function copyText(text){
+  if(navigator.clipboard&&window.isSecureContext){
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  fallbackCopyText(text);
+}
+
+function setShareFeedback(modelKey,message){setText(`${modelKey}-share-feedback`,message)}
+
+function initShareButtons(){
+  document.querySelectorAll('.share-btn').forEach(btn=>{
+    btn.addEventListener('click',async()=>{
+      const modelKey=btn.dataset.shareModel;
+      const kind=btn.dataset.shareKind;
+      const content=kind==='link'?buildScenarioUrl(modelKey):buildScenarioSummary(modelKey);
+      try{
+        await copyText(content);
+        setShareFeedback(modelKey,kind==='link'?'Enlace copiado: conserva tab, shock y parámetros actuales.':'Ficha copiada: resume shock, parámetros y resultados actuales.');
+      }catch(error){
+        setShareFeedback(modelKey,'No pude copiar automáticamente. Vuelve a intentarlo o usa el enlace visible del navegador.');
+      }
+    });
+  });
+}
+
+function restoreScenarioFromUrl(){
+  const url=new URL(window.location.href);
+  const encoded=url.searchParams.get('scenario');
+  const tab=url.searchParams.get('tab');
+  let restored=false;
+  if(encoded){
+    try{
+      const state=JSON.parse(atob(encoded));
+      if(state?.modelKey&&MODEL_META[state.modelKey]){
+        Object.entries(state.params||{}).forEach(([key,value])=>{
+          const input=document.getElementById(`${state.modelKey}-${key}`);
+          if(input)input.value=value;
+        });
+        if(state.modelKey==='islm'&&state.regime)document.getElementById('islm-regime').value=state.regime;
+        const shockSelect=document.getElementById(`${state.modelKey}-shock`);
+        if(shockSelect&&state.shockKey)shockSelect.value=state.shockKey;
+        if(state.modelKey==='islm')renderISLM();
+        if(state.modelKey==='islmbp')renderISLMBP();
+        if(state.modelKey==='oada')renderOADA();
+        activateTab(tab||state.modelKey);
+        restored=true;
+      }
+    }catch(error){
+      restored=false;
+    }
+  }
+  if(!restored&&tab&&TAB_TITLES[tab])activateTab(tab);
+}
 
 /* ========== IS-LM ========== */
 function calcISLM(p,regime){const A=1-p.c1-p.b1;const K=p.c0-p.c1*p.T+p.b0+p.G;let Y,i;if(regime==='horizontal'){i=p.iFixed;Y=safeDiv(K-p.b2*i,A)}else{Y=safeDiv(p.d2*K+p.b2*p.MP,p.d2*A+p.b2*p.d1);i=safeDiv(p.d1*Y-p.MP,p.d2)}const investment=p.b0+p.b1*Y-p.b2*i;return{A,K,Y,i,investment}}
@@ -223,6 +665,9 @@ function renderISLM(){
   let dom='';if(regime==='horizontal'){dom='Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='No aparece crowding-out relevante; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El acelerador prima.':'Hay crowding-out parcial.'}else if(dI<0){dom=crowding>accelerator?'Prima el crowding-out.':'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
   setText('islm-crowd',`Acelerador: b1·ΔY = ${round(accelerator)}. Crowding-out: b2·Δi = ${round(crowding)}. ${dom}`);
   setHTML('islm-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islm',shockKey,shock.watch)}`);
+  scenarioState.islm={modelKey:'islm',shockKey,regime,params:{...base},initial,final:final_};
+  updateScenarioCard('islm',scenarioState.islm);
+  renderTrajectory('islm',initial,final_,shockKey);
 }
 
 /* ========== IS-LM-BP ========== */
@@ -259,6 +704,9 @@ function renderISLMBP(){
   let extra='';if(overlap)extra=' El ajuste principal se ve en E y NX más que en Y.';
   setText('islmbp-explanation',`Shock: ${shock.label}. ${shock.changedText} La producción ${signWord(dY,'sube','baja')}, E ${signWord(dE,'sube','baja')} y NX ${signWord(dNX,'mejoran','empeoran')}. ${shock.reality}${extra}`);
   setHTML('islmbp-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islmbp',shockKey,shock.watch)}`);
+  scenarioState.islmbp={modelKey:'islmbp',shockKey,params:{...base},initial,final:final_};
+  updateScenarioCard('islmbp',scenarioState.islmbp);
+  renderTrajectory('islmbp',initial,final_,shockKey);
 }
 
 /* ========== OA-DA ========== */
@@ -316,6 +764,9 @@ function renderOADA(){
   renderTrajectory();
   const maxAbsGap=Math.max(Math.abs(initial.gap),Math.abs(final_.gap),40);
   setGapBar('oada-gapbar0','oada-gap-label0',initial.gap,maxAbsGap);setGapBar('oada-gapbar1','oada-gap-label1',final_.gap,maxAbsGap);
+  scenarioState.oada={modelKey:'oada',shockKey,params:{...base},initial,final:final_};
+  updateScenarioCard('oada',scenarioState.oada);
+  renderTrajectory('oada',initial,final_,shockKey);
 }
 
 /* ========== TRAJECTORY MODE (OA-DA) ========== */
@@ -618,8 +1069,11 @@ function init(){
   attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
   attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
   document.querySelectorAll('.range-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.range-button').forEach(b=>b.classList.toggle('active',b===btn));renderDashboard(btn.dataset.range)}));
-  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();initScenarioButtons();renderAtlas();
+  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();
+  renderQuiz('islm');renderQuiz('islmbp');renderQuiz('oada');
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
-  loadFromHash();
+  initShareButtons();
+  activateTab('inicio');
+  restoreScenarioFromUrl();
 }
 document.addEventListener('DOMContentLoaded',init);
