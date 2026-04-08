@@ -24,6 +24,9 @@ body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; ba
 .eyebrow { margin: 0; font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,.82); }
 .app-header h1 { margin: 8px 0 10px; font-size: 2.2rem; line-height: 1.05; }
 .subtitle { margin: 0; max-width: 1120px; color: rgba(255,255,255,.92); line-height: 1.55; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.hero-stat { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.10); color: rgba(255,255,255,.88); font-size: .84rem; border: 1px solid rgba(255,255,255,.12); }
+.hero-stat strong { color: #fff; font-size: 1rem; }
 
 /* NAV TABS */
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 24px; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 12; }
@@ -38,8 +41,23 @@ body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; ba
 .tab-panel.active { display: block; }
 
 /* BACK TO INICIO */
-.back-to-inicio { display: inline-block; margin-bottom: 14px; color: var(--accent); font-weight: 700; font-size: .92rem; text-decoration: none; cursor: pointer; }
-.back-to-inicio:hover { text-decoration: underline; }
+.back-to-inicio { display: inline-flex; align-items: center; gap: 4px; margin-bottom: 14px; color: var(--accent); font-weight: 700; font-size: .88rem; text-decoration: none; cursor: pointer; padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); border: 1px solid transparent; transition: .15s; }
+.back-to-inicio:hover { border-color: var(--accent); }
+
+/* FIRST-USE STRIP */
+.first-use-strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 18px; margin-bottom: 16px; background: linear-gradient(90deg, var(--accent-soft) 0%, #fff 100%); border: 1px solid #d0e1f2; border-radius: 14px; }
+.first-use-label { font-weight: 800; color: var(--accent); font-size: .88rem; white-space: nowrap; }
+.first-use-or { color: var(--muted); font-size: .84rem; }
+body.dark-mode .first-use-strip { background: linear-gradient(90deg, #1a2d42 0%, var(--card) 100%); border-color: var(--line); }
+
+/* AVISO PEDAGÓGICO COLLAPSIBLE */
+.aviso-pedagogico-wrap { margin-bottom: 16px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.aviso-toggle { display: flex; align-items: center; gap: 8px; padding: 10px 16px; cursor: pointer; font: inherit; font-size: .88rem; color: var(--muted); list-style: none; }
+.aviso-toggle::-webkit-details-marker { display: none; }
+.aviso-toggle::before { content: "▸"; font-weight: 800; color: var(--accent); transition: transform .2s; font-size: .82rem; }
+details[open].aviso-pedagogico-wrap > .aviso-toggle::before { transform: rotate(90deg); }
+.aviso-toggle strong { color: var(--navy); }
+body.dark-mode .aviso-pedagogico-wrap { border-color: var(--line); }
 
 /* BLOCKS */
 .panel-block { margin-bottom: 16px; }

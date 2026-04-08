@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MacroLab Shock Simulator · Curso 2026 · v1.6</title>
+  <title>MacroLab Shock Simulator · 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -48,13 +48,19 @@
     <div class="header-copy">
       <p class="eyebrow">Macroeconomía II · Profesor Pável Gómez · 2026</p>
       <h1>MacroLab Shock Simulator</h1>
-      <p class="subtitle">Laboratorio de análisis macro y evaluación de escenarios de coyuntura: una herramienta de aprendizaje para identificar mecanismos, interpretar shocks y explicar trayectorias plausibles del entorno económico chileno.</p>
+      <p class="subtitle">De un titular a un mecanismo, de un mecanismo a una trayectoria, de una trayectoria a un dato observable. Herramienta de aprendizaje para la economía chilena.</p>
+      <div class="hero-stats">
+        <span class="hero-stat"><strong>3</strong> simuladores</span>
+        <span class="hero-stat"><strong>31</strong> shocks</span>
+        <span class="hero-stat"><strong>10</strong> episodios históricos</span>
+        <span class="hero-stat"><strong>11</strong> series macro</span>
+        <span class="hero-stat"><strong>8</strong> instituciones</span>
+      </div>
     </div>
   </header>
 
   <!-- ============ NAV ============ -->
   <nav class="tabs" aria-label="Secciones del laboratorio">
-    <button class="tab-button" id="dark-toggle" title="Modo oscuro para proyección" style="margin-left:auto; background:var(--navy); color:#fff; border-color:var(--navy); font-size:.82rem; padding:8px 12px">Modo proyección</button>
     <button class="tab-button active" data-tab="inicio">Inicio</button>
     <button class="tab-button" data-tab="instrucciones">Instrucciones</button>
     <button class="tab-button" data-tab="islm">IS-LM</button>
@@ -66,6 +72,7 @@
     <button class="tab-button" data-tab="tablero">Tablero macro</button>
     <button class="tab-button" data-tab="lectura">Lectura de datos</button>
     <button class="tab-button" data-tab="glosario">Glosario</button>
+    <button class="tab-button" id="dark-toggle" title="Modo oscuro para proyección" style="margin-left:auto; background:var(--navy); color:#fff; border-color:var(--navy); font-size:.82rem; padding:8px 12px">&#9681; Proyección</button>
   </nav>
 
   <main class="app-shell">
@@ -74,12 +81,17 @@
     <section id="inicio" class="tab-panel active">
       <div class="panel-block">
         <h2>Inicio</h2>
-        <p class="section-intro">MacroLab no parte de curvas aisladas: parte de preguntas que hoy están en la conversación pública. ¿Cómo puede una guerra lejana afectar inflación y tasas en Chile? ¿Por qué una caída del cobre golpea al peso? ¿Qué cambia realmente cuando el fisco ajusta o expande? La herramienta traduce esas preguntas a mecanismos, trayectorias y datos observables.</p>
+        <p class="section-intro">Parte de una pregunta real — guerra y energía, caída del cobre, ajuste fiscal — y llega a un mecanismo, una trayectoria y un dato observable. Elige una ruta de entrada:</p>
       </div>
 
-      <div class="notice-box">
-        <strong>Aviso pedagógico.</strong>
-        Esta es una herramienta de aprendizaje, no de predicción. Simplifica relaciones macroeconómicas para ordenar mecanismos, comparar escenarios y practicar interpretación. No reemplaza análisis econométrico, proyecciones oficiales ni diagnóstico de coyuntura real detallado.
+      <!-- RUTA SUGERIDA PRIMER USO -->
+      <div class="first-use-strip">
+        <span class="first-use-label">Primera vez aquí →</span>
+        <button class="route-btn quickstart-button" data-case="iran" style="font-size:.84rem">Caso Irán/energía</button>
+        <span class="first-use-or">o</span>
+        <button class="route-btn" data-tab="instrucciones" style="font-size:.84rem">leer instrucciones</button>
+        <span class="first-use-or">o</span>
+        <button class="route-btn quickstart-button" data-case="dashboard" style="font-size:.84rem">ir al tablero</button>
       </div>
 
       <!-- TRES RUTAS DE ENTRADA -->
@@ -148,6 +160,13 @@
           </div>
         </div>
       </div>
+
+      <details class="aviso-pedagogico-wrap">
+        <summary class="aviso-toggle"><strong>Aviso pedagógico</strong> — herramienta de aprendizaje, no de predicción</summary>
+        <div class="notice-box" style="margin-top:10px; margin-bottom:0">
+          Simplifica relaciones macroeconómicas para ordenar mecanismos, comparar escenarios y practicar interpretación. No reemplaza análisis econométrico, proyecciones oficiales ni diagnóstico de coyuntura real detallado.
+        </div>
+      </details>
 
       <!-- SECUENCIA ANALÍTICA -->
       <section class="card hero-card">
@@ -956,7 +975,7 @@
     <section id="institucional" class="tab-panel">
       <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
-        <h2>Marco institucional · Chile 2026</h2>
+        <h2>Marco institucional · Chile</h2>
         <p class="section-intro">Las instituciones macroeconómicas chilenas pueden leerse como una arquitectura de reglas, transparencia y enforcement diseñada para hacer más costosa la indisciplina y más creíble la política.</p>
       </div>
 
@@ -1088,7 +1107,7 @@
       <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       <div class="panel-block">
         <h2>Tablero macro del curso</h2>
-        <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
+        <p class="section-intro">Panel anual de referencia para Chile (series 2010–2025, promedios anuales). Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
       </div>
 
       <div class="guided-arrival hidden" id="tablero-guided-arrival">
