@@ -460,28 +460,32 @@ function renderTrajectory(modelKey,initial,final_,shockKey){
       animation:false,
       interaction:{mode:'index',intersect:false},
       plugins:{
-        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},
+        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14,font:{size:11}}},
         tooltip:{
           backgroundColor:'#10263f',
           displayColors:true,
+          bodyFont:{size:12},
+          padding:8,
           callbacks:{
             label(context){
-              if(context.dataset.label==='Base = 0%')return 'Base = 0%';
+              if(context.dataset.label==='Base = 0%')return null;
               const value=Number(context.raw);
               const sign=value>0?'+':'';
-              return `${context.dataset.label}: ${sign}${round(value,2)}% vs base`;
+              return ` ${context.dataset.label}: ${sign}${round(value,1)}%`;
             }
           }
         }
       },
       scales:{
-        x:{grid:{display:false},title:{display:true,text:'Períodos pedagógicos'}},
+        x:{grid:{display:false},title:{display:true,text:'Períodos pedagógicos',font:{size:12}}},
         y:{
           min:roundNum(Math.min(min-2,-2),1),
           max:roundNum(Math.max(max+2,2),1),
-          title:{display:true,text:'Desvío respecto de la base (%)'},
+          title:{display:false},
           grid:{color:'#edf2f7'},
           ticks:{
+            font:{size:11},
+            maxTicksLimit:8,
             callback(value){
               const num=Number(value);
               return `${num>0?'+':''}${num}%`;
