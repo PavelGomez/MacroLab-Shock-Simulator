@@ -1,4 +1,4 @@
-# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 Internacional
 
 **MacroLab Shock Simulator**
 © 2026 Pável Gómez · Universidad Finis Terrae · Santiago, Chile
