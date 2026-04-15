@@ -162,3 +162,17 @@ Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de l
 
 **Última actualización**: 7 de abril de 2026 (v1.7)  
 **Estado**: Publicado en GitHub Pages
+
+---
+
+## Licencia
+
+**MacroLab Shock Simulator** © 2026 Pável Gómez · Universidad Finis Terrae · Santiago, Chile.
+
+Esta obra está licenciada bajo [Creative Commons Atribución – No Comercial – Compartir Igual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
+
+**Puedes:** compartir y adaptar el material con fines no comerciales, siempre que cites al autor y distribuyas cualquier obra derivada bajo la misma licencia.
+
+**No puedes:** usar esta herramienta ni versiones derivadas con fines comerciales sin autorización expresa del autor.
+
+Ver [LICENSE.md](./LICENSE.md) para el texto completo.
