@@ -1,4 +1,4 @@
-# MacroLab Shock Simulator · Curso 2026 · v1.7
+# MercaLab Equilibrium Simulator · Curso 2026 · v1.7
 
 Simulador pedagógico de macroeconomía para Chile. Herramienta docente publicable en GitHub Pages.
 
@@ -14,7 +14,7 @@ Simulador pedagógico de macroeconomía para Chile. Herramienta docente publicab
 
 ## Descripción general
 
-MacroLab integra **11 ciclos de mejora** (C1–C11) organizados en **11 pestañas de navegación** y un stack puro de HTML + CSS + JavaScript + Chart.js (CDN). 
+MercaLab integra **11 ciclos de mejora** (C1–C11) organizados en **11 pestañas de navegación** y un stack puro de HTML + CSS + JavaScript + Chart.js (CDN). 
 
 Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de lectura de datos en 5 pasos, ejercicios diagnósticos navegables, y modo oscuro para proyección.
 
@@ -167,7 +167,7 @@ Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de l
 
 ## Licencia
 
-**MacroLab Shock Simulator** © 2026 Pável Gómez · Universidad Finis Terrae · Santiago, Chile.
+**MercaLab Equilibrium Simulator** © 2026 Pável Gómez · Universidad Finis Terrae · Santiago, Chile.
 
 Esta obra está licenciada bajo [Creative Commons Atribución – No Comercial – Compartir Igual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
 

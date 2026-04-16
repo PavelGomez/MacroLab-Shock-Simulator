@@ -305,7 +305,7 @@ function activateTab(target){
     if(b.dataset.tab)b.setAttribute('aria-current',active?'page':'false');
   });
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===target));
-  document.title=`MacroLab Shock Simulator · ${TAB_TITLES[target]||'Inicio'} · v1.7`;
+  document.title=`MercaLab Equilibrium Simulator · ${TAB_TITLES[target]||'Inicio'} · v1.7`;
 }
 function initTabs(){document.querySelectorAll('.tab-button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab)));document.querySelectorAll('.back-to-inicio').forEach(a=>a.addEventListener('click',()=>{activateTab('inicio');window.scrollTo({top:0,behavior:'smooth'})}));document.querySelectorAll('.route-btn[data-tab]').forEach(btn=>{if(!btn.classList.contains('quickstart-button'))btn.addEventListener('click',()=>{activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})})})}
 function buildLine(fn,xMin,xMax,n=50){const pts=[];const step=(xMax-xMin)/n;for(let i=0;i<=n;i++){const x=xMin+i*step;pts.push({x,y:fn(x)})}return pts}
@@ -540,7 +540,7 @@ function buildScenarioSummary(modelKey){
   const meta=MODEL_META[modelKey];
   const shock=meta.shocks[state.shockKey];
   const lines=[
-    'MacroLab Shock Simulator',
+    'MercaLab Equilibrium Simulator',
     meta.title,
     `Shock: ${shock.label}`
   ];
@@ -895,7 +895,7 @@ function initQuizzes(){
 /* ========== SCENARIO EXPORT & SHARE ========== */
 function buildScenarioText(model){
   const now=new Date().toISOString().slice(0,10);
-  let lines=[`MacroLab Shock Simulator — Escenario exportado (${now})`,`Modelo: ${model}`,``];
+  let lines=[`MercaLab Equilibrium Simulator — Escenario exportado (${now})`,`Modelo: ${model}`,``];
   if(model==='IS-LM'){
     const regime=document.getElementById('islm-regime').value;
     const shockKey=document.getElementById('islm-shock').value;
