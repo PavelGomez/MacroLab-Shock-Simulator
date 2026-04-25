@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this tool, please cite it as below."
+title: "MacroLab Shock Simulator"
+version: "1.7"
+date-released: "2026-04-24"
+url: "https://pavelgomez.github.io/MacroLab-Shock-Simulator/"
+license: CC-BY-NC-SA-4.0
+authors:
+  - family-names: "Gómez"
+    given-names: "Pável"
+    affiliation: "Universidad Finis Terrae"
