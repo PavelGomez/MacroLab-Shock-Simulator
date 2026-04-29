@@ -353,33 +353,81 @@ function watchPanelCopy(model,shockKey,fallback){
 }
 function chartOptions(xL,yL,xr,yr){return{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{mode:'nearest'}},scales:{x:{type:'linear',min:clampPositive(xr.min),max:xr.max,title:{display:true,text:xL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}},y:{min:clampPositive(yr.min),max:yr.max,title:{display:true,text:yL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}}}}}
 
+function scenarioWatchCopy(modelKey,context,shock){
+  if(typeof watchPanelCopy==='function')return watchPanelCopy(modelKey,context.shockKey,shock.watch);
+  if(typeof watchCopy==='function')return watchCopy(modelKey,context.shockKey,shock.watch);
+  return `Dato guía: ${shock.watch}`;
+}
+
 function summarizeParameterChanges(params,defaults){
-  const changes=Object.entries(defaults).filter(([k,base])=>Math.abs((params[k]??base)-base)>0.0001).map(([k])=>`${k}=${round(params[k],Math.abs(params[k])>=10?1:2)}`);
-  if(!changes.length)return'Parámetros base 2026. Si editas inputs, esta ficha mostrará tus ajustes.';
-  return`Ajustes manuales: ${changes.slice(0,4).join(', ')}${changes.length>4?` +${changes.length-4} más.`:'.'}`;
+  const changes=Object.entries(defaults)
+    .filter(([k,base])=>Math.abs((params[k]??base)-base)>0.0001)
+    .map(([k])=>`${k}=${round(params[k],Math.abs(params[k])>=10?1:2)}`);
+
+  if(!changes.length){
+    return 'Sin ajustes manuales: la comparación mantiene la calibración base 2026.';
+  }
+
+  return `Ajustes manuales detectados: ${changes.slice(0,4).join(', ')}${changes.length>4?` +${changes.length-4} más`:''}. Lee el shock junto con estos cambios; no atribuyas todo al shock seleccionado.`;
 }
 
 function buildResultLine(modelKey,initial,final_){
-  if(modelKey==='islm')return`Y ${round(initial.Y)} → ${round(final_.Y)}, i ${round(initial.i)} → ${round(final_.i)}, inversión ${round(initial.investment)} → ${round(final_.investment)}.`;
-  if(modelKey==='islmbp')return`Y ${round(initial.Y)} → ${round(final_.Y)}, E ${round(initial.eIndex)} → ${round(final_.eIndex)}, NX ${round(initial.NX)} → ${round(final_.NX)}.`;
-  return`Y ${round(initial.Y)} → ${round(final_.Y)}, P ${round(initial.P)} → ${round(final_.P)}, Yₙ ${round(initial.Yn)} → ${round(final_.Yn)}.`;
+  if(modelKey==='islm')return`Resultado: Y ${round(initial.Y)} → ${round(final_.Y)}, i ${round(initial.i)} → ${round(final_.i)}, inversión ${round(initial.investment)} → ${round(final_.investment)}.`;
+  if(modelKey==='islmbp')return`Resultado: Y ${round(initial.Y)} → ${round(final_.Y)}, E ${round(initial.eIndex)} → ${round(final_.eIndex)}, NX ${round(initial.NX)} → ${round(final_.NX)}.`;
+  return`Resultado: Y ${round(initial.Y)} → ${round(final_.Y)}, P ${round(initial.P)} → ${round(final_.P)}, Yₙ ${round(initial.Yn)} → ${round(final_.Yn)}.`;
+}
+
+function scenarioBaseStatus(modelKey,context){
+  if(modelKey==='islm')return `Punto de partida: todavía no hay shock. Régimen actual: ${ISLM_REGIMES[context.regime]}. Mira el equilibrio inicial y luego aplica una perturbación.`;
+  if(modelKey==='islmbp')return 'Punto de partida: economía abierta con flotación. Antes del shock, identifica qué papel cumplen tipo de cambio, NX y tasa externa.';
+  return 'Punto de partida: OA-DA sin shock. Antes de mover parámetros, ubica producción, precios y brecha respecto de Yₙ.';
+}
+
+function scenarioActiveStatus(modelKey,shock){
+  if(modelKey==='islm')return `${shock.changedText} Primero ubica el desplazamiento; luego compara Y, i e inversión. No cierres la lectura solo con el equilibrio final.`;
+  if(modelKey==='islmbp')return `${shock.changedText} Separa canal interno y canal externo: E y NX pueden ajustar antes que la actividad.`;
+  return `${shock.changedText} Identifica si el golpe entra por DA, OA o Yₙ; después lee P, Y y brecha.`;
+}
+
+function scenarioBaseSummary(modelKey,meta,context,shock){
+  if(modelKey==='islm')return `${meta.title}. ${shock.reality} Usa la base para comparar demanda, tasa e inversión.`;
+  if(modelKey==='islmbp')return `${meta.title}. ${shock.reality} Usa la base para leer apertura, flotación y sector externo.`;
+  return `${meta.title}. ${shock.reality} Usa la base para distinguir demanda, oferta y producto potencial.`;
+}
+
+function scenarioActiveSummary(modelKey,shock,context){
+  return `${shock.label}. ${shock.reality} ${buildResultLine(modelKey,context.initial,context.final)}`;
+}
+
+function scenarioNextStep(modelKey,baseScenario,meta,context,shock){
+  if(baseScenario)return meta.starter;
+  const watch=scenarioWatchCopy(modelKey,context,shock);
+  if(modelKey==='islm')return `Mira primero Y, i e inversión. Después pregunta si domina el acelerador, el crowding-out o el canal monetario. ${watch}`;
+  if(modelKey==='islmbp')return `Mira primero E, NX y Y. Después pregunta si el ajuste externo amplifica o amortigua el shock. ${watch}`;
+  return `Mira primero P, Y y brecha vs Yₙ. Después pregunta si el shock será transitorio, persistente o de segunda vuelta. ${watch}`;
 }
 
 function updateScenarioCard(modelKey,context){
   const meta=MODEL_META[modelKey];
   const shock=meta.shocks[context.shockKey];
   const baseScenario=context.shockKey==='none';
-  const headline=baseScenario?'Base pedagógica 2026 activa':`Escenario activo: ${shock.label}`;
+
+  const headline=baseScenario
+    ?'Base pedagógica 2026 activa'
+    :`Escenario activo: ${shock.label}`;
+
   const status=baseScenario
-    ?'Todavía no hay shock aplicado. Usa este equilibrio base como referencia y luego compara el antes/después con un caso concreto.'
-    :'Comparas un equilibrio base con un shock pedagógico. Revisa primero el gráfico, luego la trayectoria y finalmente el dato chileno relevante.';
+    ?scenarioBaseStatus(modelKey,context)
+    :scenarioActiveStatus(modelKey,shock);
+
   const summary=baseScenario
-    ?`${meta.title}. ${modelKey==='islm'?`Régimen actual: ${ISLM_REGIMES[context.regime]}. `:''}${shock.reality}`
-    :`${shock.changedText} ${shock.reality} ${buildResultLine(modelKey,context.initial,context.final)}`;
+    ?scenarioBaseSummary(modelKey,meta,context,shock)
+    :scenarioActiveSummary(modelKey,shock,context);
+
   setText(`${modelKey}-scenario-headline`,headline);
   setText(`${modelKey}-scenario-status`,status);
   setText(`${modelKey}-scenario-summary`,summary);
-  setText(`${modelKey}-scenario-next`,baseScenario?meta.starter:watchCopy(modelKey,context.shockKey,shock.watch));
+  setText(`${modelKey}-scenario-next`,scenarioNextStep(modelKey,baseScenario,meta,context,shock));
   setText(`${modelKey}-scenario-params`,summarizeParameterChanges(context.params,meta.defaults));
 }
 
