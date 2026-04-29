@@ -199,6 +199,23 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .share-row { align-items: center; }
 .share-feedback { margin: 10px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.55; }
 
+
+/* Sprint 2B-min: respiración del panel Estado del escenario */
+@media (max-width: 900px) {
+  .scenario-brief-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scenario-brief-grid article {
+    padding: 16px 18px;
+  }
+
+  .scenario-brief-card .micro-note,
+  .scenario-brief-grid article p,
+  .scenario-brief-card .share-feedback {
+    line-height: 1.55;
+  }
+}
 /* TRAJECTORY */
 .trajectory-card { margin-top: 16px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); }
 .trajectory-card canvas { width: 100% !important; height: 300px !important; }
