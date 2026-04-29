@@ -314,6 +314,43 @@ function drawChart(key,canvasId,config){if(charts[key])charts[key].destroy();con
 function pointDataset(label,x,y,style){return{label,data:[{x,y}],showLine:false,pointRadius:style.radius,pointHoverRadius:style.radius+1,pointBackgroundColor:style.bg,pointBorderColor:style.border,pointBorderWidth:style.borderWidth,pointStyle:style.pointStyle||'circle'}}
 function highlightElement(sel){const el=document.querySelector(sel);if(!el)return;el.classList.remove('highlight-card');void el.offsetWidth;el.classList.add('highlight-card');setTimeout(()=>el.classList.remove('highlight-card'),2200)}
 function watchCopy(model,shockKey,fallback){return WATCH_GUIDES[model]?.[shockKey]||`Pregunta clave: ${fallback}`}
+
+function directionClause(value,up,down,stable='se mantiene prácticamente estable'){
+  if(Math.abs(value)<0.03)return stable;
+  return value>0?up:down;
+}
+
+function buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI){
+  if(shockKey==='none')return'El gráfico muestra el equilibrio base; el diagnóstico empieza cuando introduces un shock. Usa esta línea de partida para comparar después qué curva se mueve, qué variable ajusta y qué dato chileno conviene mirar.';
+  const regimeNote=regime==='horizontal'
+    ?'Con LM horizontal, la tasa opera como ancla exógena; por eso el ajuste se lee principalmente en actividad e inversión.'
+    :'Con LM de pendiente positiva, actividad y tasa se determinan juntas; por eso conviene mirar crowding-out y acelerador al mismo tiempo.';
+  return`El gráfico muestra el equilibrio; el diagnóstico exige el mecanismo. ${shock.label}: ${shock.changedText} En esta simulación, Y ${directionClause(dY,'aumenta','disminuye')}, i ${directionClause(di,'sube','baja')} y la inversión ${directionClause(dI,'aumenta','cae')}. ${regimeNote} ${shock.reality}`;
+}
+
+function buildISLMBPMicrocopy(shockKey,shock,dY,dE,dNX,overlap){
+  if(shockKey==='none')return'El gráfico muestra la base de economía abierta: bienes, dinero y condición externa antes del shock. Úsala como referencia para distinguir qué parte del ajuste pasa por Y y qué parte pasa por tipo de cambio, NX e instituciones.';
+  const externalNote=overlap
+    ?'Aquí el equilibrio interno cambia poco; eso no significa que no haya ajuste. El mecanismo se desplaza hacia E, NX y precios importados.'
+    :'Aquí conviene leer dos planos: el equilibrio Y-i y el ajuste externo vía tipo de cambio y exportaciones netas.';
+  return`El gráfico muestra el equilibrio; el diagnóstico exige separar canal interno y canal externo. ${shock.label}: ${shock.changedText} En esta simulación, Y ${directionClause(dY,'aumenta','disminuye')}, E ${directionClause(dE,'sube','baja')} y NX ${directionClause(dNX,'mejoran','se deterioran')}. ${externalNote} ${shock.reality}`;
+}
+
+function buildOADAMicrocopy(shockKey,shock,dY,dP,moved){
+  if(shockKey==='none')return'El gráfico muestra la base OA-DA antes del shock. El diagnóstico empieza cuando identificas si se mueve DA, OA o Yₙ; P e Y son resultados, no explicación suficiente.';
+  const movedText=moved.length?`La pieza que se mueve primero es ${moved.join(' y ')}.`:'El shock no desplaza una curva principal de forma visible; lee el resultado como comparación base.';
+  return`El gráfico muestra P e Y; el diagnóstico exige identificar la curva. ${shock.label}: ${shock.changedText} ${movedText} En esta simulación, Y ${directionClause(dY,'aumenta','disminuye')} y P ${directionClause(dP,'sube','baja')}. Cierra la lectura con brecha, persistencia y expectativas. ${shock.reality}`;
+}
+
+function watchPanelCopy(model,shockKey,fallback){
+  const guide=watchCopy(model,shockKey,fallback);
+  const crossRead={
+    islm:'Lectura cruzada: contrasta actividad, tasas de mercado, crédito e inversión antes de cerrar el diagnóstico.',
+    islmbp:'Lectura cruzada: contrasta CLP/USD, cobre, flujos externos, NX e inflación importada antes de cerrar el diagnóstico.',
+    oada:'Lectura cruzada: contrasta IPC, IPC SAE, brecha de producto, expectativas y respuesta monetaria antes de cerrar el diagnóstico.'
+  };
+  return`<strong>Qué mirar en Chile.</strong> ${guide}<br><span class="micro-note">${crossRead[model]||'Cruza el resultado del modelo con datos observables antes de concluir.'}</span>`;
+}
 function chartOptions(xL,yL,xr,yr){return{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:10}},tooltip:{mode:'nearest'}},scales:{x:{type:'linear',min:clampPositive(xr.min),max:xr.max,title:{display:true,text:xL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}},y:{min:clampPositive(yr.min),max:yr.max,title:{display:true,text:yL},grid:{color:'#edf2f7'},ticks:{maxTicksLimit:7}}}}}
 
 function summarizeParameterChanges(params,defaults){
@@ -664,11 +701,11 @@ function renderISLM(){
   setText('islm-inv0',round(initial.investment));setText('islm-inv1',round(final_.investment));
   setText('islm-equilibrium',`Equilibrio inicial: (Y=${round(initial.Y)}, i=${round(initial.i)}). Final: (Y=${round(final_.Y)}, i=${round(final_.i)}).`);
   const dY=final_.Y-initial.Y;const di=final_.i-initial.i;const dI=final_.investment-initial.investment;
-  setText('islm-explanation',`Shock: ${shock.label}. ${shock.changedText} La producción ${signWord(dY,'sube','baja')} y la tasa ${signWord(di,'sube','baja')}. La inversión ${signWord(dI,'aumenta','cae')}. ${shock.reality}`);
+  setText('islm-explanation',buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI));
   const crowding=Math.max(0,fin.b2*Math.max(0,di));const accelerator=Math.max(0,fin.b1*Math.max(0,dY));
   let dom='';if(regime==='horizontal'){dom='Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='No aparece crowding-out relevante; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El acelerador prima.':'Hay crowding-out parcial.'}else if(dI<0){dom=crowding>accelerator?'Prima el crowding-out.':'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
   setText('islm-crowd',`Acelerador: b1·ΔY = ${round(accelerator)}. Crowding-out: b2·Δi = ${round(crowding)}. ${dom}`);
-  setHTML('islm-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islm',shockKey,shock.watch)}`);
+  setHTML('islm-watch',watchPanelCopy('islm',shockKey,shock.watch));
   scenarioState.islm={modelKey:'islm',shockKey,regime,params:{...base},initial,final:final_};
   updateScenarioCard('islm',scenarioState.islm);
   renderTrajectory('islm',initial,final_,shockKey);
@@ -705,9 +742,8 @@ function renderISLMBP(){
   setText('islmbp-nx0',round(initial.NX));setText('islmbp-nx1',round(final_.NX));
   setText('islmbp-eq0',`(Y=${round(initial.Y)}, i=${round(initial.i)})`);setText('islmbp-eq1',`(Y=${round(final_.Y)}, i=${round(final_.i)})`);
   const dY=final_.Y-initial.Y;const dE=final_.eIndex-initial.eIndex;const dNX=final_.NX-initial.NX;
-  let extra='';if(overlap)extra=' El ajuste principal se ve en E y NX más que en Y.';
-  setText('islmbp-explanation',`Shock: ${shock.label}. ${shock.changedText} La producción ${signWord(dY,'sube','baja')}, E ${signWord(dE,'sube','baja')} y NX ${signWord(dNX,'mejoran','empeoran')}. ${shock.reality}${extra}`);
-  setHTML('islmbp-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('islmbp',shockKey,shock.watch)}`);
+  setText('islmbp-explanation',buildISLMBPMicrocopy(shockKey,shock,dY,dE,dNX,overlap));
+  setHTML('islmbp-watch',watchPanelCopy('islmbp',shockKey,shock.watch));
   scenarioState.islmbp={modelKey:'islmbp',shockKey,params:{...base},initial,final:final_};
   updateScenarioCard('islmbp',scenarioState.islmbp);
   renderTrajectory('islmbp',initial,final_,shockKey);
@@ -758,12 +794,12 @@ function renderOADA(){
   const moved=[];
   if(Object.keys(shock.delta).some(k=>['daA','daB'].includes(k)))moved.push('DA');
   if(Object.keys(shock.delta).some(k=>['Pe','mu','gamma','z','L','A','costShock'].includes(k)))moved.push('OA / Yₙ');
-  setText('oada-explanation',`Shock: ${shock.label}. ${shock.changedText} ${moved.length?`Se afectan ${moved.join(' y ')}.`:''} La producción ${signWord(dY,'sube','baja')} y el nivel de precios ${signWord(dP,'sube','baja')}. ${shock.reality}`);
+  setText('oada-explanation',buildOADAMicrocopy(shockKey,shock,dY,dP,moved));
   const pattern=describeOADAPattern(dY,dP,initial,final_,moved);
   setText('oada-pattern-title',pattern.title);setText('oada-pattern-body',pattern.body);
   setText('oada-graphread',pattern.graph);setText('oada-meaning',pattern.meaning);setText('oada-nextstep',pattern.next);
   setText('oada-mediumrun',`${shock.mediumRun} Yₙ pasa de ${round(initial.Yn)} a ${round(final_.Yn)} y la brecha final queda en ${round(final_.gap)}.`);
-  setHTML('oada-watch',`<strong>Dato a mirar en Chile.</strong> ${watchCopy('oada',shockKey,shock.watch)}`);
+  setHTML('oada-watch',watchPanelCopy('oada',shockKey,shock.watch));
   setText('oada-deltaY',`${dY>=0?'+':''}${round(dY)} en Y`);setText('oada-deltaP',`${dP>=0?'+':''}${round(dP)} en P`);
   const maxAbsGap=Math.max(Math.abs(initial.gap),Math.abs(final_.gap),40);
   setGapBar('oada-gapbar0','oada-gap-label0',initial.gap,maxAbsGap);setGapBar('oada-gapbar1','oada-gap-label1',final_.gap,maxAbsGap);
