@@ -517,3 +517,191 @@ body.dark-mode .cta-card { background: linear-gradient(180deg, #0a1525 0%, #1522
 body.dark-mode .gap-track { background: #1a2a3d; }
 body.dark-mode .chart-badge { background: #1a2a3d; color: var(--text); }
 body.dark-mode #dark-toggle { background: var(--accent); border-color: var(--accent); }
+/* =========================================================
+   MacroLab · orientación visual mínima para modelos
+   Sprint 1: IS-LM / IS-LM-BP / OA-DA
+   ========================================================= */
+
+.orientation-card {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
+  border: 1px solid var(--line, #d8e1ec);
+  border-radius: var(--radius, 18px);
+  box-shadow: var(--shadow, 0 12px 32px rgba(24,49,83,.08));
+  padding: 18px;
+  margin: 0 0 18px;
+}
+
+.orientation-eyebrow {
+  margin: 0 0 12px;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--accent, #b85c38);
+}
+
+.orientation-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.orientation-item {
+  background: #ffffff;
+  border: 1px solid rgba(216, 225, 236, .95);
+  border-radius: 15px;
+  padding: 13px 14px;
+  min-height: 118px;
+}
+
+.orientation-item strong {
+  display: block;
+  margin-bottom: 7px;
+  color: var(--navy, #183153);
+  font-size: .88rem;
+  line-height: 1.25;
+}
+
+.orientation-item p {
+  margin: 0;
+  color: var(--muted, #5d6b7c);
+  font-size: .88rem;
+  line-height: 1.48;
+}
+
+.sequence-mini {
+  border-top: 1px solid rgba(216, 225, 236, .95);
+  padding-top: 13px;
+}
+
+.sequence-mini-track {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.sequence-mini-step {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f3f6fa;
+  border: 1px solid rgba(216, 225, 236, .95);
+  color: var(--navy, #183153);
+  font-size: .8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sequence-mini-arrow {
+  color: var(--muted, #5d6b7c);
+  font-weight: 800;
+}
+
+.compact-details {
+  background: #f8fbfd;
+  border-color: #dce7f1;
+}
+
+.compact-details summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-weight: 800;
+  color: var(--navy, #183153);
+}
+
+.compact-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.compact-details summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid rgba(216, 225, 236, .95);
+  color: var(--muted, #5d6b7c);
+  font-weight: 800;
+}
+
+.compact-details[open] summary::after {
+  content: "−";
+}
+
+.compact-details-body {
+  margin-top: 10px;
+  color: var(--muted, #5d6b7c);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+
+.compact-details-body p {
+  margin: 0;
+}
+
+.ml-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.chip-rule {
+  background: #eef4fb;
+  color: var(--navy, #183153);
+  border: 1px solid #d5e2f0;
+}
+
+.chip-data {
+  background: #eef8f3;
+  color: #176b43;
+  border: 1px solid #cde9d6;
+}
+
+.chip-warning {
+  background: #fff8df;
+  color: #7a5c00;
+  border: 1px solid #ead081;
+}
+
+.chip-error {
+  background: #fff1ec;
+  color: #9b3f22;
+  border: 1px solid #efc8bb;
+}
+
+@media (max-width: 1100px) {
+  .orientation-grid {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .orientation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .orientation-item {
+    min-height: auto;
+  }
+
+  .sequence-mini-track {
+    align-items: flex-start;
+  }
+}

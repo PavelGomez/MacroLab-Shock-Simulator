@@ -511,10 +511,44 @@
         <p class="section-intro">Este modelo representa el equilibrio simultáneo en el mercado de bienes y en el mercado de dinero. Es el mejor primer lente cuando domina la pregunta por demanda agregada, política fiscal, política monetaria, inversión y tasa de interés.</p>
       </div>
 
-      <div class="notice-box">
-        <strong>Cuándo usar este modelo.</strong>
-        Cuando la pregunta central es sobre demanda interna, tasa de interés, inversión o política fiscal/monetaria en economía cerrada. No sirve para preguntas sobre tipo de cambio, inflación ni sector externo.
-      </div>
+      <section class="orientation-card" aria-label="Orientación rápida IS-LM">
+  <p class="orientation-eyebrow">Orientación rápida · IS-LM</p>
+  <div class="orientation-grid">
+    <article class="orientation-item">
+      <span class="ml-chip chip-rule">Función</span>
+      <strong>Qué hace esta ventana</strong>
+      <p>Ordena shocks de demanda interna, dinero, tasa e inversión.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-data">Primer paso</span>
+      <strong>Qué hacer primero</strong>
+      <p>Elige un shock fiscal o monetario y compara base vs shock.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-warning">Límite</span>
+      <strong>Qué no hacer</strong>
+      <p>No uses IS-LM para concluir sobre tipo de cambio, inflación o sector externo.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-error">Cierre</span>
+      <strong>Qué mirar al final</strong>
+      <p>Y, i, inversión y posible crowding-out.</p>
+    </article>
+  </div>
+  <div class="sequence-mini">
+    <div class="sequence-mini-track" aria-label="Secuencia mínima IS-LM">
+      <span class="sequence-mini-step">Shock</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Canal</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">IS-LM</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Trayectoria</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Dato</span>
+    </div>
+  </div>
+</section>
 
       <div class="guided-arrival hidden" id="islm-guided-arrival">
         <div class="guided-arrival-head">
@@ -546,10 +580,12 @@
               <button class="export-btn scenario-share-btn" data-model="IS-LM" title="Copiar enlace al escenario actual">Copiar enlace</button>
             </div>
           </div>
-          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
-            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
-            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Los valores base representan una economía con consumo moderado (c₁=0.65), inversión sensible a tasa (b₂=22), gasto fiscal de ~220 y oferta monetaria que refleja TPM cercana a 5%. No son estimaciones econométricas: son puntos de partida pedagógicos calibrados para que los shocks produzcan movimientos visibles y plausibles.</p>
-          </div>
+          <details class="card compact-details">
+           <summary>Nota de calibración 2026</summary>
+           <div class="compact-details-body">
+           <p>Los valores base representan una economía con consumo moderado (c₁=0.65), inversión sensible a tasa (b₂=22), gasto fiscal de ~220 y oferta monetaria que refleja TPM cercana a 5%. No son estimaciones econométricas: son puntos de partida pedagógicos calibrados para que los shocks produzcan movimientos visibles y plausibles.</p>
+          </div> 
+          </details>
           <div class="card scenario-brief-card">
             <p class="kicker">Estado del escenario</p>
             <h3 id="islm-scenario-headline">Base pedagógica 2026 activa</h3>
@@ -657,12 +693,46 @@
         <h2>IS-LM-BP · economía abierta con flotación</h2>
         <p class="section-intro">Mundell-Fleming: incorpora sector externo, movilidad de capitales y tipo de cambio. Con BP horizontal e i = i*, la pregunta central es cómo interactúan política monetaria, shock externo y CLP/USD.</p>
       </div>
-
-      <div class="notice-box">
-        <strong>Cuándo conviene usar IS-LM-BP.</strong>
-        Cuando el shock entra por cobre, tipo de cambio, tasa internacional, exportaciones netas o vulnerabilidad externa. Es el lente para pensar a Chile como economía abierta.
-      </div>
-
+    <section class="orientation-card" aria-label="Orientación rápida IS-LM-BP">
+     <p class="orientation-eyebrow">Orientación rápida · IS-LM-BP</p>
+     <div class="orientation-grid">
+     <article class="orientation-item">
+      <span class="ml-chip chip-rule">Función</span>
+      <strong>Qué hace esta ventana</strong>
+      <p>Lee shocks externos, capitales, tipo de cambio y apertura.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-data">Primer paso</span>
+      <strong>Qué hacer primero</strong>
+      <p>Elige cobre, tasa internacional o tipo de cambio y observa E, NX y Y.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-warning">Límite</span>
+      <strong>Qué no hacer</strong>
+      <p>No confundas flotación cambiaria con ausencia de política.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-error">Cierre</span>
+      <strong>Qué mirar al final</strong>
+      <p>CLP/USD, NX, inflación importada y respuesta del BCCh.</p>
+    </article>
+  </div>
+  <div class="sequence-mini">
+    <div class="sequence-mini-track" aria-label="Secuencia mínima IS-LM-BP">
+      <span class="sequence-mini-step">Shock externo</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Canal cambiario</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">IS-LM-BP</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Trayectoria</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Institución</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Dato</span>
+    </div>
+  </div>
+</section>
       <div class="guided-arrival hidden" id="islmbp-guided-arrival">
         <div class="guided-arrival-head">
           <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="islmbp-guided-title">—</h3></div>
@@ -713,10 +783,12 @@
               <button class="export-btn scenario-share-btn" data-model="IS-LM-BP" title="Copiar enlace al escenario actual">Copiar enlace</button>
             </div>
           </div>
-          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
-            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
-            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Base Mundell-Fleming con alta movilidad de capitales e i ≈ i*. Las exportaciones netas base (x₀=70) y la sensibilidad cambiaria (x₂=0.28) están calibradas para que shocks como caída del cobre o alza de i* produzcan movimientos visibles en E y NX. i*=4.5% refleja el entorno post-endurecimiento global.</p>
-          </div>
+          <details class="card compact-details">
+           <summary>Nota de calibración 2026</summary>
+           <div class="compact-details-body">
+            <p>Base Mundell-Fleming con alta movilidad de capitales e i ≈ i*. Las exportaciones netas base (x₀=70) y la sensibilidad cambiaria (x₂=0.28) están calibradas para que shocks como caída del cobre o alza de i* produzcan movimientos visibles en E y NX. i*=4.5% refleja el entorno post-endurecimiento global.</p>
+           </div>
+        </details>
           <div class="card scenario-brief-card">
             <p class="kicker">Estado del escenario</p>
             <h3 id="islmbp-scenario-headline">Base pedagógica 2026 activa</h3>
@@ -844,10 +916,46 @@
         <p class="section-intro">Integra demanda y oferta para determinar simultáneamente producción y nivel de precios. Es el lente natural cuando la pregunta central es inflación, brecha de producto, costos, capacidad o convergencia.</p>
       </div>
 
-      <div class="notice-box">
-        <strong>Cuándo usar este modelo.</strong>
-        Cuando la pregunta es sobre inflación, costos, brecha de producto, capacidad instalada o convergencia de mediano plazo. No es el primer lente para tipo de cambio ni sector externo.
-      </div>
+      <section class="orientation-card" aria-label="Orientación rápida OA-DA">
+  <p class="orientation-eyebrow">Orientación rápida · OA-DA</p>
+  <div class="orientation-grid">
+    <article class="orientation-item">
+      <span class="ml-chip chip-rule">Función</span>
+      <strong>Qué hace esta ventana</strong>
+      <p>Distingue shocks de demanda, costos, productividad y expectativas.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-data">Primer paso</span>
+      <strong>Qué hacer primero</strong>
+      <p>Elige un shock y mira si se mueve DA, OA o Yₙ.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-warning">Límite</span>
+      <strong>Qué no hacer</strong>
+      <p>No cierres la lectura solo con P e Y.</p>
+    </article>
+    <article class="orientation-item">
+      <span class="ml-chip chip-error">Cierre</span>
+      <strong>Qué mirar al final</strong>
+      <p>Brecha, persistencia, expectativas y segunda vuelta.</p>
+    </article>
+   </div>
+   <div class="sequence-mini">
+    <div class="sequence-mini-track" aria-label="Secuencia mínima OA-DA">
+      <span class="sequence-mini-step">Shock</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">DA / OA / Yₙ</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">OA-DA</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Trayectoria</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Expectativas</span>
+      <span class="sequence-mini-arrow">→</span>
+      <span class="sequence-mini-step">Dato</span>
+    </div>
+   </div>
+  </section>
 
       <div class="guided-arrival hidden" id="oada-guided-arrival">
         <div class="guided-arrival-head">
@@ -879,10 +987,12 @@
               <button class="export-btn scenario-share-btn" data-model="OA-DA" title="Copiar enlace al escenario actual">Copiar enlace</button>
             </div>
           </div>
-          <div class="card compact-card" style="background:#f8fbfd; border-color:#dce7f1">
-            <h4 style="margin:0 0 6px; font-size:.92rem">Nota de calibración 2026</h4>
-            <p style="margin:0; color:var(--muted); font-size:.88rem; line-height:1.55">Yₙ = A × L = 950 refleja producción potencial. Pᵉ=1.0 ancla expectativas en el nivel base. γ=0.002 genera una OA con pendiente positiva pero no vertical, permitiendo ver el trade-off producción/precios. El mark-up μ=0.20 y z=0.50 reflejan rigideces moderadas del mercado laboral chileno.</p>
+          <details class="card compact-details">
+           <summary>Nota de calibración 2026</summary>
+          <div class="compact-details-body">
+           <p>Yₙ = A × L = 950 refleja producción potencial. Pᵉ=1.0 ancla expectativas en el nivel base. γ=0.002 genera una OA con pendiente positiva pero no vertical, permitiendo ver el trade-off producción/precios. El mark-up μ=0.20 y z=0.50 reflejan rigideces moderadas del mercado laboral chileno.</p>
           </div>
+         </details>
           <div class="card scenario-brief-card">
             <p class="kicker">Estado del escenario</p>
             <h3 id="oada-scenario-headline">Base pedagógica 2026 activa</h3>
