@@ -202,7 +202,19 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 
 /* TRAJECTORY */
 .trajectory-card { margin-top: 16px; background: linear-gradient(180deg, #fff 0%, #f8fbff 100%); }
-.trajectory-card canvas { width: 100% !important; height: 300px !important; }
+/* Sprint 2C-1: mayor legibilidad del gráfico de trayectoria */
+.trajectory-card canvas {
+  width: 100% !important;
+  height: 440px !important;
+  min-height: 440px;
+}
+
+@media (max-width: 900px) {
+  .trajectory-card canvas {
+    height: 360px !important;
+    min-height: 360px;
+  }
+}
 .trajectory-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
 .trajectory-grid article { background: #f8fbfd; border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
 .trajectory-grid p { margin: 8px 0 0; color: var(--muted); line-height: 1.6; }

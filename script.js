@@ -512,30 +512,37 @@ function describeTrajectory(modelKey,shockKey,initial,final_){
 function renderTrajectory(modelKey,initial,final_,shockKey){
   const meta=MODEL_META[modelKey];
   const profileMap=getTrajectoryProfiles(modelKey,shockKey);
+
   const datasets=[{
     label:'Base = 0%',
     data:TRAJECTORY_LABELS.map(()=>0),
     borderColor:'#94a3b8',
-    borderDash:[6,6],
-    borderWidth:2,
+    borderDash:[8,7],
+    borderWidth:2.5,
     pointRadius:0,
     tension:0
   }];
+
   meta.trajectoryVars.forEach(v=>{
     datasets.push({
       label:v.label,
       data:buildTrajectorySeries(initial[v.key],final_[v.key],profileMap[v.key]),
       borderColor:v.color,
       backgroundColor:'transparent',
-      borderWidth:3,
-      pointRadius:2.8,
-      pointHoverRadius:4,
+      borderWidth:4,
+      pointRadius:4.2,
+      pointHoverRadius:6,
+      pointBorderWidth:2,
+      pointBackgroundColor:'#ffffff',
+      pointBorderColor:v.color,
       tension:0.24
     });
   });
+
   const values=datasets.flatMap(d=>d.data);
   const min=Math.min(...values);
   const max=Math.max(...values);
+
   drawChart(`${modelKey}Trajectory`,`${modelKey}-trajectory-chart`,{
     type:'line',
     data:{labels:TRAJECTORY_LABELS,datasets},
@@ -543,43 +550,92 @@ function renderTrajectory(modelKey,initial,final_,shockKey){
       responsive:true,
       maintainAspectRatio:false,
       animation:false,
+      devicePixelRatio:Math.max(window.devicePixelRatio||1,2),
       interaction:{mode:'index',intersect:false},
+      layout:{
+        padding:{top:18,right:24,bottom:8,left:10}
+      },
+      elements:{
+        line:{borderCapStyle:'round',borderJoinStyle:'round'},
+        point:{hitRadius:10}
+      },
       plugins:{
-        legend:{position:'bottom',labels:{usePointStyle:true,boxWidth:8,padding:14,font:{size:11}}},
+        legend:{
+          position:'bottom',
+          align:'center',
+          labels:{
+            usePointStyle:true,
+            boxWidth:12,
+            boxHeight:12,
+            padding:18,
+            color:'#526477',
+            font:{size:14,weight:'600'}
+          }
+        },
         tooltip:{
           backgroundColor:'#10263f',
+          titleFont:{size:14,weight:'700'},
+          bodyFont:{size:14},
+          padding:12,
+          cornerRadius:8,
           displayColors:true,
-          bodyFont:{size:12},
-          padding:8,
           callbacks:{
+            title(context){
+              return `Período ${context[0].label}`;
+            },
             label(context){
               if(context.dataset.label==='Base = 0%')return null;
               const value=Number(context.raw);
               const sign=value>0?'+':'';
-              return ` ${context.dataset.label}: ${sign}${round(value,1)}%`;
+              return ` ${context.dataset.label}: ${sign}${round(value,1)}% respecto de la base`;
             }
           }
         }
       },
       scales:{
-        x:{grid:{display:false},title:{display:true,text:'Períodos pedagógicos',font:{size:12}}},
+        x:{
+          grid:{display:false},
+          border:{color:'#cbd7e5',width:1.4},
+          title:{
+            display:true,
+            text:'Períodos pedagógicos: Inicio → 6',
+            color:'#607184',
+            font:{size:14,weight:'700'},
+            padding:{top:10}
+          },
+          ticks:{
+            color:'#607184',
+            font:{size:13,weight:'600'},
+            padding:8
+          }
+        },
         y:{
           min:roundNum(Math.min(min-2,-2),1),
           max:roundNum(Math.max(max+2,2),1),
-          title:{display:false},
-          grid:{color:'#edf2f7'},
+          border:{color:'#cbd7e5',width:1.4},
+          title:{
+            display:true,
+            text:'Desvío respecto de la base (%)',
+            color:'#607184',
+            font:{size:14,weight:'700'},
+            padding:{bottom:10}
+          },
+          grid:{color:'#e8eef5',lineWidth:1.1},
           ticks:{
-            font:{size:11},
-            maxTicksLimit:8,
+            color:'#607184',
+            font:{size:13,weight:'600'},
+            padding:8,
+            maxTicksLimit:7,
             callback(value){
               const num=Number(value);
-              return `${num>0?'+':''}${num}%`;
+              return `${num>0?'+':''}${round(num,1)}%`;
             }
           }
         }
       }
     }
   });
+
   const narrative=describeTrajectory(modelKey,shockKey,initial,final_);
   setText(`${modelKey}-trajectory-story`,narrative.story);
   setText(`${modelKey}-trajectory-lag`,narrative.lag);
