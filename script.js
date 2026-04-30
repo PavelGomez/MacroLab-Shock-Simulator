@@ -574,24 +574,54 @@ function renderTrajectory(modelKey,initial,final_,shockKey){
         },
         tooltip:{
           backgroundColor:'#10263f',
-          titleFont:{size:14,weight:'700'},
-          bodyFont:{size:14},
-          padding:12,
-          cornerRadius:8,
+          titleColor:'#ffffff',
+          bodyColor:'#ffffff',
+          borderColor:'#d7e4f2',
+          borderWidth:1,
+          padding:14,
+          cornerRadius:10,
           displayColors:true,
-          callbacks:{
-            title(context){
-              return `Período ${context[0].label}`;
-            },
-            label(context){
-              if(context.dataset.label==='Base = 0%')return null;
-              const value=Number(context.raw);
-              const sign=value>0?'+':'';
-              return ` ${context.dataset.label}: ${sign}${round(value,1)}% respecto de la base`;
-            }
-          }
-        }
-      },
+          boxPadding:6,
+          titleMarginBottom:8,
+          bodySpacing:6,
+          caretSize:8,
+          titleFont:{
+    family:'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    size:15,
+    weight:'800'
+  },
+  bodyFont:{
+    family:'Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    size:15,
+    weight:'700'
+  },
+  callbacks:{
+    title(context){
+      const label=context[0]?.label||'';
+      return label==='Inicio'?'Inicio · desvío vs base':`P${label} · desvío vs base`;
+    },
+    label(context){
+      if(context.dataset.label==='Base = 0%')return null;
+
+      const shortLabelMap={
+        'Producción (Y)':'Y',
+        'Precios (P)':'P',
+        'Producto potencial (Yₙ)':'Yₙ',
+        'Tipo de cambio real (E)':'E',
+        'Exportaciones netas (NX)':'NX',
+        'Tasa de interés (i)':'i',
+        'Inversión (I)':'I'
+      };
+
+      const rawLabel=context.dataset.label;
+      const label=shortLabelMap[rawLabel] || rawLabel;
+      const value=Number(context.raw);
+      const sign=value>0?'+':'';
+
+      return `${label}: ${sign}${round(value,1)}%`;
+    }
+  }
+},
       scales:{
         x:{
           grid:{display:false},
