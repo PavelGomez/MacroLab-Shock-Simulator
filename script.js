@@ -1210,6 +1210,17 @@ const INST_RESULTS = {
   'guerra_CRD':{absorcion:'Precios parcialmente',trayectoria:'inflación transitoria, anclaje preservado, respuesta fiscal rápida',persistencia:'baja',institucion:'Fondo de estabilización + credibilidad BC',dato:['Breakeven inflación','Precio energía local'],advertencia:'La respuesta coordinada fiscal-monetaria amortigua el shock. El riesgo es subestimar la duración.',modelo:'oada'}
 };
 
+const INST_SHOCK_MAP = {
+  petroleo:         { tab: 'oada',   shockKey: 'oilUp' },
+  cobre:            { tab: 'islmbp', shockKey: 'copperDown' },
+  pandemia:         { tab: 'oada',   shockKey: 'pandemic' },
+  fiscalExpand:     { tab: 'islm',   shockKey: 'fiscalExpand' },
+  fiscalContract:   { tab: 'islm',   shockKey: 'fiscalContract' },
+  monetaryContract: { tab: 'islm',   shockKey: 'monetaryContract' },
+  globalRecession:  { tab: 'islmbp', shockKey: 'globalRecession' },
+  guerra:           { tab: 'oada',   shockKey: 'oilUp' }
+};
+
 function lentesColorClass(persistencia){
   if(persistencia==='baja')return'persist-baja';
   if(persistencia==='media')return'persist-media';
@@ -1217,36 +1228,90 @@ function lentesColorClass(persistencia){
   return'persist-muy-alta';
 }
 
-function lentesCardHTML(resultado,configId){
-  const config=INST_CONFIGS[configId];
-  const colorClass=lentesColorClass(resultado.persistencia);
-  const badgeClass=resultado.persistencia;
-  return`<article class="atlas-card ${colorClass}"><span class="lentes-config-label">${config?config.nombre:configId}</span><span class="persist-badge ${badgeClass}">${resultado.persistencia}</span><div class="atlas-field"><strong>Absorción principal:</strong> ${resultado.absorcion}</div><div class="atlas-field"><strong>Trayectoria:</strong> ${resultado.trayectoria}</div><div class="atlas-field"><strong>Institución determinante:</strong> ${resultado.institucion}</div><div class="atlas-field"><strong>Dato a mirar:</strong> ${resultado.dato.join(' · ')}</div><div class="atlas-field"><strong class="chip-warning">Advertencia:</strong> ${resultado.advertencia}</div><span class="route-btn" data-tab="${resultado.modelo}">→ ver en modelo</span></article>`;
+function lentesCardHTML(resultado, configId, shockId) {
+  const config = INST_CONFIGS[configId];
+  const mapeo = INST_SHOCK_MAP[shockId] || {};
+  const colorClass = lentesColorClass(resultado.persistencia);
+  const persistLabel = {
+    'baja':'Baja','media':'Media','alta':'Alta','muy-alta':'Muy alta'
+  }[resultado.persistencia] || resultado.persistencia;
+  const tabLabel = mapeo.tab
+    ? mapeo.tab.toUpperCase().replace('ISLMBP','IS-LM-BP').replace('ISLM','IS-LM').replace('OADA','OA-DA')
+    : '';
+  return `
+    <div class="atlas-card card ${colorClass}"
+         style="position:relative; padding-bottom:52px">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px">
+        <h4 style="margin:0; font-size:1rem">${config.nombre}</h4>
+        <span class="persist-badge ${resultado.persistencia}"
+              title="Persistencia esperada del shock">
+          ${persistLabel}
+        </span>
+      </div>
+      <div class="atlas-field">
+        <strong>Absorción principal:</strong> ${resultado.absorcion}
+      </div>
+      <div class="atlas-field">
+        <strong>Trayectoria:</strong> ${resultado.trayectoria}
+      </div>
+      <div class="atlas-field">
+        <strong>Institución determinante:</strong> ${resultado.institucion}
+      </div>
+      <div class="atlas-field">
+        <strong>Dato a mirar:</strong> ${resultado.dato.join(' · ')}
+      </div>
+      <div class="atlas-field"
+           style="background:var(--accent-soft);border-left:3px solid var(--accent);
+                  padding:8px 10px;border-radius:8px;margin-top:8px">
+        <strong style="color:var(--accent)">⚠ Advertencia:</strong>
+        ${resultado.advertencia}
+      </div>
+      ${mapeo.tab ? `
+      <button class="route-btn lentes-model-btn"
+              data-tab="${mapeo.tab}"
+              data-shock="${mapeo.shockKey}"
+              style="position:absolute;bottom:14px;right:14px;
+                     font-size:.82rem;margin:0">
+        → ver en ${tabLabel}
+      </button>` : ''}
+    </div>`;
 }
 
-function renderLentesResult(){
-  const shockId=document.getElementById('lentes-shock').value;
-  const configId=document.getElementById('lentes-config').value;
-  const key=shockId+'_'+configId;
-  const resultado=INST_RESULTS[key];
-  const container=document.getElementById('lentes-result');
-  const compareGrid=document.getElementById('lentes-compare-grid');
-  if(compareGrid)compareGrid.innerHTML='';
-  if(container&&resultado)container.innerHTML=lentesCardHTML(resultado,configId);
+function renderLentesResult() {
+  const shockId  = document.getElementById('lentes-shock').value;
+  const configId = document.getElementById('lentes-config').value;
+  const clave    = `${shockId}_${configId}`;
+  const resultado = INST_RESULTS[clave];
+  const el = document.getElementById('lentes-result');
+  const grid = document.getElementById('lentes-compare-grid');
+  grid.innerHTML = '';
+  if (!resultado) {
+    el.innerHTML = '<p class="muted-paragraph">Combinación no disponible.</p>';
+    return;
+  }
+  el.innerHTML = lentesCardHTML(resultado, configId, shockId);
 }
 
-function renderLentesCompare(){
-  const shockId=document.getElementById('lentes-shock').value;
-  const grid=document.getElementById('lentes-compare-grid');
-  const result=document.getElementById('lentes-result');
-  if(result)result.innerHTML='';
-  if(!grid)return;
-  grid.innerHTML=['CHL','FRG','RIG','CRD'].map(configId=>{
-    const key=shockId+'_'+configId;
-    const resultado=INST_RESULTS[key];
-    if(!resultado)return'';
-    const config=INST_CONFIGS[configId];
-    return`<div><h4 style="margin:0 0 8px;color:var(--navy)">${config.nombre}</h4>${lentesCardHTML(resultado,configId)}</div>`;
+function renderLentesCompare() {
+  const shockId = document.getElementById('lentes-shock').value;
+  const el      = document.getElementById('lentes-result');
+  const grid    = document.getElementById('lentes-compare-grid');
+  el.innerHTML  = '';
+  const shockNames = {
+    petroleo:'Alza del petróleo', cobre:'Caída del cobre',
+    pandemia:'Pandemia', fiscalExpand:'Expansión fiscal',
+    fiscalContract:'Contracción fiscal',
+    monetaryContract:'Contracción monetaria',
+    globalRecession:'Recesión global', guerra:'Guerra / shock mixto'
+  };
+  const compareBtn = document.getElementById('lentes-compare');
+  if (compareBtn) compareBtn.textContent =
+    `③ Comparar configuraciones: ${shockNames[shockId] || shockId}`;
+  const configs = ['CHL','FRG','RIG','CRD'];
+  grid.innerHTML = configs.map(configId => {
+    const resultado = INST_RESULTS[`${shockId}_${configId}`];
+    if (!resultado) return '';
+    return lentesCardHTML(resultado, configId, shockId);
   }).join('');
 }
 
@@ -1257,9 +1322,20 @@ function initLentes(){
   if(shockSel)shockSel.addEventListener('change',renderLentesResult);
   if(configSel)configSel.addEventListener('change',renderLentesResult);
   if(compareBtn)compareBtn.addEventListener('click',renderLentesCompare);
-  function handleRouteBtn(e){const btn=e.target.closest('.route-btn[data-tab]');if(btn){activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})}}
-  document.getElementById('lentes-result')?.addEventListener('click',handleRouteBtn);
-  document.getElementById('lentes-compare-grid')?.addEventListener('click',handleRouteBtn);
+  ['lentes-result','lentes-compare-grid'].forEach(function(containerId){
+    document.getElementById(containerId).addEventListener('click',function(e){
+      const btn=e.target.closest('.lentes-model-btn');
+      if(!btn)return;
+      const tab=btn.dataset.tab;
+      const shockKey=btn.dataset.shock;
+      activateTab(tab);
+      window.scrollTo({top:0,behavior:'smooth'});
+      if(shockKey){
+        const sel=document.getElementById(tab+'-shock');
+        if(sel){sel.value=shockKey;sel.dispatchEvent(new Event('change'))}
+      }
+    });
+  });
   renderLentesResult();
 }
 

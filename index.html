@@ -255,6 +255,12 @@
               <p>¿Por qué las reglas e instituciones cambian la trayectoria de un shock?</p>
               <button class="route-btn" data-tab="institucional">ver marco →</button>
             </article>
+            <article class="route-card">
+              <h4>Lentes institucionales</h4>
+              <p>¿Cómo cambia la trayectoria de un shock según el marco institucional?
+              Compara Chile con economías de anclaje frágil, rigidez cambiaria o alta credibilidad.</p>
+              <button class="route-btn" data-tab="lentes">ver lentes →</button>
+            </article>
           </div>
         </div>
       </div>
@@ -363,6 +369,8 @@
             <span class="news-arrow">→</span>
             <span class="news-model">Tablero Macro o Atlas</span>
           </div>
+          <p>Misma noticia, distintas economías → mismo shock, configuración institucional
+          diferente → <strong>Lentes institucionales</strong></p>
         </div>
       </section>
 
@@ -1511,14 +1519,62 @@
       <div class="panel-block">
         <h2>Lentes institucionales</h2>
         <p class="section-intro">El mismo shock no viaja igual por economías con instituciones distintas: el marco institucional determina qué variable carga el ajuste, cuánto dura y a qué costo.</p>
-        <p class="section-intro" style="margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px">
-          <span class="sequence-pill">Shock</span><span class="sequence-arrow">→</span>
-          <span class="sequence-pill">Configuración institucional</span><span class="sequence-arrow">→</span>
-          <span class="sequence-pill">Trayectoria</span><span class="sequence-arrow">→</span>
-          <span class="sequence-pill">Institución determinante</span><span class="sequence-arrow">→</span>
-          <span class="sequence-pill">Dato a mirar</span>
-        </p>
+        <!-- Orientación rápida -->
+        <div class="card compact-card" style="margin-bottom:18px">
+          <table style="width:100%; border-collapse:collapse; font-size:.9rem">
+            <tbody>
+              <tr>
+                <td style="padding:6px 14px 6px 0; font-weight:700; color:var(--navy);
+                    white-space:nowrap; border-bottom:1px solid var(--line)">Función</td>
+                <td style="padding:6px 0; border-bottom:1px solid var(--line)">
+                  Compara cómo el mismo shock produce trayectorias distintas según el
+                  marco institucional.</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 14px 6px 0; font-weight:700; color:var(--navy);
+                    white-space:nowrap; border-bottom:1px solid var(--line)">Secuencia</td>
+                <td style="padding:6px 0; border-bottom:1px solid var(--line)">
+                  Elige un shock → elige una configuración → lee la tarjeta →
+                  abre el modelo con el shock ya activo.</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 14px 6px 0; font-weight:700; color:var(--navy);
+                    white-space:nowrap; border-bottom:1px solid var(--line)">Límite</td>
+                <td style="padding:6px 0; border-bottom:1px solid var(--line)">
+                  No predice resultados. Muestra dirección, intensidad relativa y
+                  persistencia probable según el marco.</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 14px 6px 0; font-weight:700;
+                    color:var(--navy); white-space:nowrap">Cierre</td>
+                <td style="padding:6px 0">
+                  Usa el botón "→ ver en modelo" para abrir el simulador con el
+                  shock ya aplicado y contrastar equilibrio formal con trayectoria
+                  institucionalmente filtrada.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Secuencia pill -->
+        <div class="sequence-wrap" style="margin-bottom:20px">
+          <div class="sequence-track">
+            <span class="sequence-pill">Shock</span>
+            <span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Configuración institucional</span>
+            <span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Trayectoria</span>
+            <span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Institución determinante</span>
+            <span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Dato a mirar</span>
+            <span class="sequence-arrow">→</span>
+            <span class="sequence-pill">Modelo formal</span>
+          </div>
+        </div>
+
         <div class="lentes-selectors">
+          <span class="lentes-config-label">① Elige el shock</span>
           <select id="lentes-shock">
             <option value="petroleo">Alza del petróleo / energía</option>
             <option value="cobre">Caída del cobre</option>
@@ -1529,6 +1585,7 @@
             <option value="globalRecession">Recesión global</option>
             <option value="guerra">Guerra / shock mixto</option>
           </select>
+          <span class="lentes-config-label">② Elige la configuración institucional</span>
           <select id="lentes-config">
             <option value="CHL">Chile 2026 · Credibilidad macro</option>
             <option value="FRG">Anclaje frágil</option>
@@ -1536,7 +1593,7 @@
             <option value="CRD">Alta credibilidad con buffer</option>
           </select>
         </div>
-        <button id="lentes-compare" class="action-button">Ver las 4 configuraciones</button>
+        <button id="lentes-compare" class="action-button">③ Ver las 4 configuraciones para este shock</button>
         <div id="lentes-result"></div>
         <div id="lentes-compare-grid" class="home-grid four"></div>
         <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
