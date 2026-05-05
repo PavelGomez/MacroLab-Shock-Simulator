@@ -178,6 +178,7 @@ const TAB_TITLES = {
   shocks:'Shocks y transmisión',
   atlas:'Atlas de shocks',
   institucional:'Marco institucional',
+  lentes:'Lentes institucionales',
   tablero:'Tablero macro',
   lectura:'Lectura de datos',
   glosario:'Glosario'
@@ -1159,11 +1160,107 @@ function init(){
   attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
   attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
   document.querySelectorAll('.range-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.range-button').forEach(b=>b.classList.toggle('active',b===btn));renderDashboard(btn.dataset.range)}));
-  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();
+  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();initLentes();
   renderQuiz('islm');renderQuiz('islmbp');renderQuiz('oada');
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
   initShareButtons();
   activateTab('inicio');
   restoreScenarioFromUrl();
 }
+/* ========== LENTES INSTITUCIONALES ========== */
+const INST_CONFIGS = {
+  CHL:{id:'CHL',nombre:'Credibilidad macro / economía abierta',ejemplos:'Chile 2026, Colombia, Perú',descripcion:'TC flexible como amortiguador. BC autónomo con meta creíble. Regla fiscal de cumplimiento imperfecto pero relevante.',advertenciaGeneral:'El ajuste no es automático: depende del nivel de credibilidad acumulada.'},
+  FRG:{id:'FRG',nombre:'Anclaje frágil / dominancia fiscal latente',ejemplos:'Argentina 2015–2023, Bolivia post-2014',descripcion:'BC formalmente existente, autonomía efectiva limitada. Expectativas móviles. Prima de riesgo sensible a noticias.',advertenciaGeneral:'Un shock externo puede convertirse en crisis de confianza endógena.'},
+  RIG:{id:'RIG',nombre:'Rigidez cambiaria / ancla externa',ejemplos:'Ecuador dolarizado, El Salvador, cajas de conversión',descripcion:'Sin absorción cambiaria. Ajuste recae sobre actividad, salarios reales y reservas.',advertenciaGeneral:'La rigidez convierte pérdidas de términos de intercambio en recesión directa.'},
+  CRD:{id:'CRD',nombre:'Alta credibilidad con buffer fiscal',ejemplos:'Noruega, Suiza, Chile hipotético con FEES robusto',descripcion:'Expectativas muy ancladas. Fondo de estabilización operativo. Menor pass-through cambiario.',advertenciaGeneral:'Los buffers reducen persistencia pero no eliminan el shock. La trampa es creer que hay inmunidad.'}
+};
+
+const INST_RESULTS = {
+  'petroleo_CHL':{absorcion:'TC + inflación transitoria',trayectoria:'depreciación moderada contenida por BC creíble',persistencia:'media',institucion:'Credibilidad BCCh',dato:['IPC energía','CLP/USD'],advertencia:'El TC flexible amortigua pero también transmite el shock vía pass-through. No es neutral.',modelo:'oada'},
+  'petroleo_FRG':{absorcion:'Precios + expectativas',trayectoria:'depreciación inflacionaria con segunda vuelta intensa',persistencia:'alta',institucion:'Prima de riesgo soberano',dato:['Spread EMBI','Expectativas inflacionarias'],advertencia:'En marcos frágiles el shock de oferta puede generar crisis de confianza independiente del shock original.',modelo:'oada'},
+  'petroleo_RIG':{absorcion:'Actividad + reservas',trayectoria:'contracción sin absorción cambiaria, salarios reales caen',persistencia:'alta',institucion:'Reservas internacionales',dato:['Reservas brutas','Salarios reales'],advertencia:'La rigidez cambiaria hace invisible el ajuste del TC pero lo traslada a desempleo y actividad.',modelo:'oada'},
+  'petroleo_CRD':{absorcion:'Precios parcialmente',trayectoria:'inflación transitoria y acotada, anclaje preservado',persistencia:'baja',institucion:'Fondo de estabilización + BC',dato:['Breakeven inflación','Producción industrial'],advertencia:'La baja persistencia no es inmunidad: es credibilidad de la respuesta. Sin ella, el perfil sería distinto.',modelo:'oada'},
+  'cobre_CHL':{absorcion:'TC + ajuste fiscal gradual',trayectoria:'depreciación moderada, contracción fiscal ordenada',persistencia:'media',institucion:'Regla de balance estructural',dato:['Precio cobre','CLP/USD'],advertencia:'El ajuste fiscal chileno no es automático: requiere que la regla sea creíble y el espacio fiscal exista.',modelo:'islmbp'},
+  'cobre_FRG':{absorcion:'TC + prima de riesgo',trayectoria:'espiral cambiaria-inflacionaria, dudas sobre sostenibilidad fiscal',persistencia:'muy-alta',institucion:'Credibilidad fiscal + BC',dato:['CDS soberano','Spread EMBI'],advertencia:'La caída de un commodity puede gatillar una crisis mayor que el shock original si la credibilidad es frágil.',modelo:'islmbp'},
+  'cobre_RIG':{absorcion:'Actividad + reservas',trayectoria:'recesión directa sin TC que absorba, presión bancaria',persistencia:'alta',institucion:'Nivel de reservas internacionales',dato:['Reservas','Balanza de pagos'],advertencia:'Con TC fijo, la pérdida de términos de intercambio se convierte íntegramente en caída de actividad.',modelo:'islmbp'},
+  'cobre_CRD':{absorcion:'TC + buffer fiscal',trayectoria:'ajuste contenido, fondo activa gasto contracíclico',persistencia:'baja',institucion:'Fondo soberano de estabilización',dato:['Precio cobre','Gasto del fondo'],advertencia:'El buffer reduce la transmisión pero el shock llega igual. El riesgo es subestimar el impacto sin buffer.',modelo:'islmbp'},
+  'pandemia_CHL':{absorcion:'DA cae + TC deprecia',trayectoria:'caída de Y compensada parcialmente por gasto creíble',persistencia:'media',institucion:'Espacio fiscal + credibilidad BCCh',dato:['IMACEC','Balance fiscal'],advertencia:'La respuesta contracíclica de Chile fue posible porque había espacio fiscal previo acumulado.',modelo:'oada'},
+  'pandemia_FRG':{absorcion:'DA cae + presión cambiaria',trayectoria:'caída de Y con riesgo soberano alto, financiamiento condicionado',persistencia:'alta',institucion:'Prima de riesgo soberano',dato:['Spread soberano','Reservas'],advertencia:'Sin acceso a mercados, la respuesta fiscal frente a pandemia puede agravar la prima de riesgo.',modelo:'oada'},
+  'pandemia_RIG':{absorcion:'DA cae + reservas',trayectoria:'recesión profunda, salarios reales lentos, recuperación muy lenta',persistencia:'muy-alta',institucion:'Reservas + sistema bancario',dato:['Balance de pagos','Crédito interno'],advertencia:'Con TC fijo el ajuste recae sobre empleo y salarios, que son mucho más rígidos que el tipo de cambio.',modelo:'oada'},
+  'pandemia_CRD':{absorcion:'DA cae + buffer activo',trayectoria:'recuperación más rápida, menor cicatrización del tejido productivo',persistencia:'baja',institucion:'Fondo soberano + regla fiscal contracíclica',dato:['IMACEC','Gasto del fondo'],advertencia:'La ventaja institucional no elimina el shock: reduce su profundidad y acorta la duración del ajuste.',modelo:'oada'},
+  'fiscalExpand_CHL':{absorcion:'TC + tasa',trayectoria:'expansión moderada con fuga cambiaria parcial, crowding-out parcial',persistencia:'media',institucion:'Regla fiscal',dato:['TPM','CLP/USD'],advertencia:'IS-LM predice expansión; IS-LM-BP muestra la fuga cambiaria parcial. Ambos modelos son necesarios.',modelo:'islm'},
+  'fiscalExpand_FRG':{absorcion:'Tasa + expectativas inflacionarias',trayectoria:'expansión con riesgo de dominancia fiscal',persistencia:'alta',institucion:'Autonomía efectiva del BC',dato:['Expectativas inflación 2 años','Déficit primario'],advertencia:'La expansión puede parecer exitosa de corto plazo y ser insostenible de mediano si el BC acomoda.',modelo:'islm'},
+  'fiscalExpand_RIG':{absorcion:'Actividad (multiplicador alto)',trayectoria:'impulso fuerte de corto plazo sin fuga cambiaria',persistencia:'alta',institucion:'Sostenibilidad de deuda sin TC como válvula',dato:['Nivel de deuda','Reservas'],advertencia:'Con TC fijo la política fiscal es más potente de corto plazo pero la insostenibilidad llega más rápido.',modelo:'islm'},
+  'fiscalExpand_CRD':{absorcion:'Tasa + credibilidad',trayectoria:'expansión acotada, BC reacciona rápido, poca inflación adicional',persistencia:'baja',institucion:'Credibilidad del BC',dato:['Brecha de producto','Balance primario'],advertencia:'Un BC muy creíble puede neutralizar casi completamente el impulso fiscal vía expectativas.',modelo:'islm'},
+  'fiscalContract_CHL':{absorcion:'Actividad + tasa',trayectoria:'contracción ordenada, algo de alivio externo',persistencia:'media',institucion:'Regla fiscal',dato:['IMACEC','TPM'],advertencia:'La contracción fiscal puede aliviar presión externa y ayudar a credibilidad si el BC la acompaña.',modelo:'islm'},
+  'fiscalContract_FRG':{absorcion:'Actividad + confianza',trayectoria:'contracción con riesgo de señal negativa sobre sostenibilidad',persistencia:'alta',institucion:'Prima de riesgo',dato:['CDS soberano','Brecha de producto'],advertencia:'En marcos frágiles, ajustar el gasto puede ser leído como señal de crisis, no de disciplina.',modelo:'islm'},
+  'fiscalContract_RIG':{absorcion:'Actividad (contracción fuerte)',trayectoria:'ajuste severo sin válvula cambiaria',persistencia:'alta',institucion:'Nivel de deuda + reservas',dato:['PIB','Reservas'],advertencia:'La contracción fiscal con TC fijo impacta directamente en actividad sin amortiguador externo.',modelo:'islm'},
+  'fiscalContract_CRD':{absorcion:'Actividad moderada + tasa',trayectoria:'ajuste ordenado, expectativas estables',persistencia:'baja',institucion:'Regla fiscal + credibilidad',dato:['Brecha de producto','Balance estructural'],advertencia:'La credibilidad permite que la contracción sea ordenada y no genere espiral de expectativas negativas.',modelo:'islm'},
+  'monetaryContract_CHL':{absorcion:'Tasa + inversión',trayectoria:'enfriamiento gradual, ancla de expectativas preservada',persistencia:'media',institucion:'Credibilidad BCCh',dato:['TPM','Inversión privada'],advertencia:'El endurecimiento es más eficaz y menos costoso cuando las expectativas ya están ancladas.',modelo:'islm'},
+  'monetaryContract_FRG':{absorcion:'Tasa + actividad (con riesgo)',trayectoria:'enfriamiento con posible fuga de capitales y presión cambiaria',persistencia:'alta',institucion:'Autonomía efectiva del BC',dato:['Spread soberano','CLP/USD análogo'],advertencia:'En marcos frágiles, subir la tasa puede percibirse como señal de crisis más que de disciplina.',modelo:'islm'},
+  'monetaryContract_RIG':{absorcion:'Sin efecto monetario autónomo',trayectoria:'sin canal propio, ajuste depende de política fiscal',persistencia:'alta',institucion:'Política fiscal (único instrumento disponible)',dato:['Balance fiscal','Reservas'],advertencia:'Con TC fijo y alta movilidad de capitales la política monetaria propia es ineficaz o inexistente.',modelo:'islm'},
+  'monetaryContract_CRD':{absorcion:'Tasa + expectativas',trayectoria:'transmisión rápida y creíble, menor sobre-ajuste necesario',persistencia:'baja',institucion:'Credibilidad del BC',dato:['Expectativas inflación','Brecha de producto'],advertencia:'La credibilidad permite hacer menos para lograr más: menor suba de tasa, mismo efecto de anclaje.',modelo:'islm'},
+  'globalRecession_CHL':{absorcion:'TC + exportaciones',trayectoria:'depreciación, contracción exportadora, algo de respuesta fiscal',persistencia:'media',institucion:'Apertura externa + regla fiscal',dato:['Exportaciones','CLP/USD'],advertencia:'El shock externo entra por exportaciones y tipo de cambio simultáneamente. IS-LM-BP captura ambos canales.',modelo:'islmbp'},
+  'globalRecession_FRG':{absorcion:'TC + prima de riesgo',trayectoria:'depreciación inflacionaria, contagio financiero, acceso a deuda comprometido',persistencia:'muy-alta',institucion:'Prima de riesgo soberano',dato:['Spread EMBI','Acceso a mercados'],advertencia:'En marcos frágiles una recesión global puede cortar el financiamiento externo y amplificar el shock.',modelo:'islmbp'},
+  'globalRecession_RIG':{absorcion:'Actividad + reservas',trayectoria:'recesión directa, sin TC que absorba, presión sobre reservas',persistencia:'muy-alta',institucion:'Nivel de reservas',dato:['Reservas brutas','Balance de pagos'],advertencia:'Sin tipo de cambio flexible, la recesión global se transmite íntegramente como contracción interna.',modelo:'islmbp'},
+  'globalRecession_CRD':{absorcion:'TC + buffer',trayectoria:'impacto moderado, buffer fiscal activo, expectativas estables',persistencia:'baja',institucion:'Fondo soberano + apertura externa',dato:['Exportaciones','Gasto del fondo'],advertencia:'El buffer no elimina el shock externo pero reduce la amplitud del ciclo y protege el empleo.',modelo:'islmbp'},
+  'guerra_CHL':{absorcion:'TC + costos + expectativas',trayectoria:'depreciación + inflación de costos + incertidumbre',persistencia:'media',institucion:'Credibilidad BCCh + pass-through',dato:['IPC energía','CLP/USD'],advertencia:'El shock de guerra es mixto: OA y DA se mueven a la vez. Ningún modelo lo captura solo.',modelo:'oada'},
+  'guerra_FRG':{absorcion:'Precios + expectativas + prima',trayectoria:'espiral inflacionaria-cambiaria, segunda vuelta intensa',persistencia:'muy-alta',institucion:'Prima de riesgo + BC',dato:['Expectativas inflación','Spread EMBI'],advertencia:'En marcos frágiles el componente de confianza amplifica el shock energético hasta hacerlo fiscal.',modelo:'oada'},
+  'guerra_RIG':{absorcion:'Actividad + reservas',trayectoria:'sin absorción cambiaria, costos suben, actividad cae',persistencia:'alta',institucion:'Reservas + política fiscal',dato:['Reservas','Salarios reales'],advertencia:'La guerra golpea los costos; sin TC para depreciar, el ajuste recae sobre empleo y reservas.',modelo:'oada'},
+  'guerra_CRD':{absorcion:'Precios parcialmente',trayectoria:'inflación transitoria, anclaje preservado, respuesta fiscal rápida',persistencia:'baja',institucion:'Fondo de estabilización + credibilidad BC',dato:['Breakeven inflación','Precio energía local'],advertencia:'La respuesta coordinada fiscal-monetaria amortigua el shock. El riesgo es subestimar la duración.',modelo:'oada'}
+};
+
+function lentesColorClass(persistencia){
+  if(persistencia==='baja')return'persist-baja';
+  if(persistencia==='media')return'persist-media';
+  if(persistencia==='alta')return'persist-alta';
+  return'persist-muy-alta';
+}
+
+function lentesCardHTML(resultado,configId){
+  const config=INST_CONFIGS[configId];
+  const colorClass=lentesColorClass(resultado.persistencia);
+  const badgeClass=resultado.persistencia;
+  return`<article class="atlas-card ${colorClass}"><span class="lentes-config-label">${config?config.nombre:configId}</span><span class="persist-badge ${badgeClass}">${resultado.persistencia}</span><div class="atlas-field"><strong>Absorción principal:</strong> ${resultado.absorcion}</div><div class="atlas-field"><strong>Trayectoria:</strong> ${resultado.trayectoria}</div><div class="atlas-field"><strong>Institución determinante:</strong> ${resultado.institucion}</div><div class="atlas-field"><strong>Dato a mirar:</strong> ${resultado.dato.join(' · ')}</div><div class="atlas-field"><strong class="chip-warning">Advertencia:</strong> ${resultado.advertencia}</div><span class="route-btn" data-tab="${resultado.modelo}">→ ver en modelo</span></article>`;
+}
+
+function renderLentesResult(){
+  const shockId=document.getElementById('lentes-shock').value;
+  const configId=document.getElementById('lentes-config').value;
+  const key=shockId+'_'+configId;
+  const resultado=INST_RESULTS[key];
+  const container=document.getElementById('lentes-result');
+  const compareGrid=document.getElementById('lentes-compare-grid');
+  if(compareGrid)compareGrid.innerHTML='';
+  if(container&&resultado)container.innerHTML=lentesCardHTML(resultado,configId);
+}
+
+function renderLentesCompare(){
+  const shockId=document.getElementById('lentes-shock').value;
+  const grid=document.getElementById('lentes-compare-grid');
+  const result=document.getElementById('lentes-result');
+  if(result)result.innerHTML='';
+  if(!grid)return;
+  grid.innerHTML=['CHL','FRG','RIG','CRD'].map(configId=>{
+    const key=shockId+'_'+configId;
+    const resultado=INST_RESULTS[key];
+    if(!resultado)return'';
+    const config=INST_CONFIGS[configId];
+    return`<div><h4 style="margin:0 0 8px;color:var(--navy)">${config.nombre}</h4>${lentesCardHTML(resultado,configId)}</div>`;
+  }).join('');
+}
+
+function initLentes(){
+  const shockSel=document.getElementById('lentes-shock');
+  const configSel=document.getElementById('lentes-config');
+  const compareBtn=document.getElementById('lentes-compare');
+  if(shockSel)shockSel.addEventListener('change',renderLentesResult);
+  if(configSel)configSel.addEventListener('change',renderLentesResult);
+  if(compareBtn)compareBtn.addEventListener('click',renderLentesCompare);
+  function handleRouteBtn(e){const btn=e.target.closest('.route-btn[data-tab]');if(btn){activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})}}
+  document.getElementById('lentes-result')?.addEventListener('click',handleRouteBtn);
+  document.getElementById('lentes-compare-grid')?.addEventListener('click',handleRouteBtn);
+  renderLentesResult();
+}
+
 document.addEventListener('DOMContentLoaded',init);
