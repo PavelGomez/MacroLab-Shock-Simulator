@@ -1121,6 +1121,22 @@
                 <h4 style="font-size:.92rem">Convergencia a Yₙ</h4>
                 <p style="font-size:.88rem">Si Y > Yₙ, la presión de precios sube Pᵉ hasta que la demanda se enfría. Si Y < Yₙ, Pᵉ baja y OA cede. La brecha cierra, pero el camino puede ser largo.</p>
               </article>
+              <!-- ============================================================
+                   CUARTA TARJETA EN GRID OA-DA "Expectativas, segunda vuelta..."
+                   ============================================================ -->
+              <article class="card compact-card" style="background:#fffdf7">
+                <h4 style="font-size:.92rem">Lectura institucional</h4>
+                <p style="font-size:.88rem">
+                  El modelo entrega P, Y y la brecha en el corto plazo. La trayectoria de
+                  mediano plazo —rezagos, segunda vuelta, persistencia, costo del ajuste—
+                  depende de la configuración institucional bajo la que opera la economía.
+                </p>
+                <p style="font-size:.88rem">
+                  <a href="#lentes-explorador" data-lentes-shock="oil" class="lentes__cta">
+                    Leer este shock bajo cuatro configuraciones →
+                  </a>
+                </p>
+              </article>
             </div>
             <p style="margin-top:10px; font-size:.9rem; color:var(--muted)"><strong>En el simulador:</strong> Pᵉ es editable. Prueba subir Pᵉ después de un shock de costos para simular segunda vuelta, o bájalo para simular convergencia con expectativas ancladas.</p>
           </section>
@@ -1495,6 +1511,172 @@
             <p>El modelo dice: G↑, IS se desplaza, Y↑ i↑. <strong>Filtro:</strong> ¿El CFA validó los supuestos? ¿El mercado cree que es sostenible? Si no, los spreads suben y el crowding-out es mayor que el teórico. <strong>Dato:</strong> EMBI Chile, tasas largas, rating.</p>
           </article>
         </div>
+      </section>
+
+      <!-- ============================================================
+           EXPLORADOR DE TRAYECTORIAS LENTES × SHOCK
+           Subsección dentro de "Marco institucional"
+           ============================================================ -->
+      <section class="lentes" id="lentes-explorador">
+
+        <h3>Explorador de trayectorias institucionalmente filtradas</h3>
+
+        <p class="lentes__intro">
+          Los tres ejemplos anteriores muestran cómo una misma estructura formal
+          —shock, modelo, equilibrio— produce trayectorias distintas según la
+          configuración institucional. Lo que sigue permite recorrer esa modulación
+          de manera sistemática: elige un shock, elige una configuración, y lee la
+          trayectoria probable de mediano plazo. La fotografía del corto plazo vive
+          en cada simulador; aquí se discute cómo se mueve la economía en los
+          trimestres siguientes.
+        </p>
+
+        <!-- Orientación rápida (mismo patrón que cada simulador) -->
+        <div class="lentes__orientacion">
+          <h4>Orientación rápida · Lentes × shock</h4>
+          <dl>
+            <div><dt>Función</dt><dd>Lee un shock bajo cuatro configuraciones institucionales.</dd></div>
+            <div><dt>Primer paso</dt><dd>Elige un shock y una configuración; lee la trayectoria probable.</dd></div>
+            <div><dt>Límite</dt><dd>No leer las celdas como predicción ni como tipo puro de país.</dd></div>
+            <div><dt>Cierre</dt><dd>Persistencia, segunda vuelta, costo del ajuste y dato observable.</dd></div>
+          </dl>
+        </div>
+
+        <p class="lentes__secuencia">
+          Shock → Configuración institucional → Filtro → Trayectoria de mediano plazo → Dato → Crónica
+        </p>
+
+        <!-- Tabla panorámica -->
+        <h4>Las cuatro configuraciones, vista panorámica</h4>
+        <table class="lentes__panoramica">
+          <thead>
+            <tr>
+              <th>Configuración</th>
+              <th>Expectativas</th>
+              <th>Pass-through</th>
+              <th>Persistencia</th>
+              <th>Costo del ajuste</th>
+              <th>Segunda vuelta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Chile 2026</th>
+              <td>Ancladas con sesgo</td>
+              <td>Moderado</td>
+              <td>Moderada</td>
+              <td>Medio</td>
+              <td>Moderada</td>
+            </tr>
+            <tr>
+              <th scope="row">Anclaje frágil</th>
+              <td>Poco ancladas</td>
+              <td>Alto</td>
+              <td>Alta</td>
+              <td>Alto y abrupto</td>
+              <td>Alta</td>
+            </tr>
+            <tr>
+              <th scope="row">Rigidez cambiaria</th>
+              <td>Ancladas al régimen si consistente</td>
+              <td>Bajo en corto plazo</td>
+              <td>Depende de consistencia</td>
+              <td>Alto, vía cantidades</td>
+              <td>Moderada</td>
+            </tr>
+            <tr>
+              <th scope="row">Alta credibilidad con buffers</th>
+              <td>Muy ancladas</td>
+              <td>Bajo</td>
+              <td>Baja</td>
+              <td>Bajo, distribuido</td>
+              <td>Baja</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Selectores -->
+        <div class="lentes__selectores">
+          <div>
+            <label for="lentes-ex-shock">Shock que quieres leer</label>
+            <select id="lentes-ex-shock">
+              <option value="">Elige un shock…</option>
+              <optgroup label="Oferta">
+                <option value="oil">Alza del petróleo</option>
+                <option value="imports">Costos importados</option>
+                <option value="productivity">Caída de productividad</option>
+              </optgroup>
+              <optgroup label="Demanda">
+                <option value="fiscal_exp">Expansión fiscal</option>
+                <option value="monetary_tight">Endurecimiento monetario</option>
+              </optgroup>
+              <optgroup label="Mixto">
+                <option value="copper_drop">Caída del cobre</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div>
+            <label for="lentes-ex-config">Configuración institucional</label>
+            <select id="lentes-ex-config">
+              <option value="">Elige una configuración…</option>
+              <option value="chile_2026">Chile 2026</option>
+              <option value="fragile">Anclaje frágil</option>
+              <option value="rigid_fx">Rigidez cambiaria</option>
+              <option value="high_cred_buffers">Alta credibilidad con buffers</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Panel de salida (oculto hasta que ambos selectores tengan valor) -->
+        <article class="lentes__panel" id="lentes-panel" hidden>
+
+          <header class="lentes__panel-cabecera">
+            <p class="lentes__panel-aviso" id="lentes-panel-aviso" hidden>
+              Esta combinación no tiene una lectura redactada con el cuidado de las
+              celdas trabajadas. La lectura siguiente se compone a partir de los
+              rasgos comunes de la familia y de la configuración elegida; conviene
+              leerla como aproximación, no como pieza editorial cuidada.
+            </p>
+            <h4 id="lentes-panel-titulo">—</h4>
+          </header>
+
+          <section>
+            <h5>Lectura inicial del shock</h5>
+            <p id="lentes-panel-lectura">—</p>
+          </section>
+
+          <section>
+            <h5>Narrativa dominante (filtro institucional)</h5>
+            <p id="lentes-panel-narrativa">—</p>
+          </section>
+
+          <section>
+            <h5>Lectura de rezagos (trayectoria probable)</h5>
+            <p id="lentes-panel-rezagos">—</p>
+          </section>
+
+          <section>
+            <h5>Qué mirar primero</h5>
+            <p id="lentes-panel-dato">—</p>
+          </section>
+
+          <section class="lentes__panel-cronica-inline">
+            <h5>Ejemplo canónico, con cautela</h5>
+            <p id="lentes-panel-cronica-resumen">—</p>
+            <p>
+              <a href="#" id="lentes-panel-cronica-link" hidden>
+                Leer la crónica completa con fuentes →
+              </a>
+            </p>
+          </section>
+
+          <footer class="lentes__panel-pie">
+            <p>El modelo identifica un mecanismo, no una predicción. La configuración modula la trayectoria; no la determina.</p>
+          </footer>
+
+        </article>
+
       </section>
 
       <!-- TENSIONES INSTITUCIONALES -->
@@ -2043,6 +2225,49 @@
   <p>Herramienta pedagógica &middot; No constituye pronóstico ni asesoría económica &middot; <a href="LICENSE.md" style="color:inherit;">Ver licencia</a></p>
 </footer>
 
+  <!-- ============================================================
+       MODAL DE CRÓNICA (ejemplo canónico)
+       ============================================================ -->
+  <div class="lentes__modal" id="lentes-modal" hidden role="dialog"
+       aria-labelledby="lentes-modal-titulo" aria-modal="true">
+
+    <div class="lentes__modal-overlay" data-lentes-modal-cerrar></div>
+
+    <div class="lentes__modal-contenido">
+
+      <button type="button" class="lentes__modal-cerrar" aria-label="Cerrar"
+              data-lentes-modal-cerrar>×</button>
+
+      <header>
+        <p class="lentes__modal-kicker">Ejemplo canónico, con cautela</p>
+        <h3 id="lentes-modal-titulo">—</h3>
+        <p class="lentes__modal-sub" id="lentes-modal-sub">—</p>
+      </header>
+
+      <div class="lentes__modal-cronica" id="lentes-modal-cronica-texto">
+        <!-- Tres párrafos de crónica inyectados por JS -->
+      </div>
+
+      <p class="lentes__modal-caveat" id="lentes-modal-caveat">—</p>
+
+      <section class="lentes__modal-fuentes">
+        <h4>Para profundizar</h4>
+        <ul id="lentes-modal-fuentes-lista">
+          <!-- Lista de fuentes inyectada por JS -->
+        </ul>
+      </section>
+
+      <p class="lentes__modal-disclaimer">
+        Las cifras citadas provienen de fuentes oficiales o académicas.
+        Las trayectorias descritas son ilustrativas de un mecanismo
+        institucional, no afirmaciones causales completas sobre el episodio.
+      </p>
+
+    </div>
+
+  </div>
+
   <script src="script.js"></script>
+  <script src="assets/lentes.js" defer></script>
 </body>
 </html>
