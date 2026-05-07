@@ -266,6 +266,16 @@
     // Cualquier <a class="lentes__cta" data-lentes-shock="xxx"> hace pre-selección
     document.querySelectorAll('a.lentes__cta[data-lentes-shock]').forEach(function(a) {
       a.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (typeof activateTab === 'function') {
+          activateTab('institucional');
+        }
+        window.setTimeout(function() {
+          var target = document.getElementById('lentes-explorador');
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 50);
         var sid = a.dataset.lentesShock;
         if (SHOCKS[sid]) {
           $('lentes-ex-shock').value = sid;
