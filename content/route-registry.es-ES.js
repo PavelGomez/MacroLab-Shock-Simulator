@@ -24,7 +24,8 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "Salarios reales en sectores indexados a UF"
     ],
     antiOverclaim: "Este análisis muestra la dirección probable del ajuste, no su magnitud ni timing exacto. La credibilidad del BC es una variable continua acumulada en episodios anteriores; no se transfiere automáticamente a shocks futuros.",
-    returnText: "← Volver a Lentes · petróleo · Chile 2026"
+    returnText: "← Volver a Lentes · petróleo · Chile 2026",
+    cronicaKey: "chile_2021_2024"
   },
 
   "oada|oilUp|FRG": {
@@ -47,7 +48,8 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "Salarios indexados acelerando ante inflación pasada"
     ],
     antiOverclaim: "La fragilidad institucional no es un destino inevitable: es el resultado de decisiones acumuladas. La trayectoria descrita ilustra un mecanismo, no una predicción para ningún país específico.",
-    returnText: "← Volver a Lentes · petróleo · Anclaje frágil"
+    returnText: "← Volver a Lentes · petróleo · Anclaje frágil",
+    cronicaKey: "turkey_2018_2023"
   },
 
   "islmbp|copperDown|CHL": {
@@ -70,7 +72,8 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "IMACEC sectorial: exportaciones no mineras"
     ],
     antiOverclaim: "IS-LM-BP simplifica la dinámica externa. El ajuste real depende del nivel de reservas, la credibilidad de la regla fiscal y el contexto global de liquidez en mercados emergentes.",
-    returnText: "← Volver a Lentes · cobre · Chile 2026"
+    returnText: "← Volver a Lentes · cobre · Chile 2026",
+    cronicaKey: "chile_2008_2009"
   },
 
   "islm|fiscalContract|CHL": {
@@ -93,7 +96,8 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "Inversión privada bruta (cuentas nacionales)"
     ],
     antiOverclaim: "IS-LM supone economía cerrada o con canal externo simplificado. La lectura institucional agrega la dimensión de credibilidad que el modelo no formaliza. La magnitud del multiplicador real depende de factores no modelados.",
-    returnText: "← Volver a Lentes · contracción fiscal · Chile 2026"
+    returnText: "← Volver a Lentes · contracción fiscal · Chile 2026",
+    cronicaKey: "chile_2008_2009"
   },
 
   "oada|pandemic|CHL": {
@@ -116,7 +120,8 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "Balance fiscal estructural post-pandemia (CFA)"
     ],
     antiOverclaim: "La respuesta chilena a la pandemia fue posible en parte por condiciones institucionales previas únicas: espacio fiscal acumulado y credibilidad del BC. No es un modelo exportable sin ajustar por las condiciones de cada economía.",
-    returnText: "← Volver a Lentes · pandemia · Chile 2026"
+    returnText: "← Volver a Lentes · pandemia · Chile 2026",
+    cronicaKey: "chile_2021_2024"
   }
 
 });

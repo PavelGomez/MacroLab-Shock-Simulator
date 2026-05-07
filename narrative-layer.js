@@ -6,6 +6,10 @@
     ? window.MacroLabRouteRegistryES
     : Object.freeze({});
 
+  var CRONICAS = (typeof window.MacroLabCronicasRegistryES !== 'undefined')
+    ? window.MacroLabCronicasRegistryES
+    : Object.freeze({});
+
   var LENS_TO_MODEL = {
     petroleo:         { tab: 'oada',   shockKey: 'oilUp' },
     cobre:            { tab: 'islmbp', shockKey: 'copperDown' },
@@ -152,6 +156,41 @@
       '</ul>';
   }
 
+  function isSafeUrl(url) {
+    return typeof url === 'string' &&
+      (url.indexOf('https://') === 0 || url.indexOf('http://') === 0);
+  }
+
+  function buildCronicaHtml(cronicaKey) {
+    if (!cronicaKey || !CRONICAS[cronicaKey]) return '';
+    var c = CRONICAS[cronicaKey];
+    var parrafos = '';
+    if (c.cronica && c.cronica.length) {
+      for (var i = 0; i < c.cronica.length; i++) {
+        parrafos += '<p>' + escapeHtml(c.cronica[i]) + '</p>';
+      }
+    }
+    var fuentes = '';
+    if (c.fuentes && c.fuentes.length) {
+      for (var j = 0; j < c.fuentes.length; j++) {
+        var f = c.fuentes[j];
+        var href = isSafeUrl(f.url) ? f.url : '#';
+        fuentes += '<li><a href="' + href + '" target="_blank" rel="noopener noreferrer">' +
+          escapeHtml(f.texto) + '</a></li>';
+      }
+    }
+    return '<details class="route-closure-cronica">' +
+      '<summary>Crónica canónica con fuentes · ' + escapeHtml(c.titulo) + '</summary>' +
+      '<p class="route-closure-cronica-sub">' + escapeHtml(c.sub) + '</p>' +
+      '<div class="route-closure-cronica-cuerpo">' + parrafos + '</div>' +
+      '<p class="route-closure-cronica-caveat">' + escapeHtml(c.caveat) + '</p>' +
+      '<div class="route-closure-cronica-fuentes">' +
+        '<h5>Fuentes</h5>' +
+        '<ul>' + fuentes + '</ul>' +
+      '</div>' +
+    '</details>';
+  }
+
   function closureHtml(narrative, ctx) {
     var returnText = narrative.returnText || '← Volver a Lentes institucionales';
 
@@ -178,6 +217,7 @@
         '<div class="route-closure-block"><h4>Cautela</h4>' +
           '<p class="route-closure-warning">' + escapeHtml(narrative.antiOverclaim) + '</p></div>' +
       '</div>' +
+      buildCronicaHtml(narrative.cronicaKey) +
       '<div class="route-closure-actions">' +
         '<button type="button" class="route-btn" ' +
             'data-route-return="lentes" ' +
@@ -208,7 +248,7 @@
       if (shockSel  && lensShock)  shockSel.value  = lensShock;
       if (configSel && lensConfig) configSel.value = lensConfig;
 
-      if (typeof renderLentesResult === 'function') renderLentesResult();
+      if (typeof renderLentesCompare === 'function') renderLentesCompare();
       window.scrollTo({ top: 0, behavior: motionBehavior() });
     });
   }
@@ -218,9 +258,6 @@
     if (!sel || !modelShockKey) return;
     sel.value = modelShockKey;
     sel.dispatchEvent(new Event('change'));
-    if      (tab === 'islm'   && typeof renderISLM   === 'function') renderISLM();
-    else if (tab === 'islmbp' && typeof renderISLMBP === 'function') renderISLMBP();
-    else if (tab === 'oada'   && typeof renderOADA   === 'function') renderOADA();
   }
 
   function focusArrival(tab) {
@@ -233,6 +270,11 @@
       highlightElement('#' + tab + '-guided-arrival');
       highlightElement('#' + tab + '-route-closure');
     }
+
+    window.setTimeout(function() {
+      var titleEl = document.getElementById(tab + '-closure-title');
+      if (titleEl && typeof titleEl.focus === 'function') titleEl.focus({ preventScroll: true });
+    }, 220);
   }
 
   function openInstitutionalRoute(ctx) {
