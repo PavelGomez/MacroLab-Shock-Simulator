@@ -23,6 +23,20 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; font-family: "Inter", system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); }
 
+/* ========== ACCESIBILIDAD WCAG 2.2 AA ========== */
+.skip-link { position: absolute; left: -999px; top: 0; background: var(--navy); color: #fff; padding: 10px 16px; z-index: 1000; text-decoration: none; border-radius: 0 0 6px 0; }
+.skip-link:focus { left: 0; outline: 3px solid var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+button:focus:not(:focus-visible) { outline: none; }
+.data-downloads-card { margin-bottom: 16px; }
+.data-downloads-list { list-style-type: none; margin-left: 0; padding-left: 0; }
+.data-downloads-list li { padding: 4px 0; font-size: .9rem; }
+.data-downloads-list a { color: var(--accent); font-weight: 600; }
+
+/* Neutralizar outline débil heredado en selects e inputs (reemplazado por :focus-visible global) */
+select:focus, input:focus { border-color: var(--accent); outline: none; }
+select:focus-visible, input:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+
 /* HEADER */
 .app-header { background: linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%); color: #fff; padding: 30px 24px 24px; }
 .eyebrow { margin: 0; font-size: 0.84rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,.82); }
@@ -159,6 +173,7 @@ select:focus, input:focus { outline: 2px solid rgba(45,110,163,.15); border-colo
 .chart-header p { margin: 0; color: var(--muted); }
 .export-btn { font: inherit; font-size: .78rem; font-weight: 700; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); color: var(--muted); cursor: pointer; white-space: nowrap; transition: .15s; }
 .export-btn:hover { border-color: var(--accent); color: var(--accent); }
+canvas { aspect-ratio: 16 / 9; max-width: 100%; height: auto !important; }
 .chart-card canvas { width: 100% !important; height: 360px !important; }
 .chart-card-tall canvas { height: 360px !important; }
 
@@ -922,3 +937,13 @@ body.dark-mode #dark-toggle { background: var(--accent); border-color: var(--acc
 
 /* Tarjeta CTA en OA-DA — solo para enfatizar el enlace, conserva la apariencia del grid */
 .lentes__cta { font-weight: 500; }
+
+/* ========== PREFERS-REDUCED-MOTION (global) ========== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

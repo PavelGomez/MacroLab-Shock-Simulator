@@ -1,0 +1,22 @@
+{
+  "meta": {
+    "locale": "es-ES",
+    "coverage_observed": "2010-2025",
+    "teaching_base": "2026",
+    "last_editorial_review": "2026-05-07",
+    "license": "CC BY-NC-SA 4.0"
+  },
+  "series": {
+    "gdp":          { "label": "PIB · variación anual",          "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Variación porcentual anual." },
+    "inflation":    { "label": "IPC · variación anual",          "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "INE",                     "source_url": "https://www.ine.gob.cl",      "notes": "IPC general." },
+    "unemployment": { "label": "Tasa de desempleo",              "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "INE",                     "source_url": "https://www.ine.gob.cl",      "notes": "Promedio anual." },
+    "fx":           { "label": "Tipo de cambio CLP/USD",         "unit": "CLP/USD", "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Promedio anual." },
+    "tpm":          { "label": "Tasa de política monetaria",     "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Promedio anual." },
+    "copper":       { "label": "Precio del cobre",               "unit": "US c/lb", "frequency": "annual", "coverage": "2010-2025", "source": "Cochilco",                "source_url": "https://www.cochilco.cl",     "notes": "Promedio anual." },
+    "wti":          { "label": "Petróleo WTI",                   "unit": "USD/bbl", "frequency": "annual", "coverage": "2010-2025", "source": "FRED · St. Louis Fed",    "source_url": "https://fred.stlouisfed.org", "notes": "Promedio anual." },
+    "imacec":       { "label": "IMACEC · variación anual",       "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Promedio anual." },
+    "ipc_sae":      { "label": "IPC SAE · variación anual",      "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "INE",                     "source_url": "https://www.ine.gob.cl",      "notes": "Sin alimentos ni energía." },
+    "embi":         { "label": "EMBI Chile",                     "unit": "pb",      "frequency": "annual", "coverage": "2010-2025", "source": "JPMorgan · proxy CDS",    "source_url": "https://www.bloomberg.com",   "notes": "Promedio anual." },
+    "cc_pib":       { "label": "Cuenta corriente / PIB",         "unit": "% PIB",   "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Anual." }
+  }
+}
