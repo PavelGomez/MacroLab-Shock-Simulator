@@ -1,0 +1,125 @@
+/* ========== NARRATIVE LAYER ========== */
+
+.route-closure-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.route-closure-head {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.route-closure-kicker {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
+.route-closure-title {
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0;
+}
+
+.route-closure-title:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.route-closure-summary {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.62;
+  margin-bottom: 16px;
+}
+
+.route-closure-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 900px) {
+  .route-closure-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.route-closure-block {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.route-closure-block h4 {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+  margin: 0 0 7px;
+}
+
+.route-closure-block p {
+  font-size: 0.88rem;
+  color: var(--text);
+  line-height: 1.58;
+  margin: 0;
+}
+
+.route-closure-warning {
+  color: #6b4c00;
+  background: #fffbeb;
+  border-left: 3px solid #e8b000;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.route-closure-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin: 0;
+}
+
+.route-closure-list li {
+  font-size: 0.86rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.route-closure-list li:last-child {
+  margin-bottom: 0;
+}
+
+.route-closure-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+
+/* Respeto prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .route-closure-card,
+  .route-closure-card * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
