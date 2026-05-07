@@ -311,6 +311,11 @@
     if (document.documentElement.lang === 'es') {
       document.documentElement.lang = 'es-ES';
     }
+    if (window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+        window.Chart && Chart.defaults) {
+      Chart.defaults.animation = false;
+    }
   }
 
   function init() {

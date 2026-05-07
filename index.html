@@ -7,10 +7,11 @@
   <meta name="description" content="Laboratorio interactivo para analizar shocks macroeconómicos en Chile. Conecta caso, modelo, dato e institución bajo tres lentes (IS-LM, IS-LM-BP, OA-DA). Herramienta docente, no pronóstico.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="narrative-layer.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 
   <!-- SEO CORE -->
   <link rel="canonical" href="https://pavelgomez.github.io/MacroLab-Shock-Simulator/">
@@ -56,6 +57,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
 
   <!-- ============ WELCOME MODAL ============ -->
   <div class="welcome-modal" id="welcome-modal">
@@ -125,7 +127,7 @@
     <button class="tab-button" id="dark-toggle" title="Modo oscuro para proyección" style="margin-left:auto; background:var(--navy); color:#fff; border-color:var(--navy); font-size:.82rem; padding:8px 12px">&#9681; Proyección</button>
   </nav>
 
-  <main class="app-shell">
+  <main class="app-shell" id="main">
 
     <!-- ============ INICIO ============ -->
     <section id="inicio" class="tab-panel active">
@@ -560,7 +562,7 @@
   </div>
 </section>
 
-      <div class="guided-arrival hidden" id="islm-guided-arrival">
+      <div class="guided-arrival hidden" id="islm-guided-arrival" aria-live="polite">
         <div class="guided-arrival-head">
           <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="islm-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="islm-guided-arrival" aria-label="Ocultar guía">×</button>
@@ -743,7 +745,7 @@
     </div>
   </div>
 </section>
-      <div class="guided-arrival hidden" id="islmbp-guided-arrival">
+      <div class="guided-arrival hidden" id="islmbp-guided-arrival" aria-live="polite">
         <div class="guided-arrival-head">
           <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="islmbp-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="islmbp-guided-arrival" aria-label="Ocultar guía">×</button>
@@ -967,7 +969,7 @@
    </div>
   </section>
 
-      <div class="guided-arrival hidden" id="oada-guided-arrival">
+      <div class="guided-arrival hidden" id="oada-guided-arrival" aria-live="polite">
         <div class="guided-arrival-head">
           <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="oada-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="oada-guided-arrival" aria-label="Ocultar guía">×</button>
@@ -1394,7 +1396,7 @@
         <h2>Atlas de shocks 2009–2026</h2>
         <p class="section-intro">El Atlas no es una cronología de crisis. Es un repertorio de mecanismos. Cada episodio permite preguntar qué cambió, por qué canal se transmitió, qué modelo ayuda a aislarlo y qué dato permite seguirlo. Cuando aparece 2026, la ficha debe leerse como caso abierto, no como serie anual cerrada.</p>
       </div>
-      <div class="atlas-grid" id="atlas-grid">
+      <div class="atlas-grid" id="atlas-grid" aria-live="polite">
         <!-- Cards generadas por JS -->
       </div>
     </section>
@@ -1620,7 +1622,7 @@
         </div>
 
         <div class="lentes-selectors">
-          <span class="lentes-config-label">① Elige el shock</span>
+          <label for="lentes-shock" class="lentes-config-label">① Elige el shock</label>
           <select id="lentes-shock">
             <option value="petroleo">Alza del petróleo / energía</option>
             <option value="cobre">Caída del cobre</option>
@@ -1631,7 +1633,7 @@
             <option value="globalRecession">Recesión global</option>
             <option value="guerra">Guerra / shock mixto</option>
           </select>
-          <span class="lentes-config-label">② Elige la configuración institucional</span>
+          <label for="lentes-config" class="lentes-config-label">② Elige la configuración institucional</label>
           <select id="lentes-config">
             <option value="CHL">Chile 2026 · Credibilidad macro</option>
             <option value="FRG">Anclaje frágil</option>
@@ -1640,8 +1642,8 @@
           </select>
         </div>
         <button id="lentes-compare" class="action-button">③ Ver las 4 configuraciones para este shock</button>
-        <div id="lentes-result"></div>
-        <div id="lentes-compare-grid" class="home-grid four"></div>
+        <div id="lentes-result" aria-live="polite" role="status"></div>
+        <div id="lentes-compare-grid" class="home-grid four" aria-live="polite" role="status"></div>
         <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
       </div>
     </section>
@@ -1654,7 +1656,17 @@
         <p class="section-intro">Panel anual de referencia para Chile. Sirve para ver quiebres, rezagos y coexistencia de shocks antes de bajar al modelo formal. Las series observadas llegan a 2025; 2026 se usa como año docente de calibración y para episodios abiertos del Atlas. Fuente base: <strong>Banco Central de Chile, Base de Datos Estadísticos</strong>; cobre (Cochilco) y WTI (FRED).</p>
       </div>
 
-      <div class="guided-arrival hidden" id="tablero-guided-arrival">
+      <section class="card data-downloads-card" aria-labelledby="data-downloads-title">
+        <h3 id="data-downloads-title">Datos del tablero · descarga</h3>
+        <p class="muted-paragraph">Series anuales 2010-2025 utilizadas en este sitio. Manifiesto editorial JSON + dos CSV documentados. Reusables bajo CC BY-NC-SA 4.0.</p>
+        <ul class="data-downloads-list">
+          <li><a href="data/source-manifest.json" download>source-manifest.json</a> · metadata de fuentes</li>
+          <li><a href="data/series-anuales.csv" download>series-anuales.csv</a> · macro principales (PIB, IPC, desempleo, FX, TPM, cobre, WTI)</li>
+          <li><a href="data/series-anuales-l2.csv" download>series-anuales-l2.csv</a> · panel desplegable (IMACEC, IPC SAE, EMBI, CC/PIB)</li>
+        </ul>
+      </section>
+
+      <div class="guided-arrival hidden" id="tablero-guided-arrival" aria-live="polite">
         <div class="guided-arrival-head">
           <div><p class="kicker">Llegaste desde un caso guiado</p><h3 id="tablero-guided-title">—</h3></div>
           <button class="guided-arrival-close" data-close-guided="tablero-guided-arrival" aria-label="Ocultar guía">×</button>
@@ -2088,7 +2100,7 @@
   <p>Herramienta pedagógica &middot; No constituye pronóstico ni asesoría económica &middot; <a href="LICENSE.md" style="color:inherit;">Ver licencia</a></p>
 </footer>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <script src="assets/lentes.js" defer></script>
   <script src="content/route-registry.es-ES.js" defer></script>
   <script src="content/cronicas-registry.es-ES.js" defer></script>
