@@ -142,6 +142,14 @@ Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de l
 
 ---
 
+## Mapa de fricción y metodología
+
+El proyecto mantiene un mapa de fricción de usuarios sintéticos como artefacto de Nivel 2 de evidencia (simulación bajo supuestos explícitos, no medición empírica). Sirve para priorizar rediseños y reducir incertidumbre antes de pruebas con usuarios reales. Incluye cinco perfiles sintéticos (E1, E2, A1, P1, M1), tabla resumen de severidades y plantilla de actualización iterativa. Se actualiza cuando cambia el flujo de aterrizaje o retorno, cuando se agrega una ruta editorial nueva, o cuando se reciben señales empíricas que contradicen una hipótesis declarada.
+
+Más detalle en [docs/synthetic-users-friction-map.md](./docs/synthetic-users-friction-map.md) y la metodología de los tres niveles de evidencia en [docs/synthetic-users-method.md](./docs/synthetic-users-method.md).
+
+---
+
 ## Mejoras futuras posibles
 
 - Exportación de gráficos como imagen (PNG/SVG)
