@@ -45,7 +45,15 @@
     oada:   'OA-DA muestra el equilibrio estático de corto plazo. No formaliza la dinámica de expectativas ni la heterogeneidad sectorial.'
   };
 
+  /* ========== CONSTANTES EDITORIALES ========== */
+
+  var COMO_LEER = "Esta crónica no presenta al país como ejemplo moral, sino como una configuración histórica concreta. Lea primero el shock, luego la dirección esperada de las curvas, después el canal institucional que modula expectativas, prima de riesgo, financiamiento o pass-through, y finalmente los indicadores que permitirían evaluar si la trayectoria se confirma o se debilita.";
+
+  var DEEP_DIVE_LABELS = ["Datos a explorar", "Debate académico", "Límite del modelo", "Caso comparable"];
+
   var runtimeState = { lensShock: null, configKey: null, tab: null, modelShockKey: null };
+
+  /* ========== UTILIDADES ========== */
 
   function escapeHtml(value) {
     if (value == null) return '';
@@ -66,6 +74,13 @@
     return prefersReducedMotion() ? 'auto' : 'smooth';
   }
 
+  function isSafeUrl(url) {
+    return typeof url === 'string' &&
+      (url.indexOf('https://') === 0 || url.indexOf('http://') === 0);
+  }
+
+  /* ========== CONTEXTO DE LENTES ========== */
+
   function readLentesContext(triggerButton) {
     var lensShock = '';
     var configKey = '';
@@ -84,6 +99,8 @@
 
     return { lensShock: lensShock, configKey: configKey, tab: tab, modelShockKey: modelShockKey };
   }
+
+  /* ========== NARRATIVA FALLBACK ========== */
 
   function buildFallbackNarrative(ctx) {
     var shockLabel  = SHOCK_LABELS[ctx.lensShock] || escapeHtml(ctx.lensShock) || 'no especificado';
@@ -115,6 +132,8 @@
     if (ROUTES[exactKey]) return ROUTES[exactKey];
     return buildFallbackNarrative(ctx);
   }
+
+  /* ========== ARRIVAL ========== */
 
   function showGuidedArrival(tab, narrative) {
     var arrivalEl = document.getElementById(tab + '-guided-arrival');
@@ -149,6 +168,8 @@
     arrivalEl.parentNode.insertBefore(mount, arrivalEl.nextSibling);
   }
 
+  /* ========== CONSTRUCTORES HTML ========== */
+
   function buildListHtml(items) {
     if (!items || !items.length) return '<p>no especificado</p>';
     return '<ul class="route-closure-list">' +
@@ -156,20 +177,49 @@
       '</ul>';
   }
 
-  function isSafeUrl(url) {
-    return typeof url === 'string' &&
-      (url.indexOf('https://') === 0 || url.indexOf('http://') === 0);
+  function buildEvidenceList(items) {
+    if (!items) return '<p>no especificado</p>';
+    if (Array.isArray(items)) return buildListHtml(items);
+    var buckets = [
+      { key: 'macro',         label: 'Macro' },
+      { key: 'financial',     label: 'Financiero' },
+      { key: 'institutional', label: 'Institucional' }
+    ];
+    var html = '';
+    buckets.forEach(function(b) {
+      if (items[b.key] && items[b.key].length) {
+        html += '<div class="route-closure-evidence-bucket">' +
+          '<h5 class="evidence-bucket-label">' + escapeHtml(b.label) + '</h5>' +
+          '<ul class="route-closure-list">' +
+          items[b.key].map(function(i) {
+            return '<li>' + escapeHtml(i) + '</li>';
+          }).join('') +
+          '</ul></div>';
+      }
+    });
+    return html || '<p>no especificado</p>';
   }
 
   function buildCronicaHtml(cronicaKey) {
     if (!cronicaKey || !CRONICAS[cronicaKey]) return '';
     var c = CRONICAS[cronicaKey];
+
+    var pregunta = '';
+    if (c.preguntaGuia) {
+      pregunta = '<p class="route-closure-cronica-pregunta">' +
+        '<span>' + escapeHtml(c.preguntaGuia) + '</span></p>';
+    }
+
+    var comoleer = '<aside class="route-closure-cronica-comoleer">' +
+      escapeHtml(COMO_LEER) + '</aside>';
+
     var parrafos = '';
     if (c.cronica && c.cronica.length) {
       for (var i = 0; i < c.cronica.length; i++) {
         parrafos += '<p>' + escapeHtml(c.cronica[i]) + '</p>';
       }
     }
+
     var fuentes = '';
     if (c.fuentes && c.fuentes.length) {
       for (var j = 0; j < c.fuentes.length; j++) {
@@ -179,8 +229,11 @@
           escapeHtml(f.texto) + '</a></li>';
       }
     }
+
     return '<details class="route-closure-cronica">' +
       '<summary>Crónica canónica con fuentes · ' + escapeHtml(c.titulo) + '</summary>' +
+      pregunta +
+      comoleer +
       '<p class="route-closure-cronica-sub">' + escapeHtml(c.sub) + '</p>' +
       '<div class="route-closure-cronica-cuerpo">' + parrafos + '</div>' +
       '<p class="route-closure-cronica-caveat">' + escapeHtml(c.caveat) + '</p>' +
@@ -189,6 +242,43 @@
         '<ul>' + fuentes + '</ul>' +
       '</div>' +
     '</details>';
+  }
+
+  function buildDeepDiveHtml(narrative) {
+    if (!narrative.deepDive || !narrative.deepDive.length) return '';
+    var items = narrative.deepDive.slice(0, 4);
+    return '<aside class="route-closure-deepdive" aria-label="Profundización">' +
+      '<h4 class="route-closure-deepdive-title">Para profundizar</h4>' +
+      '<ul class="route-closure-deepdive-list">' +
+      items.map(function(item, i) {
+        return '<li><span class="deepdive-label">' + escapeHtml(DEEP_DIVE_LABELS[i]) + '.</span> ' +
+          escapeHtml(item) + '</li>';
+      }).join('') +
+      '</ul></aside>';
+  }
+
+  function buildFootnotesHtml(narrative) {
+    var ov  = narrative.omittedVariables;
+    var cal = narrative.causalAttributionLimit;
+    var fc  = narrative.falsificationCheck;
+    if (!ov && !cal && !fc) return '';
+
+    var labels = [
+      'Variables omitidas en el modelo aplicado.',
+      'Límite de adjudicación causal.',
+      'Falsificador.'
+    ];
+    var values = [ov, cal, fc];
+    var items = '';
+    for (var i = 0; i < 3; i++) {
+      if (values[i]) {
+        items += '<p class="route-closure-footnote">' +
+          '<span class="route-closure-footnote-label">' + escapeHtml(labels[i]) + '</span>' +
+          escapeHtml(values[i]) +
+        '</p>';
+      }
+    }
+    return '<div class="route-closure-footnotes">' + items + '</div>';
   }
 
   function closureHtml(narrative, ctx) {
@@ -211,13 +301,15 @@
         '<div class="route-closure-block"><h4>Límites del modelo</h4>' +
           '<p>' + escapeHtml(narrative.limits) + '</p></div>' +
         '<div class="route-closure-block"><h4>Evidencia inmediata</h4>' +
-          buildListHtml(narrative.evidenceNow) + '</div>' +
+          buildEvidenceList(narrative.evidenceNow) + '</div>' +
         '<div class="route-closure-block"><h4>Evidencia posterior</h4>' +
           buildListHtml(narrative.evidenceLater) + '</div>' +
         '<div class="route-closure-block"><h4>Cautela</h4>' +
           '<p class="route-closure-warning">' + escapeHtml(narrative.antiOverclaim) + '</p></div>' +
       '</div>' +
       buildCronicaHtml(narrative.cronicaKey) +
+      buildDeepDiveHtml(narrative) +
+      buildFootnotesHtml(narrative) +
       '<div class="route-closure-actions">' +
         '<button type="button" class="route-btn" ' +
             'data-route-return="lentes" ' +
@@ -227,6 +319,8 @@
         '</button>' +
       '</div>';
   }
+
+  /* ========== RENDER ========== */
 
   function renderClosure(tab, narrative, ctx) {
     var mount = document.getElementById(tab + '-route-closure');
@@ -306,6 +400,8 @@
       openInstitutionalRoute(readLentesContext(btn));
     }, true);
   }
+
+  /* ========== INIT ========== */
 
   function syncLocale() {
     if (document.documentElement.lang === 'es') {
