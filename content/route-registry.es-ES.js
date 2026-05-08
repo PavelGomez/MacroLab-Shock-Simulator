@@ -1,7 +1,8 @@
 /* ========== ROUTE REGISTRY ES-ES ========== */
 // Registro editorial de rutas: cápsula de aterrizaje + cierre narrativo.
 // Clave: "tab|modelShockKey|configKey"
-// Sprint 1: cinco rutas de alta prioridad. El resto queda pendiente para Sprint 2.
+// Sprint 1: cinco rutas de alta prioridad.
+// Lote 1: esquema homogéneo en 9 rutas (5 legacy migradas + 4 nuevas).
 window.MacroLabRouteRegistryES = Object.freeze({
 
   "oada|oilUp|CHL": {
@@ -13,11 +14,23 @@ window.MacroLabRouteRegistryES = Object.freeze({
     hypothesis: "Con banco central creíble y tipo de cambio flexible, el shock energético genera inflación transitoria. El TC absorbe parte del ajuste y el BC ancla las expectativas, limitando la segunda vuelta salarial.",
     filter: "Chile 2026: TC flexible como amortiguador, pass-through moderado, BC autónomo con meta de inflación creíble, regla fiscal de cumplimiento imperfecto pero relevante.",
     limits: "OA-DA muestra el equilibrio estático de corto plazo. No formaliza la dinámica de expectativas ni el pass-through cambiario. La convergencia de Pᵉ es un proceso que el modelo supone, no simula.",
-    evidenceNow: [
-      "IPC energía y transables (INE)",
-      "Expectativas de inflación a 12 y 24 meses (EEE, Banco Central)",
-      "CLP/USD ante el shock energético"
-    ],
+    evidenceNow: {
+      macro: [
+        "IPC general y SAE energía",
+        "Salarios reales y nominales",
+        "PIB y empleo"
+      ],
+      financial: [
+        "CLP/USD ante el shock energético",
+        "Spread soberano y CDS Chile",
+        "WTI o referencia energética"
+      ],
+      institutional: [
+        "Expectativas de inflación a 12 y 24 meses (EEE BCCh)",
+        "Comunicación de la TPM y tono de los IPoM",
+        "Reajustes salariales en sectores indexados a UF"
+      ]
+    },
     evidenceLater: [
       "Convergencia del IPC al rango meta (3%±1)",
       "Breakeven implícito en BTP/BTPU",
@@ -25,7 +38,16 @@ window.MacroLabRouteRegistryES = Object.freeze({
     ],
     antiOverclaim: "Este análisis muestra la dirección probable del ajuste, no su magnitud ni timing exacto. La credibilidad del BC es una variable continua acumulada en episodios anteriores; no se transfiere automáticamente a shocks futuros.",
     returnText: "← Volver a Lentes · petróleo · Chile 2026",
-    cronicaKey: "chile_2021_2024"
+    cronicaKey: "chile_2021_2024",
+    omittedVariables: "La crónica no captura la composición sectorial de la transmisión (transables vs no transables), la política de subsidios energéticos del período ni el grado de indexación salarial a UF. En OA-DA aplicado, la apertura externa y el pass-through cambiario aparecen sólo implícitamente.",
+    causalAttributionLimit: "La trayectoria observada admite lectura alternativa por shock global de cadenas de suministro post-pandemia y por demanda interna asociada a retiros previsionales. La hipótesis institucional es parsimoniosa, pero coexiste con esos canales sin excluirlos.",
+    falsificationCheck: "Si economías con instituciones macro comparables hubieran tenido trayectorias dramáticamente peores frente al mismo shock energético, la explicación basada en credibilidad acumulada perdería peso y debería compartir espacio con factores estructurales no institucionales.",
+    deepDive: [
+      "Pass-through cambiario, IPC SAE energético, indexación a UF y dispersión de precios sectoriales",
+      "Trade-off credibilidad-flexibilidad en regímenes de meta de inflación con economía abierta",
+      "OA-DA no formaliza el pass-through cambiario ni la heterogeneidad sectorial",
+      "Brasil 2021-2024 (otra meta de inflación con régimen flotante) y Perú 2021-2024 (meta de inflación con dolarización parcial)"
+    ]
   },
 
   "oada|oilUp|FRG": {
@@ -37,11 +59,23 @@ window.MacroLabRouteRegistryES = Object.freeze({
     hypothesis: "Con anclaje frágil, la inflación inicial activa expectativas que generan segunda vuelta. El banco central enfrenta presión política para acomodar y la prima de riesgo sube con independencia del shock original.",
     filter: "Anclaje frágil: expectativas poco ancladas, pass-through alto, dominancia fiscal latente, prima de riesgo sensible a noticias de política monetaria.",
     limits: "OA-DA muestra el equilibrio tras el primer shock. La segunda vuelta requiere razonar sobre cómo Pᵉ se ajusta endógenamente, lo que el modelo no simula en un solo período.",
-    evidenceNow: [
-      "Spread EMBI o CDS soberano",
-      "Expectativas inflacionarias de corto plazo",
-      "Demanda de divisas / premium en cambio paralelo si existe"
-    ],
+    evidenceNow: {
+      macro: [
+        "IPC y subyacente",
+        "Salarios reales y empleo",
+        "Crecimiento sectorial transables vs no transables"
+      ],
+      financial: [
+        "Spread EMBI o CDS soberano",
+        "Tipo de cambio oficial y demanda de divisas",
+        "Premium en cambio paralelo si existe"
+      ],
+      institutional: [
+        "Expectativas de inflación de corto y mediano plazo",
+        "Rotación o presión sobre la autoridad monetaria",
+        "Indexación salarial y de contratos"
+      ]
+    },
     evidenceLater: [
       "Desanclaje persistente de expectativas a 24 meses",
       "Prima de riesgo soberana sostenida",
@@ -49,7 +83,16 @@ window.MacroLabRouteRegistryES = Object.freeze({
     ],
     antiOverclaim: "La fragilidad institucional no es un destino inevitable: es el resultado de decisiones acumuladas. La trayectoria descrita ilustra un mecanismo, no una predicción para ningún país específico.",
     returnText: "← Volver a Lentes · petróleo · Anclaje frágil",
-    cronicaKey: "turkey_2018_2023"
+    cronicaKey: "turkey_2018_2023",
+    omittedVariables: "La crónica no captura la composición de la deuda pública en moneda extranjera, el grado de desarrollo del mercado de capitales doméstico ni los canales informales de demanda de dólares. En OA-DA aplicado, la dinámica de spreads soberanos y la presión política sobre el banco central no aparecen como variables.",
+    causalAttributionLimit: "La aceleración inflacionaria turca admite lectura por experimento de política heterodoxa específica del periodo —recortes de tasa con inflación alta— separable del rasgo institucional general. Ambas dimensiones son complementarias, no excluyentes.",
+    falsificationCheck: "Si la trayectoria turca se explicara principalmente por la decisión política puntual de recortar tasas con inflación alta, y no por una fragilidad institucional acumulada, la lectura del filtro debería moderarse y enfatizar la naturaleza idiosincrática del episodio.",
+    deepDive: [
+      "Series de inflación, expectativas, tasa real esperada y rotación de presidentes del banco central",
+      "Independencia de jure vs de facto del banco central; dominancia política y reputación",
+      "OA-DA no formaliza la presión política sobre la autoridad monetaria ni la heterodoxia explícita",
+      "Argentina 2018-2023 (otro caso emergente de fragilidad) y Brasil 2010-2016 (caso intermedio con ajuste exitoso)"
+    ]
   },
 
   "islmbp|copperDown|CHL": {
@@ -61,11 +104,23 @@ window.MacroLabRouteRegistryES = Object.freeze({
     hypothesis: "Con tipo de cambio flexible y regla fiscal creíble, la caída del cobre se absorbe parcialmente vía depreciación, que mejora la competitividad de exportaciones no cupreras y modera la caída de actividad.",
     filter: "Chile 2026: TC flexible, regla de balance estructural (precio de referencia del cobre), BC autónomo, acceso a mercados internacionales de deuda.",
     limits: "IS-LM-BP asume perfecta movilidad de capitales y tipo de cambio flotante limpio. No modela la dinámica de reservas ni el efecto sobre las expectativas inflacionarias vía pass-through.",
-    evidenceNow: [
-      "Precio del cobre (Cochilco, LME)",
-      "CLP/USD en tiempo real",
-      "Balance de la cuenta corriente (Banco Central)"
-    ],
+    evidenceNow: {
+      macro: [
+        "Balance de la cuenta corriente y exportaciones",
+        "PIB minero vs no minero",
+        "Empleo en sectores expuestos al cobre"
+      ],
+      financial: [
+        "Precio del cobre (Cochilco, LME)",
+        "CLP/USD",
+        "Spread soberano CDS Chile"
+      ],
+      institutional: [
+        "Balance fiscal efectivo vs estructural (Dipres)",
+        "Saldo del FEES y reglas de uso",
+        "Comunicación de la regla de balance estructural"
+      ]
+    },
     evidenceLater: [
       "Balance fiscal efectivo vs. estructural (Dipres)",
       "Prima soberana chilena (CDS a 5 años)",
@@ -73,7 +128,16 @@ window.MacroLabRouteRegistryES = Object.freeze({
     ],
     antiOverclaim: "IS-LM-BP simplifica la dinámica externa. El ajuste real depende del nivel de reservas, la credibilidad de la regla fiscal y el contexto global de liquidez en mercados emergentes.",
     returnText: "← Volver a Lentes · cobre · Chile 2026",
-    cronicaKey: "chile_2008_2009"
+    cronicaKey: "chile_2008_2009",
+    omittedVariables: "La crónica no captura la composición de las exportaciones no cupreras, la política de subsidios al sector minero ni la dinámica del fondo soberano específica del período. En IS-LM-BP aplicado, la heterogeneidad regional del impacto y los efectos de derrame financiero internacional no aparecen.",
+    causalAttributionLimit: "La amortiguación parcial del shock admite lectura alternativa por entorno de bajas tasas globales y por demanda china diferida en lugar de colapsada. La hipótesis institucional explica una parte, pero comparte peso con los canales globales del momento.",
+    falsificationCheck: "Si una economía con regla fiscal estructural pero sin acceso fluido a mercados internacionales hubiera amortiguado un shock análogo de manera comparable, la explicación basada en flotación y credibilidad fiscal perdería peso explicativo.",
+    deepDive: [
+      "Composición de exportaciones, balance estructural ex-post y trayectoria del FEES",
+      "Reglas fiscales basadas en commodities y diseño contracíclico",
+      "IS-LM-BP no formaliza la dinámica intertemporal del fondo ni el efecto sobre productividad sectorial",
+      "Australia 2014-2016 (mining downturn con buffers parciales) y Perú 2014-2016 (otro exportador metálico)"
+    ]
   },
 
   "islm|fiscalContract|CHL": {
@@ -85,11 +149,23 @@ window.MacroLabRouteRegistryES = Object.freeze({
     hypothesis: "Con regla fiscal creíble y banco central autónomo, la contracción ordenada puede aliviar presiones externas, acompañar la política monetaria y no generar espiral de expectativas negativas.",
     filter: "Chile 2026: regla de balance estructural, BC autónomo con espacio para acompañar, acceso a mercados de deuda soberana.",
     limits: "IS-LM no captura el canal externo ni la respuesta del tipo de cambio. Para economías abiertas pequeñas, IS-LM-BP es el complemento necesario para ver la fuga cambiaria y la balanza de pagos.",
-    evidenceNow: [
-      "IMACEC mensual (Banco Central)",
-      "TPM y tasa de política (BCCh)",
-      "Prima soberana CDS a 5 años (Chile)"
-    ],
+    evidenceNow: {
+      macro: [
+        "IMACEC mensual (Banco Central)",
+        "Inversión privada y FBCF",
+        "Empleo y desocupación"
+      ],
+      financial: [
+        "TPM y tasa de política (BCCh)",
+        "Prima soberana CDS Chile",
+        "Tasas largas BTP/BTPU"
+      ],
+      institutional: [
+        "Expectativas de crecimiento a 12 meses",
+        "Cumplimiento de la regla de balance estructural",
+        "Posición del FEES y comunicación fiscal"
+      ]
+    },
     evidenceLater: [
       "Balance fiscal efectivo vs. estructural (Dipres)",
       "Expectativas de crecimiento a 12 meses",
@@ -97,7 +173,16 @@ window.MacroLabRouteRegistryES = Object.freeze({
     ],
     antiOverclaim: "IS-LM supone economía cerrada o con canal externo simplificado. La lectura institucional agrega la dimensión de credibilidad que el modelo no formaliza. La magnitud del multiplicador real depende de factores no modelados.",
     returnText: "← Volver a Lentes · contracción fiscal · Chile 2026",
-    cronicaKey: "chile_2008_2009"
+    cronicaKey: "chile_2008_2009",
+    omittedVariables: "La crónica no captura el canal externo del tipo de cambio (cuyo movimiento puede reforzar o atenuar el ajuste interno), la composición sectorial del recorte ni la respuesta de las expectativas empresariales. En IS-LM aplicado, la apertura externa no aparece en el equilibrio cerrado.",
+    causalAttributionLimit: "El éxito de un ajuste fiscal chileno admite atribución parcial al ciclo cuprífero del momento y a la posición externa relativamente sólida. La hipótesis del filtro institucional es plausible pero comparte explicación con esos factores.",
+    falsificationCheck: "Si la consolidación se hubiera ejecutado en un contexto de ciclo cuprífero negativo y aún así produjera un ajuste ordenado, la tesis institucional saldría reforzada. En el caso Chile 2008-2009, el ciclo externo fue parcialmente favorable, lo que limita la fuerza del falsificador.",
+    deepDive: [
+      "Balance estructural, multiplicador fiscal estimado ex-post y composición del ajuste",
+      "Reglas fiscales y multiplicadores; literatura post-2008 sobre fiscal multipliers en small open economies",
+      "IS-LM no formaliza el canal externo ni el efecto sobre la posición externa neta",
+      "Suecia 1994-1998 (consolidación creíble) y Argentina 2001 (consolidación sin credibilidad)"
+    ]
   },
 
   "oada|pandemic|CHL": {
@@ -109,11 +194,23 @@ window.MacroLabRouteRegistryES = Object.freeze({
     hypothesis: "Con espacio fiscal previo (FEES operativo), Chile pudo responder con estímulo contracíclico creíble sin comprometer la sostenibilidad. La credibilidad del BC redujo el pass-through adicional al IPC.",
     filter: "Chile 2026: FEES operativo, regla fiscal con espacio, BC autónomo con credibilidad acumulada, acceso a mercados internacionales.",
     limits: "OA-DA no modela la dinámica de expectativas pandémicas ni los efectos de histéresis sobre la oferta. La recuperación puede ser asimétrica según el tejido productivo afectado y los efectos de largo plazo sobre productividad.",
-    evidenceNow: [
-      "IMACEC mensual (Banco Central)",
-      "Gasto de gobierno efectivo vs. presupuestado (Dipres)",
-      "Balance del FEES (Dirección de Presupuestos)"
-    ],
+    evidenceNow: {
+      macro: [
+        "IMACEC mensual (Banco Central)",
+        "Empleo y desocupación",
+        "PIB y crecimiento sectorial"
+      ],
+      financial: [
+        "TPM y tasa de política",
+        "CLP/USD y reservas internacionales",
+        "Spread soberano CDS Chile"
+      ],
+      institutional: [
+        "Gasto de gobierno efectivo vs presupuestado (Dipres)",
+        "Balance del FEES (Dirección de Presupuestos)",
+        "Expectativas de inflación a 12 y 24 meses"
+      ]
+    },
     evidenceLater: [
       "Cicatrización del mercado laboral (tasa de desempleo, NAIRU estimada)",
       "Recuperación de la inversión privada (FBCF)",
@@ -121,7 +218,196 @@ window.MacroLabRouteRegistryES = Object.freeze({
     ],
     antiOverclaim: "La respuesta chilena a la pandemia fue posible en parte por condiciones institucionales previas únicas: espacio fiscal acumulado y credibilidad del BC. No es un modelo exportable sin ajustar por las condiciones de cada economía.",
     returnText: "← Volver a Lentes · pandemia · Chile 2026",
-    cronicaKey: "chile_2021_2024"
+    cronicaKey: "chile_2021_2024",
+    omittedVariables: "La crónica no captura los efectos de los retiros previsionales sobre la demanda agregada, la heterogeneidad regional de la respuesta sanitaria ni la composición sectorial del estímulo. En OA-DA aplicado, la dinámica de transferencias directas y su efecto-riqueza no aparecen.",
+    causalAttributionLimit: "La recuperación post-pandemia admite atribución parcial a los retiros previsionales (que estimularon demanda y luego presionaron precios) y al ciclo global expansivo. La hipótesis del filtro institucional explica la sostenibilidad nominal, pero comparte explicación de la recuperación con esos canales.",
+    falsificationCheck: "Si la inflación 2021-2022 se explicara casi exclusivamente por los retiros previsionales y la liquidez global, sin contribución diferencial del marco institucional respecto a economías comparables, la tesis del filtro debería acotarse.",
+    deepDive: [
+      "Retiros previsionales, transferencias directas, ahorro precautorio y efectos sobre IPC",
+      "Política contracíclica creíble en pandemia; fronteras del espacio fiscal",
+      "OA-DA no formaliza retiros previsionales, transferencias directas ni heterogeneidad regional",
+      "Perú 2020-2021 (retiros similares) y Brasil 2020-2021 (transferencias amplias bajo marco distinto)"
+    ]
+  },
+
+  "oada|pandemic|CRD": {
+    arrivalTitle: "OA-DA · pandemia con buffer soberano y banco central creíble",
+    what: "Analizas la pandemia bajo Alta credibilidad con buffer. El espacio fiscal acumulado y la credibilidad monetaria modulan profundidad y duración del ajuste; el caso de referencia incluye un shock dual: pandemia y caída del precio del petróleo.",
+    shock: "Pandemia: DA cae por incertidumbre y restricciones; OA puede subir por disrupciones de oferta. En el caso noruego, la caída simultánea del petróleo agrega un canal externo de deterioro de términos de intercambio y depreciación cambiaria.",
+    graph: "DA se desplaza a la izquierda. OA puede subir transitoriamente. El equilibrio queda con menor Y. El movimiento de P depende de la magnitud relativa; con expectativas ancladas y buffer activo, suele ser contenido.",
+    next: "Contrasta con FRG (Argentina 2020) para ver el rol de la credibilidad acumulada. Lee la crónica de Noruega 2020 para anclar la lectura en evidencia y comprender el shock dual.",
+    hypothesis: "Con buffer fiscal previo, banco central creíble y legitimidad política para usar el buffer, la respuesta contracíclica es factible sin transferir el shock a inflación persistente ni a prima soberana, incluso bajo shocks duales.",
+    filter: "Alta credibilidad con buffer: regla fiscal con consenso político transversal, fondo soberano operativo, banco central con meta de inflación creíble, expectativas firmemente ancladas.",
+    limits: "OA-DA captura la fotografía estática del corto plazo. La sostenibilidad intergeneracional del buffer, la dinámica del precio del petróleo y la diferencia entre tener buffer y tener legitimidad política para usarlo no se modelan en este equilibrio.",
+    evidenceNow: {
+      macro: [
+        "PIB continental y total",
+        "Desempleo registrado",
+        "Inflación general"
+      ],
+      financial: [
+        "Tasa de política monetaria de Norges Bank",
+        "Tipo de cambio EUR/NOK",
+        "Precio Brent o referencia energética"
+      ],
+      institutional: [
+        "Expectativas de inflación a 12-24 meses",
+        "Transferencias del fondo al presupuesto",
+        "Comunicación oficial del marco fiscal"
+      ]
+    },
+    evidenceLater: [
+      "Recuperación del PIB hacia tendencia",
+      "Trayectoria del fondo y sostenibilidad de retornos reales",
+      "Inflación de mediano plazo y política monetaria post-pandemia"
+    ],
+    antiOverclaim: "Un caso de buffer activo no es prescripción universal: la acumulación previa requirió rentas petroleras y consenso político específicos.",
+    cronicaKey: "noruega_2020",
+    returnText: "← Volver a Lentes · pandemia · Alta credibilidad con buffer",
+    omittedVariables: "La apertura externa, la composición sectorial de la economía, el efecto patrimonial agregado del fondo y la dinámica del precio del petróleo no aparecen explícitamente en OA-DA aplicado.",
+    causalAttributionLimit: "La trayectoria observada admite lectura alternativa por baja exposición sectorial al turismo y al comercio físico, dos canales que castigaron a economías con marcos institucionales similares (Suiza, Dinamarca). La hipótesis institucional es parsimoniosa, no única.",
+    falsificationCheck: "Si economías con igual buffer y credibilidad hubieran tenido trayectorias significativamente peores solo por composición sectorial distinta, la explicación institucional perdería fuerza.",
+    deepDive: [
+      "Precio del petróleo, composición sectorial del PIB y evolución del valor del fondo soberano",
+      "Diseño de fondos soberanos, reglas fiscales y sostenibilidad intergeneracional",
+      "OA-DA no formaliza el canal externo del petróleo ni el efecto patrimonial agregado del fondo",
+      "Australia 2020 (mining-economy con buffers parciales) y Suiza 2020 (alta credibilidad sin buffer petrolero)"
+    ]
+  },
+
+  "oada|pandemic|FRG": {
+    arrivalTitle: "OA-DA · pandemia bajo anclaje frágil",
+    what: "Analizas la pandemia bajo Anclaje frágil. Sin regla fiscal vinculante, con autonomía operativa limitada del banco central y con historia reciente de default, el shock global común se transforma en un episodio de aceleración inflacionaria persistente.",
+    shock: "Pandemia: DA cae; OA puede subir transitoriamente. Sin regla fiscal y con autonomía limitada, la respuesta vía financiamiento monetario amplifica el componente inflacionario; el resultado no se reduce a 'emisión genera inflación', sino que combina dominancia fiscal, baja demanda de dinero, brecha cambiaria, controles e indexación parcial.",
+    graph: "DA se desplaza a la izquierda; OA puede acompañar. Si Pᵉ se desancla, OA continúa moviéndose en períodos posteriores. El equilibrio se aleja sostenidamente de Yₙ con presión persistente sobre P.",
+    next: "Contrasta con CRD (Noruega 2020) para ver el rol del buffer y la credibilidad. Lee la crónica de Argentina 2020 para anclar en evidencia y comprender el mecanismo institucional completo.",
+    hypothesis: "Con anclaje frágil, un shock global común se transforma en episodio inflacionario persistente; la respuesta fiscal-monetaria sin reglas creíbles activa expectativas que se autorefuerzan vía dominancia fiscal, brecha cambiaria y restricción externa.",
+    filter: "Anclaje frágil: BC con autonomía formal pero limitada operativamente, sin regla fiscal vinculante, historia reciente de default, expectativas poco ancladas, demanda de dinero deteriorada.",
+    limits: "OA-DA muestra el equilibrio estático. La dinámica de aceleración inflacionaria, la brecha cambiaria oficial-paralela y la fuga hacia activos en moneda extranjera no se modelan.",
+    evidenceNow: {
+      macro: [
+        "PIB",
+        "Inflación diciembre-contra-diciembre y promedio anual",
+        "Empleo y salarios reales"
+      ],
+      financial: [
+        "Brecha entre tipo de cambio oficial y tipos paralelos/financieros (blue, MEP, CCL)",
+        "Spread soberano y CDS",
+        "Reservas internacionales netas"
+      ],
+      institutional: [
+        "Expectativas de inflación a 12 meses (REM o equivalente)",
+        "Crecimiento de la base monetaria",
+        "Financiamiento monetario del déficit fiscal"
+      ]
+    },
+    evidenceLater: [
+      "Persistencia de la inflación interanual",
+      "Capacidad de acceso a mercados internacionales de deuda",
+      "Trayectoria del salario real y del empleo registrado"
+    ],
+    antiOverclaim: "La fragilidad institucional se construye y se desarma con decisiones acumuladas; no es destino atribuible al país.",
+    cronicaKey: "argentina_2020",
+    returnText: "← Volver a Lentes · pandemia · Anclaje frágil",
+    omittedVariables: "La heterogeneidad provincial del impacto pandémico, la composición del mercado paralelo de divisas y la fragmentación entre depósitos en pesos y en dólares no aparecen en el equilibrio agregado.",
+    causalAttributionLimit: "La aceleración inflacionaria 2020-2022 admite lectura por shock global de commodities y energía. La hipótesis institucional explica la persistencia diferencial respecto a emergentes comparables, pero no excluye los canales globales.",
+    falsificationCheck: "Si la inflación 2021-2022 se explicara casi totalmente por commodities y energía, la tesis institucional debería moderarse y compartir peso explicativo con factores externos.",
+    deepDive: [
+      "Dominancia fiscal, demanda de dinero, brecha cambiaria, expectativas REM y pass-through",
+      "Coordinación fiscal-monetaria, dominancia fiscal y reglas vinculantes",
+      "OA-DA no formaliza dominancia fiscal ni dinámica de brecha cambiaria oficial-paralela",
+      "Trayectorias contemporáneas de Chile, Perú y Uruguay frente al mismo shock pandémico"
+    ]
+  },
+
+  "islm|fiscalContract|CRD": {
+    arrivalTitle: "IS-LM · contracción fiscal bajo credibilidad acumulada",
+    what: "Analizas una contracción fiscal bajo Alta credibilidad con buffer. La credibilidad acumulada permite que el ajuste sea ordenado, sin desanclaje de expectativas ni recesión adicional; el caso de referencia debe leerse en contexto, no como demostración de 'austeridad expansiva'.",
+    shock: "Contracción fiscal: IS se desplaza a la izquierda. Si el banco central acompaña y las expectativas no se desanclan, parte de la caída de Y se compensa vía menores tasas e inversión privada.",
+    graph: "IS se desplaza a la izquierda. El equilibrio se mueve a menor Y y puede tener menor i. La distancia al equilibrio inicial es contenida si la credibilidad reduce la prima de riesgo y el costo del financiamiento.",
+    next: "Contrasta con FRG (Grecia 2010-2015) para ver cómo la fragilidad amplifica el costo. Lee la crónica de Suecia 1994-1998 para anclar en evidencia y comprender los factores complementarios.",
+    hypothesis: "Con credibilidad institucional acumulada, sistema financiero saneado y régimen cambiario flexible que actúa como amortiguador, la contracción fiscal puede ejecutarse sin recesión adicional: el mercado lee el ajuste como señal de disciplina, no de crisis.",
+    filter: "Alta credibilidad con buffer: meta de inflación creíble, consenso político transversal sobre la consolidación, sistema financiero saneado, espacio fiscal pre-existente, régimen cambiario flexible.",
+    limits: "IS-LM permite mostrar la contracción inicial de demanda agregada, pero el caso sueco requiere lectura complementaria de economía abierta: depreciación previa, recuperación de competitividad, saneamiento bancario y expectativas fiscales interactuaron para limitar el costo del ajuste.",
+    evidenceNow: {
+      macro: [
+        "PIB y crecimiento durante el ajuste",
+        "Tasa de desempleo",
+        "Balance fiscal estructural"
+      ],
+      financial: [
+        "Spread soberano respecto al benchmark",
+        "Tasas largas y convergencia hacia el mercado de referencia",
+        "Tipo de cambio efectivo real"
+      ],
+      institutional: [
+        "Expectativas de inflación",
+        "Estado del sistema bancario y supervisión",
+        "Comunicación del marco fiscal y autonomía del banco central"
+      ]
+    },
+    evidenceLater: [
+      "Deuda pública/PIB",
+      "Crecimiento del PIB en años posteriores al ajuste",
+      "Estabilidad de las expectativas y convergencia del spread"
+    ],
+    antiOverclaim: "Una consolidación sin recesión adicional resulta de una combinación específica de credibilidad acumulada, sistema financiero saneado, régimen cambiario flexible y ciclo externo favorable; no se exporta automáticamente a otros contextos.",
+    cronicaKey: "suecia_1994_1998",
+    returnText: "← Volver a Lentes · contracción fiscal · Alta credibilidad con buffer",
+    omittedVariables: "El ciclo expansivo global de mediados de los 1990, la depreciación cambiaria post-MTC y la reforma laboral concomitante no se formalizan en IS-LM. La apertura externa no aparece en el equilibrio cerrado.",
+    causalAttributionLimit: "La combinación virtuosa de ajuste con crecimiento admite atribución parcial al ciclo internacional favorable y a la depreciación cambiaria previa. La hipótesis institucional es plausible y complementaria, no excluyente.",
+    falsificationCheck: "Si el crecimiento sueco se explicara principalmente por depreciación y ciclo externo, la tesis de credibilidad fiscal debería acotarse y compartir peso explicativo con esos canales.",
+    deepDive: [
+      "Composición gasto/impuestos del ajuste, evolución del balance estructural y desempleo desagregado",
+      "Consolidaciones fiscales exitosas versus 'austeridad expansiva' (Alesina-Ardagna, Blanchard-Leigh)",
+      "IS-LM no captura el canal externo (depreciación, competitividad, saneamiento bancario)",
+      "Canadá 1994-1997 (consolidación con tipo de cambio flexible) y Finlandia 1993-1998 (consolidación post-crisis bancaria)"
+    ]
+  },
+
+  "islm|fiscalContract|FRG": {
+    arrivalTitle: "IS-LM · contracción fiscal bajo anclaje frágil y rigidez cambiaria",
+    what: "Analizas una contracción fiscal bajo Anclaje frágil con régimen cambiario rígido. La ausencia de credibilidad fiscal previa, el sistema bancario en estrés y la imposibilidad de amortiguar el ajuste vía tipo de cambio amplifican el costo real del ajuste.",
+    shock: "Contracción fiscal: IS se desplaza a la izquierda. Sin credibilidad acumulada y sin TC propio, el mercado lee el ajuste como señal de crisis y la prima de riesgo sube; la inversión privada cae adicionalmente por el aumento del costo de financiamiento.",
+    graph: "IS se desplaza marcadamente a la izquierda. Si la prima de riesgo soberano y el estrés bancario elevan la tasa efectiva de financiamiento, la inversión privada cae adicionalmente. No es crowding-out convencional por expansión fiscal: es contracción amplificada por riesgo soberano y canal bancario.",
+    next: "Contrasta con CRD (Suecia 1994-1998) para ver el rol de la credibilidad acumulada. Lee la crónica de Grecia 2010-2015 para anclar en evidencia y comprender el rol del régimen euro y del PSI.",
+    hypothesis: "Con anclaje frágil y rigidez cambiaria, la contracción fiscal genera caída acumulada de Y mayor que la sugerida por el multiplicador estándar; la lectura de mercado amplifica el ajuste vía prima de riesgo y canal bancario.",
+    filter: "Anclaje frágil: ausencia de credibilidad fiscal acumulada, sistema financiero en estrés, régimen cambiario que impide absorción nominal, expectativas de salida del régimen latentes.",
+    limits: "IS-LM no captura la rigidez cambiaria del régimen euro, la fuga de depósitos hacia bancos del norte, ni el canal financiero externo. Para casos de unión monetaria sin transferencias fiscales, el equilibrio relevante exige extender el modelo.",
+    evidenceNow: {
+      macro: [
+        "PIB acumulado y trimestral",
+        "Desempleo total y juvenil",
+        "Inversión bruta y formación bruta de capital fijo"
+      ],
+      financial: [
+        "Spread soberano a 10 años y CDS",
+        "Depósitos del sistema bancario",
+        "Tasa efectiva de financiamiento privado"
+      ],
+      institutional: [
+        "Confianza en el régimen cambiario y prima de salida del euro",
+        "Estado del programa con la Troika y revisiones del FMI",
+        "Recapitalización del sistema bancario"
+      ]
+    },
+    evidenceLater: [
+      "Deuda pública/PIB y trayectoria de sostenibilidad",
+      "Multiplicador fiscal ex-post estimado",
+      "Trauma político y consecuencias de mediano plazo (referéndum 2015)"
+    ],
+    antiOverclaim: "El colapso griego no es atribución permanente al país: las decisiones acumuladas y el diseño de la unión monetaria son co-responsables. La generalización requiere atender al régimen cambiario y al estado del sistema financiero.",
+    cronicaKey: "grecia_2010_2015",
+    returnText: "← Volver a Lentes · contracción fiscal · Anclaje frágil",
+    omittedVariables: "La heterogeneidad sectorial del ajuste, la fuga de depósitos hacia bancos del norte de la eurozona y la dinámica política interna no se modelan en IS-LM. La rigidez cambiaria del euro no aparece como variable.",
+    causalAttributionLimit: "La profundidad del colapso admite lectura por subestimación del multiplicador fiscal en el diseño del programa, separada de la fragilidad institucional. Ambas son complementarias; el FMI reconoce explícitamente la primera en su ex-post evaluation 2013.",
+    falsificationCheck: "Si la caída se explicara principalmente por error de multiplicador y no por fragilidad institucional ni régimen euro, habría que cambiar el peso causal hacia el diseño del programa más que hacia la configuración institucional.",
+    deepDive: [
+      "Multiplicadores fiscales ex-post, fuga de depósitos por país y trayectoria de la deuda",
+      "Diseño incompleto de la unión monetaria y ausencia de prestamista fiscal común (Mundell, áreas monetarias óptimas)",
+      "IS-LM no formaliza la rigidez cambiaria del euro ni el canal financiero externo",
+      "Portugal 2011, Irlanda 2010 y España 2012 (otros programas concurrentes en la eurozona)"
+    ]
   }
 
 });
