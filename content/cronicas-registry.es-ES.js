@@ -1,8 +1,13 @@
-/* ========== CRÓNICAS REGISTRY ES-ES ========== */
+/* ========== CRÓNICAS REGISTRY ES-ES js ========== */
 // Registro de crónicas canónicas con fuentes verificadas.
 // Clave: identificador de episodio histórico.
 // Migrado desde EJEMPLOS en assets/lentes.js (Sprint 2).
 // Lote 1: preguntaGuia añadida a 4 legacy; 4 crónicas nuevas.
+// Lote 2 (auditoría 2026-05-09): correcciones factuales menores y
+//   actualización de fuentes a Q1 2018-2026 con DOIs / repositorios
+//   oficiales. Detalle en
+//   MacroLab_Macro2_Lentes_Institucionales_2026/03_auditoria/
+//   y _CLAUDE_CODE/CHANGELOG.md
 window.MacroLabCronicasRegistryES = Object.freeze({
 
   "chile_2021_2024": {
@@ -10,15 +15,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     sub: "Credibilidad en economía abierta",
     preguntaGuia: "¿Qué hace que un episodio de alta inflación no termine en un desanclaje permanente de expectativas?",
     cronica: [
-      "Tras la pandemia, los retiros previsionales y la liquidez global empujaron la inflación chilena. La variación anual del IPC alcanzó su peak en agosto de 2022 al llegar a 14,1%, el nivel más alto desde 1991, según el INE.",
+      "Tras la pandemia, los retiros previsionales y la liquidez global empujaron la inflación chilena. La variación anual del IPC alcanzó su peak en agosto de 2022 al llegar a 14,1%, el nivel más alto desde septiembre de 1992, según el INE.",
       "El Banco Central llevó la TPM desde 0,5% en julio de 2021 hasta 11,25% en octubre de 2022, y la mantuvo en ese nivel durante casi un año. La comunicación insistió en que la convergencia a la meta de 3% era prioridad, incluso ante presiones por aliviar la carga financiera.",
       "La inflación cedió hacia el rango meta durante 2024, sin un desanclaje persistente de las expectativas a 24 meses. El costo del ajuste se distribuyó entre actividad y precios; los salarios reales tardaron en recuperarse y el desempleo se mantuvo por encima de 8% durante el proceso."
     ],
     caveat: "Ilustra una respuesta creíble de banco central en una economía abierta. No es prescripción para otros casos ni predicción para episodios futuros.",
     fuentes: [
-      { texto: "IPoM diciembre 2022, Banco Central de Chile", url: "https://www.bcentral.cl/areas/politica-monetaria/informe-de-politica-monetaria" },
-      { texto: "INE, IPC anual 2022", url: "https://www.ine.gob.cl" },
-      { texto: "FMI, Article IV Chile 2023", url: "https://www.imf.org/en/Countries/CHL" }
+      { texto: "BCCh (2022). IPoM diciembre 2022.", url: "https://www.bcentral.cl/contenido/-/detalle/ipom-diciembre-2022" },
+      { texto: "INE Chile. IPC — series y notas técnicas.", url: "https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor" },
+      { texto: "FMI (2024). Chile: 2023 Article IV Consultation. CR 24/29.", url: "https://www.imf.org/en/Publications/CR/Issues/2024/02/06/Chile-2023-Article-IV-Consultation-Press-Release-Staff-Report-545020" },
+      { texto: "Albagli, Grigoli & Luttini (2024). Inflation Expectations and the Supply Chain.", url: "https://www.imf.org/-/media/files/conferences/2024/global-challenges-and-channels-for-fiscal-and-monetary-policy/inflation-expectations-and-the-supply-chain-albagli-grigoli-and-luttini.pdf" },
+      { texto: "Coibion, Gorodnichenko, Kumar & Pedemonte (2020). Inflation expectations as a policy tool? JME 116.", url: "https://doi.org/10.1016/j.jmoneco.2020.07.002" }
     ]
   },
 
@@ -27,15 +34,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     sub: "Anclaje frágil con presión política sobre el banco central",
     preguntaGuia: "¿Cuándo la presión política sobre la autoridad monetaria deja de ser ruido y se vuelve constitutiva del régimen nominal?",
     cronica: [
-      "Entre 2018 y 2023 Turquía atravesó múltiples episodios cambiarios. La inflación, que ya rondaba 15% al inicio del periodo, alcanzó su peak en octubre de 2022 al llegar a 85,4% interanual, según TurkStat.",
+      "Entre 2018 y 2023 Turquía atravesó múltiples episodios cambiarios. La inflación, que ya rondaba 15% al inicio del periodo, alcanzó su peak en octubre de 2022 al llegar a 85,51% interanual, según TÜİK.",
       "Frente a un cuadro que sugería contracción monetaria, la autoridad operó bajo presión política. En varios momentos del periodo el banco central recortó tasas mientras la inflación subía. La rotación de presidentes del banco central acentuó la percepción de baja autonomía.",
       "Las expectativas se desanclaron, el pass-through cambiario se aceleró, y las medidas heterodoxas no contuvieron la dinámica. Tras las elecciones de mayo de 2023 hubo un giro hacia tasas más altas, con resultados graduales: la inflación bajó a 38% en junio de 2023 y siguió cediendo en los años siguientes, aunque a niveles aún elevados."
     ],
     caveat: "Ilustra un mecanismo de desanclaje de expectativas y presión política sobre la autoridad monetaria, no un destino atribuible al país. Ningún rasgo nacional explica por sí solo la trayectoria; lo que se enseña es el mecanismo institucional.",
     fuentes: [
-      { texto: "TurkStat, CPI series", url: "https://data.tuik.gov.tr" },
-      { texto: "BIS, reportes sobre desinflación en emergentes", url: "https://www.bis.org" },
-      { texto: "Focus Economics, Turkey CPI", url: "https://www.focus-economics.com/country-indicator/turkey/inflation/" }
+      { texto: "TÜİK (2022). CPI Turquía — boletín octubre 2022 (peak 85,51%).", url: "https://data.tuik.gov.tr/Bulten/Index?p=Tuketici-Fiyat-Endeksi-Ekim-2022-45798" },
+      { texto: "BIS (2023). Navigating the disinflation journey. AER 2023.", url: "https://www.bis.org/publ/arpdf/ar2023e1.htm" },
+      { texto: "Demiralp & Demiralp (2019). Erosion of central bank independence in Turkey. EER 9.", url: "https://doi.org/10.1007/s40822-018-0118-0" },
+      { texto: "Garriga & Rodriguez (2020). CBI and inflation in developing countries. JIMF 104.", url: "https://doi.org/10.1016/j.jimonfin.2020.102166" },
+      { texto: "Focus Economics, Turkey CPI.", url: "https://www.focus-economics.com/country-indicator/turkey/inflation/" }
     ]
   },
 
@@ -50,9 +59,11 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     ],
     caveat: "Ilustra cómo un ancla rígida acumula tensión cuando no es consistente con el resto del marco fiscal y de productividad. No que toda rigidez fracase, ni que la convertibilidad fuera inútil siempre. Distintos autores han ofrecido explicaciones complementarias del colapso.",
     fuentes: [
-      { texto: "Texto oficial Ley 23.928", url: "https://www.argentina.gob.ar/normativa/nacional/ley-23928-328" },
-      { texto: "Déficit y convertibilidad, Scielo Chile", url: "https://www.scielo.cl/scielo.php?script=sci_arttext&pid=S0717-68212003012100050" },
-      { texto: "Universidad de San Andrés, La crisis de la convertibilidad", url: "https://repositorio.udesa.edu.ar" }
+      { texto: "Ley 23.928 (1991). Régimen de convertibilidad.", url: "https://www.argentina.gob.ar/normativa/nacional/ley-23928-328" },
+      { texto: "Ley 25.561 (2002). Emergencia pública y reforma del régimen cambiario.", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/71477/norma.htm" },
+      { texto: "Mussa (2002). Argentina and the Fund: From Triumph to Tragedy. PIIE Policy Analysis 67.", url: "https://www.piie.com/bookstore/argentina-and-fund-triumph-tragedy" },
+      { texto: "Calvo, Izquierdo & Mejía (2008). Systemic Sudden Stops. NBER WP 14026.", url: "https://www.nber.org/papers/w14026" },
+      { texto: "De la Torre, Levy Yeyati & Schmukler (2003). Living and Dying with Hard Pegs. Economía 3(2).", url: "https://muse.jhu.edu/article/41432" }
     ]
   },
 
@@ -67,9 +78,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     ],
     caveat: "Ilustra el uso de buffers fiscales y monetarios construidos en periodos buenos. No un blindaje absoluto; las condiciones —regla creíble, ahorro previo, supervisión funcional— hicieron viable la respuesta en ese momento.",
     fuentes: [
-      { texto: "Informe FEES diciembre 2009, DIPRES", url: "https://www.dipres.gob.cl/598/articles-61210_doc_pdf.pdf" },
-      { texto: "FMI, Article IV Chile 2009", url: "https://www.imf.org/es/News/Articles/2015/09/28/04/53/pn09111" },
-      { texto: "Cumplimiento de las metas de regla fiscal en Chile, DIPRES 2022", url: "https://www.dipres.gob.cl/598/articles-299473_doc_pdf.pdf" }
+      { texto: "DIPRES (2009). Informe FEES diciembre 2009.", url: "https://www.dipres.gob.cl/598/articles-61210_doc_pdf.pdf" },
+      { texto: "FMI (2009). Chile: 2009 Article IV Consultation. CR 09/271.", url: "https://www.imf.org/external/pubs/ft/scr/2009/cr09271.pdf" },
+      { texto: "DIPRES (2022). Cumplimiento de las metas de regla fiscal en Chile: Revisión histórica.", url: "https://www.dipres.gob.cl/598/articles-299473_doc_pdf.pdf" },
+      { texto: "De Gregorio (2014). How Latin America Weathered the Global Financial Crisis. PIIE.", url: "https://www.piie.com/bookstore/how-latin-america-weathered-global-financial-crisis" },
+      { texto: "Vegh & Vuletin (2014). Overcoming the Fear of Free Falling. AER 104(5).", url: "https://doi.org/10.1257/aer.104.5.131" },
+      { texto: "Frankel, Vegh & Vuletin (2013). On graduation from fiscal procyclicality. JIE 100(1).", url: "https://doi.org/10.1016/j.jinteco.2012.12.008" }
     ]
   },
 
@@ -86,10 +100,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "Bjørnland & Thorsrud (2016). Boom or Gloom? Economic Journal 126(598).", url: "https://doi.org/10.1111/ecoj.12302" },
       { texto: "van der Ploeg (2011). Natural Resources: Curse or Blessing? JEL 49(2).", url: "https://doi.org/10.1257/jel.49.2.366" },
-      { texto: "Norges Bank (2020). Monetary Policy Report 1/2020 y 2/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/" },
-      { texto: "IMF (2021). Norway: 2021 Article IV Consultation. CR 21/197.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/09/13/Norway-2021-Article-IV-Consultation-Press-Release-Staff-Report-466009" },
-      { texto: "OECD (2022). OECD Economic Surveys: Norway 2022.", url: "https://www.oecd.org/economy/norway-economic-snapshot/" },
-      { texto: "Financial Times (R. Milne): retiros récord del NBIM en 2020.", url: "https://www.ft.com/content/norway-sovereign-fund" }
+      { texto: "van den Bremer & van der Ploeg (2013). Managing Volatile Oil Windfalls. Oxford REP 29(1).", url: "https://doi.org/10.1093/oxrep/grt001" },
+      { texto: "Norges Bank (2020). Monetary Policy Report 1/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-12020/" },
+      { texto: "Norges Bank (2020). Monetary Policy Report 2/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-22020/" },
+      { texto: "FMI (2021). Norway: 2021 Article IV Consultation. CR 21/197.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/09/13/Norway-2021-Article-IV-Consultation-Press-Release-Staff-Report-466009" },
+      { texto: "OECD (2022). OECD Economic Surveys: Norway 2022. DOI 10.1787/df7b87ab-en.", url: "https://doi.org/10.1787/df7b87ab-en" },
+      { texto: "Reuters (2020). Norway shatters wealth fund spending cap amid pandemic.", url: "https://www.reuters.com/article/business/norway-shatters-wealth-fund-spending-cap-amid-pandemic-idUSKBN22O1GP/" }
     ]
   },
 
@@ -106,10 +122,10 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "Calvo & Reinhart (2002). Fear of Floating. QJE 117(2).", url: "https://doi.org/10.1162/003355302753650274" },
       { texto: "Sturzenegger & Zettelmeyer (2008). Haircuts. JIMF 27(5).", url: "https://doi.org/10.1016/j.jimonfin.2007.10.005" },
-      { texto: "IMF (2021). Argentina: Ex Post Evaluation 2018 SBA. CR 21/279.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/12/22/Argentina-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2018-Stand-By-Arrangement-511289" },
+      { texto: "Sturzenegger (2022). Hyperinflation: A Concise Review. LJCB 3(2).", url: "https://doi.org/10.1016/j.latcb.2022.100052" },
+      { texto: "FMI (2021). Argentina: Ex Post Evaluation 2018 SBA. CR 21/279.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/12/22/Argentina-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2018-Stand-By-Arrangement-511289" },
       { texto: "CEPAL (2021). Estudio Económico de América Latina y el Caribe 2021.", url: "https://www.cepal.org/es/publicaciones/47192-estudio-economico-america-latina-caribe-2021" },
-      { texto: "BCRA. Relevamiento de Expectativas de Mercado (REM) 2020-2022.", url: "https://www.bcra.gob.ar/PublicacionesEstadisticas/relevamiento_expectativas_de_mercado.asp" },
-      { texto: "Buenos Aires Times: cobertura del default y la brecha cambiaria 2020.", url: "https://www.batimes.com.ar/news/economy" }
+      { texto: "BCRA. Relevamiento de Expectativas de Mercado (REM) 2020-2022.", url: "https://www.bcra.gob.ar/PublicacionesEstadisticas/relevamiento_expectativas_de_mercado.asp" }
     ]
   },
 
@@ -119,17 +135,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     preguntaGuia: "¿Cuándo una contracción fiscal puede ser interpretada como restauración de solvencia y no como profundización de crisis?",
     cronica: [
       "Tras la crisis financiera 1991-1993 —marcada por la quiebra controlada de Nordbanken, la creación de Securum como \"banco malo\" y la salida de la corona del MTC en noviembre de 1992—, Suecia enfrentaba un déficit fiscal cercano al 12% del PIB y una deuda pública en trayectoria de aproximarse al 80% del PIB. El gobierno socialdemócrata electo en 1994 inició un programa de consolidación que, con apoyo amplio entre coaliciones, redujo el déficit a posición de superávit hacia 1998. El Riksbank, ya operando bajo meta de inflación adoptada en enero de 1993 y aplicada formalmente desde 1995, en camino a la independencia formal de 1999, mantuvo expectativas ancladas durante todo el ajuste.",
-      "El ajuste combinó reducciones de gasto y aumentos de ingresos, con un peso relevante de las medidas de gasto según varias reconstrucciones, aunque la proporción exacta depende del período y de la clasificación utilizada. La deuda pública/PIB cayó desde su máximo cercano al 78% en 1995 hasta alrededor del 65% en 1998. El crecimiento del PIB se mantuvo positivo durante el ajuste: 4,0% (1994), 3,9% (1995), 1,5% (1996), 2,7% (1997). La tasa de desempleo bajó desde su máximo de 9,9% en 1993 a niveles cercanos al 6% hacia fin de 1998 —aún elevada en términos históricos—. El spread soberano sueco se mantuvo bajo control y los rendimientos largos convergieron hacia los alemanes.",
+      "El ajuste combinó reducciones de gasto y aumentos de ingresos, con un peso relevante de las medidas de gasto según varias reconstrucciones, aunque la proporción exacta depende del período y de la clasificación utilizada. La deuda pública/PIB cayó desde su máximo cercano al 78% en 1994 hasta alrededor del 65% en 1998. El crecimiento del PIB se mantuvo positivo durante el ajuste: 4,0% (1994), 3,9% (1995), 1,5% (1996), 2,7% (1997). La tasa de desempleo bajó desde su máximo de 9,9% en 1993 a niveles cercanos al 6% hacia fin de 1998 —aún elevada en términos históricos—. El spread soberano sueco se mantuvo bajo control y los rendimientos largos convergieron hacia los alemanes.",
       "La interpretación parsimoniosa combina credibilidad nominal acumulada, consenso político transversal y un sistema bancario ya saneado por intervención pública previa: esa combinación permitió ejecutar el ajuste fiscal sin recesión adicional ni desanclaje de expectativas. El caso no debe leerse como demostración de 'austeridad expansiva': el contexto incluyó una depreciación cambiaria previa que actuó como amortiguador externo y un ciclo global expansivo; el desempleo se mantuvo alto durante todo el período y la composición del ajuste sigue siendo objeto de debate académico. Otros países con consolidaciones contemporáneas en marcos menos creíbles tuvieron resultados sustancialmente peores."
     ],
     caveat: "Ilustra una configuración institucional e histórica específica; no caracteriza permanentemente al país. No demuestra que toda consolidación pueda ejecutarse sin recesión: el contexto sueco incluyó un sistema bancario ya saneado, un tipo de cambio que actuó como amortiguador externo en 1992-1993 y un ciclo global expansivo. La generalización requiere atender al estado del sistema financiero, al régimen cambiario y al ciclo externo.",
     fuentes: [
       { texto: "Englund (1999). The Swedish Banking Crisis. Oxford REP 15(3).", url: "https://doi.org/10.1093/oxrep/15.3.80" },
-      { texto: "Calmfors (2012). The Swedish Fiscal Policy Council. JEPR 15(1).", url: "https://doi.org/10.1080/17487870.2012.657892" },
+      { texto: "Calmfors & Wren-Lewis (2011). What should fiscal councils do? Economic Policy 26(68).", url: "https://doi.org/10.1111/j.1468-0327.2011.00273.x" },
+      { texto: "Henriksson (2007). Ten Lessons about Budget Consolidation. Bruegel.", url: "https://www.bruegel.org/essay-and-lecture/ten-lessons-about-budget-consolidation" },
       { texto: "Sveriges Riksbank. Inflation target history (1993, formal from 1995).", url: "https://www.riksbank.se/en-gb/monetary-policy/the-inflation-target/" },
-      { texto: "IMF (1998). Sweden: Selected Issues. CR 98/124.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/30/Sweden-Selected-Issues-2752" },
-      { texto: "OECD (1999). OECD Economic Surveys: Sweden 1998-1999.", url: "https://www.oecd.org/economy/sweden-economic-snapshot/" },
-      { texto: "Dagens Nyheter: cobertura de la consolidación 1994-1998.", url: "https://www.dn.se/ekonomi/" }
+      { texto: "FMI (1998). Sweden: Selected Issues. CR 98/124.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/30/Sweden-Selected-Issues-2752" },
+      { texto: "OECD (1999). OECD Economic Surveys: Sweden 1999.", url: "https://www.oecd.org/en/publications/oecd-economic-surveys-sweden_19990448.html" }
     ]
   },
 
@@ -145,11 +161,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     caveat: "Ilustra una configuración institucional e histórica específica; no caracteriza permanentemente al país. Las decisiones acumuladas en las dos décadas previas, tanto domésticas como del diseño de la unión monetaria, son co-responsables del colapso. La generalización a otras consolidaciones requiere atender específicamente al régimen cambiario y al estado del sistema financiero.",
     fuentes: [
       { texto: "Blanchard & Leigh (2013). Growth Forecast Errors and Fiscal Multipliers. AER 103(3).", url: "https://doi.org/10.1257/aer.103.3.117" },
-      { texto: "Reinhart & Trebesch (2016). Sovereign Debt Relief. JEEA 14(1).", url: "https://doi.org/10.1111/jeea.12166" },
-      { texto: "IMF (2013). Greece: Ex Post Evaluation 2010 SBA. CR 13/156.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/31/Greece-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2010-Stand-By-Arrangement-40639" },
-      { texto: "ESM (2019). Safeguarding the euro in times of crisis.", url: "https://www.esm.europa.eu/publications/safeguarding-euro-times-crisis" },
-      { texto: "Zettelmeyer, Trebesch & Gulati (2013). Greek Debt Restructuring. PIIE WP 13-8.", url: "https://www.piie.com/publications/working-papers/greek-debt-restructuring-autopsy" },
-      { texto: "Financial Times (P. Spiegel): cobertura de los tres programas y del PSI 2012.", url: "https://www.ft.com/greece-debt-crisis" }
+      { texto: "Reinhart & Trebesch (2016). Sovereign Debt Relief and its Aftermath. JEEA 14(1).", url: "https://doi.org/10.1111/jeea.12166" },
+      { texto: "Zettelmeyer, Trebesch & Gulati (2013). The Greek Debt Restructuring: An Autopsy. Economic Policy 28(75).", url: "https://doi.org/10.1111/1468-0327.12014" },
+      { texto: "Bolton, Fu, Gulati & Panizza (2024). The 2012 Greek Retrofit and Borrowing Costs in the European Periphery.", url: "https://doi.org/10.1177/2755323X231220978" },
+      { texto: "FMI (2013). Greece: Ex Post Evaluation 2010 SBA. CR 13/156.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/31/Greece-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2010-Stand-By-Arrangement-40639" },
+      { texto: "IEO-IMF (2016). The IMF and the Crises in Greece, Ireland, and Portugal.", url: "https://ieo.imf.org/en/our-work/Evaluations/Completed/2016-0728-the-imf-and-the-crises-in-greece-ireland-and-portugal" },
+      { texto: "ESM (2019). Safeguarding the euro in times of crisis.", url: "https://www.esm.europa.eu/publications/safeguarding-euro-times-crisis" }
     ]
   }
 
