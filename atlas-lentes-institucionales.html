@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas shock × configuración institucional — Lentes institucionales · MacroLab</title>
+<style>
+  :root{
+    --bg:#0e1420; --panel:#161e2e; --panel-2:#1f2a3d; --line:#2b3651;
+    --txt:#e7eaf2; --muted:#9aa6bf; --accent:#7dd3fc; --warn:#fbbf24; --ok:#34d399; --bad:#f87171;
+    --chip:#26344f;
+    --shock:#fb7185; --regime:#a78bfa; --cb:#7dd3fc; --rule:#34d399; --buffer:#fbbf24; --outcome:#f472b6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header.top{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  header.top h1{margin:0;font-size:18px;font-weight:600;letter-spacing:.2px}
+  header.top h1 small{color:var(--muted);font-weight:400;margin-left:8px}
+  .layout{display:grid;grid-template-columns:280px 1fr;gap:0;min-height:calc(100vh - 65px)}
+  aside.filters{background:var(--panel);border-right:1px solid var(--line);padding:18px;overflow-y:auto}
+  aside.filters h2{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 8px;font-weight:600}
+  aside.filters .group{margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+  aside.filters .group:last-of-type{border-bottom:none}
+  aside.filters label{display:flex;align-items:center;gap:8px;padding:4px 0;cursor:pointer;color:var(--txt);font-size:13px}
+  aside.filters input[type=checkbox],aside.filters input[type=radio]{accent-color:var(--accent)}
+  main.content{padding:22px;overflow-y:auto}
+  .topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .pill{background:var(--panel-2);color:var(--muted);padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line)}
+  .pill strong{color:var(--txt)}
+  .views{display:flex;gap:6px}
+  .views button{background:var(--panel-2);color:var(--txt);border:1px solid var(--line);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer}
+  .views button.is-active{background:var(--accent);color:#0e1420;border-color:var(--accent)}
+  .reset{background:transparent;color:var(--muted);border:1px dashed var(--line);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer}
+  .reset:hover{color:var(--txt);border-color:var(--accent)}
+  /* Cards view */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:transform .12s ease}
+  .card:hover{transform:translateY(-1px);border-color:var(--accent)}
+  .card h3{margin:0;font-size:15px}
+  .card .sub{color:var(--muted);font-size:12px}
+  .card .pregunta{font-size:13px;color:var(--txt);font-style:italic;border-left:2px solid var(--accent);padding-left:8px}
+  .card .mech{font-size:12.5px;color:var(--txt)}
+  .card .valor{font-size:11.5px;color:var(--muted);font-style:italic}
+  .chips{display:flex;flex-wrap:wrap;gap:4px}
+  .chip{font-size:10.5px;padding:2px 8px;border-radius:999px;background:var(--chip);color:#cbd5e1;border:1px solid var(--line)}
+  .chip.shock   { color:var(--shock);   border-color:#532430 }
+  .chip.regime  { color:var(--regime);  border-color:#3a2c5e }
+  .chip.cb      { color:var(--cb);      border-color:#1e4f6e }
+  .chip.rule    { color:var(--rule);    border-color:#1f5945 }
+  .chip.buffer  { color:var(--buffer);  border-color:#5a4515 }
+  .chip.outcome { color:var(--outcome); border-color:#5e2a4a }
+  .card .actions{display:flex;gap:10px;margin-top:auto;padding-top:8px;border-top:1px dashed var(--line)}
+  .card .actions a{font-size:12.5px}
+  /* Matrix view */
+  .matrix-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
+  table.matrix{border-collapse:separate;border-spacing:6px;font-size:12.5px;min-width:760px}
+  table.matrix th{color:var(--muted);font-weight:500;padding:6px 8px;text-align:left;font-size:11.5px;letter-spacing:.4px}
+  table.matrix td{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:8px;vertical-align:top;min-width:130px;height:84px}
+  table.matrix td.empty{background:transparent;border:1px dashed var(--line);color:var(--muted);font-style:italic;text-align:center}
+  table.matrix td .mcase{display:block;color:var(--txt);font-size:12.5px;margin-bottom:2px}
+  table.matrix td .mcase a{color:var(--accent)}
+  table.matrix td.outcome-anchored{outline:2px solid #1f5945}
+  table.matrix td.outcome-temporary_unanchoring{outline:2px solid #5a4515}
+  table.matrix td.outcome-persistent_unanchoring{outline:2px solid #532430}
+  /* MacroLab 4×8 matrix */
+  table.macrolab{border-collapse:separate;border-spacing:6px;font-size:12px;min-width:880px}
+  table.macrolab th{color:var(--muted);font-weight:500;padding:8px;text-align:left;font-size:11.5px;letter-spacing:.4px;vertical-align:middle}
+  table.macrolab th.col{font-weight:600;color:var(--txt);background:#1a2236;border-radius:6px;text-align:center}
+  table.macrolab td{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:8px;vertical-align:top;min-width:120px;height:78px;font-size:11.5px}
+  table.macrolab td.has-route{border-color:var(--ok);background:#0e2a23}
+  table.macrolab td.has-pending{border-color:var(--warn);border-style:dashed;background:#2a2410}
+  table.macrolab td.empty{background:transparent;border:1px dashed var(--line);color:var(--muted);font-style:italic;text-align:center;padding-top:24px}
+  table.macrolab td a{color:var(--accent);text-decoration:none}
+  table.macrolab td .badge{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;padding:1px 6px;border-radius:999px;display:inline-block;margin-bottom:4px}
+  table.macrolab td.has-route .badge{background:#1f5945;color:#bef7d6}
+  table.macrolab td.has-pending .badge{background:#5a4515;color:#fde2a7}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;font-size:11.5px;color:var(--muted)}
+  .legend .key{display:inline-flex;align-items:center;gap:6px}
+  .legend .key i{width:14px;height:14px;display:inline-block;border-radius:3px;border:1px solid var(--line)}
+  .legend .key i.ok{border-color:var(--ok);background:#0e2a23}
+  .legend .key i.pend{border-color:var(--warn);border-style:dashed;background:#2a2410}
+  .legend .key i.empty{border:1px dashed var(--line);background:transparent}
+  /* Coverage */
+  .coverage{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+  .coverage h2{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:0 0 10px}
+  .cov-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .cov-cell{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:10px}
+  .cov-cell .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .cov-cell .val{font-size:13px;color:var(--txt)}
+  .cov-cell .bar{height:6px;background:#1a2236;border-radius:6px;overflow:hidden;margin-top:6px}
+  .cov-cell .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#22c55e);border-radius:6px}
+  /* Detail panel */
+  .detail{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:24px;z-index:50}
+  .detail.is-open{display:flex}
+  .detail .pane{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:760px;width:100%;max-height:90vh;overflow-y:auto;padding:22px}
+  .detail h3{margin:0 0 4px}
+  .detail .close{float:right;background:transparent;color:var(--muted);border:none;font-size:18px;cursor:pointer}
+  .detail .sec{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+  .detail .sec h4{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1.2px;margin:0 0 8px}
+  .detail .sec.knowledge p{padding:8px 10px;border-radius:6px;background:var(--panel-2);margin:6px 0;font-size:13px}
+  .detail .sec.knowledge .a{border-left:3px solid var(--ok)}
+  .detail .sec.knowledge .b{border-left:3px solid var(--warn)}
+  .detail .sec.knowledge .c{border-left:3px solid var(--accent)}
+  footer.foot{padding:14px 22px;color:var(--muted);font-size:12px;border-top:1px solid var(--line);text-align:center}
+  @media (max-width:780px){
+    .layout{grid-template-columns:1fr}
+    aside.filters{border-right:none;border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Atlas shock × configuración institucional <small>· Lentes institucionales · MacroLab</small></h1>
+  <div class="views">
+    <button data-view="grid"   class="is-active">Tarjetas</button>
+    <button data-view="matrix">Matriz régimen × BC</button>
+    <button data-view="macrolab">Matriz MacroLab (4×8)</button>
+    <button data-view="coverage">Cobertura</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="filters" id="filters"></aside>
+  <main class="content">
+    <div class="topbar">
+      <div class="pill">Crónicas mostradas: <strong id="count">0</strong> / <strong id="total">0</strong></div>
+      <button class="reset" id="reset">Limpiar filtros</button>
+    </div>
+    <div id="view-grid" class="view"></div>
+    <div id="view-matrix" class="view" hidden></div>
+    <div id="view-macrolab" class="view" hidden></div>
+    <div id="view-coverage" class="view" hidden></div>
+  </main>
+</div>
+
+<div class="detail" id="detail" role="dialog" aria-modal="true">
+  <div class="pane" id="detail-pane"></div>
+</div>
+
+<footer class="foot">
+  Atlas v0.2 · 12 rutas editoriales registradas (37 % de cobertura) · Pável Gómez Valera, 2026.
+</footer>
+
+<script>
+/* ===========================================================
+ *  Atlas shock × configuración institucional
+ *  Standalone (sin dependencias). Datos embebidos para que el
+ *  archivo funcione abriéndolo directamente con doble click.
+ *  Para producción, el bloque DATA puede reemplazarse por
+ *  fetch('atlas_data.json').
+ * =========================================================== */
+
+const MACROLAB = {
+  configs: {
+    "CHL": "Chile 2026 · Credibilidad macro",
+    "FRG": "Anclaje frágil",
+    "RIG": "Rigidez cambiaria",
+    "CRD": "Alta credibilidad con buffer"
+  },
+  lentes: {
+    "petroleo":         { label:"Alza del petróleo / energía", tab:"oada" },
+    "cobre":            { label:"Caída del cobre",             tab:"islmbp" },
+    "pandemia":         { label:"Pandemia",                    tab:"oada" },
+    "fiscalExpand":     { label:"Expansión fiscal",            tab:"islm" },
+    "fiscalContract":   { label:"Contracción fiscal",          tab:"islm" },
+    "monetaryContract": { label:"Contracción monetaria",       tab:"islm" },
+    "globalRecession":  { label:"Recesión global",             tab:"islmbp" },
+    "guerra":           { label:"Guerra / shock mixto",        tab:"oada" }
+  },
+  rutas_registradas: [
+    { lente:"petroleo",       config:"CHL", cronicaKey:"chile_2021_2024" },
+    { lente:"petroleo",       config:"FRG", cronicaKey:"turkey_2018_2023" },
+    { lente:"cobre",          config:"CHL", cronicaKey:"chile_2008_2009" },
+    { lente:"fiscalContract", config:"CHL", cronicaKey:"chile_2008_2009" },
+    { lente:"pandemia",       config:"CHL", cronicaKey:"chile_2021_2024" },
+    { lente:"pandemia",       config:"CRD", cronicaKey:"noruega_2020" },
+    { lente:"pandemia",       config:"FRG", cronicaKey:"argentina_2020" },
+    { lente:"fiscalContract", config:"CRD", cronicaKey:"suecia_1994_1998" },
+    { lente:"fiscalContract", config:"FRG", cronicaKey:"grecia_2010_2015" },
+    { lente:"globalRecession", config:"RIG", cronicaKey:"argentina_convertibility" },
+    { lente:"fiscalContract",  config:"RIG", cronicaKey:"argentina_convertibility" },
+    { lente:"petroleo",        config:"RIG", cronicaKey:"argentina_convertibility" }
+  ],
+  gaps_prioritarios: []
+};
+
+const DATA = /* @atlas_data_json_inline */ {
+  "tag_labels": {
+    "shock_types":         {"inflation_demand":"Sobreestímulo de demanda agregada","fx_capital_flight":"Sudden stop / fuga de capitales","external_financial":"Crisis financiera global","commodity":"Shock de términos de intercambio","pandemic":"Shock de pandemia (covid-19)","sovereign_default":"Default o reestructuración soberana","banking_crisis":"Crisis bancaria sistémica"},
+    "exchange_regime":     {"floating":"Flotación cambiaria","managed_float":"Flotación administrada","hard_peg":"Ancla cambiaria rígida (hard peg)","monetary_union":"Unión monetaria","mixed":"Régimen mixto"},
+    "central_bank":        {"independent_inflation_target":"BC autónomo con meta de inflación","recently_adopted_target":"BC con meta en consolidación","political_pressure":"BC con autonomía erosionada","no_target":"BC con ancla nominal delegada","fx_anchor_substitute":"Régimen monetario por ancla cambiaria"},
+    "fiscal_rule":         {"structural_rule":"Regla fiscal estructural","flexible_rule":"Regla fiscal con cláusulas de escape","imposed_external":"Programa de condicionalidad externa","absent":"Sin marco fiscal vinculante"},
+    "fiscal_buffer":       {"high":"Espacio fiscal amplio","medium":"Espacio fiscal moderado","low":"Espacio fiscal estrecho","negative":"Sin espacio fiscal (default declarado o inminente)"},
+    "credibility_outcome": {"anchored":"Expectativas ancladas","temporary_unanchoring":"Desanclaje transitorio","persistent_unanchoring":"Desanclaje persistente"}
+  },
+  "cronicas":[
+    {"id":"chile_2021_2024","titulo":"Chile, 2021-2024","sub":"Credibilidad en economía abierta","pais":"Chile","periodo":"2021-2024","preguntaGuia":"¿Qué hace que un episodio de alta inflación no termine en un desanclaje permanente de expectativas?","tags":{"shock_types":["inflation_demand"],"exchange_regime":"floating","central_bank":"independent_inflation_target","fiscal_rule":"structural_rule","fiscal_buffer":"medium","credibility_outcome":"anchored"},"mecanismo_breve":"Sobreestímulo de demanda interno (retiros previsionales + IFE Universal) sumado a presión global de precios; BC autónomo con meta de 3% lleva TPM a 11,25% (oct-2022) y la sostiene; expectativas a 24 meses no se desanclan persistentemente; convergencia al rango meta hacia 2024.","valor_historico":"Caso latinoamericano de absorción de un shock inflacionario severo bajo marco institucional creíble; útil para contrastar con Turquía 2018-2023.","ficha_md":"01_cronicas/chile_2021_2024.md"},
+    {"id":"turkey_2018_2023","titulo":"Turquía, 2018-2023","sub":"Anclaje frágil con presión política sobre el banco central","pais":"Turquía","periodo":"2018-2023","preguntaGuia":"¿Cuándo la presión política sobre la autoridad monetaria deja de ser ruido y se vuelve constitutiva del régimen nominal?","tags":{"shock_types":["inflation_demand","fx_capital_flight"],"exchange_regime":"managed_float","central_bank":"political_pressure","fiscal_rule":"absent","fiscal_buffer":"low","credibility_outcome":"persistent_unanchoring"},"mecanismo_breve":"Presión política sostenida sobre BC; recortes de tasa con inflación al alza; rotación de presidentes del BC; pass-through cambiario acelerado; medidas heterodoxas insuficientes; giro post-elecciones 2023 con resultados graduales.","valor_historico":"Mecanismo de desanclaje endógeno cuando la presión política se vuelve constitutiva del régimen, no shock exógeno.","ficha_md":"01_cronicas/turkey_2018_2023.md"},
+    {"id":"argentina_convertibility","titulo":"Argentina, convertibilidad 1991-2002","sub":"Rigidez cambiaria bajo inconsistencia fiscal","pais":"Argentina","periodo":"1991-2002","preguntaGuia":"¿Qué señales anticipan que un régimen rígido ha dejado de ser consistente con su entorno fiscal y de productividad?","tags":{"shock_types":["external_financial","fx_capital_flight"],"exchange_regime":"hard_peg","central_bank":"fx_anchor_substitute","fiscal_rule":"absent","fiscal_buffer":"negative","credibility_outcome":"persistent_unanchoring"},"mecanismo_breve":"Caja de conversión exitosa contra hiperinflación; tensión acumulada por déficit fiscal estructural, deuda dolarizada y rigidez salarial; crisis externas (Tequila, Rusia, real) y salida traumática con default y devaluación.","valor_historico":"Ejemplo paradigmático de inconsistencia entre ancla rígida y marco fiscal-productivo; ancla en debates sobre dolarización.","ficha_md":"01_cronicas/argentina_convertibility.md"},
+    {"id":"chile_2008_2009","titulo":"Chile, 2008-2009","sub":"Buffers en versión emergente","pais":"Chile","periodo":"2008-2009","preguntaGuia":"¿Qué condiciones permiten que un buffer fiscal acumulado en bonanza se use con credibilidad en una crisis externa?","tags":{"shock_types":["external_financial"],"exchange_regime":"floating","central_bank":"independent_inflation_target","fiscal_rule":"structural_rule","fiscal_buffer":"high","credibility_outcome":"anchored"},"mecanismo_breve":"FEES con US$20.211 millones acumulados (≈15% PIB en activos soberanos); TPM cae 775 pb hasta 0,5%; plan fiscal 2,8% PIB financiado con FEES; recuperación rápida sin perder credibilidad.","valor_historico":"Caso emergente exitoso de uso countercíclico de buffers acumulados en bonanza commodity.","ficha_md":"01_cronicas/chile_2008_2009.md"},
+    {"id":"noruega_2020","titulo":"Noruega, 2020","sub":"Buffer soberano y banco central creíble frente a un shock dual","pais":"Noruega","periodo":"2020","preguntaGuia":"¿Qué permite que un Estado use gasto fiscal extraordinario sin desanclar expectativas?","tags":{"shock_types":["pandemic","commodity"],"exchange_regime":"floating","central_bank":"independent_inflation_target","fiscal_rule":"flexible_rule","fiscal_buffer":"high","credibility_outcome":"anchored"},"mecanismo_breve":"Pandemia + caída del petróleo; tasa al 0% (mayo 2020); transferencias del Government Pension Fund Global por ≈3,4% de su valor (máximo histórico); contracción 2020 menor que mediana OCDE; expectativas ancladas.","valor_historico":"Caso límite de espacio fiscal soberano; útil para discutir replicabilidad y legitimidad política del uso de buffers.","ficha_md":"01_cronicas/noruega_2020.md"},
+    {"id":"argentina_2020","titulo":"Argentina, 2020","sub":"Pandemia sobre default soberano, brecha cambiaria y anclaje frágil","pais":"Argentina","periodo":"2020","preguntaGuia":"¿Cuándo una respuesta fiscal-monetaria de emergencia se convierte en señal de dominancia fiscal?","tags":{"shock_types":["pandemic","sovereign_default","fx_capital_flight"],"exchange_regime":"managed_float","central_bank":"political_pressure","fiscal_rule":"absent","fiscal_buffer":"negative","credibility_outcome":"persistent_unanchoring"},"mecanismo_breve":"Pandemia sobre recesión preexistente y default técnico (mayo 2020); financiamiento del déficit con asistencia monetaria al Tesoro (base monetaria +60% en 2020); brecha cambiaria >100% (CCL 130% en oct-2020); inflación 2020 36,1%, 2021 50,9%, 2022 94,8%.","valor_historico":"Caso de transformación de un shock global común en aceleración inflacionaria persistente bajo marco institucional débil; contraste natural con Chile 2021-2024.","ficha_md":"01_cronicas/argentina_2020.md"},
+    {"id":"suecia_1994_1998","titulo":"Suecia, 1994-1998","sub":"Consolidación fiscal con anclaje creíble tras crisis bancaria","pais":"Suecia","periodo":"1994-1998","preguntaGuia":"¿Cuándo una contracción fiscal puede ser interpretada como restauración de solvencia y no como profundización de crisis?","tags":{"shock_types":["banking_crisis"],"exchange_regime":"floating","central_bank":"recently_adopted_target","fiscal_rule":"structural_rule","fiscal_buffer":"medium","credibility_outcome":"anchored"},"mecanismo_breve":"Crisis bancaria 1991-1993 con Securum como banco malo; déficit ≈12% PIB; consolidación 1994-1998 con consenso transversal lleva a superávit; Riksbank con meta inflación adoptada 1993, formal 1995, independencia 1999; spread soberano controlado.","valor_historico":"Caso de éxito de consolidación con sistema bancario saneado, depreciación previa y ciclo global expansivo; cautela contra lecturas simplistas de 'austeridad expansiva'.","ficha_md":"01_cronicas/suecia_1994_1998.md"},
+    {"id":"grecia_2010_2015","titulo":"Grecia, 2010-2015","sub":"Consolidación severa bajo anclaje frágil en unión monetaria","pais":"Grecia","periodo":"2010-2015","preguntaGuia":"¿Cuándo una consolidación fiscal se vuelve contractiva y auto-reforzante?","tags":{"shock_types":["sovereign_default","banking_crisis"],"exchange_regime":"monetary_union","central_bank":"no_target","fiscal_rule":"imposed_external","fiscal_buffer":"negative","credibility_outcome":"temporary_unanchoring"},"mecanismo_breve":"Programa Troika 2010 (110 mil millones €); déficit 2009 ≈15,4% PIB; PSI marzo 2012 con haircut nominal 53,5%; PIB cae 25% acumulado (2008-2013); desempleo peak 27,5%; spread peak 3.000 pb; multiplicador subestimado al inicio del programa.","valor_historico":"Caso de consolidación auto-reforzante en ausencia de tipo de cambio propio y prestamista fiscal común; ancla del debate sobre diseño incompleto de la unión monetaria.","ficha_md":"01_cronicas/grecia_2010_2015.md"}
+  ]
+};
+
+// Patrón de URL para deep-link a la crónica en MacroLab.
+// El deep-link real activa la pestaña #lentes y popula los selects
+// #lentes-shock y #lentes-config. Mantener sincronizado con
+// 00_indice/url-config.js. Si el simulador no soporta query params,
+// reemplazar por '#lentes' y poblar los selects al cargar.
+const PATRON_URL = '#lentes?shock={lente}&config={config}';
+function cronicaUrl(id){
+  const c = DATA.cronicas.find(x => x.id === id);
+  if (!c || !c.macrolab) return '#lentes';
+  return PATRON_URL
+    .replace('{lente}',  encodeURIComponent(c.macrolab.lente_principal))
+    .replace('{config}', encodeURIComponent(c.macrolab.config));
+}
+
+// ====== Filtros ======
+const DIM_ORDER = ['shock_types','exchange_regime','central_bank','fiscal_rule','fiscal_buffer','credibility_outcome'];
+const DIM_TITLES = {
+  shock_types:'Tipo de shock',
+  exchange_regime:'Régimen cambiario',
+  central_bank:'Banco central',
+  fiscal_rule:'Regla fiscal',
+  fiscal_buffer:'Buffer fiscal',
+  credibility_outcome:'Resultado credibilidad'
+};
+const state = {
+  active: Object.fromEntries(DIM_ORDER.map(d => [d, new Set()])),
+  view: 'grid'
+};
+
+function buildFilters(){
+  const root = document.getElementById('filters');
+  root.innerHTML = DIM_ORDER.map(dim => {
+    const labels = DATA.tag_labels[dim];
+    const checks = Object.entries(labels).map(([k,v]) =>
+      `<label><input type="checkbox" data-dim="${dim}" value="${k}"> ${v}</label>`
+    ).join('');
+    return `<div class="group"><h2>${DIM_TITLES[dim]}</h2>${checks}</div>`;
+  }).join('');
+  root.addEventListener('change', e=>{
+    const cb = e.target;
+    if (!cb || !cb.dataset.dim) return;
+    const set = state.active[cb.dataset.dim];
+    if (cb.checked) set.add(cb.value); else set.delete(cb.value);
+    rerender();
+  });
+  document.getElementById('reset').addEventListener('click',()=>{
+    DIM_ORDER.forEach(d=>state.active[d].clear());
+    document.querySelectorAll('aside.filters input[type=checkbox]').forEach(c=>c.checked=false);
+    rerender();
+  });
+}
+
+function passes(c){
+  for (const dim of DIM_ORDER){
+    const sel = state.active[dim];
+    if (sel.size === 0) continue;
+    const v = c.tags[dim];
+    if (Array.isArray(v)){
+      if (![...sel].some(x => v.includes(x))) return false;
+    } else {
+      if (!sel.has(v)) return false;
+    }
+  }
+  return true;
+}
+
+function chip(dim, val){
+  const cls = ({shock_types:'shock',exchange_regime:'regime',central_bank:'cb',fiscal_rule:'rule',fiscal_buffer:'buffer',credibility_outcome:'outcome'})[dim];
+  return `<span class="chip ${cls}">${DATA.tag_labels[dim][val] || val}</span>`;
+}
+
+function chipsFor(c){
+  const out = [];
+  (c.tags.shock_types||[]).forEach(s=>out.push(chip('shock_types',s)));
+  out.push(chip('exchange_regime',c.tags.exchange_regime));
+  out.push(chip('central_bank',c.tags.central_bank));
+  out.push(chip('fiscal_rule',c.tags.fiscal_rule));
+  out.push(chip('fiscal_buffer',c.tags.fiscal_buffer));
+  out.push(chip('credibility_outcome',c.tags.credibility_outcome));
+  return out.join(' ');
+}
+
+// ====== Render ======
+function renderGrid(filtered){
+  const root = document.getElementById('view-grid');
+  root.innerHTML = `<div class="grid">${
+    filtered.map(c=>`
+      <article class="card" data-id="${c.id}">
+        <header>
+          <h3>${c.titulo}</h3>
+          <div class="sub">${c.sub}</div>
+        </header>
+        <div class="chips">${chipsFor(c)}</div>
+        <p class="pregunta">${c.preguntaGuia}</p>
+        <p class="mech"><strong>Mecanismo:</strong> ${c.mecanismo_breve}</p>
+        <p class="valor"><strong>Valor histórico:</strong> ${c.valor_historico}</p>
+        <div class="actions">
+          <a href="${cronicaUrl(c.id)}" target="_blank" rel="noopener">Abrir en MacroLab →</a>
+          <a href="../${c.ficha_md}" target="_blank" rel="noopener">Ficha completa</a>
+          <a href="#" data-detail="${c.id}">Ver detalle</a>
+        </div>
+      </article>
+    `).join('')
+  }</div>`;
+}
+
+const REGIMES_ORDER = ['floating','managed_float','hard_peg','monetary_union','mixed'];
+const CB_ORDER = ['independent_inflation_target','recently_adopted_target','political_pressure','no_target','fx_anchor_substitute'];
+function renderMatrix(filtered){
+  const root = document.getElementById('view-matrix');
+  // Filas = régimen cambiario; Columnas = banco central. Cada celda apila las crónicas.
+  const rows = REGIMES_ORDER.map(r => {
+    const cols = CB_ORDER.map(b => {
+      const cell = filtered.filter(c=>c.tags.exchange_regime===r && c.tags.central_bank===b);
+      if (cell.length===0) return `<td class="empty">—</td>`;
+      return `<td class="outcome-${cell[0].tags.credibility_outcome}">${
+        cell.map(c=>`<a class="mcase" href="#" data-detail="${c.id}">${c.titulo}</a>`).join('')
+      }</td>`;
+    }).join('');
+    return `<tr><th>${DATA.tag_labels.exchange_regime[r]}</th>${cols}</tr>`;
+  }).join('');
+  const headerCols = CB_ORDER.map(b=>`<th>${DATA.tag_labels.central_bank[b]}</th>`).join('');
+  root.innerHTML = `
+    <div class="matrix-wrap">
+      <p style="color:var(--muted);font-size:12.5px;margin:0 0 12px">
+        Matriz <strong>régimen cambiario × banco central</strong>. Borde de celda
+        codifica el resultado de credibilidad
+        (<span style="color:var(--ok)">verde = anclaje</span>,
+         <span style="color:var(--warn)">amarillo = transitorio</span>,
+         <span style="color:var(--bad)">rojo = persistente</span>).
+      </p>
+      <table class="matrix">
+        <thead><tr><th></th>${headerCols}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderMacroLab(filtered){
+  const root = document.getElementById('view-macrolab');
+  // Filas = lentes (8); columnas = configs (4). Cada celda muestra la
+  // ruta editorial registrada (si existe) o gap prioritario o vacío.
+  const filteredIds = new Set(filtered.map(c => c.id));
+  const lentes = Object.keys(MACROLAB.lentes);
+  const configs = Object.keys(MACROLAB.configs);
+
+  function cellFor(lente, config){
+    const r = MACROLAB.rutas_registradas.find(x => x.lente===lente && x.config===config);
+    if (r){
+      const cron = DATA.cronicas.find(c => c.id === r.cronicaKey);
+      const visible = !filtered.length || filteredIds.has(r.cronicaKey);
+      const opacity = visible ? 1 : 0.35;
+      const titulo = cron ? cron.titulo : r.cronicaKey;
+      return `<td class="has-route" style="opacity:${opacity}">
+        <span class="badge">Ruta ✓</span>
+        <a href="#" data-detail="${r.cronicaKey}">${titulo}</a>
+      </td>`;
+    }
+    const g = MACROLAB.gaps_prioritarios.find(x => x.lente===lente && x.config===config);
+    if (g){
+      const cron = DATA.cronicas.find(c => c.id === g.cronicaKey);
+      const visible = !filtered.length || filteredIds.has(g.cronicaKey);
+      const opacity = visible ? 1 : 0.35;
+      const titulo = cron ? cron.titulo : g.cronicaKey;
+      const estado = g.estado === 'borrador_listo' ? 'Borrador listo' : 'Gap prioritario';
+      const anchorMark = g.anchor ? ' · anchor' : '';
+      const nota = g.estado === 'borrador_listo'
+        ? 'Ruta redactada en 04_rutas_editoriales/, lista para mergear'
+        : 'Sin ruta editorial registrada';
+      return `<td class="has-pending" style="opacity:${opacity}">
+        <span class="badge">${estado}${anchorMark}</span>
+        <div style="margin-bottom:2px">${titulo}</div>
+        <div style="font-size:10.5px;color:var(--muted)">${nota}</div>
+      </td>`;
+    }
+    return `<td class="empty">—</td>`;
+  }
+
+  const headerCols = configs.map(c => `<th class="col" title="${MACROLAB.configs[c]}">${c}<br><span style="font-weight:400;font-size:10px;color:var(--muted)">${MACROLAB.configs[c]}</span></th>`).join('');
+  const rows = lentes.map(l => {
+    const cells = configs.map(c => cellFor(l, c)).join('');
+    const lente = MACROLAB.lentes[l];
+    return `<tr><th>${lente.label}<br><span style="font-weight:400;font-size:10px;color:var(--muted)">${l} · ${lente.tab.toUpperCase()}</span></th>${cells}</tr>`;
+  }).join('');
+
+  const totalCells = lentes.length * configs.length;
+  const cubiertas = MACROLAB.rutas_registradas.length;
+  const gaps = MACROLAB.gaps_prioritarios.length;
+  const borradores = MACROLAB.gaps_prioritarios.filter(g => g.estado === 'borrador_listo').length;
+  const tras_merge = cubiertas + borradores;
+
+  root.innerHTML = `
+    <div class="matrix-wrap">
+      <p style="color:var(--muted);font-size:12.5px;margin:0 0 8px">
+        Matriz operativa real del simulador: <strong>4 configuraciones × 8 lentes = ${totalCells} combinaciones</strong>.
+        Rutas registradas en <code>MacroLabRouteRegistryES</code>: <strong>${cubiertas}</strong> (${Math.round(cubiertas/totalCells*100)}%).
+        Borradores listos para mergear: <strong>${borradores}</strong>. Tras el merge la cobertura pasa a <strong>${tras_merge}/${totalCells}</strong> (${Math.round(tras_merge/totalCells*100)}%).
+      </p>
+      <div class="legend">
+        <span class="key"><i class="ok"></i>Ruta editorial registrada</span>
+        <span class="key"><i class="pend"></i>Borrador listo (en <code>04_rutas_editoriales/</code>)</span>
+        <span class="key"><i class="empty"></i>Combinación sin caso histórico fuerte (fallback genérico)</span>
+      </div>
+      <p style="color:var(--muted);font-size:11.5px;margin:0 0 12px">
+        Los filtros laterales se aplican: si filtras por una crónica, las demás se atenúan en la matriz.
+      </p>
+      <table class="macrolab">
+        <thead><tr><th></th>${headerCols}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p style="color:var(--muted);font-size:11.5px;margin-top:14px">
+        Detalle del mapeo crónica → ruta y de las tensiones de catalogación: ver <code>00_indice/MAPEO_MACROLAB.md</code>.
+      </p>
+    </div>
+  `;
+}
+
+function renderCoverage(filtered){
+  const root = document.getElementById('view-coverage');
+  // Cobertura por dimensión.
+  const cells = DIM_ORDER.map(dim => {
+    const labels = DATA.tag_labels[dim];
+    const total = Object.keys(labels).length;
+    const seen = new Set();
+    filtered.forEach(c => {
+      const v = c.tags[dim];
+      if (Array.isArray(v)) v.forEach(x=>seen.add(x)); else seen.add(v);
+    });
+    const pct = Math.round(seen.size/total*100);
+    const missing = Object.keys(labels).filter(k=>!seen.has(k)).map(k=>labels[k]);
+    return `
+      <div class="cov-cell">
+        <div class="lbl">${DIM_TITLES[dim]}</div>
+        <div class="val">${seen.size} / ${total} categorías cubiertas (${pct}%)</div>
+        <div class="bar"><span style="width:${pct}%"></span></div>
+        ${missing.length ? `<div style="margin-top:8px;font-size:11.5px;color:var(--muted)"><strong>Huecos:</strong> ${missing.join(', ')}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+  root.innerHTML = `
+    <div class="coverage">
+      <h2>Cobertura del banco de crónicas (${filtered.length} casos)</h2>
+      <div class="cov-grid">${cells}</div>
+      <p style="color:var(--muted);font-size:12px;margin-top:14px">
+        Los huecos son <strong>oportunidades pedagógicas</strong>: configuraciones
+        institucionales o tipos de shock para los que conviene incorporar una
+        crónica adicional. La ausencia, en sí misma, es información útil para
+        Macro II.
+      </p>
+    </div>
+  `;
+}
+
+function showDetail(id){
+  const c = DATA.cronicas.find(x=>x.id===id);
+  if (!c) return;
+  const pane = document.getElementById('detail-pane');
+  pane.innerHTML = `
+    <button class="close" id="close-detail" aria-label="Cerrar">×</button>
+    <h3>${c.titulo}</h3>
+    <div class="sub" style="color:var(--muted);font-size:13px">${c.sub}</div>
+    <div class="chips" style="margin-top:10px">${chipsFor(c)}</div>
+    <div class="sec">
+      <h4>Pregunta-guía</h4>
+      <p style="font-style:italic">${c.preguntaGuia}</p>
+    </div>
+    <div class="sec knowledge">
+      <h4>Tres tipos de conocimiento (síntesis)</h4>
+      <p class="a"><strong>(a) Académico:</strong> ${c.mecanismo_breve}</p>
+      <p class="b"><strong>(b) Inferencia pedagógica:</strong> el etiquetado shock × configuración es herramienta de comparación, no clasificación canónica.</p>
+      <p class="c"><strong>(c) Adaptación MacroLab:</strong> la lectura específica del simulador se redacta en la ficha .md correspondiente, una vez confirmado qué expone la ventana.</p>
+    </div>
+    <div class="sec">
+      <h4>Valor histórico</h4>
+      <p>${c.valor_historico}</p>
+    </div>
+    <div class="sec">
+      <h4>Acceso</h4>
+      <p>
+        <a href="${cronicaUrl(c.id)}" target="_blank" rel="noopener">Abrir en MacroLab →</a><br>
+        <a href="../${c.ficha_md}" target="_blank" rel="noopener">Ficha completa (.md) →</a>
+      </p>
+    </div>
+  `;
+  document.getElementById('detail').classList.add('is-open');
+  document.getElementById('close-detail').addEventListener('click', closeDetail);
+}
+function closeDetail(){ document.getElementById('detail').classList.remove('is-open'); }
+document.getElementById('detail').addEventListener('click', e=>{
+  if (e.target.id==='detail') closeDetail();
+});
+document.addEventListener('click', e=>{
+  const t = e.target.closest('[data-detail]');
+  if (t){ e.preventDefault(); showDetail(t.dataset.detail); }
+});
+
+// Toggle vistas
+document.querySelectorAll('.views button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.views button').forEach(x=>x.classList.remove('is-active'));
+    b.classList.add('is-active');
+    state.view = b.dataset.view;
+    document.querySelectorAll('.view').forEach(v=>v.hidden = v.id !== 'view-'+state.view);
+  });
+});
+
+function rerender(){
+  const filtered = DATA.cronicas.filter(passes);
+  document.getElementById('count').textContent = filtered.length;
+  document.getElementById('total').textContent = DATA.cronicas.length;
+  renderGrid(filtered);
+  renderMatrix(filtered);
+  renderMacroLab(filtered);
+  renderCoverage(filtered);
+}
+
+buildFilters();
+rerender();
+</script>
+</body>
+</html>
