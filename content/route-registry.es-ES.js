@@ -408,6 +408,141 @@ window.MacroLabRouteRegistryES = Object.freeze({
       "IS-LM no formaliza la rigidez cambiaria del euro ni el canal financiero externo",
       "Portugal 2011, Irlanda 2010 y España 2012 (otros programas concurrentes en la eurozona)"
     ]
+  },
+
+  "islmbp|globalRecession|RIG": {
+    arrivalTitle: "IS-LM-BP · recesión global bajo régimen rígido",
+    what: "Analizas un sudden stop / recesión global bajo Rigidez cambiaria. Sin tipo de cambio propio para amortiguar y con deuda dolarizada, el ajuste real se vuelve traumático y la sostenibilidad del régimen entra en cuestión.",
+    shock: "Sudden stop: BP se desplaza, salidas de capital reducen base monetaria 1:1 por la regla de la caja de conversión. IS cae por contracción de demanda; la depreciación cambiaria está bloqueada por el peg.",
+    graph: "BP se desplaza. Sin TC propio, el ajuste pasa por contracción de Y y deflación nominal. Observa que el modelo no puede cerrar con depreciación cambiaria: el peso de la corrección recae sobre cantidades.",
+    next: "Contrasta con CHL en el mismo lente para ver cómo la flotación amortigua. Lee la crónica argentina_convertibility para ver el desenlace 1998-2002 y la salida de enero 2002.",
+    hypothesis: "Bajo régimen rígido sin disciplina fiscal acoplada, un sudden stop activa una espiral de contracción real, deflación y stress de deuda que el régimen monetario no puede absorber. El ajuste recae enteramente sobre cantidades; la salida del régimen se vuelve endógena.",
+    filter: "Rigidez cambiaria: caja de conversión sin regla fiscal vinculante, deuda pública dolarizada, pass-through perfecto a precios, restricción externa estructural, federalismo fiscal con incentivos al common pool.",
+    limits: "IS-LM-BP captura el equilibrio estático del impacto. La dinámica de la espiral —deflación, stress bancario, fugas, corralito— exige iterar el modelo. La crisis política y la decisión de salida del régimen son endógenas y no se modelan.",
+    evidenceNow: {
+      macro: [
+        "PIB y desempleo trimestral (INDEC)",
+        "Salarios reales y nominales",
+        "Deflación o caída del IPC en Y2001"
+      ],
+      financial: [
+        "Spread soberano EMBI+ Argentina",
+        "Reservas internacionales y base monetaria",
+        "Depósitos bancarios por moneda"
+      ],
+      institutional: [
+        "Compromiso público con la convertibilidad y comunicación oficial",
+        "Negociación con FMI: Blindaje 2000 y Megacanje 2001",
+        "Riesgo de salida del régimen y prima política implícita"
+      ]
+    },
+    evidenceLater: [
+      "Probabilidad implícita de devaluación en bonos largos",
+      "Composición de la deuda pública en moneda extranjera",
+      "Tasa de desempleo estructural post-2002"
+    ],
+    antiOverclaim: "El colapso de la convertibilidad refleja inconsistencia entre régimen monetario rígido y marco fiscal frágil; no demuestra que toda caja de conversión fracase. Bulgaria post-1997 y Hong Kong 1997-1998 sostuvieron cajas con disciplina fiscal acoplada bajo shocks externos comparables.",
+    cronicaKey: "argentina_convertibility",
+    returnText: "← Volver a Lentes · recesión global · Rigidez cambiaria",
+    omittedVariables: "Federalismo fiscal y endeudamiento provincial, dolarización de depósitos del sistema bancario, productividad sectorial diferencial, política de privatizaciones del periodo 1991-1999, y los efectos balance hoja de los pasivos en dólares de empresas no financieras.",
+    causalAttributionLimit: "El colapso admite lectura por TC real apreciado tras la devaluación brasileña de 1999, por shock externo (crisis asiática y rusa 1997-1998), y por inconsistencia fiscal estructural (Mussa 2002). Las tres lecturas son complementarias, no excluyentes.",
+    falsificationCheck: "Si una caja de conversión con disciplina fiscal acoplada hubiera sufrido el mismo desenlace, la tesis institucional perdería peso. El caso Bulgaria post-1997 (caja sostenida bajo shocks externos múltiples) y Hong Kong 1997-1998 (peg defendido con superávit fiscal) operan como falsificadores parciales: muestran que el régimen no falla por sí solo.",
+    deepDive: [
+      "EMBI+ Argentina 1998-2002, base monetaria, depósitos por moneda y series fiscales por nivel de gobierno (nación, provincias, obra social)",
+      "Sudden stops y crisis de balanza de pagos bajo regímenes rígidos: Calvo, Izquierdo & Mejía (2008, NBER WP 14026); De la Torre, Levy Yeyati & Schmukler (2003)",
+      "IS-LM-BP no formaliza la deflación nominal endógena ni el canal de balance hoja por currency mismatch",
+      "Bulgaria post-1997 (caja sostenida con disciplina fiscal) y Hong Kong 1997-1998 (peg defendido con superávit fiscal en plena crisis asiática)"
+    ]
+  },
+
+  "oada|oilUp|RIG": {
+    arrivalTitle: "OA-DA · alza del petróleo bajo régimen rígido",
+    what: "Analizas un alza del petróleo (shock de costos) bajo Rigidez cambiaria. La caja de conversión bloquea el canal cambiario como amortiguador; el shock se transmite directamente a OA y el ajuste real es más profundo que en regímenes flexibles.",
+    shock: "Alza del petróleo: OA se desplaza hacia arriba e izquierda. P sube, Y cae. En régimen flexible, el TC absorbería parte del shock; bajo caja de conversión esa válvula no existe, y la corrección recae sobre cantidades y precios internos.",
+    graph: "OA sube. El nuevo equilibrio tiene mayor P y menor Y. La distancia al equilibrio inicial es mayor que bajo flotación porque el TC no puede absorber el shock; el peso del ajuste pasa íntegro al ingreso real y a salarios reales.",
+    next: "Contrasta con CHL en el mismo lente para ver cómo la flotación amortigua. Razona sobre la dinámica de Pᵉ: con la caja de conversión, ¿cómo se forman las expectativas si la regla cambiaria es la única ancla?",
+    hypothesis: "Bajo caja de conversión, un shock externo de costos no se amortigua vía depreciación; recae sobre Y, salarios reales y márgenes. Si la disciplina fiscal acompaña, el régimen sobrevive el shock; si no, la inconsistencia se acumula y la prima de salida del régimen empieza a moverse.",
+    filter: "Rigidez cambiaria: caja de conversión 1:1, política monetaria delegada al respaldo de reservas, sin política cambiaria autónoma, pass-through inmediato a precios, salarios nominales rígidos a la baja.",
+    limits: "OA-DA muestra el equilibrio estático del primer shock. La dinámica multiperíodo bajo caja de conversión —en particular el ajuste de salarios reales y el efecto sobre solvencia de empresas con deuda dolarizada— requiere iterar el modelo o usar un marco más completo.",
+    evidenceNow: {
+      macro: [
+        "IPC general y subyacente",
+        "Salarios reales (INDEC)",
+        "PIB y empleo en sectores transables vs. no transables"
+      ],
+      financial: [
+        "Precio del petróleo (WTI, Brent)",
+        "Reservas internacionales del BCRA",
+        "Spread soberano y CDS Argentina"
+      ],
+      institutional: [
+        "Comunicación oficial sobre la convertibilidad",
+        "Margen fiscal y servicios de deuda en dólares",
+        "Convenios colectivos y rigidez nominal"
+      ]
+    },
+    evidenceLater: [
+      "Salarios reales sectoriales (INDEC)",
+      "Quiebras corporativas con pasivos en dólares",
+      "Trayectoria del producto industrial post-shock"
+    ],
+    antiOverclaim: "Un alza del petróleo bajo caja de conversión es ejercicio pedagógico: el shock energético no fue el detonante histórico del colapso argentino. Sirve para mostrar el mecanismo de pass-through inmediato sin amortiguador cambiario, no para asignar causalidad al desenlace 2001.",
+    cronicaKey: "argentina_convertibility",
+    returnText: "← Volver a Lentes · petróleo · Rigidez cambiaria",
+    omittedVariables: "El grado de indexación salarial sectorial, la composición energética de la canasta IPC, los subsidios cruzados al sector energético, y los efectos balance hoja sobre empresas con pasivos en dólares.",
+    causalAttributionLimit: "El caso argentino combina shocks múltiples (Tequila, Asia/Rusia, real, sudden stop 2001); aislar el efecto petróleo es un ejercicio analítico, no histórico. La hipótesis institucional sobre rigidez cambiaria es independiente del shock específico.",
+    falsificationCheck: "Si una economía con caja de conversión hubiera absorbido un alza energética sin tensión institucional ni stress de deuda, la tesis sobre rigidez como amplificador del shock perdería peso. La evidencia comparada (Hong Kong 1990s, Estonia pre-euro) sugiere que la caja sobrevive shocks reales si la disciplina fiscal y la flexibilidad de precios y salarios la acompañan.",
+    deepDive: [
+      "Pass-through energético en economías con peg, salarios reales sectoriales y composición IPC",
+      "Caja de conversión y shocks de oferta: literatura sobre Argentina, Estonia y Hong Kong",
+      "OA-DA no formaliza el canal de balance hoja por currency mismatch ni la rigidez salarial nominal a la baja",
+      "Hong Kong 1991 (alza energética bajo HKD-USD peg) y Estonia 2008 (peg al euro durante crisis externa)"
+    ]
+  },
+
+  "islm|fiscalContract|RIG": {
+    arrivalTitle: "IS-LM · contracción fiscal bajo régimen rígido",
+    what: "Analizas una contracción fiscal bajo Rigidez cambiaria. Sin tipo de cambio propio para amortiguar y con prima de riesgo soberano alta y persistente, el ajuste se interpreta como señal de stress y la inversión privada cae adicionalmente vía aumento del costo de financiamiento.",
+    shock: "Contracción fiscal: IS se desplaza a la izquierda. Bajo caja de conversión, el banco central no puede acompañar bajando la tasa autónomamente; la tasa interna queda atada a la externa más prima de riesgo. Si esta última sube por la lectura de stress, el ajuste se amplifica.",
+    graph: "IS se desplaza marcadamente a la izquierda. Sin política monetaria que pueda compensar, el equilibrio tiene menor Y sin alivio en i; si la prima de riesgo sube, i efectivo aumenta y la inversión privada cae. No es crowding-out convencional: es contracción amplificada por riesgo soberano.",
+    next: "Contrasta con CHL (consolidación con flotación) y con CRD (Suecia 1994-1998, consolidación con depreciación previa y consenso transversal). Lee la crónica argentina_convertibility para ver el contexto de Blindaje 2000, Megacanje 2001 y Ley de Déficit Cero.",
+    hypothesis: "Bajo caja de conversión y sin disciplina fiscal acumulada, una contracción fiscal de emergencia no se interpreta como restauración de solvencia sino como confirmación de stress. La prima de riesgo sube, el costo de financiamiento aumenta y el ajuste se amplifica vía contracción de la inversión privada y deflación nominal.",
+    filter: "Rigidez cambiaria: caja de conversión sin política monetaria autónoma, sin regla fiscal vinculante, deuda pública dolarizada, federalismo fiscal con incentivos al common pool, sistema bancario con balance expuesto a riesgo soberano.",
+    limits: "IS-LM no captura el régimen cambiario rígido ni el canal de balance hoja por currency mismatch. La interacción con el sistema bancario y la fuga de depósitos hacia el exterior son canales de amplificación que el modelo no formaliza.",
+    evidenceNow: {
+      macro: [
+        "Saldo primario y financiero, nivel nacional y provincial",
+        "PIB y desempleo (INDEC)",
+        "Inversión privada y FBCF"
+      ],
+      financial: [
+        "Spread EMBI+ Argentina",
+        "Tasa interbancaria y tasas de préstamos privados",
+        "Depósitos por moneda y fuga de capitales"
+      ],
+      institutional: [
+        "Compromiso fiscal de la nación y de las provincias",
+        "Programas con FMI: Blindaje 2000, ampliaciones 2001",
+        "Comunicación oficial sobre la sostenibilidad de la convertibilidad"
+      ]
+    },
+    evidenceLater: [
+      "Trayectoria de la deuda pública/PIB",
+      "Multiplicador fiscal ex-post estimado",
+      "Recuperación post-2002 y rol del régimen poscolapso"
+    ],
+    antiOverclaim: "El colapso argentino no implica que toda contracción fiscal bajo régimen rígido fracase. La evidencia comparada (Estonia 2008-2010 bajo currency board EEK-EUR) muestra que bajo disciplina fiscal acumulada, sistema bancario sólido y consenso político, la consolidación bajo peg es viable aunque costosa. La especificidad argentina es la combinación de inconsistencia fiscal previa, federalismo descoordinado y sistema bancario con balance expuesto.",
+    cronicaKey: "argentina_convertibility",
+    returnText: "← Volver a Lentes · contracción fiscal · Rigidez cambiaria",
+    omittedVariables: "Federalismo fiscal, cuasimonedas provinciales, exposición del sistema bancario a riesgo soberano, condiciones de los acuerdos con FMI, y la dinámica política interna que precipitó la salida del régimen.",
+    causalAttributionLimit: "La profundidad del colapso admite lectura por error de diseño de los acuerdos FMI 2000-2001 (Blindaje insuficiente, Megacanje con condiciones onerosas), por la inconsistencia fiscal estructural acumulada (Mussa 2002), o por el shock externo (real brasileño 1999, fuga de capitales emergentes). Las tres lecturas son complementarias.",
+    falsificationCheck: "Si una caja de conversión con disciplina fiscal acumulada y sistema bancario solvente hubiera ejecutado una contracción fiscal de magnitud equivalente sin desencadenar colapso, la tesis institucional sobre la inconsistencia previa quedaría falsificada. Estonia 2008-2010 (currency board EEK-EUR durante la Gran Recesión, con consolidación severa y sin colapso del régimen) opera como falsificador parcial.",
+    deepDive: [
+      "Saldo fiscal nacional y provincial 1991-2002, EMBI+, multiplicador fiscal estimado ex-post",
+      "Consolidaciones fiscales bajo regímenes rígidos: Mussa (2002, PIIE); Estonia y Letonia 2008-2010",
+      "IS-LM no formaliza el canal de balance hoja, la fuga de depósitos ni la dinámica del riesgo soberano",
+      "Estonia 2008-2010 (currency board con consolidación exitosa) y Suecia 1994-1998 (consolidación con flotación; CRD)"
+    ]
   }
 
 });
