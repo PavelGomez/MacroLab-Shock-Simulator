@@ -6,35 +6,42 @@
 <title>Atlas shock × configuración institucional — Lentes institucionales · MacroLab</title>
 <style>
   :root{
-    --bg:#0e1420; --panel:#161e2e; --panel-2:#1f2a3d; --line:#2b3651;
-    --txt:#e7eaf2; --muted:#9aa6bf; --accent:#7dd3fc; --warn:#fbbf24; --ok:#34d399; --bad:#f87171;
-    --chip:#26344f;
-    --shock:#fb7185; --regime:#a78bfa; --cb:#7dd3fc; --rule:#34d399; --buffer:#fbbf24; --outcome:#f472b6;
+    --bg:#f3f6fa; --panel:#ffffff; --panel-2:#eaf3fb; --line:#d8e1ea;
+    --txt:#1c2a35; --muted:#647789; --accent:#2d6ea3; --warn:#d97706; --ok:#16a34a; --bad:#ef4444;
+    --chip:#eaf3fb; --navy:#0f2740; --navy-deep:#091a2d;
+    --shock:#e11d48; --regime:#7c3aed; --cb:#2563eb; --rule:#16a34a; --buffer:#d97706; --outcome:#db2777;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif}
+  html,body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 "Inter",system-ui,-apple-system,sans-serif}
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
-  header.top{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-  header.top h1{margin:0;font-size:18px;font-weight:600;letter-spacing:.2px}
-  header.top h1 small{color:var(--muted);font-weight:400;margin-left:8px}
-  .layout{display:grid;grid-template-columns:280px 1fr;gap:0;min-height:calc(100vh - 65px)}
+  /* Header */
+  header.top{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:22px 24px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+  header.top .hd-left p{margin:0 0 6px;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.78)}
+  header.top h1{margin:0;font-size:1.35rem;font-weight:700;color:#fff}
+  header.top h1 small{color:rgba(255,255,255,.65);font-weight:400;margin-left:8px;font-size:.9rem}
+  .back-link{display:inline-flex;align-items:center;color:rgba(255,255,255,.88);font-size:.84rem;font-weight:700;text-decoration:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:6px 13px;border-radius:999px}
+  .back-link:hover{background:rgba(255,255,255,.22);color:#fff;text-decoration:none}
+  .hd-right{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  /* Layout */
+  .layout{display:grid;grid-template-columns:280px 1fr;gap:0;min-height:calc(100vh - 88px)}
   aside.filters{background:var(--panel);border-right:1px solid var(--line);padding:18px;overflow-y:auto}
   aside.filters h2{font-size:12px;text-transform:uppercase;letter-spacing:1.2px;color:var(--muted);margin:0 0 8px;font-weight:600}
   aside.filters .group{margin-bottom:18px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
   aside.filters .group:last-of-type{border-bottom:none}
   aside.filters label{display:flex;align-items:center;gap:8px;padding:4px 0;cursor:pointer;color:var(--txt);font-size:13px}
-  aside.filters input[type=checkbox],aside.filters input[type=radio]{accent-color:var(--accent)}
+  aside.filters input[type=checkbox]{accent-color:var(--accent)}
   main.content{padding:22px;overflow-y:auto}
   .topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:14px}
-  .pill{background:var(--panel-2);color:var(--muted);padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line)}
+  .pill{background:var(--panel);color:var(--muted);padding:4px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line)}
   .pill strong{color:var(--txt)}
-  .views{display:flex;gap:6px}
-  .views button{background:var(--panel-2);color:var(--txt);border:1px solid var(--line);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer}
-  .views button.is-active{background:var(--accent);color:#0e1420;border-color:var(--accent)}
-  .reset{background:transparent;color:var(--muted);border:1px dashed var(--line);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer}
+  /* View buttons */
+  .views{display:flex;gap:6px;flex-wrap:wrap}
+  .views button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.22);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+  .views button.is-active{background:#fff;color:var(--navy);border-color:#fff;font-weight:700}
+  .reset{background:transparent;color:var(--muted);border:1px dashed var(--line);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
   .reset:hover{color:var(--txt);border-color:var(--accent)}
-  /* Cards view */
+  /* Cards */
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:transform .12s ease}
   .card:hover{transform:translateY(-1px);border-color:var(--accent)}
@@ -44,16 +51,16 @@
   .card .mech{font-size:12.5px;color:var(--txt)}
   .card .valor{font-size:11.5px;color:var(--muted);font-style:italic}
   .chips{display:flex;flex-wrap:wrap;gap:4px}
-  .chip{font-size:10.5px;padding:2px 8px;border-radius:999px;background:var(--chip);color:#cbd5e1;border:1px solid var(--line)}
-  .chip.shock   { color:var(--shock);   border-color:#532430 }
-  .chip.regime  { color:var(--regime);  border-color:#3a2c5e }
-  .chip.cb      { color:var(--cb);      border-color:#1e4f6e }
-  .chip.rule    { color:var(--rule);    border-color:#1f5945 }
-  .chip.buffer  { color:var(--buffer);  border-color:#5a4515 }
-  .chip.outcome { color:var(--outcome); border-color:#5e2a4a }
+  .chip{font-size:10.5px;padding:2px 8px;border-radius:999px;background:var(--chip);color:var(--txt);border:1px solid var(--line)}
+  .chip.shock  {color:var(--shock);  border-color:#fecdd3;background:#fff1f2}
+  .chip.regime {color:var(--regime); border-color:#ede9fe;background:#f5f3ff}
+  .chip.cb     {color:var(--cb);     border-color:#dbeafe;background:#eff6ff}
+  .chip.rule   {color:var(--rule);   border-color:#dcfce7;background:#f0fdf4}
+  .chip.buffer {color:var(--buffer); border-color:#fef3c7;background:#fffbeb}
+  .chip.outcome{color:var(--outcome);border-color:#fce7f3;background:#fdf2f8}
   .card .actions{display:flex;gap:10px;margin-top:auto;padding-top:8px;border-top:1px dashed var(--line)}
   .card .actions a{font-size:12.5px}
-  /* Matrix view */
+  /* Matrix */
   .matrix-wrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px}
   table.matrix{border-collapse:separate;border-spacing:6px;font-size:12.5px;min-width:760px}
   table.matrix th{color:var(--muted);font-weight:500;padding:6px 8px;text-align:left;font-size:11.5px;letter-spacing:.4px}
@@ -61,26 +68,26 @@
   table.matrix td.empty{background:transparent;border:1px dashed var(--line);color:var(--muted);font-style:italic;text-align:center}
   table.matrix td .mcase{display:block;color:var(--txt);font-size:12.5px;margin-bottom:2px}
   table.matrix td .mcase a{color:var(--accent)}
-  table.matrix td.outcome-anchored{outline:2px solid #1f5945}
-  table.matrix td.outcome-temporary_unanchoring{outline:2px solid #5a4515}
-  table.matrix td.outcome-persistent_unanchoring{outline:2px solid #532430}
+  table.matrix td.outcome-anchored{outline:2px solid var(--ok)}
+  table.matrix td.outcome-temporary_unanchoring{outline:2px solid var(--warn)}
+  table.matrix td.outcome-persistent_unanchoring{outline:2px solid var(--bad)}
   /* MacroLab 4×8 matrix */
   table.macrolab{border-collapse:separate;border-spacing:6px;font-size:12px;min-width:880px}
   table.macrolab th{color:var(--muted);font-weight:500;padding:8px;text-align:left;font-size:11.5px;letter-spacing:.4px;vertical-align:middle}
-  table.macrolab th.col{font-weight:600;color:var(--txt);background:#1a2236;border-radius:6px;text-align:center}
+  table.macrolab th.col{font-weight:600;color:#fff;background:var(--navy);border-radius:6px;text-align:center}
   table.macrolab td{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:8px;vertical-align:top;min-width:120px;height:78px;font-size:11.5px}
-  table.macrolab td.has-route{border-color:var(--ok);background:#0e2a23}
-  table.macrolab td.has-pending{border-color:var(--warn);border-style:dashed;background:#2a2410}
+  table.macrolab td.has-route{border-color:var(--ok);background:#f0fdf4}
+  table.macrolab td.has-pending{border-color:var(--warn);border-style:dashed;background:#fffbeb}
   table.macrolab td.empty{background:transparent;border:1px dashed var(--line);color:var(--muted);font-style:italic;text-align:center;padding-top:24px}
   table.macrolab td a{color:var(--accent);text-decoration:none}
   table.macrolab td .badge{font-size:9.5px;text-transform:uppercase;letter-spacing:.6px;padding:1px 6px;border-radius:999px;display:inline-block;margin-bottom:4px}
-  table.macrolab td.has-route .badge{background:#1f5945;color:#bef7d6}
-  table.macrolab td.has-pending .badge{background:#5a4515;color:#fde2a7}
+  table.macrolab td.has-route .badge{background:#dcfce7;color:#15803d}
+  table.macrolab td.has-pending .badge{background:#fef3c7;color:#92400e}
   .legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;font-size:11.5px;color:var(--muted)}
   .legend .key{display:inline-flex;align-items:center;gap:6px}
   .legend .key i{width:14px;height:14px;display:inline-block;border-radius:3px;border:1px solid var(--line)}
-  .legend .key i.ok{border-color:var(--ok);background:#0e2a23}
-  .legend .key i.pend{border-color:var(--warn);border-style:dashed;background:#2a2410}
+  .legend .key i.ok{border-color:var(--ok);background:#f0fdf4}
+  .legend .key i.pend{border-color:var(--warn);border-style:dashed;background:#fffbeb}
   .legend .key i.empty{border:1px dashed var(--line);background:transparent}
   /* Coverage */
   .coverage{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
@@ -89,10 +96,10 @@
   .cov-cell{background:var(--panel-2);border:1px solid var(--line);border-radius:8px;padding:10px}
   .cov-cell .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
   .cov-cell .val{font-size:13px;color:var(--txt)}
-  .cov-cell .bar{height:6px;background:#1a2236;border-radius:6px;overflow:hidden;margin-top:6px}
-  .cov-cell .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#22c55e);border-radius:6px}
+  .cov-cell .bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden;margin-top:6px}
+  .cov-cell .bar > span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--ok));border-radius:6px}
   /* Detail panel */
-  .detail{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:24px;z-index:50}
+  .detail{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:center;justify-content:center;padding:24px;z-index:50}
   .detail.is-open{display:flex}
   .detail .pane{background:var(--panel);border:1px solid var(--line);border-radius:12px;max-width:760px;width:100%;max-height:90vh;overflow-y:auto;padding:22px}
   .detail h3{margin:0 0 4px}
@@ -112,12 +119,18 @@
 </head>
 <body>
 <header class="top">
-  <h1>Atlas shock × configuración institucional <small>· Lentes institucionales · MacroLab</small></h1>
-  <div class="views">
-    <button data-view="grid"   class="is-active">Tarjetas</button>
-    <button data-view="matrix">Matriz régimen × BC</button>
-    <button data-view="macrolab">Matriz MacroLab (4×8)</button>
-    <button data-view="coverage">Cobertura</button>
+  <div class="hd-left">
+    <p>Macroeconomía II · Profesor Pável Gómez · 2026</p>
+    <h1>Atlas shock × configuración institucional <small>· Lentes institucionales · MacroLab</small></h1>
+  </div>
+  <div class="hd-right">
+    <a href="index.html" class="back-link">← Volver al simulador</a>
+    <div class="views">
+      <button data-view="grid"   class="is-active">Tarjetas</button>
+      <button data-view="matrix">Matriz régimen × BC</button>
+      <button data-view="macrolab">Matriz MacroLab (4×8)</button>
+      <button data-view="coverage">Cobertura</button>
+    </div>
   </div>
 </header>
 
