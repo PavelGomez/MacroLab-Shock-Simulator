@@ -318,7 +318,6 @@ function renderGrid(filtered){
         <p class="valor"><strong>Valor histórico:</strong> ${c.valor_historico}</p>
         <div class="actions">
           <a href="${cronicaUrl(c.id)}" target="_blank" rel="noopener">Abrir en MacroLab →</a>
-          <a href="../${c.ficha_md}" target="_blank" rel="noopener">Ficha completa</a>
           <a href="#" data-detail="${c.id}">Ver detalle</a>
         </div>
       </article>
@@ -500,8 +499,7 @@ function showDetail(id){
     <div class="sec">
       <h4>Acceso</h4>
       <p>
-        <a href="${cronicaUrl(c.id)}" target="_blank" rel="noopener">Abrir en MacroLab →</a><br>
-        <a href="../${c.ficha_md}" target="_blank" rel="noopener">Ficha completa (.md) →</a>
+        <a href="${cronicaUrl(c.id)}" target="_blank" rel="noopener">Abrir en MacroLab →</a>
       </p>
     </div>
   `;
