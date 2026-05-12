@@ -221,17 +221,13 @@ const DATA = /* @atlas_data_json_inline */ {
 };
 
 // Patrón de URL para deep-link a la crónica en MacroLab.
-// El deep-link real activa la pestaña #lentes y popula los selects
-// #lentes-shock y #lentes-config. Mantener sincronizado con
-// 00_indice/url-config.js. Si el simulador no soporta query params,
-// reemplazar por '#lentes' y poblar los selects al cargar.
-const PATRON_URL = '#lentes?shock={lente}&config={config}';
+const PATRON_URL = 'index.html?tab=lentes&shock={lente}&config={config}';
 function cronicaUrl(id){
-  const c = DATA.cronicas.find(x => x.id === id);
-  if (!c || !c.macrolab) return '#lentes';
+  const ruta = DATA.rutas_registradas.find(r => r.cronicaKey === id);
+  if (!ruta) return 'index.html?tab=lentes';
   return PATRON_URL
-    .replace('{lente}',  encodeURIComponent(c.macrolab.lente_principal))
-    .replace('{config}', encodeURIComponent(c.macrolab.config));
+    .replace('{lente}',  encodeURIComponent(ruta.lente))
+    .replace('{config}', encodeURIComponent(ruta.config));
 }
 
 // ====== Filtros ======
