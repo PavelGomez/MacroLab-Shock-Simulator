@@ -52,7 +52,7 @@ Esta regla es temporal. Cuando el Atlas lea directamente desde registros externo
 
 ## 4. Criterios de fuente aceptable
 
-Una fuente se considera aceptable cuando cumple al menos una de las siguientes condiciones:
+Una fuente se considera aceptable cuando cumple al menos una de las siguientes condiciones.
 
 ### 4.1. Fuente académica verificable
 
@@ -78,8 +78,6 @@ Ejemplos de destinos aceptables:
 - NBER, CEPR, IMF, World Bank, BIS u otra institución reconocida;
 - página oficial del autor o institución académica.
 
----
-
 ### 4.2. Fuente institucional verificable
 
 Puede ser:
@@ -99,8 +97,6 @@ Puede ser:
 Debe verificarse que el enlace lleve a un documento o página directamente relevante para el caso citado.
 
 No basta con enlazar a la portada general de una institución si la tarjeta afirma algo específico.
-
----
 
 ### 4.3. Fuente histórica o periodística de apoyo
 
@@ -143,7 +139,80 @@ Durante la primera etapa de auditoría se revisaron y corrigieron referencias en
 6. Suecia 1994–1998.
 7. Grecia 2010–2015.
 
-Estas correcciones fueron aplicadas tanto en:
+Estas correcciones fueron aplicadas tanto en `content/cronicas-registry.es-ES.js` como en `atlas-lentes-institucionales.html`.
 
-```text
-content/cronicas-registry.es-ES.js
+La duplicación se mantuvo de manera deliberada porque el Atlas visible todavía conserva datos embebidos.
+
+---
+
+## 7. Estado de sincronización actual
+
+Al cierre de esta etapa, la versión publicada del Atlas muestra correctamente al menos las referencias corregidas que fueron revisadas.
+
+Sin embargo, el riesgo de desincronización persiste mientras el HTML siga conservando una copia embebida de los datos.
+
+Por tanto, la auditoría de fuentes debe considerarse estabilizada solo de manera provisional.
+
+La estabilización completa requerirá que el Atlas lea sus datos desde registros externos.
+
+---
+
+## 8. Registro operativo de auditoría
+
+Cada nueva corrección relevante deberá registrarse usando esta estructura:
+
+- Caso:
+- Archivo corregido:
+- Referencia anterior:
+- Problema detectado:
+- Referencia corregida:
+- URL corregida:
+- Criterio aplicado:
+- Verificación en versión publicada:
+- Fecha:
+
+Ejemplo:
+
+- Caso: Suecia 1994–1998
+- Archivo corregido: `content/cronicas-registry.es-ES.js` y `atlas-lentes-institucionales.html`
+- Referencia anterior: enlace no suficientemente relevante o no verificable
+- Problema detectado: la fuente no permitía confirmar adecuadamente el episodio citado
+- Referencia corregida: documento académico o institucional verificable sobre consolidación fiscal sueca
+- URL corregida: registrar URL en el archivo fuente, no necesariamente aquí
+- Criterio aplicado: fuente académica/institucional verificable
+- Verificación en versión publicada: referencia visible correctamente en la tarjeta
+- Fecha: 2026-05-12
+
+---
+
+## 9. Relación con futuras fases
+
+Este documento se vincula con las siguientes fases del protocolo.
+
+### Fase 2
+
+Cuando se cree `content/routes-registry.es-ES.js`, deberá distinguirse claramente entre:
+
+- fuente de una crónica histórica;
+- ruta operativa de una celda de matriz;
+- justificación conceptual de una combinación shock × configuración institucional.
+
+### Fase 3
+
+Cuando se agreguen rutas usando crónicas existentes, no se deberán crear nuevas fuentes si la ruta solo reutiliza una crónica ya auditada.
+
+### Fase 4
+
+Cuando el Atlas se conecte a registros externos, deberá verificarse que las tarjetas visibles lean efectivamente desde `content/cronicas-registry.es-ES.js`.
+
+### Fase 6
+
+Cuando se creen nuevos casos históricos, cada nuevo caso deberá pasar por auditoría de fuentes antes de ser tratado como ruta curada.
+
+---
+
+## 10. Principio de cierre
+
+La auditoría de fuentes debe servir a la claridad pedagógica y a la trazabilidad académica del Atlas.
+
+No se trata de multiplicar referencias por volumen, sino de asegurar que cada tarjeta histórica tenga fuentes suficientes, verificables y coherentes con la afirmación analítica que sostiene.
