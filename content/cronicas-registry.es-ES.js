@@ -61,9 +61,9 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "Ley 23.928 (1991). Régimen de convertibilidad.", url: "https://www.argentina.gob.ar/normativa/nacional/ley-23928-328" },
       { texto: "Ley 25.561 (2002). Emergencia pública y reforma del régimen cambiario.", url: "https://servicios.infoleg.gob.ar/infolegInternet/anexos/70000-74999/71477/norma.htm" },
-      { texto: "Mussa (2002). Argentina and the Fund: From Triumph to Tragedy. PIIE Policy Analysis 67.", url: "https://www.piie.com/bookstore/argentina-and-fund-triumph-tragedy" },
+      { texto: "IMF Independent Evaluation Office (2004). The IMF and Argentina, 1991–2001.", url: "https://www.imf.org/en/Publications/Independent-Evaluation-Office-Reports/Issues/2016/12/31/The-IMF-and-Argentina-1991-2001-17590" },
       { texto: "Calvo, Izquierdo & Mejía (2008). Systemic Sudden Stops. NBER WP 14026.", url: "https://www.nber.org/papers/w14026" },
-      { texto: "De la Torre, Levy Yeyati & Schmukler (2003). Living and Dying with Hard Pegs. Economía 3(2).", url: "https://muse.jhu.edu/article/41432" }
+      { texto: "De la Torre, Levy Yeyati & Schmukler (2003). Living and Dying with Hard Pegs: The Rise and Fall of Argentina’s Currency Board. World Bank Policy Research Working Paper 2980.", url: "https://openknowledge.worldbank.org/entities/publication/f2d65dac-fecc-5f39-b180-654ce710aaca" }
     ]
   },
 
@@ -82,7 +82,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "FMI (2009). Chile: 2009 Article IV Consultation. CR 09/271.", url: "https://www.imf.org/external/pubs/ft/scr/2009/cr09271.pdf" },
       { texto: "DIPRES (2022). Cumplimiento de las metas de regla fiscal en Chile: Revisión histórica.", url: "https://www.dipres.gob.cl/598/articles-299473_doc_pdf.pdf" },
       { texto: "De Gregorio (2014). How Latin America Weathered the Global Financial Crisis. PIIE.", url: "https://www.piie.com/bookstore/how-latin-america-weathered-global-financial-crisis" },
-      { texto: "Vegh & Vuletin (2014). Overcoming the Fear of Free Falling. AER 104(5).", url: "https://doi.org/10.1257/aer.104.5.131" }
+      { texto: "Végh & Vuletin (2012). Overcoming the Fear of Free Falling: Monetary Policy Graduation in Emerging Markets. NBER Working Paper 18175.", url: "https://www.nber.org/papers/w18175" }
     ]
   },
 
@@ -99,12 +99,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "Bjørnland & Thorsrud (2016). Boom or Gloom? Economic Journal 126(598).", url: "https://doi.org/10.1111/ecoj.12302" },
       { texto: "van der Ploeg (2011). Natural Resources: Curse or Blessing? JEL 49(2).", url: "https://doi.org/10.1257/jel.49.2.366" },
-      { texto: "van den Bremer & van der Ploeg (2013). Managing Volatile Oil Windfalls. Oxford REP 29(1).", url: "https://doi.org/10.1093/oxrep/grt001" },
+      { texto: "van den Bremer & van der Ploeg (2013). Managing and Harnessing Volatile Oil Windfalls. IMF Economic Review 61(1).", url: "https://doi.org/10.1057/imfer.2013.4" },
       { texto: "Norges Bank (2020). Monetary Policy Report 1/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-12020/" },
       { texto: "Norges Bank (2020). Monetary Policy Report 2/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-22020/" },
       { texto: "FMI (2021). Norway: 2021 Article IV Consultation. CR 21/197.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/09/13/Norway-2021-Article-IV-Consultation-Press-Release-Staff-Report-466009" },
       { texto: "OECD (2022). OECD Economic Surveys: Norway 2022. DOI 10.1787/df7b87ab-en.", url: "https://doi.org/10.1787/df7b87ab-en" },
-      { texto: "Reuters (2020). Norway shatters wealth fund spending cap amid pandemic.", url: "https://www.reuters.com/article/business/norway-shatters-wealth-fund-spending-cap-amid-pandemic-idUSKBN22O1GP/" }
+      { texto: "Norwegian Ministry of Finance (2022). Sound economic governance — fiscal budget and Government Pension Fund key figures.", url: "https://www.regjeringen.no/en/aktuelt/sound-economic-governance/id2912392/" }
     ]
   },
 
