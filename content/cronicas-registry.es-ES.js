@@ -141,9 +141,9 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "Englund (1999). The Swedish Banking Crisis. Oxford REP 15(3).", url: "https://doi.org/10.1093/oxrep/15.3.80" },
       { texto: "Calmfors & Wren-Lewis (2011). What should fiscal councils do? Economic Policy 26(68).", url: "https://doi.org/10.1111/j.1468-0327.2011.00273.x" },
-      { texto: "Henriksson (2007). Ten Lessons about Budget Consolidation. Bruegel.", url: "https://www.bruegel.org/essay-and-lecture/ten-lessons-about-budget-consolidation" },
+      { texto: "Henriksson (2007). Ten Lessons about Budget Consolidation. Bruegel.", url: "https://www.bruegel.org/opinion-piece/10-lessons-about-budget-consolidation" },
       { texto: "Sveriges Riksbank. Inflation target history (1993, formal from 1995).", url: "https://www.riksbank.se/en-gb/monetary-policy/the-inflation-target/" },
-      { texto: "FMI (1998). Sweden: Selected Issues. CR 98/124.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/30/Sweden-Selected-Issues-2752" },
+      { texto: "FMI (1998). Sweden: Selected Issues. IMF Staff Country Report 98/124.", url: "https://www.imf.org/external/pubs/ft/scr/1998/cr98124.pdf" },
       { texto: "OECD (1999). OECD Economic Surveys: Sweden 1999.", url: "https://www.oecd.org/en/publications/oecd-economic-surveys-sweden_19990448.html" }
     ]
   },
@@ -164,7 +164,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "Zettelmeyer, Trebesch & Gulati (2013). The Greek Debt Restructuring: An Autopsy. Economic Policy 28(75).", url: "https://doi.org/10.1111/1468-0327.12014" },
       { texto: "Bolton, Fu, Gulati & Panizza (2024). The 2012 Greek Retrofit and Borrowing Costs in the European Periphery.", url: "https://doi.org/10.1177/2755323X231220978" },
       { texto: "FMI (2013). Greece: Ex Post Evaluation 2010 SBA. CR 13/156.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/31/Greece-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2010-Stand-By-Arrangement-40639" },
-      { texto: "IEO-IMF (2016). The IMF and the Crises in Greece, Ireland, and Portugal.", url: "https://ieo.imf.org/en/our-work/Evaluations/Completed/2016-0728-the-imf-and-the-crises-in-greece-ireland-and-portugal" },
+      { texto: "IEO-IMF (2016). The IMF and the Crises in Greece, Ireland, and Portugal.", url: "https://ieo.imf.org/en/evaluations/completed/2016-0728-the-imf-and-the-crises-in-greece-ireland-and-portugal" },
       { texto: "ESM (2019). Safeguarding the euro in times of crisis.", url: "https://www.esm.europa.eu/publications/safeguarding-euro-times-crisis" }
     ]
   }
