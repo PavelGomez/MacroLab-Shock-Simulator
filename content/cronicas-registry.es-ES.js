@@ -25,7 +25,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "INE Chile. IPC — series y notas técnicas.", url: "https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor" },
       { texto: "FMI (2024). Chile: 2023 Article IV Consultation. CR 24/29.", url: "https://www.imf.org/en/Publications/CR/Issues/2024/02/06/Chile-2023-Article-IV-Consultation-Press-Release-Staff-Report-545020" },
       { texto: "Albagli, Grigoli & Luttini (2024). Inflation Expectations and the Supply Chain.", url: "https://www.imf.org/-/media/files/conferences/2024/global-challenges-and-channels-for-fiscal-and-monetary-policy/inflation-expectations-and-the-supply-chain-albagli-grigoli-and-luttini.pdf" },
-      { texto: "Coibion, Gorodnichenko, Kumar & Pedemonte (2020). Inflation expectations as a policy tool? JME 116.", url: "https://doi.org/10.1016/j.jmoneco.2020.07.002" }
+      { texto: "Coibion, Gorodnichenko, Kumar & Pedemonte (2020). Inflation expectations as a policy tool? Journal of International Economics 124.", url: "https://doi.org/10.1016/j.jinteco.2020.103297" }
     ]
   },
 
