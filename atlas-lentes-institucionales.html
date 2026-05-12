@@ -223,7 +223,7 @@ const DATA = /* @atlas_data_json_inline */ {
 // Patrón de URL para deep-link a la crónica en MacroLab.
 const PATRON_URL = 'index.html?tab=lentes&shock={lente}&config={config}';
 function cronicaUrl(id){
-  const ruta = DATA.rutas_registradas.find(r => r.cronicaKey === id);
+  const ruta = MACROLAB.rutas_registradas.find(r => r.cronicaKey === id);
   if (!ruta) return 'index.html?tab=lentes';
   return PATRON_URL
     .replace('{lente}',  encodeURIComponent(ruta.lente))
