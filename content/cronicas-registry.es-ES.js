@@ -120,13 +120,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     caveat: "Ilustra una configuración institucional e histórica específica frente a un shock global común; no caracteriza permanentemente al país. La fragilidad institucional se construye y se desarma con decisiones acumuladas. Otros países latinoamericanos con shocks comparables y marcos institucionales más robustos —Chile, Perú, Uruguay— tuvieron trayectorias significativamente diferentes.",
     fuentes: [
       { texto: "Calvo & Reinhart (2002). Fear of Floating. QJE 117(2).", url: "https://doi.org/10.1162/003355302753650274" },
-      { texto: "Sturzenegger & Zettelmeyer (2008). Haircuts. JIMF 27(5).", url: "https://doi.org/10.1016/j.jimonfin.2007.10.005" },
       { texto: "Mosquera & Sturzenegger (2021). Cepo para principiantes. Desarrollo Económico 61(234).", url: "https://revistas.ides.org.ar/desarrollo-economico/article/view/165" },
       { texto: "Sturzenegger (2020). ¿Necesitamos repensar la política de deuda en Latinoamérica? UNDP LAC C19 PDS No. 23.", url: "https://www.undp.org/sites/g/files/zskgke326/files/2023-01/CD19-PDS-Number23%20Deuda%20ES.pdf" },
       { texto: "FMI (2021). Argentina: Ex Post Evaluation 2018 SBA. CR 21/279.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/12/22/Argentina-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2018-Stand-By-Arrangement-511289" },
       { texto: "CEPAL (2021). Estudio Económico de América Latina y el Caribe 2021.", url: "https://www.cepal.org/es/publicaciones/47192-estudio-economico-america-latina-caribe-2021" },
       { texto: "BCRA. Relevamiento de Expectativas de Mercado (REM) 2020-2022.", url: "https://www.bcra.gob.ar/PublicacionesEstadisticas/relevamiento_expectativas_de_mercado.asp" }
-    ]
+   ]
   },
 
   "suecia_1994_1998": {
