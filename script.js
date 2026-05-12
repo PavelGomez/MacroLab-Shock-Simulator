@@ -777,6 +777,8 @@ function restoreScenarioFromUrl(){
     }
   }
   if(!restored&&tab&&TAB_TITLES[tab])activateTab(tab);
+  const lShock=url.searchParams.get('shock');const lConfig=url.searchParams.get('config');
+  if(lShock||lConfig){const ss=document.getElementById('lentes-shock');const cs=document.getElementById('lentes-config');if(ss&&lShock&&ss.querySelector('option[value="'+lShock+'"]'))ss.value=lShock;if(cs&&lConfig&&cs.querySelector('option[value="'+lConfig+'"]'))cs.value=lConfig;if(typeof renderLentesResult==='function')renderLentesResult();}
 }
 
 /* ========== IS-LM ========== */
