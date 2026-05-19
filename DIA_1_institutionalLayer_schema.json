@@ -1,64 +1,119 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "institutionalLayer",
-  "description": "Capa institucional para crónicas del MacroLab Shock Simulator. Cada campo es narrativo; prohibidas las cifras salvo en discriminatingEvidence.",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://macrolab.local/schemas/institutionalLayer.json",
+  "title": "institutionalLayer Schema",
+  "description": "Schema formal para la capa institucional de crónicas en MacroLab. Cada crónica puede incluir un objeto institutionalLayer con 8 campos obligatorios que documentan el mecanismo institucional, la transmisión de shocks, y los límites pedagógicos del simulador.",
   "type": "object",
-  "required": [
-    "institution",
-    "mechanism",
-    "affectedVariables",
-    "feedbackLoop",
-    "policyFeasibility",
-    "incidence",
-    "discriminatingEvidence",
-    "antiOverclaim"
-  ],
-  "additionalProperties": false,
   "properties": {
-    "institution": {
-      "type": "string",
-      "maxLength": 150,
-      "description": "Marco institucional específico al episodio: régimen, organismo, regla o contexto operativo. NO es descripción genérica del país."
-    },
-    "mechanism": {
-      "type": "string",
-      "maxLength": 300,
-      "description": "Cadena causal completa. Formato implícito: shock → variable → institución → credibilidad → expectativas. TODOS los strings de affectedVariables deben aparecer literalmente en este campo."
-    },
-    "affectedVariables": {
-      "type": "array",
-      "description": "Exactamente 5 variables macroeconómicas afectadas. Cada string debe aparecer literalmente en el campo mechanism.",
-      "minItems": 5,
-      "maxItems": 5,
-      "items": {
-        "type": "string",
-        "minLength": 3
+    "institutionalLayer": {
+      "type": "object",
+      "description": "Capa institucional: mecanismo causal explícito del episodio histórico según la cadena shock→institución→credibilidad→incentivos→expectativas→canal→trayectoria.",
+      "required": [
+        "institution",
+        "mechanism",
+        "affectedVariables",
+        "feedbackLoop",
+        "policyFeasibility",
+        "incidence",
+        "discriminatingEvidence",
+        "antiOverclaim"
+      ],
+      "properties": {
+        "institution": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Institución(es) focal(es) del episodio y su configuración clave. Específico al episodio, no genérico.",
+          "examples": [
+            "BC de Chile con IT (2-4%), independencia desde 1989; gobierno con regla de balance estructural y FEES acumulado; TC flexible.",
+            "Ley de Convertibilidad (1991–2002): régimen de paridad fija 1 ARS/USD sin discretion en Banco Central; dependencia de entradas de capital externo; estructura de deuda pública dolarizada."
+          ]
+        },
+        "mechanism": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "El mecanismo causal explícito: shock → variable(s) controlada(s) por institución → cómo credibilidad institucional altera la dinámica de expectativas → resultado. Debe incluir la cadena completa sin saltos.",
+          "examples": [
+            "Shock externo (crisis financiera global → caída de precios de cobre) → ingresos por divisas bajan → presión inicial en TC pero flexible → BC reduce TPM con credibilidad en meta de IT → Gobierno usa buffer FEES para gasto anticíclico sin quebrantar regla fiscal → mercados no anticipan inflación → demanda se amortigua sin desanclaje de expectativas.",
+            "Shock externo → caída de capital → presión sobre reservas internacionales → bajo Convertibilidad, BC no puede expandir monetariamente sin dólares → base monetaria se contrae mecánicamente → demanda agregada cae → desempleo sube. Sin devaluación posible, ajuste real traumático y expectativas de ruptura aumentan."
+          ]
+        },
+        "affectedVariables": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "description": "Variables macroeconómicas sobre las cuales la institución tiene control directo o que responden a credibilidad. Máximo 5 elementos. Todos deben estar mencionados (semánticamente) en el campo 'mechanism'.",
+          "examples": [
+            [
+              "tasa de política monetaria (TPM)",
+              "expectativas de inflación 12-24 meses",
+              "tipo de cambio nominal",
+              "gasto fiscal/demanda agregada",
+              "actividad económica y empleo"
+            ],
+            [
+              "reservas internacionales",
+              "base monetaria",
+              "tipo de cambio nominal (fijo por ley)",
+              "demanda agregada",
+              "expectativas de devaluación"
+            ]
+          ]
+        },
+        "feedbackLoop": {
+          "type": "string",
+          "maxLength": 350,
+          "description": "Dinámica de retroalimentación no lineal: cómo la respuesta inicial de expectativas amplifica o amortigua el shock. Conecta con mechanism para mostrar la evolución temporal.",
+          "examples": [
+            "Buffer fiscal gastado contracíclicamente → demanda cae menos que en otro escenario → empleo se sostiene → credibilidad en regla fiscal se refuerza (deuda no explota) → expectativas de inflación no se desanclan → BC mantiene tasa baja sin riesgo → recuperación hacia fines 2009 sin inflación posterior.",
+            "Expectativas de ruptura del régimen → corridas de depósitos (conversión a dólares) → aún más caída de reservas → espiral contraccionista de base monetaria → depresión de actividad → mayor presión fiscal → inconsistencia se hace evidente → colapso final en diciembre 2001."
+          ]
+        },
+        "policyFeasibility": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "Restricciones políticas, técnicas, o institucionales que condicionan la respuesta de la institución. Específico al episodio.",
+          "examples": [
+            "BC autónomo con meta de inflación consolidada desde 2000; regla fiscal flexible pero creíble (balance estructural) permite reacción contracíclica; TC flexible absorbe volatilidad externa; FEES acumulado predeterminadamente en bonanza reduce restricción de caja.",
+            "Ley de Convertibilidad rigidiza política monetaria; BC sin discreción para responder contracíclicamente; presión política creciente por expansión fiscal provincial que erosiona consistencia macro; dependencia crítica de capital externo para mantener reservas."
+          ]
+        },
+        "incidence": {
+          "type": "string",
+          "maxLength": 250,
+          "description": "A quién golpea el shock de verdad en primer lugar y cómo se distribuye el ajuste entre sectores y grupos sociales. Dirección e intensidad relativa; cifras duras van en discriminatingEvidence.",
+          "examples": [
+            "Shock golpea sector cuprífero y exportables; estímulo fiscal (transferencias, subsidios empleo) amortigua caída de empleo formal/informal; distribución más equitativa que sin buffer.",
+            "Shock golpea primero exportables (agricultura, manufactura) cuya competitividad se erosiona; luego caída agregada, desempleo manufacturing urbana, presión salarial formal y crisis de financiamiento de pymes."
+          ]
+        },
+        "discriminatingEvidence": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Qué datos o evidencias del episodio real confirman o refutan que el mecanismo operó como se predice. Incluir números, fechas, fuentes.",
+          "examples": [
+            "TPM baja de 3,25% a 0,5% entre enero y junio 2009; inflación anual alcanza 1,4% en 2009 (bajo rango meta 2-4%); desempleo sube de 7% a 10,1% pero sin espiral; expectativas de inflación a 12-24m se mantienen en rango 2,5-3,5%, sin desanclaje. PIB cae 1,6% en 2009 pero rebota a 5,1% en 2010. Fuentes: INE, DIPRES, BCCh.",
+            "Reservas internacionales caen de US$ 26 mil millones (1992, pico) a US$ 10 mil millones (2001); desempleo abierto sube de 7% (1995) a 18% (2002); deuda externa 52% del PIB en 2001; default soberano diciembre 2001; devaluación 200%+ en 2002. Fuentes: BCRA, INDEC."
+          ]
+        },
+        "antiOverclaim": {
+          "type": "string",
+          "maxLength": 500,
+          "description": "Qué NO captura MacroLab; qué es inferencia pedagógica pura vs lo que muestra el simulador; límites explícitos de la extrapolación a otros episodios.",
+          "examples": [
+            "MacroLab NO captura: (i) dinámicas de reputación y construcción de credibilidad que permitieron el uso del buffer (De Gregorio & Valev 2003); (ii) ciclos políticos y costos electorales de políticas contracíclicas (Alesina & Passalacqua 2016); (iii) dependencia de la acumulación previa del buffer en rentas de recursos naturales. La ficha ilustra cómo credibilidad + buffer + regla fiscal amortiguan transmisión; no es modelo general ni prescriptivo.",
+            "MacroLab NO captura: (i) dinámicas de corridas y contagio financiero que rompen regímenes rígidamente creíbles (Calvo 1998); (ii) costos políticos de desempleo masivo que pueden presionar por salida del régimen (Alesina & Drazen 1991); (iii) interacción entre rigidez cambiaria e inconsistencia fiscal como juego temporal. La ficha ilustra por qué la rigidez sin coherencia fiscal acumula tensión; no predice el timing exacto de colapso."
+          ]
+        }
       }
-    },
-    "feedbackLoop": {
-      "type": "string",
-      "maxLength": 200,
-      "description": "Cómo el mecanismo se retroalimenta. Debe conectar con mechanism y mostrar la dinámica de reforzamiento o amortiguación."
-    },
-    "policyFeasibility": {
-      "type": "string",
-      "maxLength": 200,
-      "description": "Qué políticas eran o no viables dado el marco institucional del episodio. Restricciones ESPECÍFICAS al caso, no genéricas."
-    },
-    "incidence": {
-      "type": "string",
-      "maxLength": 150,
-      "description": "Sobre quiénes recae el ajuste. Lenguaje de dirección e intensidad relativa; NUNCA cifras duras (reservadas para discriminatingEvidence)."
-    },
-    "discriminatingEvidence": {
-      "type": "string",
-      "maxLength": 250,
-      "description": "Evidencia que distingue este episodio: números verificables, fechas precisas, fuentes citables. Debe incluir al menos 2 cifras y 1 fecha."
-    },
-    "antiOverclaim": {
-      "type": "string",
-      "maxLength": 200,
-      "description": "Qué NO captura este análisis. Redactar en negativo (qué omite, qué no generaliza, qué debate deja abierto)."
     }
-  }
+  },
+  "additionalProperties": true,
+  "x-changelog": [
+    "v1.0 2026-05-19: schema inicial (límites estrechos basados en wc -c bytes).",
+    "v1.1 2026-05-19: límites ajustados a caracteres Unicode reales (Python len / JS string.length). institution 150→200, mechanism 300→500, feedbackLoop 200→350, policyFeasibility 200→300, incidence 150→250, discriminatingEvidence 250→400, antiOverclaim 200→500."
+  ]
 }
