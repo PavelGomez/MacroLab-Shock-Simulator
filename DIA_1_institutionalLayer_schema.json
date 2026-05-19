@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "institutionalLayer",
+  "description": "Capa institucional para crónicas del MacroLab Shock Simulator. Cada campo es narrativo; prohibidas las cifras salvo en discriminatingEvidence.",
+  "type": "object",
+  "required": [
+    "institution",
+    "mechanism",
+    "affectedVariables",
+    "feedbackLoop",
+    "policyFeasibility",
+    "incidence",
+    "discriminatingEvidence",
+    "antiOverclaim"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "institution": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Marco institucional específico al episodio: régimen, organismo, regla o contexto operativo. NO es descripción genérica del país."
+    },
+    "mechanism": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Cadena causal completa. Formato implícito: shock → variable → institución → credibilidad → expectativas. TODOS los strings de affectedVariables deben aparecer literalmente en este campo."
+    },
+    "affectedVariables": {
+      "type": "array",
+      "description": "Exactamente 5 variables macroeconómicas afectadas. Cada string debe aparecer literalmente en el campo mechanism.",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 3
+      }
+    },
+    "feedbackLoop": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Cómo el mecanismo se retroalimenta. Debe conectar con mechanism y mostrar la dinámica de reforzamiento o amortiguación."
+    },
+    "policyFeasibility": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Qué políticas eran o no viables dado el marco institucional del episodio. Restricciones ESPECÍFICAS al caso, no genéricas."
+    },
+    "incidence": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Sobre quiénes recae el ajuste. Lenguaje de dirección e intensidad relativa; NUNCA cifras duras (reservadas para discriminatingEvidence)."
+    },
+    "discriminatingEvidence": {
+      "type": "string",
+      "maxLength": 250,
+      "description": "Evidencia que distingue este episodio: números verificables, fechas precisas, fuentes citables. Debe incluir al menos 2 cifras y 1 fecha."
+    },
+    "antiOverclaim": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Qué NO captura este análisis. Redactar en negativo (qué omite, qué no generaliza, qué debate deja abierto)."
+    }
+  }
+}
