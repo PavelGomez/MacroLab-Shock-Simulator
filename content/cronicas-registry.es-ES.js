@@ -26,7 +26,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "FMI (2024). Chile: 2023 Article IV Consultation. CR 24/29.", url: "https://www.imf.org/en/Publications/CR/Issues/2024/02/06/Chile-2023-Article-IV-Consultation-Press-Release-Staff-Report-545020" },
       { texto: "Albagli, Grigoli & Luttini (2024). Inflation Expectations and the Supply Chain.", url: "https://www.imf.org/-/media/files/conferences/2024/global-challenges-and-channels-for-fiscal-and-monetary-policy/inflation-expectations-and-the-supply-chain-albagli-grigoli-and-luttini.pdf" },
       { texto: "Coibion, Gorodnichenko, Kumar & Pedemonte (2020). Inflation expectations as a policy tool? Journal of International Economics 124.", url: "https://doi.org/10.1016/j.jinteco.2020.103297" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "BC de Chile con IT (meta 3%), independencia formal 1989; gobierno con acceso a mercados y regla fiscal; TC flotante; coordinación BC-gobierno bajo presión electoral adversa.",
+      mechanism: "Shock inflacionario dual: demanda post-pandemia + retiros extraordinarios fondos de pensiones (específico Chile) → BC sube TPM de 0,5% (jul 2021) a 11,25% (oct 2022): +1.075 pb; Gobierno consolida de déficit 7,7% PIB a superávit 1,1% PIB en 2022: +8,8 pp. Coordinación BC + Gobierno señala compromiso con anclaje pese a presiones electorales. Expectativas a 24 meses no se desanclan; inflación retorna a meta 3% en 2024. En 2023 déficit sube a 2,4%, sugiriendo límites políticos.",
+      affectedVariables: ["tasa de política monetaria (TPM)", "expectativas de inflación 24 meses", "balance fiscal", "salarios reales", "desempleo"],
+      feedbackLoop: "BC sube tasa + gobierno consolida fiscal → doble señal de compromiso → expectativas a 24 meses se anclan → sin espiral inflacionaria. En 2023 déficit sube a 2,4%, sugiriendo límites políticos a la coordinación sostenida.",
+      policyFeasibility: "BC autónomo con IT (meta 3%); gobierno con regla fiscal y acceso a mercados; coordinación explícita BC-gobierno requirió consenso político pese a incentivos electorales contrarios al ajuste.",
+      incidence: "Asalariados variables y desempleados (ajuste vía cantidades); pensionistas que retiraron fondos (perdieron rendimiento); deudores hipotecarios en UF.",
+      discriminatingEvidence: "IPC peak: 14,1% interanual (ago 2022, INE); TPM: 0,5% (jul 2021) → 11,25% (oct 2022), +1.075 pb; balance fiscal: -7,7% PIB (2021) → +1,1% PIB (2022), +8,8 pp (mejor desde 2012); -2,4% PIB en 2023; desempleo >8% durante ajuste; inflación retorna a rango meta en 2024; expectativas a 24 meses no se desanclan. Fuentes: INE, BCCh, DIPRES.",
+      antiOverclaim: "MacroLab NO captura: (i) la economía política que permitió coordinación BC (sube 1.075 pb) + gobierno (consolida 8,8 pp PIB) pese a presiones electorales; (ii) por qué en 2023 se relajó el ajuste (déficit 2,4%), sugiriendo límites del consenso; (iii) que el anclaje resultó de coordinación política BC-gobierno, no solo de independencia técnica del BC. La ficha ilustra que el anclaje requiere COORDINACIÓN, no solo independencia formal."
+    }
   },
 
   "turkey_2018_2023": {
@@ -76,12 +86,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "De la Torre, Levy Yeyati & Schmukler (2003). Living and Dying with Hard Pegs: The Rise and Fall of Argentina’s Currency Board. World Bank Policy Research Working Paper 2980.", url: "https://openknowledge.worldbank.org/entities/publication/f2d65dac-fecc-5f39-b180-654ce710aaca" }
     ],
     institutionalLayer: {
-      institution: "Ley de Convertibilidad (1991–2002): régimen de paridad fija 1 ARS/USD sin discretion en Banco Central; dependencia de entradas de capital externo; estructura de deuda pública dolarizada.",
+      institution: "Ley de Convertibilidad (1991–2002): régimen de paridad fija 1 ARS/USD sin discretion en Banco Central; dependencia de capital externo; estructura de deuda pública dolarizada.",
       mechanism: "Shock externo (crisis rusa 1998, devaluación Brasil 1999) → caída de salida de capital → presión sobre reservas internacionales → bajo Convertibilidad, BC no puede expandir monetariamente sin dólares → base monetaria se contrae mecánicamente → demanda agregada cae → desempleo sube. Sin devaluación posible, ajuste real traumático y expectativas de ruptura aumentan.",
       affectedVariables: ["reservas internacionales", "base monetaria", "tipo de cambio nominal (fijo por ley)", "demanda agregada", "expectativas de devaluación"],
-      feedbackLoop: "Expectativas de ruptura del régimen → corridas de depósitos (conversión a dólares) → aún más caída de reservas → espiral contraccionista de base monetaria → depresión de actividad → mayor presión fiscal → inconsistencia se hace evidente → colapso final en diciembre 2001.",
-      policyFeasibility: "Ley de Convertibilidad rigidiza política monetaria; BC sin discreción para responder contracíclicamente; presión política creciente por expansión fiscal provincial que erosiona consistencia macro; dependencia crítica de capital externo para mantener reservas.",
-      incidence: "Shock golpea primero exportables (agricultura, manufactura) cuya competitividad se erosiona; luego caída agregada, desempleo manufacturing urbana, presión salarial formal y crisis de financiamiento de pymes.",
+      feedbackLoop: "Expectativas de ruptura del régimen → corridas de depósitos → aún más caída de reservas → espiral contraccionista de base monetaria → depresión de actividad → mayor presión fiscal → inconsistencia se hace evidente → colapso final en diciembre 2001.",
+      policyFeasibility: "Ley de Convertibilidad rigidiza política monetaria; BC sin discreción contracíclica; expansión fiscal provincial erosiona consistencia macro; dependencia crítica de capital externo.",
+      incidence: "Exportables (agricultura, manufactura) golpeados primero; desempleo urbano formal; crisis de financiamiento de pymes.",
       discriminatingEvidence: "Reservas internacionales caen de US$ 26 mil millones (1992, pico) a US$ 10 mil millones (2001); desempleo abierto sube de 7% (1995) a 18% (2002); deuda externa representa 52% del PIB en 2001; default de deuda soberana declarado diciembre 2001 bajo Ley 25.561; devaluación de 200%+ en enero-febrero 2002 vs USD. Fuentes: BCRA, INDEC, Mussa (2002).",
       antiOverclaim: "MacroLab NO captura: (i) dinámicas de corridas y contagio financiero que rompen regímenes rígidamente creíbles (Calvo 1998); (ii) costos políticos de desempleo masivo que pueden presionar por salida del régimen (Alesina & Drazen 1991); (iii) interacción entre rigidez cambiaria e inconsistencia fiscal como juego temporal. La ficha ilustra por qué la rigidez sin coherencia fiscal acumula tensión; no predice el timing exacto de colapso."
     }
@@ -105,12 +115,12 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "Végh & Vuletin (2012). Overcoming the Fear of Free Falling: Monetary Policy Graduation in Emerging Markets. NBER Working Paper 18175.", url: "https://www.nber.org/papers/w18175" }
     ],
     institutionalLayer: {
-      institution: "BC de Chile con IT (2-4%), independencia desde 1989; gobierno con regla de balance estructural y FEES acumulado; TC flexible.",
-      mechanism: "Shock externo (crisis financiera global → caída de precios de cobre) → ingresos por divisas bajan → presión inicial en TC pero flexible → BC reduce TPM (775 pb entre ene-jun 2009) con credibilidad en meta de IT → Gobierno usa buffer FEES para gasto anticíclico (2,8% PIB) sin quebrantar regla fiscal → Si credibilidad en BC y regla fiscal es alta, mercados no anticipan inflación ni insostenibilidad → demanda se amortigua sin desanclaje de expectativas.",
+      institution: "BC de Chile con IT (meta 3%, ±1pp), independencia 1989; régimen flotante; gobierno con regla de balance estructural y FEES acumulado (US$20.211 millones ≈15% PIB).",
+      mechanism: "Shock externo (crisis financiera global → caída de precios de cobre) → ingresos por divisas bajan → presión inicial en TC pero flotante lo absorbe → BC reduce TPM (775 pb entre ene-jun 2009) con credibilidad en IT → Gobierno usa buffer FEES para gasto anticíclico (2,8% PIB) sin quebrantar regla fiscal → credibilidad en BC y regla fiscal mantiene expectativas ancladas → demanda se amortigua sin desanclaje ni espiral.",
       affectedVariables: ["tasa de política monetaria (TPM)", "expectativas de inflación 12-24 meses", "tipo de cambio nominal", "gasto fiscal/demanda agregada", "actividad económica y empleo"],
-      feedbackLoop: "Buffer fiscal gastado contracíclicamente → demanda cae menos que en otro escenario → empleo se sostiene → credibilidad en regla fiscal se refuerza (deuda no explota) → expectativas de inflación no se desanclan → BC mantiene tasa baja sin riesgo → recuperación hacia fines 2009 sin inflación posterior.",
-      policyFeasibility: "BC autónomo con meta de inflación consolidada desde 2000; regla fiscal flexible pero creíble (balance estructural) permite reacción contracíclica; TC flexible absorbe volatilidad externa; FEES acumulado predeterminadamente en bonanza reduce restricción de caja.",
-      incidence: "Shock golpea sector cuprífero y exportables; estímulo fiscal (transferencias, subsidios empleo) amortigua caída de empleo formal/informal; distribución más equitativa que sin buffer.",
+      feedbackLoop: "Buffer anticíclico → demanda cae menos → empleo se sostiene → credibilidad en regla fiscal se refuerza (deuda no explota) → expectativas de inflación no se desanclan → BC mantiene tasa baja → recuperación 2009 sin inflación.",
+      policyFeasibility: "BC autónomo con IT consolidada; regla fiscal creíble (balance estructural) permite reacción contracíclica; TC flexible absorbe volatilidad; FEES acumulado en bonanza reduce restricción de caja.",
+      incidence: "Cuprífero y exportables (primer impacto); desempleados y trabajadores informales amortiguados por transferencias y subsidios del Plan Fiscal.",
       discriminatingEvidence: "TPM baja de 3,25% a 0,5% entre enero y junio 2009; inflación anual alcanza 1,4% en 2009 (bajo rango meta 2-4%); desempleo sube de 7% a 10,1% pero sin espiral; expectativas de inflación a 12-24m se mantienen en rango 2,5-3,5%, sin desanclaje. PIB cae 1,6% en 2009 pero rebota a 5,1% en 2010. FMI califica respuesta como 'vigorosa, coordinada'. Fuentes: INE, DIPRES, BCCh.",
       antiOverclaim: "MacroLab NO captura: (i) dinámicas de reputación y construcción de credibilidad que permitieron el uso del buffer (De Gregorio & Valev 2003); (ii) ciclos políticos y costos electorales de políticas contracíclicas (Alesina & Passalacqua 2016); (iii) dependencia de la acumulación previa del buffer en rentas de recursos naturales. La ficha ilustra cómo credibilidad + buffer + regla fiscal amortiguan transmisión; no es modelo general ni prescriptivo."
     }
@@ -165,7 +175,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "FMI (2021). Argentina: Ex Post Evaluation 2018 SBA. CR 21/279.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/12/22/Argentina-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2018-Stand-By-Arrangement-511289" },
       { texto: "CEPAL (2021). Estudio Económico de América Latina y el Caribe 2021.", url: "https://www.cepal.org/es/publicaciones/47192-estudio-economico-america-latina-caribe-2021" },
       { texto: "BCRA. Relevamiento de Expectativas de Mercado (REM) 2020-2022.", url: "https://www.bcra.gob.ar/PublicacionesEstadisticas/relevamiento_expectativas_de_mercado.asp" }
-   ]
+   ],
+    institutionalLayer: {
+      institution: "BCRA con autonomía formal erosionada; Tesoro dependiente de asistencia monetaria; cepo cambiario desde sep 2019; sin regla fiscal vinculante; default soberano declarado may 2020.",
+      mechanism: "Shock pandémico sobre recesión preexistente y default soberano (may 2020). Déficit financiado con asistencia monetaria: base monetaria +60% en 2020. Dominancia fiscal → BC sin espacio para restricción → baja demanda de dinero + brecha cambiaria >100% (CCL 130%, oct 2020) → inflación: 36,1% (2020), 50,9% (2021), 94,8% (2022). Expectativas a 12 meses persistentemente desancladas (REM BCRA). Marco institucional débil transforma shock común en inflación persistente.",
+      affectedVariables: ["base monetaria", "brecha cambiaria oficial/paralela", "expectativas de inflación", "inflación (aceleración persistente)", "reservas internacionales"],
+      feedbackLoop: "Emisión para déficit → baja demanda de pesos → brecha cambiaria sube → agentes anticipan depreciación → precios suben → nueva presión fiscal → mayor emisión. Sin ancla nominal creíble, el ciclo no se interrumpe endógenamente.",
+      policyFeasibility: "BC sin independencia efectiva bajo dominancia fiscal; cepo cambiario vigente; sin regla fiscal; acceso a mercados cerrado (default 2020); espacio de política nominal virtualmente inexistente.",
+      incidence: "Asalariados de ingresos rígidos; ahorristas en pesos; importadores bajo cepo cambiario; hogares pobres (alto gasto en alimentos).",
+      discriminatingEvidence: "Base monetaria +60% en 2020; inflación dic-dic: 36,1% (2020), 50,9% (2021), 94,8% (2022); brecha cambiaria: CCL llegó a 130% (oct 2020); PIB cae 9,9% en 2020 (CEPAL); expectativas a 12m persistentemente desancladas (REM BCRA); default declarado may 2020; reestructuración cerrada ago 2020. Fuentes: BCRA, INDEC, CEPAL 2021.",
+      antiOverclaim: "MacroLab NO captura: (i) la historia acumulada de dominancia fiscal que condiciona demanda de dinero y expectativas (≠ shock exógeno aislado); (ii) la economía política del cepo y la reestructuración de deuda; (iii) el rol de la restricción externa en el pass-through. La ficha ilustra cómo dominancia fiscal transforma un shock común en inflación persistente; no modela la dinámica de largo plazo ni los múltiples regímenes cambiarios argentinos."
+    }
   },
 
   "suecia_1994_1998": {
@@ -185,7 +205,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "Sveriges Riksbank. Inflation target history (1993, formal from 1995).", url: "https://www.riksbank.se/en-gb/monetary-policy/the-inflation-target/" },
       { texto: "FMI (1998). Sweden: Selected Issues. IMF Staff Country Report 98/124.", url: "https://www.imf.org/external/pubs/ft/scr/1998/cr98124.pdf" },
       { texto: "OECD (1999). OECD Economic Surveys: Sweden 1999.", url: "https://www.oecd.org/en/publications/oecd-economic-surveys-sweden_19990448.html" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "Riksbank con IT (meta 2%, formal desde 1995); corona flotante (salida MTC nov 1992); sistema bancario saneado; gobierno con amplio consenso político para consolidación fiscal.",
+      mechanism: "Tras crisis bancaria 1991–1993 y salida del MTC (nov 1992), corona depreció mejorando competitividad exportadora. Gobierno electo en 1994 inicia consolidación: déficit ~12% PIB → superávit (1998). PORQUE hubo depreciación previa, ajuste fiscal NO requirió deflación nominal adicional. Riksbank mantuvo expectativas ancladas (meta 2%) durante todo el proceso. Resultado: PIB creció 4,0% (1994), 3,9% (1995), 1,5% (1996), 2,7% (1997); desempleo bajó desde 9,9% (1993) a ~6% (1998).",
+      affectedVariables: ["tipo de cambio real (corona sueca)", "balance fiscal", "expectativas de inflación", "PIB real", "desempleo"],
+      feedbackLoop: "Depreciación 1992 → competitividad exportadora mejora → demanda externa sostiene PIB → credibilidad Riksbank mantiene expectativas ancladas → ajuste fiscal sin espiral contractiva. Sistema bancario saneado elimina riesgo de credit crunch.",
+      policyFeasibility: "Riksbank bajo IT sin presión de monetización; gobierno con consenso transversal; corona flotante permite ajuste real sin deflación; sistema bancario previamente saneado elimina riesgo de crisis.",
+      incidence: "Trabajadores públicos y beneficiarios de prestaciones (recortes directos); desempleados; sector exportador beneficiado por depreciación 1992.",
+      discriminatingEvidence: "Déficit fiscal: ~12% PIB (1994) → superávit (1998); deuda pública/PIB: ~78% (1994) → ~65% (1998); PIB: +4,0% (1994), +3,9% (1995), +1,5% (1996), +2,7% (1997); desempleo: 9,9% (1993) → ~6% (1998); corona sale MTC nov 1992; Riksbank IT formal 1995. Fuentes: OECD 1999, FMI 1998, Riksbank, Englund 1999.",
+      antiOverclaim: "MacroLab NO captura: (i) devaluación 1992 fue amortiguador CRÍTICO —sin ella, consolidación requeriría deflación severa (cf. Grecia, sin flotación); (ii) ciclo global expansivo 1994–1998 fue favorable (no generaliza a post-2008); (iii) debate sobre composición del ajuste (gasto vs ingresos). La consolidación evitó recesión porque: (a) banca saneada, (b) régimen flotante, (c) ciclo favorable, (d) BC creíble. NO aplica a contextos distintos."
+    }
   },
 
   "grecia_2010_2015": {
