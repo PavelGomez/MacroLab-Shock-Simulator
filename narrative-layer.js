@@ -200,6 +200,52 @@
     return html || '<p>no especificado</p>';
   }
 
+  /* ========== LENTES INSTITUCIONALES ========== */
+
+  function buildInstitutionalLensesHtml(cronicaKey) {
+    if (!cronicaKey || !CRONICAS[cronicaKey]) return '';
+    var il = CRONICAS[cronicaKey].institutionalLayer;
+    if (!il) return '';
+
+    function panel(label, text, mod) {
+      return '<div class="il-panel' + (mod ? ' il-panel--' + mod : '') + '">' +
+        '<h5 class="il-panel-label">' + escapeHtml(label) + '</h5>' +
+        '<p class="il-panel-text">' + escapeHtml(text) + '</p>' +
+        '</div>';
+    }
+
+    var avHtml = '';
+    if (il.affectedVariables && il.affectedVariables.length) {
+      avHtml = '<div class="il-panel il-panel--vars">' +
+        '<h5 class="il-panel-label">Variables afectadas</h5>' +
+        '<ul class="il-var-list">' +
+        il.affectedVariables.map(function(v) {
+          return '<li>' + escapeHtml(v) + '</li>';
+        }).join('') +
+        '</ul></div>';
+    }
+
+    return '<section class="il-lenses" aria-label="Lentes institucionales">' +
+      '<h4 class="il-lenses-title">Lentes institucionales</h4>' +
+      '<p class="il-lenses-intro">Canal mecanismo → institución → credibilidad → expectativas</p>' +
+      '<div class="il-grid">' +
+        panel('Institución focal', il.institution, 'inst') +
+        panel('Mecanismo causal', il.mechanism, 'mech') +
+        avHtml +
+        panel('Feedback loop', il.feedbackLoop, 'loop') +
+        panel('Viabilidad de política', il.policyFeasibility, 'feas') +
+      '</div>' +
+      '<details class="il-secondary">' +
+        '<summary>Incidencia · Evidencia · Límites del modelo</summary>' +
+        '<div class="il-grid il-grid--3">' +
+          panel('Incidencia distribucional', il.incidence) +
+          panel('Evidencia discriminante', il.discriminatingEvidence) +
+          panel('Límite MacroLab', il.antiOverclaim, 'warn') +
+        '</div>' +
+      '</details>' +
+    '</section>';
+  }
+
   function buildCronicaHtml(cronicaKey) {
     if (!cronicaKey || !CRONICAS[cronicaKey]) return '';
     var c = CRONICAS[cronicaKey];
@@ -307,6 +353,7 @@
         '<div class="route-closure-block"><h4>Cautela</h4>' +
           '<p class="route-closure-warning">' + escapeHtml(narrative.antiOverclaim) + '</p></div>' +
       '</div>' +
+      buildInstitutionalLensesHtml(narrative.cronicaKey) +
       buildCronicaHtml(narrative.cronicaKey) +
       buildDeepDiveHtml(narrative) +
       buildFootnotesHtml(narrative) +

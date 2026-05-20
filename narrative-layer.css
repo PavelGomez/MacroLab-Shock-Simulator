@@ -161,6 +161,111 @@
 .route-closure-deepdive-list li:last-child { margin-bottom: 0; }
 .deepdive-label { font-weight: 700; color: var(--navy); margin-right: 4px; }
 
+/* ========== LENTES INSTITUCIONALES ========== */
+
+.il-lenses {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  background: var(--bg);
+}
+
+.il-lenses-title {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+  margin: 0 0 4px;
+}
+
+.il-lenses-intro {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.il-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.il-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 900px) {
+  .il-grid { grid-template-columns: 1fr; }
+  .il-grid--3 { grid-template-columns: 1fr; }
+}
+
+.il-panel {
+  background: var(--card, #fff);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.il-panel--inst { border-left: 3px solid var(--purple, #7c3aed); }
+.il-panel--mech { border-left: 3px solid var(--accent); }
+.il-panel--loop { border-left: 3px solid var(--orange, #d97706); }
+.il-panel--feas { border-left: 3px solid var(--blue, #2563eb); }
+.il-panel--vars { border-left: 3px solid var(--green, #16a34a); }
+.il-panel--warn { border-left: 3px solid #e8b000; background: #fffbeb; }
+
+.il-panel-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+
+.il-panel-text {
+  font-size: 0.86rem;
+  color: var(--text);
+  line-height: 1.56;
+  margin: 0;
+}
+
+.il-var-list {
+  list-style: disc;
+  padding-left: 16px;
+  margin: 0;
+}
+
+.il-var-list li {
+  font-size: 0.84rem;
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 3px;
+}
+
+.il-secondary {
+  margin-top: 6px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.il-secondary > summary {
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--muted);
+  list-style: none;
+}
+
+.il-secondary > summary::-webkit-details-marker { display: none; }
+.il-secondary > summary::before { content: "+ "; color: var(--accent); }
+.il-secondary[open] > summary::before { content: "− "; }
+.il-secondary[open] > summary { margin-bottom: 10px; }
+
 /* ========== ANOTACIONES METODOLÓGICAS ========== */
 
 .route-closure-footnotes { margin-top: 14px; padding: 10px 14px; border-top: 1px dashed var(--line); }
