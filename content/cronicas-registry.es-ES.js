@@ -45,7 +45,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "Demiralp & Demiralp (2019). Erosion of central bank independence in Turkey. EER 9.", url: "https://doi.org/10.1007/s40822-018-0118-0" },
       { texto: "Garriga & Rodriguez (2020). CBI and inflation in developing countries. JIMF 104.", url: "https://doi.org/10.1016/j.jimonfin.2020.102166" },
       { texto: "Focus Economics, Turkey CPI.", url: "https://www.focus-economics.com/country-indicator/turkey/inflation/" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "Banco Central de Turquía (TCMB) con cuatro cambios de presidencia (2019–2023); independencia erosionada por presión ejecutiva que impuso recortes de tasa en contexto inflacionario.",
+      mechanism: "Shock inflacionario (depreciación TRY desde 2018, pass-through cambiario) → TCMB recorta tasa de política monetaria bajo presión política con inflación superando 15% → señal contradictoria erosiona credibilidad del banco central → agentes actualizan expectativas de inflación al alza → pass-through cambiario se acelera → tipo de cambio nominal TRY sigue depreciándose → inflación alcanza 85,51% (oct 2022) → ciclo de desanclaje autorreferente.",
+      affectedVariables: ["tasa de política monetaria", "expectativas de inflación", "tipo de cambio nominal (TRY/USD)", "pass-through cambiario", "credibilidad del banco central"],
+      feedbackLoop: "Desanclaje de expectativas → depreciación anticipada de TRY → mayor inflación observada → nueva presión política por recorte de tasa → mayor desanclaje; ciclo se interrumpe solo cuando giro post-electoral 2023 permite tasas reales positivas.",
+      policyFeasibility: "Ejecutivo con poder de remoción directa del gobernador del BC; cuatro ceses entre 2019–2023; restricción política impidió tasas reales positivas hasta giro post-electoral de junio 2023.",
+      incidence: "Hogares de bajos ingresos y ahorristas en TRY golpeados por erosión de salarios reales; empresas con deuda dolarizada presionadas por depreciación.",
+      discriminatingEvidence: "Inflación peak: 85,51% interanual (oct 2022, TÜİK); TRY pasa de 3,8 a 18 TRY/USD entre 2018–2022; TCMB reduce tasa de 19% a 8,5% (sep–nov 2021) con inflación en ascenso; tras cambio de gobernadora (jun 2023), tasa sube a 40%; inflación baja a ~38% en jun 2024. Fuentes: TÜİK, BIS 2023, Demiralp & Demiralp 2019.",
+      antiOverclaim: "MacroLab NO captura: (i) la economía política de destituciones del gobernador e incentivos electorales pro-tasas-bajas; (ii) dolarización de balances que altera el pass-through; (iii) el rol de choques geopolíticos y sanciones externas en la depreciación de TRY. La ficha ilustra el desanclaje por erosión de independencia monetaria; no predice cuándo ni cómo se restablece credibilidad."
+    }
   },
 
   "argentina_convertibility": {
@@ -64,7 +74,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "IMF Independent Evaluation Office (2004). The IMF and Argentina, 1991–2001.", url: "https://www.imf.org/en/Publications/Independent-Evaluation-Office-Reports/Issues/2016/12/31/The-IMF-and-Argentina-1991-2001-17590" },
       { texto: "Calvo, Izquierdo & Mejía (2008). Systemic Sudden Stops. NBER WP 14026.", url: "https://www.nber.org/papers/w14026" },
       { texto: "De la Torre, Levy Yeyati & Schmukler (2003). Living and Dying with Hard Pegs: The Rise and Fall of Argentina’s Currency Board. World Bank Policy Research Working Paper 2980.", url: "https://openknowledge.worldbank.org/entities/publication/f2d65dac-fecc-5f39-b180-654ce710aaca" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "Ley de Convertibilidad (1991–2002): régimen de paridad fija 1 ARS/USD sin discretion en Banco Central; dependencia de entradas de capital externo; estructura de deuda pública dolarizada.",
+      mechanism: "Shock externo (crisis rusa 1998, devaluación Brasil 1999) → caída de salida de capital → presión sobre reservas internacionales → bajo Convertibilidad, BC no puede expandir monetariamente sin dólares → base monetaria se contrae mecánicamente → demanda agregada cae → desempleo sube. Sin devaluación posible, ajuste real traumático y expectativas de ruptura aumentan.",
+      affectedVariables: ["reservas internacionales", "base monetaria", "tipo de cambio nominal (fijo por ley)", "demanda agregada", "expectativas de devaluación"],
+      feedbackLoop: "Expectativas de ruptura del régimen → corridas de depósitos (conversión a dólares) → aún más caída de reservas → espiral contraccionista de base monetaria → depresión de actividad → mayor presión fiscal → inconsistencia se hace evidente → colapso final en diciembre 2001.",
+      policyFeasibility: "Ley de Convertibilidad rigidiza política monetaria; BC sin discreción para responder contracíclicamente; presión política creciente por expansión fiscal provincial que erosiona consistencia macro; dependencia crítica de capital externo para mantener reservas.",
+      incidence: "Shock golpea primero exportables (agricultura, manufactura) cuya competitividad se erosiona; luego caída agregada, desempleo manufacturing urbana, presión salarial formal y crisis de financiamiento de pymes.",
+      discriminatingEvidence: "Reservas internacionales caen de US$ 26 mil millones (1992, pico) a US$ 10 mil millones (2001); desempleo abierto sube de 7% (1995) a 18% (2002); deuda externa representa 52% del PIB en 2001; default de deuda soberana declarado diciembre 2001 bajo Ley 25.561; devaluación de 200%+ en enero-febrero 2002 vs USD. Fuentes: BCRA, INDEC, Mussa (2002).",
+      antiOverclaim: "MacroLab NO captura: (i) dinámicas de corridas y contagio financiero que rompen regímenes rígidamente creíbles (Calvo 1998); (ii) costos políticos de desempleo masivo que pueden presionar por salida del régimen (Alesina & Drazen 1991); (iii) interacción entre rigidez cambiaria e inconsistencia fiscal como juego temporal. La ficha ilustra por qué la rigidez sin coherencia fiscal acumula tensión; no predice el timing exacto de colapso."
+    }
   },
 
   "chile_2008_2009": {
@@ -83,7 +103,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "DIPRES (2022). Cumplimiento de las metas de regla fiscal en Chile: Revisión histórica.", url: "https://www.dipres.gob.cl/598/articles-299473_doc_pdf.pdf" },
       { texto: "De Gregorio (2014). How Latin America Weathered the Global Financial Crisis. PIIE.", url: "https://www.piie.com/bookstore/how-latin-america-weathered-global-financial-crisis" },
       { texto: "Végh & Vuletin (2012). Overcoming the Fear of Free Falling: Monetary Policy Graduation in Emerging Markets. NBER Working Paper 18175.", url: "https://www.nber.org/papers/w18175" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "BC de Chile con IT (2-4%), independencia desde 1989; gobierno con regla de balance estructural y FEES acumulado; TC flexible.",
+      mechanism: "Shock externo (crisis financiera global → caída de precios de cobre) → ingresos por divisas bajan → presión inicial en TC pero flexible → BC reduce TPM (775 pb entre ene-jun 2009) con credibilidad en meta de IT → Gobierno usa buffer FEES para gasto anticíclico (2,8% PIB) sin quebrantar regla fiscal → Si credibilidad en BC y regla fiscal es alta, mercados no anticipan inflación ni insostenibilidad → demanda se amortigua sin desanclaje de expectativas.",
+      affectedVariables: ["tasa de política monetaria (TPM)", "expectativas de inflación 12-24 meses", "tipo de cambio nominal", "gasto fiscal/demanda agregada", "actividad económica y empleo"],
+      feedbackLoop: "Buffer fiscal gastado contracíclicamente → demanda cae menos que en otro escenario → empleo se sostiene → credibilidad en regla fiscal se refuerza (deuda no explota) → expectativas de inflación no se desanclan → BC mantiene tasa baja sin riesgo → recuperación hacia fines 2009 sin inflación posterior.",
+      policyFeasibility: "BC autónomo con meta de inflación consolidada desde 2000; regla fiscal flexible pero creíble (balance estructural) permite reacción contracíclica; TC flexible absorbe volatilidad externa; FEES acumulado predeterminadamente en bonanza reduce restricción de caja.",
+      incidence: "Shock golpea sector cuprífero y exportables; estímulo fiscal (transferencias, subsidios empleo) amortigua caída de empleo formal/informal; distribución más equitativa que sin buffer.",
+      discriminatingEvidence: "TPM baja de 3,25% a 0,5% entre enero y junio 2009; inflación anual alcanza 1,4% en 2009 (bajo rango meta 2-4%); desempleo sube de 7% a 10,1% pero sin espiral; expectativas de inflación a 12-24m se mantienen en rango 2,5-3,5%, sin desanclaje. PIB cae 1,6% en 2009 pero rebota a 5,1% en 2010. FMI califica respuesta como 'vigorosa, coordinada'. Fuentes: INE, DIPRES, BCCh.",
+      antiOverclaim: "MacroLab NO captura: (i) dinámicas de reputación y construcción de credibilidad que permitieron el uso del buffer (De Gregorio & Valev 2003); (ii) ciclos políticos y costos electorales de políticas contracíclicas (Alesina & Passalacqua 2016); (iii) dependencia de la acumulación previa del buffer en rentas de recursos naturales. La ficha ilustra cómo credibilidad + buffer + regla fiscal amortiguan transmisión; no es modelo general ni prescriptivo."
+    }
   },
 
   "noruega_2020": {
@@ -105,7 +135,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "FMI (2021). Norway: 2021 Article IV Consultation. CR 21/197.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/09/13/Norway-2021-Article-IV-Consultation-Press-Release-Staff-Report-466009" },
       { texto: "OECD (2022). OECD Economic Surveys: Norway 2022. DOI 10.1787/df7b87ab-en.", url: "https://doi.org/10.1787/df7b87ab-en" },
       { texto: "Norwegian Ministry of Finance (2022). Sound economic governance — fiscal budget and Government Pension Fund key figures.", url: "https://www.regjeringen.no/en/aktuelt/sound-economic-governance/id2912392/" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "Norges Bank con IT (2%) e independencia consolidada; gobierno con regla fiscal del 3% del GPFG y cláusula cíclica; corona noruega flotante sin intervención sistemática.",
+      mechanism: "Shock dual (pandemia + caída precio petróleo) → ingresos externos caen, tipo de cambio (NOK) se deprecia → Norges Bank reduce tasa de política monetaria a 0% (may 2020) con credibilidad en IT → gobierno activa GPFG (~417 bn NOK, 3,4% del fondo) bajo regla fiscal → gasto fiscal y demanda agregada sostenidas → credibilidad en regla + IT mantienen expectativas de inflación a mediano plazo ancladas → actividad económica continental cae moderadamente y recupera en 2021.",
+      affectedVariables: ["tasa de política monetaria", "tipo de cambio (NOK)", "gasto fiscal y demanda agregada", "expectativas de inflación a mediano plazo", "actividad económica continental"],
+      feedbackLoop: "Gasto anticíclico sostiene demanda → empleo cae moderadamente → expectativas de inflación ancladas → BC mantiene tasa en 0% sin riesgo inflacionario → crédito fluye → recuperación visible en 2021; uso del buffer reduce capacidad futura sin anularla.",
+      policyFeasibility: "Regla fiscal del 3% del GPFG con cláusula de excepción cíclica; consenso político previo sobre acumulación y uso del fondo; BC independiente con IT desde 2001 sin presiones de financiamiento fiscal.",
+      incidence: "Sector hidrocarburos y hostelería golpeados primero; trabajadores temporales afectados; transferencias amortiguan caída del ingreso disponible.",
+      discriminatingEvidence: "TPM baja de 1,5% a 0% en dos recortes (mar–may 2020), primer cero histórico de Norges Bank; GPFG transfiere ~417 bn NOK (~3,4% del fondo); PIB continental cae ~2,5% en 2020, menos que la mediana OCDE; desempleo retorna a niveles pre-pandemia en 2021; expectativas de inflación a 2A no se desanclan. Fuentes: Norges Bank MPR 1/2020 y 2/2020, FMI 2021.",
+      antiOverclaim: "MacroLab NO captura: (i) la acumulación del GPFG requirió cuatro décadas de rentas petroleras y consenso político no replicable; (ii) la economía política de la regla del 3% y su cláusula de excepción; (iii) efectos de riqueza del fondo sobre consumo y tipo de cambio de largo plazo. La ficha muestra cómo buffer + IT + regla flexible reducen transmisión del shock; no implica que economías sin fondo puedan replicar la trayectoria."
+    }
   },
 
   "argentina_2020": {
@@ -166,7 +206,17 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "FMI (2013). Greece: Ex Post Evaluation 2010 SBA. CR 13/156.", url: "https://www.imf.org/en/Publications/CR/Issues/2016/12/31/Greece-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2010-Stand-By-Arrangement-40639" },
       { texto: "IEO-IMF (2016). The IMF and the Crises in Greece, Ireland, and Portugal.", url: "https://ieo.imf.org/en/evaluations/completed/2016-0728-the-imf-and-the-crises-in-greece-ireland-and-portugal" },
       { texto: "ESM (2019). Safeguarding the euro in times of crisis.", url: "https://www.esm.europa.eu/publications/safeguarding-euro-times-crisis" }
-    ]
+    ],
+    institutionalLayer: {
+      institution: "Grecia en eurozona sin política monetaria propia; BCE como prestamista de última instancia limitado; Troika (CE, BCE, FMI) como prestamista condicional a ajuste fiscal.",
+      mechanism: "Revelación de déficit fiscal real (15,4% PIB, 2009) → pérdida de acceso a mercados → consolidación severa con multiplicador fiscal subestimado → PIB cae más de lo proyectado → ratio deuda/PIB sube → spread soberano se dispara (~3.000 pb, mar 2012) → bancos griegos en estrés, crédito bancario interno se contrae → actividad cae más; expectativas de permanencia en el euro se deterioran, elevan prima de riesgo; sin tipo de cambio, ajuste se desplaza a deflación de salarios nominales y empleo.",
+      affectedVariables: ["spread soberano", "multiplicador fiscal", "crédito bancario interno", "salarios nominales y empleo", "expectativas de permanencia en el euro"],
+      feedbackLoop: "Consolidación contrae PIB → ratio deuda/PIB sube → desconfianza aumenta → spread soberano sube → bancos en estrés → crédito bancario cae → PIB cae más → nueva austeridad exigida; ausencia de tipo de cambio hace el ajuste exclusivamente deflacionario.",
+      policyFeasibility: "Sin moneda propia, devaluación imposible; financiamiento 100% condicional a ajuste fiscal; gobierno sin acceso a mercados desde 2010; resistencia social creciente limita el ritmo de ajuste.",
+      incidence: "Trabajadores públicos y pensionistas golpeados primero (cortes directos); desempleo juvenil >50%; sector exportable pequeño sin buffer cambiario.",
+      discriminatingEvidence: "PIB cae ~25% acumulado 2008–2013; desempleo: 27,5% (2013), juvenil >50%; spread 10A: ~3.000 pb (mar 2012); déficit revelado: 15,4% PIB (2009); PSI: reducción nominal 53,5%, pérdida VPN 70–75%; multiplicador estimado 0,5, real ~1,5 (Blanchard & Leigh 2013). Fuentes: Eurostat, FMI CR 13/156.",
+      antiOverclaim: "MacroLab NO captura: (i) el rol del BCE/OMT (2012) en el restablecimiento parcial de la calma del mercado (De Grauwe 2012); (ii) el debate sobre diseño incompleto de la unión monetaria y ausencia de prestamista fiscal común; (iii) el doom loop entre bancos y soberano como amplificador autónomo. La ficha ilustra la espiral contraccionista bajo rigidez cambiaria; no modela contagio transfronterizo ni mecanismos supranacionales de estabilización."
+    }
   }
 
 });

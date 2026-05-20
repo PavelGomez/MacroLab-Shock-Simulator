@@ -1,0 +1,87 @@
+{
+  "turkey_2018_2023": {
+    "titulo": "Turquía, 2018–2023",
+    "shockType": "shock_politico_sobre_bc",
+    "exchangeRegime": "flotacion_administrada",
+    "bcAutonomy": "bc_autonomia_erosionada",
+    "fiscalSpace": "espacio_fiscal_moderado",
+    "credibilityOutcome": "desanclaje_persistente",
+    "il_chars": {
+      "institution": 180,
+      "mechanism": 444,
+      "feedbackLoop": 241,
+      "policyFeasibility": 185,
+      "incidence": 147,
+      "discriminatingEvidence": 311,
+      "antiOverclaim": 387
+    }
+  },
+  "argentina_convertibility": {
+    "titulo": "Argentina, convertibilidad 1991–2002",
+    "shockType": "fx_capital_flight",
+    "exchangeRegime": "ancla_cambiaria_rigida",
+    "bcAutonomy": "bc_sin_discrecion",
+    "fiscalSpace": "espacio_limitado_por_regimen",
+    "credibilityOutcome": "colapso_del_regimen",
+    "il_chars": {
+      "institution": 186,
+      "mechanism": 366,
+      "feedbackLoop": 271,
+      "policyFeasibility": 259,
+      "incidence": 207,
+      "discriminatingEvidence": 346,
+      "antiOverclaim": 437
+    }
+  },
+  "chile_2008_2009": {
+    "titulo": "Chile, 2008–2009",
+    "shockType": "shock_commodity",
+    "exchangeRegime": "flotacion_cambiaria",
+    "bcAutonomy": "bc_autonomo_con_it",
+    "fiscalSpace": "espacio_amplio_con_buffer",
+    "credibilityOutcome": "expectativas_ancladas",
+    "il_chars": {
+      "institution": 125,
+      "mechanism": 454,
+      "feedbackLoop": 301,
+      "policyFeasibility": 261,
+      "incidence": 182,
+      "discriminatingEvidence": 370,
+      "antiOverclaim": 450
+    }
+  },
+  "noruega_2020": {
+    "titulo": "Noruega, 2020",
+    "shockType": "shock_pandemia_o_dual",
+    "exchangeRegime": "flotacion_cambiaria",
+    "bcAutonomy": "bc_autonomo_con_it",
+    "fiscalSpace": "espacio_amplio_con_buffer",
+    "credibilityOutcome": "expectativas_ancladas",
+    "il_chars": {
+      "institution": 168,
+      "mechanism": 469,
+      "feedbackLoop": 249,
+      "policyFeasibility": 198,
+      "incidence": 143,
+      "discriminatingEvidence": 350,
+      "antiOverclaim": 432
+    }
+  },
+  "grecia_2010_2015": {
+    "titulo": "Grecia, 2010-2015",
+    "shockType": "shock_fiscal_externo",
+    "exchangeRegime": "union_monetaria",
+    "bcAutonomy": "bc_ausente_union_monetaria",
+    "fiscalSpace": "sin_espacio_bajo_condicionalidad",
+    "credibilityOutcome": "espiral_contraccionista",
+    "il_chars": {
+      "institution": 168,
+      "mechanism": 493,
+      "feedbackLoop": 250,
+      "policyFeasibility": 189,
+      "incidence": 145,
+      "discriminatingEvidence": 290,
+      "antiOverclaim": 447
+    }
+  }
+}
