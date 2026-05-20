@@ -226,21 +226,21 @@
     }
 
     return '<section class="il-lenses" aria-label="Lentes institucionales">' +
-      '<h4 class="il-lenses-title">Lentes institucionales</h4>' +
+      '<h4 class="il-lenses-title">LENTES INSTITUCIONALES</h4>' +
       '<p class="il-lenses-intro">Canal mecanismo → institución → credibilidad → expectativas</p>' +
       '<div class="il-grid">' +
-        panel('Institución focal', il.institution, 'inst') +
-        panel('Mecanismo causal', il.mechanism, 'mech') +
+        panel('2.1 · Institución Focal', il.institution, 'inst') +
+        panel('2.2 · Mecanismo', il.mechanism, 'mech') +
         avHtml +
-        panel('Feedback loop', il.feedbackLoop, 'loop') +
-        panel('Viabilidad de política', il.policyFeasibility, 'feas') +
+        panel('2.3 · Feedback Loop', il.feedbackLoop, 'loop') +
+        panel('2.4 · Viabilidad de Política', il.policyFeasibility, 'feas') +
       '</div>' +
       '<details class="il-secondary">' +
-        '<summary>Incidencia · Evidencia · Límites del modelo</summary>' +
+        '<summary>ALCANCE Y LÍMITES</summary>' +
         '<div class="il-grid il-grid--3">' +
-          panel('Incidencia distribucional', il.incidence) +
-          panel('Evidencia discriminante', il.discriminatingEvidence) +
-          panel('Límite MacroLab', il.antiOverclaim, 'warn') +
+          panel('3.1 · Incidencia Distributiva', il.incidence) +
+          panel('3.2 · Evidencia Discriminante', il.discriminatingEvidence) +
+          panel('3.3 · Advertencia Pedagógica', il.antiOverclaim, 'warn') +
         '</div>' +
       '</details>' +
     '</section>';
