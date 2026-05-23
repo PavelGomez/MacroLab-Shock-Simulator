@@ -2341,10 +2341,44 @@
   <p>Herramienta pedagógica &middot; No constituye pronóstico ni asesoría económica &middot; <a href="LICENSE.md" style="color:inherit;">Ver licencia</a></p>
 </footer>
 
+  <!-- ============ NAVIGATION CENTER ============ -->
+  <button id="nav-center-btn" class="nav-center-btn"
+    aria-label="Centro de Navegación Institucional (Cmd+?)"
+    title="Centro de Navegación Institucional (Cmd+?)">⊙</button>
+
+  <div id="nav-center-overlay" class="nav-center-overlay" hidden aria-hidden="true"></div>
+
+  <aside id="nav-center-panel" class="nav-center-panel"
+    role="dialog" aria-label="Centro de Navegación Institucional" aria-modal="true"
+    aria-hidden="true" hidden>
+
+    <div class="nav-center-header">
+      <div>
+        <h2 class="nav-center-title">Brújula Pedagógica</h2>
+        <p class="nav-center-subtitle">Centro de Navegación Institucional</p>
+      </div>
+      <button id="nav-center-close" class="nav-center-close" aria-label="Cerrar panel">✕</button>
+    </div>
+
+    <div class="nav-center-tabs-bar" role="tablist" aria-label="Secciones del centro de navegación">
+      <button class="nc-tab-btn active" data-nc-tab="map"       role="tab" aria-selected="true">📋 Mapa</button>
+      <button class="nc-tab-btn"        data-nc-tab="glossary"  role="tab" aria-selected="false">💬 Glosario</button>
+      <button class="nc-tab-btn"        data-nc-tab="routes"    role="tab" aria-selected="false">🚀 Rutas</button>
+      <button class="nc-tab-btn"        data-nc-tab="export"    role="tab" aria-selected="false">💾 Exportar</button>
+      <button class="nc-tab-btn"        data-nc-tab="structure" role="tab" aria-selected="false">🗂 Estructura</button>
+    </div>
+
+    <div id="nav-center-content" class="nav-center-content" aria-live="polite">
+      <!-- Rendered by navigation-center.js -->
+    </div>
+
+  </aside>
+
   <script src="script.js" defer></script>
   <script src="assets/lentes.js" defer></script>
   <script src="content/route-registry.es-ES.js?v=3" defer></script>
   <script src="content/cronicas-registry.es-ES.js?v=3" defer></script>
   <script src="narrative-layer.js" defer></script>
+  <script src="navigation-center.js" defer></script>
 </body>
 </html>
