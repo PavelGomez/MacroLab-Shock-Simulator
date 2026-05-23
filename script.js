@@ -180,6 +180,7 @@ const TAB_TITLES = {
   institucional:'Marco institucional',
   lentes:'Lentes institucionales',
   comparador:'Comparador Phillips',
+  'atlas-lentes':'Crónicas históricas',
   tablero:'Tablero macro',
   lectura:'Lectura de datos',
   glosario:'Glosario'

@@ -623,6 +623,7 @@ function trackSpaTab(tabId) {
 
 /* ========== INIT ========== */
 function navCenterInit() {
+  if (window.self !== window.top) return; /* inside iframe — skip to avoid duplicate button */
   /* Detect current active SPA tab; fallback to page-level override for standalones */
   const activePanel = document.querySelector('.tab-panel.active');
   if (activePanel) {
