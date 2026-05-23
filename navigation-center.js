@@ -523,11 +523,15 @@ function trackSpaTab(tabId) {
 
 /* ========== INIT ========== */
 function navCenterInit() {
-  /* Detect current active SPA tab */
+  /* Detect current active SPA tab; fallback to page-level override for standalones */
   const activePanel = document.querySelector('.tab-panel.active');
-  if (activePanel) trackSpaTab(activePanel.id);
+  if (activePanel) {
+    trackSpaTab(activePanel.id);
+  } else if (window.macrolarCurrentModule) {
+    trackSpaTab(window.macrolarCurrentModule);
+  }
 
-  /* Track SPA navigation */
+  /* Track SPA navigation (no-op on standalone pages) */
   document.querySelectorAll('.tab-button[data-tab]').forEach(btn => {
     btn.addEventListener('click', () => trackSpaTab(btn.dataset.tab));
   });

@@ -121,6 +121,89 @@
     .layout{grid-template-columns:1fr}
     aside.filters{border-right:none;border-bottom:1px solid var(--line)}
   }
+  /* ---- Navigation Center ---- */
+  :root{ --card:var(--panel); --text:var(--txt); --accent-soft:var(--panel-2); }
+  .nav-center-btn{position:fixed;top:1.25rem;right:1.25rem;width:48px;height:48px;border-radius:50%;background:var(--navy);color:#fff;border:2px solid rgba(255,255,255,.15);cursor:pointer;font-size:.95rem;font-weight:800;font-family:inherit;box-shadow:0 3px 12px rgba(15,39,64,.35);z-index:1090;transition:transform .18s,box-shadow .18s,background .18s;display:flex;align-items:center;justify-content:center;line-height:1}
+  .nav-center-btn:hover{transform:scale(1.08);box-shadow:0 5px 18px rgba(15,39,64,.45);background:var(--accent)}
+  .nav-center-overlay{position:fixed;inset:0;background:rgba(15,39,64,.35);z-index:1095;opacity:0;transition:opacity .3s}
+  .nav-center-overlay.nc-visible{opacity:1}
+  .nav-center-panel{position:fixed;top:0;right:0;width:420px;max-width:100vw;height:100dvh;height:100vh;background:var(--panel);box-shadow:-4px 0 24px rgba(15,39,64,.18);z-index:1100;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1);overflow:hidden}
+  .nav-center-panel.nc-open{transform:translateX(0)}
+  .nav-center-header{padding:1.1rem 1.2rem 1rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;background:var(--navy);color:#fff;flex-shrink:0}
+  .nav-center-title{margin:0;font-size:1rem;font-weight:800;color:#fff}
+  .nav-center-subtitle{margin:.15rem 0 0;font-size:.75rem;opacity:.7;color:#fff}
+  .nav-center-close{background:none;border:none;color:rgba(255,255,255,.75);font-size:1.3rem;line-height:1;cursor:pointer;padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:2px;transition:color .15s,background .15s}
+  .nav-center-close:hover{color:#fff;background:rgba(255,255,255,.12)}
+  .nav-center-tabs-bar{display:flex;border-bottom:1px solid var(--line);background:var(--bg);flex-shrink:0;overflow-x:auto;scrollbar-width:none}
+  .nav-center-tabs-bar::-webkit-scrollbar{display:none}
+  .nc-tab-btn{flex:1;padding:.55rem .3rem;border:none;border-bottom:3px solid transparent;background:transparent;color:var(--muted);font:inherit;font-size:.75rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;min-width:60px}
+  .nc-tab-btn:hover{color:var(--navy)}
+  .nc-tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+  .nav-center-content{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:1rem 1.1rem}
+  .nc-section{display:flex;flex-direction:column;gap:.75rem}
+  .nc-section-title{margin:0 0 .25rem;font-size:.72rem;font-weight:800;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .nc-section-subtitle{margin:.5rem 0 .35rem;font-size:.75rem;font-weight:700;color:var(--navy)}
+  .nc-chip{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:.72rem;font-weight:600;white-space:nowrap}
+  .nc-chip-muted{background:var(--bg);color:var(--muted)}
+  .nc-muted{color:var(--muted);font-size:.85rem;font-style:italic}
+  .nc-time-total{font-size:.82rem;color:var(--muted);padding:.5rem 0 .25rem;border-top:1px solid var(--line)}
+  .nc-current-banner{padding:.55rem .85rem;background:var(--accent-soft);border:1px solid #d0e1f2;border-radius:8px;font-size:.84rem;color:var(--navy)}
+  .nc-current-banner strong{color:var(--accent)}
+  .nc-banner-neutral{background:var(--bg);border-color:var(--line);color:var(--muted)}
+  .nc-q-card{display:flex;gap:.75rem;padding:.75rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+  .nc-q-card.nc-q-active{border-color:var(--accent);background:var(--accent-soft);box-shadow:0 2px 8px rgba(45,110,163,.12)}
+  .nc-q-num{width:34px;height:34px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:800;flex-shrink:0}
+  .nc-q-active .nc-q-num{background:var(--accent)}
+  .nc-q-body{flex:1;min-width:0}
+  .nc-q-question{display:block;font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:.25rem}
+  .nc-q-goal{margin:0 0 .4rem;font-size:.78rem;color:var(--muted);line-height:1.4}
+  .nc-q-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:.4rem}
+  .nc-outcomes{margin:.4rem 0 0;padding:0;list-style:none;font-size:.78rem;color:var(--navy);display:flex;flex-direction:column;gap:3px}
+  .nc-search-input{width:100%;box-sizing:border-box;padding:.55rem .75rem;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.88rem;color:var(--navy);background:var(--panel);transition:border-color .15s}
+  .nc-search-input:focus{border-color:var(--accent);outline:none}
+  .nc-quick-terms{margin:.35rem 0 0;padding:0 0 0 .25rem;list-style:none;font-size:.82rem;display:flex;flex-direction:column;gap:5px}
+  .nc-no-results{font-size:.82rem;color:var(--muted);font-style:italic}
+  .nc-results{display:flex;flex-direction:column;gap:4px}
+  .nc-term{border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .nc-term-hdr{width:100%;text-align:left;padding:.6rem .8rem;background:none;border:none;font:inherit;font-size:.84rem;color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.5rem;transition:background .12s}
+  .nc-term-hdr::after{content:'+';flex-shrink:0;color:var(--accent);font-weight:800;font-size:.9rem}
+  .nc-term-hdr:hover{background:var(--accent-soft)}
+  .nc-term-expanded::after{content:'−'}
+  .nc-term-body{padding:.5rem .8rem .75rem;font-size:.8rem;line-height:1.55;border-top:1px solid var(--line);background:var(--bg)}
+  .nc-term-body p{margin:.25rem 0}
+  .nc-pedagogy{color:var(--accent)}
+  .nc-formula{font-family:monospace;font-size:.78rem;background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:3px 6px;display:inline-block}
+  .nc-route-card{padding:.85rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);display:flex;flex-direction:column;gap:.45rem}
+  .nc-route-hdr{display:flex;justify-content:space-between;align-items:center;gap:.5rem}
+  .nc-route-name{font-size:.9rem;color:var(--navy)}
+  .nc-route-desc{margin:0;font-size:.82rem;color:var(--muted)}
+  .nc-route-for{margin:0;font-size:.75rem;color:var(--muted)}
+  .nc-route-steps{margin:.2rem 0;padding-left:1.1rem;font-size:.8rem;line-height:1.6}
+  .nc-step-time{color:var(--muted);font-style:italic}
+  .nc-start-btn{align-self:flex-start;padding:7px 14px;border:none;border-radius:999px;background:var(--accent);color:#fff;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:background .14s}
+  .nc-start-btn:hover{background:var(--navy)}
+  .nc-export-grid{display:flex;flex-wrap:wrap;gap:6px}
+  .nc-export-btn{padding:6px 12px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--navy);font:inherit;font-size:.78rem;font-weight:600;cursor:pointer;transition:background .14s,border-color .14s}
+  .nc-export-btn:hover{background:var(--accent-soft);border-color:var(--accent)}
+  .nc-sessions{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .nc-session{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.45rem .65rem;border:1px solid var(--line);border-radius:8px;background:var(--panel)}
+  .nc-session-lbl{font-size:.8rem;color:var(--navy)}
+  .nc-session-date{color:var(--muted)}
+  .nc-session-goto{font:inherit;font-size:.75rem;padding:4px 10px;border:1px solid var(--accent);border-radius:999px;background:none;color:var(--accent);cursor:pointer;font-weight:600;white-space:nowrap;transition:background .13s}
+  .nc-session-goto:hover{background:var(--accent-soft)}
+  .nc-modules{display:flex;flex-direction:column;gap:8px}
+  .nc-module{display:flex;gap:.75rem;padding:.75rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+  .nc-module-active{border-color:var(--accent);background:var(--accent-soft)}
+  .nc-module-icon{font-size:1.5rem;flex-shrink:0;line-height:1;padding-top:2px}
+  .nc-module-info{flex:1;min-width:0}
+  .nc-module-info strong{display:block;font-size:.88rem;color:var(--navy);margin-bottom:.2rem}
+  .nc-module-info p{margin:0 0 .35rem;font-size:.78rem;color:var(--muted);line-height:1.4}
+  .nc-module-meta{display:flex;flex-wrap:wrap;gap:4px}
+  .nc-q-badge{display:inline-block;padding:1px 7px;border-radius:999px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;margin-bottom:3px}
+  .nc-flow{padding:.75rem;border-radius:10px;background:var(--bg);border:1px solid var(--line)}
+  .nc-flow-line{font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:.3rem}
+  .nc-flow-sub{font-size:.8rem;color:var(--muted)}
+  @media(max-width:500px){.nav-center-panel{width:100%}.nav-center-btn{top:.75rem;right:.75rem;width:44px;height:44px;font-size:.88rem}.nc-tab-btn{font-size:.68rem;padding:.55rem .15rem}}
 </style>
 </head>
 <body>
@@ -592,5 +675,45 @@ function rerender(){
 buildFilters();
 rerender();
 </script>
+
+<!-- ============ NAVIGATION CENTER ============ -->
+<script>
+  /* Tell the nav center this is the Q4 Atlas module */
+  window.macrolarCurrentModule = 'atlas';
+  /* Fallback activateTab: redirects to main SPA with ?tab= parameter */
+  if (typeof activateTab === 'undefined') {
+    window.activateTab = function(tabId) {
+      window.location.href = 'index.html?tab=' + encodeURIComponent(tabId);
+    };
+  }
+</script>
+
+<button id="nav-center-btn" class="nav-center-btn"
+  aria-label="Centro de Navegación Institucional (Cmd+?)"
+  title="Centro de Navegación Institucional (Cmd+?)">⊙</button>
+
+<div id="nav-center-overlay" class="nav-center-overlay" hidden aria-hidden="true"></div>
+
+<aside id="nav-center-panel" class="nav-center-panel"
+  role="dialog" aria-label="Centro de Navegación Institucional" aria-modal="true"
+  aria-hidden="true" hidden>
+  <div class="nav-center-header">
+    <div>
+      <h2 class="nav-center-title">Brújula Pedagógica</h2>
+      <p class="nav-center-subtitle">Centro de Navegación Institucional</p>
+    </div>
+    <button id="nav-center-close" class="nav-center-close" aria-label="Cerrar panel">✕</button>
+  </div>
+  <div class="nav-center-tabs-bar" role="tablist" aria-label="Secciones del centro de navegación">
+    <button class="nc-tab-btn active" data-nc-tab="map"       role="tab" aria-selected="true">📋 Mapa</button>
+    <button class="nc-tab-btn"        data-nc-tab="glossary"  role="tab" aria-selected="false">💬 Glosario</button>
+    <button class="nc-tab-btn"        data-nc-tab="routes"    role="tab" aria-selected="false">🚀 Rutas</button>
+    <button class="nc-tab-btn"        data-nc-tab="export"    role="tab" aria-selected="false">💾 Exportar</button>
+    <button class="nc-tab-btn"        data-nc-tab="structure" role="tab" aria-selected="false">🗂 Estructura</button>
+  </div>
+  <div id="nav-center-content" class="nav-center-content" aria-live="polite"></div>
+</aside>
+
+<script src="navigation-center.js"></script>
 </body>
 </html>
