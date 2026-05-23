@@ -61,7 +61,7 @@ const NC = {
     { id: 'marco-institucional',    name: 'Marco Institucional',             icon: '📘', question: 'q1', estimatedTime: 5,  exportOptions: ['PNG', 'CSV'] },
     { id: 'lentes-institucionales', name: 'Lentes Institucionales',          icon: '🔬', question: 'q2', estimatedTime: 10, exportOptions: ['PNG', 'SVG', 'CSV'] },
     { id: 'comparador-phillips',    name: 'Comparador Phillips',             icon: '📊', question: 'q3', estimatedTime: 15, exportOptions: ['PNG', 'SVG', 'CSV', 'Excel', 'JSON', 'R-code', 'Python-code'] },
-    { id: 'atlas-lentes',           name: 'Atlas de Lentes Institucionales', icon: '📚', question: 'q4', estimatedTime: 20, exportOptions: ['PDF', 'CSV'] }
+    { id: 'atlas-lentes',           name: 'Crónicas históricas',             icon: '📚', question: 'q4', estimatedTime: 20, exportOptions: ['PDF', 'CSV'] }
   ],
 
   glossary: {
@@ -165,7 +165,7 @@ const NC = {
 
 /* ---- Mappings: SPA tab ID ↔ pedagogic module ID ---- */
 /* Note: 'atlas' tab in SPA = "Atlas de shocks 2009-2026" — historical reference tool,
-   NOT a Q step. The Q4 module is atlas-lentes-institucionales.html (standalone). */
+   NOT a Q step. The Q4 tab is 'atlas-lentes' ("Crónicas históricas"), embedded via iframe. */
 const NC_TAB_TO_Q      = { institucional: 1, lentes: 2, comparador: 3, 'atlas-lentes': 4 };
 const NC_TAB_TO_MODULE = {
   institucional:  'marco-institucional',
@@ -311,7 +311,7 @@ function renderMapTab() {
       <div class="nc-chain-arrow">→</div>
       <div class="nc-chain-node${_s.spaTab==='atlas-lentes'||(!_s.spaTab&&window.macrolarCurrentModule==='atlas-lentes')?' nc-chain-active':''}">
         <span class="nc-chain-q">Q4</span>
-        <strong>Atlas Lentes</strong>
+        <strong>Crónicas</strong>
         <span>¿Qué dice la historia?</span>
       </div>
     </div>
@@ -590,7 +590,7 @@ function renderStructureTab() {
 
   h += `<div class="nc-flow">
     <h4 class="nc-section-subtitle">FLUJO RECOMENDADO</h4>
-    <div class="nc-flow-line">📘 Marco → 🔬 Lentes → 📊 Comparador → 📚 Atlas Lentes</div>
+    <div class="nc-flow-line">📘 Marco → 🔬 Lentes → 📊 Comparador → 📚 Crónicas históricas</div>
     <div class="nc-flow-sub">Q1 → Q2 → Q3 → Q4 &nbsp;·&nbsp; <strong>50 minutos total</strong><br>
       <span style="font-size:.72rem">📚 Atlas de shocks: úsalo como referencia en cualquier momento</span>
     </div>

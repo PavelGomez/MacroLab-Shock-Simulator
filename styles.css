@@ -63,7 +63,8 @@ body.dark-mode .tab-button-q .tb-sub { color: rgba(196,210,224,.6); }
 body.dark-mode .tab-button-q:hover .tb-sub, body.dark-mode .tab-button-q.active .tb-sub { color: rgba(255,255,255,.7); }
 /* Atlas Lentes iframe tab */
 #atlas-lentes.tab-panel { padding: 0; }
-.atlas-lentes-frame { width: 100%; height: calc(100vh - 62px); border: none; display: block; }
+.atlas-lentes-header { display: flex; align-items: center; gap: 12px; padding: 10px 24px 6px; background: #fff; border-bottom: 1px solid var(--line); }
+.atlas-lentes-frame { width: 100%; height: calc(100vh - 102px); border: none; display: block; }
 
 /* SHELL */
 .app-shell { max-width: 1540px; margin: 0 auto; padding: 24px; }
