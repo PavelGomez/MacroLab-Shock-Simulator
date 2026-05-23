@@ -256,6 +256,18 @@ function renderITab() {
 function renderMapTab() {
   const curQ = NC_TAB_TO_Q[_s.spaTab];
   let h = '<div class="nc-section">';
+
+  h += `<div class="nc-orient-intro">
+    <p>Esta brújula te orienta en MacroLab. Haz clic en las pestañas:</p>
+    <ul class="nc-tabs-guide">
+      <li><strong>📋 Mapa</strong> <span>dónde estás en el análisis Q1→Q4</span></li>
+      <li><strong>💬 Glosario</strong> <span>busca π, FCHR, credibilidad, Phillips…</span></li>
+      <li><strong>🚀 Rutas</strong> <span>caminos según tu objetivo y tiempo</span></li>
+      <li><strong>💾 Exportar</strong> <span>descarga datos y retoma sesiones</span></li>
+      <li><strong>🗂 Estructura</strong> <span>visión global de todos los módulos</span></li>
+    </ul>
+  </div>`;
+
   h += '<h3 class="nc-section-title">ANÁLISIS INSTITUCIONAL: 4 PREGUNTAS</h3>';
 
   if (curQ) {
@@ -508,10 +520,15 @@ function updateBtnLabel() {
   const btn = $id('nav-center-btn');
   if (!btn) return;
   const q = NC_TAB_TO_Q[_s.spaTab];
-  btn.textContent = q ? `${q}/4` : '⊙';
+  btn.innerHTML = q
+    ? `<span class="nc-btn-icon">?</span><span class="nc-btn-text">Ayuda</span><span class="nc-btn-badge">Q${q} / 4</span>`
+    : `<span class="nc-btn-icon">?</span><span class="nc-btn-text">Ayuda</span>`;
   btn.setAttribute('title', q
-    ? `Centro de Navegación — Q${q} de 4 (Cmd+?)`
-    : 'Centro de Navegación Institucional (Cmd+?)');
+    ? `Haz clic para orientarte en MacroLab — estás en Q${q} de 4 (Cmd+?)`
+    : 'Haz clic para orientarte en MacroLab (Cmd+?)');
+  btn.setAttribute('aria-label', q
+    ? `Ayuda y navegación — MacroLab Q${q} de 4`
+    : 'Ayuda y navegación — MacroLab');
 }
 
 /* ========== SPA TAB TRACKING ========== */
