@@ -1,0 +1,396 @@
+{
+  "navigationCenter": {
+    "version": "1.1-validado-2026-05-23",
+    "status": "LISTO PARA IMPLEMENTACION",
+    "metadata": {
+      "description": "Centro de Navegación Institucional: brújula pedagógica omnipresente",
+      "lastValidated": "2026-05-23",
+      "pedagogyFramework": "Cadena institucional: shock→institución→credibilidad→incentivos→expectativas→canal→trayectoria→lectura MacroLab"
+    },
+    "pedagogicQuestions": [
+      {
+        "id": "q1",
+        "number": 1,
+        "question": "¿Qué son instituciones macroeconómicas?",
+        "pedagogyGoal": "Entender qué dimensiones institucionales importan",
+        "module": "marco-institucional",
+        "timeMinutes": 5,
+        "description": "4 dimensiones binarias crean 16 regímenes institucionales distintos",
+        "outputType": "Matriz conceptual + 16 configuraciones",
+        "nextQuestion": "q2",
+        "glossaryTermsRelevant": ["ER", "Coordinación", "Credibilidad", "Fiscal"],
+        "learningOutcomes": [
+          "Identificar 4 ejes del diseño institucional",
+          "Enumerar 16 combinaciones posibles",
+          "Conectar cada régimen a su lógica de gobernanza"
+        ]
+      },
+      {
+        "id": "q2",
+        "number": 2,
+        "question": "¿Cómo moldean el Phillips curve?",
+        "pedagogyGoal": "Observar cómo el mismo shock produce trayectorias distintas bajo diferentes instituciones",
+        "module": "lentes-institucionales",
+        "timeMinutes": 10,
+        "description": "El mismo shock externo genera π, u, ρ distintos según configuración institucional",
+        "outputType": "Gráficos tiempo real (4 regímenes simultáneos)",
+        "previousQuestion": "q1",
+        "nextQuestion": "q3",
+        "glossaryTermsRelevant": ["π", "u", "ρ", "Phillips curve endógena", "credibilidad", "π^e"],
+        "learningOutcomes": [
+          "Trazar la cadena shock→institución→credibilidad→trayectoria",
+          "Interpretar velocidades de convergencia distintas",
+          "Leer gráficos de inflación, desempleo, credibilidad"
+        ]
+      },
+      {
+        "id": "q3",
+        "number": 3,
+        "question": "¿Cuánto varían en magnitud entre regímenes?",
+        "pedagogyGoal": "Cuantificar diferencias endógenas: Q12 final, velocidad convergencia, estanflación",
+        "module": "comparador-phillips",
+        "timeMinutes": 15,
+        "description": "Comparación de 2-3 regímenes bajo shock parametrizado; visualización de divergencia",
+        "outputType": "Gráficos comparativos + tablas parámetros + índices cuantitativos",
+        "previousQuestion": "q2",
+        "nextQuestion": "q4",
+        "glossaryTermsRelevant": ["α", "β", "γ", "λ", "π_target", "estanflación", "pass-through"],
+        "learningOutcomes": [
+          "Comparar parámetros Phillips entre regímenes",
+          "Calcular índice de 'dolor' (divergencia acumulada)",
+          "Explicar por qué PFULD converge lentamente a π_target=3.5%"
+        ]
+      },
+      {
+        "id": "q4",
+        "number": 4,
+        "question": "¿Validamos con la realidad histórica?",
+        "pedagogyGoal": "Anclar teoría en episodios reales; reconocer mecanismos en datos",
+        "module": "atlas-lentes",
+        "timeMinutes": 20,
+        "description": "8 crónicas históricas con shock, configuración institucional, mecanismo explícito, trayectoria real",
+        "outputType": "Narrativa + mecanismo + serie histórica + comparador simulado",
+        "previousQuestion": "q3",
+        "nextQuestion": null,
+        "glossaryTermsRelevant": ["crónica histórica", "mecanismo", "validación empírica"],
+        "learningOutcomes": [
+          "Identificar régimen institucional en episodio real",
+          "Explicar trayectoria observada por cadena institucional",
+          "Distinguir 'qué pasó' (Atlas) vs '¿qué hubiera pasado?' (Lentes/Comparador)"
+        ]
+      }
+    ],
+    "modules": [
+      {
+        "id": "marco-institucional",
+        "name": "Marco Institucional",
+        "slug": "/marco-institucional",
+        "icon": "📘",
+        "question": "q1",
+        "description": "Matriz 4×4 de dimensiones binarias; 16 regímenes; clickeable",
+        "position": "entrada",
+        "estimatedTime": 5,
+        "exportOptions": ["PNG", "CSV"]
+      },
+      {
+        "id": "lentes-institucionales",
+        "name": "Lentes Institucionales",
+        "slug": "/lentes-institucionales",
+        "icon": "🔬",
+        "question": "q2",
+        "description": "Observatorio: elige shock + 4 regímenes; gráficos π, u, ρ; narrativa histórica",
+        "position": "observación-interactiva",
+        "estimatedTime": 10,
+        "exportOptions": ["PNG", "SVG", "CSV"]
+      },
+      {
+        "id": "comparador-phillips",
+        "name": "Comparador Phillips",
+        "slug": "/comparador-phillips",
+        "icon": "📊",
+        "question": "q3",
+        "description": "Compara 2-3 regímenes; varía shock -2pp a +2pp; tablas parámetros; índices",
+        "position": "cuantificación-profunda",
+        "estimatedTime": 15,
+        "exportOptions": ["PNG", "SVG", "CSV", "Excel", "JSON", "R-code", "Python-code"]
+      },
+      {
+        "id": "atlas-lentes",
+        "name": "Atlas de Lentes Institucionales",
+        "slug": "/atlas-lentes",
+        "icon": "📚",
+        "question": "q4",
+        "description": "8 crónicas históricas; filtro por régimen; mecanismo + trayectoria real",
+        "position": "validación-histórica",
+        "estimatedTime": 20,
+        "exportOptions": ["PDF", "CSV"]
+      }
+    ],
+    "glossary": {
+      "acronyms": {
+        "ER": {
+          "full": "Esquema de tipo de cambio",
+          "options": ["Flexible", "Pegged"],
+          "explanation": "¿El banco central permite fluctuación cambiaria o mantiene paridad fija?",
+          "pedagogyRole": "Define cómo se transmiten shocks externos (pass-through)",
+          "examples": ["Chile post-2008: Flexible", "Argentina 1991-2001: Pegged"]
+        },
+        "BC": {
+          "full": "Banco Central",
+          "aliases": ["BCCh", "Banco Central de Chile"],
+          "explanation": "Autoridad monetaria responsable de mantener estabilidad de precios y credibilidad",
+          "pedagogyRole": "Institución clave determinante de ρ inicial"
+        },
+        "π": {
+          "full": "Inflación observada",
+          "units": "%",
+          "explanation": "Variación de precios agregada. Converge a π_target según credibilidad",
+          "pedagogyRole": "Variable observada clave en Phillips curve",
+          "formula": "π_t = π^e_t - α(u_t - u*)"
+        },
+        "π^e": {
+          "full": "Expectativas de inflación",
+          "units": "%",
+          "explanation": "Creencias de agentes sobre inflación futura; anclan a π_target si ρ es alta",
+          "pedagogyRole": "Nudo central de credibilidad institucional",
+          "formula": "π^e = ρ·π_target + (1-ρ)·π_{t-1}"
+        },
+        "π_target": {
+          "full": "Inflación objetivo de equilibrio",
+          "units": "%",
+          "explanation": "Hacia donde converge la economía según su configuración institucional (NO es meta política del BC)",
+          "pedagogyRole": "Varía por régimen: FCHR=2.0%, PFULD=3.5%, FULD=3.5%",
+          "isRegimeSpecific": true
+        },
+        "u": {
+          "full": "Tasa de desempleo",
+          "units": "%",
+          "explanation": "Porcentaje de población económicamente activa sin empleo",
+          "pedagogyRole": "Variable stock que se recupera lentamente según credibilidad"
+        },
+        "u*": {
+          "full": "Tasa natural de desempleo (NAIRU)",
+          "units": "%",
+          "explanation": "Desempleo de largo plazo consistente con π estable"
+        },
+        "ρ": {
+          "full": "Credibilidad institucional",
+          "units": "[0,1]",
+          "explanation": "Grado en que agentes creen que BC mantendrá π cerca de π_target",
+          "pedagogyRole": "Variable central de cadena institucional; determina anclaje de expectativas",
+          "dynamics": "ρ_t = ρ_{t-1} - λ·|π_t - π_target|"
+        },
+        "ρ_init": {
+          "full": "Credibilidad inicial del régimen",
+          "units": "[0,1]",
+          "explanation": "Punto de partida antes del shock; depende de historial institucional",
+          "regimeValues": {"FCHR": "0.90", "FULD": "0.50", "PFULD": "0.35"}
+        },
+        "α": {
+          "full": "Pendiente Phillips (coeficiente de brecha de desempleo)",
+          "units": "% inflación por pp brecha",
+          "explanation": "Sensibilidad de π a desviaciones de u respecto u*; FIJO por régimen",
+          "pedagogyRole": "Determina cuánto presiona la brecha de desempleo sobre inflación",
+          "regimeValues": {"FCHR": "0.08", "FULD": "0.14", "PFULD": "0.33"}
+        },
+        "β": {
+          "full": "Pass-through de tipo de cambio",
+          "units": "[0,1]",
+          "explanation": "Qué % de depreciación cambiaria se traslada a inflación doméstica",
+          "pedagogyRole": "Vincula ER a dinámica inflacionaria; mecanismo transmisión shocks externos"
+        },
+        "γ": {
+          "full": "Inercialidad inflacionaria",
+          "units": "[0,1]",
+          "explanation": "Cuánto de π_t depende de π_{t-1} vs expectativas ancladas",
+          "pedagogyRole": "Determina persistencia de shocks"
+        },
+        "λ": {
+          "full": "Tasa de aprendizaje de credibilidad",
+          "units": "[0,0.1]",
+          "explanation": "Velocidad con que ρ responde a desviaciones |π - π_target|",
+          "pedagogyRole": "Régimen-específica; determina velocidad de aprendizaje del BC",
+          "regimeValues": {"Pegged": "0.016", "Uncredible": "0.03", "Credible": "0.06"}
+        },
+        "PFULD": {
+          "full": "Pegged / Flexible (coord=No) / Uncredible / Discretion",
+          "explanation": "Régimen de tipo de cambio fijo, sin coordinación, baja credibilidad",
+          "pedagogyRole": "Ejemplo de estanflación periférica: π_target=3.5%, convergencia MUY lenta",
+          "realExamples": ["Grecia 2010-2015", "Argentina 1991-2002"],
+          "characteristics": [
+            "π converge lentamente a 3.5%",
+            "u converge muy lentamente (0.05/q)",
+            "ρ aprende muy lentamente (λ=0.016)"
+          ]
+        },
+        "FCHR": {
+          "full": "Flexible / Coordination=Yes / High credibility / Rules",
+          "explanation": "Tipo de cambio flexible, coordinación fuerte, alta credibilidad, reglas fiscales",
+          "pedagogyRole": "Régimen moderno desarrollado: π_target=2.0%, convergencia RÁPIDA",
+          "realExamples": ["Chile 1990-2010", "Países desarrollados creíbles"],
+          "characteristics": [
+            "π converge rápidamente a 2.0%",
+            "u converge rápidamente (0.25/q)",
+            "ρ aprende rápidamente (λ=0.06)"
+          ]
+        },
+        "FULD": {
+          "full": "Flexible / Uncredible / Discretion",
+          "explanation": "Tipo de cambio flexible, credibilidad media, sin reglas fiscales",
+          "pedagogyRole": "Régimen emergente típico: π_target=3.5%, convergencia MEDIA",
+          "realExamples": ["Argentina 2018-2023", "Turquía 2018-2023"],
+          "characteristics": [
+            "π converge a velocidad media a 3.5%",
+            "u converge a velocidad media (0.12/q)"
+          ]
+        },
+        "estanflación": {
+          "full": "Estanflación = ESTANcamiento + inFLACIÓN simultáneos",
+          "explanation": "Inflación alta + desempleo alto persistentes bajo shocks de oferta con baja credibilidad",
+          "pedagogyRole": "Sello distintivo del régimen PFULD: ambas variables convergen lentamente",
+          "realExample": "Grecia 2010-2015: π~3-4%, u~20%+"
+        },
+        "Phillips curve endógena": {
+          "full": "Phillips curve cuya pendiente y nivel dependen de instituciones",
+          "explanation": "No hay 'una' Phillips curve universal; cada régimen genera su propia",
+          "pedagogyRole": "Concepto clave de Carlin & Soskice 2024; base de MacroLab"
+        },
+        "shock": {
+          "full": "Perturbación exógena macroeconómica",
+          "explanation": "Perturbación exógena que altera el equilibrio. Puede ser de demanda, oferta o términos de intercambio",
+          "pedagogyRole": "Punto de partida del análisis institucional"
+        },
+        "BCCh": {
+          "full": "Banco Central de Chile",
+          "explanation": "Institución autónoma encargada de la política monetaria en Chile; fija la TPM y preserva la estabilidad de precios",
+          "pedagogyRole": "Ejemplo empírico del régimen FCHR: alta credibilidad y reglas"
+        },
+        "NAIRU": {
+          "full": "Non-Accelerating Inflation Rate of Unemployment",
+          "explanation": "Equivalente a u*: tasa de desempleo de largo plazo consistente con π estable. En Chile estimada entre 6.5-7.5%",
+          "pedagogyRole": "Referencia para la brecha de desempleo u - u* en la Phillips curve"
+        },
+        "TPM": {
+          "full": "Tasa de Política Monetaria",
+          "explanation": "Tasa de interés que fija el BCCh como ancla del sistema financiero. Principal instrumento de política monetaria en Chile",
+          "pedagogyRole": "Variable de política en el modelo IS-LM bajo régimen FCHR"
+        }
+      },
+      "concepts": {
+        "pi_target_natural": {
+          "definition": "Inflación de equilibrio emergente de cada régimen institucional",
+          "explanation": "NO es meta política; es consecuencia de rigideces, credibilidad e instituciones",
+          "pedagogyRole": "Central para entender por qué PFULD ≠ FCHR aún bajo mismo shock"
+        },
+        "tipos_de_shock": {
+          "definition": "Perturbaciones macroeconómicas clasificadas por origen",
+          "explanation": "Demanda (caída inversión -2pp), oferta (alza petróleo), términos de intercambio (caída cobre). Cada tipo tiene canal de transmisión distinto.",
+          "pedagogyRole": "Marco de clasificación del módulo Atlas y Lentes"
+        },
+        "credibilidad_institucional": {
+          "definition": "Grado en que agentes creen que BC mantendrá π cerca de π_target a pesar de presiones políticas",
+          "explanation": "Cadena: Institución → credibilidad ρ → Expectativas π^e → Inercia → Velocidad convergencia",
+          "pedagogyRole": "Concepto central del módulo Lentes Institucionales"
+        },
+        "pass_through": {
+          "definition": "Fracción de depreciación cambiaria que se traslada a inflación doméstica",
+          "explanation": "Fórmula: Δπ ≈ β × Δ(TC). Mayor bajo tipo de cambio fijo o economía abierta con poca credibilidad.",
+          "pedagogyRole": "Mecanismo transmisión de shocks externos vía tipo de cambio"
+        },
+        "brecha_de_desempleo": {
+          "definition": "u - u*: desviación respecto nivel natural",
+          "explanation": "Fórmula Phillips: π = π^e - α(u - u*). Brecha negativa (u < u*) presiona inflación al alza.",
+          "pedagogyRole": "Driver principal de la dinámica inflacionaria en el Comparador"
+        },
+        "velocidad_convergencia": {
+          "definition": "Trimestres que tarda π o u en cerrarse 50% de brecha inicial",
+          "explanation": "FCHR: 2-3 trimestres. PFULD: 20+ trimestres. Determinada por α, λ y ρ_init del régimen.",
+          "pedagogyRole": "Indicador central de comparación entre regímenes en el Comparador Phillips"
+        },
+        "caso_historico": {
+          "definition": "Episodio real (país, período) que ejemplifica régimen institucional",
+          "explanation": "Ejemplos: Chile 1990-2010 (FCHR), Grecia 2010-2015 (PFULD), Turquía 2018-2023 (FULD). Ancla empírica de la teoría.",
+          "pedagogyRole": "Anclaje empírico en el Atlas de Lentes Institucionales"
+        }
+      }
+    },
+    "recommendedRoutes": [
+      {
+        "id": "ruta-completa",
+        "name": "Análisis Completo",
+        "description": "Recorrido pedagógico de todas las preguntas",
+        "audience": ["profesor", "investigador", "estudiante-profundo"],
+        "timeMinutes": 50,
+        "steps": [
+          {"order": 1, "module": "marco-institucional", "action": "Entiende 4 ejes y 16 regímenes", "timeMinutes": 5},
+          {"order": 2, "module": "lentes-institucionales", "action": "Elige shock; observa 4 regímenes", "timeMinutes": 10},
+          {"order": 3, "module": "comparador-phillips", "action": "Expande a N regímenes; varía shock", "timeMinutes": 15},
+          {"order": 4, "module": "atlas-lentes", "action": "Busca caso histórico; valida", "timeMinutes": 20}
+        ]
+      },
+      {
+        "id": "ruta-rapida",
+        "name": "Análisis Rápido (Clase de Hoy)",
+        "description": "Entrada por caso específico",
+        "audience": ["estudiante", "docente-clase"],
+        "timeMinutes": 15,
+        "steps": [
+          {"order": 1, "module": "atlas-lentes", "action": "Elige caso histórico", "timeMinutes": 5},
+          {"order": 2, "module": "lentes-institucionales", "action": "Simula episodio", "timeMinutes": 10}
+        ]
+      },
+      {
+        "id": "ruta-investigacion",
+        "name": "Investigación Específica",
+        "description": "Comparar 2+ países",
+        "audience": ["investigador", "estudiante-tesis"],
+        "timeMinutes": 25,
+        "steps": [
+          {"order": 1, "module": "comparador-phillips", "action": "Selecciona 2 regímenes + shock", "timeMinutes": 10},
+          {"order": 2, "module": "atlas-lentes", "action": "Busca casos reales", "timeMinutes": 10},
+          {"order": 3, "action": "Exporta CSV + gráficos", "timeMinutes": 5}
+        ]
+      },
+      {
+        "id": "ruta-perdido",
+        "name": "Estoy Perdido",
+        "description": "Introducción suave al laboratorio",
+        "audience": ["estudiante-primera-vez", "visitante"],
+        "timeMinutes": 20,
+        "steps": [
+          {"order": 1, "module": "marco-institucional", "action": "Lee 4 ejes institucionales", "timeMinutes": 5},
+          {"order": 2, "module": "lentes-institucionales", "action": "Observa 4 regímenes con un shock", "timeMinutes": 10},
+          {"order": 3, "action": "Consulta glosario (Cmd+?)", "timeMinutes": 5}
+        ]
+      },
+      {
+        "id": "ruta-sensibilidad",
+        "name": "Análisis de Sensibilidad",
+        "description": "¿Qué pasa si varío parámetros?",
+        "audience": ["investigador", "estudiante-avanzado"],
+        "timeMinutes": 20,
+        "steps": [
+          {"order": 1, "module": "comparador-phillips", "action": "Elige régimen base", "timeMinutes": 5},
+          {"order": 2, "action": "Varía α, β, γ, λ en el comparador", "timeMinutes": 10},
+          {"order": 3, "action": "Exporta comparación de trayectorias", "timeMinutes": 5}
+        ]
+      },
+      {
+        "id": "ruta-phillips",
+        "name": "Phillips Curve Deep Dive",
+        "description": "Entender Phillips sin contexto institucional previo",
+        "audience": ["economista", "self-learner"],
+        "timeMinutes": 15,
+        "steps": [
+          {"order": 1, "module": "comparador-phillips", "action": "Compara pendientes α entre regímenes", "timeMinutes": 10},
+          {"order": 2, "action": "Entiende fórmula π = π^e - α(u-u*)", "timeMinutes": 5}
+        ]
+      }
+    ],
+    "sessionManagement": {
+      "enabled": true,
+      "maxSessions": 10,
+      "retentionDays": 30
+    }
+  }
+}
