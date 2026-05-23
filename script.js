@@ -1444,33 +1444,7 @@ function renderComparadorCol(colId) {
   if (!regime) return;
   var traj = simulatePhillips(regime, shockVal, 12);
   var quarters = traj.map(function(t){ return 'T' + t.quarter; });
-  var canvasEl = document.getElementById('comp-chart-' + colId);
-  if (!canvasEl) return;
-  if (compChartInstances[colId]) { compChartInstances[colId].destroy(); compChartInstances[colId] = null; }
-  compChartInstances[colId] = new Chart(canvasEl.getContext('2d'), {
-    type: 'line',
-    data: {
-      labels: quarters,
-      datasets: [
-        {label:'π inflación (%)', data:traj.map(function(t){return t.inflation;}),   borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
-        {label:'u desempleo (%)', data:traj.map(function(t){return t.unemployment;}),borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
-        {label:'ρ credibilidad',  data:traj.map(function(t){return t.credibility;}), borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,.07)',    tension:0.3, borderWidth:2.2, pointRadius:2, fill:false, yAxisID:'y2'}
-      ]
-    },
-    options: {
-      responsive:true, maintainAspectRatio:false, animation:false,
-      plugins:{
-        legend:{display:true, position:'top', labels:{font:{size:11}, padding:8, boxWidth:14}},
-        tooltip:{backgroundColor:'#10263f', displayColors:true, callbacks:{title:function(items){return 'Trimestre '+items[0].label;}}}
-      },
-      interaction:{mode:'index', intersect:false},
-      scales:{
-        x:{ticks:{color:'#5e7184', font:{size:11}}, grid:{display:false}},
-        y:{title:{display:true, text:'% o pp', color:'#5e7184', font:{size:11}}, ticks:{color:'#5e7184', font:{size:11}}, grid:{color:'#e7eef5'}},
-        y2:{position:'right', title:{display:true, text:'ρ', color:'#22c55e', font:{size:11}}, ticks:{color:'#22c55e', font:{size:11}}, grid:{display:false}, min:0, max:1}
-      }
-    }
-  });
+  // Fill textual content first (independent of Chart.js)
   var q12El = document.getElementById('comp-q12-' + colId);
   if (q12El) q12El.innerHTML = compQ12HTML(traj);
   var paramsEl = document.getElementById('comp-params-' + colId);
@@ -1482,9 +1456,39 @@ function renderComparadorCol(colId) {
       narrTextEl.innerHTML = narr;
     } else {
       var q12 = traj[11];
-      narrTextEl.innerHTML = '<p style="color:var(--muted);font-size:.85rem">No hay narrativa histórica disponible para este régimen en este simulador. Q12: π=' + q12.inflation + '%, u=' + q12.unemployment + '%, ρ=' + q12.credibility + '.</p>';
+      narrTextEl.innerHTML = '<p style="color:var(--muted);font-size:.85rem">No hay narrativa histórica disponible para este régimen. Q12: π=' + q12.inflation + '%, u=' + q12.unemployment + '%, ρ=' + q12.credibility + '.</p>';
     }
   }
+  // Draw chart (requires Chart.js from CDN)
+  var canvasEl = document.getElementById('comp-chart-' + colId);
+  if (!canvasEl || typeof Chart === 'undefined') return;
+  if (compChartInstances[colId]) { compChartInstances[colId].destroy(); compChartInstances[colId] = null; }
+  try {
+    compChartInstances[colId] = new Chart(canvasEl.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: quarters,
+        datasets: [
+          {label:'π inflación (%)', data:traj.map(function(t){return t.inflation;}),   borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
+          {label:'u desempleo (%)', data:traj.map(function(t){return t.unemployment;}),borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
+          {label:'ρ credibilidad',  data:traj.map(function(t){return t.credibility;}), borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,.07)',    tension:0.3, borderWidth:2.2, pointRadius:2, fill:false, yAxisID:'y2'}
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false, animation:false,
+        plugins:{
+          legend:{display:true, position:'top', labels:{font:{size:11}, padding:8, boxWidth:14}},
+          tooltip:{backgroundColor:'#10263f', displayColors:true, callbacks:{title:function(items){return 'Trimestre '+items[0].label;}}}
+        },
+        interaction:{mode:'index', intersect:false},
+        scales:{
+          x:{ticks:{color:'#5e7184', font:{size:11}}, grid:{display:false}},
+          y:{title:{display:true, text:'% o pp', color:'#5e7184', font:{size:11}}, ticks:{color:'#5e7184', font:{size:11}}, grid:{color:'#e7eef5'}},
+          y2:{position:'right', title:{display:true, text:'ρ', color:'#22c55e', font:{size:11}}, ticks:{color:'#22c55e', font:{size:11}}, grid:{display:false}, min:0, max:1}
+        }
+      }
+    });
+  } catch(e) { /* Chart.js not ready */ }
 }
 
 function renderComparador() {
