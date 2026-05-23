@@ -164,8 +164,16 @@ const NC = {
 };
 
 /* ---- Mappings: SPA tab ID ↔ pedagogic module ID ---- */
-const NC_TAB_TO_Q      = { institucional: 1, lentes: 2, comparador: 3, atlas: 4 };
-const NC_TAB_TO_MODULE = { institucional: 'marco-institucional', lentes: 'lentes-institucionales', comparador: 'comparador-phillips', atlas: 'atlas-lentes' };
+/* Note: 'atlas' tab in SPA = "Atlas de shocks 2009-2026" — historical reference tool,
+   NOT a Q step. The Q4 module is atlas-lentes-institucionales.html (standalone). */
+const NC_TAB_TO_Q      = { institucional: 1, lentes: 2, comparador: 3, 'atlas-lentes': 4 };
+const NC_TAB_TO_MODULE = {
+  institucional:  'marco-institucional',
+  lentes:         'lentes-institucionales',
+  comparador:     'comparador-phillips',
+  'atlas-lentes': 'atlas-lentes',           /* Q4 standalone: Atlas de Lentes Institucionales */
+  atlas:          'atlas-shocks-referencia' /* reference tool, not a Q step */
+};
 const NC_MODULE_TO_TAB = Object.fromEntries(Object.entries(NC_TAB_TO_MODULE).map(([k, v]) => [v, k]));
 
 /* ---- State ---- */
@@ -255,25 +263,72 @@ function renderITab() {
 /* ========== TAB: MAPA ========== */
 function renderMapTab() {
   const curQ = NC_TAB_TO_Q[_s.spaTab];
+  const isAtlasRef = _s.spaTab === 'atlas';
   let h = '<div class="nc-section">';
 
   h += `<div class="nc-orient-intro">
     <p>Esta brújula te orienta en MacroLab. Haz clic en las pestañas:</p>
     <ul class="nc-tabs-guide">
-      <li><strong>📋 Mapa</strong> <span>dónde estás en el análisis Q1→Q4</span></li>
-      <li><strong>💬 Glosario</strong> <span>busca π, FCHR, credibilidad, Phillips…</span></li>
-      <li><strong>🚀 Rutas</strong> <span>caminos según tu objetivo y tiempo</span></li>
-      <li><strong>💾 Exportar</strong> <span>descarga datos y retoma sesiones</span></li>
-      <li><strong>🗂 Estructura</strong> <span>visión global de todos los módulos</span></li>
+      <li><strong>📋 Mapa</strong>      <span>dónde estás y cómo se conectan los módulos</span></li>
+      <li><strong>💬 Glosario</strong>  <span>busca π, FCHR, credibilidad, Phillips…</span></li>
+      <li><strong>🚀 Rutas</strong>     <span>caminos según tu objetivo y tiempo</span></li>
+      <li><strong>💾 Exportar</strong>  <span>descarga datos y retoma sesiones</span></li>
+      <li><strong>🗂 Estructura</strong><span>visión global de todos los módulos</span></li>
     </ul>
   </div>`;
 
-  h += '<h3 class="nc-section-title">ANÁLISIS INSTITUCIONAL: 4 PREGUNTAS</h3>';
+  /* Complementarity notice when on the reference atlas */
+  if (isAtlasRef) {
+    h += `<div class="nc-notice-box">
+      <strong>Atlas de shocks ≠ Atlas de Lentes Institucionales</strong>
+      <p>Esta página es el <em>repertorio histórico de shocks de Chile</em>: episodios, mecanismos y datos observados.</p>
+      <p>Para ver cómo las instituciones moldean esos shocks, usa el <strong>módulo Q2 Lentes</strong> o el <strong>Q4 Atlas de Lentes</strong> (enlace externo).</p>
+    </div>`;
+  }
+
+  /* Four-module complementarity chain */
+  h += `<div class="nc-chain">
+    <h3 class="nc-section-title">CADENA PEDAGÓGICA</h3>
+    <p class="nc-chain-desc">Cuatro módulos con focos distintos y complementarios:</p>
+    <div class="nc-chain-row">
+      <div class="nc-chain-node${curQ===1?' nc-chain-active':''}">
+        <span class="nc-chain-q">Q1</span>
+        <strong>Marco</strong>
+        <span>¿Qué son las instituciones?</span>
+      </div>
+      <div class="nc-chain-arrow">→</div>
+      <div class="nc-chain-node${curQ===2?' nc-chain-active':''}">
+        <span class="nc-chain-q">Q2</span>
+        <strong>Lentes</strong>
+        <span>¿Cómo moldean el shock?</span>
+      </div>
+      <div class="nc-chain-arrow">→</div>
+      <div class="nc-chain-node${curQ===3?' nc-chain-active':''}">
+        <span class="nc-chain-q">Q3</span>
+        <strong>Comparador</strong>
+        <span>¿Cuánto varían?</span>
+      </div>
+      <div class="nc-chain-arrow">→</div>
+      <div class="nc-chain-node${_s.spaTab==='atlas-lentes'||(!_s.spaTab&&window.macrolarCurrentModule==='atlas-lentes')?' nc-chain-active':''}">
+        <span class="nc-chain-q">Q4</span>
+        <strong>Atlas Lentes</strong>
+        <span>¿Qué dice la historia?</span>
+      </div>
+    </div>
+    <div class="nc-chain-ref">
+      <span class="nc-chain-ref-icon">📚</span>
+      <span><strong>Atlas de shocks</strong> — repertorio histórico; punto de entrada opcional, no es un paso Q</span>
+    </div>
+  </div>`;
+
+  h += '<h3 class="nc-section-title" style="margin-top:.5rem">LAS 4 PREGUNTAS EN DETALLE</h3>';
 
   if (curQ) {
     h += `<div class="nc-current-banner">Estás en: <strong>PREGUNTA ${curQ} de 4</strong></div>`;
+  } else if (isAtlasRef) {
+    h += '<div class="nc-current-banner nc-banner-ref">Estás en: <strong>Atlas de shocks</strong> — herramienta de referencia histórica</div>';
   } else {
-    h += '<div class="nc-current-banner nc-banner-neutral">Navega a un módulo pedagógico para ver tu posición en el análisis.</div>';
+    h += '<div class="nc-current-banner nc-banner-neutral">Navega a un módulo pedagógico para ver tu posición.</div>';
   }
 
   NC.pedagogicQuestions.forEach(q => {
@@ -488,29 +543,57 @@ function bindExport() {
 
 /* ========== TAB: ESTRUCTURA ========== */
 function renderStructureTab() {
+  const DESCS = {
+    'marco-institucional':    '4 ejes institucionales · 16 configuraciones posibles · Matriz conceptual',
+    'lentes-institucionales': '4 regímenes bajo el mismo shock · Gráficos en tiempo real',
+    'comparador-phillips':    'Parámetros comparados · Índice de dolor · Tablas Phillips',
+    'atlas-lentes':           'Episodios reales + mecanismo institucional + comparador simulado'
+  };
+  const isOnAtlas = _s.spaTab === 'atlas';
+
   let h = '<div class="nc-section"><h3 class="nc-section-title">ESTRUCTURA DE LA PLATAFORMA</h3>';
+
+  /* --- Category 1: pedagogic Q chain --- */
+  h += '<h4 class="nc-section-subtitle">Cadena pedagógica Q1 → Q4</h4>';
   h += '<div class="nc-modules">';
   NC.modules.forEach(m => {
     const active = NC_TAB_TO_MODULE[_s.spaTab] === m.id;
-    const q = NC.pedagogicQuestions.find(q => q.id === m.question);
+    const q = NC.pedagogicQuestions.find(pq => pq.id === m.question);
     h += `<div class="nc-module${active ? ' nc-module-active' : ''}">
       <div class="nc-module-icon">${m.icon}</div>
       <div class="nc-module-info">
         ${q ? `<span class="nc-q-badge">Q${q.number}</span>` : ''}
         <strong>${esc(m.name)}</strong>
-        <p>${esc(m.description)}</p>
+        <p>${DESCS[m.id] || ''}</p>
         <div class="nc-module-meta">
           <span class="nc-chip">⏱ ${m.estimatedTime} min</span>
-          <span class="nc-chip nc-chip-muted">${esc(m.exportOptions.join(', '))}</span>
+          <span class="nc-chip nc-chip-muted">${esc(m.exportOptions.slice(0, 3).join(', '))}</span>
         </div>
       </div>
     </div>`;
   });
   h += '</div>';
+
+  /* --- Category 2: reference tool --- */
+  h += '<h4 class="nc-section-subtitle" style="margin-top:.75rem">Herramienta de referencia</h4>';
+  h += `<div class="nc-ref-block${isOnAtlas ? ' nc-module-active' : ''}">
+    <div class="nc-ref-block-icon">📚</div>
+    <div class="nc-ref-block-info">
+      <strong>Atlas de shocks 2009–2026</strong>
+      <p>Repertorio histórico de shocks en Chile: episodios reales, mecanismos y datos observados. No es un paso Q — es punto de entrada y ancla empírica opcional.</p>
+      <div class="nc-module-meta" style="margin-top:.35rem">
+        <span class="nc-chip">referencia</span>
+        <span class="nc-chip nc-chip-muted">Historia real · datos observados</span>
+      </div>
+    </div>
+  </div>`;
+
   h += `<div class="nc-flow">
     <h4 class="nc-section-subtitle">FLUJO RECOMENDADO</h4>
-    <div class="nc-flow-line">📘 Marco → 🔬 Lentes → 📊 Comparador → 📚 Atlas</div>
-    <div class="nc-flow-sub">Q1 → Q2 → Q3 → Q4 &nbsp;·&nbsp; <strong>50 minutos total</strong></div>
+    <div class="nc-flow-line">📘 Marco → 🔬 Lentes → 📊 Comparador → 📚 Atlas Lentes</div>
+    <div class="nc-flow-sub">Q1 → Q2 → Q3 → Q4 &nbsp;·&nbsp; <strong>50 minutos total</strong><br>
+      <span style="font-size:.72rem">📚 Atlas de shocks: úsalo como referencia en cualquier momento</span>
+    </div>
   </div></div>`;
   return h;
 }
