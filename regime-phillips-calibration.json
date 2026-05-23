@@ -1,0 +1,938 @@
+{
+  "metadata": {
+    "version": "2A.2",
+    "fecha": "2026-05-23",
+    "metodo": "OLS sobre (u_gap × pi_gap) desde trayectoria cronica; override por prior teorico donde OLS no convergente",
+    "fuente_input": "atlas-cronicas-datos-reales.json"
+  },
+  "regimes": {
+    "FCHR_chile_2021_2024": {
+      "label": "Chile 2021–2024",
+      "regimen": "FCHR",
+      "tier": 1,
+      "color": "#22c55e",
+      "nairu": 7,
+      "target_inflacion": 3,
+      "phillips_slope": 0.3,
+      "phillips_slope_ols": -7.6091,
+      "phillips_slope_prior": 0.3,
+      "convergence_speed": 0.18,
+      "resultado_credibilidad": "anchored",
+      "phillips_curve": [
+        {
+          "desempleo": 2.1,
+          "inflacion": 4.47,
+          "desempleo_gap": -4.9
+        },
+        {
+          "desempleo": 3.09,
+          "inflacion": 4.17,
+          "desempleo_gap": -3.91
+        },
+        {
+          "desempleo": 4.09,
+          "inflacion": 3.87,
+          "desempleo_gap": -2.91
+        },
+        {
+          "desempleo": 5.08,
+          "inflacion": 3.58,
+          "desempleo_gap": -1.92
+        },
+        {
+          "desempleo": 6.08,
+          "inflacion": 3.28,
+          "desempleo_gap": -0.92
+        },
+        {
+          "desempleo": 7.07,
+          "inflacion": 2.98,
+          "desempleo_gap": 0.07
+        },
+        {
+          "desempleo": 8.07,
+          "inflacion": 2.68,
+          "desempleo_gap": 1.07
+        },
+        {
+          "desempleo": 9.06,
+          "inflacion": 2.38,
+          "desempleo_gap": 2.06
+        },
+        {
+          "desempleo": 10.06,
+          "inflacion": 2.08,
+          "desempleo_gap": 3.06
+        },
+        {
+          "desempleo": 11.05,
+          "inflacion": 1.78,
+          "desempleo_gap": 4.05
+        },
+        {
+          "desempleo": 12.05,
+          "inflacion": 1.48,
+          "desempleo_gap": 5.05
+        },
+        {
+          "desempleo": 13.04,
+          "inflacion": 1.19,
+          "desempleo_gap": 6.04
+        },
+        {
+          "desempleo": 14.04,
+          "inflacion": 0.89,
+          "desempleo_gap": 7.04
+        },
+        {
+          "desempleo": 15.03,
+          "inflacion": 0.59,
+          "desempleo_gap": 8.03
+        },
+        {
+          "desempleo": 16.03,
+          "inflacion": 0.29,
+          "desempleo_gap": 9.03
+        },
+        {
+          "desempleo": 17.02,
+          "inflacion": -0.01,
+          "desempleo_gap": 10.02
+        },
+        {
+          "desempleo": 18.02,
+          "inflacion": -0.31,
+          "desempleo_gap": 11.02
+        },
+        {
+          "desempleo": 19.01,
+          "inflacion": -0.6,
+          "desempleo_gap": 12.01
+        },
+        {
+          "desempleo": 20.01,
+          "inflacion": -0.9,
+          "desempleo_gap": 13.01
+        },
+        {
+          "desempleo": 21,
+          "inflacion": -1.2,
+          "desempleo_gap": 14
+        }
+      ],
+      "interpretacion": "Alta credibilidad: pequeña pendiente, shocks se absorben rapido"
+    },
+    "FCHD_suecia_1992_1998": {
+      "label": "Suecia 1992–1998",
+      "regimen": "FCHD",
+      "tier": 2,
+      "color": "#eab308",
+      "nairu": 6,
+      "target_inflacion": 2,
+      "phillips_slope": 0.55,
+      "phillips_slope_ols": -0.4509,
+      "phillips_slope_prior": 0.55,
+      "convergence_speed": 0.12,
+      "resultado_credibilidad": "anchored",
+      "phillips_curve": [
+        {
+          "desempleo": 1.8,
+          "inflacion": 4.31,
+          "desempleo_gap": -4.2
+        },
+        {
+          "desempleo": 2.65,
+          "inflacion": 3.84,
+          "desempleo_gap": -3.35
+        },
+        {
+          "desempleo": 3.51,
+          "inflacion": 3.37,
+          "desempleo_gap": -2.49
+        },
+        {
+          "desempleo": 4.36,
+          "inflacion": 2.9,
+          "desempleo_gap": -1.64
+        },
+        {
+          "desempleo": 5.21,
+          "inflacion": 2.43,
+          "desempleo_gap": -0.79
+        },
+        {
+          "desempleo": 6.06,
+          "inflacion": 1.97,
+          "desempleo_gap": 0.06
+        },
+        {
+          "desempleo": 6.92,
+          "inflacion": 1.49,
+          "desempleo_gap": 0.92
+        },
+        {
+          "desempleo": 7.77,
+          "inflacion": 1.03,
+          "desempleo_gap": 1.77
+        },
+        {
+          "desempleo": 8.62,
+          "inflacion": 0.56,
+          "desempleo_gap": 2.62
+        },
+        {
+          "desempleo": 9.47,
+          "inflacion": 0.09,
+          "desempleo_gap": 3.47
+        },
+        {
+          "desempleo": 10.33,
+          "inflacion": -0.38,
+          "desempleo_gap": 4.33
+        },
+        {
+          "desempleo": 11.18,
+          "inflacion": -0.85,
+          "desempleo_gap": 5.18
+        },
+        {
+          "desempleo": 12.03,
+          "inflacion": -1.32,
+          "desempleo_gap": 6.03
+        },
+        {
+          "desempleo": 12.88,
+          "inflacion": -1.78,
+          "desempleo_gap": 6.88
+        },
+        {
+          "desempleo": 13.74,
+          "inflacion": -2.26,
+          "desempleo_gap": 7.74
+        },
+        {
+          "desempleo": 14.59,
+          "inflacion": -2.72,
+          "desempleo_gap": 8.59
+        },
+        {
+          "desempleo": 15.44,
+          "inflacion": -3.19,
+          "desempleo_gap": 9.44
+        },
+        {
+          "desempleo": 16.29,
+          "inflacion": -3.66,
+          "desempleo_gap": 10.29
+        },
+        {
+          "desempleo": 17.15,
+          "inflacion": -4.13,
+          "desempleo_gap": 11.15
+        },
+        {
+          "desempleo": 18,
+          "inflacion": -4.6,
+          "desempleo_gap": 12
+        }
+      ],
+      "interpretacion": "Credibilidad media: pendiente moderada, convergencia lenta"
+    },
+    "FUHR_brasil_implied": {
+      "label": "Brasil (implied)",
+      "regimen": "FUHR",
+      "tier": 2,
+      "color": "#eab308",
+      "nairu": 8.5,
+      "target_inflacion": 4.5,
+      "phillips_slope": 0.6,
+      "phillips_slope_ols": -5.9657,
+      "phillips_slope_prior": 0.6,
+      "convergence_speed": 0.1,
+      "resultado_credibilidad": "anchored",
+      "phillips_curve": [
+        {
+          "desempleo": 2.55,
+          "inflacion": 8.07,
+          "desempleo_gap": -5.95
+        },
+        {
+          "desempleo": 3.76,
+          "inflacion": 7.34,
+          "desempleo_gap": -4.74
+        },
+        {
+          "desempleo": 4.97,
+          "inflacion": 6.62,
+          "desempleo_gap": -3.53
+        },
+        {
+          "desempleo": 6.17,
+          "inflacion": 5.9,
+          "desempleo_gap": -2.33
+        },
+        {
+          "desempleo": 7.38,
+          "inflacion": 5.17,
+          "desempleo_gap": -1.12
+        },
+        {
+          "desempleo": 8.59,
+          "inflacion": 4.45,
+          "desempleo_gap": 0.09
+        },
+        {
+          "desempleo": 9.8,
+          "inflacion": 3.72,
+          "desempleo_gap": 1.3
+        },
+        {
+          "desempleo": 11.01,
+          "inflacion": 2.99,
+          "desempleo_gap": 2.51
+        },
+        {
+          "desempleo": 12.21,
+          "inflacion": 2.27,
+          "desempleo_gap": 3.71
+        },
+        {
+          "desempleo": 13.42,
+          "inflacion": 1.55,
+          "desempleo_gap": 4.92
+        },
+        {
+          "desempleo": 14.63,
+          "inflacion": 0.82,
+          "desempleo_gap": 6.13
+        },
+        {
+          "desempleo": 15.84,
+          "inflacion": 0.1,
+          "desempleo_gap": 7.34
+        },
+        {
+          "desempleo": 17.04,
+          "inflacion": -0.62,
+          "desempleo_gap": 8.54
+        },
+        {
+          "desempleo": 18.25,
+          "inflacion": -1.35,
+          "desempleo_gap": 9.75
+        },
+        {
+          "desempleo": 19.46,
+          "inflacion": -2.08,
+          "desempleo_gap": 10.96
+        },
+        {
+          "desempleo": 20.67,
+          "inflacion": -2.8,
+          "desempleo_gap": 12.17
+        },
+        {
+          "desempleo": 21.88,
+          "inflacion": -3.53,
+          "desempleo_gap": 13.38
+        },
+        {
+          "desempleo": 23.08,
+          "inflacion": -4.25,
+          "desempleo_gap": 14.58
+        },
+        {
+          "desempleo": 24.29,
+          "inflacion": -4.97,
+          "desempleo_gap": 15.79
+        },
+        {
+          "desempleo": 25.5,
+          "inflacion": -5.7,
+          "desempleo_gap": 17
+        }
+      ],
+      "interpretacion": "Credibilidad media: pendiente moderada, convergencia lenta"
+    },
+    "FUHD_turquia_2018_2023": {
+      "label": "Turquía 2018–2023",
+      "regimen": "FUHD",
+      "tier": 3,
+      "color": "#f97316",
+      "nairu": 10,
+      "target_inflacion": 5,
+      "phillips_slope": 1.2,
+      "phillips_slope_ols": -9.628,
+      "phillips_slope_prior": 1.2,
+      "convergence_speed": 0.02,
+      "resultado_credibilidad": "persistent_unanchoring",
+      "phillips_curve": [
+        {
+          "desempleo": 3,
+          "inflacion": 13.4,
+          "desempleo_gap": -7
+        },
+        {
+          "desempleo": 4.42,
+          "inflacion": 11.7,
+          "desempleo_gap": -5.58
+        },
+        {
+          "desempleo": 5.84,
+          "inflacion": 9.99,
+          "desempleo_gap": -4.16
+        },
+        {
+          "desempleo": 7.26,
+          "inflacion": 8.29,
+          "desempleo_gap": -2.74
+        },
+        {
+          "desempleo": 8.68,
+          "inflacion": 6.58,
+          "desempleo_gap": -1.32
+        },
+        {
+          "desempleo": 10.11,
+          "inflacion": 4.87,
+          "desempleo_gap": 0.11
+        },
+        {
+          "desempleo": 11.53,
+          "inflacion": 3.16,
+          "desempleo_gap": 1.53
+        },
+        {
+          "desempleo": 12.95,
+          "inflacion": 1.46,
+          "desempleo_gap": 2.95
+        },
+        {
+          "desempleo": 14.37,
+          "inflacion": -0.24,
+          "desempleo_gap": 4.37
+        },
+        {
+          "desempleo": 15.79,
+          "inflacion": -1.95,
+          "desempleo_gap": 5.79
+        },
+        {
+          "desempleo": 17.21,
+          "inflacion": -3.65,
+          "desempleo_gap": 7.21
+        },
+        {
+          "desempleo": 18.63,
+          "inflacion": -5.36,
+          "desempleo_gap": 8.63
+        },
+        {
+          "desempleo": 20.05,
+          "inflacion": -7.06,
+          "desempleo_gap": 10.05
+        },
+        {
+          "desempleo": 21.47,
+          "inflacion": -8.76,
+          "desempleo_gap": 11.47
+        },
+        {
+          "desempleo": 22.89,
+          "inflacion": -10.47,
+          "desempleo_gap": 12.89
+        },
+        {
+          "desempleo": 24.32,
+          "inflacion": -12.18,
+          "desempleo_gap": 14.32
+        },
+        {
+          "desempleo": 25.74,
+          "inflacion": -13.89,
+          "desempleo_gap": 15.74
+        },
+        {
+          "desempleo": 27.16,
+          "inflacion": -15.59,
+          "desempleo_gap": 17.16
+        },
+        {
+          "desempleo": 28.58,
+          "inflacion": -17.3,
+          "desempleo_gap": 18.58
+        },
+        {
+          "desempleo": 30,
+          "inflacion": -19,
+          "desempleo_gap": 20
+        }
+      ],
+      "interpretacion": "Credibilidad baja: pendiente alta, shocks persisten"
+    },
+    "FULD_argentina_2020": {
+      "label": "Argentina 2020",
+      "regimen": "FULD",
+      "tier": 4,
+      "color": "#ef4444",
+      "nairu": 8,
+      "target_inflacion": 25,
+      "phillips_slope": 1.835,
+      "phillips_slope_ols": 1.835,
+      "phillips_slope_prior": 1.5,
+      "convergence_speed": 0.01,
+      "resultado_credibilidad": "persistent_unanchoring",
+      "phillips_curve": [
+        {
+          "desempleo": 2.4,
+          "inflacion": 35.28,
+          "desempleo_gap": -5.6
+        },
+        {
+          "desempleo": 3.54,
+          "inflacion": 33.18,
+          "desempleo_gap": -4.46
+        },
+        {
+          "desempleo": 4.67,
+          "inflacion": 31.11,
+          "desempleo_gap": -3.33
+        },
+        {
+          "desempleo": 5.81,
+          "inflacion": 29.02,
+          "desempleo_gap": -2.19
+        },
+        {
+          "desempleo": 6.95,
+          "inflacion": 26.93,
+          "desempleo_gap": -1.05
+        },
+        {
+          "desempleo": 8.08,
+          "inflacion": 24.85,
+          "desempleo_gap": 0.08
+        },
+        {
+          "desempleo": 9.22,
+          "inflacion": 22.76,
+          "desempleo_gap": 1.22
+        },
+        {
+          "desempleo": 10.36,
+          "inflacion": 20.67,
+          "desempleo_gap": 2.36
+        },
+        {
+          "desempleo": 11.49,
+          "inflacion": 18.6,
+          "desempleo_gap": 3.49
+        },
+        {
+          "desempleo": 12.63,
+          "inflacion": 16.5,
+          "desempleo_gap": 4.63
+        },
+        {
+          "desempleo": 13.77,
+          "inflacion": 14.41,
+          "desempleo_gap": 5.77
+        },
+        {
+          "desempleo": 14.91,
+          "inflacion": 12.32,
+          "desempleo_gap": 6.91
+        },
+        {
+          "desempleo": 16.04,
+          "inflacion": 10.25,
+          "desempleo_gap": 8.04
+        },
+        {
+          "desempleo": 17.18,
+          "inflacion": 8.15,
+          "desempleo_gap": 9.18
+        },
+        {
+          "desempleo": 18.32,
+          "inflacion": 6.06,
+          "desempleo_gap": 10.32
+        },
+        {
+          "desempleo": 19.45,
+          "inflacion": 3.99,
+          "desempleo_gap": 11.45
+        },
+        {
+          "desempleo": 20.59,
+          "inflacion": 1.9,
+          "desempleo_gap": 12.59
+        },
+        {
+          "desempleo": 21.73,
+          "inflacion": -0.19,
+          "desempleo_gap": 13.73
+        },
+        {
+          "desempleo": 22.86,
+          "inflacion": -2.27,
+          "desempleo_gap": 14.86
+        },
+        {
+          "desempleo": 24,
+          "inflacion": -4.36,
+          "desempleo_gap": 16
+        }
+      ],
+      "interpretacion": "Colapso/trampa: pendiente muy alta o vertical, divergencia persistente"
+    },
+    "PFHR_hongkong_implied": {
+      "label": "Hong Kong (implied)",
+      "regimen": "PFHR",
+      "tier": 2,
+      "color": "#eab308",
+      "nairu": 3,
+      "target_inflacion": 2.5,
+      "phillips_slope": 0.45,
+      "phillips_slope_ols": 2.3285,
+      "phillips_slope_prior": 0.45,
+      "convergence_speed": 0.14,
+      "resultado_credibilidad": "anchored",
+      "phillips_curve": [
+        {
+          "desempleo": 0.9,
+          "inflacion": 3.45,
+          "desempleo_gap": -2.1
+        },
+        {
+          "desempleo": 1.33,
+          "inflacion": 3.25,
+          "desempleo_gap": -1.67
+        },
+        {
+          "desempleo": 1.75,
+          "inflacion": 3.06,
+          "desempleo_gap": -1.25
+        },
+        {
+          "desempleo": 2.18,
+          "inflacion": 2.87,
+          "desempleo_gap": -0.82
+        },
+        {
+          "desempleo": 2.61,
+          "inflacion": 2.68,
+          "desempleo_gap": -0.39
+        },
+        {
+          "desempleo": 3.03,
+          "inflacion": 2.49,
+          "desempleo_gap": 0.03
+        },
+        {
+          "desempleo": 3.46,
+          "inflacion": 2.29,
+          "desempleo_gap": 0.46
+        },
+        {
+          "desempleo": 3.88,
+          "inflacion": 2.1,
+          "desempleo_gap": 0.88
+        },
+        {
+          "desempleo": 4.31,
+          "inflacion": 1.91,
+          "desempleo_gap": 1.31
+        },
+        {
+          "desempleo": 4.74,
+          "inflacion": 1.72,
+          "desempleo_gap": 1.74
+        },
+        {
+          "desempleo": 5.16,
+          "inflacion": 1.53,
+          "desempleo_gap": 2.16
+        },
+        {
+          "desempleo": 5.59,
+          "inflacion": 1.33,
+          "desempleo_gap": 2.59
+        },
+        {
+          "desempleo": 6.02,
+          "inflacion": 1.14,
+          "desempleo_gap": 3.02
+        },
+        {
+          "desempleo": 6.44,
+          "inflacion": 0.95,
+          "desempleo_gap": 3.44
+        },
+        {
+          "desempleo": 6.87,
+          "inflacion": 0.76,
+          "desempleo_gap": 3.87
+        },
+        {
+          "desempleo": 7.29,
+          "inflacion": 0.57,
+          "desempleo_gap": 4.29
+        },
+        {
+          "desempleo": 7.72,
+          "inflacion": 0.38,
+          "desempleo_gap": 4.72
+        },
+        {
+          "desempleo": 8.15,
+          "inflacion": 0.18,
+          "desempleo_gap": 5.15
+        },
+        {
+          "desempleo": 8.57,
+          "inflacion": -0.01,
+          "desempleo_gap": 5.57
+        },
+        {
+          "desempleo": 9,
+          "inflacion": -0.2,
+          "desempleo_gap": 6
+        }
+      ],
+      "interpretacion": "Credibilidad media: pendiente moderada, convergencia lenta"
+    },
+    "PFULU_grecia_2010_2015": {
+      "label": "Grecia 2010–2015",
+      "regimen": "PFULU",
+      "tier": 4,
+      "color": "#ef4444",
+      "nairu": 12,
+      "target_inflacion": 2,
+      "phillips_slope": 1.3,
+      "phillips_slope_ols": 0.1939,
+      "phillips_slope_prior": 1.3,
+      "convergence_speed": 0.03,
+      "resultado_credibilidad": "temporary_unanchoring",
+      "phillips_curve": [
+        {
+          "desempleo": 3.6,
+          "inflacion": 12.92,
+          "desempleo_gap": -8.4
+        },
+        {
+          "desempleo": 5.31,
+          "inflacion": 10.7,
+          "desempleo_gap": -6.69
+        },
+        {
+          "desempleo": 7.01,
+          "inflacion": 8.49,
+          "desempleo_gap": -4.99
+        },
+        {
+          "desempleo": 8.72,
+          "inflacion": 6.26,
+          "desempleo_gap": -3.28
+        },
+        {
+          "desempleo": 10.42,
+          "inflacion": 4.05,
+          "desempleo_gap": -1.58
+        },
+        {
+          "desempleo": 12.13,
+          "inflacion": 1.83,
+          "desempleo_gap": 0.13
+        },
+        {
+          "desempleo": 13.83,
+          "inflacion": -0.38,
+          "desempleo_gap": 1.83
+        },
+        {
+          "desempleo": 15.54,
+          "inflacion": -2.6,
+          "desempleo_gap": 3.54
+        },
+        {
+          "desempleo": 17.24,
+          "inflacion": -4.81,
+          "desempleo_gap": 5.24
+        },
+        {
+          "desempleo": 18.95,
+          "inflacion": -7.04,
+          "desempleo_gap": 6.95
+        },
+        {
+          "desempleo": 20.65,
+          "inflacion": -9.24,
+          "desempleo_gap": 8.65
+        },
+        {
+          "desempleo": 22.36,
+          "inflacion": -11.47,
+          "desempleo_gap": 10.36
+        },
+        {
+          "desempleo": 24.06,
+          "inflacion": -13.68,
+          "desempleo_gap": 12.06
+        },
+        {
+          "desempleo": 25.77,
+          "inflacion": -15.9,
+          "desempleo_gap": 13.77
+        },
+        {
+          "desempleo": 27.47,
+          "inflacion": -18.11,
+          "desempleo_gap": 15.47
+        },
+        {
+          "desempleo": 29.18,
+          "inflacion": -20.33,
+          "desempleo_gap": 17.18
+        },
+        {
+          "desempleo": 30.88,
+          "inflacion": -22.54,
+          "desempleo_gap": 18.88
+        },
+        {
+          "desempleo": 32.59,
+          "inflacion": -24.77,
+          "desempleo_gap": 20.59
+        },
+        {
+          "desempleo": 34.29,
+          "inflacion": -26.98,
+          "desempleo_gap": 22.29
+        },
+        {
+          "desempleo": 36,
+          "inflacion": -29.2,
+          "desempleo_gap": 24
+        }
+      ],
+      "interpretacion": "Credibilidad baja: pendiente alta, shocks persisten"
+    },
+    "TRAP_japon_implied": {
+      "label": "Japón (trap)",
+      "regimen": "TRAP",
+      "tier": 4,
+      "color": "#6b7280",
+      "nairu": 4.5,
+      "target_inflacion": 0.5,
+      "phillips_slope": 0.08,
+      "phillips_slope_ols": 1.4184,
+      "phillips_slope_prior": 0.08,
+      "convergence_speed": 0.25,
+      "resultado_credibilidad": "anchored",
+      "phillips_curve": [
+        {
+          "desempleo": 1.35,
+          "inflacion": 0.75,
+          "desempleo_gap": -3.15
+        },
+        {
+          "desempleo": 1.99,
+          "inflacion": 0.7,
+          "desempleo_gap": -2.51
+        },
+        {
+          "desempleo": 2.63,
+          "inflacion": 0.65,
+          "desempleo_gap": -1.87
+        },
+        {
+          "desempleo": 3.27,
+          "inflacion": 0.6,
+          "desempleo_gap": -1.23
+        },
+        {
+          "desempleo": 3.91,
+          "inflacion": 0.55,
+          "desempleo_gap": -0.59
+        },
+        {
+          "desempleo": 4.55,
+          "inflacion": 0.5,
+          "desempleo_gap": 0.05
+        },
+        {
+          "desempleo": 5.19,
+          "inflacion": 0.44,
+          "desempleo_gap": 0.69
+        },
+        {
+          "desempleo": 5.83,
+          "inflacion": 0.39,
+          "desempleo_gap": 1.33
+        },
+        {
+          "desempleo": 6.47,
+          "inflacion": 0.34,
+          "desempleo_gap": 1.97
+        },
+        {
+          "desempleo": 7.11,
+          "inflacion": 0.29,
+          "desempleo_gap": 2.61
+        },
+        {
+          "desempleo": 7.74,
+          "inflacion": 0.24,
+          "desempleo_gap": 3.24
+        },
+        {
+          "desempleo": 8.38,
+          "inflacion": 0.19,
+          "desempleo_gap": 3.88
+        },
+        {
+          "desempleo": 9.02,
+          "inflacion": 0.14,
+          "desempleo_gap": 4.52
+        },
+        {
+          "desempleo": 9.66,
+          "inflacion": 0.09,
+          "desempleo_gap": 5.16
+        },
+        {
+          "desempleo": 10.3,
+          "inflacion": 0.04,
+          "desempleo_gap": 5.8
+        },
+        {
+          "desempleo": 10.94,
+          "inflacion": -0.02,
+          "desempleo_gap": 6.44
+        },
+        {
+          "desempleo": 11.58,
+          "inflacion": -0.07,
+          "desempleo_gap": 7.08
+        },
+        {
+          "desempleo": 12.22,
+          "inflacion": -0.12,
+          "desempleo_gap": 7.72
+        },
+        {
+          "desempleo": 12.86,
+          "inflacion": -0.17,
+          "desempleo_gap": 8.36
+        },
+        {
+          "desempleo": 13.5,
+          "inflacion": -0.22,
+          "desempleo_gap": 9
+        }
+      ],
+      "interpretacion": "Alta credibilidad: pequeña pendiente, shocks se absorben rapido"
+    }
+  }
+}

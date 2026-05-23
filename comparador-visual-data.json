@@ -1,0 +1,5263 @@
+{
+  "metadata": {
+    "version": "2A.3",
+    "fecha": "2026-05-23",
+    "estructura": "8 regimenes × 6 shocks × 13 quarters × 5 variables",
+    "variables": [
+      "inflacion_teorica",
+      "inflacion_real",
+      "desempleo_teorico",
+      "desempleo_real",
+      "tc_real_idx"
+    ],
+    "shocks": {
+      "demand_neg_3pp": {
+        "label": "Demanda negativa −3pp",
+        "desc": "Caída de demanda agregada de 3 puntos porcentuales",
+        "delta_inf": -1.5,
+        "delta_u": 2
+      },
+      "demand_pos_3pp": {
+        "label": "Demanda positiva +3pp",
+        "desc": "Expansión de demanda agregada de 3 puntos porcentuales",
+        "delta_inf": 3,
+        "delta_u": -1
+      },
+      "cost_pos_2pp": {
+        "label": "Shock de costos positivo +2pp",
+        "desc": "Shock de oferta adverso: inflación sube 2pp, output cae",
+        "delta_inf": 2,
+        "delta_u": 1.5
+      },
+      "cost_neg_2pp": {
+        "label": "Shock de costos negativo −2pp",
+        "desc": "Shock de oferta positivo: inflación baja 2pp, output sube",
+        "delta_inf": -2,
+        "delta_u": -0.8
+      },
+      "combined_mix": {
+        "label": "Shock mixto combinado",
+        "desc": "Shock de demanda positivo + adverso de costos simultáneo",
+        "delta_inf": 4,
+        "delta_u": 1
+      },
+      "sudden_stop": {
+        "label": "Sudden stop de capitales",
+        "desc": "Parada súbita de flujos de capital: TC se deprecia, inflación sube",
+        "delta_inf": 5,
+        "delta_u": 3
+      }
+    },
+    "nota": "inflacion_real y desempleo_real = datos historicos de la cronica (shock_principal). Para shocks distintos al shock_principal, solo inflacion_teorica y desempleo_teorico estan disponibles."
+  },
+  "regimenes": {
+    "FCHR_chile_2021_2024": {
+      "label": "Chile 2021–2024",
+      "regimen": "FCHR",
+      "pais": "Chile",
+      "periodo": "2021-2024",
+      "tier": 1,
+      "color": "#22c55e",
+      "phillips_slope": 0.3,
+      "convergence_speed": 0.18,
+      "nairu": 7,
+      "target_inflacion": 3,
+      "resultado_credibilidad": "anchored",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 1.7,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 9.2,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 1.93,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 8.88,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 101.82
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 2.13,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 8.61,
+            "desempleo_real": 8,
+            "tc_real_idx": 101.66
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 2.28,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 8.38,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 101.51
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 2.41,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 8.18,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 101.37
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 2.52,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 8.01,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 101.25
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 2.6,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 7.87,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 101.14
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 2.68,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 7.74,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 101.03
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 2.73,
+            "inflacion_real": 7,
+            "desempleo_teorico": 7.63,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 100.94
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 2.78,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 7.54,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 100.86
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 2.82,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 7.46,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 100.78
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.85,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 7.4,
+            "desempleo_real": 7,
+            "tc_real_idx": 100.71
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 6.2,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 6.2,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 5.62,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 6.32,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 97.27
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 5.15,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 6.41,
+            "desempleo_real": 8,
+            "tc_real_idx": 97.52
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 4.76,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 6.5,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 97.74
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.45,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 6.57,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 97.94
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.19,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 6.63,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 98.13
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3.97,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 6.69,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 98.3
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.8,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 6.73,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 98.45
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.65,
+            "inflacion_real": 7,
+            "desempleo_teorico": 6.77,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 98.59
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.54,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 6.8,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 98.72
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.44,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 6.83,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 98.83
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.36,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 6.86,
+            "desempleo_real": 7,
+            "tc_real_idx": 98.94
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 5.2,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 8.7,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.8,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 8.46,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 96.36
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 4.48,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 8.25,
+            "desempleo_real": 8,
+            "tc_real_idx": 96.69
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 4.21,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 8.07,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 96.99
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 3.99,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 7.91,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 97.26
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 3.82,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 7.78,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 97.5
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3.67,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 7.67,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 97.73
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.55,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 7.57,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 97.93
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.45,
+            "inflacion_real": 7,
+            "desempleo_teorico": 7.49,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 98.12
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.37,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 7.42,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 98.29
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.3,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 7.36,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 98.44
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.25,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 7.31,
+            "desempleo_real": 7,
+            "tc_real_idx": 98.58
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 1.2,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 6.4,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 1.52,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 6.49,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 1.79,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 6.56,
+            "desempleo_real": 8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 2.01,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 6.62,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 2.19,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 6.68,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 2.33,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 6.72,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 2.45,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 6.76,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 2.55,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 6.8,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 2.63,
+            "inflacion_real": 7,
+            "desempleo_teorico": 6.83,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 2.7,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 6.85,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 2.75,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 6.87,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.8,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 6.89,
+            "desempleo_real": 7,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 7.2,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 8.2,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 6.44,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 8.03,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 94.54
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 5.82,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 7.88,
+            "desempleo_real": 8,
+            "tc_real_idx": 95.03
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 5.32,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 7.75,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 95.48
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.9,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 7.64,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 95.89
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.56,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 7.55,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 96.26
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.28,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 7.47,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 96.59
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.05,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 7.4,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 96.9
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.86,
+            "inflacion_real": 7,
+            "desempleo_teorico": 7.35,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 97.18
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.7,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 7.3,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 97.43
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.58,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 7.25,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 97.66
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.47,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 7.22,
+            "desempleo_real": 7,
+            "tc_real_idx": 97.87
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 3.2,
+            "desempleo_teorico": 7.2,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 8.2,
+            "inflacion_real": 5.8,
+            "desempleo_teorico": 10.2,
+            "desempleo_real": 7.4,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 7.26,
+            "inflacion_real": 8.9,
+            "desempleo_teorico": 9.74,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 89.08
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 6.5,
+            "inflacion_real": 11.4,
+            "desempleo_teorico": 9.34,
+            "desempleo_real": 8,
+            "tc_real_idx": 90.06
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 5.87,
+            "inflacion_real": 13.2,
+            "desempleo_teorico": 9.01,
+            "desempleo_real": 8.3,
+            "tc_real_idx": 90.96
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 5.35,
+            "inflacion_real": 14.1,
+            "desempleo_teorico": 8.72,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 91.77
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.93,
+            "inflacion_real": 13.5,
+            "desempleo_teorico": 8.47,
+            "desempleo_real": 8.4,
+            "tc_real_idx": 92.51
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.58,
+            "inflacion_real": 11.8,
+            "desempleo_teorico": 8.26,
+            "desempleo_real": 8.2,
+            "tc_real_idx": 93.19
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.3,
+            "inflacion_real": 9.2,
+            "desempleo_teorico": 8.08,
+            "desempleo_real": 7.9,
+            "tc_real_idx": 93.8
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.06,
+            "inflacion_real": 7,
+            "desempleo_teorico": 7.92,
+            "desempleo_real": 7.6,
+            "tc_real_idx": 94.36
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.87,
+            "inflacion_real": 5.4,
+            "desempleo_teorico": 7.79,
+            "desempleo_real": 7.3,
+            "tc_real_idx": 94.86
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.71,
+            "inflacion_real": 4.5,
+            "desempleo_teorico": 7.68,
+            "desempleo_real": 7.1,
+            "tc_real_idx": 95.33
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.59,
+            "inflacion_real": 3.8,
+            "desempleo_teorico": 7.58,
+            "desempleo_real": 7,
+            "tc_real_idx": 95.75
+          }
+        ]
+      }
+    },
+    "FCHD_suecia_1992_1998": {
+      "label": "Suecia 1992–1998",
+      "regimen": "FCHD",
+      "pais": "Suecia",
+      "periodo": "1992-1998",
+      "tier": 2,
+      "color": "#eab308",
+      "phillips_slope": 0.55,
+      "convergence_speed": 0.12,
+      "nairu": 6,
+      "target_inflacion": 2,
+      "resultado_credibilidad": "anchored",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 6.5,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 7.3,
+            "desempleo_real": 6,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 5.96,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 7.18,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 101.88
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 5.48,
+            "inflacion_real": 5,
+            "desempleo_teorico": 7.06,
+            "desempleo_real": 9,
+            "tc_real_idx": 101.77
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 5.07,
+            "inflacion_real": 3,
+            "desempleo_teorico": 6.96,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 101.66
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 6.87,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 101.56
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.37,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.78,
+            "desempleo_real": 9,
+            "tc_real_idx": 101.47
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.09,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.71,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 101.38
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.84,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 6.64,
+            "desempleo_real": 8,
+            "tc_real_idx": 101.3
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.62,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.58,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 101.22
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.42,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 6.52,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 101.15
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.25,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.47,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 101.08
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.1,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.43,
+            "desempleo_real": 6,
+            "tc_real_idx": 101.01
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 11,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 4.3,
+            "desempleo_real": 6,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.92,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 4.46,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 97.18
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.97,
+            "inflacion_real": 5,
+            "desempleo_teorico": 4.61,
+            "desempleo_real": 9,
+            "tc_real_idx": 97.35
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.13,
+            "inflacion_real": 3,
+            "desempleo_teorico": 4.74,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 97.51
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 7.4,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 4.86,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 97.66
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.75,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 4.97,
+            "desempleo_real": 9,
+            "tc_real_idx": 97.8
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.18,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 5.07,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 97.93
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 5.68,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 5.16,
+            "desempleo_real": 8,
+            "tc_real_idx": 98.05
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 5.24,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.24,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 98.17
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.85,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 5.31,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 98.28
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.51,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.38,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 98.38
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.21,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.44,
+            "desempleo_real": 6,
+            "tc_real_idx": 98.48
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 10,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 6.8,
+            "desempleo_real": 6,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.04,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 6.72,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 96.24
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.2,
+            "inflacion_real": 5,
+            "desempleo_teorico": 6.65,
+            "desempleo_real": 9,
+            "tc_real_idx": 96.47
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 7.45,
+            "inflacion_real": 3,
+            "desempleo_teorico": 6.59,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 96.68
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 6.8,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 6.53,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 96.88
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.22,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.48,
+            "desempleo_real": 9,
+            "tc_real_idx": 97.06
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 5.72,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.44,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 97.24
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 5.27,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 6.39,
+            "desempleo_real": 8,
+            "tc_real_idx": 97.41
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.88,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.36,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 97.56
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.53,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 6.32,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 97.71
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.23,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.29,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 97.85
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.96,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.26,
+            "desempleo_real": 6,
+            "tc_real_idx": 97.97
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 6,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 4.5,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 5.52,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 4.64,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 5.1,
+            "inflacion_real": 5,
+            "desempleo_teorico": 4.77,
+            "desempleo_real": 9,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 4.73,
+            "inflacion_real": 3,
+            "desempleo_teorico": 4.89,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.4,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.11,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 5.09,
+            "desempleo_real": 9,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3.86,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 5.18,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.63,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 5.26,
+            "desempleo_real": 8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.44,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.33,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.27,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 5.4,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.11,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.45,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.98,
+            "inflacion_real": 2,
+            "desempleo_teorico": 5.51,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 12,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 6.3,
+            "desempleo_real": 6,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 10.8,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 6.27,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 94.36
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 9.74,
+            "inflacion_real": 5,
+            "desempleo_teorico": 6.25,
+            "desempleo_real": 9,
+            "tc_real_idx": 94.7
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.81,
+            "inflacion_real": 3,
+            "desempleo_teorico": 6.22,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 95.02
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 6.2,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 95.32
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 7.28,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.18,
+            "desempleo_real": 9,
+            "tc_real_idx": 95.6
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.64,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 6.16,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 95.86
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 6.09,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 6.15,
+            "desempleo_real": 8,
+            "tc_real_idx": 96.11
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 5.6,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.13,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 96.34
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 5.16,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 6.12,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 96.56
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.79,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.11,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 96.77
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.45,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.1,
+            "desempleo_real": 6,
+            "tc_real_idx": 96.96
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 13,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 8.3,
+            "desempleo_real": 6,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 11.68,
+            "inflacion_real": 8.2,
+            "desempleo_teorico": 8.08,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 88.72
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 10.52,
+            "inflacion_real": 5,
+            "desempleo_teorico": 7.88,
+            "desempleo_real": 9,
+            "tc_real_idx": 89.4
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 9.5,
+            "inflacion_real": 3,
+            "desempleo_teorico": 7.7,
+            "desempleo_real": 9.9,
+            "tc_real_idx": 90.03
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8.6,
+            "inflacion_real": 2.8,
+            "desempleo_teorico": 7.54,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 90.63
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 7.81,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 7.39,
+            "desempleo_real": 9,
+            "tc_real_idx": 91.19
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 7.11,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 7.26,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 91.72
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 6.5,
+            "inflacion_real": 2.2,
+            "desempleo_teorico": 7.13,
+            "desempleo_real": 8,
+            "tc_real_idx": 92.22
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 5.96,
+            "inflacion_real": 2,
+            "desempleo_teorico": 7.03,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 92.69
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 5.48,
+            "inflacion_real": 1.8,
+            "desempleo_teorico": 6.93,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 93.12
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 5.06,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.84,
+            "desempleo_real": 6.5,
+            "tc_real_idx": 93.54
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 2,
+            "desempleo_teorico": 6.76,
+            "desempleo_real": 6,
+            "tc_real_idx": 93.92
+          }
+        ]
+      }
+    },
+    "FUHR_brasil_implied": {
+      "label": "Brasil (implied)",
+      "regimen": "FUHR",
+      "pais": "Brasil",
+      "periodo": "1999-2010",
+      "tier": 2,
+      "color": "#eab308",
+      "phillips_slope": 0.6,
+      "convergence_speed": 0.1,
+      "nairu": 8.5,
+      "target_inflacion": 4.5,
+      "resultado_credibilidad": "anchored",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 11.5,
+            "desempleo_real": 10,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 12,
+            "desempleo_teorico": 11.26,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 101.9
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 16,
+            "desempleo_teorico": 11.04,
+            "desempleo_real": 11,
+            "tc_real_idx": 101.81
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 19,
+            "desempleo_teorico": 10.84,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 101.71
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 10.65,
+            "desempleo_real": 11,
+            "tc_real_idx": 101.63
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 21,
+            "desempleo_teorico": 10.48,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 101.55
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 10.32,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 101.47
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 15,
+            "desempleo_teorico": 10.17,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 101.4
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 12,
+            "desempleo_teorico": 10.04,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 101.33
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 9.92,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 101.26
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 9.8,
+            "desempleo_real": 9,
+            "tc_real_idx": 101.2
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 9.7,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 101.14
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 9,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 10,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 8.55,
+            "inflacion_real": 12,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 97.15
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.15,
+            "inflacion_real": 16,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 11,
+            "tc_real_idx": 97.29
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 7.78,
+            "inflacion_real": 19,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 97.43
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 7.45,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 11,
+            "tc_real_idx": 97.56
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 7.16,
+            "inflacion_real": 21,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 97.68
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.89,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 97.79
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 6.65,
+            "inflacion_real": 15,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 97.9
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 6.44,
+            "inflacion_real": 12,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 98.01
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 6.24,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 98.11
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 6.07,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 9,
+            "tc_real_idx": 98.2
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 5.91,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 8.5,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 98.29
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 8,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 11,
+            "desempleo_real": 10,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 7.65,
+            "inflacion_real": 12,
+            "desempleo_teorico": 10.8,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 96.2
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 7.33,
+            "inflacion_real": 16,
+            "desempleo_teorico": 10.62,
+            "desempleo_real": 11,
+            "tc_real_idx": 96.39
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 7.05,
+            "inflacion_real": 19,
+            "desempleo_teorico": 10.45,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 96.57
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 6.8,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 10.29,
+            "desempleo_real": 11,
+            "tc_real_idx": 96.74
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.57,
+            "inflacion_real": 21,
+            "desempleo_teorico": 10.15,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 96.9
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.36,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 10.02,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 97.06
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 6.17,
+            "inflacion_real": 15,
+            "desempleo_teorico": 9.89,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 97.21
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 6.01,
+            "inflacion_real": 12,
+            "desempleo_teorico": 9.78,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 97.35
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 5.86,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 9.68,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 97.48
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 5.72,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 9.59,
+            "desempleo_real": 9,
+            "tc_real_idx": 97.61
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 5.6,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 97.72
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 4,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 8.7,
+            "desempleo_real": 10,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.05,
+            "inflacion_real": 12,
+            "desempleo_teorico": 8.68,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 4.09,
+            "inflacion_real": 16,
+            "desempleo_teorico": 8.67,
+            "desempleo_real": 11,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 4.14,
+            "inflacion_real": 19,
+            "desempleo_teorico": 8.66,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 4.17,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 8.64,
+            "desempleo_real": 11,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 4.2,
+            "inflacion_real": 21,
+            "desempleo_teorico": 8.63,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.23,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 8.62,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.26,
+            "inflacion_real": 15,
+            "desempleo_teorico": 8.61,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.28,
+            "inflacion_real": 12,
+            "desempleo_teorico": 8.6,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.31,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 8.59,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.33,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 8.59,
+            "desempleo_real": 9,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.34,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 8.58,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 10,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.45,
+            "inflacion_real": 12,
+            "desempleo_teorico": 10.34,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 94.3
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.96,
+            "inflacion_real": 16,
+            "desempleo_teorico": 10.19,
+            "desempleo_real": 11,
+            "tc_real_idx": 94.58
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.51,
+            "inflacion_real": 19,
+            "desempleo_teorico": 10.06,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 94.86
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8.11,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 9.93,
+            "desempleo_real": 11,
+            "tc_real_idx": 95.11
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 7.75,
+            "inflacion_real": 21,
+            "desempleo_teorico": 9.82,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 95.36
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 7.42,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 9.71,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 95.59
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 7.13,
+            "inflacion_real": 15,
+            "desempleo_teorico": 9.62,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 95.81
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 6.87,
+            "inflacion_real": 12,
+            "desempleo_teorico": 9.53,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 96.02
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 6.63,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 9.44,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 96.22
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 6.42,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 9.37,
+            "desempleo_real": 9,
+            "tc_real_idx": 96.41
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 6.23,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 9.3,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 96.59
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6,
+            "inflacion_real": 6,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 11,
+            "inflacion_real": 8.5,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 10,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 10.35,
+            "inflacion_real": 12,
+            "desempleo_teorico": 12.18,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 88.6
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 9.77,
+            "inflacion_real": 16,
+            "desempleo_teorico": 11.89,
+            "desempleo_real": 11,
+            "tc_real_idx": 89.17
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 9.24,
+            "inflacion_real": 19,
+            "desempleo_teorico": 11.61,
+            "desempleo_real": 11.2,
+            "tc_real_idx": 89.71
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8.76,
+            "inflacion_real": 22.5,
+            "desempleo_teorico": 11.37,
+            "desempleo_real": 11,
+            "tc_real_idx": 90.23
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 8.34,
+            "inflacion_real": 21,
+            "desempleo_teorico": 11.14,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 90.71
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 7.95,
+            "inflacion_real": 18.5,
+            "desempleo_teorico": 10.93,
+            "desempleo_real": 10.2,
+            "tc_real_idx": 91.18
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 7.61,
+            "inflacion_real": 15,
+            "desempleo_teorico": 10.73,
+            "desempleo_real": 9.8,
+            "tc_real_idx": 91.62
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 7.3,
+            "inflacion_real": 12,
+            "desempleo_teorico": 10.55,
+            "desempleo_real": 9.5,
+            "tc_real_idx": 92.04
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 7.02,
+            "inflacion_real": 9.5,
+            "desempleo_teorico": 10.39,
+            "desempleo_real": 9.2,
+            "tc_real_idx": 92.44
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 6.77,
+            "inflacion_real": 7.5,
+            "desempleo_teorico": 10.24,
+            "desempleo_real": 9,
+            "tc_real_idx": 92.82
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 6.54,
+            "inflacion_real": 6.5,
+            "desempleo_teorico": 10.1,
+            "desempleo_real": 8.8,
+            "tc_real_idx": 93.17
+          }
+        ]
+      }
+    },
+    "FUHD_turquia_2018_2023": {
+      "label": "Turquía 2018–2023",
+      "regimen": "FUHD",
+      "pais": "Turquía",
+      "periodo": "2018-2023",
+      "tier": 3,
+      "color": "#f97316",
+      "phillips_slope": 1.2,
+      "convergence_speed": 0.02,
+      "nairu": 10,
+      "target_inflacion": 5,
+      "resultado_credibilidad": "persistent_unanchoring",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 9.5,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.41,
+            "inflacion_real": 16,
+            "desempleo_teorico": 12.46,
+            "desempleo_real": 11,
+            "tc_real_idx": 101.98
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 9.32,
+            "inflacion_real": 25,
+            "desempleo_teorico": 12.42,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 101.96
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 9.24,
+            "inflacion_real": 22,
+            "desempleo_teorico": 12.38,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 101.94
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 9.15,
+            "inflacion_real": 20,
+            "desempleo_teorico": 12.34,
+            "desempleo_real": 14,
+            "tc_real_idx": 101.92
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 9.07,
+            "inflacion_real": 15,
+            "desempleo_teorico": 12.31,
+            "desempleo_real": 13,
+            "tc_real_idx": 101.9
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 8.99,
+            "inflacion_real": 13,
+            "desempleo_teorico": 12.27,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 101.88
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 8.91,
+            "inflacion_real": 19,
+            "desempleo_teorico": 12.23,
+            "desempleo_real": 12,
+            "tc_real_idx": 101.86
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 8.83,
+            "inflacion_real": 36,
+            "desempleo_teorico": 12.2,
+            "desempleo_real": 12,
+            "tc_real_idx": 101.85
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 8.75,
+            "inflacion_real": 61,
+            "desempleo_teorico": 12.16,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 101.83
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 8.68,
+            "inflacion_real": 80,
+            "desempleo_teorico": 12.13,
+            "desempleo_real": 11,
+            "tc_real_idx": 101.81
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 8.6,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 12.09,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 101.79
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 14,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 13.82,
+            "inflacion_real": 16,
+            "desempleo_teorico": 9.51,
+            "desempleo_real": 11,
+            "tc_real_idx": 97.03
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 13.64,
+            "inflacion_real": 25,
+            "desempleo_teorico": 9.52,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 97.06
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 13.47,
+            "inflacion_real": 22,
+            "desempleo_teorico": 9.52,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 97.09
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 13.3,
+            "inflacion_real": 20,
+            "desempleo_teorico": 9.53,
+            "desempleo_real": 14,
+            "tc_real_idx": 97.12
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 13.14,
+            "inflacion_real": 15,
+            "desempleo_teorico": 9.54,
+            "desempleo_real": 13,
+            "tc_real_idx": 97.15
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 12.97,
+            "inflacion_real": 13,
+            "desempleo_teorico": 9.55,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 97.18
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 12.81,
+            "inflacion_real": 19,
+            "desempleo_teorico": 9.55,
+            "desempleo_real": 12,
+            "tc_real_idx": 97.2
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 12.66,
+            "inflacion_real": 36,
+            "desempleo_teorico": 9.56,
+            "desempleo_real": 12,
+            "tc_real_idx": 97.23
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 12.5,
+            "inflacion_real": 61,
+            "desempleo_teorico": 9.57,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 97.26
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 12.35,
+            "inflacion_real": 80,
+            "desempleo_teorico": 9.57,
+            "desempleo_real": 11,
+            "tc_real_idx": 97.29
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 12.21,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 9.58,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 97.31
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 13,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 12,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 12.84,
+            "inflacion_real": 16,
+            "desempleo_teorico": 11.97,
+            "desempleo_real": 11,
+            "tc_real_idx": 96.04
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 12.68,
+            "inflacion_real": 25,
+            "desempleo_teorico": 11.94,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 96.08
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 12.53,
+            "inflacion_real": 22,
+            "desempleo_teorico": 11.91,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 96.12
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 12.38,
+            "inflacion_real": 20,
+            "desempleo_teorico": 11.88,
+            "desempleo_real": 14,
+            "tc_real_idx": 96.16
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 12.23,
+            "inflacion_real": 15,
+            "desempleo_teorico": 11.85,
+            "desempleo_real": 13,
+            "tc_real_idx": 96.2
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 12.09,
+            "inflacion_real": 13,
+            "desempleo_teorico": 11.82,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 96.23
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 11.95,
+            "inflacion_real": 19,
+            "desempleo_teorico": 11.79,
+            "desempleo_real": 12,
+            "tc_real_idx": 96.27
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 11.81,
+            "inflacion_real": 36,
+            "desempleo_teorico": 11.76,
+            "desempleo_real": 12,
+            "tc_real_idx": 96.31
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 11.67,
+            "inflacion_real": 61,
+            "desempleo_teorico": 11.73,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 96.35
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 11.54,
+            "inflacion_real": 80,
+            "desempleo_teorico": 11.7,
+            "desempleo_real": 11,
+            "tc_real_idx": 96.38
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 11.41,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 11.67,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 96.42
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 9,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 9.7,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 8.92,
+            "inflacion_real": 16,
+            "desempleo_teorico": 9.7,
+            "desempleo_real": 11,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.84,
+            "inflacion_real": 25,
+            "desempleo_teorico": 9.71,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.76,
+            "inflacion_real": 22,
+            "desempleo_teorico": 9.71,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8.69,
+            "inflacion_real": 20,
+            "desempleo_teorico": 9.72,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 8.62,
+            "inflacion_real": 15,
+            "desempleo_teorico": 9.72,
+            "desempleo_real": 13,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 8.54,
+            "inflacion_real": 13,
+            "desempleo_teorico": 9.73,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 8.47,
+            "inflacion_real": 19,
+            "desempleo_teorico": 9.73,
+            "desempleo_real": 12,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 8.4,
+            "inflacion_real": 36,
+            "desempleo_teorico": 9.74,
+            "desempleo_real": 12,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 8.33,
+            "inflacion_real": 61,
+            "desempleo_teorico": 9.74,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 8.27,
+            "inflacion_real": 80,
+            "desempleo_teorico": 9.74,
+            "desempleo_real": 11,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 8.2,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 9.75,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 15,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 11.5,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 14.8,
+            "inflacion_real": 16,
+            "desempleo_teorico": 11.48,
+            "desempleo_real": 11,
+            "tc_real_idx": 94.06
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 14.6,
+            "inflacion_real": 25,
+            "desempleo_teorico": 11.45,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 94.12
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 14.41,
+            "inflacion_real": 22,
+            "desempleo_teorico": 11.43,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 94.18
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 14.22,
+            "inflacion_real": 20,
+            "desempleo_teorico": 11.41,
+            "desempleo_real": 14,
+            "tc_real_idx": 94.24
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 14.04,
+            "inflacion_real": 15,
+            "desempleo_teorico": 11.38,
+            "desempleo_real": 13,
+            "tc_real_idx": 94.29
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 13.86,
+            "inflacion_real": 13,
+            "desempleo_teorico": 11.36,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 94.35
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 13.68,
+            "inflacion_real": 19,
+            "desempleo_teorico": 11.34,
+            "desempleo_real": 12,
+            "tc_real_idx": 94.41
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 13.51,
+            "inflacion_real": 36,
+            "desempleo_teorico": 11.32,
+            "desempleo_real": 12,
+            "tc_real_idx": 94.46
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 13.34,
+            "inflacion_real": 61,
+            "desempleo_teorico": 11.3,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 94.52
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 13.17,
+            "inflacion_real": 80,
+            "desempleo_teorico": 11.28,
+            "desempleo_real": 11,
+            "tc_real_idx": 94.57
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 13.01,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 11.26,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 94.63
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 11,
+            "inflacion_real": 11,
+            "desempleo_teorico": 10.5,
+            "desempleo_real": 10.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 16,
+            "inflacion_real": 12.5,
+            "desempleo_teorico": 13.5,
+            "desempleo_real": 10.8,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 15.78,
+            "inflacion_real": 16,
+            "desempleo_teorico": 13.44,
+            "desempleo_real": 11,
+            "tc_real_idx": 88.12
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 15.56,
+            "inflacion_real": 25,
+            "desempleo_teorico": 13.39,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 88.24
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 15.35,
+            "inflacion_real": 22,
+            "desempleo_teorico": 13.33,
+            "desempleo_real": 13.5,
+            "tc_real_idx": 88.36
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 15.15,
+            "inflacion_real": 20,
+            "desempleo_teorico": 13.28,
+            "desempleo_real": 14,
+            "tc_real_idx": 88.47
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 14.94,
+            "inflacion_real": 15,
+            "desempleo_teorico": 13.23,
+            "desempleo_real": 13,
+            "tc_real_idx": 88.59
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 14.74,
+            "inflacion_real": 13,
+            "desempleo_teorico": 13.18,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 88.7
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 14.55,
+            "inflacion_real": 19,
+            "desempleo_teorico": 13.13,
+            "desempleo_real": 12,
+            "tc_real_idx": 88.82
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 14.36,
+            "inflacion_real": 36,
+            "desempleo_teorico": 13.08,
+            "desempleo_real": 12,
+            "tc_real_idx": 88.93
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 14.17,
+            "inflacion_real": 61,
+            "desempleo_teorico": 13.03,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 89.04
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 13.99,
+            "inflacion_real": 80,
+            "desempleo_teorico": 12.98,
+            "desempleo_real": 11,
+            "tc_real_idx": 89.15
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 13.81,
+            "inflacion_real": 85.5,
+            "desempleo_teorico": 12.93,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 89.26
+          }
+        ]
+      }
+    },
+    "FULD_argentina_2020": {
+      "label": "Argentina 2020",
+      "regimen": "FULD",
+      "pais": "Argentina",
+      "periodo": "2020-2022",
+      "tier": 4,
+      "color": "#ef4444",
+      "phillips_slope": 1.835,
+      "convergence_speed": 0.01,
+      "nairu": 8,
+      "target_inflacion": 25,
+      "resultado_credibilidad": "persistent_unanchoring",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 34.6,
+            "inflacion_real": 38,
+            "desempleo_teorico": 12.4,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 34.5,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 12.36,
+            "desempleo_real": 12,
+            "tc_real_idx": 101.99
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 34.41,
+            "inflacion_real": 43,
+            "desempleo_teorico": 12.33,
+            "desempleo_real": 11,
+            "tc_real_idx": 101.98
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 34.31,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 12.3,
+            "desempleo_real": 10,
+            "tc_real_idx": 101.97
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 34.22,
+            "inflacion_real": 54,
+            "desempleo_teorico": 12.26,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 101.96
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 34.13,
+            "inflacion_real": 58,
+            "desempleo_teorico": 12.23,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 101.95
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 34.04,
+            "inflacion_real": 63,
+            "desempleo_teorico": 12.19,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 101.94
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 33.95,
+            "inflacion_real": 72,
+            "desempleo_teorico": 12.16,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 101.93
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 33.86,
+            "inflacion_real": 80,
+            "desempleo_teorico": 12.13,
+            "desempleo_real": 7,
+            "tc_real_idx": 101.92
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 33.77,
+            "inflacion_real": 85,
+            "desempleo_teorico": 12.09,
+            "desempleo_real": 7,
+            "tc_real_idx": 101.91
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 33.68,
+            "inflacion_real": 90,
+            "desempleo_teorico": 12.06,
+            "desempleo_real": 7,
+            "tc_real_idx": 101.9
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 33.6,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 12.03,
+            "desempleo_real": 7,
+            "tc_real_idx": 101.89
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 39.1,
+            "inflacion_real": 38,
+            "desempleo_teorico": 9.4,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 38.96,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 9.39,
+            "desempleo_real": 12,
+            "tc_real_idx": 97.02
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 38.82,
+            "inflacion_real": 43,
+            "desempleo_teorico": 9.38,
+            "desempleo_real": 11,
+            "tc_real_idx": 97.03
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 38.68,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 9.37,
+            "desempleo_real": 10,
+            "tc_real_idx": 97.04
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 38.54,
+            "inflacion_real": 54,
+            "desempleo_teorico": 9.36,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 97.06
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 38.41,
+            "inflacion_real": 58,
+            "desempleo_teorico": 9.34,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 97.07
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 38.27,
+            "inflacion_real": 63,
+            "desempleo_teorico": 9.33,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 97.09
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 38.14,
+            "inflacion_real": 72,
+            "desempleo_teorico": 9.32,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 97.1
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 38.01,
+            "inflacion_real": 80,
+            "desempleo_teorico": 9.31,
+            "desempleo_real": 7,
+            "tc_real_idx": 97.12
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 37.88,
+            "inflacion_real": 85,
+            "desempleo_teorico": 9.3,
+            "desempleo_real": 7,
+            "tc_real_idx": 97.13
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 37.75,
+            "inflacion_real": 90,
+            "desempleo_teorico": 9.29,
+            "desempleo_real": 7,
+            "tc_real_idx": 97.15
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 37.62,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 9.28,
+            "desempleo_real": 7,
+            "tc_real_idx": 97.16
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 38.1,
+            "inflacion_real": 38,
+            "desempleo_teorico": 11.9,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 37.97,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 11.87,
+            "desempleo_real": 12,
+            "tc_real_idx": 96.02
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 37.84,
+            "inflacion_real": 43,
+            "desempleo_teorico": 11.84,
+            "desempleo_real": 11,
+            "tc_real_idx": 96.04
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 37.71,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 11.81,
+            "desempleo_real": 10,
+            "tc_real_idx": 96.06
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 37.58,
+            "inflacion_real": 54,
+            "desempleo_teorico": 11.78,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 96.08
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 37.46,
+            "inflacion_real": 58,
+            "desempleo_teorico": 11.75,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 96.1
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 37.33,
+            "inflacion_real": 63,
+            "desempleo_teorico": 11.72,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 96.12
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 37.21,
+            "inflacion_real": 72,
+            "desempleo_teorico": 11.69,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 96.14
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 37.09,
+            "inflacion_real": 80,
+            "desempleo_teorico": 11.66,
+            "desempleo_real": 7,
+            "tc_real_idx": 96.16
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 36.97,
+            "inflacion_real": 85,
+            "desempleo_teorico": 11.63,
+            "desempleo_real": 7,
+            "tc_real_idx": 96.18
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 36.85,
+            "inflacion_real": 90,
+            "desempleo_teorico": 11.6,
+            "desempleo_real": 7,
+            "tc_real_idx": 96.2
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 36.73,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 11.57,
+            "desempleo_real": 7,
+            "tc_real_idx": 96.21
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 34.1,
+            "inflacion_real": 38,
+            "desempleo_teorico": 9.6,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 34.01,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 9.59,
+            "desempleo_real": 12,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 33.92,
+            "inflacion_real": 43,
+            "desempleo_teorico": 9.57,
+            "desempleo_real": 11,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 33.83,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 9.56,
+            "desempleo_real": 10,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 33.74,
+            "inflacion_real": 54,
+            "desempleo_teorico": 9.55,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 33.65,
+            "inflacion_real": 58,
+            "desempleo_teorico": 9.54,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 33.57,
+            "inflacion_real": 63,
+            "desempleo_teorico": 9.52,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 33.48,
+            "inflacion_real": 72,
+            "desempleo_teorico": 9.51,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 33.4,
+            "inflacion_real": 80,
+            "desempleo_teorico": 9.5,
+            "desempleo_real": 7,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 33.31,
+            "inflacion_real": 85,
+            "desempleo_teorico": 9.49,
+            "desempleo_real": 7,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 33.23,
+            "inflacion_real": 90,
+            "desempleo_teorico": 9.48,
+            "desempleo_real": 7,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 33.15,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 9.46,
+            "desempleo_real": 7,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 40.1,
+            "inflacion_real": 38,
+            "desempleo_teorico": 11.4,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 39.95,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 11.37,
+            "desempleo_real": 12,
+            "tc_real_idx": 94.03
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 39.8,
+            "inflacion_real": 43,
+            "desempleo_teorico": 11.35,
+            "desempleo_real": 11,
+            "tc_real_idx": 94.06
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 39.65,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 11.32,
+            "desempleo_real": 10,
+            "tc_real_idx": 94.09
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 39.5,
+            "inflacion_real": 54,
+            "desempleo_teorico": 11.29,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 94.12
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 39.36,
+            "inflacion_real": 58,
+            "desempleo_teorico": 11.27,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 94.15
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 39.22,
+            "inflacion_real": 63,
+            "desempleo_teorico": 11.24,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 94.18
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 39.07,
+            "inflacion_real": 72,
+            "desempleo_teorico": 11.21,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 94.21
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 38.93,
+            "inflacion_real": 80,
+            "desempleo_teorico": 11.19,
+            "desempleo_real": 7,
+            "tc_real_idx": 94.24
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 38.79,
+            "inflacion_real": 85,
+            "desempleo_teorico": 11.16,
+            "desempleo_real": 7,
+            "tc_real_idx": 94.26
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 38.66,
+            "inflacion_real": 90,
+            "desempleo_teorico": 11.14,
+            "desempleo_real": 7,
+            "tc_real_idx": 94.29
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 38.52,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 11.11,
+            "desempleo_real": 7,
+            "tc_real_idx": 94.32
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 36.1,
+            "inflacion_real": 36.1,
+            "desempleo_teorico": 10.4,
+            "desempleo_real": 10.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 41.1,
+            "inflacion_real": 38,
+            "desempleo_teorico": 13.4,
+            "desempleo_real": 11.5,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 40.94,
+            "inflacion_real": 40.5,
+            "desempleo_teorico": 13.36,
+            "desempleo_real": 12,
+            "tc_real_idx": 88.06
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 40.78,
+            "inflacion_real": 43,
+            "desempleo_teorico": 13.31,
+            "desempleo_real": 11,
+            "tc_real_idx": 88.12
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 40.62,
+            "inflacion_real": 50.9,
+            "desempleo_teorico": 13.27,
+            "desempleo_real": 10,
+            "tc_real_idx": 88.18
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 40.47,
+            "inflacion_real": 54,
+            "desempleo_teorico": 13.23,
+            "desempleo_real": 8.5,
+            "tc_real_idx": 88.24
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 40.31,
+            "inflacion_real": 58,
+            "desempleo_teorico": 13.19,
+            "desempleo_real": 7.8,
+            "tc_real_idx": 88.3
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 40.16,
+            "inflacion_real": 63,
+            "desempleo_teorico": 13.15,
+            "desempleo_real": 7.5,
+            "tc_real_idx": 88.36
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 40.01,
+            "inflacion_real": 72,
+            "desempleo_teorico": 13.1,
+            "desempleo_real": 7.2,
+            "tc_real_idx": 88.41
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 39.86,
+            "inflacion_real": 80,
+            "desempleo_teorico": 13.06,
+            "desempleo_real": 7,
+            "tc_real_idx": 88.47
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 39.71,
+            "inflacion_real": 85,
+            "desempleo_teorico": 13.02,
+            "desempleo_real": 7,
+            "tc_real_idx": 88.53
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 39.56,
+            "inflacion_real": 90,
+            "desempleo_teorico": 12.98,
+            "desempleo_real": 7,
+            "tc_real_idx": 88.59
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 39.41,
+            "inflacion_real": 94.8,
+            "desempleo_teorico": 12.94,
+            "desempleo_real": 7,
+            "tc_real_idx": 88.64
+          }
+        ]
+      }
+    },
+    "PFHR_hongkong_implied": {
+      "label": "Hong Kong (implied)",
+      "regimen": "PFHR",
+      "pais": "Hong Kong",
+      "periodo": "1997-2000",
+      "tier": 2,
+      "color": "#eab308",
+      "phillips_slope": 0.45,
+      "convergence_speed": 0.14,
+      "nairu": 3,
+      "target_inflacion": 2.5,
+      "resultado_credibilidad": "anchored",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 4.8,
+            "inflacion_real": 5,
+            "desempleo_teorico": 4.2,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.48,
+            "inflacion_real": 3,
+            "desempleo_teorico": 4.07,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 4.2,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 3.95,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 3.96,
+            "inflacion_real": -4,
+            "desempleo_teorico": 3.84,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 3.76,
+            "inflacion_real": -6,
+            "desempleo_teorico": 3.75,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 3.58,
+            "inflacion_real": -5,
+            "desempleo_teorico": 3.66,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3.43,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 3.59,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.3,
+            "inflacion_real": -2,
+            "desempleo_teorico": 3.52,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.19,
+            "inflacion_real": 0,
+            "desempleo_teorico": 3.46,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.09,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 3.41,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.01,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 3.37,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.94,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.32,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 9.3,
+            "inflacion_real": 5,
+            "desempleo_teorico": 1.2,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 8.35,
+            "inflacion_real": 3,
+            "desempleo_teorico": 1.4,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 7.53,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 1.58,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 6.83,
+            "inflacion_real": -4,
+            "desempleo_teorico": 1.74,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 6.22,
+            "inflacion_real": -6,
+            "desempleo_teorico": 1.88,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 5.7,
+            "inflacion_real": -5,
+            "desempleo_teorico": 2.01,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 5.25,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 2.12,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.87,
+            "inflacion_real": -2,
+            "desempleo_teorico": 2.22,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.53,
+            "inflacion_real": 0,
+            "desempleo_teorico": 2.3,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.25,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 2.38,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 2.45,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.79,
+            "inflacion_real": 3,
+            "desempleo_teorico": 2.51,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 8.3,
+            "inflacion_real": 5,
+            "desempleo_teorico": 3.7,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 7.49,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.62,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 6.79,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 3.55,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 6.19,
+            "inflacion_real": -4,
+            "desempleo_teorico": 3.49,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 5.67,
+            "inflacion_real": -6,
+            "desempleo_teorico": 3.44,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 5.23,
+            "inflacion_real": -5,
+            "desempleo_teorico": 3.39,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 4.85,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 3.34,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 4.52,
+            "inflacion_real": -2,
+            "desempleo_teorico": 3.3,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.24,
+            "inflacion_real": 0,
+            "desempleo_teorico": 3.27,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 3.99,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 3.24,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 3.78,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 3.21,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.6,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.19,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 4.3,
+            "inflacion_real": 5,
+            "desempleo_teorico": 1.4,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.05,
+            "inflacion_real": 3,
+            "desempleo_teorico": 1.58,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 3.83,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 1.74,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 3.64,
+            "inflacion_real": -4,
+            "desempleo_teorico": 1.88,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 3.48,
+            "inflacion_real": -6,
+            "desempleo_teorico": 2.01,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 3.35,
+            "inflacion_real": -5,
+            "desempleo_teorico": 2.12,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3.23,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 2.22,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 3.13,
+            "inflacion_real": -2,
+            "desempleo_teorico": 2.3,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 3.04,
+            "inflacion_real": 0,
+            "desempleo_teorico": 2.38,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 2.96,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 2.45,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 2.9,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 2.51,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.84,
+            "inflacion_real": 3,
+            "desempleo_teorico": 2.57,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 10.3,
+            "inflacion_real": 5,
+            "desempleo_teorico": 3.2,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.21,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.18,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.27,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 3.16,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 7.46,
+            "inflacion_real": -4,
+            "desempleo_teorico": 3.14,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 6.77,
+            "inflacion_real": -6,
+            "desempleo_teorico": 3.12,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.17,
+            "inflacion_real": -5,
+            "desempleo_teorico": 3.11,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 5.66,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 3.1,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 5.21,
+            "inflacion_real": -2,
+            "desempleo_teorico": 3.09,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 4.83,
+            "inflacion_real": 0,
+            "desempleo_teorico": 3.08,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.51,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 3.07,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.23,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 3.06,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 3.98,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.05,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 6.3,
+            "inflacion_real": 6.3,
+            "desempleo_teorico": 2.2,
+            "desempleo_real": 2.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 11.3,
+            "inflacion_real": 5,
+            "desempleo_teorico": 5.2,
+            "desempleo_real": 2.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 10.07,
+            "inflacion_real": 3,
+            "desempleo_teorico": 4.95,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 9.01,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4.73,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.1,
+            "inflacion_real": -4,
+            "desempleo_teorico": 4.54,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 7.31,
+            "inflacion_real": -6,
+            "desempleo_teorico": 4.37,
+            "desempleo_real": 6.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.64,
+            "inflacion_real": -5,
+            "desempleo_teorico": 4.21,
+            "desempleo_real": 6,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.06,
+            "inflacion_real": -3.5,
+            "desempleo_teorico": 4.08,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 5.56,
+            "inflacion_real": -2,
+            "desempleo_teorico": 3.96,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 5.13,
+            "inflacion_real": 0,
+            "desempleo_teorico": 3.85,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 4.76,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 3.76,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 4.45,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 3.67,
+            "desempleo_real": 3.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 4.17,
+            "inflacion_real": 3,
+            "desempleo_teorico": 3.6,
+            "desempleo_real": 3,
+            "tc_real_idx": 100
+          }
+        ]
+      }
+    },
+    "PFULU_grecia_2010_2015": {
+      "label": "Grecia 2010–2015",
+      "regimen": "PFULU",
+      "pais": "Grecia",
+      "periodo": "2010-2015",
+      "tier": 4,
+      "color": "#ef4444",
+      "phillips_slope": 1.3,
+      "convergence_speed": 0.03,
+      "nairu": 12,
+      "target_inflacion": 2,
+      "resultado_credibilidad": "temporary_unanchoring",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 3.2,
+            "inflacion_real": 4,
+            "desempleo_teorico": 14.5,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 3.16,
+            "inflacion_real": 3,
+            "desempleo_teorico": 14.44,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 3.13,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 14.38,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 3.1,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 14.32,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 3.06,
+            "inflacion_real": 1,
+            "desempleo_teorico": 14.27,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 3.03,
+            "inflacion_real": 0,
+            "desempleo_teorico": 14.21,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 3,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 14.16,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 2.97,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 14.11,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 2.94,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 14.06,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 2.91,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 14.01,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 2.88,
+            "inflacion_real": -1,
+            "desempleo_teorico": 13.96,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.86,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 13.91,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 7.7,
+            "inflacion_real": 4,
+            "desempleo_teorico": 11.5,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 7.53,
+            "inflacion_real": 3,
+            "desempleo_teorico": 11.51,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 7.36,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 11.52,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 7.2,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 11.54,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 7.05,
+            "inflacion_real": 1,
+            "desempleo_teorico": 11.55,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.89,
+            "inflacion_real": 0,
+            "desempleo_teorico": 11.56,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 6.75,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 11.57,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 6.61,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 11.58,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 6.47,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 11.59,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 6.33,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 11.6,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 6.2,
+            "inflacion_real": -1,
+            "desempleo_teorico": 11.61,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 6.08,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 11.62,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 6.7,
+            "inflacion_real": 4,
+            "desempleo_teorico": 14,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 6.56,
+            "inflacion_real": 3,
+            "desempleo_teorico": 13.95,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 6.42,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 13.91,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 6.29,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 13.86,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 6.16,
+            "inflacion_real": 1,
+            "desempleo_teorico": 13.81,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 6.04,
+            "inflacion_real": 0,
+            "desempleo_teorico": 13.77,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 5.91,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 13.73,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 5.8,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 13.69,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 5.68,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 13.65,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 5.57,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 13.61,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 5.47,
+            "inflacion_real": -1,
+            "desempleo_teorico": 13.57,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 5.36,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 13.53,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 2.7,
+            "inflacion_real": 4,
+            "desempleo_teorico": 11.7,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 2.68,
+            "inflacion_real": 3,
+            "desempleo_teorico": 11.71,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 2.66,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 11.71,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 2.64,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 11.72,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 2.62,
+            "inflacion_real": 1,
+            "desempleo_teorico": 11.73,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 2.6,
+            "inflacion_real": 0,
+            "desempleo_teorico": 11.73,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 2.58,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 11.74,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 2.57,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 11.75,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 2.55,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 11.75,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 2.53,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 11.76,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 2.52,
+            "inflacion_real": -1,
+            "desempleo_teorico": 11.76,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 2.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 11.77,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 8.7,
+            "inflacion_real": 4,
+            "desempleo_teorico": 13.5,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 8.5,
+            "inflacion_real": 3,
+            "desempleo_teorico": 13.46,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 8.3,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 13.43,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 8.11,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 13.39,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 7.93,
+            "inflacion_real": 1,
+            "desempleo_teorico": 13.36,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 7.75,
+            "inflacion_real": 0,
+            "desempleo_teorico": 13.33,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 7.58,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 13.3,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 7.41,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 13.27,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 7.25,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 13.24,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 7.09,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 13.21,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 6.94,
+            "inflacion_real": -1,
+            "desempleo_teorico": 13.18,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 6.79,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 13.15,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 4.7,
+            "inflacion_real": 4.7,
+            "desempleo_teorico": 12.5,
+            "desempleo_real": 12.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 9.7,
+            "inflacion_real": 4,
+            "desempleo_teorico": 15.5,
+            "desempleo_real": 14,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 9.47,
+            "inflacion_real": 3,
+            "desempleo_teorico": 15.42,
+            "desempleo_real": 15.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 9.24,
+            "inflacion_real": 2.5,
+            "desempleo_teorico": 15.33,
+            "desempleo_real": 17,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 9.03,
+            "inflacion_real": 1.5,
+            "desempleo_teorico": 15.25,
+            "desempleo_real": 19,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 8.82,
+            "inflacion_real": 1,
+            "desempleo_teorico": 15.18,
+            "desempleo_real": 21.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 8.61,
+            "inflacion_real": 0,
+            "desempleo_teorico": 15.1,
+            "desempleo_real": 23,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 8.41,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 15.03,
+            "desempleo_real": 24.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 8.22,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 14.95,
+            "desempleo_real": 26,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 8.03,
+            "inflacion_real": -2.5,
+            "desempleo_teorico": 14.88,
+            "desempleo_real": 27.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 7.85,
+            "inflacion_real": -1.5,
+            "desempleo_teorico": 14.81,
+            "desempleo_real": 27,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 7.68,
+            "inflacion_real": -1,
+            "desempleo_teorico": 14.75,
+            "desempleo_real": 26.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 7.51,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 14.68,
+            "desempleo_real": 25,
+            "tc_real_idx": 100
+          }
+        ]
+      }
+    },
+    "TRAP_japon_implied": {
+      "label": "Japón (trap)",
+      "regimen": "TRAP",
+      "pais": "Japón",
+      "periodo": "1995-2012",
+      "tier": 4,
+      "color": "#6b7280",
+      "phillips_slope": 0.08,
+      "convergence_speed": 0.25,
+      "nairu": 4.5,
+      "target_inflacion": 0.5,
+      "resultado_credibilidad": "anchored",
+      "shocks": {
+        "demand_neg_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": -1,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 6,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 102
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": -0.63,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 5.7,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 101.75
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": -0.34,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 5.46,
+            "desempleo_real": 5,
+            "tc_real_idx": 101.53
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": -0.13,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 5.27,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 101.34
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 0.03,
+            "inflacion_real": -1,
+            "desempleo_teorico": 5.11,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 101.17
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 0.14,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.99,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 101.03
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 0.23,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.89,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100.9
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 0.3,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 4.81,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 100.79
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 0.35,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.75,
+            "desempleo_real": 5,
+            "tc_real_idx": 100.69
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.39,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.7,
+            "desempleo_real": 5,
+            "tc_real_idx": 100.6
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.42,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.66,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 100.53
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.44,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.63,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100.46
+          }
+        ],
+        "demand_pos_3pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 3.5,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 3,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 97
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 2.75,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 3.3,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 97.38
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 2.19,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 3.54,
+            "desempleo_real": 5,
+            "tc_real_idx": 97.7
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 1.77,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 3.73,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 97.99
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 1.45,
+            "inflacion_real": -1,
+            "desempleo_teorico": 3.89,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 98.24
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 1.21,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.01,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 98.46
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 1.03,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.11,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 98.65
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 0.9,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 4.19,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 98.82
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 0.8,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.25,
+            "desempleo_real": 5,
+            "tc_real_idx": 98.97
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.73,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.3,
+            "desempleo_real": 5,
+            "tc_real_idx": 99.1
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.67,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.34,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 99.21
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.63,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.37,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 99.31
+          }
+        ],
+        "cost_pos_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 2.5,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 5.5,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 96
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 2,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 5.3,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 96.5
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 1.63,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 5.14,
+            "desempleo_real": 5,
+            "tc_real_idx": 96.94
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 1.34,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 5.01,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 97.32
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 1.13,
+            "inflacion_real": -1,
+            "desempleo_teorico": 4.91,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 97.66
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 0.97,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.83,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 97.95
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 0.86,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.76,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 98.2
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 0.77,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 4.71,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 98.43
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 0.7,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.67,
+            "desempleo_real": 5,
+            "tc_real_idx": 98.63
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.65,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.63,
+            "desempleo_real": 5,
+            "tc_real_idx": 98.8
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.61,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.61,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 98.95
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.58,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.59,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 99.08
+          }
+        ],
+        "cost_neg_2pp": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": -1.5,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 3.2,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": -1,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 3.46,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": -0.63,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 3.67,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": -0.34,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 3.83,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": -0.13,
+            "inflacion_real": -1,
+            "desempleo_teorico": 3.97,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 0.03,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.07,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 0.14,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.16,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 0.23,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 4.23,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 0.3,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.28,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.35,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.33,
+            "desempleo_real": 5,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.39,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.36,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.42,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.39,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 100
+          }
+        ],
+        "combined_mix": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 4.5,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 5,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 94
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 3.5,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 4.9,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 94.75
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 2.75,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.82,
+            "desempleo_real": 5,
+            "tc_real_idx": 95.41
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 2.19,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.76,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 95.98
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 1.77,
+            "inflacion_real": -1,
+            "desempleo_teorico": 4.7,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 96.48
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 1.45,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 4.66,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 96.92
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 1.21,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 4.63,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 97.31
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 1.03,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 4.6,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 97.64
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 0.9,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.58,
+            "desempleo_real": 5,
+            "tc_real_idx": 97.94
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.8,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.57,
+            "desempleo_real": 5,
+            "tc_real_idx": 98.2
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.73,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.55,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 98.42
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.67,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.54,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 98.62
+          }
+        ],
+        "sudden_stop": [
+          {
+            "quarter": 0,
+            "inflacion_teorica": 0.5,
+            "inflacion_real": 0.5,
+            "desempleo_teorico": 4,
+            "desempleo_real": 4,
+            "tc_real_idx": 100
+          },
+          {
+            "quarter": 1,
+            "inflacion_teorica": 5.5,
+            "inflacion_real": 0.2,
+            "desempleo_teorico": 7,
+            "desempleo_real": 4.3,
+            "tc_real_idx": 88
+          },
+          {
+            "quarter": 2,
+            "inflacion_teorica": 4.25,
+            "inflacion_real": -0.2,
+            "desempleo_teorico": 6.5,
+            "desempleo_real": 4.7,
+            "tc_real_idx": 89.5
+          },
+          {
+            "quarter": 3,
+            "inflacion_teorica": 3.31,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 6.1,
+            "desempleo_real": 5,
+            "tc_real_idx": 90.81
+          },
+          {
+            "quarter": 4,
+            "inflacion_teorica": 2.61,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 5.78,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 91.96
+          },
+          {
+            "quarter": 5,
+            "inflacion_teorica": 2.08,
+            "inflacion_real": -1,
+            "desempleo_teorico": 5.52,
+            "desempleo_real": 5.5,
+            "tc_real_idx": 92.97
+          },
+          {
+            "quarter": 6,
+            "inflacion_teorica": 1.69,
+            "inflacion_real": -0.8,
+            "desempleo_teorico": 5.32,
+            "desempleo_real": 5.4,
+            "tc_real_idx": 93.85
+          },
+          {
+            "quarter": 7,
+            "inflacion_teorica": 1.39,
+            "inflacion_real": -0.5,
+            "desempleo_teorico": 5.16,
+            "desempleo_real": 5.3,
+            "tc_real_idx": 94.61
+          },
+          {
+            "quarter": 8,
+            "inflacion_teorica": 1.17,
+            "inflacion_real": -0.3,
+            "desempleo_teorico": 5.02,
+            "desempleo_real": 5.2,
+            "tc_real_idx": 95.29
+          },
+          {
+            "quarter": 9,
+            "inflacion_teorica": 1,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.92,
+            "desempleo_real": 5,
+            "tc_real_idx": 95.88
+          },
+          {
+            "quarter": 10,
+            "inflacion_teorica": 0.88,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.84,
+            "desempleo_real": 5,
+            "tc_real_idx": 96.39
+          },
+          {
+            "quarter": 11,
+            "inflacion_teorica": 0.78,
+            "inflacion_real": 0,
+            "desempleo_teorico": 4.77,
+            "desempleo_real": 4.8,
+            "tc_real_idx": 96.84
+          },
+          {
+            "quarter": 12,
+            "inflacion_teorica": 0.71,
+            "inflacion_real": 0.1,
+            "desempleo_teorico": 4.71,
+            "desempleo_real": 4.5,
+            "tc_real_idx": 97.24
+          }
+        ]
+      }
+    }
+  }
+}
