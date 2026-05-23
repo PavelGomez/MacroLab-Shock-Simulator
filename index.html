@@ -121,6 +121,7 @@
     <button class="tab-button" data-tab="atlas">Atlas de shocks</button>
     <button class="tab-button" data-tab="institucional">Marco institucional</button>
     <button class="tab-button" data-tab="lentes">Lentes institucionales</button>
+    <button class="tab-button" data-tab="comparador">Comparador Phillips</button>
     <button class="tab-button" data-tab="tablero">Tablero macro</button>
     <button class="tab-button" data-tab="lectura">Lectura de datos</button>
     <button class="tab-button" data-tab="glosario">Glosario</button>
@@ -2025,6 +2026,203 @@
           </article>
         </div>
       </section>
+    </section>
+
+    <!-- ============ COMPARADOR PHILLIPS ============ -->
+    <section id="comparador" class="tab-panel">
+      <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio</a>
+      <div class="panel-block">
+        <h2>Comparador de trayectorias Phillips</h2>
+        <p class="section-subhead">Selecciona dos o tres marcos institucionales y observa cómo el mismo shock produce trayectorias radicalmente distintas de inflación, desempleo y credibilidad.</p>
+      </div>
+
+      <!-- Shock magnitude selector -->
+      <div class="card comparador-shock-row">
+        <label>Magnitud del shock (brecha de desempleo inicial):</label>
+        <div class="comparador-radio-group" id="comp-shock-group">
+          <label><input type="radio" name="comp-shock" value="-2" checked> −2pp</label>
+          <label><input type="radio" name="comp-shock" value="-1"> −1pp</label>
+          <label><input type="radio" name="comp-shock" value="0"> 0pp</label>
+          <label><input type="radio" name="comp-shock" value="1"> +1pp</label>
+          <label><input type="radio" name="comp-shock" value="2"> +2pp</label>
+        </div>
+        <span class="chip-data" style="font-size:.82rem">Shock de costos (inflación importada)</span>
+      </div>
+
+      <!-- Comparison grid -->
+      <div id="comp-grid" class="comparador-grid" style="--comp-cols:2">
+
+        <!-- Column A -->
+        <div class="comparador-col" id="comp-col-a">
+          <div class="comparador-col-header card" style="padding:12px 14px">
+            <span class="comparador-col-label">Régimen A</span>
+            <select id="comp-sel-a" class="comparador-select" aria-label="Seleccionar Régimen A">
+              <option value="FCHR">FCHR — Chile 1990–2010 · Flotación Coordinada · Alta ρ · Regla fiscal</option>
+              <option value="FCHD">FCHD — Nueva Zelanda 2008–09 · Flotación Coordinada · Alta ρ · Discrecional</option>
+              <option value="FUHR">FUHR — Suecia 2008–09 · Flotación No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="FUHD">FUHD — Australia 2008–09 · Flotación No Coord. · Alta ρ · Discrecional</option>
+              <option value="FCLU">FCLU — Turquía 2018 · Flotación Coordinada · Baja ρ · Incierta</option>
+              <option value="FCLD">FCLD — Brasil 2015–16 · Flotación Coordinada · Baja ρ · Discrecional</option>
+              <option value="FULU">FULU — Argentina 2019 · Flotación No Coord. · Baja ρ · Incierta</option>
+              <option value="FULD">FULD — Argentina 2018–23 · Flotación No Coord. · Baja ρ · Discrecional</option>
+              <option value="PFCHR">PFCHR — Estonia 2008–10 · Anclaje Coordinado · Alta ρ · Regla fiscal</option>
+              <option value="PFCHD">PFCHD — Hong Kong 2008–09 · Anclaje Coordinado · Alta ρ · Discrecional</option>
+              <option value="PFUHR">PFUHR — Dinamarca 2008–10 · Anclaje No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="PFUHD">PFUHD — Letonia 2008–10 · Anclaje No Coord. · Alta ρ · Discrecional</option>
+              <option value="PFCLU">PFCLU — Egipto 2016–17 · Anclaje Coordinado · Baja ρ · Incierta</option>
+              <option value="PFCLD">PFCLD — Túnez 2018–20 · Anclaje Coordinado · Baja ρ · Discrecional</option>
+              <option value="PFULU">PFULU — Argentina 2001–02 · Anclaje No Coord. · Baja ρ · Incierta</option>
+              <option value="PFULD">PFULD — Grecia 2010–15 · Anclaje No Coord. · Baja ρ · Discrecional</option>
+            </select>
+          </div>
+          <div class="comparador-canvas-wrap">
+            <canvas id="comp-chart-a"></canvas>
+          </div>
+          <div class="comp-q12-summary" id="comp-q12-a"></div>
+          <div class="card" style="padding:12px 14px">
+            <table class="comparador-params-table" id="comp-params-a"></table>
+          </div>
+          <div class="comparador-narr" id="comp-narr-a">
+            <details>
+              <summary>Narrativa histórica del caso</summary>
+              <div class="comparador-narr-content" id="comp-narr-text-a"></div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Column B -->
+        <div class="comparador-col" id="comp-col-b">
+          <div class="comparador-col-header card" style="padding:12px 14px">
+            <span class="comparador-col-label">Régimen B</span>
+            <select id="comp-sel-b" class="comparador-select" aria-label="Seleccionar Régimen B">
+              <option value="FCHR">FCHR — Chile 1990–2010 · Flotación Coordinada · Alta ρ · Regla fiscal</option>
+              <option value="FCHD">FCHD — Nueva Zelanda 2008–09 · Flotación Coordinada · Alta ρ · Discrecional</option>
+              <option value="FUHR">FUHR — Suecia 2008–09 · Flotación No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="FUHD">FUHD — Australia 2008–09 · Flotación No Coord. · Alta ρ · Discrecional</option>
+              <option value="FCLU">FCLU — Turquía 2018 · Flotación Coordinada · Baja ρ · Incierta</option>
+              <option value="FCLD">FCLD — Brasil 2015–16 · Flotación Coordinada · Baja ρ · Discrecional</option>
+              <option value="FULU">FULU — Argentina 2019 · Flotación No Coord. · Baja ρ · Incierta</option>
+              <option value="FULD">FULD — Argentina 2018–23 · Flotación No Coord. · Baja ρ · Discrecional</option>
+              <option value="PFCHR">PFCHR — Estonia 2008–10 · Anclaje Coordinado · Alta ρ · Regla fiscal</option>
+              <option value="PFCHD">PFCHD — Hong Kong 2008–09 · Anclaje Coordinado · Alta ρ · Discrecional</option>
+              <option value="PFUHR">PFUHR — Dinamarca 2008–10 · Anclaje No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="PFUHD">PFUHD — Letonia 2008–10 · Anclaje No Coord. · Alta ρ · Discrecional</option>
+              <option value="PFCLU">PFCLU — Egipto 2016–17 · Anclaje Coordinado · Baja ρ · Incierta</option>
+              <option value="PFCLD">PFCLD — Túnez 2018–20 · Anclaje Coordinado · Baja ρ · Discrecional</option>
+              <option value="PFULU">PFULU — Argentina 2001–02 · Anclaje No Coord. · Baja ρ · Incierta</option>
+              <option value="PFULD" selected>PFULD — Grecia 2010–15 · Anclaje No Coord. · Baja ρ · Discrecional</option>
+            </select>
+          </div>
+          <div class="comparador-canvas-wrap">
+            <canvas id="comp-chart-b"></canvas>
+          </div>
+          <div class="comp-q12-summary" id="comp-q12-b"></div>
+          <div class="card" style="padding:12px 14px">
+            <table class="comparador-params-table" id="comp-params-b"></table>
+          </div>
+          <div class="comparador-narr" id="comp-narr-b">
+            <details>
+              <summary>Narrativa histórica del caso</summary>
+              <div class="comparador-narr-content" id="comp-narr-text-b"></div>
+            </details>
+          </div>
+        </div>
+
+        <!-- Column C (hidden by default) -->
+        <div class="comparador-col" id="comp-col-c" style="display:none">
+          <div class="comparador-col-header card" style="padding:12px 14px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span class="comparador-col-label">Régimen C</span>
+              <button class="comp-remove-c" id="comp-remove-c">✕ Quitar C</button>
+            </div>
+            <select id="comp-sel-c" class="comparador-select" aria-label="Seleccionar Régimen C">
+              <option value="FCHR">FCHR — Chile 1990–2010 · Flotación Coordinada · Alta ρ · Regla fiscal</option>
+              <option value="FCHD">FCHD — Nueva Zelanda 2008–09 · Flotación Coordinada · Alta ρ · Discrecional</option>
+              <option value="FUHR">FUHR — Suecia 2008–09 · Flotación No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="FUHD" selected>FUHD — Australia 2008–09 · Flotación No Coord. · Alta ρ · Discrecional</option>
+              <option value="FCLU">FCLU — Turquía 2018 · Flotación Coordinada · Baja ρ · Incierta</option>
+              <option value="FCLD">FCLD — Brasil 2015–16 · Flotación Coordinada · Baja ρ · Discrecional</option>
+              <option value="FULU">FULU — Argentina 2019 · Flotación No Coord. · Baja ρ · Incierta</option>
+              <option value="FULD">FULD — Argentina 2018–23 · Flotación No Coord. · Baja ρ · Discrecional</option>
+              <option value="PFCHR">PFCHR — Estonia 2008–10 · Anclaje Coordinado · Alta ρ · Regla fiscal</option>
+              <option value="PFCHD">PFCHD — Hong Kong 2008–09 · Anclaje Coordinado · Alta ρ · Discrecional</option>
+              <option value="PFUHR">PFUHR — Dinamarca 2008–10 · Anclaje No Coord. · Alta ρ · Regla fiscal</option>
+              <option value="PFUHD">PFUHD — Letonia 2008–10 · Anclaje No Coord. · Alta ρ · Discrecional</option>
+              <option value="PFCLU">PFCLU — Egipto 2016–17 · Anclaje Coordinado · Baja ρ · Incierta</option>
+              <option value="PFCLD">PFCLD — Túnez 2018–20 · Anclaje Coordinado · Baja ρ · Discrecional</option>
+              <option value="PFULU">PFULU — Argentina 2001–02 · Anclaje No Coord. · Baja ρ · Incierta</option>
+              <option value="PFULD">PFULD — Grecia 2010–15 · Anclaje No Coord. · Baja ρ · Discrecional</option>
+            </select>
+          </div>
+          <div class="comparador-canvas-wrap">
+            <canvas id="comp-chart-c"></canvas>
+          </div>
+          <div class="comp-q12-summary" id="comp-q12-c"></div>
+          <div class="card" style="padding:12px 14px">
+            <table class="comparador-params-table" id="comp-params-c"></table>
+          </div>
+          <div class="comparador-narr" id="comp-narr-c">
+            <details>
+              <summary>Narrativa histórica del caso</summary>
+              <div class="comparador-narr-content" id="comp-narr-text-c"></div>
+            </details>
+          </div>
+        </div>
+
+      </div><!-- /comp-grid -->
+
+      <!-- Add/remove col C -->
+      <div class="comp-col-c-toggle">
+        <button class="comp-add-c" id="comp-add-c">+ Agregar Régimen C</button>
+        <span style="font-size:.82rem;color:var(--muted)">Máximo 3 regímenes simultáneos</span>
+      </div>
+
+      <!-- Legend -->
+      <div class="card" style="display:flex;gap:20px;flex-wrap:wrap;padding:10px 18px;font-size:.85rem;align-items:center;margin-bottom:18px">
+        <strong style="font-size:.82rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em">Leyenda:</strong>
+        <span style="color:#ef4444;font-weight:600">▬ π inflación (%)</span>
+        <span style="color:#3b82f6;font-weight:600">▬ u desempleo (%)</span>
+        <span style="color:#22c55e;font-weight:600">▬ ρ credibilidad (eje der.)</span>
+        <span class="chip-warning" style="font-size:.78rem">Simulación con modelo Phillips Carlin-Soskice 2024 · 12 trimestres</span>
+      </div>
+
+      <!-- Glossary -->
+      <div class="card comp-glossary" style="padding:16px 20px">
+        <h3 style="margin:0 0 14px;font-size:1rem">Glosario del Comparador</h3>
+        <details>
+          <summary class="comp-glossary">¿Qué es la curva de Phillips endógena?</summary>
+          <div class="comp-glossary-body">
+            <p>La curva de Phillips estándar es π = π<sup>e</sup> + α(u − u*) + β·Δe. La versión endógena de Carlin-Soskice reconoce que sus parámetros — la pendiente α, la inercia γ, el pass-through β y la credibilidad ρ — no son constantes: dependen del marco institucional del país.</p>
+            <p>Un banco central más creíble produce una curva más plana (α efectivo menor), porque las expectativas ancladas amortiguan el traslado del shock a precios. Comparar FCHR con PFULD muestra que el mismo shock de desempleo genera trayectorias de inflación radicalmente distintas según el régimen.</p>
+          </div>
+        </details>
+        <details>
+          <summary class="comp-glossary">¿Por qué PFULD es "estanflación periférica"?</summary>
+          <div class="comp-glossary-body">
+            <p>PFULD combina tres condiciones que producen estanflación: (1) peg cambiario (β=0: sin válvula de depreciación nominal), (2) baja credibilidad (ρ=0.35: expectativas casi puramente adaptativas), y (3) dominancia fiscal discrecional (sin regla que ancle el gasto).</p>
+            <p>El resultado es una trampa: el peg impide la depreciación real necesaria para ajustar la economía, mientras la baja credibilidad hace que la inflación no converja al target. El ajuste recae íntegramente sobre empleo y salarios reales — devaluación interna. Grecia 2010–2015 alcanzó 27% de desempleo.</p>
+          </div>
+        </details>
+        <details>
+          <summary class="comp-glossary">¿Qué es la credibilidad (ρ) y por qué importa?</summary>
+          <div class="comp-glossary-body">
+            <p>ρ ∈ [0,1] mide cuánto peso le asignan los agentes al target oficial del banco central al formar sus expectativas: π<sup>e</sup> = ρ·π<sub>target</sub> + (1−ρ)·π<sub>prev</sub>. Con ρ=0.90 (BCCh), casi toda la expectativa viene del target. Con ρ=0.30 (FULD), casi toda viene de la inflación pasada.</p>
+            <p>La credibilidad alta hace que la curva de Phillips sea más plana: el mismo shock de desempleo genera menos inflación, porque los agentes saben que el banco central va a estabilizarla. Esto reduce la razón de sacrificio — el costo en desempleo de desinflacionar.</p>
+          </div>
+        </details>
+        <details>
+          <summary class="comp-glossary">¿Qué es la inercia inflacionaria (γ) y el pass-through (β)?</summary>
+          <div class="comp-glossary-body">
+            <p><strong>Inercia (γ)</strong>: grado en que la expectativa inflacionaria del período actual depende de la inflación pasada. γ alto (FULD, γ=1.0) implica que la inflación se autoalimenta período a período. Desinflacionar requiere un costo real enorme porque las expectativas son puramente backward-looking.</p>
+            <p><strong>Pass-through (β)</strong>: fracción de la depreciación del tipo de cambio que se traslada a inflación doméstica. β=0 en regímenes PF (peg: no hay depreciación nominal). β=0.60 en FULD: cada 1% de depreciación del peso añade 0.6pp de inflación. En flotación con alta credibilidad, β es bajo porque el banco central compensa.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="notice-box" style="margin-top:16px">
+        <strong>Advertencia pedagógica:</strong> Este módulo simula trayectorias teóricas a partir del modelo Phillips (Carlin-Soskice 2024). Los parámetros son calibrados para capturar la dirección e intensidad relativa entre regímenes — no constituyen pronósticos ni cifras históricas exactas. El objetivo es comparar <em>mecanismos</em>, no magnitudes absolutas.
+      </div>
+
     </section>
 
     <!-- ============ GLOSARIO AMPLIADO ============ -->
