@@ -38,8 +38,8 @@
       "policy_feasibility": "Structural fiscal rule permits automatic stabilizers. CB independence well-established. Political consensus supports IT. Low public debt enables response if needed.",
       "incidence": "Traded sector bears initial ER depreciation burden. Coordinated wage policy limits second-round effects on formal labor markets.",
       "discriminating_evidence": "Inflation expectations remain 2.5-3.5% (CB surveys). Policy rate peaks below +100bp above pre-shock. Real wages recover within 2-3 quarters. CA returns to near-baseline by Q6-Q8. Output gap closes in 7-9 quarters. Bond spreads stable. Ref: Chile 2008-2009 (BCCh, DIPRES); analogues: NZ, Sweden with strong IT.",
-      "narrative_summary": "Q1-Q2: Cost-push shock raises inflation to 4.2%; output gap widens to -2.0%. CB tightens moderately; fiscal rule holds. Q3-Q6: Floating ER absorbs external pressure; expectations anchor; real wages recover as disinflation proceeds. Policy rate declines. Q7-Q12: Output gap closes; inflation converges to 2.5-3.0%; CA stabilizes. Economy near potential with price stability restored.",
-      "anti_overclaim": "MacroLab does not capture: (i) decades of credibility-building enabling this regime; (ii) political economy of maintaining fiscal rules under electoral pressure; (iii) terms-of-trade dynamics interacting with ER depreciation; (iv) global monetary spillovers. Trajectory illustrates institutional mechanisms under stylized cost-push shock; cannot predict timing or magnitude in real episodes."
+      "narrative_summary": "Q1-Q2: Shock raises π to 2.27% (anchored π^e + ER appreciation buffer); output gap -2.0%. CB tightens 50-75bp; fiscal rule holds. Q3-Q6: ER absorbs pressure; expectations anchored (ρ=0.90); real wages recover. Policy rate normalizes. Q7-Q12: π converges to 2.0% at Q12; output gap closes. Lowest sacrifice ratio: credibility makes disinflation cheap. Ref: Chile 1990-2010.",
+      "anti_overclaim": "MacroLab does not capture: (i) decades of credibility-building enabling this regime (Chile BCCh took 20 years); (ii) political economy of maintaining fiscal rules under electoral pressure; (iii) terms-of-trade dynamics interacting with ER depreciation; (iv) global monetary spillovers. Cannot predict timing or magnitude in real episodes; illustrates the institutional mechanism only."
     },
     {
       "regime_code": "FCHD",
@@ -151,7 +151,7 @@
       "coordination": "Uncoordinated",
       "credibility": "Low",
       "fiscal": "Discretionary",
-      "episode_ref": "Colombia 2022-2023",
+      "episode_ref": "Argentina 2018-2023",
       "mechanism": "Cost-push shock hits floating-rate economy with uncoordinated, low-credibility monetary policy and discretionary fiscal. Floating ER depreciates sharply. CB tightens without fiscal coordination; discretionary fiscal may expand independently. Low credibility means higher rates needed for given impact. Uncoordinated discretionary fiscal creates inconsistency risk. Recovery slow; fiscal-monetary tension persists throughout adjustment.",
       "feedback_loop": "Low credibility sustains elevated expectations; discretionary fiscal may undermine disinflation. Without coordination, policy mix prone to stop-go dynamics. Gradual stabilization occurs as political pressure eventually aligns policies.",
       "policy_feasibility": "CB lacks credibility; fiscal acts independently. Discretionary flexibility risks politically motivated expansions undermining disinflation. Coordination must emerge organically.",
@@ -287,14 +287,14 @@
       "coordination": "Uncoordinated",
       "credibility": "Low",
       "fiscal": "Discretionary",
-      "episode_ref": "Venezuela 2014-2016",
-      "mechanism": "Cost-push shock hits fixed-rate economy with deeply questioned peg credibility, uncoordinated low-credibility monetary policy, and discretionary fiscal. Peg blocks ER adjustment; low credibility and no coordination amplify capital outflow. Discretionary fiscal attempts partial offset but without coordination or fiscal rule, spending is unsustainable. Reserve drain makes peg untenable. Worst institutional configuration: all four dimensions adverse.",
-      "feedback_loop": "All loops adverse: peg → capital flight → reserve drain; low cred → elevated expectations → wage pressure; no coordination → conflicting signals; discretionary fiscal → reserve drain. Most severe spiral in this taxonomy.",
-      "policy_feasibility": "Peg unsustainable. Discretionary fiscal exacerbates reserves without coordination. Political incentives favor short-term spending. Institutional reform politically blocked.",
-      "incidence": "Severe distributional damage: inflation, unemployment, wealth destruction, austerity. Low-income households bear disproportionate burden.",
-      "discriminating_evidence": "Reserves collapse >40% within 6 quarters. Inflation accelerates toward 10%+ annualized in crisis scenarios. Real wages fall 8-15%. Unemployment rises 5-8pp. Output gap exceeds -4pp at trough in historical episodes. Ref: Venezuela 2014-2016 (BCV, IMF WEO).",
-      "narrative_summary": "Q1-Q2: Shock triggers acute crisis: capital flight, reserve drain, output gap -2.0% and deteriorating; discretionary fiscal accelerates drain; no coordination. Q3-Q6: Peg under maximum pressure; reserves near depletion; wages collapse; recession severe. Q7-Q12: MacroLab shows partial stabilization; real episodes involve peg collapse, hyperinflation, or external bailout not captured by the model.",
-      "anti_overclaim": "MacroLab MOST SEVERELY underestimates this regime's risks: (i) peg collapse and hyperinflation dynamics; (ii) banking system collapse from ER mismatch; (iii) political authoritarian response to crisis; (iv) international contagion. This is a purely illustrative trajectory. The worst real episodes (Venezuela 2014+, Zimbabwe 2008) involve dynamics entirely outside this model's scope."
+      "episode_ref": "Grecia 2010-2015",
+      "mechanism": "Cost-push shock hits euro-pegged (or equivalent) economy with uncoordinated monetary policy, low BC credibility, and discretionary fiscal deficit. Peg blocks ER adjustment (β=0): the real exchange rate can only depreciate via internal deflation, requiring wage and price cuts — politically costly and slow. Low credibility (ρ=0.35) makes π^e sticky: agents don't believe disinflation will occur, so inflation persists. Deficit spending validates those expectations.",
+      "feedback_loop": "Peg → no ER buffer; low cred → π^e = 0.65×π_prev (backward) → π stays near 3.5%; fiscal deficit validates high π^e; u gap rises → stagflation trap. Internal devaluation (wage cuts) raises u without reducing π. Peripheral stagflation mechanism.",
+      "policy_feasibility": "BC cannot set its own rate (peg). Fiscal consolidation is the only tool but contractionary. External bailout (ECB/ESM) may impose conditionality. Reform requires years.",
+      "incidence": "Real wages erode via sticky inflation and wage-cut adjustment. Unemployment rises ~3pp. Damage on formal workers and fixed-income earners.",
+      "discriminating_evidence": "π stays near 3-4% despite rising unemployment (stagflation). Inflation expectations de-anchor from target. Real ER depreciates ≥14pp by Q12 via inflation differential. CA deficit widens further. Ref: Grecia 2010-2015 (Eurostat, ECB, IMF Art.IV).",
+      "narrative_summary": "Q1-Q2: Shock raises π to 3.39%; peg prevents ER adjustment; output gap -2.0%; no monetary tool; discretionary fiscal adds pressure. Q3-Q6: π^e sticky (ρ=0.35, backward); π barely falls; u rises via internal devaluation; real ER depreciates via inflation differential. Q7-Q12: Stagflation trap — π≈3.5% at Q12 despite u=3.0%. No target convergence.",
+      "anti_overclaim": "MacroLab shows stylized 12-quarter path under maintained peg. Real episodes may involve: (i) peg collapse and abrupt devaluation; (ii) external bailout with conditionality; (iii) political crisis; (iv) gradual internal devaluation to near-deflation (Grecia: π fell to 1% but via 25%+ unemployment). The model captures the mechanism, not the full severity or eventual resolution."
     }
   ]
 }
