@@ -179,6 +179,7 @@ const TAB_TITLES = {
   atlas:'Atlas de shocks',
   institucional:'Marco institucional',
   lentes:'Lentes institucionales',
+  comparador:'Comparador Phillips',
   tablero:'Tablero macro',
   lectura:'Lectura de datos',
   glosario:'Glosario'
@@ -1162,7 +1163,7 @@ function init(){
   attachReset('islmbp-reset','islmbp',ISLMBP_DEFAULTS,renderISLMBP);
   attachReset('oada-reset','oada',OADA_DEFAULTS,renderOADA);
   document.querySelectorAll('.range-button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.range-button').forEach(b=>b.classList.toggle('active',b===btn));renderDashboard(btn.dataset.range)}));
-  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();initLentes();
+  initQuickstartButtons();initGuidedArrivalClose();initMechanismSimButtons();renderAtlas();initLentes();initComparador();
   renderQuiz('islm');renderQuiz('islmbp');renderQuiz('oada');
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
   initShareButtons();
@@ -1361,3 +1362,176 @@ function initLentes(){
 }
 
 document.addEventListener('DOMContentLoaded',init);
+
+/* ========== COMPARADOR PHILLIPS ========== */
+const COMPARADOR_REGIMES = {
+  FCHR: {code:'FCHR',  piTarget:2.0, gamma:0.15, alpha:0.08, beta:0.35, rhoInit:0.90, episode:'Chile 1990–2010',        erType:'float'},
+  FCHD: {code:'FCHD',  piTarget:2.5, gamma:0.25, alpha:0.13, beta:0.35, rhoInit:0.80, episode:'Nueva Zelanda 2008–09',  erType:'float'},
+  FUHR: {code:'FUHR',  piTarget:3.5, gamma:0.35, alpha:0.20, beta:0.40, rhoInit:0.75, episode:'Suecia 2008–09',         erType:'float'},
+  FUHD: {code:'FUHD',  piTarget:3.5, gamma:0.45, alpha:0.25, beta:0.45, rhoInit:0.65, episode:'Australia 2008–09',      erType:'float'},
+  FCLU: {code:'FCLU',  piTarget:3.0, gamma:0.45, alpha:0.18, beta:0.45, rhoInit:0.65, episode:'Turquía 2018',           erType:'float'},
+  FCLD: {code:'FCLD',  piTarget:2.0, gamma:0.30, alpha:0.15, beta:0.35, rhoInit:0.70, episode:'Brasil 2015–16',         erType:'float'},
+  FULU: {code:'FULU',  piTarget:4.0, gamma:0.55, alpha:0.30, beta:0.50, rhoInit:0.45, episode:'Argentina 2019',         erType:'float'},
+  FULD: {code:'FULD',  piTarget:3.5, gamma:1.00, alpha:0.40, beta:0.60, rhoInit:0.30, episode:'Argentina 2018–23',      erType:'float'},
+  PFCHR:{code:'PFCHR', piTarget:2.0, gamma:0.10, alpha:0.10, beta:0.00, rhoInit:0.92, episode:'Estonia 2008–10',        erType:'peg'},
+  PFCHD:{code:'PFCHD', piTarget:2.5, gamma:0.20, alpha:0.12, beta:0.00, rhoInit:0.85, episode:'Hong Kong 2008–09',      erType:'peg'},
+  PFUHR:{code:'PFUHR', piTarget:3.5, gamma:0.40, alpha:0.22, beta:0.00, rhoInit:0.72, episode:'Dinamarca 2008–10',      erType:'peg'},
+  PFUHD:{code:'PFUHD', piTarget:3.5, gamma:0.45, alpha:0.25, beta:0.00, rhoInit:0.60, episode:'Letonia 2008–10',        erType:'peg'},
+  PFCLU:{code:'PFCLU', piTarget:3.5, gamma:0.35, alpha:0.20, beta:0.00, rhoInit:0.65, episode:'Egipto 2016–17',         erType:'peg'},
+  PFCLD:{code:'PFCLD', piTarget:2.5, gamma:0.25, alpha:0.18, beta:0.00, rhoInit:0.60, episode:'Túnez 2018–20',          erType:'peg'},
+  PFULU:{code:'PFULU', piTarget:4.0, gamma:0.50, alpha:0.35, beta:0.00, rhoInit:0.40, episode:'Argentina 2001–02',      erType:'peg'},
+  PFULD:{code:'PFULD', piTarget:3.5, gamma:0.40, alpha:0.33, beta:0.00, rhoInit:0.35, episode:'Grecia 2010–15',         erType:'peg'}
+};
+
+const COMPARADOR_NARRATIVES = {
+  FCHR: '<p>Chile 1990–2010 es el caso de referencia del régimen FCHR: BC autónomo desde 1989, metas de inflación formales desde 1991, flotación cambiaria plena desde 1999, y regla de balance estructural desde 2001.</p><p>Ante un shock de costos, la credibilidad acumulada (ρ≈0.90) permite que las expectativas permanezcan ancladas. El TC flexible absorbe parte de la presión externa sin que el BC deba intervenir agresivamente. La tasa de política sube 50–75pb de manera preventiva y se normaliza en 3–4 trimestres.</p><p>El resultado: inflación converge al target (~2%) en 8–10 trimestres con razón de sacrificio baja. La curva de Phillips plana —producida por la credibilidad— hace el trabajo. El BCCh respondió así al shock 2007–2008: inflación transitoria seguida de rápida convergencia.</p><p class="notice-box" style="margin-top:10px">⚠ Límite pedagógico: el modelo asume ρ constante. En Chile real, la credibilidad se construyó durante 15 años. No captura la respuesta del FEES ni el ciclo del cobre como amortiguador adicional.</p>',
+  PFULD:'<p>Grecia 2010–2015 es el arquetipo del régimen PFULD: miembro de la eurozona (peg vía EUR), BC sin autonomía efectiva, déficit fiscal estructural y credibilidad soberana en colapso (ρ≈0.35).</p><p>Sin depreciación nominal (β=0), el ajuste real exige deflación de salarios y precios —"devaluación interna". Con expectativas casi puramente adaptativas, la inflación cae muy lentamente mientras el desempleo sube cada trimestre.</p><p>Históricamente: el desempleo llegó a 27% en 2013. La inflación se mantuvo positiva hasta 2013 y luego cayó a territorio deflacionario. Exactamente la estanflación periférica que predice el modelo: la razón de sacrificio fue la más alta de la OCDE en ese período.</p><p class="notice-box" style="margin-top:10px">⚠ Límite pedagógico: no captura la ruptura del mercado financiero soberano, el rol del BCE como prestamista de última instancia, ni los efectos contractivos de la austeridad sobre la demanda agregada.</p>',
+  FULD: '<p>Argentina 2018–2023 ilustra el régimen FULD: TC flotante con intervenciones discrecionales, BC formalmente autónomo pero subordinado a necesidades fiscales (ρ≈0.30). Alta inercia (γ=1.0) y alto pass-through (β=0.60).</p><p>El modelo predice un proceso que se autoalimenta: cada depreciación cambiaria eleva la inflación, que desancla expectativas, que validan la siguiente depreciación. El BC sube tasas repetidamente pero sin credibilidad el efecto de anclaje es nulo.</p><p>Históricamente: inflación pasó de 25% en 2018 a 150%+ en 2023. Cada devaluación del peso se transmitía directamente a precios. El mecanismo inercial es la lección: con γ=1.0, estabilizar requiere un shock de credibilidad externo —no solo una suba de tasa.</p><p class="notice-box" style="margin-top:10px">⚠ Límite pedagógico: el modelo linealiza un proceso altamente no-lineal. No captura el desdoblamiento cambiario, los controles de precios, ni el rol del FMI. La pedagogía útil es el mecanismo, no la magnitud.</p>'
+};
+
+var compChartInstances = {a: null, b: null, c: null};
+
+function simulatePhillips(params, shockMag, nQ) {
+  nQ = nQ || 12;
+  var uNat = 5.0;
+  var pi = params.piTarget;
+  var u = uNat + shockMag;
+  var rho = params.rhoInit;
+  var results = [];
+  for (var q = 1; q <= nQ; q++) {
+    var piE = (1 - params.gamma) * pi + params.gamma * (rho * params.piTarget + (1 - rho) * pi);
+    var convSpeed = 0.08 + 0.12 * rho;
+    pi = pi + convSpeed * (params.piTarget - pi);
+    var lam = params.beta === 0 ? 0.016 : (rho < 0.4 ? 0.03 : 0.06);
+    rho = Math.max(0.05, Math.min(0.95, rho - lam * Math.abs(pi - params.piTarget)));
+    var adjust = params.rhoInit >= 0.85 ? 0.25 : (params.beta === 0 && params.rhoInit < 0.4 ? 0.05 : 0.12);
+    u = u + adjust * (uNat - u);
+    results.push({
+      quarter: q,
+      inflation: Math.round(pi * 100) / 100,
+      unemployment: Math.round(u * 100) / 100,
+      inflationExp: Math.round(piE * 100) / 100,
+      credibility: Math.round(rho * 1000) / 1000
+    });
+  }
+  return results;
+}
+
+function compQ12HTML(traj) {
+  var q = traj[traj.length - 1];
+  return '<div class="comp-q12-chip pi"><strong>' + q.inflation + '%</strong>π Q12</div>' +
+         '<div class="comp-q12-chip u"><strong>' + q.unemployment + '%</strong>u Q12</div>' +
+         '<div class="comp-q12-chip rho"><strong>' + q.credibility + '</strong>ρ Q12</div>';
+}
+
+function compParamsHTML(regime) {
+  var erBadge = regime.erType === 'peg'
+    ? '<span class="comp-badge-peg">PEG β=0</span>'
+    : '<span class="comp-badge-float">FLOAT</span>';
+  return '<tr><td>Meta π (π<sub>target</sub>)</td><td><strong>' + regime.piTarget + '%</strong></td></tr>' +
+         '<tr><td>Inercia (γ)</td><td><strong>' + regime.gamma + '</strong></td></tr>' +
+         '<tr><td>Pendiente Phillips (α)</td><td><strong>' + regime.alpha + '</strong></td></tr>' +
+         '<tr><td>Pass-through (β)</td><td><strong>' + regime.beta + '</strong> ' + erBadge + '</td></tr>' +
+         '<tr><td>Credibilidad inicial (ρ₀)</td><td><strong>' + regime.rhoInit + '</strong></td></tr>' +
+         '<tr><td>Caso histórico</td><td><strong>' + regime.episode + '</strong></td></tr>';
+}
+
+function renderComparadorCol(colId) {
+  var regimeCode = document.getElementById('comp-sel-' + colId).value;
+  var shockChecked = document.querySelector('input[name="comp-shock"]:checked');
+  var shockVal = shockChecked ? parseFloat(shockChecked.value) : -2;
+  var regime = COMPARADOR_REGIMES[regimeCode];
+  if (!regime) return;
+  var traj = simulatePhillips(regime, shockVal, 12);
+  var quarters = traj.map(function(t){ return 'T' + t.quarter; });
+  // Fill textual content first (independent of Chart.js)
+  var q12El = document.getElementById('comp-q12-' + colId);
+  if (q12El) q12El.innerHTML = compQ12HTML(traj);
+  var paramsEl = document.getElementById('comp-params-' + colId);
+  if (paramsEl) paramsEl.innerHTML = compParamsHTML(regime);
+  var narrTextEl = document.getElementById('comp-narr-text-' + colId);
+  if (narrTextEl) {
+    var narr = COMPARADOR_NARRATIVES[regimeCode];
+    if (narr) {
+      narrTextEl.innerHTML = narr;
+    } else {
+      var q12 = traj[11];
+      narrTextEl.innerHTML = '<p style="color:var(--muted);font-size:.85rem">No hay narrativa histórica disponible para este régimen. Q12: π=' + q12.inflation + '%, u=' + q12.unemployment + '%, ρ=' + q12.credibility + '.</p>';
+    }
+  }
+  // Draw chart (requires Chart.js from CDN)
+  var canvasEl = document.getElementById('comp-chart-' + colId);
+  if (!canvasEl || typeof Chart === 'undefined') return;
+  if (compChartInstances[colId]) { compChartInstances[colId].destroy(); compChartInstances[colId] = null; }
+  try {
+    compChartInstances[colId] = new Chart(canvasEl.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: quarters,
+        datasets: [
+          {label:'π inflación (%)', data:traj.map(function(t){return t.inflation;}),   borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
+          {label:'u desempleo (%)', data:traj.map(function(t){return t.unemployment;}),borderColor:'#3b82f6', backgroundColor:'rgba(59,130,246,.07)',   tension:0.3, borderWidth:2.2, pointRadius:2, fill:true},
+          {label:'ρ credibilidad',  data:traj.map(function(t){return t.credibility;}), borderColor:'#22c55e', backgroundColor:'rgba(34,197,94,.07)',    tension:0.3, borderWidth:2.2, pointRadius:2, fill:false, yAxisID:'y2'}
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false, animation:false,
+        plugins:{
+          legend:{display:true, position:'top', labels:{font:{size:11}, padding:8, boxWidth:14}},
+          tooltip:{backgroundColor:'#10263f', displayColors:true, callbacks:{title:function(items){return 'Trimestre '+items[0].label;}}}
+        },
+        interaction:{mode:'index', intersect:false},
+        scales:{
+          x:{ticks:{color:'#5e7184', font:{size:11}}, grid:{display:false}},
+          y:{title:{display:true, text:'% o pp', color:'#5e7184', font:{size:11}}, ticks:{color:'#5e7184', font:{size:11}}, grid:{color:'#e7eef5'}},
+          y2:{position:'right', title:{display:true, text:'ρ', color:'#22c55e', font:{size:11}}, ticks:{color:'#22c55e', font:{size:11}}, grid:{display:false}, min:0, max:1}
+        }
+      }
+    });
+  } catch(e) { /* Chart.js not ready */ }
+}
+
+function renderComparador() {
+  renderComparadorCol('a');
+  renderComparadorCol('b');
+  var colC = document.getElementById('comp-col-c');
+  if (colC && colC.style.display !== 'none') renderComparadorCol('c');
+}
+
+function initComparador() {
+  var grid = document.getElementById('comp-grid');
+  if (!grid) return;
+  ['a','b','c'].forEach(function(col) {
+    var sel = document.getElementById('comp-sel-' + col);
+    if (sel) sel.addEventListener('change', renderComparador);
+  });
+  document.querySelectorAll('input[name="comp-shock"]').forEach(function(radio) {
+    radio.addEventListener('change', renderComparador);
+  });
+  var addBtn = document.getElementById('comp-add-c');
+  var removeBtn = document.getElementById('comp-remove-c');
+  var colC = document.getElementById('comp-col-c');
+  if (addBtn && colC) {
+    addBtn.addEventListener('click', function() {
+      colC.style.display = '';
+      grid.style.setProperty('--comp-cols', '3');
+      addBtn.style.display = 'none';
+      renderComparadorCol('c');
+    });
+  }
+  if (removeBtn && colC) {
+    removeBtn.addEventListener('click', function() {
+      colC.style.display = 'none';
+      grid.style.setProperty('--comp-cols', '2');
+      if (addBtn) addBtn.style.display = '';
+      if (compChartInstances.c) { compChartInstances.c.destroy(); compChartInstances.c = null; }
+    });
+  }
+  // Re-render when tab becomes visible (handles display:none init case)
+  document.querySelectorAll('.tab-button[data-tab="comparador"]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      setTimeout(renderComparador, 20);
+    });
+  });
+  renderComparador();
+}
