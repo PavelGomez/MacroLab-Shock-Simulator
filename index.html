@@ -118,9 +118,22 @@
     <button class="tab-button" data-tab="islmbp">IS-LM-BP</button>
     <button class="tab-button" data-tab="oada">OA-DA</button>
     <button class="tab-button" data-tab="shocks">Shocks y transmisión</button>
-    <button class="tab-button" data-tab="institucional">Marco institucional</button>
-    <button class="tab-button" data-tab="lentes">Lentes institucionales</button>
-    <button class="tab-button" data-tab="comparador">Comparador Phillips</button>
+    <button class="tab-button tab-button-q" data-tab="institucional">
+      <span class="tb-main">Marco institucional</span>
+      <span class="tb-sub">4 ejes · 16 configuraciones posibles</span>
+    </button>
+    <button class="tab-button tab-button-q" data-tab="lentes">
+      <span class="tb-main">Lentes institucionales</span>
+      <span class="tb-sub">¿Cómo moldea el régimen el shock?</span>
+    </button>
+    <button class="tab-button tab-button-q" data-tab="comparador">
+      <span class="tb-main">Comparador Phillips</span>
+      <span class="tb-sub">¿Cuánto difieren las trayectorias?</span>
+    </button>
+    <button class="tab-button tab-button-q" data-tab="atlas-lentes">
+      <span class="tb-main">Crónicas históricas</span>
+      <span class="tb-sub">Episodios reales · ancla la teoría</span>
+    </button>
     <button class="tab-button" data-tab="atlas">Atlas de shocks</button>
     <button class="tab-button" data-tab="tablero">Tablero macro</button>
     <button class="tab-button" data-tab="lectura">Lectura de datos</button>
@@ -265,6 +278,11 @@
               Compara Chile con economías de anclaje frágil, rigidez cambiaria o alta credibilidad.</p>
               <button class="route-btn" data-tab="lentes">ver lentes →</button>
             </article>
+            <article class="route-card">
+              <h4>Crónicas históricas <span class="chip-data" style="font-size:.72rem;vertical-align:middle">Q4</span></h4>
+              <p>¿Qué ocurrió en la realidad? Chile, Turquía, Argentina, Grecia, Noruega y Suecia — episodios documentados que anclan la teoría institucional en datos observados.</p>
+              <button class="route-btn" data-tab="atlas-lentes">ver crónicas →</button>
+            </article>
           </div>
         </div>
       </div>
@@ -380,9 +398,36 @@
 
       <div class="home-grid three">
         <article class="card"><h3>Qué es MacroLab</h3><p>Un laboratorio de macroeconomía aplicada para Chile. Ayuda a ordenar el paso desde un shock hacia variables, parámetros, curvas, equilibrios, trayectorias, instituciones y datos.</p></article>
-        <article class="card"><h3>Qué incluye</h3><p>Tres simuladores, shocks y transmisión, atlas de shocks, sección institucional, tablero macro con datos reales y glosario amplio.</p></article>
+        <article class="card"><h3>Qué incluye</h3><p>Tres simuladores (IS-LM, IS-LM-BP, OA-DA), Atlas de shocks, Tablero Macro, Glosario y <strong>cuatro módulos institucionales encadenados (Q1–Q4)</strong>: Marco institucional → Lentes → Comparador Phillips → Crónicas históricas.</p></article>
         <article class="card"><h3>Qué NO hace</h3><ul class="simple-list"><li>No predice el futuro.</li><li>No reemplaza un IPoM ni un modelo econométrico.</li><li>No recoge todos los canales simultáneos.</li><li>No sustituye juicio analítico.</li></ul></article>
       </div>
+
+      <section class="card" style="background:linear-gradient(180deg,#f0f7ff 0%,#fff 100%)">
+        <h3>Las cuatro preguntas pedagógicas (Q1 → Q4)</h3>
+        <p class="muted-paragraph">MacroLab estructura el análisis institucional en cuatro preguntas encadenadas. Puedes recorrerlas en orden o entrar por la que más te urge.</p>
+        <div class="sequence-grid">
+          <article>
+            <strong>Q1 · Marco institucional</strong>
+            <p>¿Qué son las instituciones macroeconómicas? Explora los 4 ejes de diseño y las 16 configuraciones posibles.</p>
+            <button class="route-btn" data-tab="institucional" style="margin-top:6px;font-size:.82rem">ir a Q1 →</button>
+          </article>
+          <article>
+            <strong>Q2 · Lentes institucionales</strong>
+            <p>¿Cómo moldea el régimen el shock? El mismo shock produce trayectorias radicalmente distintas de inflación y credibilidad.</p>
+            <button class="route-btn" data-tab="lentes" style="margin-top:6px;font-size:.82rem">ir a Q2 →</button>
+          </article>
+          <article>
+            <strong>Q3 · Comparador Phillips</strong>
+            <p>¿Cuánto difieren las trayectorias? Magnitud, velocidad de convergencia e índice de dolor entre regímenes.</p>
+            <button class="route-btn" data-tab="comparador" style="margin-top:6px;font-size:.82rem">ir a Q3 →</button>
+          </article>
+          <article>
+            <strong>Q4 · Crónicas históricas</strong>
+            <p>¿La teoría se valida con datos reales? Episodios documentados de Chile, Argentina, Grecia, Turquía, Noruega y Suecia.</p>
+            <button class="route-btn" data-tab="atlas-lentes" style="margin-top:6px;font-size:.82rem">ir a Q4 →</button>
+          </article>
+        </div>
+      </section>
 
       <section class="card">
         <h3>Cómo usarlo paso a paso</h3>
@@ -2223,6 +2268,21 @@
         <strong>Advertencia pedagógica:</strong> Este módulo simula trayectorias teóricas a partir del modelo Phillips (Carlin-Soskice 2024). Los parámetros son calibrados para capturar la dirección e intensidad relativa entre regímenes — no constituyen pronósticos ni cifras históricas exactas. El objetivo es comparar <em>mecanismos</em>, no magnitudes absolutas.
       </div>
 
+    </section>
+
+    <!-- ============ CRÓNICAS HISTÓRICAS · Atlas shock × configuración institucional · Q4 ============ -->
+    <section id="atlas-lentes" class="tab-panel">
+      <div class="atlas-lentes-header">
+        <a class="back-to-inicio" data-tab="inicio">← Volver al Inicio / elegir otra ruta</a>
+        <span class="chip-data" style="font-size:.76rem">Q4 · Episodios reales · ancla la teoría</span>
+      </div>
+      <iframe
+        src="atlas-lentes-institucionales.html"
+        class="atlas-lentes-frame"
+        title="Crónicas históricas · Atlas shock × configuración institucional"
+        loading="lazy"
+        allow="same-origin">
+      </iframe>
     </section>
 
     <!-- ============ GLOSARIO AMPLIADO ============ -->
