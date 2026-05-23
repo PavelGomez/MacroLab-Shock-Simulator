@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparador Visual + Shocks | Lentes Institucionales v2</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js"></script>
+
+    <!-- EDICIÓN 1: Data loader dinámico desde JSON -->
+    <script id="data-loader">
+        window.COMPARADOR_DATA = null;
+        window.COMPARADOR_LOADED = false;
+        fetch('./comparador-visual-data.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                window.COMPARADOR_DATA = data;
+                window.COMPARADOR_LOADED = true;
+                if (typeof initApp === 'function') initApp();
+            })
+            .catch(function(err) {
+                console.error('[data-loader] No se pudo cargar comparador-visual-data.json:', err);
+                document.getElementById('loading-msg').textContent =
+                    '⚠ Error al cargar datos. Abre con servidor local: python -m http.server 8000';
+            });
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Calibri', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        h1 { color: #2E75B6; margin-bottom: 10px; text-align: center; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 20px; font-size: 14px; }
+        #loading-msg { text-align: center; color: #999; font-size: 13px; margin-bottom: 20px; }
+
+        /* EDICIÓN 5: Leyenda de tiers */
+        .tier-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 12px;
+        }
+        .tier-legend-item { display: flex; align-items: center; gap: 6px; }
+        .tier-dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 16px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .control-group { display: flex; flex-direction: column; }
+        label { font-weight: bold; color: #2E75B6; margin-bottom: 8px; font-size: 13px; }
+        select {
+            padding: 10px;
+            border: 1px solid #2E75B6;
+            border-radius: 4px;
+            font-size: 13px;
+            background: white;
+            cursor: pointer;
+        }
+
+        /* EDICIÓN 3: Checkbox overlay real/teórico */
+        .overlay-controls {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 20px;
+            background: #eef4fb;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .overlay-controls label { font-weight: normal; color: #333; margin-bottom: 0; cursor: pointer; }
+        .overlay-controls input[type=checkbox] { width: 16px; height: 16px; cursor: pointer; }
+        .overlay-note { color: #666; font-size: 12px; }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active { color: #2E75B6; border-bottom-color: #2E75B6; }
+        .tab-btn:hover { color: #2E75B6; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .chart-container {
+            position: relative; height: 420px;
+            margin-bottom: 40px;
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .chart-small {
+            position: relative; height: 300px;
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .heatmap-container {
+            position: relative; height: 500px;
+            margin-bottom: 40px;
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        .legend {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        .regime-info {
+            background: #E2EFDA;
+            padding: 15px;
+            border-left: 4px solid #2E75B6;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .tier-1 { background: #E2EFDA; color: #1F6E35; }
+        .tier-2 { background: #FFF2CC; color: #9C6500; }
+        .tier-3 { background: #FCE4D6; color: #9C5400; }
+        .tier-4 { background: #F4CCCC; color: #9C2121; }
+
+        .comparison-note {
+            background: #D5E8F0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #1a4d7a;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Comparador Visual + Shocks v2</h1>
+        <div class="subtitle">Lentes Institucionales: 8 Crónicas Históricas (1990–2024) | Datos dinámicos desde JSON</div>
+        <div id="loading-msg">Cargando datos históricos…</div>
+
+        <!-- EDICIÓN 5: Leyenda de tiers -->
+        <div class="tier-legend">
+            <strong>Tiers:</strong>
+            <div class="tier-legend-item">
+                <span class="tier-dot" style="background:#22c55e"></span>
+                <span><strong>Tier 1 — Éxito:</strong> FCHR (Chile) · convergencia rápida</span>
+            </div>
+            <div class="tier-legend-item">
+                <span class="tier-dot" style="background:#eab308"></span>
+                <span><strong>Tier 2 — Transición:</strong> FCHD, FUHR, PFHR · ajuste lento pero estabilizador</span>
+            </div>
+            <div class="tier-legend-item">
+                <span class="tier-dot" style="background:#f97316"></span>
+                <span><strong>Tier 3 — Trampa:</strong> FUHD (Turquía) · desanclaje progresivo</span>
+            </div>
+            <div class="tier-legend-item">
+                <span class="tier-dot" style="background:#ef4444"></span>
+                <span><strong>Tier 4 — Colapso:</strong> FULD, PFULU, TRAP · sin convergencia</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label for="regime-select">Selecciona Régimen:</label>
+                <select id="regime-select">
+                    <option value="FCHR_chile_2021_2024">FCHR — Chile 2021–2024 (Tier 1)</option>
+                    <option value="FCHD_suecia_1992_1998">FCHD — Suecia 1992–1998 (Tier 2)</option>
+                    <option value="FUHR_brasil_implied">FUHR — Brasil implied (Tier 2)</option>
+                    <option value="FUHD_turquia_2018_2023">FUHD — Turquía 2018–2023 (Tier 3)</option>
+                    <option value="FULD_argentina_2020">FULD — Argentina 2020 (Tier 4)</option>
+                    <option value="PFHR_hongkong_implied">PFHR — Hong Kong implied (Tier 2)</option>
+                    <option value="PFULU_grecia_2010_2015">PFULU — Grecia 2010–2015 (Tier 4)</option>
+                    <option value="TRAP_japon_implied">TRAP — Japón implied (Tier 4)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="shock-select">Selecciona Shock:</label>
+                <select id="shock-select">
+                    <option value="demand_neg_3pp">Demanda Negativa (−3pp)</option>
+                    <option value="demand_pos_3pp">Demanda Positiva (+3pp)</option>
+                    <option value="cost_pos_2pp">Costos Positivos (+2pp)</option>
+                    <option value="cost_neg_2pp">Costos Negativos (−2pp)</option>
+                    <option value="combined_mix">Mixto: Demanda + Costos</option>
+                    <option value="sudden_stop">Sudden Stop (Crisis externa)</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="variable-select">Variable a Graficar:</label>
+                <select id="variable-select">
+                    <option value="inflacion">Inflación (% anual)</option>
+                    <option value="desempleo">Desempleo (%)</option>
+                    <option value="tc_real">Tipo de Cambio Real (índice)</option>
+                    <option value="policy_rate">Tasa de Política (pp, derivada)</option>
+                    <option value="output_gap">Brecha de Output (pp, derivada)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- EDICIÓN 3: Checkbox "Mostrar datos reales vs. teóricos" -->
+        <div class="overlay-controls">
+            <label>
+                <input type="checkbox" id="show-real-data" checked>
+                Mostrar datos reales vs. teóricos
+            </label>
+            <span class="overlay-note">
+                — Línea sólida: trayectoria teórica (Carlin-Soskice). Línea punteada: datos históricos de la crónica (solo para shock principal del régimen).
+            </span>
+        </div>
+
+        <div id="regime-info" class="regime-info">Cargando información del régimen…</div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('phillips', event)">📊 Phillips Curve</button>
+            <button class="tab-btn" onclick="switchTab('irf', event)">📈 Impulse Response</button>
+            <button class="tab-btn" onclick="switchTab('comparison', event)">🔄 Comparativa 8 Regímenes</button>
+            <button class="tab-btn" onclick="switchTab('heatmap', event)">🔥 Heat Map</button>
+        </div>
+
+        <!-- TAB 1: PHILLIPS CURVE -->
+        <div id="phillips" class="tab-content active">
+            <div class="legend">
+                <strong>Phillips Curve por Régimen (dinámica):</strong> Muestra la relación
+                inflación–desempleo según parámetros calibrados desde crónicas históricas.
+                Pendiente λ pequeña (Tier 1) = shocks se absorben rápido. Pendiente λ grande (Tier 4) =
+                inflación persiste aun con alto desempleo. Fuente: calibración OLS sobre datos de crónica.
+            </div>
+            <div class="chart-container">
+                <canvas id="phillipsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- TAB 2: IMPULSE RESPONSE -->
+        <div id="irf" class="tab-content">
+            <div class="legend">
+                <strong>Impulse Response Functions (IRF):</strong> Trayectorias Q0–Q12 tras el shock seleccionado.
+                Línea sólida = teórica (Carlin-Soskice). Línea punteada = histórica (crónica).
+                Regímenes exitosos (Tier 1) convergen en 4–6 trimestres;
+                regímenes frágiles (Tier 4) divergen o no convergen en el horizonte.
+            </div>
+            <div class="charts-grid">
+                <div class="chart-small"><canvas id="irfChart"></canvas></div>
+                <div class="chart-small"><canvas id="comparativeChart"></canvas></div>
+            </div>
+            <div class="comparison-note">
+                <strong>Izquierda:</strong> régimen seleccionado (teórico + real si disponible).
+                <strong>Derecha:</strong> comparativa con FCHR Chile como benchmark de éxito.
+            </div>
+        </div>
+
+        <!-- TAB 3: COMPARATIVA 8 REGÍMENES -->
+        <div id="comparison" class="tab-content">
+            <div class="legend">
+                <strong>Comparativa 8 Regímenes:</strong> Mismo shock → 8 trayectorias distintas.
+                El corazón de Carlin-Soskice: la institución determina cómo responde la economía.
+                Cada línea = un régimen institucional distinto; colores por tier (verde=éxito, rojo=colapso).
+            </div>
+            <div class="chart-container">
+                <canvas id="comparisonPanelChart"></canvas>
+            </div>
+        </div>
+
+        <!-- TAB 4: HEAT MAP -->
+        <div id="heatmap" class="tab-content">
+            <div class="legend">
+                <strong>Heat Map de Trayectorias:</strong> Cada fila = un régimen. Cada columna = un trimestre (Q1–Q12).
+                Color: <span style="color:#ef4444">rojo</span> = inflación alta / desempleo alto.
+                <span style="color:#2563eb">azul</span> = deflación / desempleo bajo.
+                Visualiza qué régimen es más estable (colores débiles) vs. volátil (colores fuertes).
+            </div>
+            <div class="heatmap-container">
+                <canvas id="heatmapChart"></canvas>
+            </div>
+        </div>
+
+        <footer>
+            Comparador Visual + Shocks v2 | MacroLab | Mayo 2026 |
+            Basado en Carlin &amp; Soskice (2024) | Datos: CRONICAS_CONSOLIDADAS.md
+        </footer>
+    </div>
+
+    <script>
+    // ============================================
+    // EDICIÓN 2: Sección PHILLIPS_CURVES — dinámica desde JSON
+    // ============================================
+
+    var ALL_REGIME_IDS = [
+        'FCHR_chile_2021_2024', 'FCHD_suecia_1992_1998', 'FUHR_brasil_implied',
+        'FUHD_turquia_2018_2023', 'FULD_argentina_2020', 'PFHR_hongkong_implied',
+        'PFULU_grecia_2010_2015', 'TRAP_japon_implied'
+    ];
+
+    // Shock key mapping: JSON key → display name
+    var SHOCK_LABELS = {
+        demand_neg_3pp: 'Demanda −3pp',
+        demand_pos_3pp: 'Demanda +3pp',
+        cost_pos_2pp:   'Costos +2pp',
+        cost_neg_2pp:   'Costos −2pp',
+        combined_mix:   'Mixto',
+        sudden_stop:    'Sudden Stop'
+    };
+
+    function getRegimeData(regId) {
+        if (!window.COMPARADOR_DATA) return null;
+        return window.COMPARADOR_DATA.regimenes[regId] || null;
+    }
+
+    // EDICIÓN 4: Escalas automáticas según rango observado
+    function getAxisScales(regId, shockKey, variable) {
+        var data = window.COMPARADOR_DATA;
+        if (!data) return { min: 0, max: 10 };
+
+        var allValues = [];
+        var regsToScan = regId ? [regId] : ALL_REGIME_IDS;
+
+        regsToScan.forEach(function(id) {
+            var reg = data.regimenes[id];
+            if (!reg || !reg.shocks || !reg.shocks[shockKey]) return;
+            reg.shocks[shockKey].forEach(function(pt) {
+                var val = getPointValue(pt, variable, reg);
+                if (val !== null && val !== undefined && !isNaN(val)) allValues.push(val);
+            });
+        });
+
+        if (allValues.length === 0) return { min: 0, max: 10 };
+        var minV = Math.min.apply(null, allValues);
+        var maxV = Math.max.apply(null, allValues);
+        var pad  = (maxV - minV) * 0.12 || 1;
+        return {
+            min: Math.floor((minV - pad) * 10) / 10,
+            max: Math.ceil((maxV  + pad) * 10) / 10
+        };
+    }
+
+    // Get scales across all regimes for comparison chart
+    function getAxisScalesAllRegimes(shockKey, variable) {
+        return getAxisScales(null, shockKey, variable);
+    }
+
+    function getPointValue(pt, variable, reg) {
+        switch (variable) {
+            case 'inflacion':   return pt.inflacion_teorica;
+            case 'desempleo':   return pt.desempleo_teorico;
+            case 'tc_real':     return pt.tc_real_idx;
+            case 'policy_rate': return Math.max(0, (pt.inflacion_teorica - (reg ? reg.target_inflacion : 3)) * 0.6);
+            case 'output_gap':  return -(pt.desempleo_teorico - (reg ? reg.nairu : 7)) * 1.5;
+            default: return 0;
+        }
+    }
+
+    function getRealPointValue(pt, variable) {
+        switch (variable) {
+            case 'inflacion': return pt.inflacion_real;
+            case 'desempleo': return pt.desempleo_real;
+            case 'tc_real':   return pt.tc_real_idx;
+            default: return null;
+        }
+    }
+
+    function getVariableLabel(variable) {
+        var labels = {
+            inflacion:   'Inflación (% anual)',
+            desempleo:   'Desempleo (%)',
+            tc_real:     'TC Real (índice, Q0=100)',
+            policy_rate: 'Tasa de Política (pp, derivada)',
+            output_gap:  'Brecha de Output (pp, derivada)'
+        };
+        return labels[variable] || variable;
+    }
+
+    // Generate Phillips curve points dynamically from regime parameters
+    function generatePhillipsCurvePoints(reg) {
+        var lambda   = reg.phillips_slope;
+        var uNairu   = reg.nairu;
+        var piTarget = reg.target_inflacion;
+        var points   = [];
+        var uMin = uNairu * 0.3;
+        var uMax = uNairu * 3.0;
+        var n = 20;
+        for (var i = 0; i < n; i++) {
+            var u  = uMin + (uMax - uMin) * i / (n - 1);
+            var pi = piTarget - lambda * (u - uNairu);
+            points.push({ x: +u.toFixed(2), y: +pi.toFixed(2) });
+        }
+        return points;
+    }
+
+    // ============================================
+    // GRÁFICO 1: PHILLIPS CURVE (dinámica)
+    // ============================================
+
+    var phillipsChartInstance = null;
+
+    function updatePhillipsChart() {
+        var data = window.COMPARADOR_DATA;
+        if (!data) return;
+
+        var datasets = ALL_REGIME_IDS.map(function(id) {
+            var reg = data.regimenes[id];
+            var pts = generatePhillipsCurvePoints(reg);
+            return {
+                label: reg.regimen + ' — ' + reg.label + ' (λ=' + reg.phillips_slope.toFixed(2) + ')',
+                data: pts,
+                borderColor: reg.color,
+                backgroundColor: reg.color + '30',
+                borderWidth: 2,
+                pointRadius: 2,
+                showLine: true,
+                tension: 0
+            };
+        });
+
+        // Axis scales: collect all u and pi values
+        var allU = [], allPi = [];
+        ALL_REGIME_IDS.forEach(function(id) {
+            var reg = data.regimenes[id];
+            var pts = generatePhillipsCurvePoints(reg);
+            pts.forEach(function(p) { allU.push(p.x); allPi.push(p.y); });
+        });
+        var uPad  = 2, piPad = 5;
+        var xMin = Math.floor(Math.min.apply(null, allU) - uPad);
+        var xMax = Math.ceil(Math.max.apply(null, allU)  + uPad);
+        var yMin = Math.floor(Math.min.apply(null, allPi) - piPad);
+        var yMax = Math.ceil(Math.max.apply(null, allPi)  + piPad);
+
+        var ctx = document.getElementById('phillipsChart').getContext('2d');
+        if (phillipsChartInstance) phillipsChartInstance.destroy();
+        phillipsChartInstance = new Chart(ctx, {
+            type: 'scatter',
+            data: { datasets: datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+                    title: {
+                        display: true,
+                        text: 'Phillips Curves: λ = f(credibilidad institucional) — Carlin-Soskice 2024'
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Desempleo (%)' }, min: Math.max(0, xMin), max: xMax },
+                    y: { title: { display: true, text: 'Inflación (% anual)' }, min: yMin, max: yMax }
+                }
+            }
+        });
+    }
+
+    // ============================================
+    // GRÁFICO 2: IMPULSE RESPONSE (IRF)
+    // ============================================
+
+    var irfChartInstance = null;
+    var comparativeChartInstance = null;
+
+    function updateIRF() {
+        var data = window.COMPARADOR_DATA;
+        if (!data) return;
+
+        var regId    = document.getElementById('regime-select').value;
+        var shockKey = document.getElementById('shock-select').value;
+        var variable = document.getElementById('variable-select').value;
+        var showReal = document.getElementById('show-real-data').checked;
+
+        var reg = data.regimenes[regId];
+        if (!reg) return;
+
+        // Update regime info panel
+        document.getElementById('regime-info').innerHTML =
+            '<strong>' + reg.regimen + ' — ' + reg.label + '</strong>' +
+            '<span class="tier-badge tier-' + reg.tier + '">Tier ' + reg.tier + '</span>' +
+            '<br>λ = ' + reg.phillips_slope.toFixed(2) +
+            ' · NAIRU = ' + reg.nairu + '% · Meta π = ' + reg.target_inflacion + '%' +
+            ' · Resultado: <em>' + reg.resultado_credibilidad + '</em>';
+
+        var traj   = reg.shocks[shockKey] || [];
+        var labels = traj.map(function(p) { return 'Q' + p.quarter; });
+
+        var teoricaData = traj.map(function(pt) { return getPointValue(pt, variable, reg); });
+        var realData    = showReal ? traj.map(function(pt) { return getRealPointValue(pt, variable); }) : null;
+
+        var scales = getAxisScales(regId, shockKey, variable);
+
+        // IRF Chart — selected regime
+        var datasets = [{
+            label: getVariableLabel(variable) + ' — teórico',
+            data: teoricaData,
+            borderColor: reg.color,
+            backgroundColor: reg.color + '30',
+            borderWidth: 3,
+            pointRadius: 4,
+            tension: 0.35
+        }];
+
+        if (realData && realData.some(function(v) { return v !== null; })) {
+            datasets.push({
+                label: getVariableLabel(variable) + ' — histórico',
+                data: realData,
+                borderColor: reg.color,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [6, 3],
+                pointRadius: 3,
+                tension: 0.3
+            });
+        }
+
+        var irfCtx = document.getElementById('irfChart').getContext('2d');
+        if (irfChartInstance) irfChartInstance.destroy();
+        irfChartInstance = new Chart(irfCtx, {
+            type: 'line',
+            data: { labels: labels, datasets: datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { size: 11 } } },
+                    title: { display: true, text: 'IRF: ' + reg.label + ' — ' + (SHOCK_LABELS[shockKey] || shockKey) }
+                },
+                scales: {
+                    y: { title: { display: true, text: getVariableLabel(variable) }, min: scales.min, max: scales.max }
+                }
+            }
+        });
+
+        // Comparative Chart — vs FCHR benchmark
+        var benchmarkId = 'FCHR_chile_2021_2024';
+        var benchReg    = data.regimenes[benchmarkId];
+        var benchTraj   = benchReg ? (benchReg.shocks[shockKey] || []) : [];
+        var benchData   = benchTraj.map(function(pt) { return getPointValue(pt, variable, benchReg); });
+
+        var compScales  = getAxisScalesAllRegimes(shockKey, variable);
+
+        var compDatasets = [
+            {
+                label: reg.label + ' (seleccionado)',
+                data: teoricaData,
+                borderColor: reg.color,
+                backgroundColor: reg.color + '30',
+                borderWidth: 3,
+                pointRadius: 4,
+                tension: 0.35
+            },
+            {
+                label: 'FCHR — Chile (benchmark)',
+                data: benchData,
+                borderColor: '#22c55e',
+                backgroundColor: '#22c55e20',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                pointRadius: 3,
+                tension: 0.35
+            }
+        ];
+
+        if (realData && realData.some(function(v) { return v !== null; }) && showReal) {
+            compDatasets.push({
+                label: reg.label + ' — histórico',
+                data: realData,
+                borderColor: reg.color,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                borderDash: [3, 3],
+                pointRadius: 2,
+                tension: 0.3
+            });
+        }
+
+        var comparativeCtx = document.getElementById('comparativeChart').getContext('2d');
+        if (comparativeChartInstance) comparativeChartInstance.destroy();
+        comparativeChartInstance = new Chart(comparativeCtx, {
+            type: 'line',
+            data: { labels: labels, datasets: compDatasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { size: 11 } } },
+                    title: { display: true, text: 'Comparativa: ' + reg.regimen + ' vs FCHR' }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: getVariableLabel(variable) },
+                        min: compScales.min,
+                        max: compScales.max
+                    }
+                }
+            }
+        });
+    }
+
+    // ============================================
+    // GRÁFICO 3: COMPARATIVA 8 REGÍMENES
+    // ============================================
+
+    var comparisonPanelChartInstance = null;
+
+    function updateComparison() {
+        var data = window.COMPARADOR_DATA;
+        if (!data) return;
+
+        var shockKey = document.getElementById('shock-select').value;
+        var variable = document.getElementById('variable-select').value;
+        var labels   = Array.from({length: 13}, function(_, i) { return 'Q' + i; });
+        var scales   = getAxisScalesAllRegimes(shockKey, variable);
+
+        var datasets = ALL_REGIME_IDS.map(function(id) {
+            var reg  = data.regimenes[id];
+            var traj = reg.shocks[shockKey] || [];
+            return {
+                label: reg.regimen + ' (' + reg.pais + ')',
+                data: traj.map(function(pt) { return getPointValue(pt, variable, reg); }),
+                borderColor: reg.color,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                pointRadius: 3,
+                tension: 0.35
+            };
+        });
+
+        var ctx = document.getElementById('comparisonPanelChart').getContext('2d');
+        if (comparisonPanelChartInstance) comparisonPanelChartInstance.destroy();
+        comparisonPanelChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: { labels: labels, datasets: datasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+                    title: {
+                        display: true,
+                        text: '8 Regímenes — mismo shock: ' + (SHOCK_LABELS[shockKey] || shockKey) +
+                              ' — variable: ' + getVariableLabel(variable)
+                    }
+                },
+                scales: {
+                    y: {
+                        title: { display: true, text: getVariableLabel(variable) },
+                        min: scales.min,
+                        max: scales.max
+                    }
+                }
+            }
+        });
+    }
+
+    // ============================================
+    // GRÁFICO 4: HEAT MAP
+    // ============================================
+
+    function updateHeatmap() {
+        var data = window.COMPARADOR_DATA;
+        if (!data) return;
+
+        var shockKey = document.getElementById('shock-select').value;
+        var variable = document.getElementById('variable-select').value;
+
+        var canvas = document.getElementById('heatmapChart');
+        var regimes = ALL_REGIME_IDS;
+        var quarters = 12; // Q1..Q12 (exclude Q0)
+
+        var W = canvas.parentElement.clientWidth - 120 || 700;
+        var H = 300;
+        canvas.width  = W;
+        canvas.height = H;
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, W, H);
+
+        var labelW  = 110;
+        var cellW   = (W - labelW) / quarters;
+        var cellH   = H / regimes.length;
+
+        // Collect all values for normalization
+        var allVals = [];
+        regimes.forEach(function(id) {
+            var reg  = data.regimenes[id];
+            var traj = (reg.shocks[shockKey] || []).slice(1); // skip Q0
+            traj.forEach(function(pt) {
+                var v = getPointValue(pt, variable, reg);
+                if (!isNaN(v)) allVals.push(v);
+            });
+        });
+        var minV = Math.min.apply(null, allVals);
+        var maxV = Math.max.apply(null, allVals);
+        var range = (maxV - minV) || 1;
+
+        regimes.forEach(function(id, i) {
+            var reg  = data.regimenes[id];
+            var traj = (reg.shocks[shockKey] || []).slice(1);
+
+            // Row label
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 10px sans-serif';
+            ctx.textAlign = 'right';
+            ctx.fillText(reg.regimen, labelW - 6, (i + 0.6) * cellH);
+
+            traj.forEach(function(pt, q) {
+                var v = getPointValue(pt, variable, reg);
+                var norm = (v - minV) / range; // 0..1
+
+                // Color: blue=low, red=high
+                var r = Math.round(norm * 220);
+                var b = Math.round((1 - norm) * 220);
+                ctx.fillStyle = 'rgba(' + r + ', 50, ' + b + ', 0.75)';
+                ctx.fillRect(labelW + q * cellW, i * cellH, cellW - 1, cellH - 1);
+
+                ctx.fillStyle = '#fff';
+                ctx.font = '9px sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(v.toFixed(1), labelW + (q + 0.5) * cellW, (i + 0.6) * cellH);
+            });
+        });
+
+        // Quarter labels
+        ctx.fillStyle = '#555';
+        ctx.font = '9px sans-serif';
+        ctx.textAlign = 'center';
+        for (var q = 0; q < quarters; q++) {
+            ctx.fillText('Q' + (q + 1), labelW + (q + 0.5) * cellW, H - 2);
+        }
+    }
+
+    // ============================================
+    // NAVEGACIÓN DE PESTAÑAS
+    // ============================================
+
+    function switchTab(tabName, evt) {
+        document.querySelectorAll('.tab-content').forEach(function(tab) {
+            tab.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        document.getElementById(tabName).classList.add('active');
+        if (evt && evt.target) evt.target.classList.add('active');
+
+        if (tabName === 'irf')        updateIRF();
+        if (tabName === 'comparison') updateComparison();
+        if (tabName === 'heatmap')    updateHeatmap();
+        if (tabName === 'phillips')   updatePhillipsChart();
+    }
+
+    // ============================================
+    // INICIALIZACIÓN — espera a que cargue JSON
+    // ============================================
+
+    function initApp() {
+        document.getElementById('loading-msg').style.display = 'none';
+        updatePhillipsChart();
+        updateIRF();
+    }
+
+    // Event listeners
+    document.getElementById('regime-select').addEventListener('change', updateIRF);
+    document.getElementById('shock-select').addEventListener('change', function() {
+        var activeTab = document.querySelector('.tab-content.active');
+        if (activeTab) {
+            var id = activeTab.id;
+            if (id === 'irf')        updateIRF();
+            if (id === 'comparison') updateComparison();
+            if (id === 'heatmap')    updateHeatmap();
+        }
+    });
+    document.getElementById('variable-select').addEventListener('change', function() {
+        var activeTab = document.querySelector('.tab-content.active');
+        if (activeTab) {
+            var id = activeTab.id;
+            if (id === 'irf')        updateIRF();
+            if (id === 'comparison') updateComparison();
+            if (id === 'heatmap')    updateHeatmap();
+        }
+    });
+    document.getElementById('show-real-data').addEventListener('change', function() {
+        var activeTab = document.querySelector('.tab-content.active');
+        if (activeTab && activeTab.id === 'irf') updateIRF();
+    });
+
+    // If data already loaded before DOMContentLoaded (unlikely but safe)
+    if (window.COMPARADOR_LOADED) initApp();
+    </script>
+</body>
+</html>

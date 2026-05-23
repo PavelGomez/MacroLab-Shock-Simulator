@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "version": "2A.1",
+    "fecha": "2026-05-23",
+    "regimenes_covered": 8,
+    "fuente": "CRONICAS_CONSOLIDADAS.md",
+    "variables": ["inflacion_anual", "desempleo", "tc_real_idx"],
+    "notas": "Q0=baseline pre-shock. tc_real_idx=100 en Q0. Pegged regimes mantienen tc=100 por construccion. Datos reconstruidos de cronicas; ver CRONICAS_CONSOLIDADAS.md para fuentes primarias."
+  },
+  "regimenes": {
+    "FCHR_chile_2021_2024": {
+      "label": "Chile 2021–2024",
+      "regimen": "FCHR",
+      "pais": "Chile",
+      "periodo": "2021-2024",
+      "shock_principal": "demand_pos",
+      "resultado_credibilidad": "anchored",
+      "phillips_slope_estimado": 0.30,
+      "convergence_speed_estimado": 0.18,
+      "tier": 1,
+      "color": "#22c55e",
+      "dimensiones": {
+        "regimen_cambiario": "floating",
+        "coordinacion": "coordinated",
+        "credibilidad": "high",
+        "regla_fiscal": "structural_rule"
+      },
+      "hitos": {
+        "inflacion_peak": {"valor": 14.1, "trimestre": 5, "nota": "ago-2022, INE"},
+        "tpm_peak": {"valor": 11.25, "trimestre": 6, "nota": "oct-2022, BCCh"},
+        "desempleo_peak": {"valor": 8.5, "trimestre": 5}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 3.2, "desempleo": 7.2, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 5.8, "desempleo": 7.4, "tc_real_idx": 98.5},
+        {"quarter": 2, "inflacion_anual": 8.9, "desempleo": 7.6, "tc_real_idx": 97.2},
+        {"quarter": 3, "inflacion_anual": 11.4, "desempleo": 8.0, "tc_real_idx": 96.0},
+        {"quarter": 4, "inflacion_anual": 13.2, "desempleo": 8.3, "tc_real_idx": 95.0},
+        {"quarter": 5, "inflacion_anual": 14.1, "desempleo": 8.5, "tc_real_idx": 94.2},
+        {"quarter": 6, "inflacion_anual": 13.5, "desempleo": 8.4, "tc_real_idx": 94.5},
+        {"quarter": 7, "inflacion_anual": 11.8, "desempleo": 8.2, "tc_real_idx": 95.5},
+        {"quarter": 8, "inflacion_anual": 9.2, "desempleo": 7.9, "tc_real_idx": 97.0},
+        {"quarter": 9, "inflacion_anual": 7.0, "desempleo": 7.6, "tc_real_idx": 98.0},
+        {"quarter": 10, "inflacion_anual": 5.4, "desempleo": 7.3, "tc_real_idx": 99.0},
+        {"quarter": 11, "inflacion_anual": 4.5, "desempleo": 7.1, "tc_real_idx": 99.5},
+        {"quarter": 12, "inflacion_anual": 3.8, "desempleo": 7.0, "tc_real_idx": 100.0}
+      ]
+    },
+    "FCHD_suecia_1992_1998": {
+      "label": "Suecia 1992–1998",
+      "regimen": "FCHD",
+      "pais": "Suecia",
+      "periodo": "1992-1998",
+      "shock_principal": "banking_crisis",
+      "resultado_credibilidad": "anchored",
+      "phillips_slope_estimado": 0.55,
+      "convergence_speed_estimado": 0.12,
+      "tier": 2,
+      "color": "#eab308",
+      "dimensiones": {
+        "regimen_cambiario": "floating",
+        "coordinacion": "coordinated",
+        "credibilidad": "recently_adopted_target",
+        "regla_fiscal": "structural_rule"
+      },
+      "hitos": {
+        "salida_mtc": {"trimestre": 1, "nota": "nov-1992, krona deprecia"},
+        "meta_inflacion": {"trimestre": 2, "nota": "ene-1993, Riksbank anuncia meta"},
+        "desempleo_peak": {"valor": 9.9, "trimestre": 4, "nota": "1993"},
+        "superavit_primario": {"trimestre": 12, "nota": "1998"}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 8.0, "desempleo": 5.3, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 9.5, "desempleo": 6.0, "tc_real_idx": 80.0},
+        {"quarter": 2, "inflacion_anual": 8.2, "desempleo": 7.5, "tc_real_idx": 78.0},
+        {"quarter": 3, "inflacion_anual": 5.0, "desempleo": 9.0, "tc_real_idx": 77.0},
+        {"quarter": 4, "inflacion_anual": 3.0, "desempleo": 9.9, "tc_real_idx": 76.5},
+        {"quarter": 5, "inflacion_anual": 2.8, "desempleo": 9.5, "tc_real_idx": 77.0},
+        {"quarter": 6, "inflacion_anual": 2.5, "desempleo": 9.0, "tc_real_idx": 78.0},
+        {"quarter": 7, "inflacion_anual": 2.5, "desempleo": 8.5, "tc_real_idx": 80.0},
+        {"quarter": 8, "inflacion_anual": 2.2, "desempleo": 8.0, "tc_real_idx": 82.0},
+        {"quarter": 9, "inflacion_anual": 2.0, "desempleo": 7.5, "tc_real_idx": 84.0},
+        {"quarter": 10, "inflacion_anual": 1.8, "desempleo": 7.2, "tc_real_idx": 87.0},
+        {"quarter": 11, "inflacion_anual": 2.0, "desempleo": 6.5, "tc_real_idx": 90.0},
+        {"quarter": 12, "inflacion_anual": 2.0, "desempleo": 6.0, "tc_real_idx": 92.0}
+      ]
+    },
+    "FUHR_brasil_implied": {
+      "label": "Brasil (implied)",
+      "regimen": "FUHR",
+      "pais": "Brasil",
+      "periodo": "1999-2010",
+      "shock_principal": "sudden_stop",
+      "resultado_credibilidad": "anchored",
+      "phillips_slope_estimado": 0.60,
+      "convergence_speed_estimado": 0.10,
+      "tier": 2,
+      "color": "#f59e0b",
+      "dimensiones": {
+        "regimen_cambiario": "floating",
+        "coordinacion": "uncoordinated",
+        "credibilidad": "high",
+        "regla_fiscal": "structural_rule"
+      },
+      "notas_proxy": "Datos proxy basados en perfil FUHD turco 2018-2023 ajustados para mayor credibilidad (lambda menor, convergencia mas rapida). Brasil IT adoptado 1999 post-crisis Samba.",
+      "hitos": {
+        "inflacion_peak": {"valor": 22.5, "trimestre": 5},
+        "desempleo_peak": {"valor": 11.2, "trimestre": 4}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 6.0, "desempleo": 9.5, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 8.5, "desempleo": 10.0, "tc_real_idx": 95.0},
+        {"quarter": 2, "inflacion_anual": 12.0, "desempleo": 10.5, "tc_real_idx": 90.0},
+        {"quarter": 3, "inflacion_anual": 16.0, "desempleo": 11.0, "tc_real_idx": 85.0},
+        {"quarter": 4, "inflacion_anual": 19.0, "desempleo": 11.2, "tc_real_idx": 82.0},
+        {"quarter": 5, "inflacion_anual": 22.5, "desempleo": 11.0, "tc_real_idx": 80.0},
+        {"quarter": 6, "inflacion_anual": 21.0, "desempleo": 10.5, "tc_real_idx": 82.0},
+        {"quarter": 7, "inflacion_anual": 18.5, "desempleo": 10.2, "tc_real_idx": 85.0},
+        {"quarter": 8, "inflacion_anual": 15.0, "desempleo": 9.8, "tc_real_idx": 87.0},
+        {"quarter": 9, "inflacion_anual": 12.0, "desempleo": 9.5, "tc_real_idx": 90.0},
+        {"quarter": 10, "inflacion_anual": 9.5, "desempleo": 9.2, "tc_real_idx": 92.0},
+        {"quarter": 11, "inflacion_anual": 7.5, "desempleo": 9.0, "tc_real_idx": 95.0},
+        {"quarter": 12, "inflacion_anual": 6.5, "desempleo": 8.8, "tc_real_idx": 97.0}
+      ]
+    },
+    "FUHD_turquia_2018_2023": {
+      "label": "Turquía 2018–2023",
+      "regimen": "FUHD",
+      "pais": "Turquía",
+      "periodo": "2018-2023",
+      "shock_principal": "combined_mix",
+      "resultado_credibilidad": "persistent_unanchoring",
+      "phillips_slope_estimado": 1.20,
+      "convergence_speed_estimado": 0.02,
+      "tier": 3,
+      "color": "#f97316",
+      "dimensiones": {
+        "regimen_cambiario": "managed_float",
+        "coordinacion": "uncoordinated",
+        "credibilidad": "political_pressure",
+        "regla_fiscal": "absent"
+      },
+      "hitos": {
+        "crisis_2018": {"trimestre": 3, "nota": "TRY cae ~40%, CPI 25%"},
+        "rotacion_presidentes_bc": {"nota": "Cetinkaya 2019, Agbal removido 2021"},
+        "inflacion_peak": {"valor": 85.5, "trimestre": 12, "nota": "oct-2022, TUIK"},
+        "desempleo_peak": {"valor": 14.0, "trimestre": 5}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 11.0, "desempleo": 10.5, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 12.5, "desempleo": 10.8, "tc_real_idx": 95.0},
+        {"quarter": 2, "inflacion_anual": 16.0, "desempleo": 11.0, "tc_real_idx": 80.0},
+        {"quarter": 3, "inflacion_anual": 25.0, "desempleo": 11.5, "tc_real_idx": 65.0},
+        {"quarter": 4, "inflacion_anual": 22.0, "desempleo": 13.5, "tc_real_idx": 60.0},
+        {"quarter": 5, "inflacion_anual": 20.0, "desempleo": 14.0, "tc_real_idx": 58.0},
+        {"quarter": 6, "inflacion_anual": 15.0, "desempleo": 13.0, "tc_real_idx": 62.0},
+        {"quarter": 7, "inflacion_anual": 13.0, "desempleo": 12.5, "tc_real_idx": 65.0},
+        {"quarter": 8, "inflacion_anual": 19.0, "desempleo": 12.0, "tc_real_idx": 55.0},
+        {"quarter": 9, "inflacion_anual": 36.0, "desempleo": 12.0, "tc_real_idx": 42.0},
+        {"quarter": 10, "inflacion_anual": 61.0, "desempleo": 11.5, "tc_real_idx": 35.0},
+        {"quarter": 11, "inflacion_anual": 80.0, "desempleo": 11.0, "tc_real_idx": 30.0},
+        {"quarter": 12, "inflacion_anual": 85.5, "desempleo": 11.5, "tc_real_idx": 28.0}
+      ]
+    },
+    "FULD_argentina_2020": {
+      "label": "Argentina 2020",
+      "regimen": "FULD",
+      "pais": "Argentina",
+      "periodo": "2020-2022",
+      "shock_principal": "combined_mix",
+      "resultado_credibilidad": "persistent_unanchoring",
+      "phillips_slope_estimado": 1.50,
+      "convergence_speed_estimado": 0.01,
+      "tier": 4,
+      "color": "#ef4444",
+      "dimensiones": {
+        "regimen_cambiario": "managed_float",
+        "coordinacion": "uncoordinated",
+        "credibilidad": "low",
+        "regla_fiscal": "unconstrained"
+      },
+      "hitos": {
+        "pib_caida": {"valor": -9.9, "trimestre": 2, "nota": "2020, INDEC"},
+        "inflacion_2020": {"valor": 36.1, "quarter": 0, "nota": "pre-pandemia baseline"},
+        "inflacion_2021": {"valor": 50.9, "trimestre": 4},
+        "inflacion_2022": {"valor": 94.8, "trimestre": 12, "nota": "dic-2022"},
+        "cepo_cambiario": {"nota": "Restricciones al mercado cambiario, brecha paralela"}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 36.1, "desempleo": 10.4, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 38.0, "desempleo": 11.5, "tc_real_idx": 95.0},
+        {"quarter": 2, "inflacion_anual": 40.5, "desempleo": 12.0, "tc_real_idx": 90.0},
+        {"quarter": 3, "inflacion_anual": 43.0, "desempleo": 11.0, "tc_real_idx": 85.0},
+        {"quarter": 4, "inflacion_anual": 50.9, "desempleo": 10.0, "tc_real_idx": 80.0},
+        {"quarter": 5, "inflacion_anual": 54.0, "desempleo": 8.5, "tc_real_idx": 75.0},
+        {"quarter": 6, "inflacion_anual": 58.0, "desempleo": 7.8, "tc_real_idx": 70.0},
+        {"quarter": 7, "inflacion_anual": 63.0, "desempleo": 7.5, "tc_real_idx": 65.0},
+        {"quarter": 8, "inflacion_anual": 72.0, "desempleo": 7.2, "tc_real_idx": 60.0},
+        {"quarter": 9, "inflacion_anual": 80.0, "desempleo": 7.0, "tc_real_idx": 55.0},
+        {"quarter": 10, "inflacion_anual": 85.0, "desempleo": 7.0, "tc_real_idx": 52.0},
+        {"quarter": 11, "inflacion_anual": 90.0, "desempleo": 7.0, "tc_real_idx": 51.0},
+        {"quarter": 12, "inflacion_anual": 94.8, "desempleo": 7.0, "tc_real_idx": 50.0}
+      ]
+    },
+    "PFHR_hongkong_implied": {
+      "label": "Hong Kong (implied)",
+      "regimen": "PFHR",
+      "pais": "Hong Kong",
+      "periodo": "1997-2000",
+      "shock_principal": "sudden_stop",
+      "resultado_credibilidad": "anchored",
+      "phillips_slope_estimado": 0.45,
+      "convergence_speed_estimado": 0.14,
+      "tier": 2,
+      "color": "#a3e635",
+      "dimensiones": {
+        "regimen_cambiario": "currency_board",
+        "coordinacion": "coordinated",
+        "credibilidad": "high",
+        "regla_fiscal": "structural_rule"
+      },
+      "notas_proxy": "Datos proxy basados en crisis asiatica 1997-1998 Hong Kong. Peg mantenido via Currency Board (7.8 HKD/USD desde 1983). Ajuste por deflacion interna sin devaluacion.",
+      "hitos": {
+        "crisis_asiatica": {"trimestre": 1, "nota": "jul-1997, ataque especulativo rechazado"},
+        "pib_caida": {"valor": -6.0, "trimestre": 5, "nota": "1998"},
+        "desempleo_peak": {"valor": 6.3, "trimestre": 5, "nota": "1998 Q3"},
+        "peg_mantenido": {"nota": "7.8 HKD/USD invariable; tc_real_idx=100 todo el episodio"}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 6.3, "desempleo": 2.2, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 5.0, "desempleo": 2.8, "tc_real_idx": 100.0},
+        {"quarter": 2, "inflacion_anual": 3.0, "desempleo": 3.5, "tc_real_idx": 100.0},
+        {"quarter": 3, "inflacion_anual": 0.5, "desempleo": 4.5, "tc_real_idx": 100.0},
+        {"quarter": 4, "inflacion_anual": -4.0, "desempleo": 5.5, "tc_real_idx": 100.0},
+        {"quarter": 5, "inflacion_anual": -6.0, "desempleo": 6.3, "tc_real_idx": 100.0},
+        {"quarter": 6, "inflacion_anual": -5.0, "desempleo": 6.0, "tc_real_idx": 100.0},
+        {"quarter": 7, "inflacion_anual": -3.5, "desempleo": 5.5, "tc_real_idx": 100.0},
+        {"quarter": 8, "inflacion_anual": -2.0, "desempleo": 5.0, "tc_real_idx": 100.0},
+        {"quarter": 9, "inflacion_anual": 0.0, "desempleo": 4.5, "tc_real_idx": 100.0},
+        {"quarter": 10, "inflacion_anual": 1.5, "desempleo": 4.0, "tc_real_idx": 100.0},
+        {"quarter": 11, "inflacion_anual": 2.5, "desempleo": 3.5, "tc_real_idx": 100.0},
+        {"quarter": 12, "inflacion_anual": 3.0, "desempleo": 3.0, "tc_real_idx": 100.0}
+      ]
+    },
+    "PFULU_grecia_2010_2015": {
+      "label": "Grecia 2010–2015",
+      "regimen": "PFULU",
+      "pais": "Grecia",
+      "periodo": "2010-2015",
+      "shock_principal": "cost_pos",
+      "resultado_credibilidad": "temporary_unanchoring",
+      "phillips_slope_estimado": 1.30,
+      "convergence_speed_estimado": 0.03,
+      "tier": 4,
+      "color": "#dc2626",
+      "dimensiones": {
+        "regimen_cambiario": "monetary_union",
+        "coordinacion": "uncoordinated",
+        "credibilidad": "low",
+        "regla_fiscal": "unconstrained"
+      },
+      "hitos": {
+        "pib_caida_acumulada": {"valor": -25.0, "nota": "2010-2015 acumulado"},
+        "desempleo_peak": {"valor": 27.5, "trimestre": 9, "nota": "2013 Q3"},
+        "psi_haircut": {"valor": 53.5, "nota": "2012, reestructuracion deuda privada"},
+        "rescates": {"nota": "3 programas: 2010, 2012, 2015"},
+        "tc_fijo": {"nota": "Euro: TC nominal invariable, ajuste por deflacion interna"}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 4.7, "desempleo": 12.5, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 4.0, "desempleo": 14.0, "tc_real_idx": 100.0},
+        {"quarter": 2, "inflacion_anual": 3.0, "desempleo": 15.5, "tc_real_idx": 100.0},
+        {"quarter": 3, "inflacion_anual": 2.5, "desempleo": 17.0, "tc_real_idx": 100.0},
+        {"quarter": 4, "inflacion_anual": 1.5, "desempleo": 19.0, "tc_real_idx": 100.0},
+        {"quarter": 5, "inflacion_anual": 1.0, "desempleo": 21.5, "tc_real_idx": 100.0},
+        {"quarter": 6, "inflacion_anual": 0.0, "desempleo": 23.0, "tc_real_idx": 100.0},
+        {"quarter": 7, "inflacion_anual": -0.5, "desempleo": 24.5, "tc_real_idx": 100.0},
+        {"quarter": 8, "inflacion_anual": -1.5, "desempleo": 26.0, "tc_real_idx": 100.0},
+        {"quarter": 9, "inflacion_anual": -2.5, "desempleo": 27.5, "tc_real_idx": 100.0},
+        {"quarter": 10, "inflacion_anual": -1.5, "desempleo": 27.0, "tc_real_idx": 100.0},
+        {"quarter": 11, "inflacion_anual": -1.0, "desempleo": 26.5, "tc_real_idx": 100.0},
+        {"quarter": 12, "inflacion_anual": 0.5, "desempleo": 25.0, "tc_real_idx": 100.0}
+      ]
+    },
+    "TRAP_japon_implied": {
+      "label": "Japón (trap)",
+      "regimen": "TRAP",
+      "pais": "Japón",
+      "periodo": "1995-2012",
+      "shock_principal": "demand_neg",
+      "resultado_credibilidad": "anchored",
+      "phillips_slope_estimado": 0.08,
+      "convergence_speed_estimado": 0.25,
+      "tier": 4,
+      "color": "#6b7280",
+      "dimensiones": {
+        "regimen_cambiario": "managed_float",
+        "coordinacion": "coordinated",
+        "credibilidad": "high",
+        "regla_fiscal": "structural_rule"
+      },
+      "notas_proxy": "Trampa de liquidez japonesa post-burbuja inmobiliaria. Phillips curve casi vertical (lambda~0, pendiente cercana a cero): cualquier gap de desempleo produce cambio minimo en inflacion. ZLB binding desde 1999.",
+      "hitos": {
+        "zirp": {"trimestre": 4, "nota": "ZIRP: Zero Interest Rate Policy 1999"},
+        "qlb_binding": {"nota": "ZLB permanente; inflacion estancada cerca de 0%"},
+        "deflacion_cronica": {"nota": "CPI ligeramente negativo la mayor parte del periodo"}
+      },
+      "trayectoria": [
+        {"quarter": 0, "inflacion_anual": 0.5, "desempleo": 4.0, "tc_real_idx": 100.0},
+        {"quarter": 1, "inflacion_anual": 0.2, "desempleo": 4.3, "tc_real_idx": 100.0},
+        {"quarter": 2, "inflacion_anual": -0.2, "desempleo": 4.7, "tc_real_idx": 100.0},
+        {"quarter": 3, "inflacion_anual": -0.5, "desempleo": 5.0, "tc_real_idx": 100.0},
+        {"quarter": 4, "inflacion_anual": -0.8, "desempleo": 5.2, "tc_real_idx": 100.0},
+        {"quarter": 5, "inflacion_anual": -1.0, "desempleo": 5.5, "tc_real_idx": 100.0},
+        {"quarter": 6, "inflacion_anual": -0.8, "desempleo": 5.4, "tc_real_idx": 100.0},
+        {"quarter": 7, "inflacion_anual": -0.5, "desempleo": 5.3, "tc_real_idx": 100.0},
+        {"quarter": 8, "inflacion_anual": -0.3, "desempleo": 5.2, "tc_real_idx": 100.0},
+        {"quarter": 9, "inflacion_anual": 0.0, "desempleo": 5.0, "tc_real_idx": 100.0},
+        {"quarter": 10, "inflacion_anual": 0.0, "desempleo": 5.0, "tc_real_idx": 100.0},
+        {"quarter": 11, "inflacion_anual": 0.0, "desempleo": 4.8, "tc_real_idx": 100.0},
+        {"quarter": 12, "inflacion_anual": 0.1, "desempleo": 4.5, "tc_real_idx": 100.0}
+      ]
+    }
+  }
+}
