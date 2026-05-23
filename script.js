@@ -1171,10 +1171,10 @@ function init(){
 }
 /* ========== LENTES INSTITUCIONALES ========== */
 const INST_CONFIGS = {
-  CHL:{id:'CHL',nombre:'Credibilidad macro / economía abierta',ejemplos:'Chile 2026, Colombia, Perú',descripcion:'TC flexible como amortiguador. BC autónomo con meta creíble. Regla fiscal de cumplimiento imperfecto pero relevante.',advertenciaGeneral:'El ajuste no es automático: depende del nivel de credibilidad acumulada.'},
-  FRG:{id:'FRG',nombre:'Anclaje frágil / dominancia fiscal latente',ejemplos:'Argentina 2015–2023, Bolivia post-2014',descripcion:'BC formalmente existente, autonomía efectiva limitada. Expectativas móviles. Prima de riesgo sensible a noticias.',advertenciaGeneral:'Un shock externo puede convertirse en crisis de confianza endógena.'},
-  RIG:{id:'RIG',nombre:'Rigidez cambiaria / ancla externa',ejemplos:'Ecuador dolarizado, El Salvador, cajas de conversión',descripcion:'Sin absorción cambiaria. Ajuste recae sobre actividad, salarios reales y reservas.',advertenciaGeneral:'La rigidez convierte pérdidas de términos de intercambio en recesión directa.'},
-  CRD:{id:'CRD',nombre:'Alta credibilidad con buffer fiscal',ejemplos:'Noruega, Suiza, Chile hipotético con FEES robusto',descripcion:'Expectativas muy ancladas. Fondo de estabilización operativo. Menor pass-through cambiario.',advertenciaGeneral:'Los buffers reducen persistencia pero no eliminan el shock. La trampa es creer que hay inmunidad.'}
+  CHL:{id:'CHL',nombre:'Credibilidad macro / economía abierta',ejemplos:'Chile 2026, Colombia, Perú',descripcion:'TC flexible como amortiguador. BC autónomo con meta creíble. Regla fiscal de cumplimiento imperfecto pero relevante.',advertenciaGeneral:'El ajuste no es automático: depende del nivel de credibilidad acumulada.',regimen_phillips:'FCHR',caso_historico:'Chile 1990–2010'},
+  FRG:{id:'FRG',nombre:'Anclaje frágil / dominancia fiscal latente',ejemplos:'Argentina 2015–2023, Bolivia post-2014',descripcion:'BC formalmente existente, autonomía efectiva limitada. Expectativas móviles. Prima de riesgo sensible a noticias.',advertenciaGeneral:'Un shock externo puede convertirse en crisis de confianza endógena.',regimen_phillips:'FULD',caso_historico:'Argentina 2018–2023'},
+  RIG:{id:'RIG',nombre:'Rigidez cambiaria / ancla externa',ejemplos:'Ecuador dolarizado, El Salvador, cajas de conversión',descripcion:'Sin absorción cambiaria. Ajuste recae sobre actividad, salarios reales y reservas.',advertenciaGeneral:'La rigidez convierte pérdidas de términos de intercambio en recesión directa.',regimen_phillips:'PFULD',caso_historico:'Grecia 2010–2015'},
+  CRD:{id:'CRD',nombre:'Alta credibilidad con buffer fiscal',ejemplos:'Noruega, Suiza, Chile hipotético con FEES robusto',descripcion:'Expectativas muy ancladas. Fondo de estabilización operativo. Menor pass-through cambiario.',advertenciaGeneral:'Los buffers reducen persistencia pero no eliminan el shock. La trampa es creer que hay inmunidad.',regimen_phillips:'FCHD',caso_historico:'Noruega 2020'}
 };
 
 const INST_RESULTS = {
@@ -1243,13 +1243,20 @@ function lentesCardHTML(resultado, configId, shockId) {
   return `
     <div class="atlas-card card ${colorClass}"
          style="position:relative; padding-bottom:90px">
-      <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px">
         <h4 style="margin:0; font-size:1rem">${config.nombre}</h4>
         <span class="persist-badge ${resultado.persistencia}"
               title="Persistencia esperada del shock">
           ${persistLabel}
         </span>
       </div>
+      ${config.caso_historico ? `
+      <div style="font-size:.78rem;color:var(--muted);margin-bottom:10px">
+        <span class="chip-rule" title="Régimen Phillips equivalente: ${config.regimen_phillips||''}">
+          ${config.regimen_phillips||''}
+        </span>
+        <span style="margin-left:4px">Caso histórico: <strong>${config.caso_historico}</strong></span>
+      </div>` : ''}
       <div class="atlas-field">
         <strong>Absorción principal:</strong> ${resultado.absorcion}
       </div>

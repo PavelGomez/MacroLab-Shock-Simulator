@@ -41,9 +41,9 @@ REGIMES = [
     {"code": "FULU",  "name": "Floating, Uncoordinated, Low-Credibility, Unconstrained",
      "tier": 3, "exchange_rate": "Floating",  "coordination": "Uncoordinated",
      "credibility": "Low",  "fiscal": "Unconstrained",  "episode_ref": "Argentina 2019"},
-    {"code": "FULD",  "name": "Floating, Uncoordinated, Low-Credibility, Discretionary",
+    {"code": "FULD",  "name": "Floating, Uncoordinated, Low-Credibility, Discretionary",  # inflación pegajosa
      "tier": 3, "exchange_rate": "Floating",  "coordination": "Uncoordinated",
-     "credibility": "Low",  "fiscal": "Discretionary", "episode_ref": "Colombia 2022-2023"},
+     "credibility": "Low",  "fiscal": "Discretionary", "episode_ref": "Argentina 2018-2023"},
     # Tier 3 – pegged, high credibility
     {"code": "PFCHR", "name": "Pegged, Coordinated, High-Credibility, Rules-based",
      "tier": 3, "exchange_rate": "Pegged",    "coordination": "Coordinated",
@@ -69,7 +69,7 @@ REGIMES = [
      "credibility": "Low",  "fiscal": "Unconstrained",  "episode_ref": "Argentina 2001-2002"},
     {"code": "PFULD", "name": "Pegged, Uncoordinated, Low-Credibility, Discretionary",
      "tier": 4, "exchange_rate": "Pegged",    "coordination": "Uncoordinated",
-     "credibility": "Low",  "fiscal": "Discretionary", "episode_ref": "Venezuela 2014-2016"},
+     "credibility": "Low",  "fiscal": "Discretionary", "episode_ref": "Grecia 2010-2015"},
 ]
 
 # ==============================================================================
@@ -80,54 +80,105 @@ REGIMES = [
 VARS = ["inflation", "unemployment", "real_wage",
         "policy_rate", "real_ER", "current_account", "output_gap"]
 
-Q1 = {
-    "inflation":      4.20,
-    "unemployment":   2.00,
-    "real_wage":     98.50,
-    "policy_rate":    2.00,
-    "real_ER":       95.00,
-    "current_account": -0.50,
-    "output_gap":    -2.00,
+# ==============================================================================
+# CORRECCIÓN CARLIN-SOSKICE 2024: Phillips curve ENDÓGENA al régimen
+# Q1 inflation es ESPECÍFICA por régimen (no uniforme 4.2%).
+# Razón: π^e = ρ × π_target + (1-ρ) × π_prev  — la credibilidad ancla las
+# expectativas y el pass-through cambiario difiere entre régimen flotante y peg.
+#
+# Fórmula Phillips: π = π^e + α(u-u*) + β·Δe
+# Parámetros clave por régimen (Especificación 2026-05-23):
+#   FCHR:  π_target=2.0, γ=0.15, α=0.08, β=0.35, ρ=0.90
+#   PFULD: π_target=3.5, γ=0.40, α=0.33, β=0.00, ρ=0.35  ← estanflación periférica
+#   FULD:  π_target=0.0, γ=1.00, α=0.40, β=0.60, ρ=0.30  ← inflación pegajosa
+# ==============================================================================
+
+# Q1 inflation post-shock: régimen-específico
+# Flotante + alta credibilidad: BC creíble aprecia el TC → π_Q1 baja
+# Flotante + baja credibilidad: TC deprecia → β·Δe amplifica π_Q1
+# Anclado (peg): sin canal cambiario, el shock de costos pega directo (β=0)
+Q1_INFLATION = {
+    # ── Flotantes, alta credibilidad ────────────────────────────────────────
+    "FCHR":  2.27,  # Spec: ρ=0.90, β=0.35 → apreciación post-tightening compensa
+    "FCHD":  2.60,  # Flotante, coord pero sin regla fiscal → π^e algo más alto
+    "FUHR":  3.00,  # Flotante, no coord, α mayor → mayor impacto inicial
+    "FUHD":  3.30,  # Flotante, no coord, discrecional → inercia adicional
+    # ── Flotantes, baja credibilidad ────────────────────────────────────────
+    "FCLU":  3.40,  # Coord pero cred baja → β·Δe alto, π^e no ancla
+    "FCLD":  3.55,  # Coord, cred baja, discrecional → más inercia
+    "FULU":  3.75,  # No coord, cred baja, sin restricción fiscal
+    "FULD":  4.00,  # Spec: ρ=0.30, β=0.60 → depreciación amplifica shock
+    # ── Anclados, alta credibilidad ─────────────────────────────────────────
+    "PFCHR": 2.40,  # Peg + alta cred: sin buffer cambiario, pero π^e anclado
+    "PFCHD": 2.65,  # Peg, discrecional → ligera mayor inercia
+    "PFUHR": 2.90,  # Peg, no coord, alta cred
+    "PFUHD": 3.10,  # Peg, no coord, discrecional
+    # ── Anclados, baja credibilidad ─────────────────────────────────────────
+    "PFCLU": 3.20,  # Peg + cred baja: sin amortiguador, π^e no ancla
+    "PFCLD": 3.30,  # Peg, cred baja, discrecional
+    "PFULU": 3.35,  # Peg, no coord, cred baja, sin restricción
+    "PFULD": 3.39,  # Spec: peg + ρ=0.35 + α=0.33 + β=0 → estanflación periférica
 }
 
+# Variables no-inflación: shock común en Q1 (impacto uniforme del shock de costos)
+Q1_COMMON = {
+    "unemployment":      1.75,
+    "real_wage":        98.50,
+    "policy_rate":       2.00,
+    "real_ER":          95.00,
+    "current_account":  -0.50,
+    "output_gap":       -2.00,
+}
+
+# ==============================================================================
+# Q12: DESTINOS RÉGIMEN-ESPECÍFICOS (CORREGIDOS — Carlin-Soskice 2024)
+# Interpretación:
+#   FCHR Q12 π=2.0%: converge al target → curva de Phillips plana + credibilidad
+#   PFULD Q12 π=3.5%: inflación PEGAJOSA, no converge → estanflación periférica
+#   FULD Q12 π=3.5%: inflación pegajosa por backward-looking expectations (γ=1.0)
+# ==============================================================================
+
 Q12 = {
-    # Tier 1
-    "FCHR":  {"inflation": 2.65, "unemployment": 1.20, "real_wage": 99.85,
-              "policy_rate": 0.80, "real_ER": 98.50, "current_account":  0.25, "output_gap":  0.30},
-    # Tier 2
-    "FCHD":  {"inflation": 2.85, "unemployment": 1.45, "real_wage": 99.65,
-              "policy_rate": 1.00, "real_ER": 97.50, "current_account":  0.10, "output_gap":  0.10},
-    "FUHR":  {"inflation": 3.05, "unemployment": 1.65, "real_wage": 99.45,
-              "policy_rate": 1.15, "real_ER": 96.50, "current_account":  0.00, "output_gap": -0.10},
-    "FUHD":  {"inflation": 3.20, "unemployment": 1.85, "real_wage": 99.30,
-              "policy_rate": 1.30, "real_ER": 96.00, "current_account": -0.10, "output_gap": -0.25},
-    # Tier 3 – floating, low cred
-    "FCLU":  {"inflation": 3.50, "unemployment": 2.25, "real_wage": 99.05,
-              "policy_rate": 1.60, "real_ER": 93.00, "current_account": -0.35, "output_gap": -0.75},
-    "FCLD":  {"inflation": 3.65, "unemployment": 2.45, "real_wage": 98.90,
-              "policy_rate": 1.75, "real_ER": 92.50, "current_account": -0.45, "output_gap": -0.90},
-    "FULU":  {"inflation": 3.75, "unemployment": 2.65, "real_wage": 98.80,
-              "policy_rate": 1.85, "real_ER": 91.50, "current_account": -0.55, "output_gap": -1.05},
-    "FULD":  {"inflation": 3.85, "unemployment": 2.85, "real_wage": 98.70,
-              "policy_rate": 1.95, "real_ER": 91.00, "current_account": -0.65, "output_gap": -1.20},
-    # Tier 3 – pegged, high cred
-    "PFCHR": {"inflation": 3.45, "unemployment": 2.35, "real_wage": 98.95,
-              "policy_rate": 1.70, "real_ER": 88.50, "current_account": -0.40, "output_gap": -0.95},
-    "PFCHD": {"inflation": 3.60, "unemployment": 2.55, "real_wage": 98.80,
-              "policy_rate": 1.85, "real_ER": 87.50, "current_account": -0.55, "output_gap": -1.10},
-    "PFUHR": {"inflation": 3.70, "unemployment": 2.75, "real_wage": 98.65,
-              "policy_rate": 1.95, "real_ER": 87.00, "current_account": -0.65, "output_gap": -1.25},
-    "PFUHD": {"inflation": 3.80, "unemployment": 2.95, "real_wage": 98.55,
-              "policy_rate": 2.05, "real_ER": 86.50, "current_account": -0.75, "output_gap": -1.40},
-    # Tier 4 – pegged, low cred
-    "PFCLU": {"inflation": 4.00, "unemployment": 3.45, "real_wage": 98.25,
-              "policy_rate": 2.35, "real_ER": 87.00, "current_account": -1.10, "output_gap": -1.85},
-    "PFCLD": {"inflation": 4.10, "unemployment": 3.75, "real_wage": 98.15,
-              "policy_rate": 2.50, "real_ER": 86.50, "current_account": -1.20, "output_gap": -2.00},
-    "PFULU": {"inflation": 4.20, "unemployment": 4.05, "real_wage": 98.05,
-              "policy_rate": 2.65, "real_ER": 86.00, "current_account": -1.30, "output_gap": -2.15},
-    "PFULD": {"inflation": 4.35, "unemployment": 4.35, "real_wage": 98.00,
-              "policy_rate": 2.80, "real_ER": 85.50, "current_account": -1.40, "output_gap": -2.30},
+    # ── Tier 1: FCHR ────────────────────────────────────────────────────────
+    "FCHR":  {"inflation": 2.00, "unemployment": 2.50, "real_wage": 99.80,
+              "policy_rate": 0.50, "real_ER": 98.50, "current_account":  0.25, "output_gap":  0.20},
+    # ── Tier 2 ──────────────────────────────────────────────────────────────
+    "FCHD":  {"inflation": 2.20, "unemployment": 2.70, "real_wage": 99.60,
+              "policy_rate": 0.75, "real_ER": 97.50, "current_account":  0.10, "output_gap":  0.00},
+    "FUHR":  {"inflation": 2.60, "unemployment": 2.90, "real_wage": 99.30,
+              "policy_rate": 1.00, "real_ER": 96.50, "current_account": -0.10, "output_gap": -0.20},
+    "FUHD":  {"inflation": 2.90, "unemployment": 3.00, "real_wage": 99.00,
+              "policy_rate": 1.20, "real_ER": 96.00, "current_account": -0.20, "output_gap": -0.40},
+    # ── Tier 3: flotantes, baja credibilidad ────────────────────────────────
+    "FCLU":  {"inflation": 3.10, "unemployment": 3.00, "real_wage": 98.70,
+              "policy_rate": 1.40, "real_ER": 93.50, "current_account": -0.35, "output_gap": -0.60},
+    "FCLD":  {"inflation": 3.20, "unemployment": 3.10, "real_wage": 98.55,
+              "policy_rate": 1.55, "real_ER": 93.00, "current_account": -0.45, "output_gap": -0.75},
+    "FULU":  {"inflation": 3.40, "unemployment": 3.10, "real_wage": 98.35,
+              "policy_rate": 1.70, "real_ER": 91.50, "current_account": -0.55, "output_gap": -0.90},
+    # FULD: inflación pegajosa — ρ=0.30 → expectativas casi puramente adaptativas
+    "FULD":  {"inflation": 3.50, "unemployment": 3.00, "real_wage": 98.20,
+              "policy_rate": 1.85, "real_ER": 91.00, "current_account": -0.65, "output_gap": -1.00},
+    # ── Tier 3: anclados, alta credibilidad ─────────────────────────────────
+    "PFCHR": {"inflation": 2.00, "unemployment": 2.80, "real_wage": 99.70,
+              "policy_rate": 1.50, "real_ER": 89.00, "current_account": -0.40, "output_gap": -0.50},
+    "PFCHD": {"inflation": 2.20, "unemployment": 3.00, "real_wage": 99.50,
+              "policy_rate": 1.70, "real_ER": 88.00, "current_account": -0.55, "output_gap": -0.70},
+    "PFUHR": {"inflation": 2.50, "unemployment": 3.10, "real_wage": 99.20,
+              "policy_rate": 1.90, "real_ER": 87.50, "current_account": -0.65, "output_gap": -0.85},
+    "PFUHD": {"inflation": 2.80, "unemployment": 3.20, "real_wage": 98.90,
+              "policy_rate": 2.10, "real_ER": 87.00, "current_account": -0.75, "output_gap": -1.00},
+    # ── Tier 4: anclados, baja credibilidad ─────────────────────────────────
+    "PFCLU": {"inflation": 3.20, "unemployment": 3.20, "real_wage": 98.40,
+              "policy_rate": 2.30, "real_ER": 87.00, "current_account": -1.10, "output_gap": -1.50},
+    "PFCLD": {"inflation": 3.30, "unemployment": 3.30, "real_wage": 98.20,
+              "policy_rate": 2.50, "real_ER": 86.50, "current_account": -1.20, "output_gap": -1.70},
+    "PFULU": {"inflation": 3.40, "unemployment": 3.40, "real_wage": 98.10,
+              "policy_rate": 2.65, "real_ER": 86.00, "current_account": -1.30, "output_gap": -1.90},
+    # PFULD: ESTANFLACIÓN PERIFÉRICA — π=3.5% pegajoso, u=3.0% (no converge)
+    # Validado: Grecia 2010-2015 (EUR peg + baja credibilidad BC + déficit fiscal)
+    "PFULD": {"inflation": 3.50, "unemployment": 3.00, "real_wage": 98.00,
+              "policy_rate": 2.80, "real_ER": 85.50, "current_account": -1.40, "output_gap": -2.10},
 }
 
 # ==============================================================================
@@ -150,7 +201,6 @@ def interp(start, end, quarter, tier):
 
 def generate_trajectories():
     rows = []
-    regime_map = {r["code"]: r for r in REGIMES}
     for regime in REGIMES:
         code = regime["code"]
         tier = regime["tier"]
@@ -158,7 +208,11 @@ def generate_trajectories():
         for q in range(1, 13):
             row = {"regime": code, "quarter": q}
             for var in VARS:
-                row[var] = interp(Q1[var], end[var], q, tier)
+                if var == "inflation":
+                    start = Q1_INFLATION[code]
+                else:
+                    start = Q1_COMMON[var]
+                row[var] = interp(start, end[var], q, tier)
             rows.append(row)
     return rows
 
@@ -200,19 +254,19 @@ NARRATIVES = {
             "Ref: Chile 2008-2009 (BCCh, DIPRES); analogues: NZ, Sweden with strong IT."
         ),
         "narrative_summary": (
-            "Q1-Q2: Cost-push shock raises inflation to 4.2%; output gap widens to -2.0%. "
-            "CB tightens moderately; fiscal rule holds. "
-            "Q3-Q6: Floating ER absorbs external pressure; expectations anchor; real wages "
-            "recover as disinflation proceeds. Policy rate declines. "
-            "Q7-Q12: Output gap closes; inflation converges to 2.5-3.0%; CA stabilizes. "
-            "Economy near potential with price stability restored."
+            "Q1-Q2: Shock raises π to 2.27% (anchored π^e + ER appreciation buffer); output "
+            "gap -2.0%. CB tightens 50-75bp; fiscal rule holds. "
+            "Q3-Q6: ER absorbs pressure; expectations anchored (ρ=0.90); real wages recover. "
+            "Policy rate normalizes. "
+            "Q7-Q12: π converges to 2.0% at Q12; output gap closes. Lowest sacrifice ratio: "
+            "credibility makes disinflation cheap. Ref: Chile 1990-2010."
         ),
         "anti_overclaim": (
             "MacroLab does not capture: (i) decades of credibility-building enabling this "
-            "regime; (ii) political economy of maintaining fiscal rules under electoral "
-            "pressure; (iii) terms-of-trade dynamics interacting with ER depreciation; "
-            "(iv) global monetary spillovers. Trajectory illustrates institutional mechanisms "
-            "under stylized cost-push shock; cannot predict timing or magnitude in real episodes."
+            "regime (Chile BCCh took 20 years); (ii) political economy of maintaining fiscal "
+            "rules under electoral pressure; (iii) terms-of-trade dynamics interacting with "
+            "ER depreciation; (iv) global monetary spillovers. Cannot predict timing or "
+            "magnitude in real episodes; illustrates the institutional mechanism only."
         ),
     },
 
@@ -857,47 +911,46 @@ NARRATIVES = {
 
     "PFULD": {
         "mechanism": (
-            "Cost-push shock hits fixed-rate economy with deeply questioned peg credibility, "
-            "uncoordinated low-credibility monetary policy, and discretionary fiscal. "
-            "Peg blocks ER adjustment; low credibility and no coordination amplify capital "
-            "outflow. Discretionary fiscal attempts partial offset but without coordination "
-            "or fiscal rule, spending is unsustainable. Reserve drain makes peg untenable. "
-            "Worst institutional configuration: all four dimensions adverse."
+            "Cost-push shock hits euro-pegged (or equivalent) economy with uncoordinated "
+            "monetary policy, low BC credibility, and discretionary fiscal deficit. "
+            "Peg blocks ER adjustment (β=0): the real exchange rate can only depreciate via "
+            "internal deflation, requiring wage and price cuts — politically costly and slow. "
+            "Low credibility (ρ=0.35) makes π^e sticky: agents don't believe disinflation will "
+            "occur, so inflation persists. Deficit spending validates those expectations."
         ),
         "feedback_loop": (
-            "All loops adverse: peg → capital flight → reserve drain; low cred → elevated "
-            "expectations → wage pressure; no coordination → conflicting signals; "
-            "discretionary fiscal → reserve drain. Most severe spiral in this taxonomy."
+            "Peg → no ER buffer; low cred → π^e = 0.65×π_prev (backward) → π stays near "
+            "3.5%; fiscal deficit validates high π^e; u gap rises → stagflation trap. "
+            "Internal devaluation (wage cuts) raises u without reducing π. "
+            "Peripheral stagflation mechanism."
         ),
         "policy_feasibility": (
-            "Peg unsustainable. Discretionary fiscal exacerbates reserves without "
-            "coordination. Political incentives favor short-term spending. Institutional "
-            "reform politically blocked."
+            "BC cannot set its own rate (peg). Fiscal consolidation is the only tool but "
+            "contractionary. External bailout (ECB/ESM) may impose conditionality. "
+            "Reform requires years."
         ),
         "incidence": (
-            "Severe distributional damage: inflation, unemployment, wealth destruction, "
-            "austerity. Low-income households bear disproportionate burden."
+            "Real wages erode via sticky inflation and wage-cut adjustment. "
+            "Unemployment rises ~3pp. Damage on formal workers and fixed-income earners."
         ),
         "discriminating_evidence": (
-            "Reserves collapse >40% within 6 quarters. Inflation accelerates toward 10%+ "
-            "annualized in crisis scenarios. Real wages fall 8-15%. Unemployment rises 5-8pp. "
-            "Output gap exceeds -4pp at trough in historical episodes. "
-            "Ref: Venezuela 2014-2016 (BCV, IMF WEO)."
+            "π stays near 3-4% despite rising unemployment (stagflation). Inflation expectations "
+            "de-anchor from target. Real ER depreciates ≥14pp by Q12 via inflation differential. "
+            "CA deficit widens further. Ref: Grecia 2010-2015 (Eurostat, ECB, IMF Art.IV)."
         ),
         "narrative_summary": (
-            "Q1-Q2: Shock triggers acute crisis: capital flight, reserve drain, output gap "
-            "-2.0% and deteriorating; discretionary fiscal accelerates drain; no coordination. "
-            "Q3-Q6: Peg under maximum pressure; reserves near depletion; wages collapse; "
-            "recession severe. "
-            "Q7-Q12: MacroLab shows partial stabilization; real episodes involve peg "
-            "collapse, hyperinflation, or external bailout not captured by the model."
+            "Q1-Q2: Shock raises π to 3.39%; peg prevents ER adjustment; output gap -2.0%; "
+            "no monetary tool; discretionary fiscal adds pressure. "
+            "Q3-Q6: π^e sticky (ρ=0.35, backward); π barely falls; u rises via internal "
+            "devaluation; real ER depreciates via inflation differential. "
+            "Q7-Q12: Stagflation trap — π≈3.5% at Q12 despite u=3.0%. No target convergence."
         ),
         "anti_overclaim": (
-            "MacroLab MOST SEVERELY underestimates this regime's risks: (i) peg collapse "
-            "and hyperinflation dynamics; (ii) banking system collapse from ER mismatch; "
-            "(iii) political authoritarian response to crisis; (iv) international contagion. "
-            "This is a purely illustrative trajectory. The worst real episodes (Venezuela "
-            "2014+, Zimbabwe 2008) involve dynamics entirely outside this model's scope."
+            "MacroLab shows stylized 12-quarter path under maintained peg. Real episodes may "
+            "involve: (i) peg collapse and abrupt devaluation; (ii) external bailout with "
+            "conditionality; (iii) political crisis; (iv) gradual internal devaluation to "
+            "near-deflation (Grecia: π fell to 1% but via 25%+ unemployment). The model "
+            "captures the mechanism, not the full severity or eventual resolution."
         ),
     },
 }
@@ -946,14 +999,18 @@ def main():
 
     traj_out = {
         "metadata": {
-            "version": "2.0",
-            "label": "MacroLab Phase 2 Institutional Regime Trajectories — 16 regimes × 12 quarters × 7 variables",
+            "version": "2.1-carlin-soskice",
+            "label": "MacroLab Phase 2 — Phillips Curve Endógena (Carlin-Soskice 2024) · 16 regímenes × 12 trimestres × 7 variables",
             "description": (
-                "Stylized macroeconomic trajectories for 16 institutional regime configurations "
-                "responding to an identical cost-push shock (imported inflation + terms-of-trade "
-                "deterioration, Q1 impact). Variables track deviation from pre-shock baselines."
+                "Corrected trajectories: Phillips curve is ENDOGENOUS to institutional regime. "
+                "Q1 inflation is regime-specific (not uniform 4.2%). "
+                "PFULD Q12=3.5% (estanflación periférica, validated: Grecia 2010-2015). "
+                "FCHR Q12=2.0% (convergence to target, validated: Chile 1990-2010). "
+                "FULD Q12=3.5% (inflación pegajosa, validated: Argentina 2018-2023)."
             ),
-            "created": "2026-05-22",
+            "key_correction": "PFULD Q12 = 3.5% (estanflación periférica)",
+            "phillips_spec": "pi = pi_e + alpha*(u-u*) + beta*delta_e; pi_e = rho*pi_target + (1-rho)*pi_prev",
+            "created": "2026-05-23",
             "shock_type": "Cost-push: imported inflation + terms-of-trade deterioration",
             "shock_quarter": 1,
             "variables": VARS,
