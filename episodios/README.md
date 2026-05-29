@@ -67,7 +67,7 @@ Esta estructura es deliberada y no decorativa. La separación entre Sección IV 
 
 **Bibliografía.** APA 7ª edición. Todas las referencias están integradas en el argumento, no acumuladas al final como respaldo. Si una referencia no cumple una función argumentativa visible, se elimina.
 
-**Evidencia.** Las magnitudes cuantitativas están vinculadas a fuentes institucionales primarias (BCCh, DIPRES, FMI, FIAP, COCHILCO). Los claims inferenciales están marcados como tales. El principio anti-anticipa de la investigación principal aplica aquí: no se iniere intención sin evidencia, no se atribuye vulnerabilidad realizada a partir de exposición estructural.
+**Evidencia.** Las magnitudes cuantitativas están vinculadas a fuentes institucionales primarias (BCCh, DIPRES, FMI, FIAP, COCHILCO). Los claims inferenciales están marcados como tales. El principio anti-anticipa de la investigación principal aplica aquí: no se infiere intención sin evidencia, no se atribuye vulnerabilidad realizada a partir de exposición estructural.
 
 **Comparaciones.** Los episodios dentro de una misma tensión se comparan por contraste controlado: mismo marco teórico, mismas dimensiones de análisis, casos que difieren en la variable de interés. Las referencias cruzadas entre episodios están explicitadas en el pie de cada crónica.
 
