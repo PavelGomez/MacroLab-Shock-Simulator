@@ -123,7 +123,8 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       incidence: "Cuprífero y exportables (primer impacto); desempleados y trabajadores informales amortiguados por transferencias y subsidios del Plan Fiscal.",
       discriminatingEvidence: "TPM baja de 3,25% a 0,5% entre enero y junio 2009; inflación anual alcanza 1,4% en 2009 (bajo rango meta 2-4%); desempleo sube de 7% a 10,1% pero sin espiral; expectativas de inflación a 12-24m se mantienen en rango 2,5-3,5%, sin desanclaje. PIB cae 1,6% en 2009 pero rebota a 5,1% en 2010. FMI califica respuesta como 'vigorosa, coordinada'. Fuentes: INE, DIPRES, BCCh.",
       antiOverclaim: "MacroLab NO captura: (i) dinámicas de reputación y construcción de credibilidad que permitieron el uso del buffer (De Gregorio & Valev 2003); (ii) ciclos políticos y costos electorales de políticas contracíclicas (Alesina & Passalacqua 2016); (iii) dependencia de la acumulación previa del buffer en rentas de recursos naturales. La ficha ilustra cómo credibilidad + buffer + regla fiscal amortiguan transmisión; no es modelo general ni prescriptivo."
-    }
+    },
+    cronicaCompletaUrl: "https://github.com/PavelGomez/MacroLab-Shock-Simulator/blob/main/episodios/CHILE_2008_2009_LAYER0.md"
   },
 
   "noruega_2020": {
