@@ -38,6 +38,16 @@ Diseño modular: estructura completa, tooltips en 34 parámetros, protocolo de l
 
 ---
 
+## Antología de episodios institucionales
+
+Además del simulador, el repositorio incluye la [**Antología de episodios institucionales**](episodios/) (`/episodios`): crónicas narrativo-analíticas (Layer 0) de configuraciones macroeconómicas reales, organizadas por tensiones teóricas. Es un objeto intelectual independiente —puede leerse sin operar el simulador— y se enlaza desde las crónicas del Atlas cuando existe una versión extendida.
+
+- **Episodio 1** · [Chile, 2008–2009](episodios/CHILE_2008_2009_LAYER0.md) — buffers fiscales y credibilidad ante un shock externo.
+
+Ver la [arquitectura editorial completa de la antología](episodios/README.md).
+
+---
+
 ## 11 ciclos de mejora (C1–C11)
 
 ### **C1: Marco Institucional** (ayer)
