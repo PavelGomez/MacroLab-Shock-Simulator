@@ -276,6 +276,13 @@
       }
     }
 
+    var cronicaCompleta = '';
+    if (isSafeUrl(c.cronicaCompletaUrl)) {
+      cronicaCompleta = '<p class="route-closure-cronica-completa">' +
+        '<a href="' + c.cronicaCompletaUrl + '" target="_blank" rel="noopener noreferrer">' +
+        'Leer crónica completa (Layer 0) →</a></p>';
+    }
+
     return '<details class="route-closure-cronica">' +
       '<summary>Crónica canónica con fuentes · ' + escapeHtml(c.titulo) + '</summary>' +
       pregunta +
@@ -283,6 +290,7 @@
       '<p class="route-closure-cronica-sub">' + escapeHtml(c.sub) + '</p>' +
       '<div class="route-closure-cronica-cuerpo">' + parrafos + '</div>' +
       '<p class="route-closure-cronica-caveat">' + escapeHtml(c.caveat) + '</p>' +
+      cronicaCompleta +
       '<div class="route-closure-cronica-fuentes">' +
         '<h5>Fuentes</h5>' +
         '<ul>' + fuentes + '</ul>' +
