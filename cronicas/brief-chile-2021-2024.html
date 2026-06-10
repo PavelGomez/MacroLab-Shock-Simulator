@@ -14,7 +14,7 @@
 html{background:#e9ecef}
 body{margin:0;font-family:Georgia,'Times New Roman',serif;color:var(--tinta);
      font-size:15px;line-height:1.52}
-.page{max-width:920px;margin:24px auto;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.12);
+.page{max-width:680px;margin:24px auto;background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.12);
       padding:0 0 28px 0}
 .masthead{background:var(--azul);color:#fff;padding:18px 34px 14px}
 .masthead .serie{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;font-size:11px;
@@ -47,8 +47,7 @@ h1{font-size:30px;line-height:1.18;margin:0 0 10px;color:var(--azul);font-weight
 .tag-m{background:#dcefe4;color:var(--verde)}
 .leyenda-tags{margin:6px 34px 0;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
   font-size:10.5px;color:var(--gris)}
-.cols{padding:18px 34px 0;column-count:2;column-gap:30px}
-@media (max-width:700px){.cols{column-count:1}}
+.cols{padding:18px 34px 0}
 h2{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;color:var(--azul);
   text-transform:uppercase;letter-spacing:.06em;margin:18px 0 8px;break-after:avoid}
 h2 .ord{color:var(--azul-claro);margin-right:6px}
@@ -99,16 +98,10 @@ figcaption b{color:var(--tinta)}
   body{font-size:9.6pt;line-height:1.45}
   h1{font-size:20pt}
   .standfirst{font-size:11pt}
-  .cols{column-gap:8mm}
+  .cols{column-count:2;column-gap:8mm}
   a{color:inherit;text-decoration:none}
 }
 a{color:var(--azul-claro)}
-
-/* --- vista paginada (Paged.js) --- */
-.pagedjs_pages{display:block}
-.pagedjs_page{background:#fff;box-shadow:0 2px 14px rgba(0,0,0,.18);margin:14px auto}
-body.pagedjs-activo{background:#dfe3e7}
-body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;background:transparent}
 </style>
 </head>
 <body>
@@ -479,18 +472,5 @@ body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;back
 </div>
 </div>
 
-<script>
-/* Vista paginada tipo PDF (Paged.js). Si no hay red o falla la carga,
-   el documento conserva el flujo continuo — sin error visible. */
-(function(){
-  try{
-    var s=document.createElement('script');
-    s.src='https://unpkg.com/pagedjs@0.4.3/dist/paged.polyfill.js';
-    s.onload=function(){document.body.classList.add('pagedjs-activo');};
-    s.onerror=function(){ /* sin conexión: vista continua */ };
-    document.head.appendChild(s);
-  }catch(e){ /* vista continua */ }
-})();
-</script>
 </body>
 </html>
