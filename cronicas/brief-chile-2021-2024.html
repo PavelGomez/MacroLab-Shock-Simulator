@@ -47,7 +47,9 @@ h1{font-size:30px;line-height:1.18;margin:0 0 10px;color:var(--azul);font-weight
 .tag-m{background:#dcefe4;color:var(--verde)}
 .leyenda-tags{margin:6px 34px 0;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;
   font-size:10.5px;color:var(--gris)}
-.cols{padding:18px 34px 0;column-count:2;column-gap:30px}
+.colswrap{padding:0 34px}
+.cols{padding:18px 0 0}
+@media print{.cols{column-count:2;column-gap:30px}}
 @media (max-width:700px){.cols{column-count:1}}
 h2{font-family:-apple-system,'Segoe UI',Roboto,sans-serif;font-size:14px;color:var(--azul);
   text-transform:uppercase;letter-spacing:.06em;margin:18px 0 8px;break-after:avoid}
@@ -64,9 +66,13 @@ figcaption b{color:var(--tinta)}
 .tbl th{background:var(--azul);color:#fff;text-align:left;padding:5px 7px;font-weight:600}
 .tbl td{padding:5px 7px;border-bottom:1px solid var(--linea);vertical-align:top}
 .tbl tr:nth-child(even) td{background:#f5f8fa}
-.box.box-flow{break-inside:auto;page-break-inside:auto}
-.box.box-flow figure{break-inside:auto;page-break-inside:auto}
 .apendice figure{break-inside:auto;page-break-inside:auto}
+.wide .tbl,figure.wide .tbl{table-layout:fixed;width:100%}
+.tbl tr{break-inside:avoid;page-break-inside:avoid}
+.box.box-flow{break-inside:auto;page-break-inside:auto;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.box.box-flow figure{break-inside:auto;page-break-inside:auto;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .box .tbl{font-size:9.5px;table-layout:fixed}
 .box .tbl th,.box .tbl td{padding:4px 5px;hyphens:auto;-webkit-hyphens:auto}
 .box{background:var(--fondo-box);border:1px solid var(--linea);border-top:3px solid var(--azul-claro);
@@ -143,6 +149,7 @@ body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;back
 </div>
 <div class="leyenda-tags">Etiquetas: <span class="tag tag-a">Académico documentado</span> conocimiento con fuente verificada · <span class="tag tag-i">Inferencia pedagógica</span> extensión interpretativa del proyecto · <span class="tag tag-m">Adaptación MacroLab</span> lectura específica en el simulador.</div>
 
+<div class="colswrap">
 <div class="cols">
 
 <p><i>Tesis editorial (Borrador 14): Chile no solo sobrevivió a una secuencia de shocks entre 2019 y 2024. Sobrevivió porque su arquitectura monetaria y fiscal logró absorber el shock más visible sin desanclar expectativas, pero lo hizo mediante una corrección episódica que no resolvió el problema institucional descubierto por la crisis: una presión democrática transversal — legislativa primero, fiscalmente crónica después — capaz de extraer recursos hoy y desplazar costos hacia inflación, pensiones, crédito, deuda y menor colchón para el próximo shock. La crónica conversa con la memoria de la gestión desde la sala de máquinas (registro Marcel) sin competir con ella: toma la superación como punto de partida y pregunta qué tipo de superación fue (Marcel, 2026).</i></p>
@@ -213,8 +220,8 @@ body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;back
 <p>Pero la lectura <i>«un shock interno»</i> sigue siendo demasiado gruesa para el período. La trayectoria del FEES entre 2019 y 2026, leída en serie continua, hace visible que el período no fue un episodio sino cuatro shocks distintos con orígenes de decisión diferentes — y cada uno revela algo distinto sobre cómo opera (o no opera) el dispositivo institucional. <b>Primero</b>, el estallido social de octubre de 2019: shock interno, decisión del Ejecutivo (ministro Briones, gobierno Piñera), que dio origen a la Nueva Agenda Social y abrió la presión sobre el fondo. <b>Segundo</b>, la pandemia de 2020–2021: shock externo, decisión transversal canalizada por el Marco de Entendimiento de junio de 2020 entre Ejecutivo y Comisión de Hacienda ampliada con parlamentarios de oposición y oficialismo, que produjo el uso masivo y legítimo del FEES (≈US$10.000 millones en dos años). <b>Tercero</b>, los tres retiros del 10% de fondos previsionales (jul 2020, dic 2020, abr 2021): shock endógeno político, decisión parlamentaria contra el Ejecutivo (que recurrió al Tribunal Constitucional). <b>Crucial para la lectura: este tercer shock no tocó el FEES, sino las cuentas AFP.</b> Es decir, el shock más visible políticamente del período afectó al ahorro previsional privado, no al ahorro fiscal soberano. <b>Cuarto</b>, el déficit estructural sostenido de 2023–2025: shock interno fiscal, decisiones del Ejecutivo (ministros Marcel y Grau, gobierno Boric), expresadas en la Ley de Presupuestos y aprobadas por el Congreso, con un giro contra el FEES fuera de crisis en 2024 que el CFA pidió explícitamente no repetir.</p>
 
 <figure class="wide">
-<table class="tbl">
-<tr><th style="width:24%">Shock</th><th style="width:18%">Origen</th><th style="width:26%">Decisión</th><th>Efecto sobre el dispositivo</th></tr>
+<table class="tbl" style="width:91%;margin:0 auto">
+<tr><th style="width:26%">Shock</th><th style="width:13%">Origen</th><th style="width:31%">Decisión</th><th>Efecto sobre el dispositivo</th></tr>
 <tr><td><b>1. Estallido social</b> (oct 2019)</td><td>Interno</td><td>Ejecutivo (Briones / Piñera)</td><td>Nueva Agenda Social; abre la presión sobre el FEES</td></tr>
 <tr><td><b>2. Pandemia</b> (2020–2021)</td><td>Externo</td><td>Transversal (Marco de Entendimiento, jun 2020)</td><td>Uso masivo y legítimo del FEES (≈US$10.000 M en dos años)</td></tr>
 <tr><td><b>3. Retiros AFP 10%</b> (Leyes 21.248, 30-07-2020; 21.295, 10-12-2020; 21.330, 28-04-2021)</td><td>Endógeno político</td><td>Parlamentaria, contra el Ejecutivo (recurso al TC)</td><td>No tocó el FEES: extrajo del ahorro previsional privado (≈US$50.000 M)</td></tr>
@@ -308,11 +315,15 @@ body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;back
 <p>Las restricciones del segundo cortafuegos — regla de balance, CFA, calificación soberana, horizontes distintos — no operan en el vacío: necesitan una señal que las active. La hipótesis de la crónica puede precisarse en cuatro condiciones. Un shock es <i>identificable</i> cuando es: <b>(1) verificable por terceros</b> — el estado del mundo puede ser certificado por actores con autoridad de certificación, de modo que la corrección puede auditarse, no solo creerse; <b>(2) separable de la preferencia del gobierno</b> — el evento es atribuible a una causa distinta de la voluntad del ejecutivo, de modo que corregir no se confunde con preferir el ajuste; <b>(3) de magnitud extraordinaria</b> — supera un umbral que lo distingue del ruido de cada año fiscal; y <b>(4) con final declarable</b> — tiene un cierre verificable que permite anunciar el retorno a la regla. La presión crónica falla, sobre todo, en (2) y (4).</p>
 <figure>
 <table class="tbl">
+<thead>
 <tr><th style="width:26%">Condición</th><th style="width:37%">2022 — shock identificable</th><th>2023–2025 — presión crónica</th></tr>
+</thead>
+<tbody>
 <tr><td><b>Verificable por terceros</b></td><td>Tres retiros votados y publicados; IPC en 14,1%; TPM en 11,25%; el CFA, las calificadoras y los IPoM del BCCh certifican el costo de no corregir.</td><td>Cada desviación es pequeña y defendible por separado; los certificadores pueden incluso divergir (DIPRES dio por cumplidas las metas decretadas de 2023; el CFA registró desvío); ningún «evento» obliga a corregir.</td></tr>
 <tr><td><b>Separable de la preferencia del gobierno</b></td><td>El shock nace en el legislativo: corregir señala respeto por el marco, no preferencia por el ajuste.</td><td>La presión proviene del propio programa de gobierno y del ciclo electoral: ceder y preferir se vuelven indistinguibles.</td></tr>
 <tr><td><b>Magnitud extraordinaria</b></td><td>Retiros por 18–20% del PIB — el mayor retiro previsional pandémico del mundo.</td><td>Goteo de excepciones bajo el umbral: ninguna, por sí sola, justifica el costo político de negarla.</td></tr>
 <tr><td><b>Final declarable</b></td><td>La fase aguda tiene cierre verificable: la inflación converge y el retorno a la regla puede anunciarse.</td><td>Sin fecha de término: programa, elecciones y proceso constitucional se renuevan; la cláusula de retorno nunca puede cerrarse.</td></tr>
+</tbody>
 </table>
 </figure>
 <p>La teoría formal sostiene exactamente esta asimetría. Halac y Yared (2014) muestran que cuando los shocks que justifican desviarse de la regla son <i>persistentes</i> — y no episódicos —, la excusa de hoy predice la excusa de mañana: las desviaciones erosionan la disciplina futura, y la regla que era óptima bajo shocks episódicos deja de sostenerse. Drazen y Masson (1994) añaden el otro lado: bajo costos persistentes, observar dureza hoy puede <i>reducir</i> — no aumentar — la credibilidad del compromiso futuro, porque el público distingue la credibilidad de la política (¿es sostenible dado el estado del mundo?) de la credibilidad del policymaker (¿es duro?). <span class="tag tag-a">Académico documentado</span></p>
@@ -507,19 +518,11 @@ body.pagedjs-activo .page{box-shadow:none;margin:0;max-width:none;padding:0;back
 <div class="footer">MacroLab · Antología de episodios institucionales · Tensión 1 · Episodio 2 de 10 · Crónica institucional Nº 2 · Borrador 14 (2026-06-11) · Formato policy brief v1.3 (2026-06-11) · CC BY-NC-SA 4.0</div>
 </div>
 </div>
+</div>
 
-<script>
-/* Vista paginada tipo PDF (Paged.js). Si no hay red o falla la carga,
-   el documento conserva el flujo continuo — sin error visible. */
-(function(){
-  try{
-    var s=document.createElement('script');
-    s.src='https://unpkg.com/pagedjs@0.4.3/dist/paged.polyfill.js';
-    s.onload=function(){document.body.classList.add('pagedjs-activo');};
-    s.onerror=function(){ /* sin conexión: vista continua */ };
-    document.head.appendChild(s);
-  }catch(e){ /* vista continua */ }
-})();
-</script>
+<!-- Vista en navegador: flujo continuo a UNA columna (decisión editorial
+     2026-06-11). La maqueta a dos columnas A4 vive en @media print:
+     se obtiene al imprimir (Ctrl+P) o al generar el PDF con WeasyPrint.
+     El loader de Paged.js se retiró por decisión de Pável. -->
 </body>
 </html>
