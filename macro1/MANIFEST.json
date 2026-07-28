@@ -1,0 +1,75 @@
+{
+  "package": "macrolab-macro1",
+  "lab_version": "0.5.1",
+  "lab_file": "index.html",
+  "publish_path": "macro1/",
+  "artifact": "macro1/index.html",
+  "identity_line": "Macroeconomía · Profesor Pável Gómez · 2026",
+  "content_version": "macro1-notas-2026-07",
+  "learning_schema": "macrolab-learning-context/0.2",
+  "scenario_schema": "macrolab-macro1-scenario/1.1",
+  "generated_at": "2026-07-28T00:00:00.000Z",
+  "tests": [
+    "test_paquete.js",
+    "test_loop_clase3.js",
+    "test_formulas_selladas.js"
+  ],
+  "notes": [
+    {
+      "id": "nota-01",
+      "file": "notas/nota-01-introduccion.html",
+      "title": "Introducción a la Macroeconomía: Un curso aplicado y práctico",
+      "linked_from_class": 1
+    },
+    {
+      "id": "nota-02",
+      "file": "notas/nota-02-fuentes-datos.html",
+      "title": "Las Principales Fuentes de Datos Macroeconómicos de Chile y el Mundo",
+      "linked_from_class": 1
+    },
+    {
+      "id": "nota-03",
+      "file": "notas/nota-03-medicion-pib.html",
+      "title": "La Medición de las Variables Macroeconómicas — Análisis del PIB",
+      "linked_from_class": 2
+    },
+    {
+      "id": "nota-04",
+      "file": "notas/nota-04-medicion-inflacion.html",
+      "title": "La Medición de las Variables Macroeconómicas — La Inflación",
+      "linked_from_class": 2
+    },
+    {
+      "id": "nota-05",
+      "file": "notas/nota-05-demanda-agregada.html",
+      "title": "Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada",
+      "linked_from_class": 3
+    },
+    {
+      "id": "nota-06",
+      "file": "notas/nota-06-mercado-dinero.html",
+      "title": "Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros",
+      "linked_from_class": null
+    }
+  ],
+  "images": [
+    "notas/img/logo-icom-uft.png",
+    "notas/img/n03-pib-metodo-gasto.png",
+    "notas/img/n03-pib-nominal-real.png",
+    "notas/img/n05-demanda-agregada.png",
+    "notas/img/n05-equilibrio-45.png",
+    "notas/img/n05-funcion-consumo-c0.png",
+    "notas/img/n05-funcion-consumo-c1.png",
+    "notas/img/n05-funcion-consumo.png",
+    "notas/img/n06-demanda-dinero-renta.png",
+    "notas/img/n06-demanda-dinero.png",
+    "notas/img/n06-equilibrio-dinero.png",
+    "notas/img/n06-equilibrio-nueva-oferta.png"
+  ],
+  "open_marks": [
+    {
+      "note": "nota-06",
+      "reason": "Revisar la numeración de este apartado. En el original las preguntas del ejemplo se rotulan «a.» y, a continuación, «c.»: no existe un apartado «b.». Se conserva el rótulo «c.» tal como lo escribió el autor, porque el salto puede indicar una pregunta ausente y no una simple errata de numeración."
+    }
+  ]
+}
