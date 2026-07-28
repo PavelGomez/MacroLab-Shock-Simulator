@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de Estudio 3 &middot; La Medición de las Variables Macroeconómicas &mdash; Análisis del PIB</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Nota de Estudio 3 del curso Macroeconomía I: definición y componentes del PIB, métodos del gasto, del valor agregado y del ingreso, PIB y PNB, PIB como indicador de bienestar y variación interanual del PIB real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la nota">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Nota de Estudio 3</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Nota de Estudio 3 &middot; La Medición de las Variables Macroeconómicas &mdash; Análisis del PIB &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>La Medición de las Variables Macroeconómicas &mdash; Análisis del PIB</h1>
+    <p class="meta">Nota de Estudio 3 &middot; Macroeconomía I &middot; Ingeniería Comercial</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Índice de contenidos</h2>
+  <ol>
+    <li><a href="#1-definicion-y-componentes-del-pib">1. Definición y Componentes del PIB</a>
+      <ol class="sub">
+        <li><a href="#1-1-el-pib-nominal-vs-el-pib-real">1.1. El PIB Nominal vs. el PIB Real</a></li>
+        <li><a href="#1-2-el-pib-como-suma-de-gastos-pib-c-i-g-x-m">1.2. El PIB como suma de gastos: (PIB = C + I + G + X - M)</a></li>
+        <li><a href="#1-3-el-pib-como-suma-de-valores-agregados">1.3. El PIB como suma de valores agregados</a></li>
+        <li><a href="#1-4-el-pib-como-suma-de-los-ingresos-metodo-del-ingreso">1.4. El PIB como suma de los ingresos (método del ingreso)</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-del-pib-al-producto-nacional-bruto-pnb">2. Del PIB al Producto Nacional Bruto (PNB)</a></li>
+    <li><a href="#3-el-pib-como-indicador-de-bienestar">3. El PIB como Indicador de Bienestar</a></li>
+    <li><a href="#4-variacion-interanual-del-pib-real-o-crecimiento-concep">4. Variación Interanual del PIB Real (o “Crecimiento”): Concepto y Ejemplos con Datos de Chile</a>
+      <ol class="sub">
+        <li><a href="#4-1-que-es-la-variacion-interanual-del-pib-real">4.1. ¿Qué es la variación interanual del PIB real?</a></li>
+        <li><a href="#4-2-ventajas-de-medir-la-variacion-interanual">4.2. Ventajas de medir la variación interanual</a></li>
+        <li><a href="#4-3-aplicacion-practica-en-chile">4.3. Aplicación Práctica en Chile</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+<h2 id="1-definicion-y-componentes-del-pib">1. Definición y Componentes del PIB</h2>
+<p>Tal como se mencionó antes, el <strong>Producto Interno Bruto (PIB)</strong> es el <strong>valor monetario </strong>de los bienes y servicios <strong>finales </strong>producidos <strong>dentro de las fronteras</strong> de un país en un período. Se excluyen los <strong>bienes intermedios</strong> para evitar la doble contabilidad, y solo se registran los bienes de <strong>producción corriente</strong> (no se incluyen transacciones de bienes producidos en períodos anteriores).</p>
+<h3 id="1-1-el-pib-nominal-vs-el-pib-real">1.1. El PIB Nominal vs. el PIB Real</h3>
+<ul><li>El <strong>PIB nominal</strong> (a precios corrientes) está influido por la producción y los precios en el año en curso.</li><li>El <strong>PIB real</strong> (a precios constantes) busca medir la <strong>cantidad</strong> de bienes y servicios producidos, tomando como referencia un <strong>año base</strong> para eliminar el efecto de la variación de los precios.</li></ul>
+<p>En Chile, el <strong>Banco Central</strong> publica cifras de <strong>PIB nominal </strong>y <strong>PIB real </strong>(año base<strong> </strong>2018).</p>
+<figure><img src="img/n03-pib-nominal-real.png" alt="Gráfico de líneas: PIB de Chile 2013-2023, en miles de millones de pesos, comparando la serie a precios corrientes con la serie a precios constantes de 2018." width="1060" height="654"><figcaption>Fuente: BCCh</figcaption></figure>
+<h3 id="1-2-el-pib-como-suma-de-gastos-pib-c-i-g-x-m">1.2. El PIB como suma de gastos: (PIB = C + I + G + X - M)</h3>
+<p>Una forma frecuente de medir el PIB es a través del <strong>método del gasto</strong>, sumando las <strong>compras finales</strong> de bienes y servicios en la economía:</p>
+<ol><li><strong>Consumo (C)</strong>: Gasto de los hogares en bienes y servicios.</li><li><strong>Inversión (I)</strong>: Gasto de las empresas (o del propio hogar, en el caso de inversión residencial) en <strong>bienes de capital</strong> que aumenten la capacidad productiva futura: maquinaria, construcción de planta industrial, etc.</li><li><strong>Gasto público (G)</strong>: Compras de bienes y servicios realizadas por el sector público (por ejemplo, infraestructura, servicios de salud y educación estatales), sin incluir transferencias como pensiones o subsidios, pues no corresponden a la compra de bienes/servicios finales.</li><li><strong>Exportaciones (X)</strong>: Ventas de bienes y servicios a otros países.</li><li><strong>Importaciones (M)</strong>: Bienes y servicios producidos en el extranjero que compran los residentes locales.</li></ol>
+<p>Al PIB se le suman las exportaciones (X) y se le restan las importaciones (M).</p>
+<p>En notación simple:&emsp;PIB = C + I + G + (X−M)</p>
+<p>En la práctica, en un país orientado al comercio internacional, como Chile, <strong>X</strong> e <strong>M</strong> son componentes sustanciales, sobre todo en materias primas, manufacturas y servicios. componente <strong>(X-M)</strong> se denomina <strong>exportaciones netas</strong>. Si el país importa más de lo que exporta, esta parte se vuelve negativa, generando un <strong>déficit comercial</strong>.</p>
+<figure><img src="img/n03-pib-metodo-gasto.png" alt="Gráfico circular: composición del PIB de Chile en 2024 por el método del gasto — consumo privado 58,1%, inversión 23,2%, gasto público 15,1% y exportaciones netas 3,6%." width="1414" height="722"><figcaption>Fuente: BCCh</figcaption></figure>
+<h3 id="1-3-el-pib-como-suma-de-valores-agregados">1.3. El PIB como suma de valores agregados</h3>
+<p>Otra perspectiva es el <strong>método del valor agregado</strong>. Cada empresa agrega un valor a sus insumos antes de venderlos. La <strong>suma de los valores agregados</strong> en todas las etapas de producción de bienes y servicios debe coincidir con el valor de mercado final de dichos bienes y servicios.</p>
+<ul><li>Por ejemplo, si una refinería compra barriles de petróleo crudo por 100 dólares cada uno y, tras refinarlos, vende gasolina por 120 dólares, el valor agregado por la refinería es de 20 dólares.</li><li>De igual forma, la extracción del petróleo crudo agrega un valor específico antes de venderlo a la refinería, y así sucesivamente.</li></ul>
+<p>Este método ayuda a ver cómo se <strong>componen</strong> los distintos sectores de la economía (minería, industria, agricultura, servicios, etc.) en el PIB. Para Chile, el <strong>sector minero</strong> (especialmente el cobre) ha sido históricamente un <strong>aporte relevante</strong> al valor agregado total. Otros sectores (servicios financieros, comercio, transporte, manufactura, agropecuario) también contribuyen a la formación del PIB, y su peso relativo varía con el tiempo.</p>
+<h3 id="1-4-el-pib-como-suma-de-los-ingresos-metodo-del-ingreso">1.4. El PIB como suma de los ingresos (método del ingreso)</h3>
+<p>El <strong>flujo circular del ingreso</strong> indica que el valor de la producción vendida (PIB) se convierte, tras la venta, en <strong>ingreso </strong>de los factores que intervienen en la producción (trabajo y capital), además delos impuestos cobrados por el gobierno. Por tanto, se llega también a una estimación del PIB al sumar:</p>
+<ul><li><strong>Remuneración de los asalariados</strong></li><li><strong>Excedente del Explotación (Ingresos del capital</strong>)</li><li><strong>Impuestos netos sobre la producción y los productos</strong></li></ul>
+<p>En Chile, típicamente, alrededor de la mitad o más del <strong>ingreso doméstico</strong> corresponde a <strong>salarios</strong>, con variaciones históricas que se explican por el grado de capitalización de la economía y por las condiciones del mercado laboral.</p>
+<h2 id="2-del-pib-al-producto-nacional-bruto-pnb">2. Del PIB al Producto Nacional Bruto (PNB)</h2>
+<p>El <strong>Producto Nacional Bruto (PNB)</strong> mide el ingreso que reciben los <strong>residentes nacionales</strong> de un país, independientemente de si la producción se generó dentro o fuera de las fronteras. Por contraste, el <strong>PIB </strong>se enfoca únicamente en la <strong>producción generada en el territorio</strong>. La <strong>diferencia fundamental</strong> entre PIB y PNB surge cuando parte de la producción interna pertenece a extranjeros o parte de la producción externa (en otro país) pertenece a nacionales.</p>
+<ul><li><strong>Pago neto a factores (PNF)</strong>: mide la diferencia entre los ingresos percibidos por nacionales en el exterior y los ingresos captados por extranjeros en el país.</li><li>Si <strong>PNF</strong> es positivo, el <strong>PNB &gt; PIB</strong> (más ingresos provienen del exterior que los que se pagan a foráneos).</li><li>Si <strong>PNF</strong> es negativo, el <strong>PNB &lt; PIB</strong> (más ingresos se pagan a extranjeros).</li></ul>
+<p>Chile, por ejemplo, tiene una <strong>industria minera</strong> (cobre) con participación importante de empresas extranjeras. Eso implica que parte de las utilidades generadas se transfiere fuera del país, reduciendo el <strong>PNB</strong> con respecto al <strong>PIB</strong>. En los años en que el precio del cobre alcanza niveles muy altos, ese diferencial tiende a hacerse más notorio, pues las <strong>remesas de utilidades</strong> de las mineras extranjeras crecen.</p>
+<p>Algunos países presentan la situación inversa (por ejemplo, si invierten fuertemente en el exterior y reciben rentas sobre esas inversiones), de modo que su PNB puede ser mayor que el PIB.</p>
+<div class="tabla-wrap"><table><caption>Los datos de Chile para 2024 son los siguientes:</caption><tbody><tr><th scope="row">Producto Interno Bruto (PIB)</th><td>209.929</td></tr><tr><th scope="row">Ingreso de factores recibidos del resto del mundo</th><td>+8.059</td></tr><tr><th scope="row">Ingreso de factores pagados al resto del mundo</th><td>-19.407</td></tr><tr><th scope="row">Producto nacional bruto (PNB)</th><td>198.450</td></tr></tbody></table></div>
+<p class="nota-tabla">Nota: cifras reales a Precios de 2018</p>
+<p class="nota-tabla">Fuente: BCCh</p>
+<h2 id="3-el-pib-como-indicador-de-bienestar">3. El PIB como Indicador de Bienestar</h2>
+<p>El <strong>PIB per cápita</strong> (PIB dividido por la población) es a menudo un <strong>indicador de referencia</strong> para comparar el <strong>nivel de desarrollo</strong> entre países. Sin embargo, no debe interpretarse de forma simplista como una medida exacta de <strong>bienestar</strong>. Existen varios motivos:</p>
+<ol><li><strong>No recoge la producción de bienes y servicios no transados en el mercado</strong>, como las tareas domésticas o el trabajo informal que no se registra.</li><li><strong>No descuenta los efectos negativos</strong> como la contaminación o el agotamiento de recursos naturales.</li><li><strong>No mide la distribución del ingreso</strong>.</li><li><strong>No considera la calidad de bienes públicos</strong> como educación, salud y seguridad, que pueden incidir fuertemente en el bienestar.</li></ol>
+<p>En Chile, se ha debatido sobre la conveniencia de complementar el PIB con indicadores sociales y ambientales (Índice de Desarrollo Humano, coeficiente de Gini, etc.) para tener una visión más integral del bienestar.</p>
+<p>Como un elemento para motivar la reflexión, conviene mirar la contrastación que en 2025 publicó la revista <strong><em>The Economist</em></strong> entre <strong>felicidad y PIB per cápita</strong>. El gráfico no se reproduce aquí porque es material de un tercero, y el sitio de la revista requiere suscripción. La comparación, sin embargo, puede rehacerse con sus dos fuentes declaradas, ambas de acceso abierto: los puntajes de satisfacción vital del <a href="https://www.worldhappiness.report/ed/2025/" target="_blank" rel="noopener">World Happiness Report 2025</a> —con su <a href="https://data.worldhappiness.report/map" target="_blank" rel="noopener">panel de datos descargable</a>— y el PIB per cápita del <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD" target="_blank" rel="noopener">Banco Mundial</a>.</p>
+<p>Lo que se observa al cruzarlas es una relación positiva pero <strong>no determinante</strong>: la correlación es fuerte, y aun así hay países de ingreso muy alto que no aparecen entre los más satisfechos, y países de ingreso medio que sí. Esa dispersión es justamente el argumento de esta sección: el PIB per cápita ordena, pero no agota, la pregunta por el bienestar.</p>
+<h2 id="4-variacion-interanual-del-pib-real-o-crecimiento-concep">4. Variación Interanual del PIB Real (o “Crecimiento”): Concepto y Ejemplos con Datos de Chile</h2>
+<p>Una forma muy común de medir el <strong>desempeño macroeconómico</strong> de un país es analizar la <strong>variación interanual</strong> de su <strong>Producto Interno Bruto (PIB) real</strong>. Esta variación, también llamada “crecimiento del PIB”, compara el nivel de la producción de un período (por ejemplo, un año o un trimestre) con el mismo período del año anterior.</p>
+<h3 id="4-1-que-es-la-variacion-interanual-del-pib-real">4.1. ¿Qué es la variación interanual del PIB real?</h3>
+<ul><li><strong>PIB real</strong>: valor de la producción de bienes y servicios medido a precios de un año base, para aislar el efecto de la inflación.</li><li><strong>Variación interanual</strong>: mide el cambio porcentual del PIB real entre dos períodos equivalentes con un año de diferencia; por ejemplo, entre 2023 y 2024, o entre el primer trimestre de 2023 y el primer trimestre de 2024.</li></ul>
+<h4 id="formula-general">Fórmula general</h4>
+<p>Si PIB<sub>t</sub> representa el PIB real en el año (o trimestre) t, y PIB<sub>t−1</sub> el del año (o trimestre) anterior, la <strong>tasa de crecimiento</strong> es:</p>
+<div class="formula">Crecimiento interanual=<span class="frac"><span class="num">PIB<sub>t</sub>-PIB<sub>t-1</sub></span><span class="den">PIB<sub>t-1</sub></span></span>×100</div>
+<h4 id="ejemplo-con-cifras-de-chile">Ejemplo con cifras de Chile.</h4>
+<div class="tabla-wrap"><table><caption>La siguiente tabla muestra los datos de PIB real de Chile entre 2013 y 2024, expresados en miles de millones de pesos de 2018.</caption><thead><tr><td></td><th scope="col">2013</th><th scope="col">2014</th><th scope="col">2015</th><th scope="col">2016</th><th scope="col">2017</th><th scope="col">2018</th><th scope="col">2019</th><th scope="col">2020</th><th scope="col">2021</th><th scope="col">2022</th><th scope="col">2023</th><th scope="col">2024</th></tr></thead><tbody><tr><th scope="row"><strong>PIB real </strong></th><td>169.864</td><td>172.909</td><td>176.630</td><td>179.726</td><td>182.166</td><td>189.435</td><td>190.637</td><td>178.925</td><td>199.170</td><td>203.461</td><td>204.521</td><td>209.929</td></tr></tbody></table></div>
+<ul><li>Si queremos calcular el crecimiento entre 2017 y 2018, aplicamos la fórmula:</li></ul>
+<div class="formula">Crecimiento interanual=<span class="frac"><span class="num">189.435-182.166</span><span class="den">182.166</span></span>×100 = 3,99%</div>
+<ul><li>Si queremos calcular el crecimiento entre 2019 y 2020, aplicamos la fórmula:</li></ul>
+<div class="formula">Crecimiento interanual=<span class="frac"><span class="num">178.925-190.637</span><span class="den">190.637</span></span>×100 = -6,14%</div>
+<h3 id="4-2-ventajas-de-medir-la-variacion-interanual">4.2. Ventajas de medir la variación interanual</h3>
+<ol type="a"><li><strong>Comparabilidad</strong>: al comparar un año con el mismo período del año anterior, se evitan problemas de estacionalidad.</li><li><strong>Seguimiento de tendencias</strong>: se observa si el país lleva una trayectoria de expansión o contracción a lo largo del tiempo.</li><li><strong>Base para análisis de política económica</strong>: gobiernos y bancos centrales necesitan esta tasa para evaluar si se requiere estimular la demanda, enfriar la economía o introducir reformas estructurales.</li></ol>
+<h3 id="4-3-aplicacion-practica-en-chile">4.3. Aplicación Práctica en Chile</h3>
+<ol type="i"><li><strong>Rangos de Crecimiento</strong><ul class="sub"><li>Entre 2013 y 2016, la economía chilena registró tasas de crecimiento moderadas (1,7% a 2,2% aprox.), con un leve repunte en 2018 (casi 4%).</li><li>Destaca la <strong>contracción</strong> en 2020 (-6,14%), vinculada a la coyuntura global de ese año (Pandemia).</li><li>Posteriormente, en 2021 se observa un <strong>rebote</strong> de 11,3%, reflejando la recuperación tras la caída anterior.</li></ul></li><li><strong>Factores que influyen en las variaciones</strong><ul class="sub"><li><strong>Shocks externos</strong>: volatilidad en precios de materias primas (p.ej., cobre), crisis internacionales, casos como la pandemia del COVID-19, etc.</li><li><strong>Política económica</strong>: uso de estímulos fiscales y monetarios, reformas estructurales.</li><li><strong>Dinámica interna</strong>: entender qué prima sobre el desempeño, entre variables como el consumo de los hogares, inversión privada, gasto público o exportaciones.</li></ul></li><li><strong>Importancia para la política y el sector privado</strong><ul class="sub"><li>Estas tasas guían el análisis macroeconómico y la toma de decisiones de gobierno (fiscal y monetaria).</li><li>Las empresas y los inversionistas observan la trayectoria del PIB para evaluar riesgos y oportunidades de negocios.</li></ul></li></ol>
+<p>En suma, el cálculo interanual del PIB real permite <strong>cuantificar</strong> la evolución de la actividad productiva año tras año y <strong>entender</strong> los períodos de expansión y contracción en la economía de un país.</p>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Nota de Estudio 3 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de Estudio 1 · Introducción a la Macroeconomía: Un curso aplicado y práctico</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Nota de Estudio 1 del curso Macroeconomía I: introducción a la macroeconomía, variables clave y políticas macroeconómicas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub{margin:.45rem 0 .2rem;padding-left:1.4rem;list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la nota">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Nota de Estudio 1</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Nota de Estudio 1 · Introducción a la Macroeconomía: Un curso aplicado y práctico &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Introducción a la Macroeconomía: Un curso aplicado y práctico</h1>
+    <p class="meta">Nota de Estudio 1 &middot; Macroeconomía I &middot; Ingeniería Comercial</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Índice de contenidos</h2>
+  <ol>
+    <li><a href="#1-introduccion-crisis-y-recuperacion-en-la-vida-de-los-herma">1. Introducción: Crisis y Recuperación en la Vida de los Hermanos González</a></li>
+    <li><a href="#2-que-estudia-la-macroeconomia">2. ¿Qué Estudia la Macroeconomía?</a></li>
+    <li><a href="#3-variables-clave-en-macroeconomia">3. Variables Clave en Macroeconomía</a>
+      <ol class="sub">
+        <li><a href="#31-producto-interno-bruto-pib">3.1. Producto Interno Bruto (PIB)</a></li>
+        <li><a href="#32-inflacion">3.2. Inflación</a></li>
+        <li><a href="#33-desempleo">3.3. Desempleo</a></li>
+        <li><a href="#34-el-saldo-en-cuenta-corriente-superavits-y-deficits">3.4. El saldo en cuenta corriente: superávits y déficits</a></li>
+        <li><a href="#35-los-aranceles-de-estados-unidos-de-2025-y-sus-efectos-sob">3.5. Los aranceles de Estados Unidos de 2025 y sus efectos sobre Chile</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-politicas-macroeconomicas-respuestas-a-la-crisis-del-estal">4. Políticas Macroeconómicas: Respuestas a la Crisis del estallido + COVID-19</a>
+      <ol class="sub">
+        <li><a href="#41-politica-fiscal">4.1. Política Fiscal</a></li>
+        <li><a href="#42-politica-monetaria">4.2. Política Monetaria</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-reflexion-final">5. Reflexión Final</a></li>
+  </ol>
+</nav>
+
+<h2 id="1-introduccion-crisis-y-recuperacion-en-la-vida-de-los-herma">1. Introducción: Crisis y Recuperación en la Vida de los Hermanos González</h2>
+<p>A fines de 2018, los hermanos Carolina y Matías González estaban en momentos clave de sus vidas. Carolina, con 25 años, trabajaba en una consultora financiera en Santiago, mientras que Matías, de 20 años, recién ingresaba a estudiar ingeniería comercial en la universidad. Ambos habían crecido en un Chile que, pese a sus desafíos, se consideraba estable y con un crecimiento sostenido.</p>
+<p>Pero la estabilidad no dura para siempre. En octubre de 2019, el estallido social sacudió al país. Carolina, que trabajaba con inversionistas extranjeros, vio cómo la incertidumbre política y económica golpeaba la confianza de los mercados. Su empresa redujo proyectos, y varios compañeros fueron despedidos. Matías, por su parte, empezó a notar cómo el ambiente en la universidad cambiaba: se hablaba de reformas económicas y del impacto de la desigualdad en el crecimiento.</p>
+<p>Justo cuando el país intentaba encauzar sus problemas, llegó el <strong>COVID-19 en 2020</strong>. Con la cuarentena y las restricciones sanitarias, la economía se contrajo bruscamente. Carolina perdió su empleo cuando su empresa no pudo sostenerse en medio de la crisis. Matías, para aquel momento en segundo año, vio cómo sus clases pasaban a modalidad online, mientras la tasa de desempleo superaba el 13% en julio de 2020, y el PIB de Chile caía un 5,8% al final de ese año.</p>
+<p>El gobierno respondió con políticas fiscales expansivas: bonos de emergencia y subsidios para evitar el colapso del consumo. Al mismo tiempo, el Congreso aprobó varias rondas de retiros de fondos previsionales. Pero estas medidas, aunque algunas fuesen necesarias en el corto plazo, tendrían impactantes consecuencias en el futuro.</p>
+<p>En 2021, la economía comenzó a recuperarse. El fin de las cuarentenas, junto con el boom en el precio del cobre y el incremento de la demanda derivado de los retiros de fondos previsionales, impulsaron un crecimiento rápido. Carolina consiguió trabajo en una fintech, y Matías vio cómo los negocios de sus amigos florecían gracias al dinero extra en circulación. Sin embargo, esta bonanza traía una amenaza latente: la inflación.</p>
+<p>Mientras muchos países sufrieron brotes inflacionarios provocados por una reactivación de la demanda superior a las respuestas de la oferta de bienes y servicios, la inflación chilena se desató con mayor fuerza que la de sus pares debido al combustible adicional de los retiros de fondos previsionales.</p>
+<p>Como respuesta a este fuerte repunte de los precios, en 2022 el Banco Central comenzó a subir agresivamente la tasa de interés para frenar la inflación, que había alcanzado cifras cercanas al 12%. Los créditos se encarecieron, las empresas redujeron contrataciones y la actividad económica se desaceleró. Matías, que en 2019 solo pensaba en sueldos y estabilidad, ahora discutía en clases sobre cómo la política monetaria podía enfriar una economía sobrecalentada por la mala política pública de los retiros de los ahorros previsionales.</p>
+<p>En 2023 y 2024, la inflación comenzó a ceder, pero el crecimiento económico seguía siendo débil. Carolina, ahora con más experiencia, analizaba para su empresa cómo los cambios exógenos —como la guerra en Ucrania o la caída del precio del cobre— afectaban a Chile. Matías, por su parte, reflexionaba sobre cómo una serie de eventos impredecibles habían cambiado el rumbo de su educación y las decisiones de su familia.</p>
+<h2 id="2-que-estudia-la-macroeconomia">2. ¿Qué Estudia la Macroeconomía?</h2>
+<p>La historia de los hermanos González ilustra cómo las variables macroeconómicas —el PIB, la inflación, el desempleo— afectan la vida de las personas. Frente a esta breve historia surge una pregunta clave: ¿qué factores determinan estos cambios? Esta y otras preguntas similares serán respondidas a lo largo de nuestro curso, para dominar conceptos y relaciones, e identificar las claves del entorno macroeconómico en el que deben tomar decisiones tanto las empresas como las familias.</p>
+<p>La <strong>macroeconomía </strong>estudia el comportamiento agregado de los mercados, los hogares y las empresas, centrándose en variables clave como el crecimiento, la inflación y el desempleo. Algunas preguntas más específicas que aborda la macroeconomía incluyen:</p>
+<ul><li>¿Qué determina los niveles de variables económicas como el PIB y la inflación?</li><li>¿Cómo cambian estas variables en el corto y mediano plazo?</li><li>¿Cómo influyen las políticas monetaria y fiscal en estos cambios?</li></ul>
+<h2 id="3-variables-clave-en-macroeconomia">3. Variables Clave en Macroeconomía</h2>
+<h3 id="31-producto-interno-bruto-pib">3.1. Producto Interno Bruto (PIB)</h3>
+<p>El PIB mide el valor total de bienes y servicios <strong>finales </strong>producidos <strong>dentro de las fronteras de un país </strong>en un período determinado. Existen dos formas principales de medirlo:</p>
+<ul><li><strong>PIB nominal: </strong>Calculado a precios corrientes, refleja tanto la producción como los cambios en los precios de esa producción (inflación).</li><li><strong>PIB real: </strong>Ajustado por inflación, permite medir el crecimiento de la cantidad de bienes producidos manteniendo constantes sus precios (crecimiento económico real).</li></ul>
+<p>Chile, como cualquier país, elabora sus cuentas nacionales a través del <strong>Banco Central</strong>, presentando cifras de PIB nominal (en pesos corrientes) y <strong>PIB real </strong>(en pesos de un año base). Las comparaciones en el tiempo y entre países suelen hacerse en términos reales. Por ejemplo, si en un año los precios de todos los bienes se duplicasen pero no cambiase la <strong>producción física</strong>, el PIB nominal se duplicaría, mientras el real quedaría <strong>constante</strong>.</p>
+<p>Chile es una economía abierta y depende de las exportaciones, especialmente del cobre. Eventos globales, como la guerra en Ucrania o la desaceleración de China, impactan directamente en la economía chilena. Por ejemplo, una caída en el precio del cobre reduce los ingresos fiscales y afecta negativamente el crecimiento del PIB.</p>
+<h4 id="crecimiento-y-ciclos-economicos-en-chile">Crecimiento y ciclos económicos en Chile</h4>
+<ul><li>El <strong>PIB real chileno </strong>muestra una tendencia al alza a lo largo de las últimas décadas. Sin embargo, tiene <strong>fluctuaciones </strong>y recesiones periódicas.</li><li>Ejemplo: En la <strong>crisis de 1982</strong>, el PIB cayó de forma severa (alrededor de un -14% en dos años), con fuerte aumento del desempleo, llegando cercanamente al 20%. Luego vinieron años de rápida expansión.</li><li>En 1999, tras la crisis asiática, Chile volvió a experimentar una recesión y la tasa de desempleo subió nuevamente.</li><li>Más recientemente, en 2009, la crisis financiera internacional repercutió negativamente en el PIB chileno, aunque la recuperación fue relativamente rápida.</li></ul>
+<p>Estas variaciones <strong>cíclicas </strong>(expansión y recesión) pueden relacionarse con <strong>shocks externos </strong>(variaciones en el precio del cobre, crisis financieras internacionales) o con políticas internas.</p>
+<p>Como se vio en la historia de los hermanos González, el PIB de Chile en los últimos años se vio afectado en distintos momentos por shocks externos y por las políticas económicas:</p>
+<ul><li><strong>2019-2020: </strong>Contracción por la crisis social y la pandemia.</li><li><strong>2021: </strong>Recuperación y crecimiento pronunciado gracias al aumento del precio del cobre y el estímulo fiscal.</li><li><strong>2022-2023: </strong>Desaceleración debido al alza de tasas de interés para controlar la inflación.</li></ul>
+<h3 id="32-inflacion">3.2. Inflación</h3>
+<p>La inflación mide el aumento sostenido del nivel general de precios en la economía. Cuando la inflación es alta, los salarios pierden poder adquisitivo, afectando a familias y empresas.</p>
+<p>Específicamente, la <strong>inflación </strong>mide la variación porcentual en el nivel general de precios. Generalmente se calcula a partir del <strong>Índice de Precios al Consumidor (IPC)</strong>. La experiencia chilena incluye períodos de alta inflación (especialmente en la década de 1970, donde llegó a sobrepasar el 500% anual), lo cual afectó profundamente la asignación de recursos y los salarios reales. A partir de las <strong>reformas </strong>y la <strong>política monetaria </strong>independiente del Banco Central (autónomo desde 1989-1990), el país logró reducir gradualmente la inflación a niveles cercanos al <strong>3% anual</strong>, lo que hoy se considera la <strong>meta </strong>oficial de inflación en el mediano plazo.</p>
+<p>Por consiguiente, algunas preguntas claves son:</p>
+<ul><li>¿Qué factores determinan la <strong>inflación promedio </strong>de largo plazo?</li><li>¿Cómo influyen la oferta monetaria, la demanda agregada y las expectativas inflacionarias?</li><li>¿De qué modo la inflación se vincula a las fases del ciclo económico?</li></ul>
+<p>En 2022, la inflación en Chile superó el 12%, forzando al Banco Central a subir la tasa de interés para reducir la demanda y estabilizar los precios. Esta política llevada adelante por el Banco Central de Chile (conocida como la Política Monetaria) ha sido efectiva en reducir la velocidad de crecimiento de los precios: En enero de 2025, la inflación anualizada en Chile fue de 4,9%.</p>
+<h3 id="33-desempleo">3.3. Desempleo</h3>
+<p>El desempleo mide la cantidad de personas activamente buscando trabajo sin éxito. Se relaciona con el PIB:</p>
+<ul><li>Cuando la economía crece, se crean empleos y el desempleo baja.</li><li>En recesiones, las empresas despiden trabajadores y el desempleo sube.</li></ul>
+<p>En Chile, se observan alzas del desempleo en los años de crisis (1982, 1999, 2009). La <strong>institucionalidad del mercado laboral</strong>, los salarios mínimos, las regulaciones de contratación, entre otros factores, también influyen en las fluctuaciones y en el <strong>nivel estructural </strong>del desempleo. Por ejemplo, algunas épocas con rápidas expansiones de las exportaciones mineras y agroindustriales han contribuido a <strong>reducir </strong>el desempleo, mientras períodos de contracción internacional o baja del precio del cobre han impulsado al alza la tasa de desocupación.</p>
+<p>En el Chile de años recientes, el desempleo alcanzó niveles históricos en 2020 (llegó a 13,1% en julio de ese año), pero se redujo desde 2021 con la reactivación económica. En enero de 2025, la tasa de desempleo de Chile fue 8%.</p>
+<h3 id="34-el-saldo-en-cuenta-corriente-superavits-y-deficits">3.4. El saldo en cuenta corriente: superávits y déficits</h3>
+<p>El saldo en cuenta corriente es un indicador clave de la relación de un país con el resto del mundo. En términos generales, mide la diferencia entre las exportaciones e importaciones de bienes y servicios, junto con otros flujos de ingreso y transferencias.</p>
+<h4 id="341-superavit-en-cuenta-corriente">3.4.1. Superávit en cuenta corriente</h4>
+<p>Cuando un país exporta más de lo que importa, se dice que tiene un <strong>superávit en cuenta corriente</strong>. Esto significa que el país está acumulando activos financieros en el extranjero, ya que el resto del mundo le está pagando más de lo que el país gasta en bienes y servicios del exterior.</p>
+<p>Un ejemplo es China, que ha mantenido superávits significativos en cuenta corriente desde los años 2000, debido a su gran capacidad exportadora y su control sobre la inversión extranjera. Para Chile, los años de altos precios del cobre han generado superávits temporales, ya que los ingresos por exportaciones han superado las importaciones y los pagos al exterior.</p>
+<h4 id="342-deficit-en-cuenta-corriente">3.4.2. Déficit en cuenta corriente</h4>
+<p>Por otro lado, un <strong>déficit en cuenta corriente </strong>ocurre cuando un país importa más de lo que exporta. Esto significa que está financiando su consumo con deuda externa o con inversión extranjera.</p>
+<p>Estados Unidos ha mantenido déficits persistentes en cuenta corriente debido a su alto nivel de importaciones y su papel como destino de inversión global. En Chile, los déficits en cuenta corriente han sido comunes en períodos de expansión económica, cuando el crecimiento interno impulsa la demanda de importaciones más allá de lo que se exporta.</p>
+<h4 id="343-factores-que-influyen-en-el-saldo-en-cuenta-corriente">3.4.3. Factores que influyen en el saldo en cuenta corriente</h4>
+<p>El saldo en cuenta corriente de un país está determinado por varios factores, entre ellos:</p>
+<ul><li><strong>Tipo de cambio: </strong>Una depreciación de la moneda nacional hace que las exportaciones sean más competitivas y puede reducir el déficit en cuenta corriente.</li><li><strong>Términos de intercambio: </strong>Si los precios de los productos que exporta un país suben (por ejemplo, el cobre en el caso de Chile), el saldo en cuenta corriente mejora.</li><li><strong>Política fiscal y monetaria: </strong>Un gasto público elevado o tasas de interés bajas pueden incrementar en el corto plazo la demanda interna y aumentar el déficit en cuenta corriente.</li></ul>
+<p>En resumen, los superávits y déficits en cuenta corriente reflejan la posición de un país en la economía global y pueden tener implicaciones en el crecimiento, la estabilidad financiera y la política económica.</p>
+<h3 id="35-los-aranceles-de-estados-unidos-de-2025-y-sus-efectos-sob">3.5. Los aranceles de Estados Unidos de 2025 y sus efectos sobre Chile</h3>
+<p>En febrero de 2025, la administración de Trump anunció aranceles del 25% sobre productos importados de la Unión Europea, Canadá y México, y del 20% sobre bienes procedentes de China. Estas medidas forman parte de una estrategia proteccionista destinada a reducir el déficit comercial de Estados Unidos y proteger industrias nacionales.</p>
+<p>Además, Trump firmó un decreto para investigar la posibilidad de imponer aranceles al cobre, alegando motivos de seguridad nacional. Esta investigación, liderada por el secretario de Comercio, tiene un plazo de 270 días para completarse y podría afectar a países exportadores de cobre como Chile, México y Canadá.</p>
+<h4 id="351-posibles-impactos-en-la-economia-chilena">3.5.1. Posibles Impactos en la Economía Chilena</h4>
+<p>Chile, como principal exportador mundial de cobre, podría verse afectado por estas medidas de varias maneras:</p>
+<h5 id="3511-sector-minero">3.5.1.1. Sector Minero</h5>
+<p>La imposición de aranceles al cobre chileno encarecería su precio en el mercado estadounidense, reduciendo su competitividad frente a productores locales u otros proveedores sin aranceles. Esto podría disminuir las exportaciones de cobre de Chile a Estados Unidos, afectando negativamente los ingresos del sector minero y, por ende, la economía nacional.</p>
+<p>El gobierno chileno está monitoreando de cerca esta situación. La cancillería ha expresado su preocupación y está evaluando posibles acciones en caso de que se concreten los aranceles al cobre.</p>
+<h5 id="3512-tipo-de-cambio-y-finanzas-publicas">3.5.1.2. Tipo de Cambio y Finanzas Públicas</h5>
+<p>Una reducción en las exportaciones de cobre podría afectar el tipo de cambio, provocando una depreciación del peso chileno. Además, menores ingresos por exportaciones impactarían las finanzas públicas, reduciendo la recaudación fiscal y limitando la capacidad del gobierno para invertir en proyectos sociales y de infraestructura.</p>
+<h5 id="3513-diversificacion-de-mercados">3.5.1.3. Diversificación de Mercados</h5>
+<p>Ante la posible pérdida del mercado estadounidense, Chile podría buscar diversificar sus exportaciones hacia otros países o regiones menos afectadas por las políticas arancelarias de Estados Unidos. Sin embargo, esta estrategia requeriría tiempo y recursos para establecer nuevas relaciones comerciales y adaptarse a diferentes normativas y demandas.</p>
+<h4 id="352-respuestas-internacionales-y-contexto-global">3.5.2. Respuestas Internacionales y Contexto Global</h4>
+<p>Las medidas arancelarias de Trump han generado respuestas de diversos países. Canadá, por ejemplo, ha denunciado a Estados Unidos ante la Organización Mundial del Comercio (OMC) debido a la imposición de aranceles del 25%.</p>
+<p>Además, estas políticas han incrementado la incertidumbre en los mercados internacionales, afectando los precios de materias primas como el cobre. Las amenazas de aranceles han disparado el precio del cobre y generado volatilidad en el mercado cambiario.</p>
+<h2 id="4-politicas-macroeconomicas-respuestas-a-la-crisis-del-estal">4. Políticas Macroeconómicas: Respuestas a la Crisis del estallido + COVID-19</h2>
+<h3 id="41-politica-fiscal">4.1. Política Fiscal</h3>
+<p>El gobierno puede influir en la economía a través de la política fiscal, ajustando el gasto público y los impuestos. Durante la crisis del COVID-19, Chile aplicó políticas fiscales expansivas, como los bonos y otros subsidios directos. Estas medidas ayudaron a sostener el consumo en el corto plazo, pero al combinarse con los retiros de fondos previsionales contribuyeron al sobrecalentamiento de la economía y a la inflación posterior.</p>
+<h3 id="42-politica-monetaria">4.2. Política Monetaria</h3>
+<p>El Banco Central controla la cantidad de dinero en circulación y las tasas de interés para hacer frente a los desafíos de la inflación. Un nivel moderado de inflación (entre 1% y 3%) es normal en una economía saludable, pero una inflación elevada reduce el poder adquisitivo y afecta la estabilidad económica.</p>
+<p>En Chile, la inflación se disparó en 2022 debido a los estímulos económicos de la pandemia (bonos, retiros de las AFPs) y los shocks externos, como el alza en el precio de los combustibles y los problemas en las cadenas de suministros globales ocasionados por los cierres de las economías frente al COVID-19. Para controlarla, el Banco Central subió la tasa de interés, encareciendo el crédito y reduciendo el consumo y la inversión.</p>
+<h2 id="5-reflexion-final">5. Reflexión Final</h2>
+<p>La historia inicial de Carolina y Matías González muestra cómo la macroeconomía no es solo teoría, sino que influye directamente en la vida de las personas. Sus desafíos y decisiones reflejan los efectos de eventos globales y de las respuestas de política económica.</p>
+<p><strong>Algunas preguntas clave para reflexionar en la primera clase del curso</strong>:</p>
+<ol><li>¿Cómo afectan los cambios en el PIB, la inflación y el desempleo a las decisiones de empresas y familias?</li><li>¿Qué papel juegan los bancos centrales y los gobiernos en estabilizar la economía?</li><li>¿Cómo influyen los eventos globales en la macroeconomía de Chile?</li></ol>
+<p>A lo largo del curso, exploraremos en profundidad estas preguntas y analizaremos cómo los principios macroeconómicos explican la evolución de nuestra economía.</p>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Nota de Estudio 1 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

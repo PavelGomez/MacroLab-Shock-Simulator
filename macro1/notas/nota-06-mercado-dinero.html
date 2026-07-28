@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de Estudio 6 &middot; Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Nota de Estudio 6 del curso Macroeconomía I: dinero y bonos, demanda y oferta de dinero, determinación del tipo de interés en tres casos, políticas del Banco Central de Chile y trampa de la liquidez.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la nota">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Nota de Estudio 6</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Nota de Estudio 6 &middot; Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros</h1>
+    <p class="meta">Nota de Estudio 6 &middot; Macroeconomía I &middot; Ingeniería Comercial</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Índice de contenidos</h2>
+  <ol>
+    <li><a href="#1-definiciones-clave">1. Definiciones Clave</a></li>
+    <li><a href="#2-la-demanda-de-dinero">2. La Demanda de Dinero</a>
+      <ol class="sub">
+        <li><a href="#2-1-ecuacion-de-la-demanda-de-dinero">2.1. Ecuación de la Demanda de Dinero:</a></li>
+        <li><a href="#ejemplo-de-la-relacion-entre-la-demanda-de-dinero-tipo-d">Ejemplo de la relación entre la demanda de dinero, tipo de interés y renta nominal:</a></li>
+      </ol>
+    </li>
+    <li><a href="#3-idea-central-del-analisis">3. Idea Central del Análisis:</a>
+      <ol class="sub">
+        <li><a href="#3-1-la-determinacion-del-tipo-de-interes-caso-i">3.1. La Determinación del Tipo de Interés: Caso I</a></li>
+        <li><a href="#3-2-la-determinacion-del-tipo-de-interes-cuando-tenemos">3.2. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero solo en forma de depósitos a la vista: Caso II</a></li>
+        <li><a href="#3-3-la-determinacion-del-tipo-de-interes-cuando-tenemos">3.3. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero en una mezcla de efectivo y depósitos a la vista: Caso III</a></li>
+      </ol>
+    </li>
+    <li><a href="#4-impacto-de-las-politicas-del-banco-central-de-chile">4. Impacto de las políticas del Banco Central de Chile:</a></li>
+    <li><a href="#5-la-trampa-de-la-liquidez">5. La Trampa de la Liquidez</a>
+      <ol class="sub">
+        <li><a href="#ejemplo-de-la-trampa-de-la-liquidez">Ejemplo de la Trampa de la Liquidez:</a></li>
+        <li><a href="#implicaciones-de-la-trampa-de-liquidez">Implicaciones de la trampa de liquidez</a></li>
+      </ol>
+    </li>
+    <li><a href="#6-importancia-para-un-egresado-de-ingenieria-comercial">6. Importancia para un egresado de Ingeniería Comercial</a></li>
+    <li><a href="#7-conclusion">7. Conclusión</a></li>
+  </ol>
+</nav>
+<p>El capítulo 4 de <em>Macroeconomía</em> de Olivier Blanchard examina el funcionamiento de los mercados financieros, enfocándose en la relación entre dos activos principales: <strong>dinero</strong> y <strong>bonos</strong>. Este análisis permite comprender cómo el banco central, a través del control de la oferta monetaria, influye en los tipos de interés, afectando el comportamiento de empresas, individuos y la economía en su conjunto.</p>
+<p>La política monetaria, implementada por el banco central, como el <strong>Banco Central de Chile</strong>, desempeña un papel crucial en la economía, ya que determina el costo del dinero, lo que afecta tanto el ahorro como el consumo.</p>
+<p>Este capítulo simplifica la realidad, limitando los activos a dinero (que no rinde intereses) y bonos (que sí generan intereses). A través de este modelo básico, Blanchard explora la relación entre oferta y demanda de dinero, el tipo de interés, y el equilibrio en los mercados financieros.</p>
+<p>En Chile, los cambios en la <strong>Tasa de Política Monetaria (TPM)</strong> son un ejemplo de cómo el Banco Central utiliza el tipo de interés para influir en la economía. Cuando el Banco Central de Chile disminuye la TPM, facilita el acceso a crédito y estimula el gasto y la inversión, mientras que cuando la TPM sube, busca reducir la inflación y restringir el consumo.</p>
+<h2 id="1-definiciones-clave">1. Definiciones Clave</h2>
+<ol type="a"><li><strong>Dinero</strong>:<ul class="sub"><li><strong>Definición</strong>: Activo que puede utilizarse para realizar transacciones. Se considera efectivo y depósitos a la vista en bancos (cuentas corrientes), los cuales pueden utilizarse inmediatamente para pagos.</li><li><strong>Ejemplo</strong>: El saldo en tu cuenta corriente o el dinero en efectivo que usas para pagar el transporte en Santiago, como la tarjeta BIP, y otras compras en efectivo o con tarjeta de débito.</li><li><strong>Características</strong>: La principal característica del dinero es su <strong>liquidez</strong> o facilidad con la que es convertible en bienes y servicios. Al mismo tiempo, este activo financiero <strong>no genera intereses</strong>. Si las personas mantienen $100.000 en efectivo durante un período, digamos 6 meses, al final de este período tendrán los mismos $100.000.</li></ul></li><li><strong>Bonos</strong>:<ul class="sub"><li><strong>Definición</strong>: Un bono es un activo financiero que paga intereses. Representa una deuda que una entidad (gobierno o empresa) asume con quien compra el bono.</li><li><strong>Ejemplo chileno</strong>: Al comprar <strong>Bonos de Tesorería </strong>del gobierno chileno, le prestas dinero al gobierno, y a cambio recibirás intereses anuales. Esta es una inversión más segura comparada con las acciones, que pueden fluctuar más.</li><li><strong>Características</strong>: Los bonos pagan un tipo de interés, lo que los hace más atractivos que el dinero. Poe ello, cuando aumenta el tipo de interés los agentes económicos querrán tener menos dinero y más bonos.</li></ul></li><li><strong>Demanda de Dinero (Md)</strong>:<ul class="sub"><li><strong>Definición</strong>: Es la cantidad de dinero que los individuos desean mantener para sus transacciones, en función de su nivel de ingresos y del tipo de interés.</li><li><strong>Ejemplo</strong>: Si un estudiante tiene un ingreso mensual de $300,000 pesos, probablemente mantendrá en su cuenta corriente suficiente dinero para cubrir gastos como la comida, transporte y materiales de estudio. Si sus ingresos aumentan, querrá realizar más transacciones, para lo cual aumentará su demanda de dinero.</li><li><strong>Relaciones clave</strong>: La demanda de dinero depende directamente de la renta nominal (la cual determina el nivel de transacciones) e inversamente del tipo de interés. Cuando los intereses que pagan los bonos son altos, los individuos prefieren mantener menos riqueza en efectivo y más en bonos.</li></ul></li><li><strong>Oferta Monetaria (Ms)</strong>:<ul class="sub"><li><strong>Definición</strong>: Es la cantidad total de dinero disponible en la economía, controlada por el banco central a través de operaciones de mercado abierto (compra y venta de bonos).</li><li><strong>Ejemplo</strong>: Si el Banco Central de Chile decide aumentar la oferta de dinero comprando bonos del gobierno que estaban en manos de personas, empresas o bancos, la cantidad de dinero en circulación aumenta, lo que hace bajar las tasas de interés haciendo que los préstamos sean más baratos.</li><li><strong>Relación clave</strong>: El equilibrio entre la oferta y la demanda de dinero determina el tipo de interés. El banco central puede influir en este equilibrio mediante cambios en la oferta monetaria.</li></ul></li><li><strong>Tipo de Interés (i)</strong>:<ul class="sub"><li><strong>Definición</strong>: El tipo de interés es el retorno que se obtiene por invertir en bonos, o el costo de oportunidad de mantener dinero.</li><li><strong>Ejemplo</strong>: Si mantienes $500,000 en una cuenta corriente que no genera intereses, estás perdiendo la oportunidad de hacer crecer tu riqueza al invertir ese dinero en un bono que te pagaría un 4% anual.</li><li><strong>Relación clave</strong>: Cuando el tipo de interés es alto, los individuos prefieren invertir en bonos. Cuando es bajo, es más probable que mantengan su riqueza en forma de dinero, ya que los bonos generan menos rendimientos.</li></ul></li></ol>
+<h2 id="2-la-demanda-de-dinero">2. La Demanda de Dinero</h2>
+<p>La demanda de dinero depende principalmente de dos factores:</p>
+<ol type="I"><li>El <strong>nivel de transacciones</strong> que se realiza en la economía, que está directamente relacionado con la <strong>renta nominal</strong> o ingreso de los individuos, y</li><li>El <strong>tipo de interés</strong> que ofrecen los bonos.</li></ol>
+<p>En este modelo simplificado, los individuos deben elegir cuánta parte de su riqueza mantienen en dinero (para realizar transacciones cotidianas) y cuánta invierten en bonos (que generan intereses pero no se pueden usar directamente para transacciones).</p>
+<h3 id="2-1-ecuacion-de-la-demanda-de-dinero">2.1. Ecuación de la Demanda de Dinero:</h3>
+<p>La demanda de dinero se puede expresar mediante la ecuación:</p>
+<div class="formula"><em>M<sub>d</sub>  = $YL(i)</em>,</div>
+<p>donde</p>
+<ul><li><strong><em>Md</em></strong> es la demanda de dinero,</li><li><strong><em>Y</em></strong> es la renta nominal, y</li><li><strong><em>L(i)</em></strong> es una función decreciente del tipo de interés <strong><em>i</em></strong>. A esta función se le denomina <strong>preferencia por la liquidez,</strong> ya que indica el nivel de dinero o liquidez que desean mantener los agentes económicos. Es por esto por lo que se utiliza la letra "<strong><em>L</em></strong>" para esta función.</li></ul>
+<p>Esto significa que a medida que aumenta el tipo de interés, la demanda de dinero disminuye, ya que las personas prefieren invertir en bonos.</p>
+<h3 id="ejemplo-de-la-relacion-entre-la-demanda-de-dinero-tipo-d">Ejemplo de la relación entre la demanda de dinero, tipo de interés y renta nominal:</h3>
+<p>Supongamos que la renta nominal anual ($Y) de una economía es de 60.000 dólares y que los agentes económicos tienen la siguiente función preferencia por la liquidez:</p>
+<div class="formula"><em>L(i) = 0,35 – i</em></div>
+<p>Donde:</p>
+<ul><li>L(i) es la función de preferencia por la liquidez,</li><li>$Y es la renta nominal anual,</li><li>i es el tipo de interés.</li></ul>
+<h4 id="a-cual-es-la-demanda-de-dinero-de-esta-economia-cuando-e">a. ¿Cuál es la demanda de dinero de esta economía cuando el tipo de interés es del 5%? ¿Y cuando el tipo de interés es del 10%?</h4>
+<p>Dado que la renta nominal anual de esta economía es de $60,000, podemos sustituir los valores en la fórmula de demanda de dinero: <em>Md =$YL(i)</em></p>
+<p><strong>Cuando el tipo de interés es del 5 % (i = 0,05): </strong></p>
+<div class="formula">M<sub>d</sub>=60.000(0,35-0,05)=60.000(0,30)=18.000</div>
+<p><strong>Cuando el tipo de interés es del 10% (i = 0,1):</strong></p>
+<div class="formula">M<sub>d</sub>=60.000(0,35-0,10)=60.000(0,25)=15.000</div>
+<p>El gráfico correspondiente es el siguiente:</p>
+<figure><img src="img/n06-demanda-dinero.png" alt="Gráfico de la demanda de dinero en función del tipo de interés: recta decreciente con el punto A (i = 0,05; Md = 18.000) y el punto B (i = 0,10; Md = 15.000)." width="800" height="600"></figure>
+<p>Como se observa, cambios en el tipo de interés (ceteris paribus) se traducen en movimientos sobre la función de demanda de dinero (Md).</p>
+<p><mark class="revisar">Revisar la numeración de este apartado. En el original las preguntas del ejemplo se rotulan «a.» y, a continuación, «c.»: no existe un apartado «b.». Se conserva el rótulo «c.» tal como lo escribió el autor, porque el salto puede indicar una pregunta ausente y no una simple errata de numeración.</mark></p>
+<h4 id="c-supongamos-que-el-tipo-de-interes-es-del-10-que-ocurre">c. Supongamos que el tipo de interés es del 10 %. ¿Qué ocurre en términos porcentuales con la demanda de dinero si la renta nominal anual disminuye un 50 %?</h4>
+<p>Si la renta anual disminuye un 50%, la nueva renta es:</p>
+<div class="formula">Y=60.000×0,50=30.000</div>
+<p>Con el tipo de interés del 10 %, recalculamos la demanda de dinero:</p>
+<div class="formula">M<sub>d</sub>=30.000(0,35-0,10)=30.000(0,25)=7.500</div>
+<p>Ahora, comparamos con la demanda original de dinero (Md =15,000 cuando Y=60,000):</p>
+<div class="formula"><span class="frac"><span class="num">7500</span><span class="den">15000</span></span>×100= 50%</div>
+<p>Como se observa, si la renta nominal anual disminuye un 50% la demanda de dinero también disminuye un 50%.</p>
+<p>El gráfico correspondiente es el siguiente:</p>
+<figure><img src="img/n06-demanda-dinero-renta.png" alt="Gráfico con dos curvas de demanda de dinero: la correspondiente a una renta nominal de 60.000 dólares y la correspondiente a 30.000 dólares. Al tipo de interés del 10%, la demanda pasa del punto A (15.000) al punto B (7.500)." width="800" height="600"></figure>
+<h2 id="3-idea-central-del-analisis">3. Idea Central del Análisis:</h2>
+<ul><li>Los dos<strong> principales tipos de Política Macroeconómica </strong>de un país son<strong>:</strong><ul class="sub"><li><strong>La Política Fiscal</strong>, que implementa el <strong>Gobierno</strong> (Ministerio de Hacienda, en Chile), y que consiste en definir<strong> una mezcla de Gasto Público (G) e Impuestos netos (T</strong>), acordes con sus objetivos de crecimiento y políticas públicas; y</li><li><strong>La Política Monetaria</strong>, que lleva adelante el<strong> Banco Central</strong>, y que consisten en definir<strong> un tipo de interés </strong>(o<strong> TPM</strong>, por tasa de política monetaria), acorde con una meta de inflación (3%, en el caso de Chile).</li><li>El objetivo de estudiar el<strong> equilibrio en el mercado de dinero </strong>es<strong> comprender cómo opera la Política Monetaria </strong>llevada adelante por el Banco Central, para alcanzar la tasa de interés que, en cada momento, permita orientar a la economía hacia la meta de inflación del 3%.</li></ul></li></ul>
+<p><strong>Estudiaremos 3 casos de equilibrio en el mercado de dinero:</strong></p>
+<ul><li><strong>Caso 1: </strong>El<strong> único activo financiero líquido </strong>es el <strong>dinero en efectivo.</strong></li><li><strong>Caso 2: </strong>Aparecen los <strong>bancos comerciales</strong>, los cuales ofrecen el servicio de custodiar el dinero de los agentes económicos en cuentas corrientes (depósitos a la vista), los cuales pueden realizar transacciones utilizando su <strong>tarjeta de débito</strong>. En este caso, los agentes económicos<strong> </strong>manejan<strong> todo su dinero </strong>con tarjeta de débito<strong> (no utilizan efectivo)</strong>.</li><li><strong>Caso 3: </strong>Los agentes económicos demandan dinero en forma de<strong> una mezcla entre efectivo y depósitos a la vista.</strong></li></ul>
+<h3 id="3-1-la-determinacion-del-tipo-de-interes-caso-i">3.1. La Determinación del Tipo de Interés: Caso I</h3>
+<p>El tipo de interés en la economía se determina por el equilibrio entre la <strong>oferta de dinero</strong> (controlada por el banco central) y la <strong>demanda de dinero</strong> (que depende del nivel de transacciones y del tipo de interés).</p>
+<h4 id="condicion-de-equilibrio">Condición de Equilibrio:</h4>
+<p>El equilibrio en el mercado de dinero se alcanza cuando la oferta monetaria es igual a la demanda de dinero: <strong><em>Ms = Md</em></strong>, donde <strong><em>Ms</em></strong> es la oferta de dinero controlada por el banco central. Dado un nivel de renta nominal (Y), el tipo de interés se ajusta para que la cantidad de dinero demandada por los individuos sea igual a la oferta de dinero.</p>
+<p><strong>Ejemplo</strong>:</p>
+<p>Suponga que la demanda de dinero viene dada por</p>
+<div class="formula"><em>M<sub>d</sub> = $Y(0,25 – i)</em></div>
+<p>donde $Y es igual a 100 dólares. Suponga también que la oferta de dinero es igual a 20 dólares.</p>
+<h4 id="a-cual-es-el-tipo-de-interes-de-equilibrio">a. ¿Cuál es el tipo de interés de equilibrio?</h4>
+<p>La oferta monetaria es igual a 20 dólares, y en equilibrio, la oferta de dinero Ms es igual a la demanda de dinero Md. Por lo tanto, en equilibrio:</p>
+<div class="formula">M<sub>s</sub>=M<sub>d</sub>=100(0.25-i)</div>
+<div class="formula">20=100(0.25-i)</div>
+<div class="formula">20=25-100i</div>
+<div class="formula">i=<span class="frac"><span class="num">5</span><span class="den">100</span></span>=0,05=5%</div>
+<figure><img src="img/n06-equilibrio-dinero.png" alt="Gráfico del equilibrio en el mercado de dinero: la curva decreciente de demanda de dinero corta la oferta monetaria vertical Ms = 20 dólares en el tipo de interés de equilibrio i = 0,05." width="800" height="600"></figure>
+<h4 id="b-si-el-banco-central-quiere-elevar-el-tipo-de-interes-d">b. Si el Banco Central quiere elevar el tipo de interés de equilibrio (<em>i*</em>) en 10 puntos porcentuales desde su valor en el apartado (a), ¿en qué nivel deberá fijar la oferta monetaria?</h4>
+<p>Si el Banco Central quiere aumentar el tipo de interés de equilibrio en 10 puntos porcentuales, el nuevo tipo de interés será:</p>
+<div class="formula">i<sub>nuevo</sub>=0.05+0.10=0.15</div>
+<p>En equilibrio debe cumplirse que:</p>
+<div class="formula">M<sub>s</sub>=100(0.25-0.15)</div>
+<div class="formula">M<sub>s</sub>=10</div>
+<p><strong>Conclusión:</strong> <strong>Para elevar el tipo de interés de equilibrio en 10 puntos porcentuales, el Banco Central deberá reducir la oferta monetaria a 10 dólares.</strong></p>
+<figure><img src="img/n06-equilibrio-nueva-oferta.png" alt="Gráfico del cambio en el tipo de interés de equilibrio: al reducirse la oferta de dinero de 20 a 10 dólares, la recta vertical de oferta se desplaza a la izquierda y el equilibrio pasa de i = 0,05 a i = 0,15." width="800" height="600"></figure>
+<h3 id="3-2-la-determinacion-del-tipo-de-interes-cuando-tenemos">3.2. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero solo en forma de depósitos a la vista: Caso II</h3>
+<p>Hasta ahora, hemos asumido que todo el dinero en la economía es efectivo, pero en el mundo real, los bancos juegan un rol fundamental en la oferta de dinero. Los bancos no solo mantienen efectivo, sino también depósitos a la vista, que permiten a las personas acceder a su dinero a través de cuentas corrientes (y pagar con tarjeta de débito).</p>
+<p>Los bancos crean dinero a través del proceso de <strong>reserva fraccionaria</strong>: solo mantienen una parte de los depósitos en reservas (efectivo disponible para responder a las necesidades de los depositantes) y utilizan el resto para otorgar préstamos. El coeficiente de reservas (θ) determina cuánto dinero debe mantener un banco en reservas por cada peso en depósitos.</p>
+<p>En este caso suponemos que el público desea mantener su dinero <strong>SOLO en forma de depósitos a la vista</strong> y realizar todas sus transacciones utilizando su tarjeta de débito. Por lo tanto, en este caso la demanda que enfrenta el banco central es la demanda de reservas que realizan los bancos comerciales.</p>
+<h4 id="funcion-de-demanda-de-reservas">Función de Demanda de Reservas:</h4>
+<p>La demanda de dinero se hace más sofisticada cuando consideramos el rol de los depósitos en cuentas corrientes, también llamados "depósitos a la vista". Este es un instrumento financiero tan líquido como el dinero en efectivo, al ser manejado mediante tarjetas de débito o cheques.</p>
+<p><strong>La demanda de reservas por parte de los bancos es proporcional a la demanda de dinero del público, ajustada por el coeficiente de reservas.</strong></p>
+<p><strong>Ejemplo</strong>:</p>
+<p>La función de demanda de dinero es:</p>
+<div class="formula">M<sub>d</sub>=Y(0.8-4i)</div>
+<p>Donde:</p>
+<ul><li>Y = 5.000 (en miles de millones de dólares) es la renta nominal,</li><li>i es el tipo de interés,</li><li>El público no mantiene efectivo.</li><li>El cociente entre reservas y depósitos es 0,1 (<strong>coeficiente de reservas, θ</strong>).</li><li>La oferta de dinero del Banco Central (H<sub>S</sub>) inicial es de 100 miles de millones de dólares.</li></ul>
+<h4 id="a-cual-es-el-tipo-de-interes-de-equilibrio-2">a. ¿Cuál es el tipo de interés de equilibrio?</h4>
+<p>Sabemos que en este caso, dado que el público sólo desea mantener depósitos a la vista (y que el coeficiente de reservas es θ = 0,1), la demanda de efectivo que los bancos hacen al banco central, lo que ese denomina demanda de dinero de alta potencia es:</p>
+<div class="formula">H<sub>d</sub>=θ×M<sub>d</sub></div>
+<div class="formula">H<sub>d</sub>=θ×Y(0.8-4i)</div>
+<div class="formula">H<sub>d</sub>=0,1×5000(0.8-4i)</div>
+<div class="formula">H<sub>d</sub>=500(0.8-4i)</div>
+<p><strong>La condición de equilibrio nos dice que </strong>H<sub>d</sub>=H<sub>s</sub><strong>, por lo tanto</strong></p>
+<div class="formula">500(0.8-4i)=100</div>
+<div class="formula">400-2000i=100</div>
+<div class="formula">300=2000i</div>
+<div class="formula">i<sup>*</sup>=0,15</div>
+<p>La tasa de interés de equilibrio es 0,15 o 15%.</p>
+<h4 id="b-si-el-banco-central-quiere-bajar-el-tipo-de-interes-de">b. Si el Banco Central quiere bajar el tipo de interés de equilibrio (<em>i*</em>) a 5% desde su valor en el apartado (a), ¿en qué nivel deberá fijar la oferta de dinero de alta potencia (H<sub>S</sub>)?</h4>
+<p>En este caso, sabemos que en equilibrio debe cumplirse que H<sub>s</sub>=H<sub>d</sub>:</p>
+<div class="formula">H<sub>s</sub>=500[0.8-(4×i<sub>2</sub><sup>*</sup>)]</div>
+<div class="formula">H<sub>s</sub>=500[0.8-(4×0.05)]</div>
+<div class="formula">H<sub>s</sub>=400-100</div>
+<div class="formula">H<sub>s</sub>=300</div>
+<p><strong>Conclusión:</strong> <strong>Para reducir el tipo de interés de equilibrio a 5%, el Banco Central deberá incrementar la oferta de dinero de alta potencia a 300 mil millones de dólares.</strong></p>
+<h3 id="3-3-la-determinacion-del-tipo-de-interes-cuando-tenemos">3.3. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero en una mezcla de efectivo y depósitos a la vista: Caso III</h3>
+<p>En una situación más realista, el público mantiene una proporción de su dinero en efectivo y la diferencia en depósitos a la vista. Denotamos la proporción como c, por lo cual la proporción de depósitos es (1-c).</p>
+<h4 id="modificacion-de-la-demanda-de-dinero-enfrentada-por-el-b">Modificación de la demanda de dinero enfrentada por el Banco Central:</h4>
+<p>Cuando el público mantiene una mezcla de efectivo y depósitos a la vista, la demanda de dinero que enfrenta el banco central se modifica:</p>
+<div class="formula">H<sub>d</sub>=[c+θ(1-c)]×M<sub>d</sub></div>
+<p>Donde:</p>
+<ul><li>c es la proporción de efectivo respecto al total de dinero que el público desea mantener.</li><li>θ es el coeficiente de reservas.</li><li>Md = $Y×L(i) es la demanda total de dinero del público.</li><li>$Y es la renta nominal.</li><li>c×M<sub>d</sub> es la demanda de efectivo del público.</li><li>θ(1-c)×M<sub>d</sub> es la demanda de efectivo por parte de los bancos (nótese que esto es igual a la demanda de dinero multiplicada por la proporción de dinero mantenida por el público en forma de depósitos a la vista, multiplicada por el coeficiente de reservas).</li></ul>
+<p><strong>Ejemplo:</strong></p>
+<p>Supongamos los siguientes datos:</p>
+<ul><li><strong>Renta nominal ($Y)</strong>: CLP 10,000,000 millones.</li><li><strong>Coeficiente de reservas (θ)</strong>: 0.1 (10%).</li><li><strong>Proporción de efectivo (c)</strong>: 0.2 (20%).</li><li><strong>Preferencia por la liquidez</strong>: L(i) = 0.5−5i.</li><li><strong>Oferta de dinero del banco central (Hs)</strong>: CLP 280,000 millones.</li></ul>
+<p><strong>Objetivo</strong>: Calcular el tipo de interés de equilibrio considerando que el público mantiene una mezcla entre efectivo y depósitos a la vista.</p>
+<h4 id="calculo-del-tipo-de-interes-de-equilibrio">Cálculo del tipo de interés de equilibrio</h4>
+<h5 id="paso-1-calcular-el-coeficiente-combinado">Paso 1: Calcular el coeficiente combinado</h5>
+<p>Primero, calculamos el coeficiente que multiplica a Md en la demanda de dinero que enfrenta el banco central. A este coeficiente lo llamaremos "<strong>α</strong>":</p>
+<div class="formula">α=c+θ(1-c)</div>
+<p>Sustituyendo los valores, tenemos que:</p>
+<div class="formula">α=0.2+0.1(1-0.2)=0.2+0.1×0.8=0.2+0.08=0.28</div>
+<h5 id="paso-2-plantear-la-ecuacion-de-equilibrio">Paso 2: Plantear la ecuación de equilibrio</h5>
+<p>La demanda de dinero del banco central es:</p>
+<div class="formula">H<sub>d</sub>=α×M<sub>d</sub>=α×$Y×L(i)</div>
+<p>El equilibrio se da cuando:</p>
+<div class="formula">H<sub>s</sub>=H<sub>d</sub></div>
+<p>Por lo tanto:</p>
+<div class="formula">280,000=0.28×10,000,000×(0.5-5i)</div>
+<h5 id="paso-3-simplificar-la-ecuacion-y-resolver-para-i">Paso 3: Simplificar la ecuación y resolver para <em>i</em></h5>
+<div class="formula">280,000=2,800,000×(0.5-5i)</div>
+<div class="formula">0.1=0.5-5i</div>
+<div class="formula">i=0.08</div>
+<h5 id="paso-4-convertir-el-tipo-de-interes-a-porcentaje">Paso 4: Convertir el tipo de interés a porcentaje</h5>
+<div class="formula">i=0.08×100%=8%</div>
+<h2 id="4-impacto-de-las-politicas-del-banco-central-de-chile">4. Impacto de las políticas del Banco Central de Chile:</h2>
+<p>El <strong>Banco Central de Chile</strong> utiliza diversas herramientas para influir en el tipo de interés y, por ende, en la economía:</p>
+<ul><li><strong>Operaciones de mercado abierto</strong>: Al comprar bonos, aumenta la oferta de dinero (H), lo que tiende a reducir el tipo de interés y estimular la inversión y el consumo.</li><li><strong>Modificación de la tasa de política monetaria (TPM)</strong>: Es la tasa de interés a la cual el Banco Central presta dinero a los bancos comerciales. Influye directamente en los tipos de interés del mercado.</li></ul>
+<p><strong>Ejemplo aplicado</strong>: Si el Banco Central de Chile percibe presiones inflacionarias, puede reducir la oferta de dinero de alta potencia (H<sub>S</sub>), elevando los tipos de interés para enfriar la economía. Esto afecta a las empresas chilenas al encarecer el crédito y reducir la demanda agregada.</p>
+<p>Aunque el sistema bancario hace más complejo el análisis, el banco central sigue pudiendo controlar el tipo de interés ajustando la <strong>oferta de dinero de alta potencia (Hs)</strong>. El banco central utiliza <strong>operaciones de mercado abierto</strong>, comprando o vendiendo bonos, para modificar la cantidad de dinero en circulación y ajustar el tipo de interés.</p>
+<h2 id="5-la-trampa-de-la-liquidez">5. La Trampa de la Liquidez</h2>
+<p>La <strong>trampa de la liquidez</strong> ocurre cuando el tipo de interés llega a un nivel tan bajo que los individuos prefieren mantener dinero en lugar de invertir en bonos. Esto sucede porque, una vez que el tipo de interés es cercano a cero, el dinero y los bonos se vuelven prácticamente iguales: ambos rinden casi nada. En este caso, aunque el banco central aumente la oferta de dinero, el tipo de interés no puede bajar más, lo que hace que la política monetaria pierda su efectividad.</p>
+<h3 id="ejemplo-de-la-trampa-de-la-liquidez">Ejemplo de la Trampa de la Liquidez:</h3>
+<p>Durante la crisis financiera global de 2008-2009, muchos países, incluido Chile, redujeron drásticamente sus tasas de interés para estimular la economía. Sin embargo, cuando el tipo de interés llegó a niveles cercanos a cero, el Banco Central ya no pudo seguir bajándolo. En este escenario, la política monetaria perdió su capacidad para estimular el crecimiento a través de la reducción del tipo de interés, ya que los individuos, observando una tasa de interés nula, prefieren mantener dinero en lugar de invertir en bonos.</p>
+<h3 id="implicaciones-de-la-trampa-de-liquidez">Implicaciones de la trampa de liquidez</h3>
+<ul><li><strong>Limitaciones de la política monetaria: </strong>Cuando las tasas de interés están cerca de cero, la política monetaria pierde efectividad para estimular la economía.</li><li><strong>Necesidad de políticas fiscales: </strong>En estas circunstancias, el gobierno puede recurrir a políticas fiscales expansivas, como aumentar el gasto público o reducir impuestos, para estimular la demanda agregada.</li><li><strong>Relevancia para Chile: </strong>Aunque Chile no ha experimentado una trampa de liquidez prolongada, comprender este concepto es crucial para anticipar y manejar posibles escenarios económicos adversos.</li></ul>
+<h2 id="6-importancia-para-un-egresado-de-ingenieria-comercial">6. Importancia para un egresado de Ingeniería Comercial</h2>
+<p>Como futuros profesionales en el ámbito económico y empresarial, los ingenieros comerciales deben comprender cómo las decisiones del Banco Central afectan:</p>
+<ul><li><strong>Costo del financiamiento: </strong>El tipo de interés influye en las tasas de préstamos y créditos. Entender esta relación es vital para gestionar el financiamiento de proyectos y operaciones empresariales.</li><li><strong>Inversión y planificación estratégica: </strong>Las tasas de interés afectan la rentabilidad de las inversiones. Un ingeniero comercial debe anticipar cambios en el entorno económico para tomar decisiones acertadas.</li><li><strong>Análisis de riesgos: </strong>La volatilidad en los tipos de interés puede impactar los flujos de caja y la solvencia de las empresas. La gestión eficaz de riesgos financieros es esencial en roles de liderazgo.</li><li><strong>Política económica y regulatoria: </strong>Conocer las herramientas y objetivos del Banco Central permite entender el marco macroeconómico en el cual operan las empresas chilenas.</li></ul>
+<h2 id="7-conclusion">7. Conclusión</h2>
+<p>La determinación del tipo de interés es un elemento central en la macroeconomía y tiene implicaciones directas en la actividad económica de Chile. Para un ingeniero comercial, dominar estos conceptos es fundamental para:</p>
+<ul><li><strong>Tomar decisiones financieras informadas.</strong></li><li><strong>Evaluar el impacto de las políticas monetarias en el sector empresarial.</strong></li><li><strong>Anticipar cambios en el entorno económico y adaptarse estratégicamente.</strong></li></ul>
+<p>Este conocimiento no solo es relevante para quienes trabajarán en el sector financiero, sino también para aquellos involucrados en áreas como marketing, operaciones y gestión general, ya que el tipo de interés influye en el comportamiento del consumidor y en la competitividad de las empresas.</p>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Nota de Estudio 6 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

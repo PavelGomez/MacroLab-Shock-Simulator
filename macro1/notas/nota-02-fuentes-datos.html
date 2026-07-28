@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de Estudio 2 · Las Principales Fuentes de Datos Macroeconómicos de Chile y el Mundo</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Nota de Estudio 2 del curso Macroeconomía I: Banco Central de Chile, INE y Banco Mundial como fuentes de datos macroeconómicos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub{margin:.45rem 0 .2rem;padding-left:1.4rem;list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la nota">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Nota de Estudio 2</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Nota de Estudio 2 · Las Principales Fuentes de Datos Macroeconómicos de Chile y el Mundo &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Las Principales Fuentes de Datos Macroeconómicos de Chile y el Mundo</h1>
+    <p class="meta">Nota de Estudio 2 &middot; Macroeconomía I &middot; Ingeniería Comercial</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Índice de contenidos</h2>
+  <ol>
+    <li><a href="#importancia-de-la-medicion-macroeconomica">Importancia de la Medición Macroeconómica</a></li>
+    <li><a href="#principales-variables-macroeconomicas-y-su-medicion">Principales variables macroeconómicas y su medición</a></li>
+    <li><a href="#fuentes-de-datos-macroeconomicos">Fuentes de datos macroeconómicos</a></li>
+    <li><a href="#i-el-banco-central-de-chile-y-su-plataforma-de-informacion-e">I. El Banco Central de Chile y su Plataforma de Información Económica</a>
+      <ol class="sub">
+        <li><a href="#1-introduccion">1. Introducción</a></li>
+        <li><a href="#2-navegacion-en-la-pagina-web-del-banco-central-de-chile">2. Navegación en la Página Web del Banco Central de Chile</a></li>
+        <li><a href="#3-base-de-datos-estadisticos-del-banco-central-de-chile">3. Base de Datos Estadísticos del Banco Central de Chile</a></li>
+        <li><a href="#4-como-descargar-datos-en-formato-excel">4. Cómo Descargar Datos en Formato Excel</a></li>
+      </ol>
+    </li>
+    <li><a href="#ii-plataforma-del-instituto-nacional-de-estadisticas-de-chil">II. Plataforma del Instituto Nacional de Estadísticas de Chile (INE)</a>
+      <ol class="sub">
+        <li><a href="#1-introduccion-al-ine-y-su-rol-en-la-economia-chilena">1. Introducción al INE y su Rol en la Economía Chilena</a></li>
+        <li><a href="#2-guia-de-navegacion-en-la-pagina-web-del-ine">2. Guía de Navegación en la Página Web del INE</a></li>
+        <li><a href="#3-publicaciones-periodicas-clave-del-ine">3. Publicaciones Periódicas Clave del INE</a></li>
+        <li><a href="#4-acceso-a-datos-en-la-pestana-estadisticas">4. Acceso a Datos en la Pestaña "Estadísticas"</a></li>
+        <li><a href="#5-como-descargar-datos-en-formato-excel">5. Cómo Descargar Datos en Formato Excel</a></li>
+        <li><a href="#6-como-organizar-los-datos-en-excel">6. Cómo Organizar los Datos en Excel</a></li>
+      </ol>
+    </li>
+    <li><a href="#iii-la-base-de-datos-del-banco-mundial">III. La Base de Datos del Banco Mundial</a>
+      <ol class="sub">
+        <li><a href="#1-que-tipo-de-informacion-se-encuentra-en-world-bank-data">1. ¿Qué tipo de información se encuentra en World Bank Data?</a></li>
+        <li><a href="#2-organizacion-de-los-datos-en-world-bank-data">2. Organización de los Datos en World Bank Data</a></li>
+        <li><a href="#3-comparabilidad-de-los-datos-y-consideraciones-importantes">3. Comparabilidad de los Datos y Consideraciones Importantes</a></li>
+        <li><a href="#4-como-descargar-datos-en-formato-excel-desde-world-bank-dat">4. Cómo Descargar Datos en Formato Excel desde World Bank Data</a></li>
+        <li><a href="#5-organizacion-de-los-datos-en-excel">5. Organización de los Datos en Excel</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+
+<h2 id="importancia-de-la-medicion-macroeconomica">Importancia de la Medición Macroeconómica</h2>
+<p>En un mundo donde tanto las empresas como los gobiernos toman decisiones basadas en la evolución de la economía, comprender cómo se miden las principales variables macroeconómicas es una habilidad clave para cualquier profesional del área económica y financiera. Un Ingeniero Comercial que aspire a desarrollarse en consultoría, banca, gestión empresarial o emprendimiento debe manejar con fluidez los indicadores económicos y su interpretación para tomar decisiones estratégicas acertadas.</p>
+<p>Las mediciones económicas no solo permiten conocer el desempeño general de un país, sino que también ayudan a evaluar riesgos, proyectar tendencias y diseñar estrategias que favorezcan el crecimiento y la sostenibilidad financiera de una empresa.</p>
+<p>Algunos ejemplos de esto son:</p>
+<ul><li>Un gerente de una empresa de retail necesita anticipar cómo el consumo privado afectará sus ventas.</li><li>Un inversionista debe comprender la evolución de la inflación para decidir en qué activos invertir.</li><li>Un emprendedor tiene que evaluar de qué manera el tipo de cambio y las tasas de interés impactan sus costos y financiamiento.</li></ul>
+<p>En todos estos casos, las decisiones dependen de información macroeconómica que debe ser analizada a partir de fuentes confiables y metodologías de medición rigurosas.</p>
+<h2 id="principales-variables-macroeconomicas-y-su-medicion">Principales variables macroeconómicas y su medición</h2>
+<p>Las economías son sistemas complejos en los que se realizan millones de transacciones cada día. Para entender su comportamiento, los economistas han desarrollado indicadores clave, entre los que destacan:</p>
+<ul><li><strong>Producto Interno Bruto (PIB): </strong>Mide la producción total de bienes y servicios finales en un país durante un período determinado.</li><li><strong>Producto Nacional Bruto (PNB): </strong>Considera los ingresos generados por los residentes de un país, sin importar si la producción ocurre dentro o fuera de sus fronteras.</li><li><strong>Índice de Precios al Consumidor (IPC): </strong>Refleja las variaciones en el costo de vida y la inflación.</li><li><strong>Indicador Mensual de Actividad Económica (Imacec): </strong>Es un estimador adelantado del PIB que permite medir rápidamente el desempeño de la economía.</li><li><strong>Tasa de Desempleo: </strong>Representa el porcentaje de la población económicamente activa que busca empleo sin éxito.</li><li><strong>Tasa de Política Monetaria (TPM): </strong>Define el costo del crédito e influye en los niveles de consumo e inversión.</li></ul>
+<p>Cada una de estas variables tiene un impacto directo en la vida de las personas y en las estrategias de las empresas. Medirlas correctamente es fundamental para diseñar políticas públicas efectivas, elaborar estrategias empresariales bien fundamentadas y tomar decisiones de inversión adecuadas.</p>
+<h2 id="fuentes-de-datos-macroeconomicos">Fuentes de datos macroeconómicos</h2>
+<p>Para que estas mediciones sean precisas y confiables, deben provenir de organismos especializados que recopilan, analizan y publican datos económicos utilizando metodologías estandarizadas. En Chile, las principales fuentes de información macroeconómica son:</p>
+<ul><li><strong>Banco Central de Chile (BCCh)</strong></li><li><strong>Instituto Nacional de Estadísticas (INE)</strong></li></ul>
+<p>A nivel global, una de las bases de datos más relevantes es la del <strong>Banco Mundial</strong>, que ofrece información macroeconómica de prácticamente todos los países a través de su portal <a href="https://data.worldbank.org">https://data.worldbank.org</a>.</p>
+<p>En los siguientes capítulos, analizaremos en detalle las características y el funcionamiento de estas tres plataformas.</p>
+<h2 id="i-el-banco-central-de-chile-y-su-plataforma-de-informacion-e">I. El Banco Central de Chile y su Plataforma de Información Económica</h2>
+<h3 id="1-introduccion">1. Introducción</h3>
+<p>El <strong>Banco Central de Chile (BCCh) </strong>es la institución encargada de garantizar la estabilidad monetaria y financiera del país. Su rol principal es definir y ejecutar la <strong>política monetaria</strong>, controlar la inflación y contribuir al desarrollo del sistema financiero.</p>
+<p>Uno de los aspectos más valiosos del BCCh es la gran cantidad de <strong>información económica </strong>que publica periódicamente. Su página web es una herramienta clave para <strong>economistas, inversionistas, empresarios, analistas financieros y estudiantes</strong>, ya que permite acceder a indicadores como el <strong>PIB, el Imacec, el Índice de Precios al Consumidor (IPC), las tasas de interés y el tipo de cambio</strong>.</p>
+<h3 id="2-navegacion-en-la-pagina-web-del-banco-central-de-chile">2. Navegación en la Página Web del Banco Central de Chile</h3>
+<p>La web oficial del <strong>Banco Central de Chile </strong>es: 🔗 <strong><a href="https://www.bcentral.cl">www.bcentral.cl</a></strong></p>
+<h4>2.1 Secciones Principales</h4>
+<p>Al ingresar a la página principal, se pueden encontrar distintas secciones de interés. A continuación, se presenta una <strong>guía de navegación </strong>para encontrar información clave.</p>
+<h5>📌 Inicio</h5>
+<ul><li>Muestra las noticias más recientes relacionadas con la economía chilena.</li><li>Presenta los valores actualizados de <strong>tasa de interés</strong>, <strong>tipo de cambio </strong>y <strong>reservas internacionales</strong>.</li></ul>
+<h5>📌 Noticias y Comunicados</h5>
+<p>Ubicación: <strong>Menú superior → Noticias y Publicaciones → Noticias</strong></p>
+<p>En esta sección se publican:</p>
+<ul><li><strong>Decisiones sobre la Tasa de Política Monetaria (TPM)</strong>.</li><li><strong>Declaraciones oficiales del Consejo del BCCh</strong>.</li><li><strong>Anuncios importantes sobre la economía chilena</strong>.</li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un analista financiero revisa esta sección para anticipar posibles cambios en la política monetaria que podrían afectar las tasas de interés bancarias.</p>
+<h5>📌 Publicaciones Periódicas Clave</h5>
+<p>Ubicación: <strong>Menú superior → Noticias y Publicaciones → Informes y Publicaciones</strong></p>
+<p>El Banco Central de Chile publica diversos informes de manera periódica. Entre los más relevantes destacan:</p>
+<h6>📈 Informe de Política Monetaria (IPoM)</h6>
+<ul><li><strong>Frecuencia: </strong>Trimestral (marzo, junio, septiembre, diciembre).</li><li><strong>Contenido:</strong><ul class="sub"><li>Análisis de inflación y crecimiento económico.</li><li>Proyecciones del PIB e inflación a corto y mediano plazo.</li><li>Escenarios de riesgo y decisiones de política monetaria.</li></ul></li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un gerente de una empresa de manufactura revisa el <strong>IPoM </strong>para prever cómo la inflación y las tasas de interés podrían impactar sus costos de producción.</p>
+<h6>📊 Indicador Mensual de Actividad Económica (Imacec)</h6>
+<ul><li><strong>Frecuencia: </strong>Mensual (se publica el primer día hábil de cada mes).</li><li><strong>Contenido:</strong><ul class="sub"><li>Estimación rápida del PIB mensual.</li><li>Desglose por sectores económicos (minería, industria, comercio, servicios).</li><li>Comparaciones interanuales y desestacionalizadas.</li></ul></li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un inversionista en la Bolsa de Santiago sigue el <strong>Imacec </strong>para evaluar el dinamismo de la economía y ajustar su portafolio de acciones.</p>
+<h6>📌 Informe de Estabilidad Financiera (IEF)</h6>
+<ul><li><strong>Frecuencia: </strong>Semestral (abril y octubre).</li><li><strong>Contenido:</strong><ul class="sub"><li>Análisis de riesgos en el sistema financiero chileno.</li><li>Evaluación de la liquidez bancaria y crédito disponible.</li><li>Diagnóstico sobre posibles crisis financieras.</li></ul></li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un gerente bancario revisa el <strong>IEF </strong>para ajustar las políticas de crédito de su entidad y anticipar riesgos en el sector financiero.</p>
+<h3 id="3-base-de-datos-estadisticos-del-banco-central-de-chile">3. Base de Datos Estadísticos del Banco Central de Chile</h3>
+<p>El Banco Central de Chile dispone de una <strong>plataforma de estadísticas </strong>con acceso a información en tiempo real.</p>
+<p>Ubicación: <strong>Menú superior → Áreas → Estadísticas y Datos → Base de Datos Estadísticos</strong></p>
+<p>🔗 <strong><a href="https://si3.bcentral.cl/siete" target="_blank" rel="noopener">Acceder a la Base de Datos Estadísticos</a></strong></p>
+<h4>📌 ¿Qué Estadísticas Están Disponibles?</h4>
+<p>Desde esta plataforma, se pueden consultar y descargar datos sobre:</p>
+<ul><li><strong>Cuentas Nacionales: </strong>PIB, Imacec (Indicador mensual de actividad económica, desglosado por sectores).</li><li><strong>Precios: </strong>Índice de Precios al Consumidor y sus componentes.</li><li><strong>Tasas de interés: </strong>TPM y tasas de préstamos y depósitos bancarios.</li><li><strong>Tipo de cambio: </strong>Valor del dólar y otras divisas.</li><li><strong>Balanza de pagos y comercio exterior: </strong>Exportaciones e importaciones de bienes y servicios.</li></ul>
+<h3 id="4-como-descargar-datos-en-formato-excel">4. Cómo Descargar Datos en Formato Excel</h3>
+<ol><li><strong>Ingresar a la Base de Datos Estadísticos:</strong><ul class="sub"><li>Ir a 🔗 <strong><a href="https://si3.bcentral.cl/">https://si3.bcentral.cl/</a></strong></li><li>Seleccionar la categoría de interés (ejemplo: PIB, inflación, tasas de interés).</li></ul></li><li><strong>Seleccionar la Serie de Datos:</strong><ul class="sub"><li>Usar la barra de búsqueda para encontrar la estadística deseada.</li><li>Hacer clic en el nombre del indicador para desplegar opciones.</li></ul></li><li><strong>Personalizar el Período de Datos:</strong><ul class="sub"><li>Elegir el rango de fechas (últimos meses, trimestres o años).</li><li>Filtrar por tipo de datos (valores nominales, desestacionalizados, etc.).</li></ul></li><li><strong>Descargar en Formato Excel:</strong><ul class="sub"><li>Clic en el botón <strong>"Descargar"</strong>.</li><li>Seleccionar formato <strong>Excel (.xlsx) </strong>o <strong>CSV</strong>.</li></ul></li></ol>
+<p>🔹 <strong>Ejemplo de uso:</strong></p>
+<ul><li>Un estudiante de Economía descarga el <strong>PIB trimestral </strong>para hacer un análisis de crecimiento económico.</li><li>Un consultor financiero obtiene datos de <strong>tasas de interés </strong>para modelar escenarios de inversión.</li></ul>
+<h2 id="ii-plataforma-del-instituto-nacional-de-estadisticas-de-chil">II. Plataforma del Instituto Nacional de Estadísticas de Chile (INE)</h2>
+<h3 id="1-introduccion-al-ine-y-su-rol-en-la-economia-chilena">1. Introducción al INE y su Rol en la Economía Chilena</h3>
+<p>El <strong>Instituto Nacional de Estadísticas de Chile (INE) </strong>es la institución encargada de recopilar, analizar y difundir información estadística clave sobre la realidad socioeconómica del país. Sus datos permiten comprender el comportamiento del mercado laboral, la inflación, la producción, la demografía y otros aspectos fundamentales para la toma de decisiones en el sector público y privado.</p>
+<p>El INE es una fuente esencial para economistas, empresarios, inversionistas y tomadores de decisiones que necesitan información actualizada y confiable sobre la evolución de la economía chilena.</p>
+<p>🔗 <strong>Página web oficial del INE: </strong>👉 <a href="https://www.ine.cl">https://www.ine.cl</a></p>
+<p>Entre sus publicaciones más importantes destacan:</p>
+<ul><li><strong>Índice de Precios al Consumidor (IPC): </strong>Medición mensual de la inflación.</li><li><strong>Encuesta Nacional de Empleo: </strong>Datos sobre la tasa de desempleo y mercado laboral.</li><li><strong>Censo y Encuestas de Hogares: </strong>Información clave para el análisis de tendencias poblacionales y consumo.</li><li><strong>Índices sectoriales: </strong>Indicadores de producción manufacturera, comercio y servicios.</li></ul>
+<p><strong>Ejemplo de uso para un Ingeniero Comercial:</strong></p>
+<ul><li>Un gerente de una empresa de retail analizará el <strong>IPC </strong>para ajustar los precios de sus productos y prever el impacto de la inflación en los costos de la empresa.</li></ul>
+<h3 id="2-guia-de-navegacion-en-la-pagina-web-del-ine">2. Guía de Navegación en la Página Web del INE</h3>
+<p>Al ingresar a la web del INE, se pueden encontrar distintas secciones clave para acceder a estadísticas actualizadas.</p>
+<h4>📌 Inicio: Noticias y Comunicaciones Claves</h4>
+<p>Ubicación: <strong>Menú superior → Sala de Prensa → Prensa</strong></p>
+<p>En esta sección se publican:</p>
+<ul><li>Comunicados de prensa sobre la evolución del empleo (Sociales) y la inflación (Economía).</li><li>Noticias sobre nuevas metodologías o cambios en las estadísticas oficiales.</li><li>Publicaciones de otros indicadores, como los Índices de Inventarios, Remuneraciones y Pernoctaciones en establecimientos turísticos.</li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un gerente de recursos humanos puede revisar esta sección para anticipar cambios en la tasa de desempleo y ajustar sus estrategias de contratación.</p>
+<h3 id="3-publicaciones-periodicas-clave-del-ine">3. Publicaciones Periódicas Clave del INE</h3>
+<p>El INE publica regularmente informes con datos actualizados sobre el mercado laboral, precios y otros sectores económicos.</p>
+<h4>📊 Boletín Estadístico de Empleo Trimestral</h4>
+<ul><li><strong>Frecuencia: </strong>Trimestral</li><li><strong>Contenido:</strong><ul class="sub"><li>Tasa de desempleo nacional y regional.</li><li>Ocupación y desocupación por sector económico.</li><li>Evolución de los salarios reales.</li></ul></li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un economista puede analizar estos datos para identificar tendencias en el mercado laboral y prever posibles aumentos en el desempleo.</p>
+<h4>📈 Boletín Estadístico del Índice de Precios al Consumidor (IPC)</h4>
+<ul><li><strong>Frecuencia: </strong>Mensual</li><li><strong>Contenido:</strong><ul class="sub"><li>Variación mensual y acumulada del IPC.</li><li>Evolución de precios en categorías como alimentación, transporte y vivienda.</li><li>Análisis de los sectores que más impactaron la inflación.</li></ul></li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un empresario del sector retail revisa el <strong>Boletín IPC </strong>para evaluar si debe ajustar los precios de sus productos debido a la inflación.</p>
+<h3 id="4-acceso-a-datos-en-la-pestana-estadisticas">4. Acceso a Datos en la Pestaña "Estadísticas"</h3>
+<p>Ubicación: <strong>Menú superior → Estadísticas</strong></p>
+<p>Esta sección permite acceder a diversas bases de datos, organizadas en las siguientes categorías:</p>
+<h4>4.1 Datos del Mercado Laboral</h4>
+<p>Ubicación: <strong>Estadísticas → Mercado Laboral</strong></p>
+<p>Incluye información clave sobre:</p>
+<ul><li><strong>Tasa de desempleo: </strong>Número de personas desocupadas en relación con la población activa.</li><li><strong>Tasa de ocupación: </strong>Proporción de la población en edad de trabajar que tiene empleo.</li><li><strong>Ingreso medio de los trabajadores: </strong>Comparaciones por sectores económicos.</li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un inversionista analiza estos datos para determinar si el mercado laboral está creciendo o contrayéndose, lo que podría afectar el consumo.</p>
+<h4>4.2 Datos de Precios e Inflación</h4>
+<p>Ubicación: <strong>Estadísticas → Índices de Precios e Inflación</strong></p>
+<p>Incluye información sobre:</p>
+<ul><li><strong>IPC (Índice de Precios al Consumidor): </strong>Variación mensual e interanual de los precios.</li><li><strong>IPM (Índice de Precios de Materiales de Construcción): </strong>Evolución de los costos en el sector de la construcción.</li><li><strong>IPP (Índice de Precios al Productor): </strong>Cambios en los precios de los bienes producidos en Chile.</li></ul>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un emprendedor del sector inmobiliario revisa el <strong>IPM </strong>para proyectar cuánto aumentarán sus costos de construcción en los próximos meses.</p>
+<h3 id="5-como-descargar-datos-en-formato-excel">5. Cómo Descargar Datos en Formato Excel</h3>
+<p>El INE permite descargar datos en formato Excel para análisis más detallados.</p>
+<h4>📌 Pasos para Descargar Datos</h4>
+<ol><li>Ir a <strong><a href="https://www.ine.cl">https://www.ine.cl</a></strong>.</li><li>Seleccionar la pestaña <strong>"Estadísticas" </strong>en el menú superior.</li><li>Elegir la categoría de interés (Ejemplo: "Mercado Laboral" o "Índice de Precios").</li><li>Hacer clic en el informe o base de datos deseada.</li><li>Seleccionar el botón <strong>"Descargar" </strong>y elegir <strong>formato Excel (.xlsx)</strong>.</li></ol>
+<h3 id="6-como-organizar-los-datos-en-excel">6. Cómo Organizar los Datos en Excel</h3>
+<p>Cuando se descargan datos del INE en Excel, la información suele estar organizada en tablas con diferentes períodos y regiones. Para hacer el análisis más eficiente, se recomienda:</p>
+<h4>📌 Ordenar los Datos por Indicador y Año</h4>
+<ol><li>Seleccionar toda la tabla de datos.</li><li>Ir a la pestaña <strong>"Datos" → "Ordenar"</strong>.</li><li>En la opción "Ordenar por", seleccionar <strong>"Año" </strong>para organizar los datos cronológicamente.</li><li>Si hay datos de distintas regiones, ordenar también por <strong>"Región"</strong>.</li></ol>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un analista de mercado que estudia la evolución del desempleo puede ordenar los datos en Excel por año para ver tendencias a lo largo del tiempo.</p>
+<h2 id="iii-la-base-de-datos-del-banco-mundial">III. La Base de Datos del Banco Mundial</h2>
+<p>El <strong>Banco Mundial </strong>es una de las instituciones económicas más importantes a nivel global, proporcionando financiamiento, asesoría y datos para fomentar el desarrollo económico y la reducción de la pobreza. Su portal de datos, <strong>World Bank Data</strong>, ofrece información macroeconómica clave de prácticamente todos los países del mundo.</p>
+<p>Esta base de datos permite a economistas, investigadores, inversionistas y analistas comparar el desempeño económico de distintos países, evaluar tendencias a largo plazo y tomar decisiones informadas sobre políticas económicas y estrategias de inversión.</p>
+<h3 id="1-que-tipo-de-informacion-se-encuentra-en-world-bank-data">1. ¿Qué tipo de información se encuentra en World Bank Data?</h3>
+<p>El Banco Mundial recopila datos sobre <strong>más de 1.500 indicadores económicos, sociales y ambientales </strong>desde <strong>1960 hasta 2023</strong>, aunque con algunas restricciones de disponibilidad para ciertos países y períodos específicos.</p>
+<p>Algunos de los indicadores más utilizados incluyen:</p>
+<ul><li><strong>Producto Interno Bruto (PIB) y su crecimiento</strong></li><li><strong>PIB per cápita ajustado por Paridad de Poder Adquisitivo (PPA)</strong></li><li><strong>Índice de Precios al Consumidor (IPC) e inflación</strong></li><li><strong>Tasa de desempleo</strong></li><li><strong>Balanza de pagos y comercio exterior</strong></li><li><strong>Pobreza y distribución del ingreso</strong></li><li><strong>Indicadores de inversión extranjera y financiamiento</strong></li></ul>
+<p>Este conjunto de datos es <strong>estandarizado y comparable entre países</strong>, pero hay ciertas diferencias metodológicas que deben considerarse en el análisis.</p>
+<h3 id="2-organizacion-de-los-datos-en-world-bank-data">2. Organización de los Datos en World Bank Data</h3>
+<h4>2.1 Cómo están organizados los datos</h4>
+<p>En el sitio web <strong><a href="https://data.worldbank.org">https://data.worldbank.org</a></strong>, los datos se presentan en tres formas principales:</p>
+<ol><li><strong>Por País:</strong><ul class="sub"><li>Permite ver indicadores específicos para un país.</li><li>Ejemplo: <strong>Datos de Chile </strong>→ 🔗 <a href="https://data.worldbank.org/country/chile">https://data.worldbank.org/country/chile</a></li></ul></li><li><strong>Por Indicador:</strong><ul class="sub"><li>Lista los datos de un indicador específico para todos los países.</li><li>Ejemplo: <strong>PIB per cápita (PPA, USD constantes de 2017) </strong>→ 🔗 <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a></li></ul></li><li><strong>Por Tema:</strong><ul class="sub"><li>Clasifica los indicadores en categorías como <strong>Economía, Medio Ambiente, Salud, Educación, Comercio, Finanzas, etc.</strong></li><li>Ejemplo: <strong>Indicadores Económicos </strong>→ 🔗 <a href="https://data.worldbank.org/topic/economy-and-growth">https://data.worldbank.org/topic/economy-and-growth</a></li></ul></li></ol>
+<h3 id="3-comparabilidad-de-los-datos-y-consideraciones-importantes">3. Comparabilidad de los Datos y Consideraciones Importantes</h3>
+<p>El <strong>Banco Mundial estandariza los datos </strong>para facilitar su comparación entre países y años. Sin embargo, es fundamental considerar:</p>
+<ol><li><strong>Diferencias en metodologías nacionales: </strong>Algunos países pueden calcular el PIB, la inflación o la tasa de desempleo con metodologías distintas, lo que puede generar diferencias.</li><li><strong>Evolución de las definiciones: </strong>Algunos indicadores han cambiado su forma de cálculo con el tiempo, por lo que es recomendable verificar las notas metodológicas antes de realizar comparaciones.</li><li><strong>Ajustes por Paridad de Poder Adquisitivo (PPA):</strong><ul class="sub"><li>El <strong>PIB per cápita PPA </strong>ajusta el poder adquisitivo según el costo de vida de cada país, lo que lo hace más comparable que el PIB nominal.</li><li>Ejemplo: <strong>Comparación de ingresos entre EE.UU. y Chile </strong>usando PIB per cápita PPA es más precisa que usar PIB per cápita nominal.</li></ul></li><li><strong>Disponibilidad de datos:</strong><ul class="sub"><li>No todos los países tienen registros completos para todos los indicadores en todos los años.</li><li>Algunos datos son estimados o extrapolados por el Banco Mundial en ausencia de cifras oficiales.</li></ul></li></ol>
+<p>🔹 <strong>Ejemplo de uso: </strong>Un analista que compara la inflación entre Chile y Brasil debe revisar si ambos países han cambiado su metodología de medición en los últimos años.</p>
+<h3 id="4-como-descargar-datos-en-formato-excel-desde-world-bank-dat">4. Cómo Descargar Datos en Formato Excel desde World Bank Data</h3>
+<p>Para trabajar con datos del Banco Mundial en Excel, se pueden seguir estos pasos:</p>
+<h4>4.1 Descargar datos de un país específico</h4>
+<ol><li>Ir a 🔗 <strong><a href="https://data.worldbank.org">https://data.worldbank.org</a></strong></li><li>En la barra de búsqueda, escribir el país deseado (ejemplo: <strong>Chile</strong>).</li><li>Se abrirá la página del país con una lista de indicadores disponibles.</li><li>Hacer clic en el botón <strong>“Download” </strong>(descargar) y seleccionar <strong>formato Excel (.xlsx)</strong>.</li></ol>
+<h4>4.2 Descargar datos de un indicador para todos los países</h4>
+<ol><li>Ir a <strong><a href="https://data.worldbank.org/indicator">https://data.worldbank.org/indicator</a></strong>.</li><li>Buscar el indicador deseado (ejemplo: <strong>Tasa de desempleo</strong>).</li><li>Hacer clic en el nombre del indicador para ver los datos de todos los países.</li><li>Hacer clic en <strong>“Download” </strong>y elegir el formato Excel.</li></ol>
+<h3 id="5-organizacion-de-los-datos-en-excel">5. Organización de los Datos en Excel</h3>
+<p>Al abrir el archivo descargado, los datos estarán organizados en columnas:</p>
+<ul><li><strong>Columna A: </strong>Nombre del país.</li><li><strong>Columna B: </strong>Código del país (ISO 3 letras).</li><li><strong>Columna C: </strong>Nombre del indicador.</li><li><strong>Columnas siguientes: </strong>Valores anuales desde 1960 hasta el año más reciente disponible.</li></ul>
+<h4>📌 Ordenar los Datos en Excel por Nombre del Indicador</h4>
+<p>Para encontrar fácilmente un indicador en la hoja "Data" del archivo Excel:</p>
+<ol><li>Seleccionar toda la hoja de datos.</li><li>Ir a <strong>“Datos” → “Ordenar”</strong>.</li><li>En "Ordenar por", seleccionar <strong>“Indicator Name” </strong>(Nombre del Indicador).</li><li>Elegir orden <strong>alfabético A-Z </strong>y presionar <strong>OK</strong>.</li></ol>
+<p>🔹 <strong>Ejemplo de uso: </strong>Si se busca el <strong>PIB per cápita</strong>, ordenar por "Indicator Name" permitirá encontrar rápidamente <strong>"GDP per capita (current US$)" </strong>o <strong>"GDP per capita, PPP (constant 2017 international $)" </strong>en la lista.</p>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Nota de Estudio 2 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

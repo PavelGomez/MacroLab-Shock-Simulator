@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nota de Estudio 5 &middot; Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Nota de Estudio 5 del curso Macroeconomía I: componentes de la demanda agregada, función de consumo, gasto autónomo, multiplicador y equilibrio en el mercado de bienes en una economía cerrada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+aside.callout{
+  border-left:4px solid #f59e0b;background:#fff9e9;border-radius:8px;
+  padding:11px 13px;margin:1.2rem 0;
+}
+aside.callout > :first-child{margin-top:0}
+aside.callout > :last-child{margin-bottom:0}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la nota">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Nota de Estudio 5</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Nota de Estudio 5 &middot; Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada</h1>
+    <p class="meta">Nota de Estudio 5 &middot; Macroeconomía I &middot; Ingeniería Comercial</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Índice de contenidos</h2>
+  <ol>
+    <li><a href="#1-demanda-agregada-componentes-y-descripcion-detallada">1. Demanda Agregada: Componentes y Descripción Detallada</a>
+      <ol class="sub">
+        <li><a href="#a-consumo-c">a. Consumo (C)</a></li>
+        <li><a href="#b-inversion-i">b. Inversión (I)</a></li>
+        <li><a href="#c-gasto-publico-g">c. Gasto Público (G)</a></li>
+        <li><a href="#d-exportaciones-netas-x-m">d. Exportaciones Netas (X - M)</a></li>
+        <li><a href="#economia-cerrada-simplificacion-del-analisis">Economía Cerrada: Simplificación del Análisis</a></li>
+      </ol>
+    </li>
+    <li><a href="#2-ecuacion-de-conducta-de-los-consumidores">2. Ecuación de Conducta de los Consumidores</a></li>
+    <li><a href="#3-interpretacion-de-cambios-en-c0-y-c1">3. Interpretación de Cambios en c0 y c1</a></li>
+    <li><a href="#4-grafica-de-la-funcion-de-consumo">4. Gráfica de la Función de Consumo</a>
+      <ol class="sub">
+        <li><a href="#caso1-c0-aumenta-a-200">Caso1: c0 aumenta a 200</a></li>
+        <li><a href="#caso2-c1-baja-a-0-6">Caso2: c1 baja a 0,6</a></li>
+      </ol>
+    </li>
+    <li><a href="#5-la-demanda-agregada-y-su-representacion-grafica">5. La Demanda Agregada y su Representación Gráfica</a></li>
+    <li><a href="#6-equilibrio-en-el-mercado-de-bienes">6. Equilibrio en el Mercado de Bienes</a></li>
+    <li><a href="#7-representacion-grafica-del-equilibrio-en-el-mercado-de">7. Representación Gráfica del Equilibrio en el Mercado de Bienes</a>
+      <ol class="sub">
+        <li><a href="#ejercicio">Ejercicio:</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+<aside class="callout">
+<p><strong>Precisión de vocabulario.</strong> En esta nota, «demanda agregada» designa el <strong>gasto planeado Z = C + I + G a precios dados</strong>, que se compara con la producción Y. Más adelante, en el modelo OA–DA, «demanda agregada» designará una curva distinta, en el plano (Y, P), donde el nivel de precios sí varía. Son dos objetos con el mismo nombre: aquí los precios están fijos.</p>
+</aside>
+<p>En esta Nota de Estudio explicaremos los conceptos clave y las relaciones principales del Capítulo 3 del libro de Blanchard, haciendo énfasis en la demanda agregada, la función de consumo, el equilibrio en el mercado de bienes, y sus representaciones gráficas. Para facilitar la comprensión, se incluirán ejemplos y un ejercicio final.</p>
+<h2 id="1-demanda-agregada-componentes-y-descripcion-detallada">1. Demanda Agregada: Componentes y Descripción Detallada</h2>
+<p>La Demanda Agregada representa el <strong>gasto total en bienes y servicios</strong> de los hogares, empresas, gobierno y resto del mundo en un período determinado. Es un concepto clave para entender cómo las variaciones en el gasto afectan el nivel de producción y empleo en la economía. La demanda agregada se descompone en varios componentes, cada uno de los cuales tiene su propia dinámica y determinantes.</p>
+<p>En nuestra clase utilizaremos las iniciales <strong>DA</strong> para referirnos a la demanda agregada, y se refiere a la misma variable que el libro denomina <strong>Z</strong>.</p>
+<h3 id="a-consumo-c">a. Consumo (C)</h3>
+<p>El consumo es el gasto de los hogares en bienes y servicios. Es, por lo general, el componente más grande de la demanda agregada. Dentro del consumo podemos encontrar:</p>
+<ul><li><strong>Bienes duraderos nuevos:</strong> Como automóviles, electrodomésticos, y muebles, que son bienes que duran varios años.</li><li><strong>Bienes no duraderos:</strong> Como alimentos, ropa, y combustibles, que se consumen rápidamente.</li><li><strong>Servicios:</strong> Gastos en educación, salud, transporte, y otros servicios que los hogares compran regularmente.</li></ul>
+<p><strong>Ejemplo:</strong> Durante el año 2021, el retiro de fondos previsionales en Chile permitió a muchas familias aumentar su consumo de muchos bienes, en particular de bienes duraderos, como la compra de automóviles, electrodomésticos o muebles para el hogar. Este aumento en el consumo impactó directamente en la demanda agregada, incrementando las ventas en sectores clave de la economía.</p>
+<h3 id="b-inversion-i">b. Inversión (I)</h3>
+<p>La inversión es el gasto realizado por las empresas en bienes de capital, como maquinaria, equipos, y construcciones, que se utilizan para producir otros bienes en el futuro. La inversión también incluye la acumulación existencias o inventario (bienes producidos por las empresas que no se han vendido aún y se almacenan) y la compra de viviendas nuevas por parte de las familias.</p>
+<ul><li><strong>Inversión no residencial:</strong> Comprende la compra de bienes de capital por parte de las empresas, como nuevas plantas, maquinaria o tecnología.</li><li><strong>Inversión residencial:</strong> Es la compra de viviendas por parte de las familias. Aunque es un gasto realizado por los hogares, se clasifica como inversión porque la vivienda genera un flujo de servicios a lo largo del tiempo.</li><li><strong>Variación de existencias</strong>: Bienes producidos que no se han vendido y se acumulan como inventario. Cuando se venden a las familias, se restan de la cuenta de Inversión y se suman a la cuenta de consumo.</li></ul>
+<p><strong>Ejemplo:</strong> En Chile, en los últimos años, la inversión en energías renovables, como parques solares y eólicos, ha crecido significativamente, lo cual forma parte de este componente de la demanda agregada.</p>
+<h3 id="c-gasto-publico-g">c. Gasto Público (G)</h3>
+<p>Incluye todas las compras de bienes y servicios realizadas por el gobierno a nivel nacional, regional y local. Este componente incluye el gasto en infraestructura, educación, salud, defensa, y otros.</p>
+<p>Es importante destacar que el gasto público no incluye las transferencias, como pensiones o subsidios, ya que estas no son compras de bienes y servicios.</p>
+<p><strong>Ejemplo:</strong> En 2020, el gobierno chileno incrementó significativamente su gasto público como parte de las medidas para mitigar los efectos económicos de la pandemia de COVID-19. Este aumento en el gasto público, destinado a la compra de bienes y servicios para los programas de apoyo social, salud y reactivación económica, tuvo un impacto directo en la demanda agregada.</p>
+<h3 id="d-exportaciones-netas-x-m">d. Exportaciones Netas (X - M)</h3>
+<p>Las exportaciones netas representan la diferencia entre las exportaciones (X) y las importaciones (M) de un país. En una economía abierta, las exportaciones agregan demanda por bienes y servicios nacionales, mientras que las importaciones restan demanda porque representan el gasto en bienes y servicios producidos en el extranjero.</p>
+<ul><li><strong>Exportaciones (X):</strong> Bienes y servicios vendidos a otros países.</li><li><strong>Importaciones (M):</strong> Bienes y servicios comprados a otros países.</li></ul>
+<p><strong>Ejemplo:</strong> Chile es un país altamente dependiente de las exportaciones, especialmente de materias primas como el cobre, el vino y la fruta. Un aumento en la demanda mundial de cobre, por ejemplo, incrementa las exportaciones chilenas, lo que a su vez aumenta la demanda agregada. Sin embargo, si las importaciones crecen más rápido que las exportaciones, el efecto neto en la demanda agregada puede ser negativo.</p>
+<h3 id="economia-cerrada-simplificacion-del-analisis">Economía Cerrada: Simplificación del Análisis</h3>
+<p>Para simplificar el análisis, se asume una <strong>economía cerrada</strong>. Esto significa que no se consideran las interacciones con otros países). En este contexto, las exportaciones netas (X−M) se asumen como cero, y la demanda agregada se reduce a tres componentes principales:</p>
+<div class="formula">DA = C + I + G</div>
+<p>Este enfoque es útil para comprender cómo los factores internos, como el consumo, la inversión y el gasto público, afectan la economía sin la complicación adicional de los flujos internacionales.</p>
+<h2 id="2-ecuacion-de-conducta-de-los-consumidores">2. Ecuación de Conducta de los Consumidores</h2>
+<p>La función de consumo describe cómo el consumo de los hogares depende de la <strong>renta disponible (<em>Y<sub>D</sub></em>)</strong>, que es la renta después de impuestos. Se expresa como:</p>
+<div class="formula"><em>C = c<sub>0</sub> + c<sub>1</sub>(Y<sub>D</sub>)</em></div>
+<ul><li><strong>Consumo Autónomo (<em>c<sub>0</sub></em>):</strong> Es el nivel de consumo cuando la renta disponible es cero. Representa el consumo mínimo que los hogares deben realizar, incluso si no tienen ingresos, a menudo financiado por ahorros o préstamos.</li><li><strong>Propensión Marginal a Consumir (<em>c<sub>1</sub></em>):</strong> Es la fracción de cada unidad adicional de renta disponible que se destina al consumo. La <em>propensión marginal a consumir</em> siempre es un número mayor que cero y menor que 1 (0 &lt; <strong>c<sub>1</sub></strong> &lt;1). Por ejemplo, un valor de <strong><em>c<sub>1</sub> = 0,8</em></strong> significa que, por cada 1.000 pesos adicionales de renta, los hogares chilenos consumen 800 pesos y ahorran 200 pesos.</li><li><strong>Renta o Ingreso Disponible (<em>Y<sub>D</sub></em>):</strong> Es la fracción del ingreso que los consumidores pueden efectivamente utilizar para consumir. Es igual al Ingreso o Renta (<strong><em>Y</em></strong>) menos los impuestos netos. A su vez, los impuestos netos (<strong><em>T</em></strong>) son iguales a los impuestos brutos (<strong><em>T<sub>B</sub></em></strong>) menos las transferencias (<strong><em>T<sub>R</sub></em></strong>). Y<sub>D</sub>=Y-T= Y -(T<sub>B</sub>-T<sub>R</sub>) = Y -T<sub>B</sub>+T<sub>R</sub>. Esta ecuación nos dice que los impuestos reducen la renta disponible y las transferencias aumentan la renta disponible. Nótese que cuando no tenemos datos de transferencias, asumimos que estas son cero y <strong><em>T</em></strong> = <strong><em>T<sub>B</sub></em></strong><sub>.</sub></li></ul>
+<p>La ecuación de conducta de los consumidores refleja la idea de que el consumo aumenta con la renta disponible, pero no de manera proporcional, ya que parte del ingreso adicional se destina al ahorro.</p>
+<h2 id="3-interpretacion-de-cambios-en-c0-y-c1">3. Interpretación de Cambios en <em>c<sub>0</sub></em> y <em>c<sub>1</sub></em></h2>
+<ul><li><strong>Aumento en <em>c<sub>0</sub></em>:</strong> Si, por ejemplo, las familias chilenas se vuelven más optimistas sobre el futuro, podrían decidir consumir más, aunque su renta no varíe, aumentando <strong><em>c<sub>0</sub> </em></strong>(por ejemplo, endeudándose o tomando préstamos). Esto desplazaría la función de consumo hacia arriba, elevando el consumo total en todos los niveles de renta.</li><li><strong>Reducción en <em>c<sub>1</sub></em>:</strong> Un aumento en la incertidumbre económica podría llevar a las familias a ahorrar más y consumir menos, reduciendo <strong><em>c<sub>1</sub></em></strong>. Esto haría que, por cada peso adicional de renta, se consuma una menor proporción.</li></ul>
+<h2 id="4-grafica-de-la-funcion-de-consumo">4. Gráfica de la Función de Consumo</h2>
+<p>La función de consumo, <strong><em>C = c<sub>0</sub> + c<sub>1</sub></em></strong>(<strong><em>Y<sub>D</sub></em></strong>), se grafica como una línea recta con pendiente positiva que relaciona el Consumo (<strong><em>C</em></strong>) con la Renta Disponible (<strong><em>Y<sub>D</sub></em></strong>).</p>
+<p>Ejemplo:</p>
+<p>Supongamos que tenemos una función específica de Consumo:</p>
+<div class="formula"><em>C = 150 + 0,8(Y<sub>D</sub>)</em></div>
+<figure><img src="img/n05-funcion-consumo.png" alt="Gráfico de la función de consumo C = 150 + 0,8(Yd): recta de pendiente positiva sobre los ejes Consumo (C) e Ingreso disponible (Yd), con el consumo autónomo c₀ = 150 como punto de corte con el eje vertical y la propensión marginal a consumir c₁ = 0,8 como pendiente." width="712" height="373"></figure>
+<p>En la gráfica, la intersección con el eje vertical (ordenada en el origen) es <strong>c<sub>0</sub></strong> y la pendiente es c<sub>1</sub>. Un cambio en <strong>c<sub>0</sub></strong><em> </em>desplaza la curva hacia arriba o hacia abajo, mientras que un cambio en <strong>c<sub>1</sub></strong> altera la pendiente o inclinación de la curva.</p>
+<h3 id="caso1-c0-aumenta-a-200">Caso1: c<sub>0</sub> aumenta a 200</h3>
+<figure><img src="img/n05-funcion-consumo-c0.png" alt="Gráfico con dos funciones de consumo paralelas: C(inicial) = 150 + 0,8(Yd) y C(final) = 200 + 0,8(Yd). El aumento del consumo autónomo de 150 a 200 desplaza la recta hacia arriba sin alterar su pendiente." width="720" height="377"></figure>
+<h3 id="caso2-c1-baja-a-0-6">Caso2: c<sub>1</sub> baja a 0,6</h3>
+<figure><img src="img/n05-funcion-consumo-c1.png" alt="Gráfico con dos funciones de consumo que parten del mismo punto c₀ = 150: C(inicial) = 150 + 0,8(Yd) y C(final) = 150 + 0,6(Yd). La caída de la propensión marginal a consumir reduce la pendiente de la recta." width="660" height="373"></figure>
+<h2 id="5-la-demanda-agregada-y-su-representacion-grafica">5. La Demanda Agregada y su Representación Gráfica</h2>
+<p>En la sección 1 mostramos que la demanda agregada en una economía cerrada se representa matemáticamente con la siguiente ecuación:</p>
+<div class="formula">DA = C + I + G</div>
+<p>En la sección 2 desarrollamos un marco para comprender la conducta agregada de los consumidores, y mostramos que el consumo tiene un componente autónomo (<strong>c<sub>0</sub></strong>) y un componente que depende de la renta disponible (<strong>c<sub>1</sub>*Y<sub>D</sub></strong>). También mostramos que la renta disponible es igual a la renta (<strong><em>Y</em></strong>) menos los impuestos netos (<strong><em>T</em></strong>): <strong><em>Y<sub>D</sub> = Y - T</em></strong></p>
+<p>Por ahora, supondremos que la inversión (<strong><em>I</em></strong>) y el Gasto Público (<strong><em>G</em></strong>) son exógenos (no dependen del ingreso ni de ninguna otra variable).</p>
+<p>La ecuación de la demanda agregada es entonces:</p>
+<div class="formula">DA = c<sub>0 </sub>+ c<sub>1</sub>Y<sub>D</sub> + I + G</div>
+<div class="formula">DA = c<sub>0 </sub>+ c<sub>1</sub>(Y-T) + I + G</div>
+<div class="formula"><em>DA = c<sub>0 </sub>+ c<sub>1</sub>Y </em><em>- </em><em>c<sub>1</sub>T + I + G</em></div>
+<p>Para simplificar el análisis, a los componentes de la demanda agregada que no dependen del Ingreso los denominaremos Gasto Autónomo (<strong><em>A</em></strong>).</p>
+<div class="formula"><em>A = c<sub>0 </sub></em><em>- </em><em>c<sub>1</sub>T + I + G</em></div>
+<p>Entonces la ecuación de la Demanda Agregada simplificada es y se representa gráficamente como una línea que relaciona la variable <strong><em>DA</em></strong> con la variable Ingreso (<strong><em>Y</em></strong>):</p>
+<div class="formula"><em>DA = A + c<sub>1</sub>Y</em></div>
+<p>El siguiente gráfico muestra los detalles relevantes de la función de demanda agregada.</p>
+<figure><img src="img/n05-demanda-agregada.png" alt="Gráfico de la función de demanda agregada DA = A + c₁Y: recta de pendiente positiva sobre los ejes Demanda Agregada (DA) e Ingreso (Y), con el gasto autónomo A como punto de corte con el eje vertical y la propensión marginal a consumir c₁ como pendiente." width="692" height="374"></figure>
+<p>La recta correspondiente a la de demanda agregada tiene pendiente positiva porque un aumento en la renta genera mayor consumo y, por lo tanto, mayor demanda. Sin embargo, su pendiente es menor a 1, debido a que la propensión marginal a consumir es un número entre 0 y 1 (0 &lt; <strong><em>c<sub>1</sub></em></strong> &lt;1).</p>
+<p>Desplazamientos de la curva de demanda agregada pueden ocurrir por cambios en el consumo autónomo (<strong>c<sub>0</sub></strong>), la inversión (<strong><em>I</em></strong>), o el gasto público (<strong><em>G</em></strong>). Por ejemplo, un aumento en el gasto público desplaza la curva hacia arriba, aumentando la demanda agregada para cualquier nivel de renta.</p>
+<h2 id="6-equilibrio-en-el-mercado-de-bienes">6. Equilibrio en el Mercado de Bienes</h2>
+<p>El equilibrio en el mercado de bienes ocurre cuando la producción (<strong><em>Y</em></strong>) es igual a la demanda agregada (<strong><em>DA</em></strong>). La condición de equilibrio es:</p>
+<div class="formula"><em>Y = DA</em></div>
+<p>Sustituyendo la ecuación de la demanda agregada en el lado derecho de la condición de equilibrio, tenemos:</p>
+<div class="formula"><em>Y = c<sub>0</sub> + c<sub>1</sub>(Y−T) + I + G</em></div>
+<div class="formula"><em>Y = c<sub>0</sub> + c<sub>1</sub>Y− c<sub>1</sub>T + I + G</em></div>
+<p>Resolviendo para <strong><em>Y</em></strong> (despejando a <strong><em>Y</em></strong> en el lado izquierdo), obtenemos el nivel de producción de equilibrio. Este equilibrio implica que toda la producción es demandada, sin que haya exceso de producción o exceso de demanda.</p>
+<div class="formula"><em>Y - c<sub>1</sub>Y = c<sub>0</sub> − c<sub>1</sub>T + I + G</em></div>
+<div class="formula"><em>Y(1 - c<sub>1</sub>) = c<sub>0</sub> − c<sub>1</sub>T + I + G</em></div>
+<div class="formula">Y = (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)(c<sub>0</sub> - c<sub>1</sub>T + I + G)</div>
+<p>Como antes, llamaremos <strong>A</strong> al gasto autónomo (<strong><em>c<sub>0</sub> − c<sub>1</sub>T + I + G</em></strong>). Por lo tanto, el mercado de bienes está en equilibrio cuando:</p>
+<div class="formula">Y = (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)A</div>
+<p>Recordemos que la propensión marginal a consumir <strong><em>c<sub>1</sub></em></strong><em> </em>es definida como un número entre 0 y 1: (0 &lt; <strong><em>c<sub>1</sub></em></strong> &lt;1).</p>
+<p>Por esto, la expresión (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)<strong> </strong>es entonces un <strong>número mayor que 1</strong>.</p>
+<p>Ejemplos:</p>
+<ol type="a"><li>Si <strong><em>c<sub>1</sub></em> = 0,1  entonces</strong> (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)=(<span class="frac"><span class="num">1</span><span class="den">1-0,1</span></span>) = <span class="frac"><span class="num">1</span><span class="den">0,9</span></span> = 1,11</li><li>Si <strong><em>c<sub>1</sub></em> = 0,5  entonces</strong> (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)=(<span class="frac"><span class="num">1</span><span class="den">1-0,5</span></span>) = <span class="frac"><span class="num">1</span><span class="den">0,5</span></span> = 2</li><li>Si <strong><em>c<sub>1</sub></em> = 0,8  entonces</strong> (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)=(<span class="frac"><span class="num">1</span><span class="den">1-0,8</span></span>) = <span class="frac"><span class="num">1</span><span class="den">0,2</span></span> = 5</li><li>Si <strong><em>c<sub>1</sub></em> = 0,9  entonces</strong> (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)=(<span class="frac"><span class="num">1</span><span class="den">1-0,9</span></span>) = <span class="frac"><span class="num">1</span><span class="den">0,1</span></span> = 10</li></ol>
+<p>Como la expresión a la expresión (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>) es un número mayor que uno, cualquier cambio de alguno de los componentes del gasto autónomo (<strong><em>c<sub>0</sub>T, G o I</em></strong>) tiene un efecto "multiplicado" sobre el Ingreso de equilibrio (resulta en un cambio mayor al cambio de ese componente).</p>
+<p>Por esta característica, a la expresión (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)<strong> </strong>la<strong> </strong>llamaremos <strong>"El Multiplicador" (<em>m</em>).</strong></p>
+<p>Ejemplos:</p>
+<ul><li>Cuando el multiplicador <strong>(<em>m</em>) es igual a 2</strong> (c<sub>1 </sub>= 0,5), un aumento del gasto público (<strong><em>G</em></strong>) de <strong>100</strong> unidades monetarias (u.m.) resulta en un aumento de la producción de equilibrio (<strong><em>Y</em></strong>) igual a <strong>200</strong> u.m. (2*100)</li><li>Cuando el multiplicador <strong>(<em>m</em>) es igual a 5</strong> (c<sub>1 </sub>= 0,8), un aumento del gasto público (<strong><em>G</em></strong>) de <strong>100</strong> unidades monetarias resulta en un aumento de la producción de equilibrio (<strong><em>Y</em></strong>) igual a <strong>500 </strong>u.m.<strong> </strong>(5*100).</li><li>Cuando el multiplicador <strong>(<em>m</em>) es igual a 10</strong> (c<sub>1 </sub>= 0,9), un aumento del gasto público (<strong><em>G</em></strong>) de <strong>100</strong> unidades monetarias resulta en un aumento de la producción de equilibrio (<strong><em>Y</em></strong>) igual a <strong>1.000 </strong>u.m. (10*100)</li></ul>
+<h2 id="7-representacion-grafica-del-equilibrio-en-el-mercado-de">7. Representación Gráfica del Equilibrio en el Mercado de Bienes</h2>
+<p>Para facilitar la comprensión de la representación gráfica del equilibrio en el mercado de bienes utilizaremos un ejemplo.</p>
+<p>Datos:</p>
+<ul><li>c<sub>0</sub> = 50</li><li><em>c</em><sub>1 </sub>= 0,8</li><li><em>T</em> = 800</li><li><em>I</em>  = 700</li><li><em>G</em> = 900</li></ul>
+<p><strong>Paso 1:</strong> Encontramos la ecuación de la Demanda Agregada que se corresponde con los datos suministrados:</p>
+<div class="formula">A = c<sub>0 </sub>- c<sub>1</sub>T + I + G</div>
+<div class="formula">A = 50 - 0,8*800 + 700 + 900 = 1.010</div>
+<div class="formula">DA = A + c<sub>1</sub>Y</div>
+<div class="formula">DA = 1.010 + 0,8Y</div>
+<p><strong>Paso 2:</strong> &emsp;Encontramos el valor de la producción de equilibrio:</p>
+<div class="formula">Y = (<span class="frac"><span class="num">1</span><span class="den">1-c<sub>1</sub></span></span>)A</div>
+<div class="formula">Y = (<span class="frac"><span class="num">1</span><span class="den">1-0,8</span></span>)1010</div>
+<div class="formula">Y = (<span class="frac"><span class="num">1</span><span class="den">0,2</span></span>)1.010 = 5×1.010 = 5.050</div>
+<p><strong>Paso 3:</strong> &emsp;<strong>Representamos gráficamente el equilibrio</strong>.</p>
+<p>&emsp;Dado que en el equilibrio se cumple que <strong><em>Y =</em></strong><em> </em><strong><em>DA</em> </strong>(Producción igual a demanda agregada e igual a ingreso), entonces representamos la producción de equilibrio en el mercado de bienes como un punto en una línea de 45º (todos los puntos de una línea de 45º representan el mismo valor en los dos ejes).</p>
+<p>&emsp;El valor particular de este punto (Producción = Demanda Agregada = Ingreso = <strong>5.050</strong>, en nuestro ejemplo) es representado por la <strong>intersección</strong> de la <strong>línea de Demanda Agregada</strong> con <strong>esta línea de 45º</strong>:</p>
+<figure><img src="img/n05-equilibrio-45.png" alt="Gráfico del equilibrio en el mercado de bienes: la recta DA = 1.010 + 0,8Y corta la línea de 45°, que representa todos los puntos posibles de equilibrio (Y = DA), en el nivel de producción de equilibrio Y* = 5.050." width="716" height="381"></figure>
+<p>Es importante reconocer <strong>tres tipos de ecuaciones</strong> en los modelos económicos:</p>
+<ol type="i"><li><strong>Identidades</strong> (definiciones de una variable). Ejemplo: La ecuación de la renta disponible, <strong><em>Y<sub>D</sub> = Y - T</em></strong>.</li><li><strong>Ecuaciones de Conducta</strong> (definen cómo se comporta un agente económico). Ejemplo: La ecuación de conducta de los consumidores, <strong><em>C = c<sub>0</sub> + c<sub>1</sub>Y<sub>D</sub>.</em></strong></li><li><strong>Condiciones de Equilibrio</strong> (establecen las condiciones esenciales de un equilibrio). Ejemplo: El equilibrio del mercado de bienes implica que <strong><em>Y = DA</em></strong>.</li></ol>
+<h3 id="ejercicio">Ejercicio:</h3>
+<p>Supongamos una economía que presenta los siguientes datos:</p>
+<ul><li><strong><em>c<sub>0</sub></em></strong> = 150</li><li><strong><em>c</em><sub>1</sub></strong> = 0,6</li><li><strong><em>T</em> </strong>= 1.000</li><li><strong><em>I</em> </strong> = 800</li><li><strong><em>G</em> </strong>= 1.100</li></ul>
+<ol type="a"><li>Representa gráficamente la función de Consumo.</li><li>¿Cuál es el valor del multiplicador? Interpreta el significado de este valor.</li><li>¿Cuál es el valor de la producción de equilibrio? Interpreta el significado de este valor.</li><li>¿Cuál es el valor del Consumo? Representa el punto correspondiente a este valor en el gráfico dibujado en la respuesta (a).</li><li>Representa gráficamente el equilibrio del mercado de bienes de esta economía.</li><li>¿Cómo cambia la producción de equilibrio si el gobierno incrementa el gasto público en 120 u.m.?</li><li>Representa el nuevo equilibrio en el mismo gráfico en que representaste el equilibrio inicial.</li></ol>
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Nota de Estudio 5 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>
