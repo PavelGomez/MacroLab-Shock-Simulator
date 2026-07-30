@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Extensión docente de MacroLab para Macroeconomía I: medición, mercado de bienes, dinero y mercado laboral, con una ruta por clases que cierra el ciclo predigo–resuelvo–reviso. Herramienta de aprendizaje, no de predicción.">
-<title>MacroLab · Macro 1 | Extensión docente de Macroeconomía I</title>
+<meta name="description" content="Aprende Macroeconomía I paso a paso con datos de Chile. Estudia PIB, inflación, bienes, dinero y trabajo mediante una ruta guiada y laboratorios interactivos.">
+<title>MacroLab · Macroeconomía I | Ruta guiada y laboratorios</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -16,21 +16,21 @@
 <!-- OPEN GRAPH -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/">
-<meta property="og:title" content="MacroLab · Macro 1 | Extensión docente de Macroeconomía I">
-<meta property="og:description" content="Extensión docente de MacroLab para Macroeconomía I: medición, mercado de bienes, dinero y mercado laboral, con una ruta por clases que cierra el ciclo predigo–resuelvo–reviso. Herramienta de aprendizaje, no de predicción.">
+<meta property="og:title" content="MacroLab · Macroeconomía I | Ruta guiada y laboratorios">
+<meta property="og:description" content="Aprende Macroeconomía I paso a paso con datos de Chile. Estudia PIB, inflación, bienes, dinero y trabajo mediante una ruta guiada y laboratorios interactivos.">
 <meta property="og:image" content="https://pavelgomez.github.io/MacroLab-Shock-Simulator/assets/og-image-v3.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="MacroLab Shock Simulator: laboratorio de macroeconomía aplicada para Chile">
+<meta property="og:image:alt" content="MacroLab · Macroeconomía I: ruta guiada y laboratorios">
 <meta property="og:locale" content="es_ES">
 
 <!-- X / TWITTER CARD -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MacroLab · Macro 1 | Extensión docente de Macroeconomía I">
-<meta name="twitter:description" content="Extensión docente de MacroLab para Macroeconomía I: ruta por clases, laboratorios y registro de aprendizaje sin cuenta ni servidor.">
+<meta name="twitter:title" content="MacroLab · Macroeconomía I | Ruta guiada y laboratorios">
+<meta name="twitter:description" content="Aprende Macroeconomía I paso a paso con datos de Chile. Estudia PIB, inflación, bienes, dinero y trabajo mediante una ruta guiada y laboratorios interactivos.">
 <meta name="twitter:image" content="https://pavelgomez.github.io/MacroLab-Shock-Simulator/assets/og-image-v3.jpg">
-<meta name="twitter:image:alt" content="MacroLab Shock Simulator: laboratorio de macroeconomía aplicada para Chile">
+<meta name="twitter:image:alt" content="MacroLab · Macroeconomía I: ruta guiada y laboratorios">
 <style>
   /* Tokens verificados uno por uno contra styles.css del sitio publicado
      (pavelgomez.github.io/MacroLab-Shock-Simulator). Dos excepciones marcadas
@@ -63,7 +63,9 @@
   .hero-inner{max-width:1180px;margin:auto}
   .eyebrow{margin:0;color:rgba(255,255,255,.82);font-size:.84rem;letter-spacing:.08em;text-transform:uppercase}
   .hero h1{font-size:2.2rem;line-height:1.05;margin:8px 0 10px}
-  .hero .tagline{max-width:1120px;margin:0;color:rgba(255,255,255,.92);line-height:1.55}
+  .hero .tagline{max-width:72ch;margin:0;color:rgba(255,255,255,.92);line-height:1.55}
+  /* Explicación del recorrido · un escalón por debajo de .tagline, por encima de .hero-meta. */
+  .hero-support{max-width:72ch;margin:10px 0 0;color:rgba(255,255,255,.88);line-height:1.55}
   .hero-meta{margin:14px 0 0;color:rgba(255,255,255,.8);font-size:.88rem;line-height:1.55}
   .chips,.hero-actions,.actions,.row,.kpis{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
   .chips{margin-top:16px}.chip{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.12);border-radius:999px;padding:6px 12px;font-size:.84rem;font-weight:700}
@@ -75,6 +77,26 @@
   /* Enlace saliente del hero · mismo tratamiento que .route-btn.secondary del sitio. */
   .btn.linklike{background:#fff;border:1px solid var(--accent);color:var(--accent);text-decoration:none;display:inline-flex;align-items:center;border-radius:999px;padding:8px 14px;font-size:.88rem;font-weight:700;min-height:0}
   .btn.linklike:hover{filter:brightness(.96)}
+  /* JERARQUÍA DE LAS ACCIONES DEL HERO · una sola acción visualmente primaria.
+     Sobre el navy del hero un relleno blanco domina la composición (15,2:1 contra
+     el fondo) y desbanca a la primaria (accent, 2,8:1). Estas reglas —acotadas a
+     .hero-actions para no tocar los botones del resto de la página— dejan un solo
+     bloque relleno: primaria (relleno accent) > secundaria (contorno) > terciaria
+     (fantasma). Sin colores nuevos: solo accent, blanco y blancos translúcidos. */
+  .hero-actions .btn:not(.secondary):not(.linklike){
+    background:var(--accent);color:#fff;border-color:#fff;font-weight:800;
+    padding:11px 20px;min-height:46px;box-shadow:0 6px 18px rgba(9,26,45,.45)
+  }
+  .hero-actions .btn.secondary{
+    background:transparent;border-color:rgba(255,255,255,.72);color:#fff;
+    font-weight:700;box-shadow:none
+  }
+  .hero-actions .btn.secondary:hover{background:rgba(255,255,255,.12);filter:none}
+  .hero-actions .btn.linklike{
+    background:transparent;border-color:rgba(255,255,255,.38);
+    color:rgba(255,255,255,.92);font-weight:600;box-shadow:none
+  }
+  .hero-actions .btn.linklike:hover{background:rgba(255,255,255,.08);filter:none}
   .module-nav-wrap{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
   .module-nav{max-width:1180px;margin:auto;padding:14px 24px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin}
   .module-nav button{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--navy);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer}
@@ -231,6 +253,7 @@
   }
   @media(max-width:580px){
     .hero{padding:24px 16px 22px}.hero-actions .btn,.hero-actions a{width:100%;justify-content:center}
+    .hero .tagline,.hero-support{max-width:100%}
     .module-nav{padding:11px 16px}main{padding:22px 16px 52px}
     .orientation{grid-template-columns:1fr}.activity-head{grid-template-columns:1fr}
     .slider{grid-template-columns:90px 1fr 62px}
@@ -243,18 +266,19 @@
 <a class="skip" href="#main">Saltar al contenido principal</a>
 <header class="hero">
   <div class="hero-inner">
-    <p class="eyebrow">Macroeconomía · Profesor Pável Gómez · 2026</p>
-    <h1>MacroLab · Macro 1</h1>
-    <p class="tagline"><strong>Del registro y el cálculo al mecanismo.</strong> Una ruta por clases organiza la lectura, la evidencia, la respuesta tipo prueba, la retroalimentación y el entrenamiento; los laboratorios quedan disponibles para practicar cada instrumento.</p>
+    <p class="eyebrow">Macroeconomía I · Profesor Pável Gómez · 2026</p>
+    <h1>MacroLab · Macroeconomía I</h1>
+    <p class="tagline"><strong>Aprende a leer la economía paso a paso.</strong> Descubre cómo se miden el PIB y la inflación, cómo funcionan los mercados de bienes, dinero y trabajo, y cómo se alcanza el equilibrio.</p>
+    <p class="hero-support">Sigue la ruta por clases para estudiar, responder y recibir retroalimentación. Usa los laboratorios para probar ideas y practicar a tu ritmo.</p>
     <div class="chips" aria-label="Características">
-      <span class="chip">Chile</span><span class="chip">Medir + clasificar + equilibrar</span><span class="chip">Simulación pedagógica, no pronóstico</span>
+      <span class="chip">Datos y ejemplos de Chile</span><span class="chip">PIB · inflación · dinero · empleo</span><span class="chip">Ruta guiada + laboratorios</span>
     </div>
     <div class="hero-actions">
-      <button class="btn" type="button" data-go="route">Comenzar la ruta por clases</button>
-      <button class="btn secondary" type="button" data-go="med">Abrir laboratorios</button>
-      <a class="btn linklike" href="../">← Volver a MacroLab</a>
+      <button class="btn" type="button" data-go="route">Empezar la ruta guiada</button>
+      <button class="btn secondary" type="button" data-go="med">Explorar laboratorios</button>
+      <a class="btn linklike" href="../">← MacroLab principal</a>
     </div>
-    <p class="hero-meta">Extensión docente de Macroeconomía I · versión 0.5.1 · sitio publicado en GitHub Pages</p>
+    <p class="hero-meta">Acceso libre · sin cuenta · simulación para aprender, no para pronosticar.</p>
   </div>
 </header>
 
