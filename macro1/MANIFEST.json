@@ -5,6 +5,7 @@
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
   "identity_line": "Macroeconomía · Profesor Pável Gómez · 2026",
+  "lab_identity_line": "Macroeconomía I · Profesor Pável Gómez · 2026",
   "content_version": "macro1-notas-2026-07",
   "learning_schema": "macrolab-learning-context/0.2",
   "scenario_schema": "macrolab-macro1-scenario/1.1",

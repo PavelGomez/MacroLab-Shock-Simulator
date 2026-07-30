@@ -270,10 +270,14 @@ const version = manifest && manifest.lab_version;
 const identity = (manifest && manifest.identity_line) || "Macroeconomía · Profesor Pável Gómez · 2026";
 const identityHtml = identity.replace(/·/g, "&middot;");
 const hasIdentity = html => html.includes(identity) || html.includes(identityHtml);
+/* El banner del laboratorio nombra el curso completo («Macroeconomía I»); las notas
+   conservan la línea genérica del manifiesto. Ambas expectativas siguen siendo literales. */
+const labIdentity = (manifest && manifest.lab_identity_line) || "Macroeconomía I · Profesor Pável Gómez · 2026";
+const labIdentityHtml = labIdentity.replace(/·/g, "&middot;");
 
 check();
-if (!hasIdentity(labSource)) {
-  fail("8", `${labFile}: falta la línea de identificación «${identity}» en el banner.`);
+if (!labSource.includes(labIdentity) && !labSource.includes(labIdentityHtml)) {
+  fail("8", `${labFile}: falta la línea de identificación «${labIdentity}» en el banner.`);
 }
 check();
 if (version && !labSource.includes(version)) {
