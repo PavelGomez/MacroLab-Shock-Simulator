@@ -45,8 +45,8 @@ a:hover{color:#204f75}
   text-decoration:none;cursor:pointer;
 }
 .topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
-.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
-.topbar button:hover{background:#204f75;color:#fff}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
 .topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
 
 header.masthead{
@@ -113,7 +113,7 @@ footer .disclaimer{color:var(--muted)}
 .print-head{display:none}
 
 @media print{
-  .topbar,.toc,.skip,#printBtn{display:none !important}
+  .topbar,.toc,.skip{display:none !important}
   @page{margin:2cm}
   html,body{background:#fff;color:#000;font-size:11pt}
   a{color:#000;text-decoration:underline}
@@ -145,7 +145,7 @@ footer .disclaimer{color:var(--muted)}
 <nav class="topbar" aria-label="Acciones de la nota">
   <a href="../index.html#route">&larr; Volver al laboratorio</a>
   <span class="where">Nota de Estudio 1</span>
-  <button type="button" id="printBtn">Exportar PDF</button>
+  <a class="dl" href="nota-01-introduccion.pdf" download>Descargar PDF</a>
 </nav>
 
 <header class="masthead">
@@ -266,9 +266,5 @@ footer .disclaimer{color:var(--muted)}
     <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
   </div>
 </footer>
-
-<script>
-document.getElementById("printBtn").addEventListener("click",function(){window.print()});
-</script>
 </body>
 </html>
