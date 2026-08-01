@@ -17,6 +17,30 @@
   ],
   "notes": [
     {
+      "id": "cronica-clase1",
+      "file": "notas/cronica-clase1-chile-2026.html",
+      "title": "Crónica de apertura — El barco que no pasó por Ormuz: Chile, primer semestre de 2026",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 1
+    },
+    {
+      "id": "cronica-clase2",
+      "file": "notas/cronica-clase2-chile-2026.html",
+      "title": "Crónica — Quién paga la cuenta: medición, propagación del shock y la aritmética del crecimiento",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 2
+    },
+    {
+      "id": "ficha-escucha-cpc",
+      "file": "notas/ficha-escucha-cpc-clase1.html",
+      "title": "Ficha de escucha — Diálogos para el Desarrollo (charla CPC, bloque 2 de la Clase 1)",
+      "kind": "ficha",
+      "audience": "estudiantes",
+      "linked_from_class": 1
+    },
+    {
       "id": "nota-01",
       "file": "notas/nota-01-introduccion.html",
       "title": "Introducción a la Macroeconomía: Un curso aplicado y práctico",

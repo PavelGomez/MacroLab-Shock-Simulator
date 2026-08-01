@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de escucha · Diálogos para el Desarrollo — Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Ficha de escucha para la charla «Diálogos para el Desarrollo» con Susana Jiménez, presidenta de la CPC: separar dato, mecanismo, proyección y meta en un discurso real.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:16px;
+  --accent-soft:#eaf3fb; --shadow:0 8px 22px rgba(17,35,52,.07);
+  --green:#15683f; --green-soft:#e9f5ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.58}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:.6rem 1rem}
+.skip:focus{left:0}
+
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:.7rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--line);padding:.55rem clamp(1rem,4vw,2.5rem)}
+.topbar a,.topbar button{font:inherit;font-size:.88rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:.42rem .95rem;background:var(--card);color:var(--accent);text-decoration:none;cursor:pointer}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar .where{font-size:.8rem;color:var(--muted);font-weight:500}
+.topbar .printhint{font-size:.75rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.1rem}
+@media (max-width:620px){.topbar .printhint{display:none}}
+
+header.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:calc(4.2rem + 1.4rem) clamp(1rem,4vw,2.5rem) 1.7rem}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);margin:0 0 .8rem}
+.masthead h1{font-size:clamp(1.4rem,3.2vw,1.95rem);line-height:1.2;margin:0 0 .55rem;font-weight:800}
+.masthead .bajada{color:#cfe0ee;margin:0 0 .8rem;font-size:1rem;line-height:1.5}
+.masthead .meta{margin:0;color:#9fbdd6;font-size:.88rem}
+.masthead .brand{margin:1.2rem 0 0}
+.masthead .brand img{height:40px;width:auto;background:#fff;padding:.35rem .6rem;border-radius:10px}
+
+main{max-width:80ch;margin:0 auto;padding:1.8rem clamp(1rem,4vw,2.5rem) 3rem}
+h2{font-size:1.24rem;margin:2.1rem 0 .65rem;color:var(--navy);padding-bottom:.32rem;border-bottom:2px solid var(--line);font-weight:700}
+h3{font-size:1rem;margin:1.4rem 0 .45rem;color:var(--navy)}
+p{margin:0 0 .9rem}
+ul,ol{margin:0 0 1rem;padding-left:1.4rem}
+li{margin:0 0 .4rem}
+
+.identidad{background:var(--accent-soft);border:1px solid #bcd8ee;border-radius:12px;padding:.7rem .9rem;margin:1.2rem 0;font-size:.93rem}
+.identidad p{margin:0}
+
+.regla{background:var(--green-soft);border:1px solid #b6ddc9;border-radius:12px;padding:.85rem 1rem;margin:1.3rem 0}
+.regla .k{display:block;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.35rem}
+.regla p:last-child{margin-bottom:0}
+
+.categorias{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:1.3rem 0}
+.categorias .c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.65rem .8rem;box-shadow:var(--shadow)}
+.categorias .c b{display:block;color:var(--accent);font-size:.94rem;margin-bottom:.2rem}
+.categorias .c span{font-size:.83rem;color:var(--muted);line-height:1.4;display:block}
+
+table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:.92rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--navy);font-weight:700;font-size:.88rem}
+td.linea{height:3.1rem}
+td.cat{width:9.5rem;font-size:.82rem;color:var(--muted)}
+caption{caption-side:top;text-align:left;font-size:.86rem;color:var(--muted);margin-bottom:.4rem}
+
+.campo{margin:.9rem 0}
+.campo b{display:block;font-size:.92rem;margin-bottom:.3rem;color:var(--navy)}
+.campo .rayas{border-bottom:1px solid var(--line);height:1.55rem}
+.campo .rayas + .rayas{margin-top:.1rem}
+
+footer{border-top:1px solid var(--line);background:var(--card);padding:1.4rem clamp(1rem,4vw,2.5rem) 2.2rem;color:var(--muted);font-size:.87rem}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .3rem}
+footer .who{color:var(--navy);font-weight:700}
+.print-head{display:none}
+
+@media print{
+  .topbar,.skip,#printBtn,.printhint{display:none !important}
+  @page{margin:1.3cm 1.5cm}
+  html,body{background:#fff;color:#000;font-size:9.3pt;line-height:1.38}
+  a{color:#000;text-decoration:underline}
+  p{margin:0 0 .45rem}
+  ul,ol{margin:0 0 .5rem;padding-left:1.15rem}
+  li{margin:0 0 .22rem}
+  header.masthead{background:#fff;color:#000;padding:0 0 .5rem;border-bottom:2px solid #000}
+  .masthead h1{font-size:1.4rem;margin-bottom:.3rem}
+  .masthead .bajada{font-size:.95rem;margin-bottom:.35rem}
+  .masthead .eyebrow{margin-bottom:.35rem}
+  .masthead .eyebrow,.masthead .meta,.masthead .bajada{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:.6rem 0 0}
+  h2{color:#000;border-bottom:1px solid #666;margin:.9rem 0 .35rem;font-size:1.08rem;padding-bottom:.18rem}
+  h3{color:#000;font-size:.95rem;margin:.6rem 0 .25rem}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h2 + p,h2 + table,h2 + .categorias,h2 + ul,h2 + ol,h2 + .campo{break-before:avoid;page-break-before:avoid}
+  table,tr,.regla,.identidad,.categorias .c,.campo,li{break-inside:avoid;page-break-inside:avoid}
+  .identidad,.regla{background:#fff;border:1px solid #999;padding:.5rem .65rem;margin:.6rem 0}
+  .categorias{grid-template-columns:1fr 1fr 1fr;gap:.4rem;margin:.7rem 0}
+  .categorias .c{box-shadow:none;border:1px solid #999;padding:.4rem .5rem}
+  .categorias .c b{color:#000}
+  table{margin:.6rem 0;font-size:.86rem}
+  th,td{padding:.28rem .4rem}
+  td.linea{height:2.7rem}
+  .campo .rayas{height:1.4rem;border-bottom:1px solid #999}
+  footer{background:#fff;border-top:1px solid #666;padding:.6rem 0 0;color:#000;font-size:.8rem}
+  .print-head{display:block;border-bottom:1px solid #999;padding-bottom:.25rem;margin-bottom:.6rem;font-size:8pt;color:#333}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la ficha">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Ficha de escucha · Clase 1</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Ficha de escucha · Diálogos para el Desarrollo &middot; Macroeconomía I &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Ficha de escucha · Diálogos para el Desarrollo</h1>
+    <p class="bajada">Hoy vas a escuchar a alguien que sostiene, en público y con consecuencias, buena parte de lo que discutimos en la sección 9 de la crónica. Tu trabajo no es estar de acuerdo ni en desacuerdo. Es clasificar.</p>
+    <p class="meta">Clase 1 &middot; bloque 2 &middot; lunes 3 de agosto de 2026 &middot; se revisa al inicio de la clase 2</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+
+<div class="identidad">
+  <p><strong>Quién expone.</strong> Susana Jiménez preside la Confederación de la Producción y del Comercio (CPC), la organización que agrupa a los principales gremios empresariales de Chile. Su agenda pública declarada apunta a recuperar el crecimiento, el empleo formal y la valoración de la actividad empresarial.</p>
+</div>
+
+<div class="regla">
+  <span class="k">La regla de hoy</span>
+  <p>Escucha con atención y con respeto: no todos los días se tiene enfrente a quien encabeza el principal gremio empresarial del país. Y escucha con lápiz.</p>
+  <p><strong>No te pido que juzgues. Te pido que separes.</strong> Toda persona que habla en público —una dirigente gremial, un ministro, un economista, yo mismo en clase— mezcla en la misma frase cosas que se comprueban con cosas que se suponen y cosas que se desean. Eso no es deshonestidad: es cómo funciona el lenguaje. Distinguirlas es tu oficio desde hoy.</p>
+</div>
+
+<h2>Las cinco categorías</h2>
+
+<div class="categorias">
+  <div class="c"><b>Dato</b><span>Una cifra que se puede ir a buscar. Tiene fuente, período y unidad.</span></div>
+  <div class="c"><b>Interpretación</b><span>Una lectura de por qué los datos son como son.</span></div>
+  <div class="c"><b>Mecanismo</b><span>«Si pasa A, entonces pasa B.» Un canal, sin magnitud ni plazo.</span></div>
+  <div class="c"><b>Proyección</b><span>Lo que se estima que ocurrirá bajo ciertos supuestos.</span></div>
+  <div class="c"><b>Meta</b><span>Lo que se quiere que ocurra. Legítima, pero no es un pronóstico.</span></div>
+</div>
+
+<h2>1 · Tres afirmaciones que escuchaste</h2>
+
+<p>Anota tres frases lo más textuales que puedas. No las resumas: cópialas. Después clasifícalas.</p>
+
+<table>
+  <caption>Escribe la frase en la columna izquierda y marca la categoría a la derecha.</caption>
+  <thead><tr><th>Lo que dijo, textual</th><th>Categoría</th></tr></thead>
+  <tbody>
+    <tr><td class="linea"></td><td class="cat">dato · interpretación · mecanismo · proyección · meta</td></tr>
+    <tr><td class="linea"></td><td class="cat">dato · interpretación · mecanismo · proyección · meta</td></tr>
+    <tr><td class="linea"></td><td class="cat">dato · interpretación · mecanismo · proyección · meta</td></tr>
+  </tbody>
+</table>
+
+<h2>2 · Las cifras</h2>
+
+<p>Cada vez que escuches un número, anótalo con lo que alcances a capturar. Si no dijo el período o la fuente, <strong>deja el casillero vacío</strong>: ese vacío también es información.</p>
+
+<table>
+  <thead><tr><th>Cifra</th><th>¿De qué variable?</th><th>¿Qué período?</th><th>¿Dijo la fuente?</th></tr></thead>
+  <tbody>
+    <tr><td class="linea"></td><td></td><td></td><td></td></tr>
+    <tr><td class="linea"></td><td></td><td></td><td></td></tr>
+    <tr><td class="linea"></td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+
+<h2>3 · La cadena causal</h2>
+
+<p>En la crónica vimos una cadena: <em>menos impuestos y permisos más rápidos → más rentabilidad → más proyectos → más inversión ejecutada → más capital y productividad → más crecimiento</em>. Si en la charla aparece una cadena parecida, anota <strong>cuál eslabón se afirmó con más fuerza</strong> y cuál se mencionó menos o no se mencionó.</p>
+
+<div class="campo">
+  <b>Eslabón más afirmado:</b>
+  <div class="rayas"></div>
+</div>
+<div class="campo">
+  <b>Eslabón que quedó sin desarrollar:</b>
+  <div class="rayas"></div>
+</div>
+
+<h2>4 · Tu pregunta</h2>
+
+<p>Formula una pregunta que pida <strong>una precisión</strong>: una cifra, un plazo, un supuesto. No una posición. Ejemplo del tipo que buscamos: <em>«¿en qué plazo se esperaría ver el efecto de esas medidas sobre la inversión efectivamente ejecutada?»</em>.</p>
+
+<div class="campo">
+  <b>Mi pregunta:</b>
+  <div class="rayas"></div>
+  <div class="rayas"></div>
+</div>
+
+<h2>5 · Lo que te llamó la atención</h2>
+
+<p>Una línea, honesta. Puede ser algo que no entendiste, algo con lo que no estuviste de acuerdo, o algo que te hizo cambiar de opinión. Las tres respuestas valen lo mismo.</p>
+
+<div class="campo">
+  <div class="rayas"></div>
+  <div class="rayas"></div>
+</div>
+
+<h2>Antes de guardarla</h2>
+
+<p>Revisa una cosa sola: ¿alguna de tus tres afirmaciones la clasificaste como <strong>dato</strong> sin que se hubiera dicho la fuente o el período? Si es así, no era un dato todavía. Era una cifra. La diferencia entre esas dos palabras es, básicamente, el primer mes de este curso.</p>
+
+<p>Trae esta ficha completa a la clase 2. Empezamos con ella.</p>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Ficha de escucha &middot; Clase 1, bloque 2 &middot; complemento de la crónica «El barco que no pasó por Ormuz».</p>
+    <p>Antecedentes de la expositora tomados de información pública sobre la presidencia de la Confederación de la Producción y del Comercio.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

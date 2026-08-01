@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crónica de apertura · El barco que no pasó por Ormuz — Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Crónica de apertura de Macroeconomía I: cómo el shock del petróleo de 2026 llegó desde el estrecho de Ormuz hasta el presupuesto de las familias y la caja de las empresas chilenas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+  --warm:#b45309; --warm-soft:#fdf3e3; --green:#15683f; --green-soft:#e9f5ef;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16.5px; line-height:1.68;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+.topbar .printhint{font-size:.76rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.15rem}
+@media (max-width:620px){.topbar .printhint{display:none}}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.8rem) clamp(1rem,4vw,2.5rem) 2.2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);margin:0 0 .9rem}
+.masthead h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin:0 0 .7rem;font-weight:800;letter-spacing:-.01em}
+.masthead .bajada{font-size:clamp(1rem,2.2vw,1.14rem);color:#cfe0ee;margin:0 0 1rem;font-weight:400;line-height:1.5}
+.masthead .meta{margin:0;color:#9fbdd6;font-size:.9rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem}
+main > *{max-width:72ch}
+main > .wide,main > table,main > .toc,main > figure{max-width:100%}
+
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.4rem;margin:0 0 2.4rem}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{font-size:1.42rem;line-height:1.28;margin:3rem 0 .9rem;color:var(--navy);padding-bottom:.4rem;border-bottom:2px solid var(--line);font-weight:700}
+h3{font-size:1.12rem;line-height:1.35;margin:2rem 0 .6rem;color:var(--navy)}
+p{margin:0 0 1.05rem}
+ul,ol{margin:0 0 1.15rem;padding-left:1.5rem}
+li{margin:0 0 .5rem}
+strong{font-weight:700;color:#12314e}
+
+.lead{font-size:1.1rem;line-height:1.6;color:#2a3d4d}
+.lead::first-letter{font-size:2.9rem;line-height:.9;float:left;margin:.32rem .55rem 0 0;font-weight:800;color:var(--accent)}
+
+.escena{
+  background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);
+  border-radius:0 var(--radius) var(--radius) 0;padding:1.2rem 1.4rem;margin:1.7rem 0;box-shadow:var(--shadow);
+}
+.escena h3{margin:0 0 .6rem;font-size:1.02rem;color:var(--accent);letter-spacing:.02em;text-transform:uppercase;font-size:.84rem;font-weight:700}
+.escena p:last-child{margin-bottom:0}
+
+blockquote{
+  margin:1.5rem 0;padding:.2rem 0 .2rem 1.3rem;border-left:4px solid var(--warm);
+  font-size:1.05rem;line-height:1.55;color:#3a2a12;background:var(--warm-soft);
+  border-radius:0 12px 12px 0;padding:1rem 1.2rem;
+}
+blockquote p{margin:0 0 .5rem}
+blockquote cite{display:block;font-style:normal;font-size:.85rem;color:#7a5a20;font-weight:600}
+
+.dato{
+  display:block;background:var(--accent-soft);border:1px solid #bcd8ee;border-radius:14px;
+  padding:1rem 1.2rem;margin:1.5rem 0;font-size:.97rem;
+}
+.dato .k{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:#20618f;font-weight:700;margin-bottom:.4rem}
+.dato p:last-child{margin-bottom:0}
+.dato .fuente{font-size:.83rem;color:var(--muted);margin-top:.5rem}
+
+.alerta{
+  background:var(--green-soft);border:1px solid #b6ddc9;border-radius:14px;padding:1rem 1.2rem;margin:1.6rem 0;
+}
+.alerta .k{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.4rem}
+.alerta p:last-child{margin-bottom:0}
+
+.cadena{
+  background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.3rem 1.4rem;margin:1.8rem 0;
+  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:.87rem;line-height:1.85;
+  overflow-x:auto;white-space:pre;
+}
+
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.93rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--navy);font-weight:700}
+caption{caption-side:top;text-align:left;font-size:.87rem;color:var(--muted);margin-bottom:.5rem}
+
+.fichas{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));margin:1.8rem 0}
+.ficha{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.05rem 1.15rem;box-shadow:var(--shadow)}
+.ficha h3{margin:0 0 .55rem;font-size:.98rem;color:var(--navy)}
+.ficha .cifra{font-size:1.75rem;font-weight:800;color:var(--accent);line-height:1.1;letter-spacing:-.02em;display:block;margin:.2rem 0 .45rem}
+.ficha dl{margin:0;font-size:.83rem;line-height:1.5}
+.ficha dt{color:var(--muted);font-weight:600;float:left;clear:left;margin-right:.35rem}
+.ficha dd{margin:0 0 .2rem}
+.ficha dd::after{content:"";display:block;clear:both}
+
+.pasos{counter-reset:paso;list-style:none;padding:0;margin:1.6rem 0}
+.pasos li{counter-increment:paso;position:relative;padding:.15rem 0 .9rem 2.6rem;margin:0}
+.pasos li::before{
+  content:counter(paso);position:absolute;left:0;top:.05rem;
+  width:1.85rem;height:1.85rem;border-radius:50%;background:var(--accent);color:#fff;
+  display:grid;place-items:center;font-weight:700;font-size:.9rem;
+}
+
+.cierre{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.5rem 1.6rem;margin:2.4rem 0 1rem}
+.cierre h2{color:#fff;border-bottom-color:rgba(255,255,255,.25);margin-top:0}
+.cierre a{color:#9fd0f5}
+
+footer{border-top:1px solid var(--line);background:var(--card);padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn,.printhint{display:none !important}
+  @page{margin:1.5cm 1.7cm}
+
+  /* Tipografía compacta: la crónica debe caber en ~9 páginas, no en 14. */
+  html,body{background:#fff;color:#000;font-size:9.4pt;line-height:1.4}
+  p{margin:0 0 .55rem;orphans:3;widows:3}
+  ul,ol{margin:0 0 .6rem;padding-left:1.25rem}
+  li{margin:0 0 .28rem}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555}
+
+  header.masthead{background:#fff;color:#000;padding:0 0 .6rem;border-bottom:2px solid #000}
+  .masthead h1{font-size:1.7rem;margin-bottom:.4rem}
+  .masthead .bajada{font-size:1rem;margin-bottom:.5rem}
+  .masthead .eyebrow{margin-bottom:.5rem}
+  .masthead .eyebrow,.masthead .meta,.masthead .bajada{color:#333}
+  .masthead .brand{display:none}
+
+  main{max-width:none;padding:.8rem 0 0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000;font-size:1.2rem;margin:1.15rem 0 .45rem;padding-bottom:.22rem}
+  h3{color:#000;font-size:1rem;margin:.8rem 0 .35rem}
+  .lead{font-size:1rem;line-height:1.45}
+  .lead::first-letter{color:#000;font-size:2.2rem;margin:.25rem .4rem 0 0}
+
+  /* Nada de estos bloques debe partirse entre páginas. */
+  .escena,.dato,.alerta,.ficha,.fichas,.pasos,.cierre,blockquote,table,.cadena,li,tr{
+    break-inside:avoid;page-break-inside:avoid;
+  }
+  /* Un título nunca queda solo al pie: se arrastra con lo que lo sigue. */
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h2 + p,h2 + ol,h2 + ul,h2 + table,h2 + .escena,h2 + .dato,h2 + .alerta,h2 + .cadena,h2 + .fichas,
+  h3 + p,h3 + ul,h3 + ol{break-before:avoid;page-break-before:avoid}
+
+  .escena{border:1px solid #999;border-left:4px solid #000;box-shadow:none;background:#fff;padding:.6rem .8rem;margin:.7rem 0}
+  .escena h3{margin-bottom:.35rem}
+  blockquote{background:#fff;border-left:3px solid #000;color:#000;padding:.55rem .8rem;margin:.7rem 0;font-size:.98rem;line-height:1.4;border-radius:0}
+  .dato,.alerta{background:#fff;border:1px solid #999;padding:.6rem .8rem;margin:.7rem 0}
+  .dato .fuente{margin-top:.3rem;font-size:.8rem}
+  .cadena{background:#fff;color:#000;border:1px solid #999;font-size:7.4pt;line-height:1.45;padding:.6rem .7rem;margin:.75rem 0;white-space:pre;overflow:visible}
+  .cierre{background:#fff;color:#000;border:2px solid #000;padding:.75rem .9rem;margin:1rem 0}
+  .cierre h2,.cierre a{color:#000}
+  .cierre h2{font-size:1.1rem}
+
+  table{margin:.75rem 0;font-size:.86rem}
+  th,td{padding:.3rem .45rem}
+  caption{margin-bottom:.3rem;font-size:.8rem}
+
+  .fichas{grid-template-columns:1fr 1fr;gap:.55rem;margin:.8rem 0}
+  .ficha{box-shadow:none;border:1px solid #999;padding:.55rem .7rem}
+  .ficha h3{margin:0 0 .3rem;font-size:.9rem}
+  .ficha .cifra{color:#000;font-size:1.35rem;margin:.1rem 0 .3rem}
+  .ficha dl{font-size:.78rem;line-height:1.35}
+
+  .pasos{margin:.8rem 0}
+  .pasos li{padding:.05rem 0 .45rem 2rem}
+  .pasos li::before{background:#000;width:1.45rem;height:1.45rem;font-size:.8rem}
+
+  footer{background:#fff;border-top:1px solid #666;padding:.8rem 0 0;color:#000;font-size:.82rem}
+  footer p{margin:0 0 .25rem}
+  .print-head{display:block;border-bottom:1px solid #999;padding-bottom:.3rem;margin-bottom:.7rem;font-size:8pt;color:#333}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la crónica">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Crónica de apertura · Clase 1</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Crónica de apertura · El barco que no pasó por Ormuz &middot; Macroeconomía I &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>El barco que no pasó por Ormuz</h1>
+    <p class="bajada">Cómo un estrecho a trece mil kilómetros de Santiago terminó en el precio de tu almuerzo, en el margen de una pyme y en una discusión nacional sobre cuánto puede crecer Chile. Y por qué ningún titular alcanza para explicarlo.</p>
+    <p class="meta">Lectura de apertura &middot; Clase 1 &middot; Macroeconomía I &middot; Ingeniería Comercial &middot; 15 minutos</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Lo que vas a leer</h2>
+  <ol>
+    <li><a href="#s1">Tres escenas de un martes cualquiera</a></li>
+    <li><a href="#s2">El titular: «la economía chilena cayó»</a></li>
+    <li><a href="#s3">Abrir la caja: qué hay dentro de un −0,9%</a></li>
+    <li><a href="#s4">Un mes no es una tendencia</a></li>
+    <li><a href="#s5">El origen: un estrecho que se cierra</a></li>
+    <li><a href="#s6">La cadena: del estrecho a tu bolsillo</a></li>
+    <li><a href="#s7">Por qué no todos pueden subir los precios</a></li>
+    <li><a href="#s8">La hipótesis incómoda: ¿fue el shock o fue el susto?</a></li>
+    <li><a href="#s9">La otra pregunta: ¿y si creciéramos 4 o 5%?</a></li>
+    <li><a href="#s10">Tus cuatro fichas de datos</a></li>
+    <li><a href="#s11">Lo que haremos en la clase 1</a></li>
+  </ol>
+</nav>
+
+<p class="lead">Hay una pregunta que te van a hacer muchas veces en los próximos años, en una entrevista de trabajo, en una reunión de directorio o en un almuerzo familiar: <strong>«¿cómo está la economía?»</strong>. Casi todo el mundo responde con un número. Casi nadie responde bien. Este curso empieza acá: aprendiendo por qué un número, solo, no es una respuesta — y qué hay que agregarle para que lo sea.</p>
+
+<p>Para eso no vamos a inventar un ejemplo. Vamos a usar lo que está pasando en Chile <em>ahora</em>, mientras lees esto. El primer semestre de 2026 nos regaló un caso que ningún libro de texto podría haber diseñado mejor.</p>
+
+<h2 id="s1">1. Tres escenas de un martes cualquiera</h2>
+
+<div class="escena">
+  <h3>Escena 1 · Puente Alto, 6:40 de la mañana</h3>
+  <p>Javiera tiene 19 años, entra a Ingeniería Comercial este semestre y trabaja los fines de semana en un café. Su sueldo no cambió entre febrero y junio. Ni un peso. Pero la micro le cuesta más, el pasaje de vuelta le cuesta más, y el mismo almuerzo que en marzo le costaba lo que le costaba, en junio le cuesta un poco más. Nadie le rebajó el sueldo. Aun así, tiene menos.</p>
+  <p>Javiera no sabe que eso tiene un nombre: <strong>caída del salario real</strong>. Tampoco lo necesita para sentirlo. Lo que sí necesita —y es lo que vamos a hacer en este curso— es poder explicar de dónde vino.</p>
+</div>
+
+<div class="escena">
+  <h3>Escena 2 · Un restaurante en Ñuñoa</h3>
+  <p>El dueño no está preocupado por las ventas. Está preocupado por las cartas. Le llegan cartas —literalmente— donde le suben las tarifas de servicios que él no eligió: el camión que retira el dinero de la caja, el retiro de basura, el reparto. Él no compra petróleo. Nunca en su vida compró un barril de petróleo. Pero el petróleo llegó igual, y llegó por debajo de la puerta.</p>
+  <blockquote>
+    <p>«Tengo otros proveedores, no de distribución. Camiones que retiran dinero de locales y también me están subiendo las tarifas. También servicios de basura. Me mandan cartas unilateralmente subiendo el costo.»</p>
+    <cite>Gerente del sector restaurantes, Informe de Percepciones de Negocios, Banco Central de Chile, mayo de 2026</cite>
+  </blockquote>
+</div>
+
+<div class="escena">
+  <h3>Escena 3 · Un barco en alta mar</h3>
+  <p>Un gerente del sector pesquero hace una cuenta simple y brutal: cada buque carga entre cuatrocientos y quinientos mil litros de combustible por marea. No hay forma de ahorrar. No hay versión eléctrica del barco. El costo sube y no hay palanca que mover.</p>
+  <blockquote>
+    <p>«En los buques es muy difícil tomar medidas, porque todo funciona en base a la generación por combustible.»</p>
+    <cite>Gerente del sector pesquero, Informe de Percepciones de Negocios, Banco Central de Chile, mayo de 2026</cite>
+  </blockquote>
+</div>
+
+<div class="alerta">
+  <span class="k">Sobre estas escenas</span>
+  <p>Javiera y el restaurante de Ñuñoa son <strong>composiciones</strong>: personajes armados para que puedas ver el mecanismo. Las frases entre comillas, en cambio, son <strong>reales</strong>: las dijeron empresarios chilenos y están publicadas en el Informe de Percepciones de Negocios del Banco Central. Que en un mismo texto convivan una ilustración inventada y una cita verificable es exactamente el tipo de distinción que este curso te va a exigir hacer, todo el tiempo, sin que nadie te avise.</p>
+</div>
+
+<h2 id="s2">2. El titular: «la economía chilena cayó»</h2>
+
+<p>El 1 de julio de 2026, el Banco Central publicó el Imacec de mayo. El número fue este:</p>
+
+<div class="dato">
+  <span class="k">El dato</span>
+  <p><strong>El Imacec de mayo de 2026 disminuyó 0,9%</strong> respecto de mayo de 2025. La serie desestacionalizada se contrajo 0,2% respecto del mes anterior. Fue el quinto retroceso consecutivo.</p>
+  <p class="fuente">Fuente: Banco Central de Chile, <em>Nota de prensa Imacec mayo 2026</em>, publicada el 1 de julio de 2026. El Imacec es el Indicador Mensual de Actividad Económica: una estimación mensual del nivel de actividad, no el PIB.</p>
+</div>
+
+<p>Al día siguiente los titulares decían, con distintos grados de dramatismo, que la economía chilena estaba cayendo. Y no mentían. El número es ese.</p>
+
+<p>Pero acá viene lo primero que quiero que te lleves de esta lectura: <strong>ese titular es verdadero e insuficiente al mismo tiempo</strong>. Y en macroeconomía, «insuficiente» suele ser más peligroso que «falso», porque no se nota.</p>
+
+<p>Cuando alguien te diga «la economía cayó», tú vas a aprender a devolver cinco preguntas, casi automáticamente:</p>
+
+<ol class="pasos">
+  <li><strong>¿Cayó respecto de cuándo?</strong> ¿Del mes pasado o del mismo mes del año pasado? No es lo mismo, y los dos números existen.</li>
+  <li><strong>¿Es dato original o desestacionalizado?</strong> Mayo de 2026 tuvo un día hábil menos que mayo de 2025. Un día hábil menos ya te cambia el número sin que haya pasado nada económico.</li>
+  <li><strong>¿Cayó todo, o cayó algo que pesa mucho?</strong> Un promedio puede caer aunque la mayoría suba.</li>
+  <li><strong>¿Es nivel o es tasa?</strong> Que la tasa baje no significa que el nivel baje.</li>
+  <li><strong>¿Un mes o una tendencia?</strong> Un mes es una observación. Una tendencia es un argumento.</li>
+</ol>
+
+<p>Estas cinco preguntas no son un ritual académico. Son, literalmente, lo que separa a alguien que <em>repite</em> información económica de alguien a quien le pagan por <em>interpretarla</em>. La diferencia entre esas dos personas es este curso.</p>
+
+<h2 id="s3">3. Abrir la caja: qué hay dentro de un −0,9%</h2>
+
+<p>Apliquemos la pregunta número 3. Cuando abres el Imacec de mayo por sectores, el titular se desarma en la mano:</p>
+
+<table>
+  <caption>Imacec de mayo de 2026, variación anual por componente (porcentaje)</caption>
+  <thead>
+    <tr><th>Componente</th><th>Variación anual</th><th>Contribución al −0,9%</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>Imacec total</strong></td><td><strong>−0,9</strong></td><td><strong>−0,9</strong></td></tr>
+    <tr><td>Minería</td><td>−11,6</td><td>−1,5</td></tr>
+    <tr><td>Industria manufacturera</td><td>−1,7</td><td>−0,1</td></tr>
+    <tr><td>Resto de bienes</td><td>0,0</td><td>0,0</td></tr>
+    <tr><td>Comercio</td><td>+0,8</td><td>+0,1</td></tr>
+    <tr><td>Servicios</td><td>+1,0</td><td>+0,5</td></tr>
+    <tr><td>Impuestos sobre los productos</td><td>+1,2</td><td>+0,1</td></tr>
+    <tr><td><strong>Imacec no minero</strong></td><td><strong>+0,7</strong></td><td>—</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.87rem;color:#556676;margin-top:-.8rem">Fuente: Banco Central de Chile, Nota de prensa Imacec mayo 2026, Tabla 1 y Gráfico 1.</p>
+
+<p>Léelo despacio, porque es sorprendente. <strong>La economía chilena sin minería creció 0,7%.</strong> Los servicios crecieron 1,0%. El comercio creció 0,8%. Lo que se derrumbó fue la minería, con un −11,6% que por sí solo restó 1,5 puntos al total.</p>
+
+<p>Entonces, ¿cayó la economía chilena? Depende de qué llames «la economía chilena». Si eres un trabajador de una faena minera en Calama, tu 2026 es catastrófico. Si tienes una peluquería en Concepción, tu 2026 es mediocre pero no catastrófico. El promedio no describe bien a ninguno de los dos.</p>
+
+<div class="alerta">
+  <span class="k">Regla que vamos a usar todo el semestre</span>
+  <p>Un agregado macroeconómico es un <strong>promedio ponderado de experiencias muy distintas</strong>. Cuando un agregado se mueve, la primera pregunta útil no es «¿cuánto?», sino «<strong>¿quién lo movió?</strong>».</p>
+</div>
+
+<h2 id="s4">4. Un mes no es una tendencia</h2>
+
+<p>Ahora la pregunta número 5. Un mes después, el INE publicó el Índice de Producción Industrial de junio. Y el cuadro cambia otra vez:</p>
+
+<div class="dato">
+  <span class="k">El contraste</span>
+  <p>En junio de 2026, el <strong>Índice de Producción Industrial creció 1,3%</strong> en doce meses. Dentro de él: <strong>minería +6,0%</strong>, electricidad-gas-agua +2,4%, y <strong>manufactura −3,2%</strong>.</p>
+  <p class="fuente">Fuente: INE, Boletín Índice de Producción Industrial, edición n.º 333, 31 de julio de 2026. Base promedio año 2018 = 100. Cifras provisionales.</p>
+</div>
+
+<p>La minería, que en mayo caía 11,6%, en junio sube 6,0%. Y la manufactura, que en mayo caía 1,7%, en junio cae 3,2%. Se dieron vuelta.</p>
+
+<p>Nada de esto es contradictorio: son <strong>indicadores distintos, meses distintos y coberturas distintas</strong>. Pero mira lo fácil que sería construir dos relatos opuestos, ambos «con datos»:</p>
+
+<ul>
+  <li>«Chile se hunde: la minería se desplomó 11,6%.» — cierto, en mayo.</li>
+  <li>«Chile repunta: la minería creció 6,0%.» — cierto, en junio.</li>
+</ul>
+
+<p>Los dos relatos son honestos con su dato y deshonestos con la realidad. Y ambos aparecieron impresos. Cuando termines este curso, esa trampa va a ser visible para ti a primera vista. Hoy probablemente todavía no lo es, y está perfectamente bien: eso es exactamente lo que venimos a entrenar.</p>
+
+<h2 id="s5">5. El origen: un estrecho que se cierra</h2>
+
+<p>Volvamos a la pregunta de Javiera: ¿por qué su sueldo compra menos?</p>
+
+<p>Entre el estrecho de Ormuz y Puente Alto hay unos trece mil kilómetros. Por ese estrecho —un cuello de botella de agua entre Irán y Omán— pasa una fracción enorme del petróleo que se comercia en el mundo. En 2026, la guerra en Medio Oriente lo cerró. El Banco Central lo dice sin adornos: el shock de costos que golpeó a Chile fue «causado por el cierre del estrecho de Ormuz».</p>
+
+<div class="dato">
+  <span class="k">Las magnitudes</span>
+  <p>Los precios internacionales del petróleo y sus derivados aumentaron <strong>aproximadamente 60%</strong> desde el inicio del shock hasta mayo. Los precios locales de los combustibles acumularon alzas de <strong>casi 30%</strong> en el mismo período.</p>
+  <p>La inflación anual del IPC pasó de <strong>2,4% en febrero a 3,9% en mayo</strong>. El componente volátil llegó a 5,1% anual.</p>
+  <p class="fuente">Fuente: Banco Central de Chile, Informe de Política Monetaria (IPoM) de junio de 2026, capítulo I.</p>
+</div>
+
+<p>Detente un segundo en esa asimetría: el precio internacional sube 60% y el precio local sube 30%. <strong>El traspaso no es de uno a uno.</strong> Hay impuestos específicos, márgenes de distribución, tipo de cambio, contratos y —esto va a ser importante en un momento— mecanismos de estabilización diseñados justamente para amortiguar el golpe. Guarda esa idea: <em>ningún shock llega intacto</em>. Siempre se transforma en el camino. Entender esas transformaciones es, en buena medida, de qué se trata la macroeconomía.</p>
+
+<h2 id="s6">6. La cadena: del estrecho a tu bolsillo</h2>
+
+<p>El Banco Central hizo algo muy útil para nosotros: le preguntó a cientos de empresas cómo les llegó el golpe. Y descubrió que no llega por una vía, sino por cinco, en cascada.</p>
+
+<div class="cadena">Ormuz se cierra
+   │
+   ├─ 1. EXPOSICIÓN DIRECTA ──────── el barco pesquero, el camión, la faena minera
+   │                                  (el petróleo ES el insumo)
+   │
+   ├─ 2. DERIVADOS ───────────────── el plástico, la urea, los agroquímicos
+   │                                  («la urea subió al doble»)
+   │
+   ├─ 3. LOGÍSTICA ───────────────── el flete, el reparto, la distribución
+   │                                  (el restaurante de Ñuñoa)
+   │
+   ├─ 4. ENCADENAMIENTO ──────────── mi proveedor subió, entonces yo subo
+   │
+   └─ 5. SEGUNDA VUELTA ──────────── arriendos en UF, salarios reajustados por IPC
+                                      («el ajuste del IPC se viene y no va a volver»)</div>
+
+<p>Fíjate en el eslabón 5, porque es el más traicionero. Un gerente de la construcción lo dijo así:</p>
+
+<blockquote>
+  <p>«Reajustamos cada tres meses y el ajuste del IPC por el petróleo se viene y no va a volver. Las remuneraciones no las puedes bajar.»</p>
+  <cite>Gerente del sector construcción, IPN mayo 2026</cite>
+</blockquote>
+
+<p>Ahí está el problema entero en dos líneas. El petróleo puede bajar mañana —de hecho, para junio ya había bajado a menos de 80 dólares el barril. Pero el arriendo en UF que subió, no baja. El salario que se reajustó, no se desreajusta. <strong>El shock es reversible; algunas de sus consecuencias, no.</strong> Los economistas llamamos a esto <em>efectos de segunda vuelta</em>, y es la razón por la que los bancos centrales se ponen nerviosos con shocks que «deberían ser transitorios».</p>
+
+<p>Ahora bien: ¿de qué tamaño estamos hablando? El Banco Central da una cifra que a mucha gente le parece decepcionantemente pequeña:</p>
+
+<div class="dato">
+  <span class="k">La calibración</span>
+  <p>Los combustibles —directamente o vía servicios de transporte— representan en torno al <strong>2% del costo de producción total</strong> de los bienes y servicios que consumen los hogares. Coherente con eso, distintas estimaciones sugieren que un aumento de 10% en el precio del petróleo genera un impacto en los precios de <em>otros</em> bienes y servicios de <strong>entre 0,1 y 0,3 puntos porcentuales a un año</strong>.</p>
+  <p class="fuente">Fuente: IPoM junio 2026, citando a Guzmán et al. (2026).</p>
+</div>
+
+<p>Dos por ciento. Y sin embargo, ahí tienes a un país entero discutiendo. Esa desproporción entre <strong>el tamaño contable del shock</strong> y <strong>el tamaño de su efecto observado</strong> es una de las preguntas más interesantes de la macroeconomía moderna, y nos lleva directo al punto más polémico de esta historia.</p>
+
+<h2 id="s7">7. Por qué no todos pueden subir los precios</h2>
+
+<p>Supón que eres el dueño del restaurante. Tus costos subieron. La solución obvia es subir los precios. ¿Por qué no lo haces de inmediato?</p>
+
+<p>Porque, como descubrió el Banco Central al preguntarles, <strong>la capacidad de traspasar costos a precios no está repartida de forma pareja</strong>. Depende de tres cosas: en qué mercado estás, qué tan grande eres y qué tan fiel es tu cliente.</p>
+
+<table>
+  <caption>Quién puede traspasar el alza de costos a precios, y quién no</caption>
+  <thead><tr><th>Situación</th><th>Quiénes</th><th>Qué les pasa</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><strong>Traspaso casi imposible</strong></td>
+      <td>Exportadores frutícolas y vitivinícolas (toman el precio internacional); empresas con contratos de tarifa fija; muchas pymes.</td>
+      <td>Absorben el shock <strong>en el margen</strong>. Ganan menos. Si el margen se agota, ajustan empleo o inversión.</td>
+    </tr>
+    <tr>
+      <td><strong>Traspaso parcial, gradual o tardío</strong></td>
+      <td>Quienes negocian con clientes grandes; quienes tienen contratos con reajuste periódico.</td>
+      <td>Traspasan una parte, y con rezago. El alza aparece meses después, cuando ya nadie la asocia al petróleo.</td>
+    </tr>
+    <tr>
+      <td><strong>Traspaso casi total</strong></td>
+      <td>Uso intensivo de combustible + precios indexados + demanda inelástica o pocos competidores.</td>
+      <td>Suben rápido y completo. El cliente reclama, pero paga.</td>
+    </tr>
+  </tbody>
+</table>
+<p style="font-size:.87rem;color:#556676;margin-top:-.8rem">Fuente: IPN mayo 2026, Recuadro I: «Impacto del shock del petróleo en las empresas chilenas: exposición, traspaso costo-precio y riesgos».</p>
+
+<p>Y ahora la vuelta de tuerca, que es lo mejor de todo este caso. Los mismos empresarios explican por qué el traspaso está siendo limitado: <strong>porque los hogares están gastando menos</strong>. Es decir, la debilidad del consumo <em>frena</em> la inflación… y al mismo tiempo <em>hunde</em> los márgenes de las empresas, que es de donde salen el empleo y la inversión.</p>
+
+<div class="cadena">        el shock encarece los costos
+                   │
+        ┌──────────┴──────────┐
+        ▼                     ▼
+   suben precios        se comen el margen
+        │                     │
+        ▼                     ▼
+ cae el poder de       menos contratación,
+    compra              menos inversión
+        └──────────┬──────────┘
+                   ▼
+            cae la demanda
+                   │
+                   └──► (y esto vuelve a limitar cuánto se puede subir)</div>
+
+<p>No hay una salida limpia. Solo un reparto de la pérdida entre hogares y empresas, cuya forma exacta depende de la estructura de cada mercado. Si alguna vez te preguntaste por qué la macroeconomía no se resuelve con una regla de tres, la respuesta está en ese diagrama.</p>
+
+<h2 id="s8">8. La hipótesis incómoda: ¿fue el shock o fue el susto?</h2>
+
+<p>Volvamos al Imacec cayendo cinco meses seguidos. Ya vimos que buena parte se explica por la minería. Pero el ex ministro de Hacienda Mario Marcel propuso, a comienzos de julio, una explicación distinta para lo que pasó <em>después</em> del primer trimestre:</p>
+
+<blockquote>
+  <p>«En abril, mayo y junio me parece que ha estado operando un impacto del deterioro de las expectativas económicas que se produjo a partir del shock de los precios de los combustibles. Si uno ve cualquier encuesta, se da cuenta que en marzo y abril se produjo una caída que retrotrae las expectativas al menos dos años para atrás, y eso repercute en las decisiones de consumo de las personas, comercio, servicios.»</p>
+  <p>«Las expectativas de las personas sobre la economía están más influidas siempre por la inflación que por el empleo o la actividad, y las expectativas de inflación no están fijadas sobre el IPC, sino por ciertos precios emblemáticos, de los cuales el precio de los combustibles es el más importante.»</p>
+  <cite>Mario Marcel, ex ministro de Hacienda, en Radio 13c, 2 de julio de 2026 (T13)</cite>
+</blockquote>
+
+<p>Lee esa segunda frase de nuevo. Es una afirmación extraordinaria y, si es cierta, muy incómoda: dice que las personas <strong>no forman sus expectativas mirando el IPC</strong>, sino mirando el letrero de la bencinera. Un precio que ven todas las semanas, en números gigantes, en la calle. Un precio que el 2% del costo total no explica.</p>
+
+<p>Y Marcel agrega algo más filoso todavía: que cuando se decidió activar o no el MEPCO —el Mecanismo de Estabilización de Precios de los Combustibles— «no sé si se llegó a calibrar el impacto que este tendría sobre las expectativas de la gente y el comportamiento de los consumidores».</p>
+
+<p>Es decir: la hipótesis no es solo que subió el petróleo. Es que <strong>una decisión de política, y la forma en que se comunicó, amplificó el efecto psicológico de un shock que en términos contables era chico</strong>.</p>
+
+<div class="alerta">
+  <span class="k">Acá viene lo importante, y quiero que lo leas con calma</span>
+  <p>Esa hipótesis es <strong>plausible, seria y no demostrada</strong>. El Imacec, por sí solo, no puede identificar ese canal. Que dos cosas ocurran en el mismo trimestre no prueba que una causó a la otra.</p>
+  <p>Y sin embargo —esto es lo que quiero que veas— <strong>tampoco es una opinión cualquiera</strong>. Es una afirmación falsable: dice qué debería observarse si fuera cierta. Se pueden mirar las encuestas de expectativas de marzo y abril. Se puede ver si el consumo cayó más en los rubros más expuestos. Se puede comparar con episodios previos.</p>
+  <p>La diferencia entre una opinión y una hipótesis no es el tono ni el prestigio de quien la dice. Es si viene acompañada de <strong>una forma de estar equivocada</strong>. Aprender a exigir eso —a uno mismo, primero— es probablemente lo más valioso que te vas a llevar de este curso.</p>
+</div>
+
+<h2 id="s9">9. La otra pregunta: ¿y si creciéramos 4 o 5%?</h2>
+
+<p>Mientras todo esto ocurre, en el Congreso se discute una agenda de reformas económicas cuyo objetivo declarado es sacar a Chile del crecimiento mediocre en que lleva instalado más de una década: bajar impuestos a las empresas, acelerar la aprobación de permisos para grandes proyectos, dar estabilidad tributaria. La promesa, expresada de mil maneras, es pasar de crecer «como 2%» a crecer «4 o 5%».</p>
+
+<p>Antes de opinar si te gusta o no —y todavía no tienes las herramientas para opinar bien, ni yo te las voy a pedir hoy— mira de dónde partimos:</p>
+
+<div class="dato">
+  <span class="k">El punto de partida</span>
+  <p>El Banco Central estima el crecimiento <strong>tendencial</strong> de Chile en <strong>1,9% para el decenio 2026-2035</strong>. Para el PIB no minero, ese 2,0% se descompone en: <strong>capital 1,0 punto, trabajo 0,6 y productividad total de factores 0,35</strong>.</p>
+  <p class="fuente">Fuente: IPoM marzo 2026, Recuadro II.3, Tabla II.8. «Tendencial» significa la capacidad de crecimiento sostenible de la economía, no la proyección de un año.</p>
+</div>
+
+<p>Ahora haz la aritmética simple: para pasar de ~2% a 4-5% <strong>hay que casi duplicar la suma de esas tres contribuciones</strong>. No es imposible. Pero tampoco se sigue automáticamente de abaratar la inversión. La cadena que se propone es esta:</p>
+
+<div class="cadena">menos impuestos y permisos más rápidos
+        ↓
+mayor rentabilidad esperada, menor tiempo de ejecución
+        ↓
+más proyectos anunciados
+        ↓
+más inversión efectivamente ejecutada
+        ↓
+más capital, más productividad, más capacidad exportadora
+        ↓
+mayor crecimiento potencial</div>
+
+<p>Cada flecha de esa cadena es un <strong>supuesto</strong>, y cada supuesto puede fallar. Puede faltar demanda. Puede faltar financiamiento. Pueden faltar trabajadores calificados, proveedores, infraestructura, capacidades tecnológicas, coordinación entre actores, mercados de destino. La crítica pedagógicamente útil no es «esos mecanismos son falsos» —no lo son—, sino que <strong>enunciar un mecanismo no es lo mismo que demostrar que basta</strong>.</p>
+
+<p>Y hay evidencia reciente que muestra justamente esa tensión:</p>
+
+<div class="dato">
+  <span class="k">La tensión</span>
+  <p>En junio de 2026, el Banco Central <strong>redujo</strong> el rango de crecimiento previsto para el año a <strong>1,0-1,75%</strong> (era 1,5-2,5% en marzo). Al mismo tiempo, <strong>elevó</strong> la proyección de crecimiento de la inversión para 2027 a 5% (era 3,2%) y el rango de crecimiento de 2027 a 2,0-3,0%.</p>
+  <p class="fuente">Fuente: IPoM junio 2026.</p>
+</div>
+
+<p>Es decir: menos crecimiento hoy, más inversión anunciada mañana. La brecha entre <strong>inversión anunciada</strong>, <strong>inversión ejecutada</strong> y <strong>crecimiento efectivo</strong> es uno de los grandes temas de la economía chilena, y vamos a volver a él varias veces.</p>
+
+<p>Queda además una pregunta que dejo abierta y que retomaremos en la unidad de crecimiento, cuando tengas el instrumental: los estudios de complejidad económica de Hausmann y su equipo en Harvard sugieren que lo que un país puede llegar a producir depende de <strong>las capacidades productivas que ya tiene</strong> y de qué tan «cerca» están de ellas los productos nuevos. Si eso es cierto, la pregunta no es solo cuánto cuesta invertir en Chile. Es <strong>qué sabe hacer Chile</strong>, y qué podría aprender a hacer a partir de eso. No te pido que resuelvas eso hoy. Te pido que registres que la pregunta existe.</p>
+
+<h2 id="s10">10. Tus cuatro fichas de datos</h2>
+
+<p>Estas son las cifras que vamos a usar en clase. No las memorices: <strong>aprende a leer la ficha</strong>. Cada número macroeconómico que uses en tu vida profesional debería venir con estos campos, y si no vienen, tu trabajo es preguntarlos.</p>
+
+<div class="fichas">
+  <div class="ficha">
+    <h3>Imacec, mayo 2026</h3>
+    <span class="cifra">−0,9%</span>
+    <dl>
+      <dt>Unidad:</dt><dd>variación % anual</dd>
+      <dt>Período:</dt><dd>mayo 2026 vs. mayo 2025</dd>
+      <dt>Serie:</dt><dd>original (desest. m/m: −0,2%)</dd>
+      <dt>Fuente:</dt><dd>Banco Central de Chile</dd>
+      <dt>Publicado:</dt><dd>1 de julio de 2026</dd>
+      <dt>Estado:</dt><dd>observado, preliminar</dd>
+    </dl>
+  </div>
+  <div class="ficha">
+    <h3>IPI, junio 2026</h3>
+    <span class="cifra">+1,3%</span>
+    <dl>
+      <dt>Unidad:</dt><dd>variación % 12 meses</dd>
+      <dt>Período:</dt><dd>junio 2026 vs. junio 2025</dd>
+      <dt>Base:</dt><dd>promedio 2018 = 100</dd>
+      <dt>Fuente:</dt><dd>INE, boletín n.º 333</dd>
+      <dt>Publicado:</dt><dd>31 de julio de 2026</dd>
+      <dt>Estado:</dt><dd>observado, provisional</dd>
+    </dl>
+  </div>
+  <div class="ficha">
+    <h3>IPC, mayo 2026</h3>
+    <span class="cifra">3,9%</span>
+    <dl>
+      <dt>Unidad:</dt><dd>variación % anual</dd>
+      <dt>Período:</dt><dd>mayo 2026 (feb.: 2,4%)</dd>
+      <dt>Detalle:</dt><dd>volátil: 5,1% anual</dd>
+      <dt>Fuente:</dt><dd>IPoM junio 2026, cap. I</dd>
+      <dt>Estado:</dt><dd>observado</dd>
+    </dl>
+  </div>
+  <div class="ficha">
+    <h3>Crecimiento tendencial</h3>
+    <span class="cifra">1,9%</span>
+    <dl>
+      <dt>Unidad:</dt><dd>% anual promedio</dd>
+      <dt>Período:</dt><dd>decenio 2026-2035</dd>
+      <dt>Detalle:</dt><dd>no minero 2,0%; minero 1,0%</dd>
+      <dt>Fuente:</dt><dd>IPoM marzo 2026, Rec. II.3</dd>
+      <dt>Estado:</dt><dd><strong>estimación</strong>, no observado</dd>
+    </dl>
+  </div>
+</div>
+
+<p>Mira la última ficha. Dice «estimación, no observado». Las tres primeras son <strong>cosas que pasaron</strong>. La cuarta es <strong>un cálculo sobre lo que podría pasar</strong>, hecho con supuestos que se pueden discutir. Tratarlas como si fueran lo mismo es el error más frecuente —y más caro— en el uso de datos macroeconómicos.</p>
+
+<h2 id="s11">11. Lo que haremos en la clase 1</h2>
+
+<p>No vamos a pasar teoría todavía. Vamos a hacer algo más difícil y más útil: <strong>aprender a mirar</strong>.</p>
+
+<ol class="pasos">
+  <li><strong>Clasificar cuatro afirmaciones.</strong> Te voy a dar cuatro frases sobre Chile 2026 y tendrás que decidir, para cada una, si es un <em>dato</em>, una <em>interpretación</em>, un <em>mecanismo</em>, una <em>proyección</em> o una <em>meta política</em>. Parecen lo mismo. No lo son.</li>
+  <li><strong>Auditar el Imacec.</strong> En parejas, abriremos el número y responderemos las cinco preguntas de la sección 2.</li>
+  <li><strong>Seguir el shock.</strong> Cada grupo toma un personaje —la familia, el restaurante, el transportista, el exportador de fruta— y traza cómo le llegó el golpe y qué hizo con él.</li>
+  <li><strong>Competir explicaciones.</strong> Pondremos tres explicaciones rivales de la desaceleración y decidiremos <strong>qué evidencia permitiría distinguirlas</strong>. Esta es la parte que más se parece a lo que hace un economista de verdad.</li>
+  <li><strong>Ticket de salida.</strong> Escribes tres líneas: un hecho respaldado por datos, una hipótesis que todavía no está demostrada, y un dato adicional que permitiría evaluarla.</li>
+</ol>
+
+<h3>Antes de venir: quince minutos</h3>
+
+<p>Solo tres cosas, y ninguna requiere que sepas macroeconomía:</p>
+
+<ul>
+  <li><strong>Lee esta crónica completa.</strong> Una vez, sin subrayar. Si algo no se entiende, márcalo y tráelo.</li>
+  <li><strong>Anota una pregunta.</strong> Cualquiera. La mejor pregunta de la clase suele venir de quien menos sabe, porque es la única que no da nada por supuesto.</li>
+  <li><strong>Averigua un precio.</strong> Anda a una bencinera, o mira el letrero al pasar, y anota el precio de la bencina de 93 hoy. Con fecha y comuna. Ese será el primer dato de tu vida profesional que registres bien.</li>
+</ul>
+
+<div class="cierre">
+  <h2 style="margin-top:0">Una última cosa</h2>
+  <p>Este curso tiene fama de difícil, y en parte es cierto. Pero la dificultad real no está donde crees. No está en las fórmulas. Está en <strong>sostener una distinción cuando todo el mundo alrededor la está borrando</strong>: la distinción entre lo que sabemos, lo que suponemos y lo que nos gustaría que fuera verdad.</p>
+  <p>Ninguna de esas tres cosas es despreciable. Pero confundirlas cuesta caro: en una tesis, en un directorio, en un ministerio y en la vida.</p>
+  <p>Y hay algo más, que te digo en serio: <strong>no necesitas venir sabiendo</strong>. Nadie llega sabiendo esto. Lo que necesitas es estar dispuesto a que un número te obligue a cambiar de opinión. Si traes eso el lunes, el resto lo construimos juntos.</p>
+  <p style="margin-bottom:0">Nos vemos en clase.<br><strong>Pável</strong></p>
+</div>
+
+<h3>Fuentes de esta crónica</h3>
+<ul style="font-size:.9rem">
+  <li>Banco Central de Chile. <em>Nota de prensa Imacec mayo 2026</em>, 1 de julio de 2026.</li>
+  <li>Instituto Nacional de Estadísticas. <em>Índice de Producción Industrial, junio 2026</em>, boletín n.º 333, 31 de julio de 2026.</li>
+  <li>Banco Central de Chile. <em>Informe de Política Monetaria</em>, marzo de 2026 (Recuadro II.3, parámetros estructurales).</li>
+  <li>Banco Central de Chile. <em>Informe de Política Monetaria</em>, junio de 2026 (capítulo I y proyecciones).</li>
+  <li>Banco Central de Chile. <em>Informe de Percepciones de Negocios</em>, mayo de 2026 (Recuadro I sobre el shock del petróleo).</li>
+  <li>Banco Central de Chile. <em>Encuesta de Percepciones de Negocios</em>, mayo de 2026.</li>
+  <li>T13. «Exministro Marcel por caída del Imacec: “El deterioro se produjo a partir del shock de los precios de los combustibles”», 2 de julio de 2026. <a href="https://www.t13.cl/noticia/politica/exministro-marcel-por-caida-del-imacec-deterioro-se-produjo-shock-combustibles-2-7-2026">Ver nota</a>.</li>
+  <li>Harvard Growth Lab. Investigación sobre complejidad económica (Hausmann e Hidalgo). <a href="https://growthlab.hks.harvard.edu/publication/hausmann-hidalgo-economic-complexity/">Ver publicación</a>.</li>
+</ul>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Crónica de apertura &middot; Clase 1 &middot; Macroeconomía I &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p>Las escenas de Javiera y del restaurante de Ñuñoa son composiciones ilustrativas. Todas las cifras y las citas textuales provienen de las fuentes listadas y son verificables en ellas.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>

@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crónica · Quién paga la cuenta — Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Crónica de la Clase 2 de Macroeconomía I: cómo se mide una economía, cómo se propaga un shock de costos y por qué una agenda de inversión es una hipótesis causal y no todavía un resultado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+  --warm:#b45309; --warm-soft:#fdf3e3; --green:#15683f; --green-soft:#e9f5ef;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.68}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0}
+.skip:focus{left:0}
+
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--line);padding:.6rem clamp(1rem,4vw,2.5rem)}
+.topbar a,.topbar button{font:inherit;font-size:.9rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;background:var(--card);color:var(--accent);text-decoration:none;cursor:pointer}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+.topbar .printhint{font-size:.76rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.15rem}
+@media (max-width:620px){.topbar .printhint{display:none}}
+
+header.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:calc(4.2rem + 1.8rem) clamp(1rem,4vw,2.5rem) 2.2rem}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);margin:0 0 .9rem}
+.masthead h1{font-size:clamp(1.6rem,4vw,2.4rem);line-height:1.2;margin:0 0 .7rem;font-weight:800;letter-spacing:-.01em}
+.masthead .bajada{font-size:clamp(1rem,2.2vw,1.14rem);color:#cfe0ee;margin:0 0 1rem;font-weight:400;line-height:1.5}
+.masthead .meta{margin:0;color:#9fbdd6;font-size:.9rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem}
+main > *{max-width:72ch}
+main > .wide,main > table,main > .toc,main > figure{max-width:100%}
+
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1.1rem 1.4rem;margin:0 0 2.4rem}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{font-size:1.42rem;line-height:1.28;margin:3rem 0 .9rem;color:var(--navy);padding-bottom:.4rem;border-bottom:2px solid var(--line);font-weight:700}
+h3{font-size:1.12rem;line-height:1.35;margin:2rem 0 .6rem;color:var(--navy)}
+p{margin:0 0 1.05rem}
+ul,ol{margin:0 0 1.15rem;padding-left:1.5rem}
+li{margin:0 0 .5rem}
+strong{font-weight:700;color:#12314e}
+
+.lead{font-size:1.1rem;line-height:1.6;color:#2a3d4d}
+.lead::first-letter{font-size:2.9rem;line-height:.9;float:left;margin:.32rem .55rem 0 0;font-weight:800;color:var(--accent)}
+
+.escena{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:1.2rem 1.4rem;margin:1.7rem 0;box-shadow:var(--shadow)}
+.escena h3{margin:0 0 .6rem;color:var(--accent);letter-spacing:.02em;text-transform:uppercase;font-size:.84rem;font-weight:700}
+.escena p:last-child{margin-bottom:0}
+
+blockquote{margin:1.5rem 0;border-left:4px solid var(--warm);font-size:1.05rem;line-height:1.55;color:#3a2a12;background:var(--warm-soft);border-radius:0 12px 12px 0;padding:1rem 1.2rem}
+blockquote p{margin:0 0 .5rem}
+blockquote cite{display:block;font-style:normal;font-size:.85rem;color:#7a5a20;font-weight:600}
+
+.dato{display:block;background:var(--accent-soft);border:1px solid #bcd8ee;border-radius:14px;padding:1rem 1.2rem;margin:1.5rem 0;font-size:.97rem}
+.dato .k{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:#20618f;font-weight:700;margin-bottom:.4rem}
+.dato p:last-child{margin-bottom:0}
+.dato .fuente{font-size:.83rem;color:var(--muted);margin-top:.5rem}
+
+.alerta{background:var(--green-soft);border:1px solid #b6ddc9;border-radius:14px;padding:1rem 1.2rem;margin:1.6rem 0}
+.alerta .k{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.4rem}
+.alerta p:last-child{margin-bottom:0}
+
+.cadena{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.3rem 1.4rem;margin:1.8rem 0;font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:.87rem;line-height:1.85;overflow-x:auto;white-space:pre}
+
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.93rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--navy);font-weight:700}
+caption{caption-side:top;text-align:left;font-size:.87rem;color:var(--muted);margin-bottom:.5rem}
+td.n{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+
+.pasos{counter-reset:paso;list-style:none;padding:0;margin:1.6rem 0}
+.pasos li{counter-increment:paso;position:relative;padding:.15rem 0 .9rem 2.6rem;margin:0}
+.pasos li::before{content:counter(paso);position:absolute;left:0;top:.05rem;width:1.85rem;height:1.85rem;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:700;font-size:.9rem}
+
+.cierre{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.5rem 1.6rem;margin:2.4rem 0 1rem}
+.cierre h2{color:#fff;border-bottom-color:rgba(255,255,255,.25);margin-top:0}
+.cierre a{color:#9fd0f5}
+
+footer{border-top:1px solid var(--line);background:var(--card);padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip,#printBtn,.printhint{display:none !important}
+  @page{margin:1.5cm 1.7cm}
+  html,body{background:#fff;color:#000;font-size:9.4pt;line-height:1.4}
+  p{margin:0 0 .55rem;orphans:3;widows:3}
+  ul,ol{margin:0 0 .6rem;padding-left:1.25rem}
+  li{margin:0 0 .28rem}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.72em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 .6rem;border-bottom:2px solid #000}
+  .masthead h1{font-size:1.7rem;margin-bottom:.4rem}
+  .masthead .bajada{font-size:1rem;margin-bottom:.5rem}
+  .masthead .eyebrow{margin-bottom:.5rem}
+  .masthead .eyebrow,.masthead .meta,.masthead .bajada{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:.8rem 0 0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000;font-size:1.2rem;margin:1.15rem 0 .45rem;padding-bottom:.22rem}
+  h3{color:#000;font-size:1rem;margin:.8rem 0 .35rem}
+  .lead{font-size:1rem;line-height:1.45}
+  .lead::first-letter{color:#000;font-size:2.2rem;margin:.25rem .4rem 0 0}
+  .escena,.dato,.alerta,.pasos,.cierre,blockquote,table,.cadena,li,tr{break-inside:avoid;page-break-inside:avoid}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h2 + p,h2 + ol,h2 + ul,h2 + table,h2 + .escena,h2 + .dato,h2 + .alerta,h2 + .cadena,h3 + p,h3 + ul,h3 + ol{break-before:avoid;page-break-before:avoid}
+  .escena{border:1px solid #999;border-left:4px solid #000;box-shadow:none;background:#fff;padding:.6rem .8rem;margin:.7rem 0}
+  .escena h3{margin-bottom:.35rem}
+  blockquote{background:#fff;border-left:3px solid #000;color:#000;padding:.55rem .8rem;margin:.7rem 0;font-size:.98rem;line-height:1.4;border-radius:0}
+  .dato,.alerta{background:#fff;border:1px solid #999;padding:.6rem .8rem;margin:.7rem 0}
+  .dato .fuente{margin-top:.3rem;font-size:.8rem}
+  .cadena{background:#fff;color:#000;border:1px solid #999;font-size:7.4pt;line-height:1.45;padding:.6rem .7rem;margin:.75rem 0;white-space:pre;overflow:visible}
+  .cierre{background:#fff;color:#000;border:2px solid #000;padding:.75rem .9rem;margin:1rem 0}
+  .cierre h2,.cierre a{color:#000}
+  .cierre h2{font-size:1.1rem}
+  table{margin:.75rem 0;font-size:.86rem}
+  th,td{padding:.3rem .45rem}
+  caption{margin-bottom:.3rem;font-size:.8rem}
+  .pasos{margin:.8rem 0}
+  .pasos li{padding:.05rem 0 .45rem 2rem}
+  .pasos li::before{background:#000;width:1.45rem;height:1.45rem;font-size:.8rem}
+  footer{background:#fff;border-top:1px solid #666;padding:.8rem 0 0;color:#000;font-size:.82rem}
+  footer p{margin:0 0 .25rem}
+  .print-head{display:block;border-bottom:1px solid #999;padding-bottom:.3rem;margin-bottom:.7rem;font-size:8pt;color:#333}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la crónica">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Crónica · Clase 2</span>
+  <button type="button" id="printBtn">Exportar PDF</button>
+  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Crónica · Quién paga la cuenta &middot; Macroeconomía I &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Quién paga la cuenta</h1>
+    <p class="bajada">Un shock de costos no desaparece: se reparte. Esta vez vamos a construir los números en vez de leerlos, y a averiguar por qué una agenda de crecimiento puede ser razonable y aun así no alcanzar.</p>
+    <p class="meta">Lectura previa &middot; Clase 2 &middot; Macroeconomía I &middot; Ingeniería Comercial &middot; 15 minutos</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+
+<nav class="toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">Lo que vas a leer</h2>
+  <ol>
+    <li><a href="#s1">Dónde quedamos</a></li>
+    <li><a href="#s2">Dos personas honestas midiendo la misma economía</a></li>
+    <li><a href="#s3">Cómo se construye un índice (y por qué importa la canasta)</a></li>
+    <li><a href="#s4">Deflactor e IPC: los dos correctos que no coinciden</a></li>
+    <li><a href="#s5">La contabilidad del reparto: quién absorbió el shock</a></li>
+    <li><a href="#s6">Anunciar, ejecutar, crecer: tres cosas distintas</a></li>
+    <li><a href="#s7">La aritmética incómoda del 4-5%</a></li>
+    <li><a href="#s8">Qué sabe hacer Chile</a></li>
+    <li><a href="#s9">Lo que haremos en la clase 2</a></li>
+  </ol>
+</nav>
+
+<p class="lead">La clase pasada terminamos con una pregunta abierta y con una sospecha. La sospecha era que un titular no basta. La pregunta era qué habría que mirar para saber si una explicación es cierta. Hoy damos el paso siguiente, que es más incómodo y mucho más útil: <strong>dejar de leer números y empezar a fabricarlos</strong>. Porque solo cuando has construido un índice con tus manos entiendes por qué dos personas honestas pueden medir la misma economía y obtener resultados distintos.</p>
+
+<h2 id="s1">1. Dónde quedamos</h2>
+
+<p>Tenemos tres cosas sobre la mesa desde la clase 1.</p>
+
+<p>Primero, un hecho: el Imacec de mayo cayó 0,9% anual, pero la economía sin minería creció 0,7%. Segundo, un shock: el cierre del estrecho de Ormuz llevó el precio internacional del petróleo unos 60% arriba, los combustibles locales unos 30%, y la inflación anual de 2,4% en febrero a 3,9% en mayo. Tercero, una discusión: si una agenda de menores impuestos y permisos más rápidos alcanza para llevar el crecimiento de Chile de alrededor de 2% a 4 o 5%.</p>
+
+<p>Y quedó, además, una escena sin resolver. El exportador frutícola que no puede subir sus precios porque los fija el mercado internacional. Ese señor absorbió el shock completo. La pregunta que dejamos colgando —y con la que abrimos hoy— es simple de enunciar y difícil de responder:</p>
+
+<div class="alerta">
+  <span class="k">La pregunta de esta clase</span>
+  <p>Un shock de costos entra a la economía. No se evapora. <strong>¿Quién termina pagándolo?</strong> ¿Los consumidores, vía precios? ¿Las empresas, vía márgenes? ¿Los trabajadores, vía empleo o salario real? ¿O todos un poco, y en qué proporción?</p>
+  <p>Y una segunda, escondida en la primera: <strong>¿cómo sabríamos la respuesta?</strong> Porque el reparto no aparece en ningún indicador con ese nombre. Hay que armarlo.</p>
+</div>
+
+<h2 id="s2">2. Dos personas honestas midiendo la misma economía</h2>
+
+<div class="escena">
+  <h3>Un experimento mental de dos minutos</h3>
+  <p>Imagina una economía diminuta que produce solo dos cosas: pan y bencina. En 2025 se produjeron 100 panes a $1.000 y 50 litros de bencina a $1.000. En 2026 se producen los mismos 100 panes, ahora a $1.100, y los mismos 50 litros, ahora a $1.400.</p>
+  <p>No se produjo <strong>ni un pan más</strong>. Ni un litro más. La cantidad física de todo es idéntica.</p>
+  <p>Pero el valor total de la producción pasó de $150.000 a $180.000. Un 20% más.</p>
+  <p>Si alguien titula «la economía creció 20%», ¿mintió?</p>
+</div>
+
+<p>No mintió: sumó bien. Pero midió una cosa y la llamó otra. Lo que creció fue el <strong>valor nominal</strong>. Lo que produce bienestar —el pan que te comes, los kilómetros que recorres— no creció nada.</p>
+
+<p>Toda la contabilidad nacional existe, en el fondo, para resolver ese problema: <strong>separar cuánto de un aumento es precio y cuánto es cantidad</strong>. Y esa separación no es un tecnicismo contable. Es la diferencia entre un país que produce más y un país donde todo cuesta más.</p>
+
+<div class="alerta">
+  <span class="k">Guarda esta pregunta</span>
+  <p>Cada vez que veas un número que crece, la primera pregunta ya no es «¿cuánto?». Es <strong>«¿es precio o es cantidad?»</strong>. En la clase 1 aprendiste a preguntar quién movió un agregado. Ahora aprendes a preguntar qué se movió: el número o la cosa.</p>
+</div>
+
+<h2 id="s3">3. Cómo se construye un índice (y por qué importa la canasta)</h2>
+
+<p>Volvamos a la economía de pan y bencina. Para separar precio de cantidad hay un truco, y es más simple de lo que su nombre sugiere: <strong>valorar las cantidades de este año a los precios de otro año</strong>.</p>
+
+<p>Elegimos 2025 como año base. Las cantidades de 2026 valoradas a precios de 2025 dan: 100 panes × $1.000 + 50 litros × $1.000 = $150.000. Exactamente lo mismo que en 2025. Conclusión correcta: <strong>el PIB real no creció</strong>. Todo el aumento del valor fue precio.</p>
+
+<table>
+  <caption>La economía de dos bienes, en tres columnas</caption>
+  <thead><tr><th>Medida</th><th class="n">2025</th><th class="n">2026</th><th class="n">Variación</th></tr></thead>
+  <tbody>
+    <tr><td>PIB nominal (a precios corrientes)</td><td class="n">$150.000</td><td class="n">$180.000</td><td class="n">+20,0%</td></tr>
+    <tr><td>PIB real (a precios de 2025)</td><td class="n">$150.000</td><td class="n">$150.000</td><td class="n">0,0%</td></tr>
+    <tr><td>Deflactor del PIB (nominal / real × 100)</td><td class="n">100,0</td><td class="n">120,0</td><td class="n">+20,0%</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.87rem;color:#556676;margin-top:-.8rem">Ejemplo docente. Cifras inventadas para hacer visible el mecanismo, no una economía real.</p>
+
+<p>Eso es todo. El <strong>deflactor del PIB</strong> no es una fórmula misteriosa: es el cociente entre lo que valen las cosas hoy y lo que valdrían a precios de otro año. Si te sale 120, los precios de lo que el país <em>produce</em> subieron 20%.</p>
+
+<p>En MacroLab vas a poder mover estos números tú mismo antes de que te expliquen la fórmula, y ver qué pasa. Eso es deliberado: la intuición primero, el nombre después.</p>
+
+<h2 id="s4">4. Deflactor e IPC: los dos correctos que no coinciden</h2>
+
+<p>Acá viene la parte que confunde a casi todo el mundo, incluidos comentaristas que deberían saber.</p>
+
+<p>El <strong>deflactor</strong> mide los precios de lo que Chile <em>produce</em>. El <strong>IPC</strong> mide los precios de lo que un hogar chileno <em>consume</em>. No son la misma canasta, ni por asomo:</p>
+
+<table>
+  <thead><tr><th>&nbsp;</th><th>Deflactor del PIB</th><th>IPC</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Qué incluye</strong></td><td>Todo lo producido en Chile: cobre, litio, salmón, servicios, maquinaria.</td><td>Lo que consume un hogar típico: alimentos, arriendo, transporte, salud, educación.</td></tr>
+    <tr><td><strong>Importaciones</strong></td><td>No las incluye. El petróleo importado no se produce acá.</td><td>Sí las incluye. La bencina que echas al auto entra directo.</td></tr>
+    <tr><td><strong>Canasta</strong></td><td>Cambia todos los años con lo que se produzca.</td><td>Fija durante períodos largos, para poder comparar.</td></tr>
+    <tr><td><strong>Para qué se usa</strong></td><td>Convertir PIB nominal en PIB real.</td><td>Reajustar la UF, salarios, arriendos, contratos, pensiones.</td></tr>
+  </tbody>
+</table>
+
+<p>Ahora aplica esto al caso de Chile en 2026 y mira lo que aparece. El petróleo se importa. Sube 60%. Eso pega de lleno en el <strong>IPC</strong> —lo viste en el letrero de la bencinera— pero <strong>no</strong> entra en el deflactor, porque Chile no produce petróleo. Al mismo tiempo, si sube el precio del cobre, eso entra en el deflactor y prácticamente no toca el IPC, porque nadie compra cobre en el supermercado.</p>
+
+<div class="alerta">
+  <span class="k">La consecuencia, que no es obvia</span>
+  <p>Un país exportador de materias primas e importador de energía puede tener, al mismo tiempo, <strong>inflación alta al consumidor y precios de producción tranquilos</strong> —o al revés. Los dos índices están bien calculados. Miden cosas distintas. Elegir cuál usar no es un detalle técnico: cambia la respuesta a «¿cuánto creció Chile?».</p>
+</div>
+
+<p>Cuando alguien te diga «la economía creció 8%», ya sabes las tres preguntas: ¿nominal o real?, ¿deflactado con qué?, ¿respecto de qué base?</p>
+
+<h2 id="s5">5. La contabilidad del reparto: quién absorbió el shock</h2>
+
+<p>Con esas herramientas podemos volver a la pregunta de arriba. Un shock de costos entra. ¿Adónde va?</p>
+
+<p>Hay exactamente cuatro salidas, y todas dejan huella en algún indicador:</p>
+
+<div class="cadena">SHOCK DE COSTOS
+      │
+      ├─► A PRECIOS ──────────► el consumidor paga
+      │                          huella: IPC ↑, salario real ↓
+      │
+      ├─► A MÁRGENES ─────────► la empresa paga
+      │                          huella: utilidades ↓, inversión postergada
+      │
+      ├─► A CANTIDADES ───────► el trabajador paga
+      │                          huella: menos contratación, informalidad ↑
+      │
+      └─► ABSORBIDO POR POLÍTICA ► el fisco paga (o lo difiere)
+                                 huella: costo fiscal, precio suavizado</div>
+
+<p>Lo notable del caso chileno de 2026 es que el Banco Central, al preguntarle a las empresas, encontró huellas de <strong>las cuatro</strong>. Y encontró algo más fino todavía: qué determina cuál predomina.</p>
+
+<table>
+  <caption>Lo que reportaron las empresas chilenas en mayo de 2026</caption>
+  <thead><tr><th>Salida</th><th>Quiénes la usaron</th><th>Por qué</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Precios</strong></td><td>Empresas con uso intensivo de combustible, precios indexados, demanda inelástica o pocos competidores.</td><td>Pueden trasladar sin perder ventas.</td></tr>
+    <tr><td><strong>Márgenes</strong></td><td>Exportadores frutícolas y vitivinícolas (toman precio internacional); contratos de tarifa fija; muchas pymes.</td><td>No pueden trasladar. Absorben.</td></tr>
+    <tr><td><strong>Cantidades</strong></td><td>Aparece cuando el margen se agota: menos contratación, recomposición hacia empleo informal.</td><td>Es la salida de último recurso.</td></tr>
+    <tr><td><strong>Política</strong></td><td>El MEPCO, mecanismo que suaviza el traspaso del precio internacional al surtidor.</td><td>Difiere el golpe; no lo elimina.</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.87rem;color:#556676;margin-top:-.8rem">Fuente: Informe de Percepciones de Negocios, Banco Central de Chile, mayo de 2026, Recuadro I.</p>
+
+<p>Y hay un dato que amarra todo lo anterior con el capítulo 4: el precio internacional del petróleo subió cerca de 60%, pero el precio local de los combustibles subió cerca de 30%. <strong>La mitad del shock se quedó en el camino.</strong> Parte por impuestos y márgenes de distribución, parte por tipo de cambio, y parte por el mecanismo de estabilización.</p>
+
+<div class="alerta">
+  <span class="k">Lo que esto significa</span>
+  <p>«Amortiguar un shock» casi nunca quiere decir hacerlo desaparecer. Quiere decir <strong>cambiar quién lo paga y cuándo</strong>. Un mecanismo que suaviza el precio hoy tiene que financiarse en algún lado, y esa es una decisión política, no un truco técnico. En este curso vamos a insistir mucho en esa distinción, porque casi todas las discusiones macroeconómicas públicas la esconden.</p>
+</div>
+
+<h2 id="s6">6. Anunciar, ejecutar, crecer: tres cosas distintas</h2>
+
+<p>Cambiemos de escala. De cómo se reparte un shock, a por qué Chile crece poco.</p>
+
+<p>Cuando se discute inversión, se usa la misma palabra para tres cosas que ocurren en momentos distintos y que pueden no coincidir nunca:</p>
+
+<div class="cadena">1. INVERSIÓN ANUNCIADA ─── un proyecto en cartera, una intención declarada
+        │                     puede no ejecutarse jamás
+        ▼
+2. INVERSIÓN EJECUTADA ─── máquinas compradas, obras construidas
+        │                     esto sí entra en el PIB del período
+        ▼
+3. CAPACIDAD PRODUCTIVA ── capital que efectivamente produce más
+        │                     aparece años después, si aparece
+        ▼
+4. CRECIMIENTO ─────────── más bienes y servicios, sostenidamente</div>
+
+<p>Cada flecha tarda y cada flecha puede fallar. Y en Chile 2026 se ve esa distancia con una nitidez casi didáctica:</p>
+
+<div class="dato">
+  <span class="k">La tensión, en dos movimientos del mismo informe</span>
+  <p>En junio de 2026, el Banco Central <strong>redujo</strong> el rango de crecimiento previsto para 2026 a <strong>1,0-1,75%</strong> (era 1,5-2,5% en marzo), sobre todo por el mal primer trimestre.</p>
+  <p>Y en el mismo documento <strong>elevó</strong> la proyección de crecimiento de la inversión para 2027 a <strong>5%</strong> (era 3,2%) y el rango de crecimiento de 2027 a <strong>2,0-3,0%</strong>.</p>
+  <p class="fuente">Fuente: Banco Central de Chile, Informe de Política Monetaria, junio de 2026.</p>
+</div>
+
+<p>Menos actividad hoy, más inversión esperada mañana. No es contradictorio: son eslabones distintos de la misma cadena, moviéndose a velocidades distintas. Pero explica por qué las discusiones sobre inversión suelen ser diálogos de sordos: uno habla de la cartera de proyectos, el otro del PIB de este trimestre, y ambos creen estar hablando de lo mismo.</p>
+
+<h2 id="s7">7. La aritmética incómoda del 4-5%</h2>
+
+<p>Ahora sí, la pregunta grande. ¿Puede Chile crecer 4 o 5%?</p>
+
+<p>Antes de opinar, hay que saber de dónde viene el 2%. El Banco Central lo descompone así:</p>
+
+<table>
+  <caption>Crecimiento tendencial estimado para el decenio 2026-2035 (porcentaje)</caption>
+  <thead><tr><th>Componente</th><th class="n">Aporte</th><th>Qué representa</th></tr></thead>
+  <tbody>
+    <tr><td>Capital</td><td class="n">1,00</td><td>Más máquinas, edificios, infraestructura por trabajador.</td></tr>
+    <tr><td>Trabajo</td><td class="n">0,60</td><td>Más personas trabajando. Depende de demografía y participación laboral.</td></tr>
+    <tr><td>Productividad total de factores</td><td class="n">0,35</td><td>Producir más con lo mismo: mejor tecnología, mejor organización, mejor asignación.</td></tr>
+    <tr><td><strong>PIB no minero</strong></td><td class="n"><strong>2,00</strong></td><td>&nbsp;</td></tr>
+    <tr><td>PIB minero</td><td class="n">1,00</td><td>La minería es cerca del 11% del PIB total.</td></tr>
+    <tr><td><strong>PIB total</strong></td><td class="n"><strong>1,90</strong></td><td>&nbsp;</td></tr>
+  </tbody>
+</table>
+<p style="font-size:.87rem;color:#556676;margin-top:-.8rem">Fuente: Banco Central de Chile, IPoM de marzo de 2026, Recuadro II.3, Tabla II.8. Los tres aportes suman 1,95 y el Banco Central informa 2,0: es redondeo, y conviene que lo notes. Una tabla oficial que no cuadra al decimal casi nunca es un error; casi siempre es redondeo. Verificarlo antes de acusar es parte del oficio.</p>
+
+<p>Mira esa tabla un momento antes de seguir. Es probablemente la tabla más importante de todo el semestre.</p>
+
+<p>Para pasar de 1,9% a 4,5% hay que agregar unos <strong>2,6 puntos</strong>. Y solo hay tres lugares de donde sacarlos.</p>
+
+<p>Del <strong>trabajo</strong> es difícil: la contribución de 0,6 ya incorpora las proyecciones de población del INE, y la demografía chilena va en la dirección contraria. Se podría subir algo con más participación laboral femenina o migración, pero no 2,6 puntos.</p>
+
+<p>Del <strong>capital</strong> se podría sacar bastante, y es hacia donde apunta la agenda de inversión. Pero hay un problema aritmético serio: para que el capital aporte, digamos, 2,5 puntos en vez de 1, la inversión tendría que aumentar de forma sostenida durante <em>años</em>, no un trimestre. Y el capital tiene rendimientos decrecientes: cada máquina adicional rinde un poco menos que la anterior.</p>
+
+<p>De la <strong>productividad</strong> es donde en teoría hay más espacio —aporta apenas 0,35— y donde nadie sabe bien qué palanca apretar. La productividad no se compra. Se acumula.</p>
+
+<div class="alerta">
+  <span class="k">La conclusión honesta</span>
+  <p>La agenda de menores impuestos y permisos más rápidos actúa sobre <strong>un</strong> componente, el capital, y lo hace mejorando la rentabilidad esperada y acortando plazos. Eso es real y no es poco.</p>
+  <p>Pero llegar a 4-5% de forma sostenida exigiría mover <strong>más de un componente a la vez</strong>, y sostenerlo una década. Eso no lo vuelve imposible: lo vuelve una <strong>hipótesis con condiciones</strong>, no una consecuencia automática. Y una hipótesis con condiciones se evalúa preguntando cuáles son esas condiciones y si se están cumpliendo.</p>
+  <p>Fíjate que no dije si la agenda me parece buena o mala. No es lo que corresponde acá, y tampoco es lo que te va a servir. Lo que te sirve es poder hacer esa aritmética tú, delante de quien sea, sin que nadie tenga que decírtela.</p>
+</div>
+
+<h2 id="s8">8. Qué sabe hacer Chile</h2>
+
+<p>Queda una pieza, y la dejo planteada como pregunta porque el instrumental completo lo verás en la unidad de crecimiento.</p>
+
+<p>Ricardo Hausmann y su equipo en Harvard proponen una idea que suena obvia y no lo es: un país no puede producir cualquier cosa. Puede producir lo que está <strong>cerca de lo que ya sabe hacer</strong>. Fabricar salmón no te habilita para fabricar semiconductores; te habilita para fabricar otras cosas del mundo del frío, la logística y la biología aplicada.</p>
+
+<p>Si eso es correcto, entonces la pregunta «¿cómo hacemos que Chile crezca más?» tiene una formulación distinta y más productiva. No es solo <em>cuánto cuesta invertir en Chile</em>. Es:</p>
+
+<ul>
+  <li>¿Qué capacidades productivas tiene Chile hoy, realmente?</li>
+  <li>¿Qué productos nuevos están <em>próximos</em> a esas capacidades?</li>
+  <li>¿Qué coordinaciones —entre empresas, universidades, Estado— harían falta para que aparezcan?</li>
+</ul>
+
+<p>Esta pregunta no compite con la agenda de inversión: la complementa. Abaratar la inversión ayuda a que se invierta más en lo que ya sabemos hacer. La pregunta de complejidad es qué haría falta para saber hacer cosas nuevas. Un país puede necesitar las dos y estar discutiendo solo una.</p>
+
+<h2 id="s9">9. Lo que haremos en la clase 2</h2>
+
+<ol class="pasos">
+  <li><strong>Abrimos con tu ficha de escucha.</strong> Las afirmaciones que anotaste en la charla son el material de partida. Vamos a clasificarlas juntos y a ver dónde discrepamos.</li>
+  <li><strong>Construimos índices con las manos.</strong> En MacroLab, en el constructor de índices: mueves precios y cantidades, y ves aparecer el PIB real, el deflactor y el IPC. Predices <em>antes</em> de ver el resultado. Esa parte no es opcional: equivocarse prediciendo es como se aprende esto.</li>
+  <li><strong>Resolvemos la tabla multianual.</strong> Un ejercicio con datos de varios años, del tipo que aparece en las pruebas.</li>
+  <li><strong>Repartimos el shock.</strong> Cada grupo toma una de las cuatro salidas y busca qué indicador chileno mostraría su huella. No se trata de opinar: se trata de nombrar el dato.</li>
+  <li><strong>Auditamos la cadena del 4-5%.</strong> Cada grupo recibe una flecha de la cadena de inversión y responde cuatro cosas: qué supuesto contiene, qué podría interrumpirla, qué indicador la verificaría y cuánto tiempo debería pasar para observarlo.</li>
+</ol>
+
+<h3>Antes de venir</h3>
+
+<ul>
+  <li><strong>Lee esta crónica</strong> y las <strong>Notas de Estudio 3 y 4</strong> (medición del PIB y de la inflación). Sí, son más densas que la crónica. Esa es la idea: la crónica te da el mapa, la Nota te da el terreno.</li>
+  <li><strong>Trae tu ficha de escucha</strong> completa. Sin ella no puedes participar del primer bloque.</li>
+  <li><strong>Trae el precio de la bencina</strong> que anotaste. Lo vamos a usar de verdad esta vez.</li>
+</ul>
+
+<div class="cierre">
+  <h2 style="margin-top:0">Una advertencia amistosa</h2>
+  <p>Esta clase es más técnica que la anterior y probablemente sea la primera vez que te sientas perdido. Quiero decirte de antemano que eso <strong>no es señal de que no sirvas para esto</strong>. Es señal de que estás en el punto donde se aprende.</p>
+  <p>La medición es aburrida hasta el día en que descubres que la mitad de las discusiones públicas sobre economía son, en realidad, desacuerdos sobre qué se está midiendo. Ese día —y va a llegar este semestre— deja de ser aburrida para siempre.</p>
+  <p style="margin-bottom:0">Nos vemos.<br><strong>Pável</strong></p>
+</div>
+
+<h3>Fuentes de esta crónica</h3>
+<ul style="font-size:.9rem">
+  <li>Banco Central de Chile. <em>Informe de Política Monetaria</em>, marzo de 2026 (Recuadro II.3, Tabla II.8: crecimiento tendencial y sus componentes).</li>
+  <li>Banco Central de Chile. <em>Informe de Política Monetaria</em>, junio de 2026 (proyecciones de crecimiento e inversión; magnitudes del shock del petróleo).</li>
+  <li>Banco Central de Chile. <em>Informe de Percepciones de Negocios</em>, mayo de 2026 (Recuadro I: exposición al shock, traspaso costo-precio y riesgos).</li>
+  <li>Harvard Growth Lab. Investigación sobre complejidad económica (Hausmann e Hidalgo). <a href="https://growthlab.hks.harvard.edu/publication/hausmann-hidalgo-economic-complexity/">Ver publicación</a>.</li>
+  <li>Notas de Estudio 3 y 4 del curso, disponibles en el laboratorio.</li>
+</ul>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Crónica &middot; Clase 2 &middot; Macroeconomía I &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p>La economía de pan y bencina del capítulo 2 es un ejemplo docente con cifras inventadas. Todas las demás cifras provienen de las fuentes listadas y son verificables en ellas.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById("printBtn").addEventListener("click",function(){window.print()});
+</script>
+</body>
+</html>
