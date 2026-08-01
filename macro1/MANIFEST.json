@@ -35,8 +35,8 @@
     {
       "id": "ficha-escucha-cpc",
       "file": "notas/ficha-escucha-cpc-clase1.html",
-      "title": "Ficha de escucha — Diálogos para el Desarrollo (charla CPC, bloque 2 de la Clase 1)",
-      "kind": "ficha",
+      "title": "Guía de escucha — Diálogos para el Desarrollo (charla CPC, bloque 2 de la Clase 1)",
+      "kind": "guia-observacion",
       "audience": "estudiantes",
       "linked_from_class": 1
     },
