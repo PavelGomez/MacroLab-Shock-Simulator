@@ -25,10 +25,8 @@ a{color:var(--accent)}
 
 .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:.7rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--line);padding:.55rem clamp(1rem,4vw,2.5rem)}
 .topbar a,.topbar button{font:inherit;font-size:.88rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:.42rem .95rem;background:var(--card);color:var(--accent);text-decoration:none;cursor:pointer}
-.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
 .topbar .where{font-size:.8rem;color:var(--muted);font-weight:500}
-.topbar .printhint{font-size:.75rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.1rem}
-@media (max-width:620px){.topbar .printhint{display:none}}
 
 header.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:calc(4.2rem + 1.4rem) clamp(1rem,4vw,2.5rem) 1.7rem}
 .masthead .inner{max-width:80ch;margin:0 auto}
@@ -77,7 +75,7 @@ footer .who{color:var(--navy);font-weight:700}
 .print-head{display:none}
 
 @media print{
-  .topbar,.skip,#printBtn,.printhint{display:none !important}
+  .topbar,.skip{display:none !important}
   @page{margin:1.3cm 1.5cm}
   html,body{background:#fff;color:#000;font-size:9.3pt;line-height:1.38}
   a{color:#000;text-decoration:underline}
@@ -115,8 +113,7 @@ footer .who{color:var(--navy);font-weight:700}
 <nav class="topbar" aria-label="Acciones de la ficha">
   <a href="../index.html#route">&larr; Volver al laboratorio</a>
   <span class="where">Ficha de escucha · Clase 1</span>
-  <button type="button" id="printBtn">Exportar PDF</button>
-  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+  <a class="dl" href="ficha-escucha-cpc.pdf" download>Descargar PDF</a>
 </nav>
 
 <header class="masthead">
@@ -228,9 +225,5 @@ footer .who{color:var(--navy);font-weight:700}
     <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
   </div>
 </footer>
-
-<script>
-document.getElementById("printBtn").addEventListener("click",function(){window.print()});
-</script>
 </body>
 </html>

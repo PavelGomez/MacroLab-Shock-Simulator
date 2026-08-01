@@ -28,11 +28,9 @@ a:hover{color:#204f75}
 .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:.75rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--line);padding:.6rem clamp(1rem,4vw,2.5rem)}
 .topbar a,.topbar button{font:inherit;font-size:.9rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:.45rem 1rem;background:var(--card);color:var(--accent);text-decoration:none;cursor:pointer}
 .topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
-.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
-.topbar button:hover{background:#204f75;color:#fff}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
 .topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
-.topbar .printhint{font-size:.76rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.15rem}
-@media (max-width:620px){.topbar .printhint{display:none}}
 
 header.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:calc(4.2rem + 1.8rem) clamp(1rem,4vw,2.5rem) 2.2rem}
 .masthead .inner{max-width:80ch;margin:0 auto}
@@ -130,7 +128,7 @@ footer .who{color:var(--navy);font-weight:700}
 .print-head{display:none}
 
 @media print{
-  .topbar,.toc,.skip,#printBtn,.printhint{display:none !important}
+  .topbar,.toc,.skip{display:none !important}
   @page{margin:1.5cm 1.7cm}
   html,body{background:#fff;color:#000;font-size:9.4pt;line-height:1.4}
   p{margin:0 0 .55rem;orphans:3;widows:3}
@@ -187,8 +185,7 @@ footer .who{color:var(--navy);font-weight:700}
 <nav class="topbar" aria-label="Acciones de la crónica">
   <a href="../index.html#route">&larr; Volver al laboratorio</a>
   <span class="where">Crónica · Clase 2</span>
-  <button type="button" id="printBtn">Exportar PDF</button>
-  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+  <a class="dl" href="cronica-clase2.pdf" download>Descargar PDF</a>
 </nav>
 
 <header class="masthead">
@@ -459,9 +456,5 @@ footer .who{color:var(--navy);font-weight:700}
     <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
   </div>
 </footer>
-
-<script>
-document.getElementById("printBtn").addEventListener("click",function(){window.print()});
-</script>
 </body>
 </html>

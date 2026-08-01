@@ -42,11 +42,9 @@ a:hover{color:#204f75}
   text-decoration:none;cursor:pointer;
 }
 .topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
-.topbar button{background:var(--accent);color:#fff;border-color:var(--accent)}
-.topbar button:hover{background:#204f75;color:#fff}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
 .topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
-.topbar .printhint{font-size:.76rem;color:var(--muted);flex-basis:100%;text-align:right;margin-top:-.15rem}
-@media (max-width:620px){.topbar .printhint{display:none}}
 
 header.masthead{
   background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
@@ -172,7 +170,7 @@ footer .who{color:var(--navy);font-weight:700}
 .print-head{display:none}
 
 @media print{
-  .topbar,.toc,.skip,#printBtn,.printhint{display:none !important}
+  .topbar,.toc,.skip{display:none !important}
   @page{margin:1.5cm 1.7cm}
 
   /* Tipografía compacta: la crónica debe caber en ~9 páginas, no en 14. */
@@ -249,8 +247,7 @@ footer .who{color:var(--navy);font-weight:700}
 <nav class="topbar" aria-label="Acciones de la crónica">
   <a href="../index.html#route">&larr; Volver al laboratorio</a>
   <span class="where">Crónica de apertura · Clase 1</span>
-  <button type="button" id="printBtn">Exportar PDF</button>
-  <span class="printhint">En el diálogo de impresión, desmarca «Encabezados y pies de página».</span>
+  <a class="dl" href="cronica-clase1.pdf" download>Descargar PDF</a>
 </nav>
 
 <header class="masthead">
@@ -656,9 +653,5 @@ footer .who{color:var(--navy);font-weight:700}
     <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
   </div>
 </footer>
-
-<script>
-document.getElementById("printBtn").addEventListener("click",function(){window.print()});
-</script>
 </body>
 </html>
