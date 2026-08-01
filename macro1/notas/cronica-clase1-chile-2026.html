@@ -109,11 +109,32 @@ blockquote cite{display:block;font-style:normal;font-size:.85rem;color:#7a5a20;f
 .alerta .k{display:block;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.4rem}
 .alerta p:last-child{margin-bottom:0}
 
-.cadena{
-  background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.3rem 1.4rem;margin:1.8rem 0;
-  font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;font-size:.87rem;line-height:1.85;
-  overflow-x:auto;white-space:pre;
-}
+
+.flujo,.cascada,.ramas{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.25rem 1.3rem;margin:1.8rem 0;max-width:100%}
+.flujo{list-style:none;padding-left:1.3rem}
+.flujo li{position:relative;background:rgba(255,255,255,.09);border-radius:10px;padding:.55rem .85rem;margin:0;font-size:.95rem;line-height:1.45}
+.flujo li + li{margin-top:1.65rem}
+.flujo li + li::before{content:"\2193";position:absolute;left:50%;top:-1.35rem;transform:translateX(-50%);color:#8fc4ea;font-size:1.05rem;line-height:1}
+.flujo li b,.flujo li strong{color:#fff}
+
+.cascada .raiz{font-weight:700;color:#fff;margin:0 0 1rem;font-size:1rem;line-height:1.4}
+.cascada ol{list-style:none;padding:0;margin:0}
+.cascada li{position:relative;padding:.55rem .9rem .55rem 2.7rem;background:rgba(255,255,255,.09);border-radius:10px;margin:0 0 .6rem;font-size:.94rem;line-height:1.45}
+.cascada li:last-child{margin-bottom:0}
+.cascada li .n{position:absolute;left:.75rem;top:.6rem;width:1.4rem;height:1.4rem;border-radius:50%;background:#8fc4ea;color:#0f2740;display:grid;place-items:center;font-weight:700;font-size:.78rem}
+.cascada li b{display:block;color:#fff;font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.2rem}
+.cascada li em,.cascada li .voz{color:#b9d5ea}
+
+.ramas{display:grid;gap:.9rem;text-align:center}
+.ramas .n1,.ramas .n3,.ramas .n4{background:rgba(255,255,255,.09);border-radius:10px;padding:.6rem .85rem;margin:0;font-size:.95rem;line-height:1.4}
+.ramas .n1{font-weight:700;color:#fff}
+.ramas .par{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ramas .rama{background:rgba(255,255,255,.09);border-radius:10px;padding:.65rem .8rem;font-size:.93rem;line-height:1.4}
+.ramas .rama b{display:block;color:#fff;margin-bottom:.3rem}
+.ramas .rama span{display:block;color:#c9dcec}
+.ramas .rama span::before{content:"\2193";display:block;color:#8fc4ea;margin:.2rem 0}
+.ramas .n4{color:#b9d5ea;font-size:.89rem;font-style:italic}
+@media (max-width:520px){.ramas .par{grid-template-columns:1fr}}
 
 table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.93rem;background:var(--card)}
 th,td{border:1px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}
@@ -140,6 +161,8 @@ caption{caption-side:top;text-align:left;font-size:.87rem;color:var(--muted);mar
 .cierre{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.5rem 1.6rem;margin:2.4rem 0 1rem}
 .cierre h2{color:#fff;border-bottom-color:rgba(255,255,255,.25);margin-top:0}
 .cierre a{color:#9fd0f5}
+.cierre strong,.cierre b{color:#fff}
+.cierre em{color:#cfe0ee}
 
 footer{border-top:1px solid var(--line);background:var(--card);padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem}
 footer .inner{max-width:80ch;margin:0 auto}
@@ -175,12 +198,12 @@ footer .who{color:var(--navy);font-weight:700}
   .lead::first-letter{color:#000;font-size:2.2rem;margin:.25rem .4rem 0 0}
 
   /* Nada de estos bloques debe partirse entre páginas. */
-  .escena,.dato,.alerta,.ficha,.fichas,.pasos,.cierre,blockquote,table,.cadena,li,tr{
+  .escena,.dato,.alerta,.ficha,.fichas,.pasos,.cierre,blockquote,table,.flujo,.cascada,.ramas,li,tr{
     break-inside:avoid;page-break-inside:avoid;
   }
   /* Un título nunca queda solo al pie: se arrastra con lo que lo sigue. */
   h1,h2,h3{break-after:avoid;page-break-after:avoid}
-  h2 + p,h2 + ol,h2 + ul,h2 + table,h2 + .escena,h2 + .dato,h2 + .alerta,h2 + .cadena,h2 + .fichas,
+  h2 + p,h2 + ol,h2 + ul,h2 + table,h2 + .escena,h2 + .dato,h2 + .alerta,h2 + .flujo,h2 + .cascada,h2 + .ramas,h2 + .fichas,
   h3 + p,h3 + ul,h3 + ol{break-before:avoid;page-break-before:avoid}
 
   .escena{border:1px solid #999;border-left:4px solid #000;box-shadow:none;background:#fff;padding:.6rem .8rem;margin:.7rem 0}
@@ -188,11 +211,18 @@ footer .who{color:var(--navy);font-weight:700}
   blockquote{background:#fff;border-left:3px solid #000;color:#000;padding:.55rem .8rem;margin:.7rem 0;font-size:.98rem;line-height:1.4;border-radius:0}
   .dato,.alerta{background:#fff;border:1px solid #999;padding:.6rem .8rem;margin:.7rem 0}
   .dato .fuente{margin-top:.3rem;font-size:.8rem}
-  .cadena{background:#fff;color:#000;border:1px solid #999;font-size:7.4pt;line-height:1.45;padding:.6rem .7rem;margin:.75rem 0;white-space:pre;overflow:visible}
   .cierre{background:#fff;color:#000;border:2px solid #000;padding:.75rem .9rem;margin:1rem 0}
-  .cierre h2,.cierre a{color:#000}
+  .cierre h2,.cierre a,.cierre strong,.cierre b,.cierre em{color:#000}
   .cierre h2{font-size:1.1rem}
 
+  .flujo,.cascada,.ramas{background:#fff;color:#000;border:1px solid #999;padding:.6rem .7rem;margin:.8rem 0}
+  .flujo li,.cascada li,.ramas .rama,.ramas .n1,.ramas .n3,.ramas .n4{background:#f5f5f5;border:.5px solid #ccc;font-size:.9rem}
+  .flujo li b,.flujo li strong,.cascada li b,.cascada .raiz,.ramas .rama b,.ramas .n1{color:#000}
+  .cascada li .n{background:#000;color:#fff}
+  .flujo li + li::before,.ramas .rama span::before{color:#000}
+  .cascada li em,.cascada li .voz,.ramas .rama span,.ramas .n4{color:#333}
+  .flujo li + li{margin-top:1.3rem}
+  .flujo,.cascada,.ramas,.flujo li,.cascada li,.ramas .par{break-inside:avoid;page-break-inside:avoid}
   table{margin:.75rem 0;font-size:.86rem}
   th,td{padding:.3rem .45rem}
   caption{margin-bottom:.3rem;font-size:.8rem}
@@ -385,21 +415,16 @@ footer .who{color:var(--navy);font-weight:700}
 
 <p>El Banco Central hizo algo muy útil para nosotros: le preguntó a cientos de empresas cómo les llegó el golpe. Y descubrió que no llega por una vía, sino por cinco, en cascada.</p>
 
-<div class="cadena">Ormuz se cierra
-   │
-   ├─ 1. EXPOSICIÓN DIRECTA ──────── el barco pesquero, el camión, la faena minera
-   │                                  (el petróleo ES el insumo)
-   │
-   ├─ 2. DERIVADOS ───────────────── el plástico, la urea, los agroquímicos
-   │                                  («la urea subió al doble»)
-   │
-   ├─ 3. LOGÍSTICA ───────────────── el flete, el reparto, la distribución
-   │                                  (el restaurante de Ñuñoa)
-   │
-   ├─ 4. ENCADENAMIENTO ──────────── mi proveedor subió, entonces yo subo
-   │
-   └─ 5. SEGUNDA VUELTA ──────────── arriendos en UF, salarios reajustados por IPC
-                                      («el ajuste del IPC se viene y no va a volver»)</div>
+<div class="cascada">
+  <p class="raiz">Ormuz se cierra. El golpe no entra por una vía, sino por cinco, en cascada:</p>
+  <ol>
+    <li><span class="n">1</span><b>Exposición directa</b>el barco pesquero, el camión, la faena minera. El petróleo <em>es</em> el insumo.</li>
+    <li><span class="n">2</span><b>Derivados</b>el plástico, la urea, los agroquímicos. <span class="voz">«La urea subió al doble.»</span></li>
+    <li><span class="n">3</span><b>Logística</b>el flete, el reparto, la distribución. El restaurante de Ñuñoa entra por acá.</li>
+    <li><span class="n">4</span><b>Encadenamiento</b>mi proveedor subió, entonces yo subo.</li>
+    <li><span class="n">5</span><b>Segunda vuelta</b>arriendos en UF, salarios reajustados por IPC. <span class="voz">«El ajuste del IPC se viene y no va a volver.»</span></li>
+  </ol>
+</div>
 
 <p>Fíjate en el eslabón 5, porque es el más traicionero. Un gerente de la construcción lo dijo así:</p>
 
@@ -451,20 +476,15 @@ footer .who{color:var(--navy);font-weight:700}
 
 <p>Y ahora la vuelta de tuerca, que es lo mejor de todo este caso. Los mismos empresarios explican por qué el traspaso está siendo limitado: <strong>porque los hogares están gastando menos</strong>. Es decir, la debilidad del consumo <em>frena</em> la inflación… y al mismo tiempo <em>hunde</em> los márgenes de las empresas, que es de donde salen el empleo y la inversión.</p>
 
-<div class="cadena">        el shock encarece los costos
-                   │
-        ┌──────────┴──────────┐
-        ▼                     ▼
-   suben precios        se comen el margen
-        │                     │
-        ▼                     ▼
- cae el poder de       menos contratación,
-    compra              menos inversión
-        └──────────┬──────────┘
-                   ▼
-            cae la demanda
-                   │
-                   └──► (y esto vuelve a limitar cuánto se puede subir)</div>
+<div class="ramas">
+  <p class="n1">El shock encarece los costos</p>
+  <div class="par">
+    <div class="rama"><b>Suben los precios</b><span>cae el poder de compra</span></div>
+    <div class="rama"><b>Se comen el margen</b><span>menos contratación, menos inversión</span></div>
+  </div>
+  <p class="n3">Cae la demanda</p>
+  <p class="n4">…y esto vuelve a limitar cuánto se puede subir</p>
+</div>
 
 <p>No hay una salida limpia. Solo un reparto de la pérdida entre hogares y empresas, cuya forma exacta depende de la estructura de cada mercado. Si alguna vez te preguntaste por qué la macroeconomía no se resuelve con una regla de tres, la respuesta está en ese diagrama.</p>
 
@@ -505,17 +525,14 @@ footer .who{color:var(--navy);font-weight:700}
 
 <p>Ahora haz la aritmética simple: para pasar de ~2% a 4-5% <strong>hay que casi duplicar la suma de esas tres contribuciones</strong>. No es imposible. Pero tampoco se sigue automáticamente de abaratar la inversión. La cadena que se propone es esta:</p>
 
-<div class="cadena">menos impuestos y permisos más rápidos
-        ↓
-mayor rentabilidad esperada, menor tiempo de ejecución
-        ↓
-más proyectos anunciados
-        ↓
-más inversión efectivamente ejecutada
-        ↓
-más capital, más productividad, más capacidad exportadora
-        ↓
-mayor crecimiento potencial</div>
+<ol class="flujo">
+  <li>Menos impuestos y permisos más rápidos</li>
+  <li>Mayor rentabilidad esperada, menor tiempo de ejecución</li>
+  <li>Más proyectos anunciados</li>
+  <li>Más inversión efectivamente ejecutada</li>
+  <li>Más capital, más productividad, más capacidad exportadora</li>
+  <li><b>Mayor crecimiento potencial</b></li>
+</ol>
 
 <p>Cada flecha de esa cadena es un <strong>supuesto</strong>, y cada supuesto puede fallar. Puede faltar demanda. Puede faltar financiamiento. Pueden faltar trabajadores calificados, proveedores, infraestructura, capacidades tecnológicas, coordinación entre actores, mercados de destino. La crítica pedagógicamente útil no es «esos mecanismos son falsos» —no lo son—, sino que <strong>enunciar un mecanismo no es lo mismo que demostrar que basta</strong>.</p>
 
