@@ -2,3 +2,7 @@ __pycache__/
 *.py[cod]
 *.pyo
 .DS_Store
+
+# Material docente privado: nunca debe publicarse en GitHub Pages
+guia-docente-*
+Docente_privado/
