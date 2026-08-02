@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guía del curso · Macroeconomía I 2026-2</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Guía del curso Macroeconomía I 2026-2: cómo funciona una clase, glosario de términos, MacroLab, evaluación completa, controles, brief aplicado e inasistencias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:16px;
+  --accent-soft:#eaf3fb; --shadow:0 8px 22px rgba(17,35,52,.07);
+  --green:#15683f; --green-soft:#e9f5ef; --warm:#b45309; --warm-soft:#fdf3e3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Inter",system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.62}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--navy);color:#fff;padding:.6rem 1rem}
+.skip:focus{left:0}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;gap:.7rem;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--card);border-bottom:1px solid var(--line);padding:.55rem clamp(1rem,4vw,2.5rem)}
+.topbar a{font:inherit;font-size:.88rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:.42rem .95rem;background:var(--card);color:var(--accent);text-decoration:none}
+.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar .where{font-size:.8rem;color:var(--muted);font-weight:500}
+header.masthead{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;padding:calc(4.2rem + 1.4rem) clamp(1rem,4vw,2.5rem) 1.7rem}
+.masthead .inner{max-width:74ch;margin:0 auto}
+.eyebrow{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.82);margin:0 0 .8rem}
+.masthead h1{font-size:clamp(1.5rem,4vw,2.15rem);line-height:1.2;margin:0 0 .55rem;font-weight:800}
+.masthead .bajada{color:#cfe0ee;margin:0 0 .8rem;font-size:1.03rem;line-height:1.5}
+.masthead .meta{margin:0;color:#9fbdd6;font-size:.88rem}
+.masthead .brand{margin:1.2rem 0 0}
+.masthead .brand img{height:40px;width:auto;background:#fff;padding:.35rem .6rem;border-radius:10px}
+main{max-width:74ch;margin:0 auto;padding:1.8rem clamp(1rem,4vw,2.5rem) 3rem}
+h2{font-size:1.3rem;margin:2.4rem 0 .7rem;color:var(--navy);padding-bottom:.32rem;border-bottom:2px solid var(--line);font-weight:700;line-height:1.3}
+h3{font-size:1.04rem;margin:1.5rem 0 .4rem;color:var(--navy)}
+p{margin:0 0 .95rem}
+ul,ol{margin:0 0 1rem;padding-left:1.4rem}
+li{margin:0 0 .45rem}
+strong{font-weight:700;color:#12314e}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.3rem;margin:0 0 2rem}
+.toc h2{font-size:.8rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .6rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.2rem}
+.toc li{margin-bottom:.25rem}
+.toc a{text-decoration:none}
+table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:.93rem;background:var(--card)}
+th,td{border:1px solid var(--line);padding:.5rem .65rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);color:var(--navy);font-weight:700;font-size:.9rem}
+caption{caption-side:top;text-align:left;font-size:.86rem;color:var(--muted);margin-bottom:.4rem}
+.clave{background:var(--green-soft);border:1px solid #b6ddc9;border-radius:12px;padding:.9rem 1.05rem;margin:1.3rem 0}
+.clave .k{display:block;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:var(--green);font-weight:700;margin-bottom:.35rem}
+.clave p:last-child{margin-bottom:0}
+.aviso{background:var(--warm-soft);border:1px solid #eccfa4;border-radius:12px;padding:.9rem 1.05rem;margin:1.3rem 0}
+.aviso .k{display:block;font-size:.73rem;letter-spacing:.09em;text-transform:uppercase;color:var(--warm);font-weight:700;margin-bottom:.35rem}
+.aviso p:last-child{margin-bottom:0}
+.glo{list-style:none;padding:0;margin:1.2rem 0}
+.glo li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem;margin:0 0 .5rem}
+.glo b{color:var(--accent);display:block;font-size:.98rem;margin-bottom:.15rem}
+.cierre{background:var(--navy);color:#e8f1f8;border-radius:var(--radius);padding:1.3rem 1.4rem;margin:2rem 0 1rem}
+.cierre h2{color:#fff;border-bottom-color:rgba(255,255,255,.25);margin-top:0}
+.cierre strong{color:#fff}
+footer{border-top:1px solid var(--line);background:var(--card);padding:1.4rem clamp(1rem,4vw,2.5rem) 2.2rem;color:var(--muted);font-size:.87rem}
+footer .inner{max-width:74ch;margin:0 auto}
+footer p{margin:0 0 .3rem}
+footer .who{color:var(--navy);font-weight:700}
+.print-head{display:none}
+@media print{
+  .topbar,.skip,.toc{display:none !important}
+  @page{margin:1.5cm 1.7cm}
+  html,body{background:#fff;color:#000;font-size:9.5pt;line-height:1.4}
+  p{margin:0 0 .5rem}
+  ul,ol{margin:0 0 .55rem;padding-left:1.2rem}
+  li{margin:0 0 .25rem}
+  a{color:#000;text-decoration:underline}
+  header.masthead{background:#fff;color:#000;padding:0 0 .55rem;border-bottom:2px solid #000}
+  .masthead h1{font-size:1.55rem;margin-bottom:.3rem}
+  .masthead .eyebrow,.masthead .meta,.masthead .bajada{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:.7rem 0 0}
+  h2{color:#000;border-bottom:1px solid #666;margin:1.05rem 0 .35rem;font-size:1.14rem;padding-bottom:.18rem}
+  h3{color:#000;font-size:1rem;margin:.7rem 0 .25rem}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h2 + p,h2 + table,h2 + ul,h2 + ol,h2 + .glo,h3 + p,h3 + ul{break-before:avoid;page-break-before:avoid}
+  table,tr,.clave,.aviso,.glo li,.cierre,li{break-inside:avoid;page-break-inside:avoid}
+  .clave,.aviso{background:#fff;border:1px solid #999;padding:.55rem .7rem;margin:.65rem 0}
+  .glo li{background:#fff;border:1px solid #999;padding:.4rem .55rem;margin-bottom:.3rem}
+  .glo b{color:#000}
+  .cierre{background:#fff;color:#000;border:2px solid #000;padding:.75rem .9rem}
+  .cierre h2,.cierre strong{color:#000}
+  footer{background:#fff;border-top:1px solid #666;padding:.6rem 0 0;color:#000;font-size:.82rem}
+  .print-head{display:block;border-bottom:1px solid #999;padding-bottom:.25rem;margin-bottom:.6rem;font-size:8pt;color:#333}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<nav class="topbar" aria-label="Acciones de la guía">
+  <a href="../index.html#route">&larr; Volver al laboratorio</a>
+  <span class="where">Guía del curso · 2026-2</span>
+  <a class="dl" href="guia-del-curso-2026-2.pdf" download>Descargar PDF</a>
+</nav>
+
+<header class="masthead">
+  <div class="inner">
+    <p class="print-head">Guía del curso &middot; Macroeconomía I 2026-2 &middot; Prof. Pável Gómez</p>
+    <p class="eyebrow">Macroeconomía &middot; Profesor Pável Gómez &middot; 2026</p>
+    <h1>Guía del curso</h1>
+    <p class="bajada">Todo lo que no alcanzamos a ver en la primera clase: cómo funciona una clase, qué significan las palabras que voy a usar todo el semestre, cómo se evalúa y qué pasa si faltas. Guárdala: es el documento al que vas a volver.</p>
+    <p class="meta">Macroeconomía I &middot; Ingeniería Comercial &middot; Universidad Finis Terrae &middot; 2026-2</p>
+    <p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p>
+  </div>
+</header>
+
+<main id="contenido">
+
+<nav class="toc" aria-labelledby="toc-t">
+  <h2 id="toc-t">Contenido</h2>
+  <ol>
+    <li><a href="#s1">Por qué este curso funciona distinto</a></li>
+    <li><a href="#s2">Cómo funciona una clase</a></li>
+    <li><a href="#s3">Glosario: las palabras que voy a usar</a></li>
+    <li><a href="#s4">MacroLab: qué es y qué no es</a></li>
+    <li><a href="#s5">Cómo se evalúa el curso</a></li>
+    <li><a href="#s6">Controles de preparación</a></li>
+    <li><a href="#s7">Brief macroeconómico aplicado</a></li>
+    <li><a href="#s8">Inasistencias y eximición</a></li>
+    <li><a href="#s9">Bibliografía</a></li>
+  </ol>
+</nav>
+
+<h2 id="s1">1. Por qué este curso funciona distinto</h2>
+
+<p>Hasta ahora te fue bien memorizando y repitiendo. Este curso te va a pedir otra cosa, y quiero explicarte por qué antes de que lo sufras.</p>
+
+<p>Hoy cualquier persona con un teléfono obtiene en treinta segundos la definición de PIB, el cálculo de una tasa de inflación y el resumen de un capítulo. Eso ya no distingue a nadie: es gratis. Y va a seguir siendo cada vez más gratis.</p>
+
+<p>Lo que todavía no es gratis —y es lo que efectivamente se paga en un trabajo— es otra cosa:</p>
+
+<ul>
+  <li>Saber <strong>qué dato pedir</strong> cuando nadie te dijo cuál.</li>
+  <li>Notar que a una cifra <strong>le falta</strong> el período o la fuente.</li>
+  <li><strong>Explicar por qué</strong> crees lo que crees, frente a alguien que te va a preguntar.</li>
+  <li><strong>Cambiar de opinión</strong> cuando aparece evidencia nueva.</li>
+</ul>
+
+<p>Ninguna de esas cuatro se aprende escuchando a alguien explicarlas. Se aprenden practicando, equivocándose y corrigiendo con ayuda. Por eso el curso está armado así: predices antes de que yo explique, y te pido el mecanismo, no solo el resultado.</p>
+
+<div class="clave">
+  <span class="k">La frase que resume todo</span>
+  <p>Un resultado correcto sin mecanismo es exactamente lo que una máquina ya hace mejor que nosotros. <strong>Lo que se paga es lo otro.</strong></p>
+</div>
+
+<h2 id="s2">2. Cómo funciona una clase</h2>
+
+<h3>Antes de clase</h3>
+<ul>
+  <li>Lees la fuente que te indiqué. Te la anuncio con <strong>al menos siete días</strong> de anticipación, con las secciones exactas.</li>
+  <li>Escribes una <strong>respuesta o predicción propia</strong>, aunque no estés seguro. Corta: dos o tres líneas.</li>
+  <li>Anotas <strong>un dato</strong> con su nombre, valor, unidad, período y fuente.</li>
+</ul>
+
+<h3>Durante la clase</h3>
+<p>La clase sigue siempre la misma secuencia, para que sepas qué viene:</p>
+<ol>
+  <li><strong>Recordar</strong> lo de la clase pasada, sin mirar apuntes.</li>
+  <li><strong>Predecir</strong>: escribes tu respuesta antes de ver la mía.</li>
+  <li><strong>Aplicar</strong>: en papel o en MacroLab.</li>
+  <li><strong>Comparar</strong> tu respuesta con la pauta.</li>
+  <li><strong>Identificar tu error</strong> —cuál fue exactamente— y anotarlo.</li>
+</ol>
+
+<p>Y una consecuencia importante: <strong>yo explico después, no antes</strong>. La explicación se concentra en donde el curso falló, no en repetir lo que ya leíste. Si explico antes de que predigas, te quito la única parte que enseña.</p>
+
+<h3>Después de clase</h3>
+<p>Escribes tu <strong>ticket</strong>: tres líneas donde registras qué entendiste mal, qué corregiste y en qué te vas a fijar la próxima vez. Eso genera la retroalimentación que recibes.</p>
+
+<div class="aviso">
+  <span class="k">Si esto te suena a mucho trabajo</span>
+  <p>Es menos de lo que parece: unos veinte minutos antes de cada clase. Lo que cambia no es la cantidad, es <em>cuándo</em>. En vez de estudiar todo la semana de la prueba, trabajas un poco cada semana. La evidencia sobre aprendizaje es bastante clara al respecto, y además se sufre menos.</p>
+</div>
+
+<h2 id="s3">3. Glosario: las palabras que voy a usar</h2>
+
+<p>Voy a usar estas palabras todo el semestre. Si alguna no te queda clara, vuelve acá o pregúntame en clase —preguntar por una palabra nunca es una pregunta tonta.</p>
+
+<ul class="glo">
+  <li><b>Mecanismo</b>El <em>cómo</em>: la cadena de pasos por la que una cosa lleva a otra. «Subió el petróleo y cayó la actividad» es un resultado. «Subió el petróleo → subieron los costos de transporte → las empresas no pudieron traspasarlo a precios → cayeron sus márgenes → postergaron contrataciones» es un mecanismo. <strong>Esta es la palabra más importante del curso.</strong></li>
+  <li><b>Predicción</b>Tu respuesta, escrita antes de ver la mía. No tiene que estar correcta. Tiene que estar escrita.</li>
+  <li><b>Recuperación</b>Volver a sacar algo de la memoria sin mirar apuntes. Se siente incómodo y por eso funciona.</li>
+  <li><b>Transferencia</b>Usar lo aprendido en un caso que nunca habías visto. Es el objetivo final del curso.</li>
+  <li><b>Ticket</b>Tres líneas al final de la clase: qué entendí mal, qué corregí, en qué me fijaré la próxima vez.</li>
+  <li><b>Error dominante</b>El error que más se repitió en el curso. Lo vuelvo a trabajar en las clases siguientes.</li>
+  <li><b>Dato observado y dato proyectado</b>El observado ya ocurrió y se puede ir a buscar. El proyectado es una estimación de lo que podría ocurrir, y depende de supuestos discutibles.</li>
+  <li><b>Nivel y tasa</b>El nivel es cuánto vale algo. La tasa es cuánto cambió respecto de antes. Que una tasa baje no significa que el nivel baje.</li>
+  <li><b>Stock y flujo</b>Un stock se mide en una fecha (las reservas al 30 de junio). Un flujo se mide a lo largo de un período (las exportaciones del trimestre).</li>
+  <li><b>Agregado</b>Un promedio de muchas experiencias distintas. Que a una empresa le vaya mal no significa que al país le vaya mal, y al revés.</li>
+  <li><b>Ficha de un dato</b>Registrar una cifra completa: nombre exacto, valor, unidad, frecuencia, período, fuente y fecha de consulta. Una cifra sin ficha no es un dato: es un número suelto.</li>
+  <li><b>Variante isomorfa</b>El mismo problema con otros números y otro contexto. Sirve para comprobar si entendiste el mecanismo o solo memorizaste un caso.</li>
+</ul>
+
+<h2 id="s4">4. MacroLab: qué es y qué no es</h2>
+
+<p><strong>MacroLab · Macro 1</strong> es el laboratorio del curso: una página donde están las lecturas, los indicadores oficiales, preguntas del tipo que aparece en las pruebas, simulaciones y retroalimentación.</p>
+
+<p><a href="https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/#route">pavelgomez.github.io/MacroLab-Shock-Simulator/macro1</a></p>
+
+<p><strong>Cuatro cosas que MacroLab no hace</strong>, para que no te lleves una decepción:</p>
+
+<ul>
+  <li>No reemplaza la lectura. La lectura va primero, siempre.</li>
+  <li>No entrega la explicación automáticamente. Se abre cuando ya escribiste tu predicción.</li>
+  <li>No predice el futuro. Simula mecanismos: sirve para entender cómo funciona algo, no para adivinar qué va a pasar.</li>
+  <li>No premia hacer clic hasta acertar. El objetivo es entender por qué, no encontrar el número correcto.</li>
+</ul>
+
+<h2 id="s5">5. Cómo se evalúa el curso</h2>
+
+<table>
+  <caption>Los cuatro componentes de la nota final</caption>
+  <thead><tr><th>Componente</th><th>Peso</th><th>Qué evalúa</th></tr></thead>
+  <tbody>
+    <tr><td>Evaluaciones solemnes (2)</td><td>40%</td><td>La misma cadena de razonamiento entrenada en clases.</td></tr>
+    <tr><td>Examen final</td><td>30%</td><td>Integración de todo el semestre.</td></tr>
+    <tr><td>Controles de preparación (6)</td><td>15%</td><td>Que llegues con la lectura hecha y el mecanismo reconstruido.</td></tr>
+    <tr><td>Brief macroeconómico + defensa</td><td>15%</td><td>Aplicar el curso a un episodio real, en equipo, y defenderlo.</td></tr>
+  </tbody>
+</table>
+
+<div class="clave">
+  <span class="k">La regla que atraviesa todas las evaluaciones</span>
+  <p>Un resultado correcto <strong>sin justificar el mecanismo</strong> recibe como máximo la mitad del puntaje del ítem, aunque el número esté bien.</p>
+  <p>No es para castigarte. Es porque el número correcto sin el porqué es justamente lo que ya no vale en el mercado de trabajo, y sería deshonesto de mi parte premiártelo.</p>
+</div>
+
+<h2 id="s6">6. Controles de preparación</h2>
+
+<ul>
+  <li>Se aplican <strong>seis controles</strong> durante el semestre y se conservan <strong>las cinco mejores</strong>: se elimina automáticamente tu nota más baja.</li>
+  <li><strong>No se recuperan.</strong> Por eso se elimina la más baja: esa es la red de seguridad si te enfermas o tienes un mal día.</li>
+  <li>Se anuncian con <strong>siete o más días</strong> de anticipación, indicando lecturas exactas, objetivos y formato. Nunca son sorpresa.</li>
+  <li>La nota de cada control se compone de <strong>85% respuesta inicial + 15% ticket de corrección</strong>. Es decir: parte de la nota se gana <em>después</em>, corrigiendo bien.</li>
+</ul>
+
+<table>
+  <caption>Cómo se reparte el puntaje dentro de cada control</caption>
+  <thead><tr><th>Se evalúa</th><th>Peso</th></tr></thead>
+  <tbody>
+    <tr><td>Que se note que leíste</td><td>15%</td></tr>
+    <tr><td>Separar conceptos que se parecen pero no son lo mismo</td><td>25%</td></tr>
+    <tr><td>Reconstruir el mecanismo</td><td>30%</td></tr>
+    <tr><td>Usarlo en una situación nueva</td><td>30%</td></tr>
+  </tbody>
+</table>
+
+<h3>Calendario de controles</h3>
+<p>Las fechas se confirman durante las primeras semanas y se anuncian con siete días de anticipación.</p>
+<table>
+  <thead><tr><th>Control</th><th>Unidad o foco</th><th>Fecha</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Medición</td><td>Por confirmar</td></tr>
+    <tr><td>2</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+    <tr><td>3</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+    <tr><td>4</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+    <tr><td>5</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+    <tr><td>6</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s7">7. Brief macroeconómico aplicado</h2>
+
+<p>Es el trabajo del semestre. En equipos de tres, toman <strong>un episodio económico real</strong> y lo analizan con las herramientas del curso.</p>
+
+<h3>Qué se entrega</h3>
+<ul>
+  <li>Una <strong>ficha de datos de una página</strong>, con fuentes verificables.</li>
+  <li><strong>Seis diapositivas</strong>, no más.</li>
+  <li><strong>Ocho minutos</strong> de exposición y <strong>siete de defensa</strong>: preguntas mías y de sus compañeros.</li>
+  <li>Un <strong>memo individual de 250 palabras</strong>.</li>
+</ul>
+
+<table>
+  <caption>Cómo se reparte la nota del brief</caption>
+  <thead><tr><th>Componente</th><th>Peso</th><th>Detalle</th></tr></thead>
+  <tbody>
+    <tr><td rowspan="4"><strong>Grupal</strong><br>55%</td><td>10%</td><td>Formulación de la pregunta y el horizonte</td></tr>
+    <tr><td>15%</td><td>Datos auditables</td></tr>
+    <tr><td>20%</td><td>Modelo y cadena causal</td></tr>
+    <tr><td>10%</td><td>Contrafactual y límites del análisis</td></tr>
+    <tr><td rowspan="2"><strong>Individual</strong><br>45%</td><td>30%</td><td>Defensa sin guion</td></tr>
+    <tr><td>15%</td><td>Memo de transferencia</td></tr>
+  </tbody>
+</table>
+
+<p>Casi la mitad de la nota es individual. Es deliberado: en un trabajo grupal es fácil esconderse, y acá no se puede.</p>
+
+<h2 id="s8">8. Inasistencias y eximición</h2>
+
+<table>
+  <thead><tr><th>Situación</th><th>Primera vez</th><th>Segunda vez</th></tr></thead>
+  <tbody>
+    <tr><td>Falta a una solemne</td><td>Ese porcentaje se suma al examen final</td><td>Nota mínima</td></tr>
+    <tr><td>Falta a un control</td><td>No se recupera (es la nota que se elimina)</td><td>—</td></tr>
+    <tr><td>Falta a la defensa del brief</td><td>Avísame con anticipación</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<p><strong>Eximición:</strong> según el Reglamento Académico, con todas las pruebas iguales o superiores a 4,0 y promedio igual o superior a 5,5. No aplica a los controles ni al brief.</p>
+
+<h2 id="s9">9. Bibliografía</h2>
+
+<ul>
+  <li>Blanchard, <em>Macroeconomía</em>, 7.ª edición.</li>
+  <li>Larraín y Sachs, <em>Macroeconomía en la economía global</em>, 3.ª edición.</li>
+  <li>Dornbusch y Fischer, <em>Macroeconomía</em>, 10.ª edición.</li>
+</ul>
+
+<p>No necesitas comprarlos. Antes de cada clase te indico las páginas exactas, y las Notas de Estudio del curso cubren lo esencial.</p>
+
+<div class="cierre">
+  <h2 style="margin-top:0">Una última cosa, y es en serio</h2>
+  <p>La forma de trabajo que acabas de leer <strong>la estreno este semestre, con ustedes</strong>. No la heredé de nadie.</p>
+  <p>Eso significa que algo va a fallar: un enlace que no abre, un ejercicio mal calibrado, una instrucción confusa. Cuando pase, avísame. No es una molestia: es la información que necesito para arreglarlo.</p>
+  <p>También significa que voy a corregir sobre la marcha, y que les voy a decir qué cambié y por qué. Y que yo también me voy a equivocar delante de ustedes. Sería raro pedirles que muestren el mecanismo y acepten la corrección si yo no hago lo mismo.</p>
+  <p style="margin-bottom:0"><strong>Si algo no funciona, dímelo. Prefiero saberlo en la semana 2 que en la encuesta final.</strong></p>
+</div>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+    <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
+    <p>Guía del curso &middot; Macroeconomía I &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
+    <p>Las ponderaciones y reglas de este documento provienen del programa oficial de la asignatura 2026-2. En caso de discrepancia, prima el programa.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.5.1. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+  </div>
+</footer>
+</body>
+</html>
