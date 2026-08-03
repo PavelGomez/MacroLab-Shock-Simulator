@@ -25,6 +25,14 @@
       "linked_from_class": 1
     },
     {
+      "id": "kit-clase0",
+      "file": "notas/kit-clase0-estudiante.html",
+      "title": "Hoja de trabajo — Clase 0",
+      "kind": "hoja-de-trabajo",
+      "audience": "estudiantes",
+      "linked_from_class": 1
+    },
+    {
       "id": "cronica-clase1",
       "file": "notas/cronica-clase1-chile-2026.html",
       "title": "Crónica de apertura — El barco que no pasó por Ormuz: Chile, primer semestre de 2026",
