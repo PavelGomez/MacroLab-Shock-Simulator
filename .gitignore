@@ -6,3 +6,6 @@ __pycache__/
 # Material docente privado: nunca debe publicarse en GitHub Pages
 guia-docente-*
 Docente_privado/
+
+# Archivos temporales de Office
+~$*
