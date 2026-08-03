@@ -9,3 +9,8 @@ Docente_privado/
 
 # Archivos temporales de Office
 ~$*
+
+# Dependencias de las pruebas: 1.807 archivos y 26 MB que NO deben publicarse.
+# jsdom se instala localmente con  npm install  y queda declarado en package.json.
+node_modules/
+npm-debug.log*
