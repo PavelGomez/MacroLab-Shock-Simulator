@@ -1,6 +1,6 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.5.2",
+  "lab_version": "0.6.0",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",

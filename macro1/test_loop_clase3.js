@@ -164,7 +164,7 @@ async function main() {
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
-  eq(L.LEARNING_LAB_VERSION, "0.5.2", "la versión del contexto de aprendizaje es 0.5.2");
+  eq(L.LEARNING_LAB_VERSION, "0.6.0", "la versión del contexto de aprendizaje es 0.6.0");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
   const { window: wUx, consoleErrors: uxConsoleErrors } = bootLab();
@@ -354,7 +354,7 @@ async function main() {
   ok(q(w, "#diagEvidence"), "P1.5 · existe el panel de evidencia del código elegido");
   if (proposed.length) {
     setField(w, "diagChoice", proposed[0].code);
-    ok(q(w, "#diagEvidence").textContent.includes(proposed[0].code), "P1.5 · el panel carga la evidencia del código elegido");
+    ok(q(w, "#diagEvidence").textContent.includes(proposed[0].evidence), "P1.5 · el panel carga la evidencia de la orientación elegida sin exponer el código");
   }
   // Un código elegido fuera de la propuesta exige justificación breve.
   const outside = ["BIE-ERR-01", "BIE-ERR-02", "BIE-ERR-03", "BIE-ERR-04", "BIE-ERR-05", "BIE-ERR-06"]
@@ -392,6 +392,9 @@ async function main() {
   clickLoop(w, "drill");
   eq(L.Learning.latest("BIE-EX-Solemne1").training.passed, true, "la práctica corregida cumple su criterio");
   ok(q(w, '[data-loop-action="close"]'), "P1.3 · «Completar rutina» aparece sólo con la práctica lograda");
+  const loopReport = L.loopStudentReport(L.Learning.latest("BIE-EX-Solemne1"), "rutina_completada");
+  ok(/Mi predicción y razonamiento inicial/.test(loopReport) && /Qué ocurrió en el laboratorio/.test(loopReport), "v0.6 · el reporte de clase 3 conserva predicción y discrepancia");
+  ok(/Cómo usar este reporte/.test(loopReport) && !/BIE-ERR-|BIE-DRILL/.test(loopReport), "v0.6 · el reporte de clase 3 es accionable y no expone códigos internos");
 
   /* --- 16 · P1.2 · variante y comparación inicial/revisada ------------------ */
   const detailsOpen = q(w, "#classWorkbench details.alt");
@@ -581,7 +584,7 @@ async function main() {
   ok(/¿Qué buscarás antes de calcular hoy\?/.test(recall.textContent), "P1.7 · la pregunta de recuperación es la del encargo");
   ok(recall.textContent.includes("comprobaré qué componente autónomo"), "P1.7 · el texto citado es la señal futura real del alumno");
 
-  /* --- 24 · P1.1 · el error numérico va ANTES que la cobertura (clase 2) ---- */
+  /* --- 24 · diagnóstico guiado y reporte legible en clases 1 y 2 ------------ */
   const { window: w3 } = bootLab();
   const L3 = w3.MacroLabLoop;
   q(w3, "#entryFresh").dispatchEvent(new w3.MouseEvent("click", { bubbles: true }));
@@ -594,52 +597,59 @@ async function main() {
   setField(w3, "testMechanism", "El deflactor cubre toda la producción interna y el IPC sigue una canasta de consumo fija.");
   clickClass(w3, "test");
   const numericBlock = q(w3, "#numericError");
-  const coverage = q(w3, "#classWorkbench .coverage");
   ok(numericBlock !== null, "P1.1 · una respuesta con cálculo incorrecto muestra un bloque de error numérico");
   ok(numericBlock.classList.contains("notice") && numericBlock.classList.contains("error"),
     "P1.1 · el bloque destacado usa la clase .notice.error");
   ok(/5,06/.test(numericBlock.textContent) && /2,00/.test(numericBlock.textContent),
     "P1.1 · el bloque muestra las cifras: la escrita y la de la pauta");
-  ok(coverage !== null, "P1.1 · la cobertura verbal sigue mostrándose, debajo");
-  ok(numericBlock.compareDocumentPosition(coverage) & w3.Node.DOCUMENT_POSITION_FOLLOWING,
-    "P1.1 · el bloque de error numérico aparece ANTES de cualquier conteo de cobertura");
-  const countEl = coverage.querySelector(".count");
-  ok(/Cobertura de elementos mencionados · \d+ de \d+/.test(countEl.textContent),
-    "P1.1 · el encabezado del conteo es «Cobertura de elementos mencionados · N de M»");
-  ok(!countEl.className.includes("ok") && !coverage.className.includes("ok"),
-    "P1.1 · el conteo no lleva la clase de acierto");
-  ok(!/correctas|acertaste|puntaje|calificaci|de 4 correctas/i.test(coverage.textContent),
-    "P1.1 · el conteo no usa lenguaje de puntuación");
-  ok(/no es una nota/i.test(coverage.textContent),
-    "P1.1 · el bloque declara explícitamente que no es una nota");
-  ok(/Cobertura no es corrección/.test(coverage.textContent),
-    "P1.1 · la advertencia ampliada aparece bajo el encabezado");
-  ok(/puedes mencionar todos los elementos y aun así razonar mal/i.test(coverage.textContent),
-    "P1.1 · la advertencia dice exactamente lo que exige la auditoría");
-  ok(q(w3, "#classWorkbench .verifiable-head") && q(w3, "#classWorkbench .coverage-head"),
-    "P1.1 · cálculos verificables y señales verbales llevan encabezados distintos");
+  const comparison = q(w3, "#classWorkbench .answer-compare");
+  ok(comparison !== null && comparison.querySelectorAll(".answer-box").length === 2,
+    "v0.6 · la respuesta del alumno y la pauta aparecen en dos cajas comparables");
+  ok(numericBlock.compareDocumentPosition(comparison) & w3.Node.DOCUMENT_POSITION_FOLLOWING,
+    "v0.6 · el error numérico aparece antes de la comparación textual");
+  ok(/Lo que el sistema puede observar/.test(q(w3, ".diagnostic-observations").textContent),
+    "v0.6 · las señales se presentan como observaciones y no como puntaje de palabras");
   const report2 = L3.scoreClassTest();
   eq(L3.splitChecks(report2).numeric.length, 2, "P1.1 · los dos cálculos se clasifican como verificables");
   ok(L3.splitChecks(report2).verbal.length >= 2, "P1.1 · las señales por palabras clave se clasifican como verbales");
-  // Y la pregunta obligatoria bloquea el avance mientras no se responda.
-  setField(w3, "feedbackReflection", "Confundí crecimiento nominal con crecimiento real.");
+  // El paso 4 pide un foco comprensible y el 5 una pregunta discriminante.
   clickClass(w3, "feedback");
-  ok(/contradice/i.test(q(w3, "#classActionStatus").textContent), "P1.1 · sin responder la pregunta obligatoria no se avanza");
-  setField(w3, "contradiction", "Dije 5,06% de crecimiento y la pauta calcula 2,00% en términos reales.");
+  ok(/Primer foco de revisión/i.test(q(w3, "#classActionStatus").textContent), "v0.6 · sin foco de revisión no se avanza");
+  setField(w3, "revisionFocus", "calculation");
   clickClass(w3, "feedback");
-  ok(/Paso 5 de 6/.test(stepText(w3)), "P1.1 · respondida la pregunta, la rutina avanza");
+  ok(/Paso 5 de 6/.test(stepText(w3)), "v0.6 · el foco permite llegar a la comprobación diagnóstica");
+  ok(/hipótesis, no veredictos/i.test(q(w3, "#classWorkbench").textContent), "v0.6 · la interfaz declara incertidumbre diagnóstica");
+  ok(!/C2-Q-|MED-ERR/.test(q(w3, "#classWorkbench").textContent), "v0.6 · los códigos internos no son visibles");
+  setField(w3, "diagnosticProbe", "C2-Q-INDEX-RATE");
+  clickClass(w3, "error");
+  ok(/Paso 6 de 6/.test(stepText(w3)), "v0.6 · la respuesta diagnóstica asigna una práctica coherente");
+  setField(w3, "guided_a", "above");setField(w3, "guided_b", "previous");
+  setField(w3, "revisedA", "2");setField(w3, "revisedB", "103");
+  setField(w3, "revisedAnswer", "El deflactor es un índice de la producción interna; el IPC usa una canasta y la inflación es una tasa entre períodos.");
+  clickClass(w3, "guidedCheck");
+  ok(/Criterio cumplido/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6 · la práctica se decide por evidencia observable");
+  ok(/reporte/.test(q(w3, '[data-class-action="export"]').textContent), "v0.6 · la salida principal es un reporte legible");
+  ok(/Respaldo técnico opcional/.test(q(w3, "#classWorkbench").textContent), "v0.6 · el JSON queda explícitamente como respaldo opcional");
 
-  // La clase 1 (respuesta en prosa) no tiene cálculos verificables: sólo cobertura.
+  // La clase 1 admite «ninguna» sin registrar un error forzado y asigna fundamentos.
   L3.selectClass("1");
   passReadingAndIndicator(w3);
   setField(w3, "testProse", "El PIB incluye toda la inversión extranjera realizada en el país y el PNB es la riqueza acumulada por los residentes en el exterior.");
   clickClass(w3, "test");
   eq(q(w3, "#numericError"), null, "P1.1 · en la clase 1 no hay bloque numérico porque no hay cálculo verificable");
-  ok(/Cobertura de elementos mencionados/.test(q(w3, "#classWorkbench .coverage").textContent),
-    "P1.1 · la clase 1 también encabeza con «Cobertura de elementos mencionados»");
-  ok(/Cobertura no es corrección/.test(q(w3, "#classWorkbench .coverage").textContent),
-    "P1.1 · la advertencia ampliada también está en la clase 1");
-  ok(q(w3, '[data-class-field="contradiction"]'), "P1.1 · la clase 1 también pide la pregunta obligatoria");
+  ok(q(w3, ".answer-box.student") && q(w3, ".answer-box.reference"), "v0.6 · la clase 1 también compara respuesta y pauta");
+  setField(w3, "revisionFocus", "stockflow");clickClass(w3, "feedback");
+  setField(w3, "diagnosticProbe", "__none__");clickClass(w3, "error");
+  ok(/Sin diagnóstico forzado/.test(q(w3, "#classWorkbench").textContent), "v0.6 · «ninguna» no obliga a elegir una categoría falsa");
+  eq(L3.classState()["1"].fields.errorCode, "", "v0.6 · el respaldo registra diagnóstico nulo cuando ninguna opción corresponde");
+  setField(w3, "guided_a", "flow");setField(w3, "guided_b", "boundary");
+  setField(w3, "revisedAnswer", "La afirmación es falsa: PIB usa territorio, PNB residencia y el PNF es un flujo neto de ingresos con el exterior.");
+  clickClass(w3, "guidedCheck");
+  const studentReport = L3.guidedStudentReport(L3.classState()["1"], "rutina_completada");
+  ok(/Mi respuesta inicial/.test(studentReport) && /Pauta de contraste/.test(studentReport), "v0.6 · el reporte contiene respuesta inicial y pauta");
+  ok(/Orientación/.test(studentReport) && /Práctica y criterio/.test(studentReport), "v0.6 · el reporte traduce el diagnóstico en práctica");
+  ok(/Cómo usar este reporte/.test(studentReport) && /window\.print/.test(studentReport), "v0.6 · el reporte explica su uso y permite imprimir o guardar PDF");
+  ok(!/C1-Q-|C1-DRILL/.test(studentReport), "v0.6 · el reporte estudiantil no expone códigos internos");
 
   /* --- 25 · P2 · consolidación sin discrepancia ----------------------------- */
   const { window: w4 } = bootLab();
