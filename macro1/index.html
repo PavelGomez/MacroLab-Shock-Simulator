@@ -184,6 +184,13 @@
   .class-step .step-number{display:inline-block;color:var(--accent);font-size:.75rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
   .source-list{margin:.5em 0;padding-left:20px}.source-list li{margin:.35em 0}
   .field-note{font-size:.8rem;color:var(--muted);margin:.2em 0 .7em}
+  .field-guidance{display:flex;justify-content:space-between;gap:10px;font-size:.78rem;color:var(--muted);font-weight:500;margin:.2em 0 .35em}
+  .field-guidance .char-count{white-space:nowrap;font-variant-numeric:tabular-nums}
+  .field-wrap{min-width:0}.field-wrap input:not([type="number"]),.field-wrap textarea{width:100%}
+  [aria-invalid="true"]{border-color:var(--red)!important;background:#fff6f6!important;box-shadow:0 0 0 2px rgba(239,68,68,.14)}
+  .step-guide{display:flex;gap:8px;align-items:flex-start;background:#eef4fa;border-radius:9px;padding:9px 11px;margin:2px 0 14px;color:var(--text);font-size:.84rem}
+  .step-guide strong{white-space:nowrap;color:var(--accent)}
+  .route-guide ol{margin:.55em 0 .25em;padding-left:22px}.route-guide li{margin:.4em 0}
   .feedback-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .feedback-grid section{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}
   .training-ticket{background:#f8fbfd;border:1px dashed #9bb6ca;border-radius:12px;padding:13px}
@@ -306,6 +313,19 @@
   </section>
 
   <section class="panel" id="route" role="tabpanel" aria-labelledby="tab-route">
+    <details class="guide route-guide" id="routeGuide">
+      <summary><span><strong>¿Cómo utilizar MacroLab?</strong> <span class="guide-hint">guía paso a paso · qué completar, cuándo usar los laboratorios y cómo guardar el avance</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <p>La <strong>ruta por clases</strong> organiza el aprendizaje; los <strong>laboratorios</strong> permiten probar escenarios. Para obtener retroalimentación útil, sigue este orden:</p>
+      <ol>
+        <li><strong>Lectura breve:</strong> reconstruye la idea central y marca la casilla sólo cuando puedas explicarla sin releer.</li>
+        <li><strong>Indicadores:</strong> registra fecha, serie, unidad, frecuencia y una interpretación. Los requisitos aparecen bajo cada campo.</li>
+        <li><strong>Pregunta tipo prueba:</strong> compromete una respuesta antes de ver la pauta. En la Clase 3 abrirás el laboratorio desde este paso.</li>
+        <li><strong>Retroalimentación:</strong> compara tu procedimiento con la pauta e identifica una contradicción concreta.</li>
+        <li><strong>Error:</strong> elige una sola causa dominante y señala dónde aparece en tu respuesta.</li>
+        <li><strong>Entrenamiento:</strong> define una práctica y un criterio observable; al cerrar puedes descargar una ficha sin datos personales.</li>
+      </ol>
+      <p class="field-note"><strong>Si no puedes avanzar:</strong> lee el aviso amarillo y revisa el primer campo marcado. El avance vive sólo en esta pestaña; descargar la ficha es la forma de conservarlo.</p>
+    </details>
     <!-- P1.7 · La ficha se puede cargar ANTES de comenzar, no sólo al final del paso 6.
          La importación reconstruye una vista de memoria y sugiere la actividad
          siguiente; nunca restaura ciegamente los controles de una sesión caducada. -->
@@ -576,7 +596,7 @@
 <footer>
   <div class="inner">
     <p class="who">Macroeconomía · Profesor Pável Gómez · Universidad Finis Terrae · 2026</p>
-    <p>MacroLab · Macro 1 — extensión docente, versión 0.5.1. Extensión autocontenida; no modifica el MacroLab público. Las rutas de clase no almacenan nombres ni identificadores. Cifras reales etiquetadas con fuente y período. Convención para economía abierta: E = CLP/USD; E↑ = depreciación. Cadena Macro 1: evento → variable → relación, identidad o curva → equilibrio → mecanismo de ajuste → resultado → dato de contraste.</p>
+    <p>MacroLab · Macro 1 — extensión docente, versión 0.5.2. Extensión autocontenida; no modifica el MacroLab público. Las rutas de clase no almacenan nombres ni identificadores. Cifras reales etiquetadas con fuente y período. Convención para economía abierta: E = CLP/USD; E↑ = depreciación. Cadena Macro 1: evento → variable → relación, identidad o curva → equilibrio → mecanismo de ajuste → resultado → dato de contraste.</p>
     <p class="disclaimer"><strong>Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</strong></p>
   </div>
 </footer>
@@ -732,11 +752,92 @@ const CLASS_ROUTES={
 const classState=Object.fromEntries(Object.keys(CLASS_ROUTES).map(id=>[id,{step:0,unlocked:0,completed:false,fields:{}}]));
 let activeClass="1";
 
+// Requisitos visibles y centralizados. La misma regla alimenta la guía bajo el
+// campo, el contador y la validación: no puede existir un umbral oculto distinto.
+const CLASS_FIELD_RULES={
+  consultedAt:{label:"Fecha de consulta",required:true,kind:"date",help:"Selecciona la fecha en que consultaste la fuente; no basta con que el navegador la muestre."},
+  indicatorName:{label:"Serie o cifra elegida",min:4,help:"Escribe el nombre que permita reconocer la serie."},
+  indicatorMeta:{label:"Unidad, frecuencia y período/base",min:5,help:"Incluye unidad, frecuencia y período o base cuando corresponda."},
+  evidenceType:{label:"Observada o proyectada",min:5,help:"Indica explícitamente si la cifra es observada o proyectada."},
+  indicatorInterpretation:{label:"Interpretación en una frase",min:15,help:"Explica qué permite afirmar la cifra; evita limitarte a repetirla."},
+  testProse:{label:"Respuesta fundada",min:40,help:"Declara tu conclusión y justifícala con los conceptos de la pregunta."},
+  answerA:{label:"Respuesta (a)",required:true,kind:"number"},answerB:{label:"Respuesta (b)",required:true,kind:"number"},
+  testMechanism:{label:"Explicación del mecanismo",min:20,help:"Conecta el shock o cálculo con el proceso económico, no sólo con el resultado."},
+  feedbackReflection:{label:"Cambio en el procedimiento",min:15,help:"Nombra una acción concreta que cambiarías al resolver de nuevo."},
+  contradiction:{label:"Afirmación que contradice la pauta",min:8,help:"Cita o resume una afirmación concreta de tu respuesta."},
+  errorCode:{label:"Código de error",required:true},errorEvidence:{label:"Evidencia del error",min:12,help:"Señala dónde se observa el error en tu propia respuesta."},
+  drill:{label:"Microentrenamiento",required:true},successCriterion:{label:"Criterio observable de éxito",min:8,help:"Define qué resultado permitirá saber que la práctica funcionó."},
+  trainingPlan:{label:"Cuándo y cómo practicarás",min:12,help:"Indica una acción y un momento concreto de práctica."},
+  predDir:{label:"Dirección esperada de ΔY",required:true},predMech:{label:"Mecanismo de la predicción",min:MIN_PREDICTION_CHARS,help:"Describe qué ocurre entre el shock y el nuevo equilibrio."},
+  v2PredDir:{label:"Dirección esperada de ΔY",required:true},v2PredMech:{label:"Mecanismo de la variante",min:MIN_PREDICTION_CHARS,help:"Describe el mecanismo en la nueva situación."},
+  narInitial:{label:"Qué pensaba al principio",min:15},narCue:{label:"Señal para la próxima vez",min:15},
+  narInitialCheck:{label:"Decisión sobre el texto inicial",required:true},narDiscrepancy:{label:"Enunciado de la discrepancia",min:10},narChain:{label:"Cadena causal",min:10},
+  consolidation:{label:"Reflexión de consolidación",min:15},diagChoice:{label:"Autodiagnóstico",required:true},
+  diagExplain:{label:"Explicación del rechazo",min:12},diagJustify:{label:"Justificación del código",min:12},drillPick:{label:"Práctica",required:true}
+};
+const STEP_ADVANCE_HINTS=[
+  "Lee la síntesis y marca la casilla cuando puedas reconstruir la idea central sin releer.",
+  "Completa los cinco datos de la ficha. Si el navegador ya muestra una fecha, el sistema la leerá al continuar.",
+  "Responde antes de revelar la pauta. Los requisitos mínimos aparecen bajo los campos que pueden bloquear el avance.",
+  "Contrasta tu respuesta con la pauta y escribe qué cambiarías y qué afirmación concreta entra en contradicción.",
+  "Elige una sola causa dominante y vincúlala con evidencia de tu propia respuesta.",
+  "Convierte el diagnóstico en una práctica observable; descarga la ficha si quieres conservar el trabajo."
+];
+function renderStepAdvanceHint(step,loop){
+  let text=STEP_ADVANCE_HINTS[step]||"";
+  if(loop&&step===2)text="Registra dirección y mecanismo antes de abrir el laboratorio; magnitud y confianza son opcionales.";
+  if(loop&&step===3)text="Revisa la discrepancia importada y completa los campos propios antes de pasar al diagnóstico.";
+  if(loop&&step===4)text="El diagnóstico es una hipótesis: puedes aceptar un código, elegir otro o rechazarlos todos, explicando tu decisión cuando corresponda.";
+  if(loop&&step===5)text="Completa la práctica asignada y decide si cierras con práctica pendiente o, cuando cumplas el criterio, completas la rutina.";
+  return `<div class="step-guide"><strong>Para avanzar</strong><span>${escapeText(text)}</span></div>`;
+}
+
 function classField(name){return classState[activeClass].fields[name]??""}
 function classInput(name,label,type="text",extra=""){
   const value=escapeText(classField(name));
-  if(type==="textarea")return `<label>${label}<textarea data-class-field="${name}" ${extra}>${value}</textarea></label>`;
-  return `<label>${label}<input data-class-field="${name}" type="${type}" value="${value}" ${extra}></label>`;
+  const rule=CLASS_FIELD_RULES[name]||null,helpId=`field-help-${name}`,controlId=`class-field-${name}`;
+  const min=rule&&rule.min?` minlength="${rule.min}" data-min-chars="${rule.min}"`:"";
+  const described=rule?` aria-describedby="${helpId}"`:"";
+  const required=rule&&(rule.required||rule.min)?' aria-required="true"':"";
+  const badge=rule&&(rule.required||rule.min)?` <span class="class-source" aria-hidden="true">${rule.min?`mínimo ${rule.min} caracteres`:"obligatorio"}</span>`:"";
+  const guidance=rule?`<span class="field-guidance" id="${helpId}"><span>${escapeText(rule.help||"Completa este campo para avanzar.")}</span>${rule.min?`<span class="char-count" data-char-count-for="${name}">${String(classField(name)).trim().length}/${rule.min}</span>`:""}</span>`:"";
+  if(type==="textarea")return `<div class="field-wrap"><label for="${controlId}">${label}${badge}</label><textarea id="${controlId}" data-class-field="${name}"${min}${described}${required} ${extra}>${value}</textarea>${guidance}</div>`;
+  return `<div class="field-wrap"><label for="${controlId}">${label}${badge}</label><input id="${controlId}" data-class-field="${name}" type="${type}" value="${value}"${min}${described}${required} ${extra}>${guidance}</div>`;
+}
+function syncRenderedClassFields(){
+  const state=classState[activeClass];
+  document.querySelectorAll("#classWorkbench [data-class-field]").forEach(el=>{state.fields[el.dataset.classField]=el.value});
+  return state.fields;
+}
+function updateFieldGuidance(el){
+  const name=el&&el.dataset?el.dataset.classField:null,rule=name?CLASS_FIELD_RULES[name]:null;
+  if(!name||!rule)return;
+  const counter=document.querySelector(`[data-char-count-for="${name}"]`);
+  if(counter)counter.textContent=`${String(el.value||"").trim().length}/${rule.min}`;
+  el.removeAttribute("aria-invalid");
+}
+function fieldRuleIssue(rule,value){
+  const text=String(value??"").trim();
+  if(rule.kind==="number"&&(!text||!Number.isFinite(Number(text))))return "escribe un número";
+  if(rule.required&&!text)return "es obligatorio";
+  if(rule.min&&text.length<rule.min)return `mínimo ${rule.min} caracteres; llevas ${text.length}`;
+  return "";
+}
+function validateClassFields(names){
+  const fields=syncRenderedClassFields(),problems=[];
+  document.querySelectorAll("#classWorkbench [aria-invalid='true']").forEach(el=>el.removeAttribute("aria-invalid"));
+  names.forEach(name=>{
+    const rule=CLASS_FIELD_RULES[name],issue=rule?fieldRuleIssue(rule,fields[name]):"";
+    if(!issue)return;
+    const el=document.querySelector(`#classWorkbench [data-class-field="${name}"]`);
+    if(el)el.setAttribute("aria-invalid","true");
+    problems.push({name,label:rule.label,issue,el});
+  });
+  if(!problems.length)return true;
+  const first=problems[0],rest=problems.length-1;
+  classStatus(`Revisa «${first.label}»: ${first.issue}.${rest?` Hay ${rest} ${rest===1?"campo adicional pendiente":"campos adicionales pendientes"}.`:""}`);
+  if(first.el)first.el.focus();
+  return false;
 }
 // Sólo se publica un enlace cuando el recurso existe dentro del artefacto.
 // Las notas se abren en otra pestaña para conservar el avance de la clase.
@@ -785,7 +886,7 @@ function renderClassWorkbench(moveFocus=false){
   // El loop cerrado sólo existe en la clase 3. Las clases 1 y 2 recorren exactamente
   // el mismo código de antes: mismos seis pasos, mismos textos, mismas validaciones.
   const loop=activeClass===LOOP_CLASS;
-  let html=`<span class="step-number">Paso ${step+1} de 6</span>`;
+  let html=`<span class="step-number">Paso ${step+1} de 6</span>${renderStepAdvanceHint(step,loop)}`;
   if(step===0){
     const [first,...rest]=route.brief;
     const more=rest.length?`<details class="alt"><summary>Seguir leyendo (${rest.length} ${rest.length===1?"párrafo":"párrafos"})</summary>${rest.map(x=>`<p>${escapeText(x)}</p>`).join("")}</details>`:"";
@@ -823,6 +924,7 @@ function renderClassWorkbench(moveFocus=false){
     const name=el.dataset.classField;
     const save=()=>{
       state.fields[name]=el.value;
+      updateFieldGuidance(el);
       // P0.2 · Recalcular la condición y tocar sólo el atributo, nunca el panel.
       if(loop){
         const gate=LOOP_GATE_FIELD.exec(name);
@@ -930,33 +1032,31 @@ function renderContradictionField(){
   return classInput("contradiction","¿Qué afirmación de tu respuesta contradice la pauta?","text");
 }
 function handleClassAction(action){
-  const state=classState[activeClass],fields=state.fields;
+  const state=classState[activeClass],fields=syncRenderedClassFields();
   if(action==="reading"){
-    if(!document.getElementById("classReadCheck").checked){classStatus("Marca la lectura como reconstruida antes de continuar.");return}
+    if(!document.getElementById("classReadCheck").checked){classStatus("Para continuar, marca la casilla cuando puedas explicar la idea central sin releer.");document.getElementById("classReadCheck").focus();return}
     fields.readDone=true;unlockClassStep(1);return;
   }
   if(action==="indicator"){
-    if(!fields.consultedAt||String(fields.indicatorName||"").trim().length<4||String(fields.indicatorMeta||"").trim().length<5||String(fields.evidenceType||"").trim().length<5||String(fields.indicatorInterpretation||"").trim().length<15){classStatus("Completa fecha, nombre, metadatos, tipo de evidencia e interpretación.");return}
+    if(!validateClassFields(["consultedAt","indicatorName","indicatorMeta","evidenceType","indicatorInterpretation"]))return;
     unlockClassStep(2);return;
   }
   if(action==="test"){
     const test=CLASS_ROUTES[activeClass].test;
-    if(test.type==="prose"&&String(fields.testProse||"").trim().length<40){classStatus("Desarrolla la respuesta antes de revelar la pauta (mínimo 40 caracteres).");return}
-    if(test.type==="numeric"&&(!Number.isFinite(Number(fields.answerA))||!Number.isFinite(Number(fields.answerB))||String(fields.testMechanism||"").trim().length<20)){classStatus("Registra ambos cálculos y una explicación del mecanismo.");return}
+    if(test.type==="prose"&&!validateClassFields(["testProse"]))return;
+    if(test.type==="numeric"&&!validateClassFields(["answerA","answerB","testMechanism"]))return;
     state.feedback=scoreClassTest();unlockClassStep(3);return;
   }
   if(action==="feedback"){
-    if(String(fields.feedbackReflection||"").trim().length<15){classStatus("Registra primero qué cambiarías en tu procedimiento.");return}
-    // P1.1 · La pregunta de contradicción es obligatoria: obliga a decidir, no a contar.
-    if(String(fields.contradiction||"").trim().length<8){classStatus("Falta la última pregunta: ¿qué afirmación de tu respuesta contradice la pauta?");return}
+    if(!validateClassFields(["feedbackReflection","contradiction"]))return;
     unlockClassStep(4);return;
   }
   if(action==="error"){
-    if(!fields.errorCode||String(fields.errorEvidence||"").trim().length<12){classStatus("Elige un código y señala la evidencia concreta del error.");return}
+    if(!validateClassFields(["errorCode","errorEvidence"]))return;
     unlockClassStep(5);return;
   }
   if(action==="export"){
-    if(!fields.drill||String(fields.successCriterion||"").trim().length<8||String(fields.trainingPlan||"").trim().length<12){classStatus("Completa rutina, criterio de éxito y plan antes de cerrar.");return}
+    if(!validateClassFields(["drill","successCriterion","trainingPlan"]))return;
     state.completed=true;renderClassProgress();
     const payload={schema_version:"macrolab-macro1-class-session/1.0",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,answers:{...fields},feedback:state.feedback,error_code:fields.errorCode,training:{drill:fields.drill,success_criterion:fields.successCriterion,plan:fields.trainingPlan}};
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`MacroLab_Clase${activeClass}_sesion.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),500);classStatus("Rutina cerrada y ficha descargada. La ficha no contiene nombre ni identificador personal.","ok");
@@ -1382,7 +1482,7 @@ function initTabs(){
 
 const LEARNING_SCHEMA="macrolab-learning-context/0.2";
 const LEARNING_CONTENT_VERSION="macro1-notas-2026-07";
-const LEARNING_LAB_VERSION="0.5.1";
+const LEARNING_LAB_VERSION="0.5.2";
 const LOOP_CLASS="3";
 const LOOP_OBJECTIVE="BIE-OBJ-MECANISMO";
 const LOOP_ACTIVITY="BIE-EX-Solemne1";
@@ -1442,7 +1542,9 @@ const Learning=(()=>{
       internal_state:"retrieval_prediction",
       prediction:{direction:"",magnitude:null,mechanism:"",confidence:null},
       // P1.4 · closure_attempt conserva lo que el alumno realmente escribió.
-      application:{params:{},results:{},attempts:0,returned_automatically:false,baseline:null,closure_checked:false,closure_ok:false,closure_attempt:null},
+      // `attempts` se conserva por compatibilidad y significa configuraciones del
+      // modelo; `verification_attempts` registra acciones explícitas del alumno.
+      application:{params:{},results:{},attempts:0,verification_attempts:[],returned_automatically:false,baseline:null,closure_checked:false,closure_ok:false,closure_attempt:null},
       discrepancy:{kind:"none",predicted:null,observed:null,statement:"",detected:[]},
       // P1.5 · evidence_used deja constancia de la evidencia del código realmente elegido.
       diagnosis:{proposed:[],learner_confirmed_code:null,learner_disagreed:false,learner_explanation:"",evidence_used:"",chosen_outside_proposal:false},
@@ -1478,7 +1580,11 @@ const Learning=(()=>{
     if(!Array.isArray(data.entries))return {ok:false,error:"El archivo no contiene una lista «entries»."};
     const bad=data.entries.find(e=>!e||e.schema_version!==LEARNING_SCHEMA||!e.attempt_id);
     if(bad)return {ok:false,error:"Al menos una entrada no declara el mismo schema_version o no tiene attempt_id."};
-    entries=data.entries.map(e=>JSON.parse(JSON.stringify(e)));
+    entries=data.entries.map(e=>{
+      const copy=JSON.parse(JSON.stringify(e));
+      if(copy.application&&!Array.isArray(copy.application.verification_attempts))copy.application.verification_attempts=[];
+      return copy;
+    });
     return {ok:true,count:entries.length};
   }
   return {create,all,byId,latest,patch,clear,toObject,fromObject,newId};
@@ -1681,7 +1787,7 @@ function openAttemptFieldScope(attemptId,previousId){
   if(prev)previousAttemptRule={chain:prev.narChain||"",cue:prev.narCue||"",attempt_id:previousId};
 }
 
-/* ---------- 5 · Sesión de laboratorio: lanzamiento, intentos y retorno ---------- */
+/* ---------- 5 · Sesión de laboratorio: escenarios, verificaciones y retorno ----- */
 let loopSession=null;
 let pendingAnnounce="";
 // P1.7 · Memoria importada al comenzar. Reconstruye una vista, nunca los controles.
@@ -1699,8 +1805,8 @@ function loopSetState(name,entry){
   if(entry)entry.internal_state=name;
 }
 
-// Cuenta como intento cada recálculo del equilibrio con parámetros distintos
-// mientras la actividad del loop esté activa. El primer cálculo fija la firma.
+// Cuenta configuraciones del modelo, no respuestas del alumno. El primer cálculo
+// fija la firma; los intentos humanos se registran al pulsar «Verificar el cierre».
 function loopNoteRecalc(){
   if(!loopSession)return;
   const signature=JSON.stringify(getCurrentParams("cruz"));
@@ -1778,7 +1884,7 @@ function loopLaunch(activityId){
   const baseline=crossSolve(baselineParams);
   baseline.params={c0:preset.c0,c1:preset.c1,I:preset.inv,G:preset.gov,T:preset.tax,t:preset.taxRate??0.25,taxMode:preset.propTax?"proportional":"fixed"};
   entry.application.baseline=baseline;
-  loopSession={entryId:entry.attempt_id,activityId,attempts:1,lastSignature:null,closureChecked:false,closureOk:false,closureAttempt:null,returnStep:LOOP_META[activityId].returnStep};
+  loopSession={entryId:entry.attempt_id,activityId,attempts:1,verificationAttempts:[],lastSignature:null,closureChecked:false,closureOk:false,closureAttempt:null,returnStep:LOOP_META[activityId].returnStep};
   const host=activityHost("cruz");
   host.querySelector("select").value=String(index);
   loadActivity("cruz",String(index));
@@ -1805,7 +1911,8 @@ function renderContextCard(){
     <dl>
       <dt>Actividad</dt><dd><strong>${escapeText(activity.id)}</strong> — ${escapeText(activity.prompt)}</dd>
       <dt>Criterio de éxito</dt><dd>${escapeText(meta.success)}</dd>
-      <dt>Intentos</dt><dd><span id="loopAttemptCount">${loopSession.attempts}</span> · cuenta cada recálculo del equilibrio con parámetros distintos.</dd>
+      <dt>Escenarios calculados</dt><dd><span id="loopAttemptCount">${loopSession.attempts}</span> · cuenta cada configuración distinta de parámetros, incluido el escenario inicial.</dd>
+      <dt>Intentos de verificación</dt><dd><span id="loopVerificationCount">${loopSession.verificationAttempts.length}</span> · aumenta sólo cuando pulsas «Verificar el cierre».</dd>
     </dl>
     <div class="fixed-pred">
       <strong>Tu predicción, registrada antes de abrir el laboratorio</strong> <span class="class-source">fija · no editable aquí</span>
@@ -1824,7 +1931,7 @@ function renderContextCard(){
       <p class="status" id="loopClosureMsg"></p>
     </div>
     <div class="actions"><button class="btn" type="button" id="loopReturnBtn">Volver a la clase 3</button></div>
-    <p class="field-note">Al volver, la ruta importa sola los parámetros, los resultados, el número de intentos y el cierre. No copies ninguna cifra a mano.</p>`;
+    <p class="field-note">Al volver, la ruta importa sola los parámetros, los resultados, los escenarios calculados, tus verificaciones y el cierre. No copies ninguna cifra a mano.</p>`;
   document.getElementById("loopClosureBtn").addEventListener("click",loopCheckClosure);
   document.getElementById("loopReturnBtn").addEventListener("click",()=>loopReturn());
 }
@@ -1842,6 +1949,9 @@ function loopCheckClosure(){
   // P1.4 · La interfaz dice que el intento queda registrado; ahora es cierto.
   // Se conservan las dos cifras escritas, el resultado y una marca temporal local.
   loopSession.closureAttempt={learner_I:iValue,learner_S_balance:sValue,ok,at:localStamp()};
+  loopSession.verificationAttempts.push({...loopSession.closureAttempt});
+  const verificationCounter=document.getElementById("loopVerificationCount");
+  if(verificationCounter)verificationCounter.textContent=String(loopSession.verificationAttempts.length);
   const text=ok
     ? `Cierre verificado: I = ${fmt(realI,0)} y S privado + (T − G) = ${fmt(realClosure,0)}.`
     : `Las cifras no cuadran con tus parámetros: I = ${fmt(realI,0)} y S privado + (T − G) = ${fmt(realClosure,0)}. Queda registrado el intento.`;
@@ -1853,7 +1963,7 @@ function loopReturn(){
   const session=loopSession;
   const entry=Learning.byId(session.entryId);
   const params=getCurrentParams("cruz"),results=getCurrentResults("cruz");
-  entry.application={...entry.application,params,results:results?{...results}:{},attempts:session.attempts,returned_automatically:true,closure_checked:session.closureChecked,closure_ok:session.closureOk,closure_attempt:session.closureAttempt||null};
+  entry.application={...entry.application,params,results:results?{...results}:{},attempts:session.attempts,verification_attempts:session.verificationAttempts.map(x=>({...x})),returned_automatically:true,closure_checked:session.closureChecked,closure_ok:session.closureOk,closure_attempt:session.closureAttempt||null};
   entry.discrepancy=computeDiscrepancy(entry);
   entry.diagnosis={...entry.diagnosis,proposed:proposeDiagnosis(entry)};
   entry.narrative={...entry.narrative,discrepancy_statement:entry.narrative.discrepancy_statement||entry.discrepancy.statement,revised_chain:entry.narrative.revised_chain||CLASS_ROUTES[3].test.model};
@@ -1883,7 +1993,7 @@ function loopReturn(){
   renderContextCard();
   activateTab("route",{focus:false});
   if(activeClass!==LOOP_CLASS)selectClass(LOOP_CLASS);
-  pendingAnnounce=`Volviste desde el laboratorio. Se importaron ${Object.keys(params).length} parámetros, los resultados, ${session.attempts} ${session.attempts===1?"intento":"intentos"} y el cierre ahorro-inversión.`;
+  pendingAnnounce=`Volviste desde el laboratorio. Se importaron ${Object.keys(params).length} parámetros, ${session.attempts} ${session.attempts===1?"escenario calculado":"escenarios calculados"}, ${session.verificationAttempts.length} ${session.verificationAttempts.length===1?"intento de verificación":"intentos de verificación"} y el cierre ahorro-inversión.`;
   unlockClassStep(session.returnStep);
   return entry;
 }
@@ -1952,7 +2062,7 @@ function renderLoopPredict(route){
     <div class="loop-block">
       <label>Dirección esperada de ΔY <span class="class-source">obligatoria</span>${loopSelect("predDir",DIRECTION_OPTIONS,f.predDir)}</label>
       <label>Magnitud esperada de ΔY <span class="class-source">opcional</span><input type="number" step="any" data-class-field="predMag" value="${escapeText(f.predMag??"")}"></label>
-      <label>Mecanismo en una frase <span class="class-source">obligatorio</span><textarea data-class-field="predMech" rows="2" placeholder="Qué ocurre entre el shock y el nuevo equilibrio.">${escapeText(f.predMech??"")}</textarea></label>
+      ${classInput("predMech","Mecanismo en una frase","textarea",'rows="2" placeholder="Qué ocurre entre el shock y el nuevo equilibrio."')}
       <label>Confianza en tu predicción${loopSelect("predConf",CONFIDENCE_OPTIONS,f.predConf)}</label>
     </div>
     <div class="actions"><button class="btn" type="button" data-loop-action="launch" ${ready?"":'aria-disabled="true"'}>Abrir el laboratorio con esta actividad</button></div>
@@ -1987,11 +2097,12 @@ function renderLoopReview(route,state){
       ${allDetected}
       <p class="field-note">Un hecho comparable, no un diagnóstico: eso viene en el paso siguiente y podrás rechazarlo.</p>
     </div>${weak}${reference}
-    <details class="alt"><summary>Lo que se importó solo del laboratorio (${escapeText(String(app.attempts))} ${app.attempts===1?"intento":"intentos"})</summary>
+    <details class="alt"><summary>Lo que se importó solo del laboratorio (${escapeText(String(app.attempts))} ${app.attempts===1?"escenario":"escenarios"}; ${(app.verification_attempts||[]).length} ${(app.verification_attempts||[]).length===1?"verificación":"verificaciones"})</summary>
       <div class="table-wrap"><table><caption class="sr-only">Parámetros y resultados importados del laboratorio</caption><tbody>
       <tr><th scope="row">Parámetros</th><td>c₀=${fmt(params.c0,0)} · c₁=${fmt(params.c1,2)} · I=${fmt(params.I,0)} · G=${fmt(params.G,0)} · ${params.taxMode==="proportional"?`t=${fmt(params.t,2)}`:`T=${fmt(params.T,0)}`}</td></tr>
       <tr><th scope="row">Resultados</th><td>multiplicador=${fmt(res.multiplier,2)} · Y*=${fmt(res.Yeq,0)} · C=${fmt(res.consumption,0)} · S privado=${fmt(res.privateSaving,0)}</td></tr>
       <tr><th scope="row">Cierre I = S privado + (T − G)</th><td>${fmt(res.closure,0)} · ${app.closure_checked?(app.closure_ok?"lo verificaste y cuadra":"lo verificaste y no cuadra"):"no lo verificaste"}${app.closure_attempt?` · escribiste I = ${fmt(app.closure_attempt.learner_I,0)} y S privado + (T − G) = ${fmt(app.closure_attempt.learner_S_balance,0)} el ${escapeText(app.closure_attempt.at)}`:""}</td></tr>
+      <tr><th scope="row">Exploración</th><td>${escapeText(String(app.attempts))} ${app.attempts===1?"escenario calculado":"escenarios calculados"} · ${(app.verification_attempts||[]).length} ${(app.verification_attempts||[]).length===1?"intento de verificación":"intentos de verificación"}</td></tr>
       <tr><th scope="row">Equilibrio de referencia</th><td>Y* inicial = ${fmt(app.baseline.Yeq,0)}</td></tr>
       </tbody></table></div></details>
     ${renderVerifiableBlock(report)}
@@ -2104,7 +2215,7 @@ function renderLoopTraining(route,state){
        <div class="loop-block">
          <label>Dirección esperada de ΔY <span class="class-source">obligatoria</span>${loopSelect("v2PredDir",DIRECTION_OPTIONS,f.v2PredDir)}</label>
          <label>Magnitud esperada de ΔY <span class="class-source">opcional</span><input type="number" step="any" data-class-field="v2PredMag" value="${escapeText(f.v2PredMag??"")}"></label>
-         <label>Mecanismo en una frase <span class="class-source">obligatorio</span><textarea data-class-field="v2PredMech" rows="2">${escapeText(f.v2PredMech??"")}</textarea></label>
+         ${classInput("v2PredMech","Mecanismo en una frase","textarea",'rows="2"')}
          <label>Confianza${loopSelect("v2PredConf",CONFIDENCE_OPTIONS,f.v2PredConf)}</label>
        </div>
        <div class="actions"><button class="btn" type="button" data-loop-action="launchVariant" ${loopPredictionReady("v2Pred")?"":'aria-disabled="true"'}>Abrir la variante en el laboratorio</button></div>`;
@@ -2251,7 +2362,7 @@ function renderLearningRecord(){
       <dt>Intento de cierre</dt><dd>${entry.application.closure_attempt?escapeText(`escribiste I = ${fmt(entry.application.closure_attempt.learner_I,0)} y S privado + (T − G) = ${fmt(entry.application.closure_attempt.learner_S_balance,0)}; ${entry.application.closure_attempt.ok?"cuadra":"no cuadra"}; ${entry.application.closure_attempt.at}`):"no lo verificaste"}</dd>
       <dt>Segundo intento</dt><dd>${variant?escapeText(`${variant.activity_id}: Y* = ${fmt((variant.application.results||{}).Yeq,0)} desde ${fmt((variant.application.baseline||{}).Yeq,0)}; ${variant.discrepancy.statement}`):"aún no realizado"}</dd>
       <dt>Transferencia</dt><dd>${escapeText(`desempeño ${PERFORMANCE_LABEL[entry.transfer.performance_change]||"—"} · error objetivo ${entry.transfer.target_error_resolved===null?"sin objetivo":(entry.transfer.target_error_resolved?"resuelto":"no resuelto")} · magnitud ${entry.transfer.optional_dimension_observed?"registrada":"omitida"} · ${TRANSFER_STATUS_LABEL[entry.transfer.transfer_status]||"—"}`)}</dd>
-      <dt>Intentos en el laboratorio</dt><dd>${escapeText(String(entry.application.attempts))}</dd>
+      <dt>Exploración del laboratorio</dt><dd>${escapeText(String(entry.application.attempts))} ${entry.application.attempts===1?"escenario calculado":"escenarios calculados"} · ${(entry.application.verification_attempts||[]).length} ${(entry.application.verification_attempts||[]).length===1?"intento de verificación":"intentos de verificación"}</dd>
     </dl></td></tr>`;
   }).join("");
   host.innerHTML=`<h3 id="learningRecordTitle" tabindex="-1">Mi registro de aprendizaje</h3>
@@ -2336,7 +2447,7 @@ function importLearningRecordFile(file){
 
 /* ---------- 8 · Acciones del loop ---------- */
 function handleLoopAction(action){
-  const state=classState[LOOP_CLASS],f=state.fields;
+  const state=classState[LOOP_CLASS],f=syncRenderedClassFields();
   if(action==="launch"){loopLaunch(LOOP_ACTIVITY);return}
   if(action==="launchVariant"){loopLaunch(LOOP_VARIANT);return}
   if(action==="useReference"){
@@ -2350,13 +2461,13 @@ function handleLoopAction(action){
   if(action==="narrative"){
     const entry=Learning.latest(LOOP_ACTIVITY);
     if(!entry)return;
-    if(String(f.narInitial||"").trim().length<15||String(f.narCue||"").trim().length<15){classStatus("Escribe los dos campos que te tocan a ti: qué pensabas al principio y qué señal reconocerás la próxima vez.");return}
+    if(!validateClassFields(["narInitial","narCue"]))return;
     // P2 · El prellenado no vale por sí solo: hay que confirmarlo o revisarlo.
-    if(!f.narInitialCheck){classStatus("«Qué pensaba al principio» viene prellenado con tu predicción. Indica si lo confirmas o si escribiste una revisión encima.");return}
+    if(!validateClassFields(["narInitialCheck"]))return;
     if(f.narInitialCheck==="reviso"&&String(f.narInitial||"").trim()===String(f.narInitialSeed||"").trim()){classStatus("Marcaste que lo corriges, pero el texto sigue siendo el prellenado. Escribe tu revisión o marca que lo confirmas.");return}
-    if(String(f.narDiscrepancy||"").trim().length<10||String(f.narChain||"").trim().length<10){classStatus("Los dos campos prellenados no pueden quedar vacíos: revísalos o restaura su texto.");return}
+    if(!validateClassFields(["narDiscrepancy","narChain"]))return;
     // P1.1 · La pregunta de contradicción también es obligatoria en la clase 3.
-    if(String(f.contradiction||"").trim().length<8){classStatus("Falta la pregunta de una línea: ¿qué afirmación de tu respuesta contradice la pauta?");return}
+    if(!validateClassFields(["contradiction"]))return;
     entry.narrative={...entry.narrative,initial_reasoning:f.narInitial,future_cue:f.narCue,discrepancy_statement:f.narDiscrepancy,revised_chain:f.narChain,initial_reasoning_decision:f.narInitialCheck,contradiction:f.contradiction};
     loopSetState("memory",entry);
     entry.status=loopStatus(entry);
@@ -2369,7 +2480,7 @@ function handleLoopAction(action){
     const proposed=entry.diagnosis.proposed||[];
     // P2 · Sin discrepancia, la vía es una reflexión de consolidación, no un descargo.
     if(entry.discrepancy.kind==="none"&&!proposed.length){
-      if(String(f.consolidation||"").trim().length<15){classStatus("Escribe en una o dos frases qué hiciste esta vez que quieres repetir.");return}
+      if(!validateClassFields(["consolidation"]))return;
       entry.narrative={...entry.narrative,consolidation:String(f.consolidation)};
       entry.diagnosis={...entry.diagnosis,learner_confirmed_code:null,learner_disagreed:false,learner_explanation:"",evidence_used:"Sin discrepancia: reflexión de consolidación.",chosen_outside_proposal:false};
       entry.training={drill_id:null,success_criterion:"",passed:null};
@@ -2381,14 +2492,14 @@ function handleLoopAction(action){
       return;
     }
     const choice=String(f.diagChoice||"");
-    if(!choice){classStatus("Elige un código, escoge otro de la lista o marca «ninguno de los anteriores».");return}
-    if(choice==="__none__"&&String(f.diagExplain||"").trim().length<12){classStatus("Si rechazas los códigos propuestos, explica en una frase qué crees que ocurrió.");return}
+    if(!validateClassFields(["diagChoice"]))return;
+    if(choice==="__none__"&&!validateClassFields(["diagExplain"]))return;
     const proposedCodes=proposed.map(p=>p.code);
     const code=choice==="__none__"?null:choice;
     // P1.5 · Un código elegido fuera de la propuesta exige justificación breve, y la
     // evidencia registrada es siempre la del código elegido, nunca la del primero.
     const outsideProposal=Boolean(code)&&!proposedCodes.includes(code);
-    if(outsideProposal&&String(f.diagJustify||"").trim().length<12){classStatus(`Elegiste ${code}, que el sistema no propuso. Justifica en una frase por qué lo eliges.`);return}
+    if(outsideProposal&&!validateClassFields(["diagJustify"]))return;
     const chosen=code?proposed.find(p=>p.code===code):null;
     const evidenceUsed=chosen?chosen.evidence:(choice==="__none__"?String(f.diagExplain||""):String(f.diagJustify||""));
     entry.diagnosis={...entry.diagnosis,learner_confirmed_code:code,learner_disagreed:choice==="__none__"||outsideProposal,learner_explanation:choice==="__none__"?String(f.diagExplain||""):String(f.diagJustify||""),evidence_used:evidenceUsed,chosen_outside_proposal:outsideProposal};
@@ -2407,7 +2518,7 @@ function handleLoopAction(action){
   if(action==="pickdrill"){
     const entry=Learning.latest(LOOP_ACTIVITY);
     if(!entry)return;
-    if(!f.drillPick){classStatus("Elige una práctica de la lista.");return}
+    if(!validateClassFields(["drillPick"]))return;
     entry.training={drill_id:f.drillPick,success_criterion:BIE_DRILLS[f.drillPick].criterion,passed:null};
     f.drill=BIE_DRILLS[f.drillPick].title;f.successCriterion=entry.training.success_criterion;
     renderClassWorkbench(true);

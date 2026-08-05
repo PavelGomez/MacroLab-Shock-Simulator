@@ -164,7 +164,39 @@ async function main() {
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
-  eq(L.LEARNING_LAB_VERSION, "0.5.1", "la versión del contexto de aprendizaje es 0.5.1");
+  eq(L.LEARNING_LAB_VERSION, "0.5.2", "la versión del contexto de aprendizaje es 0.5.2");
+
+  /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
+  const { window: wUx, consoleErrors: uxConsoleErrors } = bootLab();
+  const UX = wUx.MacroLabLoop;
+  eq(uxConsoleErrors.length, 0, "la instancia de prueba UX carga sin errores");
+  ok(q(wUx, "#routeGuide"), "la ruta ofrece «¿Cómo utilizar MacroLab?» sin abrir una ventana modal");
+  ok(/seis|paso a paso/i.test(q(wUx, "#routeGuide").textContent), "la guía explica el recorrido completo");
+  UX.selectClass("1");
+  q(wUx, "#classReadCheck").checked = true;
+  clickClass(wUx, "reading");
+  // Simula autocompletado silencioso: el valor visible cambia sin input/change.
+  field(wUx, "consultedAt").value = "2026-08-05";
+  setField(wUx, "indicatorName", "IMACEC");
+  setField(wUx, "indicatorMeta", "variación anual · mensual");
+  setField(wUx, "evidenceType", "observada");
+  setField(wUx, "indicatorInterpretation", "corta");
+  clickClass(wUx, "indicator");
+  ok(/Interpretación en una frase/.test(q(wUx, "#classActionStatus").textContent), "el error identifica el campo exacto");
+  ok(/15 caracteres; llevas 5/.test(q(wUx, "#classActionStatus").textContent), "el error informa mínimo y avance actual");
+  eq(field(wUx, "indicatorInterpretation").getAttribute("aria-invalid"), "true", "el primer campo pendiente queda marcado");
+  ok(wUx.document.activeElement === field(wUx, "indicatorInterpretation"), "el foco va al primer campo pendiente");
+  setField(wUx, "indicatorInterpretation", "El IMACEC permite describir la evolución mensual de la actividad.");
+  clickClass(wUx, "indicator");
+  ok(/Paso 3 de 6/.test(stepText(wUx)), "una fecha autocompletada sin eventos se sincroniza al continuar");
+
+  const { window: wNum } = bootLab();
+  const NUM = wNum.MacroLabLoop;
+  NUM.selectClass("2");
+  passReadingAndIndicator(wNum);
+  clickClass(wNum, "test");
+  ok(/Respuesta \(a\)/.test(q(wNum, "#classActionStatus").textContent), "un número vacío ya no se interpreta como cero");
+  eq(field(wNum, "answerA").getAttribute("aria-invalid"), "true", "la primera cifra vacía queda marcada");
 
   /* --- 1 · puerta de entrada de la ruta (P1.7) ----------------------------- */
   ok(q(w, "#routeEntry #entryFresh"), "P1.7 · existe «Comenzar sin registro» en la entrada de la ruta");
@@ -248,6 +280,8 @@ async function main() {
   ok(card.textContent.includes("inventarios"), "la frase de mecanismo aparece en la tarjeta de contexto");
   ok(/media/.test(card.textContent), "la confianza declarada aparece en la tarjeta de contexto");
   eq(q(w, "#loopAttemptCount").textContent, "1", "el contador de intentos parte en 1");
+  eq(q(w, "#loopVerificationCount").textContent, "0", "los intentos de verificación parten en cero");
+  ok(/Escenarios calculados/.test(card.textContent), "el recálculo se rotula como escenario, no como intento humano");
 
   /* --- 6 · retorno automático: params, results, intentos y cierre ----------- */
   solveCrossAndReturn(w, { G: 250, closureI: 250, closureS: 250 });
@@ -257,6 +291,7 @@ async function main() {
   near(entry.application.results.Yeq, 1050, 0.001, "vuelven los resultados reales (Y* = 1.050)");
   near(entry.application.baseline.Yeq, 950, 0.001, "vuelve el equilibrio de referencia (Y* inicial = 950)");
   ok(entry.application.attempts >= 1, "vuelve el número de intentos del laboratorio");
+  eq(entry.application.verification_attempts.length, 1, "un clic en verificar produce un intento de verificación");
   eq(entry.application.closure_checked, true, "vuelve el hecho de haber verificado el cierre");
   eq(entry.application.closure_ok, true, "vuelve el resultado de la verificación del cierre");
   eq(field(w, "narInitial") !== null, true, "el retorno deja la ruta en el paso de revisión");
@@ -299,7 +334,7 @@ async function main() {
 
   /* --- 12 · validaciones de la narrativa ----------------------------------- */
   clickLoop(w, "narrative");
-  ok(/qué pensabas al principio|prellenado|contradice/i.test(q(w, "#classActionStatus").textContent),
+  ok(/Señal para la próxima vez|qué pensabas al principio|prellenado|contradice/i.test(q(w, "#classActionStatus").textContent),
     "la narrativa incompleta se rechaza con un mensaje concreto");
   setField(w, "narCue", "Antes de calcular, comprobaré qué componente autónomo se mueve y cuál es el multiplicador.");
   setField(w, "narInitialCheck", "confirmo");
@@ -500,6 +535,11 @@ async function main() {
   const roundtrip = L.importLearningRecordText(JSON.stringify(payload));
   eq(roundtrip.ok, true, "la ficha exportada se vuelve a importar sin pérdida");
   eq(roundtrip.count, payload.entries.length, "la importación recupera todas las entradas");
+  const legacy = JSON.parse(JSON.stringify(payload));
+  legacy.lab_version = "0.5.1";
+  legacy.entries.forEach(e => { if (e.application) delete e.application.verification_attempts; });
+  eq(L.importLearningRecordText(JSON.stringify(legacy)).ok, true, "una ficha v0.5.1 sin historial de verificaciones sigue siendo legible");
+  ok(L.Learning.all().every(e => !e.application || Array.isArray(e.application.verification_attempts)), "la importación normaliza el historial faltante");
 
   /* --- 22 · rechazo de schema_version incorrecto --------------------------- */
   const bad = JSON.parse(JSON.stringify(payload));
@@ -621,7 +661,7 @@ async function main() {
   eq(q(w4, '[data-class-field="diagChoice"]'), null, "P2 · sin discrepancia no se obliga a elegir un código");
   ok(q(w4, '[data-class-field="consolidation"]'), "P2 · sin discrepancia se abre una reflexión de consolidación");
   clickLoop(w4, "diagnosis");
-  ok(/repetir/i.test(q(w4, "#classActionStatus").textContent), "P2 · la consolidación pide una o dos frases, no doce caracteres de descargo");
+  ok(/Reflexión de consolidación/i.test(q(w4, "#classActionStatus").textContent), "P2 · la consolidación identifica la reflexión pendiente");
   setField(w4, "consolidation", "Escribí el mecanismo completo antes de mirar el resultado y eso me obligó a revisar el multiplicador.");
   clickLoop(w4, "diagnosis");
   eq(L4.Learning.latest("BIE-EX-Solemne1").narrative.consolidation.length > 20, true, "P2 · la consolidación queda registrada");

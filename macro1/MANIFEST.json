@@ -1,6 +1,6 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.5.1",
+  "lab_version": "0.5.2",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
@@ -9,7 +9,7 @@
   "content_version": "macro1-notas-2026-07",
   "learning_schema": "macrolab-learning-context/0.2",
   "scenario_schema": "macrolab-macro1-scenario/1.1",
-  "generated_at": "2026-07-28T00:00:00.000Z",
+  "generated_at": "2026-08-05T00:00:00.000Z",
   "tests": [
     "test_paquete.js",
     "test_loop_clase3.js",
