@@ -284,6 +284,15 @@
   .bridge-questions select,.diagnostic-choice select,.training-ticket select{width:100%;max-width:100%}
   .criterion-list li.ok{color:var(--green);font-weight:750}.criterion-list li.pending{color:#8a5700}
   .training-ticket{background:#f8fbfd;border:1px dashed #9bb6ca;border-radius:12px;padding:13px}
+  .revision-source{margin:12px 0;border:1px solid #bfd5e5;border-left:5px solid var(--accent);border-radius:12px;background:#f8fbfd;padding:14px}
+  .revision-source blockquote{margin:8px 0 0;padding:11px 13px;border-radius:9px;background:#fff;border:1px solid var(--line);white-space:pre-wrap}
+  .revision-inventory{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+  .revision-inventory>section{border:1px solid var(--line);border-radius:11px;background:#fff;padding:12px}
+  .revision-inventory h4{margin:0 0 6px;color:var(--navy);font-size:.9rem}
+  .revision-gap{border:1px solid #e7c985;border-left:5px solid var(--orange);border-radius:11px;background:#fffaf0;padding:12px;margin:10px 0}
+  .revision-gap label{color:var(--text);font-size:.88rem}
+  .reading-return{display:inline-flex;margin-top:6px;color:var(--accent);font-size:.78rem;font-weight:800}
+  .revision-decision{margin:12px 0;padding:12px;border-radius:11px;background:#f3f7fa;border:1px solid var(--line)}
   .progress-line{height:9px;background:#e5ebf0;border-radius:999px;overflow:hidden;margin:8px 0}
   .progress-line span{display:block;height:100%;background:var(--accent);transition:width .2s ease}
   @media(max-width:580px){.guide dl{grid-template-columns:1fr;gap:2px 0}.guide dt{padding-top:8px}}
@@ -346,7 +355,7 @@
   .status{min-height:1.4em}
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   @media(max-width:900px){
-    .orientation{grid-template-columns:1fr 1fr}.grid,.grid.wide-left,.class-intro,.feedback-grid,.answer-compare{grid-template-columns:1fr}
+    .orientation{grid-template-columns:1fr 1fr}.grid,.grid.wide-left,.class-intro,.feedback-grid,.answer-compare,.revision-inventory{grid-template-columns:1fr}
     .items{grid-template-columns:1fr}
     .prep-sequence{grid-template-columns:repeat(2,minmax(0,1fr))}
     .editorial-map-grid{grid-template-columns:110px repeat(4,minmax(145px,1fr));overflow-x:auto;padding-bottom:5px}
@@ -703,6 +712,7 @@
 
 // Única constante de alojamiento de las notas. Si la carpeta cambia, se edita aquí y en ningún otro lugar.
 const NOTES_BASE="notas/";
+const PUBLIC_NOTES_BASE="https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/notas/";
 
 const fmt=(n,d=2)=>Number(n).toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d});
 const num=id=>Number(document.getElementById(id).value);
@@ -963,6 +973,12 @@ const GUIDED_DRILLS={
     ]
   }
 };
+const CLASS1_REVISION_GUIDES=[
+  {id:"projection",label:"Estado de la cifra",question:"¿El 2% es un resultado ya medido o una proyección? Escríbelo en una frase.",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",test:text=>/(proyec|escenario|estim)/i.test(text)},
+  {id:"observed",label:"Tiempo de la afirmación",question:"¿Por qué «crecerá durante 2026» no equivale a «ya creció»?",reading:"Nota 1 · §2.1, Pasaporte del dato: Estado",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",test:text=>/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri|resultado.*futuro|no puede afirmarse.*ocurr)/i.test(text)},
+  {id:"metadata",label:"Identidad del dato",question:"¿Qué fuente y qué período identifican esta cifra?",reading:"Nota 1 · §2.1, Pasaporte del dato",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",test:text=>/(ipom|fuente)/i.test(text)&&/(2026|per[ií]odo|horizonte)/i.test(text)},
+  {id:"causality",label:"Límite causal",question:"¿Qué información adicional necesitarías para atribuir el crecimiento a una política específica?",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",test:text=>/(no.*caus|no demuestra|mecan|evidencia adicional|otras explicaciones|por qu[eé] ocurr)/i.test(text)}
+];
 const classState=Object.fromEntries(Object.keys(CLASS_ROUTES).map(id=>[id,{step:0,unlocked:0,completed:false,fields:{}}]));
 let activeClass="1";
 
@@ -982,7 +998,8 @@ const CLASS_FIELD_RULES={
   feedbackReflection:{label:"Cambio en el procedimiento",min:15,help:"Nombra una acción concreta que cambiarías al resolver de nuevo."},
   contradiction:{label:"Afirmación que contradice la pauta",min:8,help:"Cita o resume una afirmación concreta de tu respuesta."},
   revisionFocus:{label:"Primer foco de revisión",required:true},diagnosticProbe:{label:"Pregunta diagnóstica",required:true},
-  revisedAnswer:{label:"Respuesta revisada",min:30,help:"Reescribe la respuesta completa incorporando lo aprendido; no basta con nombrar un concepto."},
+  revisionDecision:{label:"Decisión sobre la respuesta inicial",required:true},
+  revisedAnswer:{label:"Ajuste o corrección",min:8,help:"Agrega sólo lo que deseas corregir o mejorar; la respuesta inicial se conserva automáticamente."},
   errorCode:{label:"Código de error",required:true},errorEvidence:{label:"Evidencia del error",min:12,help:"Señala dónde se observa el error en tu propia respuesta."},
   drill:{label:"Microentrenamiento",required:true},successCriterion:{label:"Criterio observable de éxito",min:8,help:"Define qué resultado permitirá saber que la práctica funcionó."},
   trainingPlan:{label:"Cuándo y cómo practicarás",min:12,help:"Indica una acción y un momento concreto de práctica."},
@@ -999,7 +1016,7 @@ const STEP_ADVANCE_HINTS=[
   "Responde antes de revelar la pauta. Los requisitos mínimos aparecen bajo los campos que pueden bloquear el avance.",
   "Compara tu respuesta con la pauta y elige qué revisar primero. Las señales automáticas son observaciones, no una nota.",
   "Responde una pregunta breve para orientar la dificultad. Puedes declarar que no sabes o que ninguna opción corresponde.",
-  "Resuelve la práctica asignada y reescribe tu respuesta. El sistema comprueba un criterio observable antes de completar la rutina."
+  "Resuelve la práctica asignada. Tu respuesta inicial se conserva: completa sólo las preguntas que dirigen tu atención a lo que falta."
 ];
 function renderStepAdvanceHint(step,loop){
   let text=STEP_ADVANCE_HINTS[step]||"";
@@ -1176,17 +1193,59 @@ function resolveGuidedOrientation(state){
   state.guidedPassed=false;
   return code;
 }
+function class1RevisionAdditions(state){
+  const f=state.fields,parts=[];
+  CLASS1_REVISION_GUIDES.forEach(guide=>{
+    const value=String(f[`revision_${guide.id}`]||"").trim();
+    if(value)parts.push({label:guide.label,text:value});
+  });
+  const free=String(f.revisedAnswer||"").trim();
+  if(free)parts.push({label:"Ajuste libre",text:free});
+  return parts;
+}
+function class1OriginalAnswer(state){
+  return String(state.fields.testProse||"").trim();
+}
+function class1CumulativeAnswer(state){
+  const original=class1OriginalAnswer(state);
+  const additions=class1RevisionAdditions(state).map(item=>item.text);
+  return [original,...additions].filter(Boolean).join("\n\n");
+}
+function class1RevisionRequirements(state,useCumulative=false){
+  const text=useCumulative?class1CumulativeAnswer(state):class1OriginalAnswer(state);
+  return CLASS1_REVISION_GUIDES.map(guide=>({...guide,ok:guide.test(String(text||""))}));
+}
+function validateClass1Revision(state){
+  if(!validateClassFields(["revisionDecision"]))return false;
+  const missing=class1RevisionRequirements(state,false).filter(item=>!item.ok),problems=[];
+  missing.forEach(item=>{
+    const el=document.querySelector(`[data-class-field="revision_${item.id}"]`),value=String(state.fields[`revision_${item.id}`]||"").trim();
+    if(value.length<8){if(el)el.setAttribute("aria-invalid","true");problems.push(item)}else if(el)el.removeAttribute("aria-invalid");
+  });
+  if(problems.length){
+    classStatus(`Responde sólo la pregunta pendiente «${problems[0].question}»${problems.length>1?` y ${problems.length-1} más`:""}. Puedes volver a la lectura indicada bajo el campo.`);
+    document.querySelector(`[data-class-field="revision_${problems[0].id}"]`)?.focus();
+    return false;
+  }
+  return true;
+}
+function renderClass1RevisionEditor(state){
+  const f=state.fields,requirements=class1RevisionRequirements(state,false),present=requirements.filter(item=>item.ok),missing=requirements.filter(item=>!item.ok);
+  const presentList=present.map(item=>`<li>${escapeText(item.label)}</li>`).join("");
+  const missingBlocks=missing.map(item=>`<section class="revision-gap"><label>${escapeText(item.question)}<textarea rows="2" data-class-field="revision_${item.id}">${escapeText(f[`revision_${item.id}`]||"")}</textarea></label><a class="reading-return" href="${NOTES_BASE+escapeText(item.href)}" target="_blank" rel="noopener">Volver a ${escapeText(item.reading)} <span class="sr-only">(abre en una pestaña nueva)</span></a></section>`).join("");
+  const missingSummary=missing.length
+    ? `<section><h4>Dirige tu atención sólo a esto</h4><p class="field-note">El sistema encontró ${missing.length===1?"una pieza que conviene hacer explícita":`${missing.length} piezas que conviene hacer explícitas`}. Responde las preguntas breves; no copies el resto.</p>${missingBlocks}</section>`
+    : `<section><h4>No necesitas reescribir</h4><div class="notice ok"><strong>La respuesta inicial ya contiene las cuatro piezas solicitadas.</strong><p>Después de resolver la práctica objetiva, puedes conservarla tal como está o agregar una precisión opcional.</p></div></section>`;
+  return `<section class="revision-source"><strong>Tu respuesta inicial se conserva y cuenta</strong><p class="field-note">MacroLab evaluará esta respuesta junto con cualquier ajuste. No tienes que escribirla letra por letra otra vez.</p><blockquote>${escapeText(class1OriginalAnswer(state))}</blockquote></section>
+    <div class="revision-inventory"><section><h4>Ya está presente</h4>${present.length?`<ul class="criterion-list">${presentList}</ul>`:"<p class=\"field-note\">Todavía no se reconocen las piezas centrales; usa las preguntas de la derecha.</p>"}</section>${missingSummary}</div>
+    <div class="revision-decision"><label>¿Qué harás con tu respuesta inicial?<select data-class-field="revisionDecision">${selectOptions([["keep","La conservo y completo sólo lo que falte"],["add","La conservo y agrego una precisión o corrección"]],String(f.revisionDecision||""))}</select></label><label>Precisión o corrección adicional <span class="field-note">(opcional)</span><textarea rows="3" data-class-field="revisedAnswer">${escapeText(f.revisedAnswer||"")}</textarea></label><p class="field-note">No escribas «mantengo mi respuesta» como sustituto de ella: ya está conservada arriba. Usa este espacio sólo si quieres añadir algo.</p></div>`;
+}
 function guidedPracticeResult(state){
   const drill=GUIDED_DRILLS[state.guidedDrillId],f=state.fields;
   const fieldChecks=drill.fields.map(field=>({label:field.label,ok:String(f[`guided_${field.id}`]||"")===field.answer}));
-  const revised=String(f.revisedAnswer||"").trim();
+  const revised=activeClass==="1"?class1CumulativeAnswer(state):String(f.revisedAnswer||"").trim();
   let revisionChecks=[];
-  if(activeClass==="1")revisionChecks=[
-    {label:"la respuesta identifica el 2% como proyección",ok:/(proyec|escenario|estim)/i.test(revised)},
-    {label:"la respuesta aclara que todavía no es un resultado observado",ok:/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri)/i.test(revised)},
-    {label:"la respuesta sitúa la cifra en fuente y período",ok:/(ipom|fuente)/i.test(revised)&&/(2026|per[ií]odo|horizonte)/i.test(revised)},
-    {label:"la respuesta limita la causalidad y pide mecanismo o evidencia adicional",ok:/(no.*caus|no demuestra|mecan|evidencia adicional|otras explicaciones)/i.test(revised)}
-  ];else revisionChecks=[
+  if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({label:`la respuesta acumulada incluye: ${item.label.toLowerCase()}`,ok:item.ok}));else revisionChecks=[
     {label:"corrige los resultados a 2, 103 y 192",ok:Math.abs(Number(f.revisedA)-2)<.03&&Math.abs(Number(f.revisedB)-103)<.03&&Math.abs(Number(f.revisedC)-192)<.03},
     {label:"distingue deflactor e IPC",ok:/deflactor/i.test(revised)&&/(ipc|canasta)/i.test(revised)},
     {label:"distingue índice y tasa",ok:/(índice|indice)/i.test(revised)&&/(tasa|inflaci[oó]n)/i.test(revised)},
@@ -1200,14 +1259,13 @@ function renderGuidedTraining(route,state){
   const drill=GUIDED_DRILLS[state.guidedDrillId]||GUIDED_DRILLS[activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE"],f=state.fields;
   const code=String(f.errorCode||""),orientation=code&&GUIDED_DIAGNOSTICS[activeClass].orientations[code];
   const result=guidedPracticeResult(state),status=state.guidedChecked
-    ? `<div class="notice ${result.passed?"ok":"warn"}" id="guidedPracticeStatus"><strong>${result.passed?(activeClass==="1"?"Comprobaciones guiadas cumplidas.":"Criterio cumplido."):"La práctica todavía tiene elementos pendientes."}</strong><ul class="criterion-list">${result.checks.map(x=>`<li class="${x.ok?"ok":"pending"}">${x.ok?"Cumplido":"Pendiente"}: ${escapeText(x.label)}</li>`).join("")}</ul>${activeClass==="1"&&result.passed?`<p class="field-note">Esto confirma las decisiones objetivas y la presencia de los elementos pedidos. No reemplaza la lectura docente de la calidad del razonamiento escrito.</p>`:""}</div>`:"";
+    ? `<div class="notice ${result.passed?"ok":"warn"}" id="guidedPracticeStatus"><strong>${result.passed?(activeClass==="1"?"Comprobaciones guiadas cumplidas.":"Criterio cumplido."):(activeClass==="1"?"La respuesta acumulada todavía tiene elementos pendientes.":"La práctica todavía tiene elementos pendientes.")}</strong><ul class="criterion-list">${result.checks.map(x=>`<li class="${x.ok?"ok":"pending"}">${x.ok?"Cumplido":"Pendiente"}: ${escapeText(x.label)}</li>`).join("")}</ul>${activeClass==="1"&&result.passed?`<p class="field-note">Esto confirma las decisiones objetivas y la presencia de los elementos pedidos. No reemplaza la lectura docente de la calidad del razonamiento escrito.</p>`:""}</div>`:"";
   return `<h3>Práctica dirigida y nueva evidencia</h3>
     ${renderClassJourneyMap("practice")}
     <div class="loop-fact"><strong>${orientation?"Orientación de trabajo":"Sin diagnóstico forzado"}</strong><p>${orientation?escapeText(orientation.label):"No se registró una categoría de error. La práctica comprueba los conceptos fundamentales y permite avanzar sin inventar un diagnóstico."}</p></div>
     <div class="training-ticket"><strong>${escapeText(drill.title)}</strong><p>${escapeText(drill.prompt)}</p>${drill.fields.map(field=>`<label>${escapeText(field.label)}<select data-class-field="guided_${field.id}">${selectOptions(field.options,String(f[`guided_${field.id}`]||""))}</select></label>`).join("")}<p class="field-note"><strong>Criterio observable:</strong> ${escapeText(drill.criterion)}</p></div>
-    ${activeClass==="2"?`<div class="mini-grid"><label>Resultado (a) revisado<input type="number" step="0.01" data-class-field="revisedA" value="${escapeText(f.revisedA||"")}"></label><label>Resultado (b) revisado<input type="number" step="0.01" data-class-field="revisedB" value="${escapeText(f.revisedB||"")}"></label><label>Resultado (c) revisado<input type="number" step="0.01" data-class-field="revisedC" value="${escapeText(f.revisedC||"")}"></label></div>`:`<div class="prompt"><strong>Tu tarea final</strong><p>Vuelve a responder la afirmación sobre el 2% proyectado para 2026.</p><p>Distingue proyección de resultado observado, completa el pasaporte del dato y explica por qué la cifra no demuestra por sí sola una causa.</p></div>`}
-    ${classInput("revisedAnswer",activeClass==="1"?"Reescribe tu respuesta sobre la proyección de 2%":"Reescribe ahora tu respuesta completa","textarea",'rows="6"')}
-    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">Comprobar mi nueva respuesta</button><button class="btn secondary" type="button" data-class-action="exportPending">Cerrar y descargar mi reporte con práctica pendiente</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Completar rutina y descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
+    ${activeClass==="2"?`<div class="mini-grid"><label>Resultado (a) revisado<input type="number" step="0.01" data-class-field="revisedA" value="${escapeText(f.revisedA||"")}"></label><label>Resultado (b) revisado<input type="number" step="0.01" data-class-field="revisedB" value="${escapeText(f.revisedB||"")}"></label><label>Resultado (c) revisado<input type="number" step="0.01" data-class-field="revisedC" value="${escapeText(f.revisedC||"")}"></label></div>${classInput("revisedAnswer","Reescribe ahora tu respuesta completa","textarea",'rows="6"')}`:renderClass1RevisionEditor(state)}
+    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Cerrar y descargar mi reporte con práctica pendiente</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Completar rutina y descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
     <details class="alt"><summary>Respaldo técnico opcional</summary><p class="field-note">El archivo JSON no está pensado para leerlo: sirve para conservar datos estructurados o continuar un diagnóstico con otra herramienta. <strong>No necesitas entregarlo ni abrirlo para completar la actividad.</strong></p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar respaldo JSON</button></details><div class="status" id="classActionStatus" aria-live="polite"></div>`;
 }
 function downloadTextFile(textValue,mime,filename){
@@ -1219,14 +1277,19 @@ function guidedPayload(state,closure){
   return {schema_version:"macrolab-macro1-class-session/1.1",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,closure,answers:{...f},feedback:state.feedback,diagnosis:{code:f.errorCode||null,label:orientation?orientation.label:null,evidence:f.errorEvidence,forced:false,probe_answer:f.diagnosticProbe},training:{drill_id:state.guidedDrillId,criterion:GUIDED_DRILLS[state.guidedDrillId].criterion,passed:result.passed,checks:result.checks}};
 }
 function reportDocument({title,subtitle,sections,statusText}){
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(title)}</title><style>body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#172536;max-width:900px;margin:0 auto;padding:36px 24px}h1,h2{color:#12314b}h1{margin-bottom:4px}h2{font-size:1.15rem;margin-top:28px;border-bottom:2px solid #d8e5ef;padding-bottom:5px}.meta{color:#5b6b7a}.box{border:1px solid #cbd9e4;border-radius:10px;padding:14px;margin:10px 0;white-space:pre-wrap}.status{background:#eef6fc;border-left:5px solid #287ab0;padding:12px 14px}.next{background:#fff8df;border-left:5px solid #d08a00;padding:12px 14px}li{margin:.35em 0}footer{margin-top:34px;border-top:1px solid #ccd7df;padding-top:14px;color:#5b6b7a;font-size:.88rem}@media print{body{max-width:none;padding:0}.no-print{display:none}h2{break-after:avoid}.box{break-inside:avoid}}</style></head><body><h1>${escapeText(title)}</h1><p class="meta">${escapeText(subtitle)}</p><p class="status"><strong>Estado:</strong> ${escapeText(statusText)}</p>${sections.join("")}<section class="next"><strong>Cómo usar este reporte</strong><ol><li>Lee primero los elementos pendientes.</li><li>Vuelve a responder una pregunta similar sin mirar la pauta.</li><li>Si la confusión persiste, comparte este reporte con tu profesor o ayudante: contiene tu respuesta, la orientación y la evidencia necesaria para conversar.</li></ol></section><p class="no-print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p><footer>MacroLab · Este reporte es retroalimentación formativa, no una nota ni un diagnóstico definitivo. No contiene nombre ni identificador personal. Fue generado el ${escapeText(new Date().toLocaleString("es-CL"))}.</footer></body></html>`;
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(title)}</title><style>body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#172536;max-width:900px;margin:0 auto;padding:36px 24px}h1,h2{color:#12314b}h1{margin-bottom:4px}h2{font-size:1.15rem;margin-top:28px;border-bottom:2px solid #d8e5ef;padding-bottom:5px}.meta{color:#5b6b7a}.box{border:1px solid #cbd9e4;border-radius:10px;padding:14px;margin:10px 0;white-space:pre-wrap}.status{background:#eef6fc;border-left:5px solid #287ab0;padding:12px 14px}.next{background:#fff8df;border-left:5px solid #d08a00;padding:12px 14px}li{margin:.35em 0}footer{margin-top:34px;border-top:1px solid #ccd7df;padding-top:14px;color:#5b6b7a;font-size:.88rem}@media print{body{max-width:none;padding:0}.no-print{display:none}h2{break-after:avoid}.box{break-inside:avoid}}</style></head><body><h1>${escapeText(title)}</h1><p class="meta">${escapeText(subtitle)}</p><p class="status"><strong>Estado:</strong> ${escapeText(statusText)}</p>${sections.join("")}<section class="next"><strong>Cómo usar este reporte</strong><ol><li>Distingue qué partes de tu respuesta inicial se conservaron y qué ajustes añadiste.</li><li>Si queda algo pendiente, responde la pregunta específica y vuelve a la sección de lectura indicada; no reescribas lo que ya está correcto.</li><li>Después prueba una pregunta similar sin mirar la pauta. Si la dificultad persiste, comparte el reporte con tu profesor o ayudante.</li></ol></section><p class="no-print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p><footer>MacroLab · Este reporte es retroalimentación formativa, no una nota ni un diagnóstico definitivo. No contiene nombre ni identificador personal. Fue generado el ${escapeText(new Date().toLocaleString("es-CL"))}.</footer></body></html>`;
 }
 function guidedStudentReport(state,closure){
   const route=CLASS_ROUTES[activeClass],analysis=guidedAnalysis(route,state),payload=guidedPayload(state,closure),f=state.fields,probe=GUIDED_DIAGNOSTICS[activeClass].probe.options.find(([v])=>v===f.diagnosticProbe),drill=GUIDED_DRILLS[state.guidedDrillId],result=guidedPracticeResult(state);
   const observationList=analysis.items.map(x=>`<li>${escapeText(x.text)}</li>`).join("");
   const checks=result.checks.map(x=>`<li><strong>${x.ok?"Cumplido":"Pendiente"}:</strong> ${escapeText(x.label)}</li>`).join("");
   const orientation=payload.diagnosis.label||"No se asignó una categoría: el sistema conservó la incertidumbre y propuso una práctica fundamental.";
-  const revised=activeClass==="2"?`Resultados revisados: (a) ${f.revisedA||"—"}; (b) ${f.revisedB||"—"}; (c) ${f.revisedC||"—"}\n\n${f.revisedAnswer||"—"}`:String(f.revisedAnswer||"—");
+  const revised=activeClass==="2"?`Resultados revisados: (a) ${f.revisedA||"—"}; (b) ${f.revisedB||"—"}; (c) ${f.revisedC||"—"}\n\n${f.revisedAnswer||"—"}`:class1CumulativeAnswer(state);
+  const class1BaseNeeds=activeClass==="1"?class1RevisionRequirements(state,false).filter(item=>!item.ok):[];
+  const class1Additions=activeClass==="1"?class1RevisionAdditions(state):[];
+  const revisionSection=activeClass==="1"
+    ? `<h2>7. Mi respuesta final acumulada</h2><div class="box"><strong>Respuesta inicial conservada:</strong>\n${escapeText(class1OriginalAnswer(state))}\n\n<strong>Ajustes añadidos:</strong>\n${class1Additions.length?class1Additions.map(item=>`${escapeText(item.label)}: ${escapeText(item.text)}`).join("\n"):"No fue necesario volver a escribir: se mantuvo la respuesta inicial."}\n\n<strong>Respuesta que MacroLab comprobó:</strong>\n${escapeText(revised)}</div>${class1BaseNeeds.length?`<p><strong>Lecturas específicas usadas para completar:</strong></p><ul>${class1BaseNeeds.map(item=>`<li><a href="${PUBLIC_NOTES_BASE+escapeText(item.href)}">${escapeText(item.reading)}</a> — ${escapeText(item.question)}</li>`).join("")}</ul>`:`<p>La respuesta inicial ya contenía las piezas conceptuales solicitadas; la práctica comprobó su reconocimiento sin exigir una copia.</p>`}`
+    : `<h2>7. Mi respuesta revisada</h2><div class="box">${escapeText(revised)}</div>`;
   const sections=[
     `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a observación; pasaporte del dato; descripción frente a causalidad":"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB"}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
     `<h2>1. Pregunta trabajada</h2><div class="box">${escapeText(route.test.prompt)}</div>`,
@@ -1235,9 +1298,9 @@ function guidedStudentReport(state,closure){
     `<h2>4. Qué observó MacroLab</h2><ul>${observationList}</ul><p>Estas son señales de la respuesta, no una calificación automática.</p>`,
     `<h2>5. Orientación</h2><div class="box"><strong>${escapeText(orientation)}</strong>\n\nPregunta de comprobación: ${escapeText(GUIDED_DIAGNOSTICS[activeClass].probe.question)}\nMi respuesta: ${escapeText(probe?probe[1]:"—")}</div>`,
     `<h2>6. Práctica y criterio</h2><div class="box"><strong>${escapeText(drill.title)}</strong>\n${escapeText(drill.criterion)}</div><ul>${checks}</ul>`,
-    `<h2>7. Mi respuesta revisada</h2><div class="box">${escapeText(revised)}</div>`
+    revisionSection
   ];
-  const completedText=activeClass==="1"?"comprobaciones guiadas cumplidas; respuesta revisada lista para revisión docente":"criterio de esta práctica cumplido";
+  const completedText=activeClass==="1"?"comprobaciones guiadas cumplidas; respuesta acumulada lista para revisión docente":"criterio de esta práctica cumplido";
   return reportDocument({title:`Mi reporte de aprendizaje · Clase ${activeClass}`,subtitle:route.title,sections,statusText:result.passed&&closure==="rutina_completada"?completedText:"práctica pendiente; el reporte indica qué falta"});
 }
 function loopStudentReport(entry,closure){
@@ -1583,7 +1646,9 @@ function handleClassAction(action){
     unlockClassStep(5);return;
   }
   if(action==="guidedCheck"){
-    if(!validateClassFields(["revisedAnswer"]))return;
+    if(activeClass==="1"){
+      if(!validateClass1Revision(state))return;
+    }else if(!validateClassFields(["revisedAnswer"]))return;
     state.guidedChecked=true;
     const result=guidedPracticeResult(state);state.guidedPassed=result.passed;
     renderClassWorkbench();
@@ -2028,7 +2093,7 @@ function initTabs(){
    ============================================================================ */
 
 const LEARNING_SCHEMA="macrolab-learning-context/0.2";
-const LEARNING_CONTENT_VERSION="macro1-notas-2026-08-course-world-map";
+const LEARNING_CONTENT_VERSION="macro1-notas-2026-08-cumulative-revision";
 const LEARNING_LAB_VERSION="0.6.5";
 const LOOP_CLASS="3";
 const LOOP_OBJECTIVE="BIE-OBJ-MECANISMO";

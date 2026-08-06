@@ -167,7 +167,7 @@ async function main() {
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
   eq(L.LEARNING_LAB_VERSION, "0.6.5", "la versión del contexto de aprendizaje es 0.6.5");
-  eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-course-world-map", "la versión de contenido exportada coincide con el manifiesto");
+  eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-cumulative-revision", "la versión de contenido exportada coincide con el manifiesto");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
   const { window: wUx, consoleErrors: uxConsoleErrors } = bootLab();
@@ -665,7 +665,7 @@ async function main() {
   ok(/pasaporte del dato/i.test(q(w3, "#classWorkbench").textContent)&&q(w3, ".data-passport").children.length===5, "v0.6.4 · Clase 1 usa un objeto memorable con cinco casillas");
   ok(!/PNB|PNF|territorio económico/.test(q(w3, "#classWorkbench").textContent), "v0.6.4 · el desafío PIB–PNB–PNF ya no se anticipa en Clase 1");
   setField(w3, "bridgeEvidence", "projection");setField(w3, "bridgeClaim", "scenario");
-  setField(w3, "testProse", "La afirmación no se sostiene. El 2% es una proyección del IPoM para 2026 y todavía no es un resultado observado. La fuente describe un escenario; no demuestra una causa. Para atribuirla a una política se necesita un mecanismo y evidencia adicional.");
+  setField(w3, "testProse", "La afirmación entre comillas es falsa; lo que señala el IPoM es una proyección basada en supuestos. Solo puede afirmarse que, si se mantienen los supuestos de base, el PIB de Chile crecerá 2% durante 2026. A partir de esta evidencia no puede afirmarse con seguridad que esto ocurrirá ni por qué ocurrirá: faltan los detalles del mecanismo causal.");
   clickClass(w3, "test");
   ok(q(w3, ".numeric-first") !== null, "v0.6.4 · la clase 1 muestra las dos decisiones conceptuales verificables");
   ok(q(w3, ".answer-box.student") && q(w3, ".answer-box.reference"), "v0.6 · la clase 1 también compara respuesta y pauta");
@@ -673,17 +673,41 @@ async function main() {
   setField(w3, "revisionFocus", "scope");clickClass(w3, "feedback");
   setField(w3, "diagnosticProbe", "__none__");clickClass(w3, "error");
   ok(/Sin diagnóstico forzado/.test(q(w3, "#classWorkbench").textContent), "v0.6 · «ninguna» no obliga a elegir una categoría falsa");
-  ok(/Vuelve a responder la afirmación sobre el 2% proyectado/.test(q(w3, "#classWorkbench").textContent), "v0.6.4 · la reescritura identifica la pregunta original");
+  ok(/Tu respuesta inicial se conserva y cuenta/.test(q(w3, "#classWorkbench").textContent), "revisión acumulativa · la respuesta anterior permanece visible en el paso 7");
+  eq(q(w3, ".revision-gap"), null, "revisión acumulativa · no inventa faltantes cuando la respuesta inicial ya contiene las cuatro piezas");
+  ok(/Comprobar respuesta inicial \+ ajustes/.test(q(w3, '[data-class-action="guidedCheck"]').textContent), "revisión acumulativa · la acción final no pide una respuesta enteramente nueva");
   eq(L3.classState()["1"].fields.errorCode, "", "v0.6 · el respaldo registra diagnóstico nulo cuando ninguna opción corresponde");
   setField(w3, "guided_a", "projection");setField(w3, "guided_b", "passport");setField(w3, "guided_c", "scenario");setField(w3, "guided_d", "mechanism");
-  setField(w3, "revisedAnswer", "El 2% es una proyección del IPoM para el período 2026 y todavía no es un resultado observado. La fuente presenta un escenario. No demuestra qué política causó el crecimiento: para sostener una causa se necesita un mecanismo y evidencia adicional que contraste otras explicaciones.");
+  setField(w3, "revisionDecision", "keep");
   clickClass(w3, "guidedCheck");
-  ok(/Comprobaciones guiadas cumplidas/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6.1 · el cierre distingue comprobación guiada de revisión docente");
+  ok(/Comprobaciones guiadas cumplidas/.test(q(w3, "#guidedPracticeStatus").textContent), "revisión acumulativa · conservar una respuesta inicial completa satisface el criterio sin copiarla");
   const studentReport = L3.guidedStudentReport(L3.classState()["1"], "rutina_completada");
   ok(/Mi respuesta inicial/.test(studentReport) && /Pauta de contraste/.test(studentReport), "v0.6 · el reporte contiene respuesta inicial y pauta");
   ok(/Orientación/.test(studentReport) && /Práctica y criterio/.test(studentReport), "v0.6 · el reporte traduce el diagnóstico en práctica");
+  ok(/Mi respuesta final acumulada/.test(studentReport)&&/Respuesta inicial conservada/.test(studentReport)&&/No fue necesario volver a escribir/.test(studentReport), "revisión acumulativa · el reporte separa lo conservado de los ajustes");
   ok(/Cómo usar este reporte/.test(studentReport) && /window\.print/.test(studentReport), "v0.6 · el reporte explica su uso y permite imprimir o guardar PDF");
   ok(!/C1-Q-|C1-DRILL/.test(studentReport), "v0.6 · el reporte estudiantil no expone códigos internos");
+
+  // Si realmente falta una pieza, el paso 7 formula una pregunta específica y enlaza la lectura exacta.
+  const { window: w5 } = bootLab();
+  const L5 = w5.MacroLabLoop;
+  q(w5, "#entryFresh").dispatchEvent(new w5.MouseEvent("click", { bubbles: true }));
+  L5.selectClass("1");passReadingAndIndicator(w5);
+  setField(w5, "bridgeEvidence", "projection");setField(w5, "bridgeClaim", "scenario");
+  setField(w5, "testProse", "Es una proyección para 2026 y todavía no es un resultado observado; el año aún no termina.");
+  clickClass(w5, "test");setField(w5, "revisionFocus", "causality");clickClass(w5, "feedback");
+  setField(w5, "diagnosticProbe", "__unsure__");clickClass(w5, "error");
+  ok(q(w5, '[data-class-field="revision_metadata"]')&&q(w5, '[data-class-field="revision_causality"]'), "revisión dirigida · sólo aparecen preguntas para fuente/período y límite causal realmente ausentes");
+  ok(q(w5, ".revision-gap .reading-return")&&/Nota 1/.test(q(w5, ".revision-gap .reading-return").textContent), "revisión dirigida · cada faltante ofrece retorno a una sección específica");
+  ok([...w5.document.querySelectorAll(".revision-gap .reading-return")].every(link=>/nota-01-introduccion\.html#2-1/.test(link.getAttribute("href"))), "revisión dirigida · los retornos apuntan a anclas verificadas de la lectura, no a una página genérica");
+  setField(w5, "guided_a", "projection");setField(w5, "guided_b", "passport");setField(w5, "guided_c", "scenario");setField(w5, "guided_d", "mechanism");
+  setField(w5, "revisionDecision", "keep");
+  setField(w5, "revision_metadata", "La fuente es el IPoM y el período corresponde a 2026.");
+  setField(w5, "revision_causality", "Para atribuir una causa necesito un mecanismo y evidencia adicional que descarte otras explicaciones.");
+  clickClass(w5, "guidedCheck");
+  ok(/Comprobaciones guiadas cumplidas/.test(q(w5, "#guidedPracticeStatus").textContent), "revisión dirigida · los ajustes breves se evalúan junto con la respuesta inicial");
+  const directedReport=L5.guidedStudentReport(L5.classState()["1"],"rutina_completada");
+  ok(/Lecturas específicas usadas para completar/.test(directedReport)&&/Cómo leer una cifra antes de explicarla/.test(directedReport), "revisión dirigida · el reporte conserva la ruta de lectura que resolvió el faltante");
 
   /* --- 25 · P2 · consolidación sin discrepancia ----------------------------- */
   const { window: w4 } = bootLab();

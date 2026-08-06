@@ -61,6 +61,9 @@ function allTags(html, tagName) {
 function decodeRef(value) {
   return String(value).replace(/&amp;/g, "&");
 }
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 /* ---------- manifiesto ---------- */
 
@@ -132,9 +135,19 @@ if (labFile && exists(path.join(ROOT, labFile))) {
 
   for (const target of [...targets].sort()) {
     check();
-    const abs = path.join(ROOT, decodeURIComponent(target));
+    const [fileTarget,fragment] = target.split("#",2);
+    const abs = path.join(ROOT, decodeURIComponent(fileTarget));
     if (!exists(abs)) {
-      fail("1", `${labFile} enlaza a «${target}», que no existe en disco.`);
+      fail("1", `${labFile} enlaza a «${fileTarget}», que no existe en disco.`);
+      continue;
+    }
+    if(fragment){
+      check();
+      const noteHtml=stripComments(fs.readFileSync(abs,"utf8"));
+      const decodedFragment=decodeURIComponent(fragment);
+      if(!new RegExp(`\\bid\\s*=\\s*["']${escapeRegExp(decodedFragment)}["']`,"i").test(noteHtml)){
+        fail("1", `${labFile} enlaza al ancla «#${decodedFragment}» de «${fileTarget}», pero esa sección no existe.`);
+      }
     }
   }
 }
