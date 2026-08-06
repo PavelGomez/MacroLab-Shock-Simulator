@@ -106,9 +106,11 @@ const tick = (ms = 0) => new Promise(r => setTimeout(r, ms));
 function q(w, sel) { return w.document.querySelector(sel); }
 function field(w, name) { return q(w, `[data-class-field="${name}"]`); }
 function setField(w, name, value) {
-  const el = field(w, name);
+  let el = field(w, name);
+  if (!el) el = [...w.document.querySelectorAll(`[data-class-radio-field="${name}"]`)].find(node => node.value === String(value));
   if (!el) throw new Error(`campo ausente en el DOM: ${name}`);
-  el.value = String(value);
+  if (el.type === "radio") el.checked = true;
+  else el.value = String(value);
   el.dispatchEvent(new w.Event("input", { bubbles: true }));
   el.dispatchEvent(new w.Event("change", { bubbles: true }));
   return el;
@@ -164,7 +166,8 @@ async function main() {
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
-  eq(L.LEARNING_LAB_VERSION, "0.6.0", "la versión del contexto de aprendizaje es 0.6.0");
+  eq(L.LEARNING_LAB_VERSION, "0.6.5", "la versión del contexto de aprendizaje es 0.6.5");
+  eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-editorial-map", "la versión de contenido exportada coincide con el manifiesto");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
   const { window: wUx, consoleErrors: uxConsoleErrors } = bootLab();
@@ -194,6 +197,7 @@ async function main() {
   const NUM = wNum.MacroLabLoop;
   NUM.selectClass("2");
   passReadingAndIndicator(wNum);
+  setField(wNum, "bridgeFlow", "flow");setField(wNum, "bridgePib", "territory");setField(wNum, "bridgePnb", "residence");
   clickClass(wNum, "test");
   ok(/Respuesta \(a\)/.test(q(wNum, "#classActionStatus").textContent), "un número vacío ya no se interpreta como cero");
   eq(field(wNum, "answerA").getAttribute("aria-invalid"), "true", "la primera cifra vacía queda marcada");
@@ -208,6 +212,8 @@ async function main() {
   L.selectClass("3");
   passReadingAndIndicator(w);
   ok(/Paso 3 de 6/.test(stepText(w)), "la rutina llega al paso 3 (predicción) de la clase 3");
+  ok(/La lectura presentó/.test(q(w, ".journey-map").textContent)&&/La ficha te hizo observar/.test(q(w, ".journey-map").textContent)&&/Ahora vas a hacer/.test(q(w, ".journey-map").textContent),
+    "v0.6.2 · la Clase 3 explicita lectura, evidencia y tarea siguiente sin atribuir dominio");
 
   /* --- 3 · rechazo del lanzamiento sin predicción --------------------------- */
   const launch = q(w, '[data-loop-action="launch"]');
@@ -588,13 +594,30 @@ async function main() {
   const { window: w3 } = bootLab();
   const L3 = w3.MacroLabLoop;
   q(w3, "#entryFresh").dispatchEvent(new w3.MouseEvent("click", { bubbles: true }));
+  // La portada separa funciones editoriales y ubica al alumno en el horizonte.
+  ok(q(w3, ".course-horizon")&&q(w3, ".horizon-stop.current"), "v0.6.4 · cada clase muestra la ubicación del alumno");
+  ok(q(w3, ".prep-sequence").querySelectorAll(".prep-group").length===4, "v0.6.4 · la preparación se divide en enganche, teoría, operación y consulta");
+  ok(/Crónica de apertura/.test(q(w3, ".prep-sequence").textContent)&&/Notas de Estudio clave/.test(q(w3, ".prep-sequence").textContent)&&/Guías y actividades/.test(q(w3, ".prep-sequence").textContent), "v0.6.4 · las naturalezas de las lecturas no aparecen mezcladas");
+  ok(q(w3, "#globalEditorialMap")&&q(w3, "#globalEditorialMap").querySelectorAll(".editorial-map-cell").length===20, "v0.6.5 · la ruta muestra una matriz global de tres clases y cuatro estaciones");
+  ok(/Mapa global de Macro 1/.test(q(w3, "#globalEditorialMap").textContent)&&/Enganche/.test(q(w3, "#globalEditorialMap").textContent)&&/Desafío/.test(q(w3, "#globalEditorialMap").textContent), "v0.6.5 · la arquitectura común es visible antes de elegir una clase");
+  eq(q(w3, ".editorial-map-grid").getAttribute("role"), "table", "v0.6.5 · el mapa global expone semántica de tabla");
+  eq(q(w3, ".horizon-stop.current").getAttribute("aria-current"), "step", "v0.6.5 · la ubicación actual también se comunica sin depender del CSS");
+  const chronicle3=fs.readFileSync(path.join(__dirname,"notas","cronica-clase3-chile-2026.html"),"utf8");
+  ok(/inventario final cayó de diez a dos/.test(chronicle3)&&/reducción no planeada de ocho/.test(chronicle3), "v0.6.5 · la crónica mantiene consistente producción, ventas e inventario");
+  ok(!/Ahorro e importaciones, entre otras fugas/.test(chronicle3), "v0.6.5 · la crónica no mezcla economía abierta con el desafío cerrado inmediato");
   L3.selectClass("2");
   passReadingAndIndicator(w3);
+  ok(/Nota 3 introdujo PIB, PNB y PNF/.test(q(w3, ".journey-map").textContent)&&/La ficha precisó/.test(q(w3, ".journey-map").textContent),
+    "v0.6.4 · la transición de Clase 2 identifica teoría y ficha como antecedentes distintos");
+  const tankFigure=q(w3, ".tank-figure");
+  ok(tankFigure&&tankFigure.querySelector('svg[role="img"] title')&&tankFigure.querySelector('svg[role="img"] desc'), "v0.6.4 · el tanque vive en Clase 2 y mantiene accesibilidad");
+  setField(w3, "bridgeFlow", "flow");setField(w3, "bridgePib", "territory");setField(w3, "bridgePnb", "residence");
   // 5,06 es el crecimiento NOMINAL; el real es 2,00. La respuesta menciona los
   // elementos correctos (canasta, consumo, deflactor) pero la cifra está mal.
   setField(w3, "answerA", "5.06");
   setField(w3, "answerB", "103");
-  setField(w3, "testMechanism", "El deflactor cubre toda la producción interna y el IPC sigue una canasta de consumo fija.");
+  setField(w3, "answerC", "192");
+  setField(w3, "testMechanism", "El deflactor es un índice de la producción interna y el IPC sigue una canasta de consumo. El PNF es un flujo de ingresos, no el stock acumulado de inversión. El PIB usa territorio y el PNB residencia.");
   clickClass(w3, "test");
   const numericBlock = q(w3, "#numericError");
   ok(numericBlock !== null, "P1.1 · una respuesta con cálculo incorrecto muestra un bloque de error numérico");
@@ -610,8 +633,8 @@ async function main() {
   ok(/Lo que el sistema puede observar/.test(q(w3, ".diagnostic-observations").textContent),
     "v0.6 · las señales se presentan como observaciones y no como puntaje de palabras");
   const report2 = L3.scoreClassTest();
-  eq(L3.splitChecks(report2).numeric.length, 2, "P1.1 · los dos cálculos se clasifican como verificables");
-  ok(L3.splitChecks(report2).verbal.length >= 2, "P1.1 · las señales por palabras clave se clasifican como verbales");
+  eq(L3.splitChecks(report2).numeric.length, 3, "v0.6.4 · crecimiento, deflactor y PNB se clasifican como verificables");
+  ok(L3.splitChecks(report2).verbal.length >= 4, "v0.6.4 · las señales verbales cubren precios y PIB–PNB–PNF");
   // El paso 4 pide un foco comprensible y el 5 una pregunta discriminante.
   clickClass(w3, "feedback");
   ok(/Primer foco de revisión/i.test(q(w3, "#classActionStatus").textContent), "v0.6 · sin foco de revisión no se avanza");
@@ -624,27 +647,33 @@ async function main() {
   clickClass(w3, "error");
   ok(/Paso 6 de 6/.test(stepText(w3)), "v0.6 · la respuesta diagnóstica asigna una práctica coherente");
   setField(w3, "guided_a", "above");setField(w3, "guided_b", "previous");
-  setField(w3, "revisedA", "2");setField(w3, "revisedB", "103");
-  setField(w3, "revisedAnswer", "El deflactor es un índice de la producción interna; el IPC usa una canasta y la inflación es una tasa entre períodos.");
+  setField(w3, "revisedA", "2");setField(w3, "revisedB", "103");setField(w3, "revisedC", "192");
+  setField(w3, "revisedAnswer", "El deflactor es un índice de la producción interna; el IPC usa una canasta y la inflación es una tasa entre períodos. El PIB usa territorio y el PNB residencia. El PNF es un flujo de ingresos del período, no el stock acumulado de inversión extranjera.");
   clickClass(w3, "guidedCheck");
   ok(/Criterio cumplido/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6 · la práctica se decide por evidencia observable");
-  ok(/reporte/.test(q(w3, '[data-class-action="export"]').textContent), "v0.6 · la salida principal es un reporte legible");
+  ok(q(w3, '[data-class-action="export"]')&&/reporte/.test(q(w3, '[data-class-action="export"]').textContent), "v0.6 · la salida principal es un reporte legible");
   ok(/Respaldo técnico opcional/.test(q(w3, "#classWorkbench").textContent), "v0.6 · el JSON queda explícitamente como respaldo opcional");
 
-  // La clase 1 admite «ninguna» sin registrar un error forzado y asigna fundamentos.
+  // La Clase 1 se concentra ahora en lectura de evidencia y causalidad.
   L3.selectClass("1");
   passReadingAndIndicator(w3);
-  setField(w3, "testProse", "El PIB incluye toda la inversión extranjera realizada en el país y el PNB es la riqueza acumulada por los residentes en el exterior.");
+  ok(/pasaporte del dato/i.test(q(w3, "#classWorkbench").textContent)&&q(w3, ".data-passport").children.length===5, "v0.6.4 · Clase 1 usa un objeto memorable con cinco casillas");
+  ok(!/PNB|PNF|territorio económico/.test(q(w3, "#classWorkbench").textContent), "v0.6.4 · el desafío PIB–PNB–PNF ya no se anticipa en Clase 1");
+  setField(w3, "bridgeEvidence", "projection");setField(w3, "bridgeClaim", "scenario");
+  setField(w3, "testProse", "La afirmación no se sostiene. El 2% es una proyección del IPoM para 2026 y todavía no es un resultado observado. La fuente describe un escenario; no demuestra una causa. Para atribuirla a una política se necesita un mecanismo y evidencia adicional.");
   clickClass(w3, "test");
-  eq(q(w3, "#numericError"), null, "P1.1 · en la clase 1 no hay bloque numérico porque no hay cálculo verificable");
+  ok(q(w3, ".numeric-first") !== null, "v0.6.4 · la clase 1 muestra las dos decisiones conceptuales verificables");
   ok(q(w3, ".answer-box.student") && q(w3, ".answer-box.reference"), "v0.6 · la clase 1 también compara respuesta y pauta");
-  setField(w3, "revisionFocus", "stockflow");clickClass(w3, "feedback");
+  ok(/Reconociste que el 2% pertenece a una proyección/.test(q(w3, ".diagnostic-observations").textContent), "v0.6.4 · se reconoce la lectura correcta del estado de la cifra");
+  setField(w3, "revisionFocus", "scope");clickClass(w3, "feedback");
   setField(w3, "diagnosticProbe", "__none__");clickClass(w3, "error");
   ok(/Sin diagnóstico forzado/.test(q(w3, "#classWorkbench").textContent), "v0.6 · «ninguna» no obliga a elegir una categoría falsa");
+  ok(/Vuelve a responder la afirmación sobre el 2% proyectado/.test(q(w3, "#classWorkbench").textContent), "v0.6.4 · la reescritura identifica la pregunta original");
   eq(L3.classState()["1"].fields.errorCode, "", "v0.6 · el respaldo registra diagnóstico nulo cuando ninguna opción corresponde");
-  setField(w3, "guided_a", "flow");setField(w3, "guided_b", "boundary");
-  setField(w3, "revisedAnswer", "La afirmación es falsa: PIB usa territorio, PNB residencia y el PNF es un flujo neto de ingresos con el exterior.");
+  setField(w3, "guided_a", "projection");setField(w3, "guided_b", "passport");setField(w3, "guided_c", "scenario");setField(w3, "guided_d", "mechanism");
+  setField(w3, "revisedAnswer", "El 2% es una proyección del IPoM para el período 2026 y todavía no es un resultado observado. La fuente presenta un escenario. No demuestra qué política causó el crecimiento: para sostener una causa se necesita un mecanismo y evidencia adicional que contraste otras explicaciones.");
   clickClass(w3, "guidedCheck");
+  ok(/Comprobaciones guiadas cumplidas/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6.1 · el cierre distingue comprobación guiada de revisión docente");
   const studentReport = L3.guidedStudentReport(L3.classState()["1"], "rutina_completada");
   ok(/Mi respuesta inicial/.test(studentReport) && /Pauta de contraste/.test(studentReport), "v0.6 · el reporte contiene respuesta inicial y pauta");
   ok(/Orientación/.test(studentReport) && /Práctica y criterio/.test(studentReport), "v0.6 · el reporte traduce el diagnóstico en práctica");

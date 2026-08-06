@@ -284,6 +284,14 @@ if (version && !labSource.includes(version)) {
   fail("8", `${labFile}: la versión ${version} del manifiesto no aparece declarada en el documento.`);
 }
 check();
+{
+  const contentMatch=labSource.match(/const\s+LEARNING_CONTENT_VERSION\s*=\s*"([^"]+)"/);
+  const exportedContent=contentMatch&&contentMatch[1];
+  if(manifest&&exportedContent!==manifest.content_version){
+    fail("8", `${labFile}: LEARNING_CONTENT_VERSION (${exportedContent||"ausente"}) no coincide con content_version del manifiesto (${manifest.content_version}).`);
+  }
+}
+check();
 if (!/versión 0\.5\.1/.test(labSource) && !new RegExp(`versión ${String(version).replace(/\./g, "\\.")}`).test(labSource)) {
   fail("8", `${labFile}: el pie no declara la versión del paquete.`);
 }

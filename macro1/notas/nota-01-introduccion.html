@@ -100,6 +100,11 @@ th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
 caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
 
 mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.pasaporte{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.55rem;margin:1.2rem 0}
+.pasaporte div{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:.75rem;font-size:.88rem}
+.pasaporte strong{display:block;color:var(--accent);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
+.clave-memoria{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.4rem 0}
+@media(max-width:680px){.pasaporte{grid-template-columns:1fr 1fr}.pasaporte div:last-child{grid-column:1/-1}}
 
 footer{
   border-top:1px solid var(--line);background:var(--card);
@@ -164,6 +169,9 @@ footer .disclaimer{color:var(--muted)}
   <ol>
     <li><a href="#1-introduccion-crisis-y-recuperacion-en-la-vida-de-los-herma">1. Introducción: Crisis y Recuperación en la Vida de los Hermanos González</a></li>
     <li><a href="#2-que-estudia-la-macroeconomia">2. ¿Qué Estudia la Macroeconomía?</a></li>
+    <li><a href="#2-1-como-leer-una-cifra">2.1. Cómo leer una cifra antes de explicarla</a>
+      <ol class="sub"><li><a href="#2-1-1-pasaporte-dato">El pasaporte del dato</a></li><li><a href="#2-1-2-flujo-stock">Flujo y stock: período o fecha</a></li></ol>
+    </li>
     <li><a href="#3-variables-clave-en-macroeconomia">3. Variables Clave en Macroeconomía</a>
       <ol class="sub">
         <li><a href="#31-producto-interno-bruto-pib">3.1. Producto Interno Bruto (PIB)</a></li>
@@ -196,6 +204,27 @@ footer .disclaimer{color:var(--muted)}
 <p>La historia de los hermanos González ilustra cómo las variables macroeconómicas —el PIB, la inflación, el desempleo— afectan la vida de las personas. Frente a esta breve historia surge una pregunta clave: ¿qué factores determinan estos cambios? Esta y otras preguntas similares serán respondidas a lo largo de nuestro curso, para dominar conceptos y relaciones, e identificar las claves del entorno macroeconómico en el que deben tomar decisiones tanto las empresas como las familias.</p>
 <p>La <strong>macroeconomía </strong>estudia el comportamiento agregado de los mercados, los hogares y las empresas, centrándose en variables clave como el crecimiento, la inflación y el desempleo. Algunas preguntas más específicas que aborda la macroeconomía incluyen:</p>
 <ul><li>¿Qué determina los niveles de variables económicas como el PIB y la inflación?</li><li>¿Cómo cambian estas variables en el corto y mediano plazo?</li><li>¿Cómo influyen las políticas monetaria y fiscal en estos cambios?</li></ul>
+<h2 id="2-1-como-leer-una-cifra">2.1. Cómo leer una cifra antes de explicarla</h2>
+<p>En macroeconomía, un número aislado rara vez basta. Antes de preguntar <em>por qué</em> cambió, hay que saber exactamente <em>qué</em> número es. Esta separación evita confundir un resultado observado con una estimación o una proyección y evita atribuir una causa que la cifra no demuestra.</p>
+<h3 id="2-1-1-pasaporte-dato">El pasaporte del dato</h3>
+<div class="clave-memoria"><strong>Gancho de memoria:</strong> un número sin identidad es un número suelto. Pídele siempre su pasaporte.</div>
+<div class="pasaporte" aria-label="Cinco casillas del pasaporte de un dato">
+  <div><strong>Qué</strong>Nombre exacto de la variable.</div><div><strong>Cuánto</strong>Valor y unidad de medida.</div><div><strong>Cuándo</strong>Período y frecuencia.</div><div><strong>Estado</strong>Observado, estimado o proyectado.</div><div><strong>Origen</strong>Fuente y fecha de consulta.</div>
+</div>
+<p>Por ejemplo, “2%” no informa todavía si se trata de crecimiento mensual o anual, observado o proyectado, del PIB total o del PIB por habitante. “El IPoM proyecta un crecimiento anual del PIB de 2% para 2026” ya permite identificar un escenario publicado. Todavía no permite afirmar que el crecimiento ocurrió ni que una política específica lo causó.</p>
+<h3 id="2-1-2-flujo-stock">Flujo y stock: período o fecha</h3>
+<figure>
+  <svg viewBox="0 0 760 300" role="img" aria-labelledby="n1TankTitle n1TankDesc" style="display:block;width:100%;height:auto">
+    <title id="n1TankTitle">Tanque para distinguir flujo y stock</title><desc id="n1TankDesc">La entrada y la salida muestran cantidades que se mueven durante un período. El nivel dentro del tanque muestra una cantidad existente en una fecha.</desc>
+    <defs><marker id="n1Arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#2d6ea3"/></marker></defs>
+    <text x="18" y="34" font-family="Inter, sans-serif" font-weight="700" fill="#0f2740">Entrada durante el período</text><path d="M25 100 H245" stroke="#2d6ea3" stroke-width="12" fill="none" marker-end="url(#n1Arrow)"/>
+    <rect x="260" y="65" width="240" height="185" rx="10" fill="#f8fbfd" stroke="#0f2740" stroke-width="5"/><rect x="270" y="155" width="220" height="85" fill="#9fd3f3"/><line x1="270" y1="155" x2="490" y2="155" stroke="#2d6ea3" stroke-width="3" stroke-dasharray="8 5"/>
+    <text x="380" y="187" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" fill="#0f2740">Nivel en una fecha</text><text x="380" y="211" text-anchor="middle" font-family="Inter, sans-serif" fill="#556676">stock</text>
+    <path d="M500 210 H720" stroke="#2d6ea3" stroke-width="12" fill="none" marker-end="url(#n1Arrow)"/><text x="515" y="265" font-family="Inter, sans-serif" font-weight="700" fill="#0f2740">Salida durante el período</text>
+  </svg>
+  <figcaption>Lo que pasa por una conexión durante un período es un flujo; el nivel existente en una fecha es un stock.</figcaption>
+</figure>
+<p>Un sueldo recibido durante julio, el PIB producido durante 2026 y la inversión realizada durante un año son flujos. El saldo bancario al 31 de julio, el capital instalado al cierre del año y la inversión extranjera acumulada en una fecha son stocks. La Nota de Estudio 3 añadirá otra pregunta distinta: si el agregado se organiza por <strong>territorio</strong> o por <strong>residencia económica</strong>.</p>
 <h2 id="3-variables-clave-en-macroeconomia">3. Variables Clave en Macroeconomía</h2>
 <h3 id="31-producto-interno-bruto-pib">3.1. Producto Interno Bruto (PIB)</h3>
 <p>El PIB mide el valor total de bienes y servicios <strong>finales </strong>producidos <strong>dentro de las fronteras de un país </strong>en un período determinado. Existen dos formas principales de medirlo:</p>
@@ -263,7 +292,7 @@ footer .disclaimer{color:var(--muted)}
     <p class="who">Macroeconomía &middot; Profesor Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
     <p><strong>Material docente de Macroeconomía I. Herramienta de aprendizaje, no de predicción.</strong></p>
     <p>Nota de Estudio 1 &middot; Macroeconomía I &middot; Prof. Pável Gómez &middot; Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae.</p>
-    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.6.0. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
+    <p class="disclaimer">MacroLab &middot; Macro 1 &mdash; extensión docente, versión 0.6.5. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p>
   </div>
 </footer>
 </body>
