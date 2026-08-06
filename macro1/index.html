@@ -208,6 +208,23 @@
   .editorial-map-head h3{margin:0 0 4px;color:var(--navy)}
   .editorial-map-head p{margin:0;color:var(--muted);font-size:.86rem;max-width:760px}
   .editorial-map-head .class-source{flex:0 0 auto}
+  .world-map{margin:0 0 18px;padding:14px;border:1px solid #a9cde6;border-radius:14px;background:#fff}
+  .world-map-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:11px}
+  .world-map-head h4{margin:0 0 3px;color:var(--navy);font-size:1rem}
+  .world-map-head p{margin:0;color:var(--muted);font-size:.8rem;max-width:800px}
+  .world-track{display:grid;grid-template-columns:repeat(7,minmax(135px,1fr));gap:8px;list-style:none;padding:0;margin:0}
+  .world-stop{position:relative;border:1px solid var(--line);border-top:5px solid #aebdca;border-radius:11px;background:#f8fafc;padding:9px;min-width:0;font-size:.72rem}
+  .world-stop::after{content:"→";position:absolute;right:-9px;top:38%;z-index:2;color:#7e93a5;font-size:1rem;font-weight:900}
+  .world-stop:last-child::after{display:none}
+  .world-stop.available{border-top-color:var(--accent);background:#f5faff}
+  .world-stop.current{border:2px solid var(--accent);border-top-width:5px;background:#eaf4fb;box-shadow:0 0 0 3px rgba(45,110,163,.12)}
+  .world-stop strong{display:block;color:var(--navy);font-size:.75rem;margin:3px 0}
+  .world-stop p{margin:0;color:var(--muted)}
+  .world-status{display:block;color:#687887;font-size:.62rem;font-weight:900;letter-spacing:.05em;text-transform:uppercase}
+  .world-stop.current .world-status{color:var(--accent)}
+  .detail-map-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin:0 0 10px}
+  .detail-map-head h4{margin:0 0 3px;color:var(--navy)}
+  .detail-map-head p{margin:0;color:var(--muted);font-size:.8rem}
   .editorial-map-grid{display:grid;grid-template-columns:130px repeat(4,minmax(0,1fr));gap:7px;align-items:stretch}
   .editorial-map-row{display:contents}
   .editorial-map-cell{border:1px solid var(--line);border-radius:10px;background:#fff;padding:9px;min-width:0;font-size:.76rem}
@@ -217,6 +234,8 @@
   .editorial-map-cell.header strong{color:#fff;margin:0}
   .editorial-map-cell.class-label{background:#eaf4fb;border-color:#c9deef}
   .editorial-map-cell.class-label span{color:var(--accent);font-weight:800}
+  .editorial-map-row.current .editorial-map-cell{border-color:var(--accent)}
+  .editorial-map-row.current .editorial-map-cell.class-label{background:#dceefb;box-shadow:inset 4px 0 0 var(--accent)}
   .editorial-map-cell.challenge{border-left:4px solid var(--orange);background:#fffaf0}
   .editorial-map-caption{margin:10px 0 0;color:var(--muted);font-size:.78rem}
   .memory-anchor{border:1px solid #e7c985;border-left:5px solid var(--orange);border-radius:12px;background:#fffaf0;padding:13px;margin:12px 0}
@@ -331,6 +350,7 @@
     .items{grid-template-columns:1fr}
     .prep-sequence{grid-template-columns:repeat(2,minmax(0,1fr))}
     .editorial-map-grid{grid-template-columns:110px repeat(4,minmax(145px,1fr));overflow-x:auto;padding-bottom:5px}
+    .world-track{overflow-x:auto;padding-bottom:6px}
   }
   @media(max-width:580px){
     .hero{padding:24px 16px 22px}.hero-actions .btn,.hero-actions a{width:100%;justify-content:center}
@@ -1305,7 +1325,7 @@ function renderCourseHorizon(){
     {id:"2",title:"Medir la economía",text:"Actividad, ingreso, precios e índices."},
     {id:"3",title:"Explicar el ajuste",text:"Conducta, equilibrio, inventarios y multiplicador."}
   ];
-  return `<section class="course-horizon" aria-label="Ubicación en el recorrido"><strong>Tu mapa del curso: dónde estás y qué habilita este tramo</strong><div class="horizon-track">${stops.map(stop=>{const current=stop.id===String(activeClass);return `<div class="horizon-stop ${current?"current":""}"${current?' aria-current="step"':""}>${current?'<span class="sr-only">Ubicación actual: </span>':""}<strong>Clase ${stop.id} · ${escapeText(stop.title)}</strong><span>${escapeText(stop.text)}</span></div>`}).join("")}</div></section>`;
+  return `<section class="course-horizon" aria-label="Ubicación dentro del tramo inicial"><strong>Tu ubicación dentro del tramo inicial: Clases 1–3</strong><div class="horizon-track">${stops.map(stop=>{const current=stop.id===String(activeClass);return `<div class="horizon-stop ${current?"current":""}"${current?' aria-current="step"':""}>${current?'<span class="sr-only">Ubicación actual: </span>':""}<strong>Clase ${stop.id} · ${escapeText(stop.title)}</strong><span>${escapeText(stop.text)}</span></div>`}).join("")}</div></section>`;
 }
 function renderPreparationGroup(group){
   return `<section class="prep-group ${group.required?"required":"optional"}"><span class="prep-order">${escapeText(group.order)}</span><h5>${escapeText(group.title)}</h5><p class="prep-purpose">${escapeText(group.purpose)}</p><ul>${(group.items||[]).map(renderClassSource).join("")}</ul></section>`;
@@ -1320,12 +1340,28 @@ function renderGlobalEditorialMap(){
     2:"Calcular e interpretar PIB, PNB, PNF, deflactor e IPC.",
     3:"Reconstruir equilibrio, multiplicador y ajuste por inventarios."
   };
+  const territories=[
+    {id:"evidence",title:"Entrada · Leer evidencia",text:"Fuentes, agregados y límites de una cifra.",classId:"1"},
+    {id:"measurement",title:"1 · Medición",text:"PIB, PNB, IPC, deflactor y crecimiento.",classId:"2"},
+    {id:"goods",title:"2 · Bienes",text:"Gasto, inventarios y multiplicador.",classId:"3"},
+    {id:"money",title:"3 · Dinero",text:"Bonos, tasa y equilibrio monetario."},
+    {id:"islm",title:"4 · IS–LM",text:"Equilibrio simultáneo y trayectoria."},
+    {id:"open",title:"5 · Economía abierta",text:"Tipo de cambio, sector externo y régimen."},
+    {id:"oada",title:"6 · Trabajo y OA–DA",text:"Empleo, precios, producto potencial y horizontes."}
+  ];
+  const currentTerritory={1:"evidence",2:"measurement",3:"goods"}[activeClass];
+  const worldStops=territories.map(place=>{
+    const current=place.id===currentTerritory,available=Boolean(place.classId);
+    const status=current?"Usted está aquí":available?"Tramo disponible":"Más adelante";
+    return `<li class="world-stop ${current?"current":available?"available":"future"}"${current?' aria-current="step"':""}><span class="world-status">${status}</span><strong>${escapeText(place.title)}</strong><p>${escapeText(place.text)}</p></li>`;
+  }).join("");
   const rows=[`<div class="editorial-map-row" role="row"><div class="editorial-map-cell header" role="columnheader"><strong>Clase</strong></div>${stageNames.map(name=>`<div class="editorial-map-cell header" role="columnheader"><strong>${escapeText(name)}</strong></div>`).join("")}</div>`];
   Object.entries(CLASS_ROUTES).forEach(([id,route])=>{
+    const current=id===String(activeClass);
     const required=route.preparation.filter(group=>group.required).map(group=>`<div class="editorial-map-cell" role="cell"><strong>${escapeText(group.title)}</strong><span>${escapeText(group.purpose)}</span></div>`).join("");
-    rows.push(`<div class="editorial-map-row" role="row"><div class="editorial-map-cell class-label" role="rowheader"><strong>Clase ${id}</strong><span>${escapeText(classLabels[id])}</span></div>${required}<div class="editorial-map-cell challenge" role="cell"><strong>Pregunta + práctica</strong><span>${escapeText(challengeLabels[id])}</span></div></div>`);
+    rows.push(`<div class="editorial-map-row ${current?"current":""}" role="row"><div class="editorial-map-cell class-label" role="rowheader"${current?' aria-current="step"':""}>${current?'<span class="world-status">Usted está aquí</span>':""}<strong>Clase ${id}</strong><span>${escapeText(classLabels[id])}</span></div>${required}<div class="editorial-map-cell challenge" role="cell"><strong>Pregunta + práctica</strong><span>${escapeText(challengeLabels[id])}</span></div></div>`);
   });
-  host.innerHTML=`<div class="editorial-map-head"><div><h3 id="globalEditorialMapTitle">Mapa global de Macro 1</h3><p>Lee cada fila de izquierda a derecha. Todas las clases repiten la misma arquitectura: una situación que abre la pregunta, teoría para nombrarla, una guía para operar y un desafío que produce evidencia de aprendizaje.</p></div><span class="class-source">3 clases · 4 estaciones comunes</span></div><div class="editorial-map-grid" role="table" aria-label="Arquitectura editorial de las clases 1 a 3">${rows.join("")}</div><p class="editorial-map-caption"><strong>La bibliografía y los bancos de preguntas quedan fuera de esta secuencia:</strong> son consulta o profundización, no una cuarta lectura obligatoria antes de comenzar.</p>`;
+  host.innerHTML=`<div class="editorial-map-head"><div><h3 id="globalEditorialMapTitle">Mapamundi de Macro 1: el curso completo</h3><p>Este mapa muestra el horizonte curricular, no el número exacto de clases: cada territorio puede abarcar varias sesiones. El detalle disponible hoy cubre únicamente las Clases 1–3.</p></div><span class="class-source">entrada + 6 territorios</span></div><section class="world-map" aria-labelledby="worldMapTitle"><div class="world-map-head"><div><h4 id="worldMapTitle">De leer una cifra a explicar la economía</h4><p>La ubicación cambia cuando eliges una clase del tramo disponible.</p></div></div><ol class="world-track">${worldStops}</ol></section><div class="detail-map-head"><div><h4>Vista ampliada del tramo inicial disponible</h4><p>Clases 1–3 · todas repiten cuatro estaciones editoriales. Esta tabla no representa el final del curso.</p></div><span class="class-source">detalle, no curso completo</span></div><div class="editorial-map-grid" role="table" aria-label="Arquitectura editorial del tramo inicial, clases 1 a 3">${rows.join("")}</div><p class="editorial-map-caption"><strong>La bibliografía y los bancos de preguntas quedan fuera de esta secuencia:</strong> son consulta o profundización, no una cuarta lectura obligatoria antes de comenzar.</p>`;
 }
 function renderClassOverview(){
   const route=CLASS_ROUTES[activeClass];
@@ -1574,6 +1610,7 @@ function handleClassAction(action){
 }
 function selectClass(id,moveFocus=false){
   activeClass=String(id);
+  renderGlobalEditorialMap();
   document.querySelectorAll("[data-class]").forEach(btn=>{
     const selected=btn.dataset.class===activeClass;
     btn.setAttribute("aria-selected",String(selected));
@@ -1991,7 +2028,7 @@ function initTabs(){
    ============================================================================ */
 
 const LEARNING_SCHEMA="macrolab-learning-context/0.2";
-const LEARNING_CONTENT_VERSION="macro1-notas-2026-08-editorial-map";
+const LEARNING_CONTENT_VERSION="macro1-notas-2026-08-course-world-map";
 const LEARNING_LAB_VERSION="0.6.5";
 const LOOP_CLASS="3";
 const LOOP_OBJECTIVE="BIE-OBJ-MECANISMO";

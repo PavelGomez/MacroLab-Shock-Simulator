@@ -167,7 +167,7 @@ async function main() {
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
   eq(L.LEARNING_LAB_VERSION, "0.6.5", "la versión del contexto de aprendizaje es 0.6.5");
-  eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-editorial-map", "la versión de contenido exportada coincide con el manifiesto");
+  eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-course-world-map", "la versión de contenido exportada coincide con el manifiesto");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
   const { window: wUx, consoleErrors: uxConsoleErrors } = bootLab();
@@ -599,13 +599,18 @@ async function main() {
   ok(q(w3, ".prep-sequence").querySelectorAll(".prep-group").length===4, "v0.6.4 · la preparación se divide en enganche, teoría, operación y consulta");
   ok(/Crónica de apertura/.test(q(w3, ".prep-sequence").textContent)&&/Notas de Estudio clave/.test(q(w3, ".prep-sequence").textContent)&&/Guías y actividades/.test(q(w3, ".prep-sequence").textContent), "v0.6.4 · las naturalezas de las lecturas no aparecen mezcladas");
   ok(q(w3, "#globalEditorialMap")&&q(w3, "#globalEditorialMap").querySelectorAll(".editorial-map-cell").length===20, "v0.6.5 · la ruta muestra una matriz global de tres clases y cuatro estaciones");
-  ok(/Mapa global de Macro 1/.test(q(w3, "#globalEditorialMap").textContent)&&/Enganche/.test(q(w3, "#globalEditorialMap").textContent)&&/Desafío/.test(q(w3, "#globalEditorialMap").textContent), "v0.6.5 · la arquitectura común es visible antes de elegir una clase");
+  ok(/Mapamundi de Macro 1: el curso completo/.test(q(w3, "#globalEditorialMap").textContent)&&/Esta tabla no representa el final del curso/.test(q(w3, "#globalEditorialMap").textContent), "mapamundi · distingue el curso completo del detalle de clases 1–3");
+  eq(q(w3, ".world-track").querySelectorAll(".world-stop").length, 7, "mapamundi · muestra la entrada y los seis territorios curriculares");
+  ok(/Entrada · Leer evidencia/.test(q(w3, ".world-stop.current").textContent)&&/Usted está aquí/i.test(q(w3, ".world-stop.current").textContent), "mapamundi · Clase 1 ubica al alumno en la entrada del curso");
+  ok(/Clase 1/.test(q(w3, ".editorial-map-row.current").textContent), "detalle · la fila actual replica la ubicación del mapamundi");
   eq(q(w3, ".editorial-map-grid").getAttribute("role"), "table", "v0.6.5 · el mapa global expone semántica de tabla");
   eq(q(w3, ".horizon-stop.current").getAttribute("aria-current"), "step", "v0.6.5 · la ubicación actual también se comunica sin depender del CSS");
   const chronicle3=fs.readFileSync(path.join(__dirname,"notas","cronica-clase3-chile-2026.html"),"utf8");
   ok(/inventario final cayó de diez a dos/.test(chronicle3)&&/reducción no planeada de ocho/.test(chronicle3), "v0.6.5 · la crónica mantiene consistente producción, ventas e inventario");
   ok(!/Ahorro e importaciones, entre otras fugas/.test(chronicle3), "v0.6.5 · la crónica no mezcla economía abierta con el desafío cerrado inmediato");
   L3.selectClass("2");
+  ok(/1 · Medición/.test(q(w3, ".world-stop.current").textContent), "mapamundi · el marcador se mueve al seleccionar Clase 2");
+  ok(/Clase 2/.test(q(w3, ".editorial-map-row.current").textContent), "detalle · la fila actual se mueve junto con el mapamundi");
   passReadingAndIndicator(w3);
   ok(/Nota 3 introdujo PIB, PNB y PNF/.test(q(w3, ".journey-map").textContent)&&/La ficha precisó/.test(q(w3, ".journey-map").textContent),
     "v0.6.4 · la transición de Clase 2 identifica teoría y ficha como antecedentes distintos");
