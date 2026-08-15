@@ -347,6 +347,23 @@
   .coverage{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fff}
   .coverage .count{display:block;color:var(--navy);font-weight:750;font-size:.95rem;font-variant-numeric:tabular-nums}
   .coverage ul.chain li{color:var(--muted)}
+  /* Capa pedagógica: transforma las comprobaciones base sin volver a puntuar. */
+  .ped-feedback{display:grid;gap:14px;margin:14px 0 18px}
+  .feedback-summary{border:1px solid #bfd4e4;border-left:6px solid var(--accent);border-radius:12px;padding:15px 17px;background:#f4f9fc}
+  .feedback-summary[data-result="logrado"]{border-left-color:var(--green);background:#f1faf4}
+  .feedback-summary[data-result="por_mejorar"]{border-left-color:var(--orange);background:#fff9e9}
+  .feedback-summary dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:5px 14px;margin:10px 0 0}
+  .feedback-summary dt{font-weight:850;color:var(--navy)}.feedback-summary dd{margin:0}
+  .criterion-feedback{border:1px solid var(--line);border-radius:12px;padding:15px;background:#fff}
+  .criterion-feedback h4{margin:0 0 10px;color:var(--navy)}
+  .criterion-feedback[data-status="logrado"]{border-left:5px solid var(--green)}
+  .criterion-feedback[data-status="parcialmente_logrado"]{border-left:5px solid var(--orange)}
+  .criterion-feedback[data-status="por_mejorar"],.criterion-feedback[data-status="incierto"]{border-left:5px solid #a34b40}
+  .criterion-feedback dl{display:grid;grid-template-columns:minmax(150px,190px) minmax(0,1fr);gap:8px 14px;margin:0}
+  .criterion-feedback dt{font-weight:850;color:var(--navy)}.criterion-feedback dd{margin:0;overflow-wrap:anywhere}
+  .criterion-feedback blockquote{margin:0;padding:8px 11px;border-left:3px solid #9bb6ca;background:#f5f8fb}
+  .criterion-state{display:inline-block;margin-left:7px;border-radius:999px;padding:2px 9px;font-size:.72rem;font-weight:850;background:#edf2f6;color:var(--muted)}
+  .feedback-base-details{margin-top:8px}
   /* P1.7 · Puerta de entrada de la ruta: comenzar sin registro o continuar con ficha. */
   .entry-gate{background:#f8fbfd;border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:18px}
   .entry-gate h3{margin-bottom:6px}
@@ -356,6 +373,7 @@
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   @media(max-width:900px){
     .orientation{grid-template-columns:1fr 1fr}.grid,.grid.wide-left,.class-intro,.feedback-grid,.answer-compare,.revision-inventory{grid-template-columns:1fr}
+    .feedback-summary dl,.criterion-feedback dl{grid-template-columns:1fr;gap:2px 0}
     .items{grid-template-columns:1fr}
     .prep-sequence{grid-template-columns:repeat(2,minmax(0,1fr))}
     .editorial-map-grid{grid-template-columns:110px repeat(4,minmax(145px,1fr));overflow-x:auto;padding-bottom:5px}
@@ -892,7 +910,7 @@ const GUIDED_DIAGNOSTICS={
   1:{
     orientations:{
       "C1-Q-STATUS":{label:"Distinguir proyección de resultado observado",description:"«Crecerá» describe un escenario para un período; no informa que el resultado ya ocurrió.",drill:"C1-DRILL-EVIDENCE"},
-      "C1-Q-METADATA":{label:"Completar el pasaporte del dato",description:"Una cifra necesita variable, valor y unidad, período, estado, fuente y fecha de consulta.",drill:"C1-DRILL-EVIDENCE"},
+      "C1-Q-METADATA":{label:"Identificar por completo la cifra",description:"Indica qué mide, cuánto, a qué período corresponde, si es observada o proyectada y cuál es la fuente específica. En las notas, estas cinco piezas se llaman «pasaporte del dato».",drill:"C1-DRILL-EVIDENCE"},
       "C1-Q-CAUSALITY":{label:"Separar descripción de explicación causal",description:"Una proyección informa un escenario; no demuestra por sí sola qué política causó el resultado.",drill:"C1-DRILL-EVIDENCE"},
       "C1-Q-SCOPE":{label:"Limitar la afirmación a la evidencia disponible",description:"La interpretación debe decir qué permite afirmar la fuente y qué evidencia adicional sería necesaria.",drill:"C1-DRILL-EVIDENCE"}
     },
@@ -927,14 +945,14 @@ const GUIDED_DIAGNOSTICS={
 };
 const GUIDED_DRILLS={
   "C1-DRILL-EVIDENCE":{
-    title:"Del número suelto a una afirmación defendible",
-    prompt:"Completa el pasaporte del dato y decide qué alcance tiene antes de reescribir.",
-    criterion:"Reconocer el estado de la cifra, completar sus metadatos, limitar la causalidad y producir una respuesta revisada completa.",
+    title:"Completar una afirmación con la cifra y sus límites",
+    prompt:"Antes de reescribir, identifica qué mide la cifra, cuánto indica, a qué período corresponde, si es observada o proyectada y cuál es su fuente. Luego decide qué permite afirmar.",
+    criterion:"Indicar que el 2% es una proyección del PIB para 2026, identificar el IPoM como fuente y explicar que la cifra no demuestra por sí sola qué medida causó el crecimiento.",
     fields:[
-      {id:"a",label:"¿Cuál es el estado del 2%?",options:[["projection","Proyección para 2026"],["observed","Resultado ya observado"],["cause","Efecto causal comprobado"]],answer:"projection"},
-      {id:"b",label:"¿Qué debe acompañar al valor 2%?",options:[["passport","Variable, unidad, período, estado, fuente y fecha de consulta"],["number","Sólo el número, porque es fácil de entender"],["opinion","La opinión de quien lo cita"]],answer:"passport"},
-      {id:"c",label:"¿Qué dice por sí sola la proyección?",options:[["scenario","Describe el escenario publicado"],["cause","Identifica definitivamente la política que lo causó"],["observed","Confirma el resultado final del año"]],answer:"scenario"},
-      {id:"d",label:"Para sostener una causa necesitas además…",options:[["mechanism","Un mecanismo y evidencia que contraste otras explicaciones"],["repeat","Repetir la cifra con mayor seguridad"],["source_only","Conocer sólo el nombre de la fuente"]],answer:"mechanism"}
+      {id:"a",label:"¿El 2% ya fue observado o todavía es una proyección?",reportLabel:"Reconociste que el 2% es una proyección para 2026.",options:[["projection","Es una proyección para 2026"],["observed","Es un resultado ya observado"],["cause","Es un efecto causal comprobado"]],answer:"projection"},
+      {id:"b",label:"¿Qué información debe acompañar al valor 2%?",reportLabel:"Identificaste las cinco piezas que permiten interpretar la cifra: qué mide, cuánto, cuándo, estado y fuente.",options:[["passport","Qué mide, cuánto, cuándo, si es observado o proyectado y cuál es la fuente"],["number","Sólo el número, porque es fácil de entender"],["opinion","La opinión de quien lo cita"]],answer:"passport"},
+      {id:"c",label:"¿Qué permite afirmar por sí sola la proyección?",reportLabel:"Reconociste que la proyección describe el escenario publicado, pero no confirma el resultado final.",options:[["scenario","Describe el escenario publicado"],["cause","Identifica definitivamente la política que lo causó"],["observed","Confirma el resultado final del año"]],answer:"scenario"},
+      {id:"d",label:"¿Qué necesitarías para afirmar que una medida causó el crecimiento?",reportLabel:"Reconociste que una causa exige explicar la cadena de pasos y usar otros datos para descartar explicaciones alternativas.",options:[["mechanism","Explicar la cadena de pasos y usar otros datos para descartar explicaciones alternativas"],["repeat","Repetir la cifra con mayor seguridad"],["source_only","Conocer sólo el nombre de la fuente"]],answer:"mechanism"}
     ]
   },
   "C2-DRILL-GROWTH":{
@@ -974,11 +992,130 @@ const GUIDED_DRILLS={
   }
 };
 const CLASS1_REVISION_GUIDES=[
-  {id:"projection",label:"Estado de la cifra",question:"¿El 2% es un resultado ya medido o una proyección? Escríbelo en una frase.",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",test:text=>/(proyec|escenario|estim)/i.test(text)},
-  {id:"observed",label:"Tiempo de la afirmación",question:"¿Por qué «crecerá durante 2026» no equivale a «ya creció»?",reading:"Nota 1 · §2.1, Pasaporte del dato: Estado",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",test:text=>/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri|resultado.*futuro|no puede afirmarse.*ocurr)/i.test(text)},
-  {id:"metadata",label:"Identidad del dato",question:"¿Qué fuente y qué período identifican esta cifra?",reading:"Nota 1 · §2.1, Pasaporte del dato",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",test:text=>/(ipom|fuente)/i.test(text)&&/(2026|per[ií]odo|horizonte)/i.test(text)},
-  {id:"causality",label:"Límite causal",question:"¿Qué información adicional necesitarías para atribuir el crecimiento a una política específica?",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",test:text=>/(no.*caus|no demuestra|mecan|evidencia adicional|otras explicaciones|por qu[eé] ocurr)/i.test(text)}
+  {id:"projection",label:"Condición de la cifra",question:"¿El 2% es un resultado ya medido o una proyección? Escríbelo en una frase.",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",expected:"Indicar que el 2% es una proyección para 2026, no un resultado ya medido.",missing:"No indicaste que el 2% es una proyección.",action:"Agrega una oración que diga que el 2% es una proyección para 2026.",example:"Ejemplo: «El 2% es una proyección para 2026».",evidencePatterns:[/proyec/i,/escenario/i,/estim/i],test:text=>/(proyec|escenario|estim)/i.test(text)},
+  {id:"observed",label:"Diferencia entre «crecerá» y «ya creció»",question:"¿Por qué «crecerá durante 2026» no equivale a «ya creció»?",reading:"Nota 1 · §2.1, Estado de una cifra",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",expected:"Explicar que 2026 todavía no termina y que la proyección no es un resultado anual observado.",missing:"No explicaste por qué la cifra todavía no puede tratarse como un resultado observado.",action:"Agrega una oración que contraste directamente «crecerá» con «ya creció».",example:"Ejemplo: «Como 2026 aún no termina, el resultado anual todavía no está observado».",evidencePatterns:[/no.*observ/i,/todav[ií]a/i,/a[uú]n no/i,/no.*ocurri/i,/resultado.*futuro/i,/no puede afirmarse.*ocurr/i],test:text=>/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri|resultado.*futuro|no puede afirmarse.*ocurr)/i.test(text)},
+  {id:"metadata",label:"Fuente específica y período",question:"¿Cuál es el informe específico que presenta la cifra y a qué período corresponde?",reading:"Nota 1 · §2.1, Los cinco datos que identifican una cifra",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato",expected:"Nombrar el IPoM —el informe específico del Banco Central— y el período 2026.",missing:"Falta nombrar el IPoM como fuente específica y vincularlo con el período 2026.",action:"Completa la frase con el nombre del informe, la cifra y el período.",example:"Ejemplo: «El IPoM del Banco Central proyecta que el PIB de Chile crecerá 2% durante 2026».",evidencePatterns:[/ipom/i,/informe de pol[ií]tica monetaria/i,/banco central/i,/2026/i,/per[ií]odo/i,/horizonte/i],test:text=>/(ipom|informe de pol[ií]tica monetaria)/i.test(text)&&/(2026|per[ií]odo|horizonte)/i.test(text)},
+  {id:"causality",label:"Qué permite afirmar la cifra sobre una causa",question:"¿Qué información adicional necesitarías para atribuir el crecimiento a una política específica?",reading:"Nota 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",expected:"Explicar que la cifra no demuestra por sí sola qué medida causó el crecimiento. Una causa requiere explicar la cadena de pasos y contrastarla con otros datos.",missing:"No explicaste el límite de la cifra frente a una afirmación causal.",action:"Agrega una oración que diga que la proyección no demuestra la causa y qué información permitiría comprobarla.",example:"Ejemplo: «Para atribuir el crecimiento a esa medida habría que explicar la cadena causal y compararla con otros datos».",evidencePatterns:[/no.*caus/i,/no demuestra/i,/mecan/i,/cadena causal/i,/evidencia adicional/i,/otros datos/i,/otras explicaciones/i,/por qu[eé] ocurr/i],test:text=>/(no.*caus|no demuestra|mecan|cadena causal|evidencia adicional|otros datos|otras explicaciones|por qu[eé] ocurr)/i.test(text)}
 ];
+
+/* ========== CAPA DE RETROALIMENTACIÓN PEDAGÓGICA ==========
+   scoreClassTest() sigue siendo la única evaluación base y la única fuente de
+   score/max. Esta capa no vuelve a puntuar: explica cada comprobación y conserva
+   su vínculo con pregunta, pauta, Nota de Estudio y evidencia del estudiante. */
+const PEDAGOGICAL_FEEDBACK_SCHEMA="macrolab-pedagogical-feedback/1.0";
+const PEDAGOGICAL_CRITERIA={
+  1:[
+    {id:"C1-EVIDENCE-STATUS",name:"Reconocer que el 2% es una proyección",checkIds:["c1-status-choice","c1-projection"],source:"testProse",patterns:[/proyec/i,/estim/i,/escenario/i],choice:{field:"bridgeEvidence",labels:{projection:"una proyección",observed:"un resultado ya observado"}},expected:"Debías reconocer que el 2% corresponde a una proyección para 2026: es un escenario publicado, no una cifra final ya medida.",achieved:"Identificaste el 2% como una proyección o escenario para 2026.",partial:"Reconociste una parte del estado de la cifra, pero no la integraste de forma consistente en tu respuesta escrita.",missing:"No identificaste de forma explícita que el 2% es una proyección para 2026.",why:"La pregunta te pide decidir qué puede afirmarse. La pauta exige separar una proyección de un resultado observado; por eso el estado de la cifra debe aparecer en tu respuesta.",action:"Agrega una oración que nombre el 2% como proyección o escenario del IPoM para 2026.",example:"Ejemplo: «El 2% es una proyección para 2026, no un resultado ya medido».",notes:[{title:"Nota 1 · Pasaporte del dato: Estado",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato"}],errorRules:[{pattern:/ya\s+(creci[oó]|ocurri[oó])|resultado\s+ya\s+observado/i,type:"error_conceptual",detail:"Presentaste la proyección como un resultado que ya ocurrió. Son estados distintos de la evidencia.",action:"Sustituye la afirmación de que «ya creció» por una oración que indique que se trata de un escenario para 2026."}]},
+    {id:"C1-EVIDENCE-TIME",name:"Distinguir «crecerá» de «ya creció»",checkIds:["c1-observed"],source:"testProse",patterns:[/no.*observ/i,/todav[ií]a/i,/a[uú]n no/i,/no.*ocurri/i,/resultado.*futuro/i,/no puede afirmarse.*ocurr/i],expected:"Debías explicar que una cifra formulada como «crecerá durante 2026» todavía no describe un resultado anual observado.",achieved:"Aclaraste que el resultado anual todavía no está observado.",missing:"No explicaste que «crecerá durante 2026» no equivale a «ya creció».",why:"La instrucción pregunta qué no puede afirmarse. La pauta indica que el período aún corresponde a una proyección; por eso debes marcar la diferencia temporal.",action:"Agrega una oración que contraste directamente «crecerá» con «ya creció».",example:"Ejemplo: «Como 2026 aún no termina, la cifra no confirma el crecimiento efectivamente observado».",notes:[{title:"Nota 1 · Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra"}]},
+    {id:"C1-EVIDENCE-METADATA",name:"Identificar la cifra y su fuente",checkIds:["c1-metadata"],source:"testProse",patterns:[/ipom/i,/informe de pol[ií]tica monetaria/i,/banco central/i,/fuente/i,/2026/i,/per[ií]odo/i,/horizonte/i],expected:"Debías indicar qué mide la cifra, su valor, el período 2026, que es una proyección y que la fuente específica es el IPoM del Banco Central.",achieved:"Incluiste información que permite reconocer la cifra o su procedencia.",missing:"No identificaste de manera completa la cifra y su fuente específica dentro de tu explicación.",why:"La pregunta presenta una proyección del IPoM. La pauta exige identificar qué cifra interpretas y de dónde proviene para no confundir la institución —Banco Central— con el informe específico —IPoM—.",action:"Añade una oración que reúna qué mide la cifra, su valor, el período, su condición de proyección y la fuente específica.",example:"Ejemplo: «El IPoM del Banco Central proyecta que el PIB de Chile crecerá 2% durante 2026».",notes:[{title:"Nota 1 · Los cinco datos que identifican una cifra",href:"nota-01-introduccion.html#2-1-1-pasaporte-dato"},{title:"Nota 2 · Fuentes de datos macroeconómicos",href:"nota-02-fuentes-datos.html#fuentes-de-datos-macroeconomicos"}]},
+    {id:"C1-EVIDENCE-CAUSALITY",name:"Separar lo que muestra la cifra de una explicación causal",checkIds:["c1-scope-choice","c1-causality"],source:"testProse",patterns:[/no.*caus/i,/no demuestra/i,/mecan/i,/cadena causal/i,/evidencia adicional/i,/otros datos/i,/otras explicaciones/i,/por qu[eé] ocurr/i],choice:{field:"bridgeClaim",labels:{scenario:"sólo describe el escenario publicado",cause:"demuestra qué política causó el resultado"}},expected:"Debías explicar que la cifra describe un escenario, pero no demuestra qué medida causó el crecimiento. Para afirmar una causa se necesita explicar la cadena de pasos y contrastarla con otros datos.",achieved:"Limitaste lo que puede afirmarse: reconociste que la proyección no demuestra por sí sola una causa específica.",partial:"Reconociste que el dato describe un escenario, pero todavía no explicaste qué se necesitaría para sostener una causa.",missing:"Atribuiste una causa o no explicaste por qué la proyección, por sí sola, no demuestra qué medida produjo el crecimiento.",why:"La pregunta te pide evaluar una atribución causal. La pauta exige explicar cómo la medida produciría el resultado y compararla con otros datos antes de afirmar una causa.",action:"Agrega una oración que indique qué pasos y qué otros datos permitirían vincular la medida con el crecimiento.",example:"Ejemplo: «Para atribuir el crecimiento a esa medida habría que explicar la cadena causal y descartar otras causas con datos adicionales».",notes:[{title:"Nota 1 · Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra"}],errorRules:[{pattern:/(?:la cifra|el dato|la proyecci[oó]n)\s+(?:demuestra|prueba|confirma)\s+que\s+(?:el\s+)?(?:gobierno|una?\s+pol[ií]tica|una?\s+medida)|(?:el\s+)?gobierno\s+caus[oó]/i,type:"error_conceptual",detail:"Afirmaste una causa que la proyección no demuestra por sí sola.",action:"Cambia la atribución directa por una condición: explica la cadena de pasos y qué otros datos permitirían descartar causas alternativas."}]}
+  ],
+  2:[
+    {id:"C2-GROWTH",name:"Calcular el crecimiento real",checkIds:["c2-growth"],numericField:"answerA",expected:"Debías comparar el PIB real de 2019 con el PIB real de 2018: (204/200 − 1)×100 = 2%.",achieved:"Tu resultado de crecimiento real es 2%, igual que la pauta.",missing:"El crecimiento real no coincide con 2% o quedó sin responder.",why:"La instrucción (a) pide crecimiento real. La pauta usa PIB real de ambos años; el PIB nominal no sirve para aislar el cambio en la cantidad producida.",action:"Repite el cálculo usando 204 y 200, y resta 1 antes de multiplicar por 100.",example:"Ejemplo: «(204/200 − 1)×100 = 2%».",notes:[{title:"Nota 3 · Variación interanual del PIB real",href:"nota-03-medicion-pib.html#4-1-que-es-la-variacion-interanual-del-pib-real"}],gapType:"error_de_calculo"},
+    {id:"C2-DEFLATOR",name:"Calcular el deflactor del PIB",checkIds:["c2-deflator"],numericField:"answerB",expected:"Debías dividir el PIB nominal por el PIB real y multiplicar por 100: (210,12/204)×100 = 103.",achieved:"Tu resultado del deflactor es 103, igual que la pauta.",missing:"El deflactor no coincide con 103 o quedó sin responder.",why:"La instrucción (b) pide el deflactor. La pauta aplica su definición: PIB nominal dividido por PIB real, multiplicado por 100.",action:"Repite la división 210,12/204 y expresa el resultado como índice con base 100.",example:"Ejemplo: «Deflactor = (PIB nominal/PIB real)×100 = 103».",notes:[{title:"Nota 4 · Deflactor del PIB",href:"nota-04-medicion-inflacion.html#4-otra-medida-de-inflacion-basada-en-el-deflactor-del-pi"}],gapType:"error_de_calculo"},
+    {id:"C2-PNB",name:"Aplicar PNB = PIB + PNF",checkIds:["c2-pnb"],numericField:"answerC",expected:"Debías sumar el PNF de −12 al PIB real de 204: PNB = 204 − 12 = 192.",achieved:"Tu PNB es 192 y respeta la identidad PIB + PNF.",missing:"El PNB no coincide con 192 o quedó sin responder.",why:"La instrucción (c) pide PNB. La pauta usa la identidad PNB = PIB + PNF y conserva el signo negativo del PNF.",action:"Escribe primero la identidad y luego reemplaza el PNF manteniendo su signo negativo.",example:"Ejemplo: «PNB = 204 + (−12) = 192».",notes:[{title:"Nota 3 · Del PIB al PNB",href:"nota-03-medicion-pib.html"}],gapType:"error_de_calculo"},
+    {id:"C2-PRICE-COVERAGE",name:"Distinguir deflactor del PIB e IPC",checkIds:["c2-ipc","c2-deflator-coverage"],source:"testMechanism",patterns:[/canasta/i,/consumo/i,/ipc/i,/producci/i,/deflactor/i,/bienes.*hogar/i],expected:"Debías explicar que el deflactor cubre la producción interna, mientras el IPC sigue una canasta de consumo de los hogares.",achieved:"Distinguiste la cobertura del deflactor y la del IPC.",partial:"Mencionaste uno de los dos indicadores, pero no comparaste claramente su cobertura con la del otro.",missing:"No explicaste la diferencia de cobertura entre el deflactor del PIB y el IPC.",why:"La pregunta pide justificar por qué el deflactor no es, por sí solo, la inflación IPC. La pauta responde comparando producción interna con canasta de consumo.",action:"Agrega una oración que compare ambos indicadores usando «producción interna» y «canasta de consumo».",example:"Ejemplo: «El deflactor sigue precios de la producción interna; el IPC sigue una canasta consumida por los hogares».",notes:[{title:"Nota 4 · Deflactor del PIB",href:"nota-04-medicion-inflacion.html#4-otra-medida-de-inflacion-basada-en-el-deflactor-del-pi"}],errorRules:[{pattern:/deflactor\s+(?:del\s+pib\s+)?(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?ipc|ipc\s+(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?deflactor/i,type:"error_conceptual",detail:"Trataste el deflactor y el IPC como si cubrieran exactamente los mismos bienes y servicios.",action:"Corrige la equivalencia y compara la producción interna del deflactor con la canasta de consumo del IPC."}]},
+    {id:"C2-PNF-FLOW",name:"Distinguir PNF de inversión extranjera acumulada",checkIds:["c2-pnf","c2-flow-stock"],source:"testMechanism",patterns:[/pnf/i,/ingreso.*factor/i,/pago.*factor/i,/flujo/i,/stock/i,/acumulad/i],expected:"Debías explicar que el PNF es un flujo neto de ingresos de factores durante 2019; no es el stock de inversión extranjera acumulado en una fecha.",achieved:"Explicaste que el PNF es un flujo de ingresos del período y no un stock acumulado de inversión.",partial:"Mencionaste el PNF o la diferencia flujo–stock, pero no conectaste ambas ideas.",missing:"No explicaste que el PNF mide ingresos de factores durante un período y no inversión extranjera acumulada.",why:"La pregunta pide expresamente justificar esa diferencia. La pauta distingue un flujo del período de un stock observado en una fecha.",action:"Agrega una oración que contraste «ingresos de factores durante 2019» con «inversión acumulada a una fecha».",example:"Ejemplo: «El PNF registra ingresos de factores recibidos menos pagados durante 2019; la inversión acumulada es un stock».",notes:[{title:"Nota 3 · PIB, PNB y PNF",href:"nota-03-medicion-pib.html"}],errorRules:[{pattern:/pnf\s+(?:es|representa|equivale\s+a|mide)\s+(?:el|un)?\s*(?:stock|(?:valor\s+)?(?:de\s+la\s+)?inversi[oó]n.*acumulad)/i,type:"error_conceptual",detail:"Definiste el PNF como inversión extranjera acumulada. El primero es un flujo de ingresos; la segunda es un stock.",action:"Reemplaza esa definición por un flujo neto de ingresos de factores medido durante el período."}]}
+  ],
+  3:[
+    {id:"C3-INITIAL-EQUILIBRIUM",name:"Calcular el equilibrio inicial",checkIds:["c3-initial"],numericField:"answerA",expected:"Debías obtener el equilibrio inicial Y* = 950 usando Y = Z.",achieved:"El laboratorio devolvió Y* inicial = 950, igual que la pauta.",missing:"El equilibrio inicial no coincide con 950 o no hay un resultado verificable.",why:"La instrucción (a) pide el equilibrio inicial. La pauta resuelve la condición Y = Z con los parámetros dados.",action:"Reconstruye Z = 475 + 0,5Y y despeja Y en la condición Y = Z.",example:"Ejemplo: «Y = 475 + 0,5Y, por lo tanto Y* = 950».",notes:[{title:"Nota 5 · Equilibrio en el mercado de bienes",href:"nota-05-demanda-agregada.html#6-equilibrio-en-el-mercado-de-bienes"}],gapType:"error_de_calculo"},
+    {id:"C3-NEW-EQUILIBRIUM",name:"Calcular el nuevo equilibrio después del aumento de G",checkIds:["c3-new"],numericField:"answerB",expected:"Debías reconocer que G sube de 200 a 250 y que, con multiplicador 2, el nuevo equilibrio es Y* = 1.050.",achieved:"El laboratorio devolvió Y* nuevo = 1.050, igual que la pauta.",missing:"El nuevo equilibrio no coincide con 1.050 o no hay un resultado verificable.",why:"La instrucción (b) pide aplicar un aumento de G de 25%. La pauta convierte ese porcentaje en ΔG = 50 y aplica el multiplicador 2.",action:"Calcula primero el nuevo G y luego multiplica ΔG por 2 antes de sumarlo al equilibrio inicial.",example:"Ejemplo: «G pasa a 250; ΔY = 2×50 = 100; Y* nuevo = 1.050».",notes:[{title:"Nota 5 · Multiplicador y equilibrio",href:"nota-05-demanda-agregada.html#6-equilibrio-en-el-mercado-de-bienes"}],gapType:"error_de_calculo"},
+    {id:"C3-INVENTORIES",name:"Explicar la señal de inventarios no planeados",checkIds:["c3-inventories"],source:"testMechanism",patterns:[/inventario/i,/existencias/i,/bodega/i,/bienes no vendidos/i],expected:"Debías explicar que, al subir G, el gasto planeado supera inicialmente la producción y caen los inventarios no planeados.",achieved:"Incluiste los inventarios como la señal que activa el ajuste.",missing:"No explicaste qué ocurre con los inventarios cuando el gasto planeado supera inicialmente la producción.",why:"La pregunta exige el mecanismo completo, incluido el papel de los inventarios. La pauta usa su caída como señal para que las empresas ajusten la producción.",action:"Agrega una oración entre el aumento de G y la decisión de producir: indica que caen los inventarios no planeados.",example:"Ejemplo: «Como Z supera a Y, las ventas reducen los inventarios más de lo planeado».",notes:[{title:"Nota 5 · Inversión y variación de existencias",href:"nota-05-demanda-agregada.html"}],gapType:"mecanismo_ausente",errorRules:[{pattern:/(?:inventarios?|existencias?)\s+(?:no\s+planead[oa]s?\s+)?(?:suben|aumentan)|(?:suben|aumentan)\s+(?:los\s+)?(?:inventarios?|existencias?)/i,type:"error_conceptual",detail:"Indicaste que los inventarios aumentan. Cuando el gasto planeado supera a la producción, los inventarios no planeados caen.",action:"Cambia la dirección de los inventarios y conecta su caída con el aumento posterior de la producción."}]},
+    {id:"C3-PRODUCTION-INCOME",name:"Conectar inventarios con producción e ingreso",checkIds:["c3-production-income"],source:"testMechanism",patterns:[/producci/i,/ingreso/i,/renta/i,/empresas.*(elev|aument|sub)/i],expected:"Debías explicar que la caída de inventarios lleva a las empresas a elevar la producción y que esa producción genera mayor ingreso.",achieved:"Conectaste el ajuste con producción o ingreso, como exige la pauta.",missing:"No conectaste la señal de inventarios con la decisión de las empresas de elevar producción e ingreso.",why:"La pregunta pide el mecanismo, no sólo el resultado. La pauta ubica producción e ingreso entre el shock de G y el nuevo equilibrio.",action:"Agrega una oración causal: la caída de inventarios hace que las empresas eleven la producción, lo que aumenta el ingreso.",example:"Ejemplo: «Las empresas responden a la caída de inventarios aumentando la producción; así también sube el ingreso».",notes:[{title:"Nota 5 · Equilibrio en el mercado de bienes",href:"nota-05-demanda-agregada.html#6-equilibrio-en-el-mercado-de-bienes"}],gapType:"relacion_causal_incompleta"},
+    {id:"C3-CONSUMPTION-FEEDBACK",name:"Explicar la realimentación del consumo",checkIds:["c3-consumption"],source:"testMechanism",patterns:[/consumo/i,/propensi/i,/c1/i,/0,5/i,/hogares.*gast/i],expected:"Debías cerrar la cadena explicando que el mayor ingreso eleva el consumo y vuelve a aumentar el gasto planeado hasta el nuevo equilibrio.",achieved:"Incluiste la realimentación del ingreso sobre el consumo.",missing:"No explicaste que el aumento del ingreso eleva el consumo y prolonga el ajuste hasta el nuevo equilibrio.",why:"La pauta usa esa realimentación para explicar el multiplicador. Sin ella, tu respuesta salta del aumento de G al resultado final.",action:"Agrega una oración que conecte mayor ingreso con mayor consumo y con una nueva ronda de gasto planeado.",example:"Ejemplo: «El mayor ingreso aumenta el consumo; esa nueva demanda impulsa otra ronda de producción».",notes:[{title:"Nota 5 · Función de consumo y propensión marginal a consumir",href:"nota-05-demanda-agregada.html#a-consumo-c"}],gapType:"relacion_causal_incompleta"}
+  ]
+};
+
+function answerFragments(value){
+  return (String(value||"").match(/[^.!?\n]+[.!?]?/g)||[]).map(x=>x.trim()).filter(Boolean);
+}
+function firstMatchingFragment(value,patterns){
+  return answerFragments(value).find(fragment=>(patterns||[]).some(pattern=>pattern.test(fragment)))||null;
+}
+function criterionEvidence(def,fields){
+  if(def.numericField){
+    const raw=String(fields[def.numericField]??"").trim();
+    return raw?{mode:"exacta",source_field:def.numericField,quote:raw,raw_value:raw}:null;
+  }
+  const text=String(fields[def.source]||"");
+  const errorPatterns=(def.errorRules||[]).map(rule=>rule.pattern);
+  const quote=firstMatchingFragment(text,[...(def.patterns||[]),...errorPatterns]);
+  if(quote)return {mode:"exacta",source_field:def.source,quote,raw_value:quote};
+  if(def.choice&&String(fields[def.choice.field]||"")){
+    const raw=String(fields[def.choice.field]),label=def.choice.labels[raw]||raw;
+    return {mode:"parafrasis_de_seleccion",source_field:def.choice.field,quote:`En la decisión previa elegiste «${label}».`,raw_value:raw};
+  }
+  return null;
+}
+function criterionStudentResponse(def,fields){
+  if(def.numericField)return String(fields[def.numericField]??"").trim();
+  return String(fields[def.source]||"").trim()||String(def.choice&&fields[def.choice.field]||"").trim();
+}
+function pedagogicalResultFromBase(report){
+  const max=Number(report&&report.max)||0,score=Number(report&&report.score)||0;
+  if(max>0&&score===max)return "logrado";
+  if(score>0)return "parcialmente_logrado";
+  return "por_mejorar";
+}
+function buildPedagogicalFeedback(classId,fields={},baseReport={score:0,max:0,checks:[]}){
+  const id=String(classId),route=CLASS_ROUTES[id],checks=(baseReport.checks||[]),definitions=PEDAGOGICAL_CRITERIA[id]||[];
+  const byId=Object.fromEntries(checks.filter(check=>check.id).map(check=>[check.id,check]));
+  const criteria=definitions.map(def=>{
+    const linked=def.checkIds.map(checkId=>byId[checkId]).filter(Boolean),missingLinks=def.checkIds.filter(checkId=>!byId[checkId]);
+    const met=linked.filter(check=>check.ok).length;
+    let status=missingLinks.length?"incierto":met===linked.length&&linked.length?"logrado":met?"parcialmente_logrado":"por_mejorar";
+    const evidence=criterionEvidence(def,fields),response=criterionStudentResponse(def,fields);
+    const errorRule=(def.errorRules||[]).find(rule=>rule.pattern.test(response));
+    let gap=null,recommendation=null,example=null;
+    if(status!=="logrado"){
+      const type=errorRule?errorRule.type:!response?"ausencia":evidence?(met?"relacion_incompleta":def.gapType||"afirmacion_sin_explicacion"):response.length<12?"respuesta_ambigua":def.gapType||"ausencia";
+      gap={type,detail:errorRule?errorRule.detail:def.missing};
+      recommendation=errorRule&&errorRule.action?errorRule.action:def.action;
+      example=def.example;
+    }
+    return {
+      criterion_id:def.id,
+      name:def.name,
+      status,
+      expected:def.expected,
+      evidence:evidence||{mode:"no_encontrada",source_field:def.numericField||def.source||null,quote:null,raw_value:null},
+      achieved:status==="logrado"?def.achieved:met>0?(def.partial||`Cumpliste ${met} de ${linked.length} partes verificables de este criterio.`):"No se identificó todavía un componente cumplido de este criterio.",
+      gap,
+      rationale:status==="logrado"?null:def.why,
+      recommendation,
+      example,
+      uncertainty:status==="incierto"?"Faltan comprobaciones de la evaluación base; no es posible concluir el estado de este criterio.":(!evidence&&response?"No encontramos un fragmento inequívoco para asociar a este criterio; evitamos atribuirte una idea no escrita.":null),
+      trace:{question_id:`class-${id}-test`,criterion_id:def.id,base_checks:linked.map(check=>({id:check.id,ok:Boolean(check.ok)})),missing_base_checks:missingLinks,question:route.test.prompt,rubric:route.test.model,study_notes:def.notes}
+    };
+  });
+  const result=pedagogicalResultFromBase(baseReport),pending=criteria.find(item=>item.status!=="logrado");
+  const achievedCount=criteria.filter(item=>item.status==="logrado").length;
+  const mainIdea=result==="logrado"
+    ? "Tu respuesta cubre las comprobaciones de la pauta. Cada criterio aparece vinculado con una parte concreta de lo que respondiste."
+    : achievedCount?`Cumpliste ${achievedCount} de ${criteria.length} aspectos revisados. En «Tu próximo paso» encontrarás la mejora más importante.`:`La revisión no encontró todavía un aspecto completamente logrado. El detalle indica qué contenido debes agregar o corregir.`;
+  return {
+    schema_version:PEDAGOGICAL_FEEDBACK_SCHEMA,
+    class_id:Number(id),
+    result_general:result,
+    main_idea:mainIdea,
+    next_step:pending?pending.recommendation:"No necesitas cambiar esta respuesta; conserva el mismo procedimiento en una pregunta nueva.",
+    base_evaluation:{score:Number(baseReport.score)||0,max:Number(baseReport.max)||0,result:result,unchanged:true},
+    context:{question:route.test.prompt,rubric:route.test.model,study_notes:definitions.flatMap(def=>def.notes||[]),student_answer:route.test.type==="prose"?String(fields.testProse||""):{results:Object.fromEntries(Object.keys(route.test.expected||{}).map(key=>[key,String(fields[key]??"")])),explanation:String(fields.testMechanism||"")}},
+    criteria
+  };
+}
+function feedbackStatusLabel(status){return ({logrado:"Logrado",parcialmente_logrado:"Parcialmente logrado",por_mejorar:"Por mejorar",incierto:"No hay evidencia suficiente"})[status]||status}
+function renderPedagogicalFeedback(feedback){
+  if(!feedback)return "";
+  const cards=feedback.criteria.map(item=>{
+    const evidence=item.evidence.mode==="no_encontrada"
+      ? "No encontramos en tu respuesta una parte que aborde este aspecto."
+      : item.evidence.mode==="exacta"?`<blockquote>«${escapeText(item.evidence.quote)}»</blockquote>`:escapeText(item.evidence.quote);
+    const pending=item.status==="logrado"?"":`<dt>Aún falta</dt><dd>${escapeText(item.gap.detail)}</dd><dt>Esto es importante porque</dt><dd>${escapeText(item.rationale)}</dd><dt>Para mejorarlo</dt><dd>${escapeText(item.recommendation)}</dd><dt>Ejemplo orientador</dt><dd>${escapeText(item.example)}</dd>${item.uncertainty?`<dt>Límite de esta observación</dt><dd>${escapeText(item.uncertainty)}</dd>`:""}`;
+    return `<section class="criterion-feedback" data-criterion-id="${escapeText(item.criterion_id)}" data-status="${escapeText(item.status)}"><h4>Criterio: ${escapeText(item.name)} <span class="criterion-state">${escapeText(feedbackStatusLabel(item.status))}</span></h4><dl><dt>Se esperaba</dt><dd>${escapeText(item.expected)}</dd><dt>En tu respuesta identificamos</dt><dd>${evidence}</dd><dt>Cumpliste</dt><dd>${escapeText(item.achieved)}</dd>${pending}</dl></section>`;
+  }).join("");
+  return `<section class="ped-feedback" aria-label="Retroalimentación pedagógica por criterio"><div class="feedback-summary" data-result="${escapeText(feedback.result_general)}"><strong>Resumen de tu evaluación</strong><dl><dt>Resultado general</dt><dd>${escapeText(feedbackStatusLabel(feedback.result_general))}</dd><dt>Idea principal</dt><dd>${escapeText(feedback.main_idea)}</dd><dt>Tu próximo paso</dt><dd>${escapeText(feedback.next_step)}</dd></dl></div>${cards}</section>`;
+}
 const classState=Object.fromEntries(Object.keys(CLASS_ROUTES).map(id=>[id,{step:0,unlocked:0,completed:false,fields:{}}]));
 let activeClass="1";
 
@@ -1020,7 +1157,7 @@ const STEP_ADVANCE_HINTS=[
 ];
 function renderStepAdvanceHint(step,loop){
   let text=STEP_ADVANCE_HINTS[step]||"";
-  if(activeClass==="1"&&step===2)text="Recupera el pasaporte del dato antes del desafío: estado, período, unidad, fuente y alcance de lo que puedes afirmar.";
+  if(activeClass==="1"&&step===2)text="Antes del desafío, identifica las cinco piezas de la cifra: qué mide, cuánto, cuándo, si es observada o proyectada y de qué fuente proviene. En las notas, este recordatorio se llama «pasaporte del dato».";
   if(activeClass==="2"&&step===2)text="Recupera flujo/stock y territorio/residencia antes de combinar PIB, PNB, PNF, crecimiento e índices.";
   if(loop&&step===2)text="Registra dirección y mecanismo antes de abrir el laboratorio; magnitud y confianza son opcionales.";
   if(loop&&step===3)text="Revisa la discrepancia importada y completa los campos propios antes de pasar al diagnóstico.";
@@ -1038,7 +1175,7 @@ function renderClassJourneyMap(moment="challenge"){
   const maps={
     "1":moment==="practice"
       ? ["Queda visible en la comparación y en tu reporte.","Proyección/observación, ficha del dato y límites de una afirmación causal.","Explicarás con precisión qué permite afirmar la evidencia."]
-      : ["Completaste una ficha con fecha, unidad, frecuencia, fuente y tipo de evidencia.","Ordenarás esas piezas con el «pasaporte del dato».","Distinguir una proyección de un resultado observado y de una explicación causal."],
+      : ["Completaste una ficha con fecha, unidad, frecuencia, fuente y tipo de evidencia.","Ordenarás qué mide la cifra, cuánto, cuándo, su estado y su fuente. En las notas, estas cinco piezas forman el «pasaporte del dato».","Distinguir una proyección de un resultado observado y de una explicación causal."],
     "2":moment==="practice"
       ? ["Queda visible en la comparación y en tu reporte.","Flujo/stock, territorio/residencia, signo del PNF e índice/tasa.","Integrarás cálculo y significado en una explicación completa."]
       : ["La Nota 3 introdujo PIB, PNB y PNF; la Nota 4 introdujo índices de precios.","La ficha precisó unidad, período, base y revisión de una serie real.","Calcular crecimiento, deflactor y PNB, y explicar qué significa cada resultado."],
@@ -1052,7 +1189,7 @@ function renderClassJourneyMap(moment="challenge"){
 }
 function renderClass1ConceptBridge(state){
   const f=state.fields;
-  return `${renderClassJourneyMap()}<section class="memory-anchor"><strong>Gancho de memoria: el pasaporte del dato</strong><p>Un número sin identidad es un número suelto. Antes de interpretarlo, busca siempre cinco casillas:</p><div class="data-passport" aria-label="Cinco datos que identifican una cifra"><span><b>Qué</b>variable exacta</span><span><b>Cuánto</b>valor y unidad</span><span><b>Cuándo</b>período y frecuencia</span><span><b>Estado</b>observado, estimado o proyectado</span><span><b>Origen</b>fuente y fecha de consulta</span></div><p class="field-note">El pasaporte permite describir la cifra. Explicar por qué ocurrió exige además un mecanismo y evidencia que descarte otras explicaciones.</p></section>
+  return `${renderClassJourneyMap()}<section class="memory-anchor"><strong>Gancho de memoria: el pasaporte del dato</strong><p>Un número sin identidad es un número suelto. Antes de interpretarlo, busca siempre cinco casillas:</p><div class="data-passport" aria-label="Cinco datos que identifican una cifra"><span><b>Qué</b>variable exacta</span><span><b>Cuánto</b>valor y unidad</span><span><b>Cuándo</b>período y frecuencia</span><span><b>Estado</b>observado, estimado o proyectado</span><span><b>Origen</b>fuente y fecha de consulta</span></div><p class="field-note">Estas cinco casillas identifican la cifra. Para explicar por qué ocurrió también debes describir la cadena de pasos que produciría el resultado y compararla con otros datos que permitan descartar causas alternativas.</p></section>
     <fieldset class="bridge-questions"><legend><strong>Antes del desafío: dos decisiones cortas</strong></legend>
       <label>1. “El PIB crecerá 2% durante 2026”, publicado como escenario del IPoM, es…<select data-class-field="bridgeEvidence">${selectOptions([["projection","una proyección"],["observed","un resultado ya observado"]],String(f.bridgeEvidence||""))}</select></label>
       <label>2. Esa cifra, por sí sola, permite afirmar…<select data-class-field="bridgeClaim">${selectOptions([["scenario","qué crecimiento contempla el escenario publicado"],["cause","qué política causó definitivamente ese crecimiento"]],String(f.bridgeClaim||""))}</select></label>
@@ -1137,11 +1274,11 @@ function guidedAnalysis(route,state){
   const add=(kind,text,code)=>{items.push({kind,text});if(code&&!suggestions.includes(code))suggestions.push(code)};
   if(activeClass==="1"){
     const t=String(f.testProse||"");
-    const hasProjection=/(proyec|estim|escenario)/i.test(t),hasObservedLimit=/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri|resultado.*futuro)/i.test(t),hasCausalLimit=/(no.*caus|no demuestra|mecan|evidencia adicional|otras explicaciones)/i.test(t),hasMetadata=/(fuente|ipom)/i.test(t)&&/(2026|per[ií]odo|horizonte)/i.test(t);
+    const hasProjection=/(proyec|estim|escenario)/i.test(t),hasObservedLimit=/(no.*observ|todav[ií]a|a[uú]n no|no.*ocurri|resultado.*futuro)/i.test(t),hasCausalLimit=/(no.*caus|no demuestra|mecan|cadena causal|evidencia adicional|otros datos|otras explicaciones)/i.test(t),metadata=class1RevisionAssessment(CLASS1_REVISION_GUIDES.find(item=>item.id==="metadata"),t);
     if(hasProjection)add("match","Reconociste que el 2% pertenece a una proyección o escenario.");else add("missing","Falta distinguir la proyección de un resultado ya observado.","C1-Q-STATUS");
     if(hasObservedLimit)add("match","Aclaraste que el resultado anual todavía no está observado.");else add("missing","Falta decir que «crecerá» no significa «ya creció».","C1-Q-STATUS");
-    if(hasCausalLimit)add("match","Limitaste la afirmación causal o pediste mecanismo y evidencia adicional.");else add("missing","La cifra no basta para atribuir el resultado a una política específica.","C1-Q-CAUSALITY");
-    if(hasMetadata)add("match","Situaste la cifra en una fuente y un período.");else add("missing","Falta anclar la cifra en fuente, período y estado de la evidencia.","C1-Q-METADATA");
+    if(hasCausalLimit)add("match",/(no.*caus|no demuestra)/i.test(t)?"Explicaste que la cifra no demuestra por sí sola una causa específica.":"Señalaste información que permitiría estudiar una causa.");else add("missing","Falta explicar que la cifra no basta para atribuir el resultado a una política específica.","C1-Q-CAUSALITY");
+    if(metadata.ok)add("match",metadata.achieved);else if(metadata.status==="parcialmente_logrado")add("missing",`${metadata.achieved} ${metadata.missing}`,"C1-Q-METADATA");else add("missing",metadata.missing,"C1-Q-METADATA");
     if(f.bridgeEvidence!=="projection")add("check","La pregunta previa muestra que todavía conviene separar proyección y observación.","C1-Q-STATUS");
     if(f.bridgeClaim!=="scenario")add("check","La pregunta previa atribuye una causa que el dato no demuestra por sí solo.","C1-Q-CAUSALITY");
   }else{
@@ -1158,7 +1295,7 @@ function guidedAnalysis(route,state){
   return {items,suggestions};
 }
 function guidedRevisionOptions(){
-  if(activeClass==="1")return [["status","Proyección frente a observación"],["metadata","El pasaporte del dato"],["causality","Descripción frente a causalidad"],["scope","El límite de la afirmación"],["unsure","Aún no logro identificarlo"]];
+  if(activeClass==="1")return [["status","Proyección frente a resultado observado"],["metadata","Qué cifra es y de qué fuente proviene"],["causality","Lo que muestra la cifra frente a una causa"],["scope","Qué permite afirmar la fuente"],["unsure","Aún no logro identificarlo"]];
   return [["calculation","Uno de mis cálculos"],["pnf","PIB, PNB y PNF"],["boundary","Territorio frente a residencia"],["index","Índice frente a tasa"],["coverage","Deflactor frente a IPC"],["unsure","Aún no logro identificarlo"]];
 }
 function selectOptions(options,value,placeholder="— Elige —"){
@@ -1166,10 +1303,14 @@ function selectOptions(options,value,placeholder="— Elige —"){
 }
 function renderGuidedComparison(route,state){
   const analysis=guidedAnalysis(route,state),icons={match:"Coincide",conflict:"Contradicción",missing:"Falta explicar",check:"Conviene comprobar"};
+  const explanation=state.explanatoryFeedback||buildPedagogicalFeedback(activeClass,state.fields,state.feedback||{});
   return `<h3>Compara tu razonamiento con la pauta</h3>
-    ${renderVerifiableBlock(state.feedback||{})}
-    <div class="answer-compare"><section class="answer-box student"><strong>Tu respuesta</strong><p>${escapeText(learnerAnswer(route))}</p></section><section class="answer-box reference"><strong>Pauta de contraste</strong><p>${escapeText(route.test.model)}</p></section></div>
-    <div class="diagnostic-observations"><strong>Lo que el sistema puede observar — no es una nota</strong><ul class="chain">${analysis.items.map(x=>`<li><strong>${icons[x.kind]}:</strong> ${escapeText(x.text)}</li>`).join("")}</ul><p class="field-note">Mencionar una palabra no prueba comprensión y omitirla no demuestra una confusión. El paso siguiente hará una comprobación breve.</p></div>
+    ${renderPedagogicalFeedback(explanation)}
+    <details class="alt feedback-base-details"><summary>Ver respuesta, pauta y comprobaciones de la evaluación base</summary>
+      ${renderVerifiableBlock(state.feedback||{})}
+      <div class="answer-compare"><section class="answer-box student"><strong>Tu respuesta</strong><p>${escapeText(learnerAnswer(route))}</p></section><section class="answer-box reference"><strong>Respuesta esperada para comparar</strong><p>${escapeText(route.test.model)}</p></section></div>
+      <div class="diagnostic-observations"><strong>Lo que el sistema puede observar — no es una nota</strong><ul class="chain">${analysis.items.map(x=>`<li><strong>${icons[x.kind]}:</strong> ${escapeText(x.text)}</li>`).join("")}</ul><p class="field-note">Mencionar una palabra no prueba comprensión y omitirla no demuestra una confusión. El paso siguiente hará una comprobación breve.</p></div>
+    </details>
     <label>¿Qué revisarías primero?<select data-class-field="revisionFocus">${selectOptions(guidedRevisionOptions(),String(state.fields.revisionFocus||""))}</select></label>
     <div class="actions"><button class="btn" type="button" data-class-action="feedback">Comprobar mi orientación</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;
 }
@@ -1211,9 +1352,46 @@ function class1CumulativeAnswer(state){
   const additions=class1RevisionAdditions(state).map(item=>item.text);
   return [original,...additions].filter(Boolean).join("\n\n");
 }
+function class1RevisionAssessment(guide,text){
+  const response=String(text||""),ok=guide.test(response);
+  const evidence=firstMatchingFragment(response,guide.evidencePatterns||[]);
+  let status=ok?"logrado":evidence?"parcialmente_logrado":"por_mejorar";
+  let achieved=ok?"Incluiste este elemento en tu respuesta.":"No se identificó todavía una parte lograda de este aspecto.";
+  let missing=guide.missing;
+  if(guide.id==="projection"&&ok)achieved="Indicaste que el 2% es una proyección o estimación.";
+  if(guide.id==="observed"&&ok)achieved="Explicaste que el resultado anual todavía no está observado.";
+  if(guide.id==="metadata"){
+    const hasReport=/(ipom|informe de pol[ií]tica monetaria)/i.test(response),hasInstitution=/banco central/i.test(response),hasPeriod=/(2026|per[ií]odo|horizonte)/i.test(response);
+    if(ok)achieved="Nombraste el IPoM como fuente específica y lo vinculaste con 2026.";
+    else if(hasInstitution&&hasPeriod){
+      status="parcialmente_logrado";
+      achieved="Nombraste la institución —Banco Central— y el período 2026.";
+      missing="Aún falta nombrar el informe específico: el IPoM. «Banco Central» identifica la institución, pero no la publicación concreta que presenta la proyección.";
+    }else if(hasReport){
+      status="parcialmente_logrado";
+      achieved="Nombraste el IPoM como fuente específica.";
+      missing="Aún falta indicar que la proyección corresponde a 2026.";
+    }else if(hasPeriod){
+      status="parcialmente_logrado";
+      achieved="Indicaste que la cifra corresponde a 2026.";
+      missing="Aún falta nombrar la fuente específica: el IPoM del Banco Central.";
+    }else if(hasInstitution){
+      status="parcialmente_logrado";
+      achieved="Nombraste al Banco Central como institución responsable.";
+      missing="Aún falta nombrar el informe específico —IPoM— y el período 2026.";
+    }
+  }
+  if(guide.id==="causality"&&ok){
+    const hasLimit=/(no.*caus|no demuestra)/i.test(response),hasSupport=/(mecan|cadena causal|evidencia adicional|otros datos|otras explicaciones|por qu[eé] ocurr)/i.test(response);
+    achieved=hasLimit&&hasSupport
+      ? "Explicaste el límite causal y señalaste qué información permitiría estudiar una causa."
+      : hasLimit?"Explicaste que no puede afirmarse una causa específica a partir de esa cifra.":"Señalaste que una explicación causal necesita información adicional.";
+  }
+  return {...guide,ok,status,evidence,achieved,missing};
+}
 function class1RevisionRequirements(state,useCumulative=false){
   const text=useCumulative?class1CumulativeAnswer(state):class1OriginalAnswer(state);
-  return CLASS1_REVISION_GUIDES.map(guide=>({...guide,ok:guide.test(String(text||""))}));
+  return CLASS1_REVISION_GUIDES.map(guide=>class1RevisionAssessment(guide,text));
 }
 function validateClass1Revision(state){
   if(!validateClassFields(["revisionDecision"]))return false;
@@ -1232,7 +1410,7 @@ function validateClass1Revision(state){
 function renderClass1RevisionEditor(state){
   const f=state.fields,requirements=class1RevisionRequirements(state,false),present=requirements.filter(item=>item.ok),missing=requirements.filter(item=>!item.ok);
   const presentList=present.map(item=>`<li>${escapeText(item.label)}</li>`).join("");
-  const missingBlocks=missing.map(item=>`<section class="revision-gap"><label>${escapeText(item.question)}<textarea rows="2" data-class-field="revision_${item.id}">${escapeText(f[`revision_${item.id}`]||"")}</textarea></label><a class="reading-return" href="${NOTES_BASE+escapeText(item.href)}" target="_blank" rel="noopener">Volver a ${escapeText(item.reading)} <span class="sr-only">(abre en una pestaña nueva)</span></a></section>`).join("");
+  const missingBlocks=missing.map(item=>`<section class="revision-gap">${item.status==="parcialmente_logrado"?`<p class="field-note"><strong>Lo que ya incluiste:</strong> ${escapeText(item.achieved)} <strong>Lo que falta:</strong> ${escapeText(item.missing)}</p>`:""}<label>${escapeText(item.question)}<textarea rows="2" data-class-field="revision_${item.id}">${escapeText(f[`revision_${item.id}`]||"")}</textarea></label><a class="reading-return" href="${NOTES_BASE+escapeText(item.href)}" target="_blank" rel="noopener">Volver a ${escapeText(item.reading)} <span class="sr-only">(abre en una pestaña nueva)</span></a></section>`).join("");
   const missingSummary=missing.length
     ? `<section><h4>Dirige tu atención sólo a esto</h4><p class="field-note">El sistema encontró ${missing.length===1?"una pieza que conviene hacer explícita":`${missing.length} piezas que conviene hacer explícitas`}. Responde las preguntas breves; no copies el resto.</p>${missingBlocks}</section>`
     : `<section><h4>No necesitas reescribir</h4><div class="notice ok"><strong>La respuesta inicial ya contiene las cuatro piezas solicitadas.</strong><p>Después de resolver la práctica objetiva, puedes conservarla tal como está o agregar una precisión opcional.</p></div></section>`;
@@ -1242,10 +1420,10 @@ function renderClass1RevisionEditor(state){
 }
 function guidedPracticeResult(state){
   const drill=GUIDED_DRILLS[state.guidedDrillId],f=state.fields;
-  const fieldChecks=drill.fields.map(field=>({label:field.label,ok:String(f[`guided_${field.id}`]||"")===field.answer}));
+  const fieldChecks=drill.fields.map(field=>({kind:"concept",criterionId:`guided-${field.id}`,label:field.reportLabel||field.label,ok:String(f[`guided_${field.id}`]||"")===field.answer,status:String(f[`guided_${field.id}`]||"")===field.answer?"logrado":"por_mejorar"}));
   const revised=activeClass==="1"?class1CumulativeAnswer(state):String(f.revisedAnswer||"").trim();
   let revisionChecks=[];
-  if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({label:`la respuesta acumulada incluye: ${item.label.toLowerCase()}`,ok:item.ok}));else revisionChecks=[
+  if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({kind:"written",criterionId:item.id,label:item.label,ok:item.ok,status:item.status,evidence:item.evidence,expected:item.expected,achieved:item.achieved,missing:item.missing,action:item.action,example:item.example}));else revisionChecks=[
     {label:"corrige los resultados a 2, 103 y 192",ok:Math.abs(Number(f.revisedA)-2)<.03&&Math.abs(Number(f.revisedB)-103)<.03&&Math.abs(Number(f.revisedC)-192)<.03},
     {label:"distingue deflactor e IPC",ok:/deflactor/i.test(revised)&&/(ipc|canasta)/i.test(revised)},
     {label:"distingue índice y tasa",ok:/(índice|indice)/i.test(revised)&&/(tasa|inflaci[oó]n)/i.test(revised)},
@@ -1259,7 +1437,7 @@ function renderGuidedTraining(route,state){
   const drill=GUIDED_DRILLS[state.guidedDrillId]||GUIDED_DRILLS[activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE"],f=state.fields;
   const code=String(f.errorCode||""),orientation=code&&GUIDED_DIAGNOSTICS[activeClass].orientations[code];
   const result=guidedPracticeResult(state),status=state.guidedChecked
-    ? `<div class="notice ${result.passed?"ok":"warn"}" id="guidedPracticeStatus"><strong>${result.passed?(activeClass==="1"?"Comprobaciones guiadas cumplidas.":"Criterio cumplido."):(activeClass==="1"?"La respuesta acumulada todavía tiene elementos pendientes.":"La práctica todavía tiene elementos pendientes.")}</strong><ul class="criterion-list">${result.checks.map(x=>`<li class="${x.ok?"ok":"pending"}">${x.ok?"Cumplido":"Pendiente"}: ${escapeText(x.label)}</li>`).join("")}</ul>${activeClass==="1"&&result.passed?`<p class="field-note">Esto confirma las decisiones objetivas y la presencia de los elementos pedidos. No reemplaza la lectura docente de la calidad del razonamiento escrito.</p>`:""}</div>`:"";
+    ? `<div class="notice ${result.passed?"ok":"warn"}" id="guidedPracticeStatus"><strong>${result.passed?(activeClass==="1"?"Comprobaciones guiadas cumplidas.":"Criterio cumplido."):(activeClass==="1"?"Tu respuesta inicial y tus ajustes todavía tienen elementos pendientes.":"La práctica todavía tiene elementos pendientes.")}</strong><ul class="criterion-list">${result.checks.map(x=>`<li class="${x.ok?"ok":"pending"}">${x.status==="parcialmente_logrado"?"Parcialmente logrado":x.ok?"Cumplido":"Pendiente"}: ${escapeText(x.label)}${x.status==="parcialmente_logrado"&&x.missing?` ${escapeText(x.missing)}`:""}</li>`).join("")}</ul>${activeClass==="1"&&result.passed?`<p class="field-note">Esto confirma las decisiones objetivas y la presencia de los elementos pedidos. No reemplaza la lectura docente de la calidad del razonamiento escrito.</p>`:""}</div>`:"";
   return `<h3>Práctica dirigida y nueva evidencia</h3>
     ${renderClassJourneyMap("practice")}
     <div class="loop-fact"><strong>${orientation?"Orientación de trabajo":"Sin diagnóstico forzado"}</strong><p>${orientation?escapeText(orientation.label):"No se registró una categoría de error. La práctica comprueba los conceptos fundamentales y permite avanzar sin inventar un diagnóstico."}</p></div>
@@ -1274,48 +1452,64 @@ function downloadTextFile(textValue,mime,filename){
 }
 function guidedPayload(state,closure){
   const f=state.fields,result=guidedPracticeResult(state),orientation=f.errorCode?GUIDED_DIAGNOSTICS[activeClass].orientations[f.errorCode]:null;
-  return {schema_version:"macrolab-macro1-class-session/1.1",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,closure,answers:{...f},feedback:state.feedback,diagnosis:{code:f.errorCode||null,label:orientation?orientation.label:null,evidence:f.errorEvidence,forced:false,probe_answer:f.diagnosticProbe},training:{drill_id:state.guidedDrillId,criterion:GUIDED_DRILLS[state.guidedDrillId].criterion,passed:result.passed,checks:result.checks}};
+  const explanatory=state.explanatoryFeedback||buildPedagogicalFeedback(activeClass,f,state.feedback||{});
+  return {schema_version:"macrolab-macro1-class-session/1.1",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,closure,answers:{...f},feedback:state.feedback,explanatory_feedback:explanatory,diagnosis:{code:f.errorCode||null,label:orientation?orientation.label:null,evidence:f.errorEvidence,forced:false,probe_answer:f.diagnosticProbe},training:{drill_id:state.guidedDrillId,criterion:GUIDED_DRILLS[state.guidedDrillId].criterion,passed:result.passed,checks:result.checks}};
+}
+function renderClass1PracticeReport(drill,result){
+  const conceptChecks=result.checks.filter(item=>item.kind==="concept"),writtenChecks=result.checks.filter(item=>item.kind==="written");
+  const conceptList=conceptChecks.map(item=>`<li><strong>${item.ok?"Cumplido":"Pendiente"}:</strong> ${escapeText(item.label)}</li>`).join("");
+  const writtenCards=writtenChecks.map(item=>{
+    const status=item.status==="parcialmente_logrado"?"Parcialmente logrado":item.ok?"Logrado":"Por mejorar";
+    const evidence=item.evidence?`<blockquote>«${escapeText(item.evidence)}»</blockquote>`:"No encontramos en tu respuesta inicial ni en tus ajustes una parte que aborde este aspecto.";
+    const pending=item.ok?"":`<dt>Aún falta</dt><dd>${escapeText(item.missing)}</dd><dt>Para mejorarlo</dt><dd>${escapeText(item.action)}</dd><dt>Ejemplo orientador</dt><dd>${escapeText(item.example)}</dd>`;
+    return `<article class="practice-feedback" data-practice-criterion="${escapeText(item.criterionId)}"><h4>${escapeText(item.label)} <span class="criterion-state">${status}</span></h4><dl><dt>Se esperaba</dt><dd>${escapeText(item.expected)}</dd><dt>En tu respuesta inicial y tus ajustes identificamos</dt><dd>${evidence}</dd><dt>Cumpliste</dt><dd>${escapeText(item.achieved)}</dd>${pending}</dl></article>`;
+  }).join("");
+  const next=writtenChecks.find(item=>!item.ok);
+  const nextStep=next?`<div class="next"><strong>Tu próximo paso</strong><p>${escapeText(next.action)}</p><p>${escapeText(next.example)}</p></div>`:`<div class="status"><strong>Tu respuesta inicial y tus ajustes contienen los elementos solicitados.</strong> Conserva este procedimiento cuando analices otra cifra.</div>`;
+  return `<section class="report-section"><div class="section-lead"><h2>7. Práctica para completar tu respuesta</h2><div class="box"><strong>${escapeText(drill.title)}</strong>\n\n<strong>Objetivo:</strong> ${escapeText(drill.criterion)}\n\n<strong>Dos términos útiles:</strong> una cadena causal explica, paso a paso, cómo una medida podría producir un resultado; otros datos permiten comparar esa explicación con causas alternativas.</div></div><h3>Comprobación de conceptos</h3><ul>${conceptList}</ul><h3>Tu respuesta inicial más los ajustes que agregaste</h3>${writtenCards}${nextStep}</section>`;
 }
 function reportDocument({title,subtitle,sections,statusText}){
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(title)}</title><style>body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#172536;max-width:900px;margin:0 auto;padding:36px 24px}h1,h2{color:#12314b}h1{margin-bottom:4px}h2{font-size:1.15rem;margin-top:28px;border-bottom:2px solid #d8e5ef;padding-bottom:5px}.meta{color:#5b6b7a}.box{border:1px solid #cbd9e4;border-radius:10px;padding:14px;margin:10px 0;white-space:pre-wrap}.status{background:#eef6fc;border-left:5px solid #287ab0;padding:12px 14px}.next{background:#fff8df;border-left:5px solid #d08a00;padding:12px 14px}li{margin:.35em 0}footer{margin-top:34px;border-top:1px solid #ccd7df;padding-top:14px;color:#5b6b7a;font-size:.88rem}@media print{body{max-width:none;padding:0}.no-print{display:none}h2{break-after:avoid}.box{break-inside:avoid}}</style></head><body><h1>${escapeText(title)}</h1><p class="meta">${escapeText(subtitle)}</p><p class="status"><strong>Estado:</strong> ${escapeText(statusText)}</p>${sections.join("")}<section class="next"><strong>Cómo usar este reporte</strong><ol><li>Distingue qué partes de tu respuesta inicial se conservaron y qué ajustes añadiste.</li><li>Si queda algo pendiente, responde la pregunta específica y vuelve a la sección de lectura indicada; no reescribas lo que ya está correcto.</li><li>Después prueba una pregunta similar sin mirar la pauta. Si la dificultad persiste, comparte el reporte con tu profesor o ayudante.</li></ol></section><p class="no-print"><button onclick="window.print()">Imprimir o guardar como PDF</button></p><footer>MacroLab · Este reporte es retroalimentación formativa, no una nota ni un diagnóstico definitivo. No contiene nombre ni identificador personal. Fue generado el ${escapeText(new Date().toLocaleString("es-CL"))}.</footer></body></html>`;
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeText(title)}</title><style>body{font:16px/1.55 system-ui,-apple-system,sans-serif;color:#172536;max-width:900px;margin:0 auto;padding:36px 24px}h1,h2,h3,h4{color:#12314b}h1{margin-bottom:4px}h2{font-size:1.15rem;margin-top:28px;border-bottom:2px solid #d8e5ef;padding-bottom:5px}h3{font-size:1rem;margin-top:20px}.meta{color:#5b6b7a}.box,.criterion-feedback,.practice-feedback,.feedback-summary{border:1px solid #cbd9e4;border-radius:10px;padding:14px;margin:10px 0}.box{white-space:pre-wrap}.status{background:#eef6fc;border-left:5px solid #287ab0;padding:12px 14px}.next{background:#fff8df;border-left:5px solid #d08a00;padding:12px 14px}.criterion-feedback dl,.practice-feedback dl,.feedback-summary dl{display:grid;grid-template-columns:180px 1fr;gap:6px 12px}.criterion-feedback dt,.practice-feedback dt,.feedback-summary dt{font-weight:700}.criterion-feedback dd,.practice-feedback dd,.feedback-summary dd{margin:0}.criterion-state{font-size:.8rem;color:#5b6b7a}blockquote{margin:0;padding:7px 10px;border-left:3px solid #8eacbf;background:#f4f7f9}li{margin:.35em 0}footer{margin-top:34px;border-top:1px solid #ccd7df;padding-top:14px;color:#5b6b7a;font-size:.88rem}@media(max-width:650px){.criterion-feedback dl,.practice-feedback dl,.feedback-summary dl{grid-template-columns:1fr}}@media print{body{max-width:none;padding:0}.no-print{display:none}.section-lead,h2,h3{break-after:avoid-page;page-break-after:avoid}.box,.criterion-feedback,.practice-feedback,.feedback-summary{break-inside:avoid;page-break-inside:avoid}.report-section{break-before:auto}}</style></head><body><h1>${escapeText(title)}</h1><p class="meta">${escapeText(subtitle)}</p><p class="status"><strong>Estado:</strong> ${escapeText(statusText)}</p>${sections.join("")}<section class="next"><strong>Cómo usar este reporte</strong><ol><li>Distingue qué partes de tu respuesta inicial se conservaron y qué ajustes añadiste.</li><li>Si queda algo pendiente, responde la pregunta específica y vuelve a la sección de lectura indicada; no reescribas lo que ya está correcto.</li><li>Después prueba una pregunta similar sin mirar la respuesta esperada. Si la dificultad persiste, comparte el reporte con tu profesor o ayudante.</li></ol></section><div class="no-print"><button onclick="window.print()">Imprimir o guardar como PDF</button><p>En el cuadro de impresión, desactiva «Encabezados y pies de página» para que no aparezca la dirección local del archivo.</p></div><footer>MacroLab · Este reporte es retroalimentación formativa, no una nota ni un diagnóstico definitivo. No contiene nombre ni identificador personal. Fue generado el ${escapeText(new Date().toLocaleString("es-CL"))}.</footer></body></html>`;
 }
 function guidedStudentReport(state,closure){
-  const route=CLASS_ROUTES[activeClass],analysis=guidedAnalysis(route,state),payload=guidedPayload(state,closure),f=state.fields,probe=GUIDED_DIAGNOSTICS[activeClass].probe.options.find(([v])=>v===f.diagnosticProbe),drill=GUIDED_DRILLS[state.guidedDrillId],result=guidedPracticeResult(state);
-  const observationList=analysis.items.map(x=>`<li>${escapeText(x.text)}</li>`).join("");
+  const route=CLASS_ROUTES[activeClass],payload=guidedPayload(state,closure),f=state.fields,probe=GUIDED_DIAGNOSTICS[activeClass].probe.options.find(([v])=>v===f.diagnosticProbe),drill=GUIDED_DRILLS[state.guidedDrillId],result=guidedPracticeResult(state);
   const checks=result.checks.map(x=>`<li><strong>${x.ok?"Cumplido":"Pendiente"}:</strong> ${escapeText(x.label)}</li>`).join("");
   const orientation=payload.diagnosis.label||"No se asignó una categoría: el sistema conservó la incertidumbre y propuso una práctica fundamental.";
   const revised=activeClass==="2"?`Resultados revisados: (a) ${f.revisedA||"—"}; (b) ${f.revisedB||"—"}; (c) ${f.revisedC||"—"}\n\n${f.revisedAnswer||"—"}`:class1CumulativeAnswer(state);
   const class1BaseNeeds=activeClass==="1"?class1RevisionRequirements(state,false).filter(item=>!item.ok):[];
   const class1Additions=activeClass==="1"?class1RevisionAdditions(state):[];
   const revisionSection=activeClass==="1"
-    ? `<h2>7. Mi respuesta final acumulada</h2><div class="box"><strong>Respuesta inicial conservada:</strong>\n${escapeText(class1OriginalAnswer(state))}\n\n<strong>Ajustes añadidos:</strong>\n${class1Additions.length?class1Additions.map(item=>`${escapeText(item.label)}: ${escapeText(item.text)}`).join("\n"):"No fue necesario volver a escribir: se mantuvo la respuesta inicial."}\n\n<strong>Respuesta que MacroLab comprobó:</strong>\n${escapeText(revised)}</div>${class1BaseNeeds.length?`<p><strong>Lecturas específicas usadas para completar:</strong></p><ul>${class1BaseNeeds.map(item=>`<li><a href="${PUBLIC_NOTES_BASE+escapeText(item.href)}">${escapeText(item.reading)}</a> — ${escapeText(item.question)}</li>`).join("")}</ul>`:`<p>La respuesta inicial ya contenía las piezas conceptuales solicitadas; la práctica comprobó su reconocimiento sin exigir una copia.</p>`}`
-    : `<h2>7. Mi respuesta revisada</h2><div class="box">${escapeText(revised)}</div>`;
+    ? `<h2>8. Mi respuesta después de los ajustes</h2><div class="box"><strong>Respuesta inicial conservada:</strong>\n${escapeText(class1OriginalAnswer(state))}\n\n<strong>Ajustes añadidos:</strong>\n${class1Additions.length?class1Additions.map(item=>`${escapeText(item.label)}: ${escapeText(item.text)}`).join("\n"):"No fue necesario volver a escribir: se mantuvo la respuesta inicial."}\n\n<strong>Respuesta inicial y ajustes leídos en conjunto:</strong>\n${escapeText(revised)}</div>${class1BaseNeeds.length?`<p><strong>Lecturas específicas usadas para completar:</strong></p><ul>${class1BaseNeeds.map(item=>`<li><a href="${PUBLIC_NOTES_BASE+escapeText(item.href)}">${escapeText(item.reading)}</a> — ${escapeText(item.question)}</li>`).join("")}</ul>`:`<p>La respuesta inicial ya contenía las piezas conceptuales solicitadas; la práctica comprobó su reconocimiento sin exigir una copia.</p>`}`
+    : `<h2>8. Mi respuesta revisada</h2><div class="box">${escapeText(revised)}</div>`;
   const sections=[
-    `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a observación; pasaporte del dato; descripción frente a causalidad":"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB"}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
+    `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a resultado observado; datos que identifican una cifra —qué mide, cuánto, cuándo, estado y fuente—; diferencia entre describir un escenario y explicar una causa":"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB"}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
     `<h2>1. Pregunta trabajada</h2><div class="box">${escapeText(route.test.prompt)}</div>`,
     `<h2>2. Mi respuesta inicial</h2><div class="box">${escapeText(learnerAnswer(route))}</div>`,
-    `<h2>3. Pauta de contraste</h2><div class="box">${escapeText(route.test.model)}</div>`,
-    `<h2>4. Qué observó MacroLab</h2><ul>${observationList}</ul><p>Estas son señales de la respuesta, no una calificación automática.</p>`,
-    `<h2>5. Orientación</h2><div class="box"><strong>${escapeText(orientation)}</strong>\n\nPregunta de comprobación: ${escapeText(GUIDED_DIAGNOSTICS[activeClass].probe.question)}\nMi respuesta: ${escapeText(probe?probe[1]:"—")}</div>`,
-    `<h2>6. Práctica y criterio</h2><div class="box"><strong>${escapeText(drill.title)}</strong>\n${escapeText(drill.criterion)}</div><ul>${checks}</ul>`,
+    `<h2>3. Sobre mi respuesta inicial: detalle por aspecto</h2>${renderPedagogicalFeedback(payload.explanatory_feedback)}`,
+    `<h2>4. Respuesta esperada para comparar</h2><div class="box">${escapeText(route.test.model)}</div>`,
+    `<h2>5. Cómo se usó mi respuesta</h2><div class="box">La sección 3 revisa únicamente tu respuesta inicial. La sección 7 revisa por separado tu respuesta inicial junto con los ajustes que agregaste. Así puedes reconocer qué ya estaba presente y qué incorporaste después.</div>`,
+    `<h2>6. Qué conviene revisar primero</h2><div class="box"><strong>${escapeText(orientation)}</strong>\n\nPregunta usada para orientar la práctica: ${escapeText(GUIDED_DIAGNOSTICS[activeClass].probe.question)}\nTu respuesta: ${escapeText(probe?probe[1]:"—")}</div>`,
+    activeClass==="1"?renderClass1PracticeReport(drill,result):`<section class="report-section"><div class="section-lead"><h2>7. Práctica y criterio</h2><div class="box"><strong>${escapeText(drill.title)}</strong>\n${escapeText(drill.criterion)}</div></div><ul>${checks}</ul></section>`,
     revisionSection
   ];
-  const completedText=activeClass==="1"?"comprobaciones guiadas cumplidas; respuesta acumulada lista para revisión docente":"criterio de esta práctica cumplido";
+  const completedText=activeClass==="1"?"práctica terminada; tu respuesta inicial y tus ajustes contienen los elementos solicitados":"criterio de esta práctica cumplido";
   return reportDocument({title:`Mi reporte de aprendizaje · Clase ${activeClass}`,subtitle:route.title,sections,statusText:result.passed&&closure==="rutina_completada"?completedText:"práctica pendiente; el reporte indica qué falta"});
 }
 function loopStudentReport(entry,closure){
   const route=CLASS_ROUTES[3],code=entry.diagnosis.learner_confirmed_code,found=code?route.errors.find(([c])=>c===code):null,drill=entry.training.drill_id?BIE_DRILLS[entry.training.drill_id]:null,variant=entry.transfer.variant_id?Learning.byId(entry.transfer.variant_id):null;
+  const state=classState[LOOP_CLASS],explanation=state.explanatoryFeedback||buildPedagogicalFeedback(LOOP_CLASS,state.fields,state.feedback||{});
   const direction=(DIRECTION_OPTIONS.find(([v])=>v===entry.prediction.direction)||[,entry.prediction.direction||"—"])[1];
   const orientation=found?found[1]:entry.discrepancy.kind==="none"?"No hubo discrepancia verificable; se registró una consolidación.":"No se confirmó ninguna categoría de error.";
   const sections=[
     `<h2>1. Pregunta trabajada</h2><div class="box">${escapeText(route.test.prompt)}</div>`,
     `<h2>2. Mi predicción y razonamiento inicial</h2><div class="box">Dirección esperada: ${escapeText(direction)}\nMagnitud esperada: ${entry.prediction.magnitude??"—"}\nMecanismo: ${escapeText(entry.prediction.mechanism||entry.narrative.initial_reasoning||"—")}</div>`,
     `<h2>3. Qué ocurrió en el laboratorio</h2><div class="box">${escapeText(entry.discrepancy.statement||"—")}</div><p>Este es un hecho comparable, no una calificación.</p>`,
-    `<h2>4. Pauta de contraste</h2><div class="box">${escapeText(route.test.model)}</div>`,
-    `<h2>5. Orientación confirmada por mí</h2><div class="box"><strong>${escapeText(orientation)}</strong>\n\nEvidencia usada: ${escapeText(entry.diagnosis.evidence_used||"—")}</div>`,
-    `<h2>6. Práctica asignada</h2><div class="box">${drill?`<strong>${escapeText(drill.title)}</strong>\n${escapeText(drill.criterion)}`:"No se asignó una práctica correctiva automática."}</div><p><strong>Resultado:</strong> ${entry.training.passed===true?"criterio cumplido":entry.training.passed===false?"criterio todavía no cumplido":"aún no comprobado"}.</p>`,
-    `<h2>7. Regla para la próxima vez</h2><div class="box">${escapeText(entry.narrative.future_cue||entry.narrative.revised_chain||"—")}</div>`,
-    `<h2>8. Nueva aplicación</h2><div class="box">${variant?escapeText(`Se realizó una pregunta nueva de transferencia. ${variant.discrepancy.statement}`):"La pregunta nueva de transferencia aún no se ha realizado."}</div>`
+    `<h2>4. Retroalimentación por criterio</h2>${renderPedagogicalFeedback(explanation)}`,
+    `<h2>5. Respuesta esperada para comparar</h2><div class="box">${escapeText(route.test.model)}</div>`,
+    `<h2>6. Qué decidí revisar</h2><div class="box"><strong>${escapeText(orientation)}</strong>\n\nParte de mi respuesta usada para orientar la revisión: ${escapeText(entry.diagnosis.evidence_used||"—")}</div>`,
+    `<h2>7. Práctica asignada</h2><div class="box">${drill?`<strong>${escapeText(drill.title)}</strong>\n${escapeText(drill.criterion)}`:"No se asignó una práctica correctiva automática."}</div><p><strong>Resultado:</strong> ${entry.training.passed===true?"criterio cumplido":entry.training.passed===false?"criterio todavía no cumplido":"aún no comprobado"}.</p>`,
+    `<h2>8. Regla para la próxima vez</h2><div class="box">${escapeText(entry.narrative.future_cue||entry.narrative.revised_chain||"—")}</div>`,
+    `<h2>9. Nueva aplicación</h2><div class="box">${variant?escapeText(`Se realizó una pregunta nueva de transferencia. ${variant.discrepancy.statement}`):"La pregunta nueva de transferencia aún no se ha realizado."}</div>`
   ];
   return reportDocument({title:"Mi reporte de aprendizaje · Clase 3",subtitle:route.title,sections,statusText:closure==="rutina_completada"&&entry.training.passed===true?"criterio de esta práctica cumplido":"práctica pendiente; el reporte indica qué falta"});
 }
@@ -1482,9 +1676,11 @@ function renderClassWorkbench(moveFocus=false){
   }else if(step===3){
     if(loop){html+=renderLoopReview(route,state)}else if(guidedMode()){html+=renderGuidedComparison(route,state)}else{
     const report=state.feedback||{score:0,max:1,checks:[]};
+    const explanation=state.explanatoryFeedback||buildPedagogicalFeedback(activeClass,state.fields,report);
     html+=`<h3>Retroalimentación: resultado, procedimiento y mecanismo</h3>
-      ${renderVerifiableBlock(report)}
-      <div class="feedback-grid">${renderCoverageBlock(report)}<section><strong>Pauta de contraste</strong><p>${escapeText(route.test.model)}</p></section></div>
+      ${renderPedagogicalFeedback(explanation)}
+      <details class="alt feedback-base-details"><summary>Ver pauta y comprobaciones de la evaluación base</summary>${renderVerifiableBlock(report)}
+      <div class="feedback-grid">${renderCoverageBlock(report)}<section><strong>Respuesta esperada para comparar</strong><p>${escapeText(route.test.model)}</p></section></div></details>
       ${classInput("feedbackReflection","¿Qué parte de tu procedimiento cambiarías?","textarea",'rows="3"')}
       ${renderContradictionField()}
       <div class="actions"><button class="btn" type="button" data-class-action="feedback">Identificar el error dominante</button></div>
@@ -1554,10 +1750,12 @@ function scoreClassTest(){
   const route=CLASS_ROUTES[activeClass],test=route.test,fields=classState[activeClass].fields,checks=[];
   if(test.type==="prose"){
     if(activeClass==="1"){
-      checks.push({ok:fields.bridgeEvidence==="projection",numeric:true,label:"reconoce el estado de la cifra",detail:fields.bridgeEvidence==="projection"?"La pregunta previa reconoce que el 2% es una proyección.":"La pregunta previa trató una proyección como si fuera un resultado ya observado."});
-      checks.push({ok:fields.bridgeClaim==="scenario",numeric:true,label:"limita la afirmación a lo que muestra la fuente",detail:fields.bridgeClaim==="scenario"?"La pregunta previa limita la cifra al escenario publicado.":"La pregunta previa atribuyó una causa que la cifra, por sí sola, no demuestra."});
+      checks.push({id:"c1-status-choice",criterionId:"C1-EVIDENCE-STATUS",ok:fields.bridgeEvidence==="projection",numeric:true,label:"reconoce el estado de la cifra",detail:fields.bridgeEvidence==="projection"?"La pregunta previa reconoce que el 2% es una proyección.":"La pregunta previa trató una proyección como si fuera un resultado ya observado."});
+      checks.push({id:"c1-scope-choice",criterionId:"C1-EVIDENCE-CAUSALITY",ok:fields.bridgeClaim==="scenario",numeric:true,label:"limita la afirmación a lo que muestra la fuente",detail:fields.bridgeClaim==="scenario"?"La pregunta previa limita la cifra al escenario publicado.":"La pregunta previa atribuyó una causa que la cifra, por sí sola, no demuestra."});
     }
-    test.keywords.forEach((pattern,i)=>checks.push({ok:pattern.test(fields.testProse||""),numeric:false,label:["distingue proyección de observación","aclara que el resultado todavía no está observado","limita la afirmación causal","identifica metadatos o fuente"][i]}));
+    const ids=["c1-projection","c1-observed","c1-causality","c1-metadata"],criteria=["C1-EVIDENCE-STATUS","C1-EVIDENCE-TIME","C1-EVIDENCE-CAUSALITY","C1-EVIDENCE-METADATA"];
+    const prose=String(fields.testProse||""),conflicts=[null,null,/(?:la cifra|el dato|la proyecci[oó]n)\s+(?:demuestra|prueba|confirma)\s+que\s+(?:el\s+)?(?:gobierno|una?\s+pol[ií]tica|una?\s+medida)|(?:el\s+)?gobierno\s+caus[oó]/i,null];
+    test.keywords.forEach((pattern,i)=>checks.push({id:ids[i],criterionId:criteria[i],ok:pattern.test(prose)&&!(conflicts[i]&&conflicts[i].test(prose)),numeric:false,label:["distingue proyección de observación","aclara que el resultado todavía no está observado","limita la afirmación causal","identifica información de la cifra o su fuente"][i]}));
   }else{
     // P1.1 · Los dos primeros son cálculos verificables, no coincidencias verbales.
     // Se marcan como tales para que se muestren antes y con prioridad sobre la cobertura.
@@ -1567,14 +1765,26 @@ function scoreClassTest(){
       const expected=test.expected[key];
       const ok=Number.isFinite(value)&&String(written??"").trim()!==""&&Math.abs(value-expected)<.03;
       checks.push({
-        ok,numeric:true,key,expected,written:String(written??""),
+        id:`c${activeClass}-${activeClass==="2"?["growth","deflator","pnb"][index]:["initial","new"][index]}`,criterionId:activeClass==="2"?["C2-GROWTH","C2-DEFLATOR","C2-PNB"][index]:["C3-INITIAL-EQUILIBRIUM","C3-NEW-EQUILIBRIUM"][index],ok,numeric:true,key,expected,written:String(written??""),
         label:`cálculo (${letter}) cercano a ${fmt(expected)}`,
         detail:ok
           ? `Cálculo (${letter}): escribiste ${fmt(value)} y la pauta da ${fmt(expected)}.`
           : `Cálculo (${letter}): escribiste ${String(written??"").trim()===""?"nada":fmt(Number.isFinite(value)?value:0)} y la pauta da ${fmt(expected)}. La diferencia no es de redacción: es de cifra.`
       });
     });
-    test.keywords.forEach((pattern,i)=>checks.push({ok:pattern.test(fields.testMechanism||""),numeric:false,label:["menciona el objeto estadístico o mecanismo central","menciona el proceso, no sólo el resultado","menciona la realimentación del consumo"][i]||"menciona el mecanismo"}));
+    const verbalIds=activeClass==="2"?["c2-ipc","c2-deflator-coverage","c2-pnf","c2-flow-stock"]:["c3-inventories","c3-production-income","c3-consumption"];
+    const verbalCriteria=activeClass==="2"?["C2-PRICE-COVERAGE","C2-PRICE-COVERAGE","C2-PNF-FLOW","C2-PNF-FLOW"]:["C3-INVENTORIES","C3-PRODUCTION-INCOME","C3-CONSUMPTION-FEEDBACK"];
+    const mechanism=String(fields.testMechanism||"");
+    const verbalConflicts=activeClass==="2"
+      ? [/deflactor\s+(?:del\s+pib\s+)?(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?ipc|ipc\s+(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?deflactor/i,/deflactor\s+(?:del\s+pib\s+)?(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?ipc|ipc\s+(?:es|equivale\s+a)\s+(?:igual\s+al?\s+)?deflactor/i,/pnf\s+(?:es|representa|equivale\s+a|mide)\s+(?:el|un)?\s*(?:stock|(?:valor\s+)?(?:de\s+la\s+)?inversi[oó]n.*acumulad)/i,/pnf\s+(?:es|representa|equivale\s+a|mide)\s+(?:el|un)?\s*(?:stock|(?:valor\s+)?(?:de\s+la\s+)?inversi[oó]n.*acumulad)/i]
+      : [/(?:inventarios?|existencias?)\s+(?:no\s+planead[oa]s?\s+)?(?:suben|aumentan)|(?:suben|aumentan)\s+(?:los\s+)?(?:inventarios?|existencias?)/i,/(empresas|producci[oó]n).*(reduc|disminu).*cuando.*(g|gasto).*(sube|aumenta)/i,null];
+    test.keywords.forEach((pattern,i)=>{
+      let ok=pattern.test(mechanism)&&!(verbalConflicts[i]&&verbalConflicts[i].test(mechanism));
+      if(activeClass==="3"&&i===0)ok=ok&&(/(?:caen|disminuyen|reducen|bajan).*inventario|inventario.*(?:caen|disminuyen|reducen|bajan)/i.test(mechanism));
+      if(activeClass==="3"&&i===1)ok=ok&&/produc/i.test(mechanism)&&/(ingreso|renta)/i.test(mechanism);
+      if(activeClass==="3"&&i===2)ok=ok&&/(ingreso|renta).*(aument|eleva|sube|increment).*consum|consum.*(aument|sube).*(por|debido|gracias).*(ingreso|renta)/i.test(mechanism);
+      checks.push({id:verbalIds[i],criterionId:verbalCriteria[i],ok,numeric:false,label:["menciona el objeto estadístico o mecanismo central","menciona el proceso, no sólo el resultado","menciona la realimentación del consumo"][i]||"menciona el mecanismo"});
+    });
   }
   return {score:checks.filter(x=>x.ok).length,max:checks.length,checks};
 }
@@ -1630,7 +1840,9 @@ function handleClassAction(action){
     const test=CLASS_ROUTES[activeClass].test;
     if(test.type==="prose"&&!validateClassFields(activeClass==="1"?["bridgeEvidence","bridgeClaim","testProse"]:["testProse"]))return;
     if(test.type==="numeric"&&!validateClassFields([...(activeClass==="2"?["bridgeFlow","bridgePib","bridgePnb"]:[]),...Object.keys(test.expected),"testMechanism"]))return;
-    state.feedback=scoreClassTest();unlockClassStep(3);return;
+    state.feedback=scoreClassTest();
+    state.explanatoryFeedback=buildPedagogicalFeedback(activeClass,fields,state.feedback);
+    unlockClassStep(3);return;
   }
   if(action==="feedback"){
     if(guidedMode()){
@@ -1669,7 +1881,7 @@ function handleClassAction(action){
     }
     if(!validateClassFields(["drill","successCriterion","trainingPlan"]))return;
     state.completed=true;renderClassProgress();
-    const payload={schema_version:"macrolab-macro1-class-session/1.0",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,answers:{...fields},feedback:state.feedback,error_code:fields.errorCode,training:{drill:fields.drill,success_criterion:fields.successCriterion,plan:fields.trainingPlan}};
+    const payload={schema_version:"macrolab-macro1-class-session/1.0",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:Number(activeClass),class_title:CLASS_ROUTES[activeClass].title,answers:{...fields},feedback:state.feedback,explanatory_feedback:state.explanatoryFeedback||buildPedagogicalFeedback(activeClass,fields,state.feedback||{}),error_code:fields.errorCode,training:{drill:fields.drill,success_criterion:fields.successCriterion,plan:fields.trainingPlan}};
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=`MacroLab_Clase${activeClass}_sesion.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),500);classStatus("Rutina cerrada y ficha descargada. La ficha no contiene nombre ni identificador personal.","ok");
   }
 }
@@ -2393,7 +2605,7 @@ function snapshotAttemptFields(attemptId){
 function openAttemptFieldScope(attemptId,previousId){
   const state=classState[LOOP_CLASS],f=state.fields;
   Object.keys(f).forEach(k=>{if(ATTEMPT_SCOPED_FIELD.test(k))delete f[k]});
-  state.feedback=null;
+  state.feedback=null;state.explanatoryFeedback=null;
   attemptFields[attemptId]=attemptFields[attemptId]||{};
   const prev=previousId?attemptFields[previousId]:null;
   if(prev)previousAttemptRule={chain:prev.narChain||"",cue:prev.narCue||"",attempt_id:previousId};
@@ -2599,6 +2811,7 @@ function loopReturn(){
       entry.narrative.initial_reasoning_seeded=true;
     }
     state.feedback=scoreClassTest();
+    state.explanatoryFeedback=buildPedagogicalFeedback(LOOP_CLASS,state.fields,state.feedback);
     entry.status=loopStatus(entry);
   }
   loopSession=null;
@@ -2690,6 +2903,7 @@ function renderLoopReview(route,state){
   if(entry.internal_state==="observed_gap")loopSetState("narrative",entry);
   const f=state.fields,d=entry.discrepancy,app=entry.application,res=app.results||{},params=app.params||{};
   const report=state.feedback||{score:0,max:0,checks:[]};
+  const explanation=state.explanatoryFeedback||buildPedagogicalFeedback(LOOP_CLASS,state.fields,report);
   const weak=d.detected.includes("mechanism")?`<p class="loop-weak"><strong>Cautela sobre la señal de mecanismo:</strong> es la única de las cuatro que depende de palabras clave y, por lo mismo, la más débil. Una explicación correcta escrita con otras palabras puede no ser detectada.</p>`:"";
   // P2 · Todas las discrepancias detectadas quedan a la vista, aunque sólo una sea dominante.
   const allDetected=(d.detected||[]).length
@@ -2717,11 +2931,12 @@ function renderLoopReview(route,state){
       <tr><th scope="row">Exploración</th><td>${escapeText(String(app.attempts))} ${app.attempts===1?"escenario calculado":"escenarios calculados"} · ${(app.verification_attempts||[]).length} ${(app.verification_attempts||[]).length===1?"intento de verificación":"intentos de verificación"}</td></tr>
       <tr><th scope="row">Equilibrio de referencia</th><td>Y* inicial = ${fmt(app.baseline.Yeq,0)}</td></tr>
       </tbody></table></div></details>
-    ${renderVerifiableBlock(report)}
-    <details class="alt"><summary>Pauta de contraste y cobertura de elementos mencionados</summary>
+    ${renderPedagogicalFeedback(explanation)}
+    <details class="alt feedback-base-details"><summary>Ver pauta y comprobaciones de la evaluación base</summary>
+      ${renderVerifiableBlock(report)}
       <div class="feedback-grid">
       ${renderCoverageBlock(report)}
-      <section><strong>Pauta de contraste</strong><p>${escapeText(route.test.model)}</p></section>
+      <section><strong>Respuesta esperada para comparar</strong><p>${escapeText(route.test.model)}</p></section>
       </div>
       <p class="field-note">La discrepancia calculada de arriba es el instrumento fiable; la cobertura es el débil.</p>
     </details>
@@ -3032,7 +3247,7 @@ function clearLearningRecord(){
   // P2 · Borrar el registro restablece también paso, desbloqueos y estado de la clase.
   // Antes quedaban seis pasos desbloqueados apuntando a entradas que ya no existían.
   const state=classState[LOOP_CLASS];
-  state.fields={};state.feedback=null;state.step=0;state.unlocked=0;state.completed=false;
+  state.fields={};state.feedback=null;state.explanatoryFeedback=null;state.step=0;state.unlocked=0;state.completed=false;
   Object.keys(attemptFields).forEach(k=>delete attemptFields[k]);
   previousAttemptRule=null;importedMemory=null;loopSession=null;
   loopGateAnnounced.pred=false;loopGateAnnounced.v2Pred=false;
@@ -3164,7 +3379,7 @@ function handleLoopAction(action){
   }
   if(action==="exportJson"){
     const entry=Learning.latest(LOOP_ACTIVITY);if(!entry)return;
-    const payload={schema_version:"macrolab-macro1-class-session/1.1",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:3,class_title:CLASS_ROUTES[3].title,closure:"respaldo_en_progreso",practice_passed:entry.training.passed,answers:{...f},feedback:state.feedback,error_code:f.errorCode||null,training:{drill:f.drill||"",success_criterion:f.successCriterion||"",plan:f.trainingPlan||""},learning_context:Learning.toObject()};
+    const payload={schema_version:"macrolab-macro1-class-session/1.1",generated_at:new Date().toISOString(),artifact:LOOP_ARTIFACT,class_id:3,class_title:CLASS_ROUTES[3].title,closure:"respaldo_en_progreso",practice_passed:entry.training.passed,answers:{...f},feedback:state.feedback,explanatory_feedback:state.explanatoryFeedback||buildPedagogicalFeedback(LOOP_CLASS,f,state.feedback||{}),error_code:f.errorCode||null,training:{drill:f.drill||"",success_criterion:f.successCriterion||"",plan:f.trainingPlan||""},learning_context:Learning.toObject()};
     downloadTextFile(JSON.stringify(payload,null,2),"application/json","MacroLab_Clase3_respaldo_tecnico.json");
     classStatus("Respaldo técnico JSON descargado. El reporte legible se obtiene al cerrar o completar la rutina.","ok");return;
   }
@@ -3226,7 +3441,7 @@ function init(){
 }
 // Superficie mínima de inspección para las pruebas automáticas del loop. Sólo expone
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
-window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
+window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
   lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();
