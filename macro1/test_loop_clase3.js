@@ -682,9 +682,9 @@ async function main() {
   clickClass(w3, "guidedCheck");
   ok(/Comprobaciones guiadas cumplidas/.test(q(w3, "#guidedPracticeStatus").textContent), "revisión acumulativa · conservar una respuesta inicial completa satisface el criterio sin copiarla");
   const studentReport = L3.guidedStudentReport(L3.classState()["1"], "rutina_completada");
-  ok(/Mi respuesta inicial/.test(studentReport) && /Pauta de contraste/.test(studentReport), "v0.6 · el reporte contiene respuesta inicial y pauta");
-  ok(/Orientación/.test(studentReport) && /Práctica y criterio/.test(studentReport), "v0.6 · el reporte traduce el diagnóstico en práctica");
-  ok(/Mi respuesta final acumulada/.test(studentReport)&&/Respuesta inicial conservada/.test(studentReport)&&/No fue necesario volver a escribir/.test(studentReport), "revisión acumulativa · el reporte separa lo conservado de los ajustes");
+  ok(/Mi respuesta inicial/.test(studentReport) && /Respuesta esperada para comparar/.test(studentReport), "v0.6 · el reporte contiene respuesta inicial y una respuesta esperada claramente rotulada");
+  ok(/Qué conviene revisar primero/.test(studentReport) && /Práctica para completar tu respuesta/.test(studentReport), "v0.6 · el reporte traduce el diagnóstico en una práctica comprensible");
+  ok(/Mi respuesta después de los ajustes/.test(studentReport)&&/Respuesta inicial conservada/.test(studentReport)&&/No fue necesario volver a escribir/.test(studentReport), "revisión acumulativa · el reporte separa lo conservado de los ajustes");
   ok(/Cómo usar este reporte/.test(studentReport) && /window\.print/.test(studentReport), "v0.6 · el reporte explica su uso y permite imprimir o guardar PDF");
   ok(!/C1-Q-|C1-DRILL/.test(studentReport), "v0.6 · el reporte estudiantil no expone códigos internos");
 

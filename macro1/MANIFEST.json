@@ -13,7 +13,8 @@
   "tests": [
     "test_paquete.js",
     "test_loop_clase3.js",
-    "test_formulas_selladas.js"
+    "test_formulas_selladas.js",
+    "test_retroalimentacion_pedagogica.js"
   ],
   "notes": [
     {
