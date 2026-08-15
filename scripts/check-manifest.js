@@ -56,17 +56,35 @@ fs.existsSync(idxPath) ? ok('notas/index.html existe') : fail('falta notas/index
 const idxHtml = fs.existsSync(idxPath) ? fs.readFileSync(idxPath, 'utf8') : '';
 const homeHtml = fs.readFileSync(path.join(macro1, 'index.html'), 'utf8');
 
-for (const n of (manifest.notes || []).filter(n => n.kind === 'bloque')) {
+const bloques = (manifest.notes || []).filter(n => n.kind === 'bloque');
+const publicados = bloques.filter(n => n.published !== false);
+const retirados  = bloques.filter(n => n.published === false);
+
+for (const n of publicados) {
   const file = n.file.split('/').pop();
   idxHtml.includes(file) ? ok(`${n.id} enlazado desde el índice`) : fail(`${n.id} NO aparece en notas/index.html`);
   if (!homeHtml.includes('notas/' + file)) fail(`${n.id} NO aparece en la Ruta por clases (macro1/index.html)`);
+}
+
+// Un bloque con published:false debe estar retirado de VERDAD de los dos sitios.
+// Así, despublicar es una decisión verificable y no un olvido a medias.
+for (const n of retirados) {
+  const file = n.file.split('/').pop();
+  const enIndice = idxHtml.includes(file);
+  const enRuta   = homeHtml.includes('notas/' + file);
+  if (enIndice) fail(`${n.id} está marcado published:false pero SIGUE enlazado en notas/index.html`);
+  if (enRuta)   fail(`${n.id} está marcado published:false pero SIGUE enlazado en la Ruta por clases`);
+  if (!enIndice && !enRuta) ok(`${n.id} retirado de la navegación (published:false), archivo conservado`);
+}
+if (retirados.length) {
+  console.log(`  · ${retirados.length} bloque(s) deliberadamente fuera de la navegación; ${publicados.length} publicado(s).`);
 }
 
 /* ── 3 · conformidad editorial de cada nota ───────────────────────────────── */
 console.log('\n── Conformidad editorial de las notas');
 let conformes = 0;
 const revisables = [
-  ...(manifest.notes || []).map(n => n.file),
+  ...(manifest.notes || []).filter(n => n.published !== false).map(n => n.file),
   'notas/index.html',
 ].filter((v, i, a) => a.indexOf(v) === i);
 
