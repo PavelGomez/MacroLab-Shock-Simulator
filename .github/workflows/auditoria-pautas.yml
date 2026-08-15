@@ -15,15 +15,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
+      # test_formulas_selladas.js y test_loop_clase3.js requieren jsdom
+      - name: Instalar dependencias
+        run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
       - name: Sintaxis de script.js
         run: node --check script.js
       - name: Auditoría de pautas selladas
         run: node test_pautas_biblioteca.js
+      - name: Integridad del MANIFEST y visibilidad de las notas
+        run: node scripts/check-manifest.js
       - name: Suites del sub-app macro1
         working-directory: macro1
         run: |
+          set -e
           for t in test_paquete.js test_formulas_selladas.js; do
             if [ -f "$t" ]; then echo "── $t"; node "$t"; fi
           done
-      - name: Integridad del MANIFEST y de las notas enlazadas
-        run: node scripts/check-manifest.js

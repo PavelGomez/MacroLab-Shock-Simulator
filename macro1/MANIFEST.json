@@ -6,7 +6,7 @@
   "artifact": "macro1/index.html",
   "identity_line": "Macroeconomía · Profesor Pável Gómez · 2026",
   "lab_identity_line": "Macroeconomía I · Profesor Pável Gómez · 2026",
-  "content_version": "macro1-bloques-2026-08",
+  "content_version": "macro1-notas-2026-08-cumulative-revision",
   "learning_schema": "macrolab-learning-context/0.2",
   "scenario_schema": "macrolab-macro1-scenario/1.1",
   "generated_at": "2026-08-15T00:00:00.000Z",
@@ -14,8 +14,7 @@
     "test_paquete.js",
     "test_loop_clase3.js",
     "test_formulas_selladas.js",
-    "test_retroalimentacion_pedagogica.js",
-    "test_pautas_biblioteca.js"
+    "test_retroalimentacion_pedagogica.js"
   ],
   "notes": [
     {
@@ -192,6 +191,10 @@
     {
       "note": "MANIFEST",
       "reason": "lab_version sube de 0.6.5 a 0.7.0 por dos cambios de comportamiento: el módulo IS-LM incorpora régimen tributario T fija / T = t·Y, y se agrega la capa de auditoría test_pautas_biblioteca.js que confronta las pautas selladas de la biblioteca con los solvers."
+    },
+    {
+      "note": "tests",
+      "reason": "test_pautas_biblioteca.js audita el simulador de la capa superior y vive en la raíz del repo, no en macro1/. Por eso no se declara aquí: este manifiesto describe las suites del sub-app macro1, que test_paquete.js exige que sean exactamente cuatro."
     }
   ]
 }
