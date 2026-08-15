@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 4 · IS-LM en economía cerrada &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Equilibrio simultáneo, impuestos fijos y proporcionales, acelerador y crowding-out, y la mezcla de políticas chilena 2020-2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 4: El Modelo IS-LM en economía cerrada</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>ISLM</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> listo para clase, <strong>con dos correcciones aritméticas que requieren validación del profesor</strong>
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 4 · <strong>Texto base:</strong> Blanchard 7ª, cap. 5
+<strong>Materiales del curso usados:</strong> Nota de Estudio 7 (IS-LM), Nota "Desplazamiento y Acelerador", Nota "Desequilibrios y retorno al equilibrio", Ayudantía 4 (impuestos proporcionales), Ayudantía 8 (IS-LM y aplicaciones)
+<strong>Prerrequisitos:</strong> <code>BIE</code> (multiplicador), <code>DIN</code> (equilibrio monetario) · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Integra el mercado de bienes y el de dinero en un equilibrio simultáneo (Y<em>, i</em>). Desarrolla los <strong>dos enfoques de impuestos exigidos por el curso</strong>: (i) <strong>T fijo</strong> y (ii) <strong>T = t·Y (proporcional)</strong>. Usa la notación real de tus ayudantías: <code>I = b0 + b1·Y − b2·i</code> (con efecto acelerador <code>b1</code> y efecto desplazamiento <code>b2</code>).</p>
+</blockquote>
+<hr />
+<h2>⚠ AVISO DE VERIFICACIÓN — leer antes de usar el bloque en clase</h2>
+<p>Al recalcular las cuatro pautas selladas de v0.1 el 2026-08-15 aparecieron <strong>dos discrepancias aritméticas</strong>. No se corrigieron en silencio: se documentan aquí con la derivación completa, se corrige la pauta, y se deja el registro en el backlog para su validación (<code>BL-ISLM-05</code> y <code>BL-ISLM-06</code>).</p>
+<p><strong>Hallazgo 1 — <code>ISLM-EX-03</code>, error de división (afecta también a <code>ISLM-EX-04</code>).</strong> La derivación de la IS está bien planteada y mal terminada:</p>
+<pre><code>Y = 50 + 0,8Y + 10 + 0,1Y − 5i + 100
+Y − 0,9Y = 160 − 5i
+0,1Y = 160 − 5i          ← v0.1 llega correctamente hasta aquí
+Y = 1.600 − 50i          ← porque 160 / 0,1 = 1.600
+</code></pre>
+<p>v0.1 escribe <strong><code>Y = 1.200 − 50i</code></strong>. Como <code>160/0,1 = 1.600</code>, la intersección correcta es <strong>1.600</strong>. Todo el equilibrio de <code>ISLM-EX-03</code> cambia, y <code>ISLM-EX-04</code> hereda la IS equivocada.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>v0.1 (incorrecto)</th>
+<th><strong>v0.2 (corregido y verificado)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IS inicial</td>
+<td>Y = 1.200 − 50i</td>
+<td><strong>Y = 1.600 − 50i</strong></td>
+</tr>
+<tr>
+<td>Equilibrio inicial</td>
+<td>i = 8,89 % · Y = 755,56</td>
+<td><strong>i = 13,33 % · Y = 933,33</strong></td>
+</tr>
+<tr>
+<td>IS tras ΔG = 20</td>
+<td>Y = 1.400 − 50i</td>
+<td><strong>Y = 1.800 − 50i</strong></td>
+</tr>
+<tr>
+<td>Equilibrio final</td>
+<td>i = 11,11 % · Y = 844,44</td>
+<td><strong>i = 15,56 % · Y = 1.022,22</strong></td>
+</tr>
+<tr>
+<td>Inversión inicial → final</td>
+<td>41,1 → 38,9</td>
+<td><strong>36,67 → 34,44</strong></td>
+</tr>
+<tr>
+<td>ΔI</td>
+<td>−2,2 (−5,4 %)</td>
+<td><strong>−2,22 (−6,06 %)</strong></td>
+</tr>
+<tr>
+<td>ΔY</td>
+<td>+88,9 (+11,8 %)</td>
+<td><strong>+88,89 (+9,52 %)</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>El diagnóstico cualitativo de v0.1 sobrevive intacto:</strong> hay crowding-out, domina el desplazamiento sobre el acelerador, y <code>ΔI = b1·ΔY − b2·Δi = 8,89 − 11,11 = −2,22</code>. Cambian las cifras, no la enseñanza. Eso es una suerte, pero no una excusa para no corregirlas.</p>
+<p><strong>Hallazgo 2 — <code>ISLM-EX-01</code>, redondeo propagado.</strong> v0.1 informa <code>Y* ≈ 5.563,5</code>, que se obtiene al reemplazar <code>i</code> <strong>ya redondeado a 3,73</strong>. Con <code>i* = 3,72792…</code> el valor correcto es <strong>Y* ≈ 5.564,6</strong>. La diferencia es pequeña y el vicio es exactamente el que este curso enseña a evitar: <strong>no redondear magnitudes intermedias</strong>. Ambas cifras se muestran abajo.</p>
+<blockquote>
+<p>Ninguna otra pauta presentó problemas. <code>ISLM-EX-02</code> es exacta en todos sus valores.</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>Qué más cambia respecto de v0.1.</strong> Arquitectura intacta: mismos IDs, mismo pasaporte, mismos cuatro ejercicios (más uno nuevo). Se agrega el ancla histórica del ciclo chileno 2020-2026, que ofrece los tres casos canónicos del bloque —políticas coordinadas, políticas en conflicto, y LM horizontal— sin necesidad de inventar ninguno. Rosa Millán continúa desde <code>MED</code>, <code>BIE</code> y <code>DIN</code>.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong>, tasas en por ciento, IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>.</p>
+</blockquote>
+<hr />
+<h2>0. Alcance y dos correcciones a material del curso</h2>
+<p><strong>Alcance:</strong> derivación de IS y LM, equilibrio simultáneo, política fiscal/monetaria (coordinada y descoordinada), efecto acelerador vs. crowding-out, y desequilibrios con trayectoria de retorno. Economía cerrada, precios fijos.</p>
+<p><strong>Corrección 1 — Nota "Desplazamiento y Acelerador" (crítica, BL-03 del backlog).</strong> La nota dice: <em>"Cuando el efecto acelerador domina (b2 es relativamente alto…) la expansión fiscal tiene un efecto negativo sobre la inversión."</em> Debe decir <strong>"Cuando el efecto DESPLAZAMIENTO (crowding-out) domina (b2 alto)…"</strong>. El acelerador es <code>b1</code> (∂I/∂Y = +b1); el desplazamiento es <code>b2</code> (∂I/∂i = −b2). La frase actual atribuye al acelerador un caso que es de crowding-out. <strong>Corregido en este bloque.</strong></p>
+<p><strong>Corrección 2 — Nota "Desequilibrios".</strong> La condición IS aparece escrita como <code>Y = c0 + c1(Y−T) + b0 + b1Y + b2i + G</code> (con <strong>+b2i</strong>). El signo correcto es <strong>−b2·i</strong> (la inversión cae cuando sube la tasa), como en todos los ejercicios resueltos. <strong>Corregido aquí.</strong></p>
+<p>IDs: <code>ISLM-CON-*</code>, <code>ISLM-MOD-*</code>, <code>ISLM-CIR-*</code>, <code>ISLM-ERR-*</code>, <code>ISLM-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: dos años, dos políticas, dos direcciones</h3>
+<p>A Rosa le pasaron dos cosas opuestas en dos años seguidos y ninguna tuvo que ver con su pan.</p>
+<p><strong>2021.</strong> El Estado transfería recursos a los hogares y la TPM estaba en su mínimo técnico, <strong>0,50 %</strong>. La demanda interna creció <strong>21,6 %</strong> y la inversión del país (FBCF) <strong>17,6 %</strong>. Rosa compró el horno a crédito barato con la panadería llena.</p>
+<p><strong>2022.</strong> El Estado retiró las transferencias y el Banco Central llevó la TPM a <strong>11,25 %</strong>. La demanda interna creció <strong>2,3 %</strong> y la FBCF <strong>3,9 %</strong>; al año siguiente la FBCF caería <strong>−1,1 %</strong> y el consumo privado <strong>−4,9 %</strong>. El horno ya estaba comprado; la cuota, no.</p>
+<blockquote>
+<p><strong>La pregunta del bloque:</strong> los bienes y el dinero <strong>no son dos mercados separados</strong>. En 2021 los dos empujaron hacia el mismo lado; en 2022 los dos frenaron a la vez. ¿Cómo se lee eso con una sola figura?</p>
+</blockquote>
+<p>La respuesta es IS-LM: la política fiscal mueve la <strong>IS</strong>, la monetaria mueve la <strong>LM</strong>, y lo que uno observa —Y e i— es el <strong>cruce</strong>. Ningún dato de la realidad viene etiquetado como "esto fue la IS": clasificar el shock es el trabajo, y por eso es el paso 0 del circuito.</p>
+<p><code>[Ilustración sugerida: dos planos IS-LM lado a lado —2021 con ambas curvas desplazándose hacia la expansión, 2022 con ambas hacia la contracción— y bajo cada uno los datos de demanda interna, FBCF y TPM.]</code></p>
+<hr />
+<h2>1. Grafo de prerrequisitos</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  BIE[BIE: multiplicador&lt;br/&gt;mercado de bienes] --&gt; IS[ISLM-CON-IS&lt;br/&gt;Curva IS: Y=f&amp;#40;i&amp;#41;]
+  DIN[DIN: equilibrio&lt;br/&gt;M/P = Md] --&gt; LM[ISLM-CON-LM&lt;br/&gt;Curva LM: Y=f&amp;#40;i&amp;#41;]
+  IS --&gt; EQ[ISLM-MOD-CERRADA&lt;br/&gt;Equilibrio Y*, i*]
+  LM --&gt; EQ
+  EQ --&gt; POL[ISLM-CON-POL&lt;br/&gt;Política fiscal/monetaria]
+  EQ --&gt; CROWD[ISLM-CON-CROWD&lt;br/&gt;Acelerador b1 vs desplazamiento b2]
+  DINREG[DIN-CON-CIERRE&lt;br/&gt;régimen monetario] --&gt; REGLM[ISLM-CON-REG&lt;br/&gt;LM con pendiente&lt;br/&gt;vs horizontal]
+  REGLM --&gt; EQ
+  EQ -.puente.-&gt; ABIERTA[/IS-LM-BP&lt;br/&gt;economía abierta/]
+  EQ -.puente.-&gt; DA[/DA en OA-DA/]
+</code></pre>
+<p><em>Las seis relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agrega una:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIN-CON-CIERRE</td>
+<td>DETERMINA</td>
+<td>ISLM-CON-REG</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISLM-CON-IS</td>
+<td>Curva IS</td>
+<td>Combinaciones (Y,i) con <strong>mercado de bienes</strong> en equilibrio; pendiente negativa</td>
+<td>≠ un punto; ≠ demanda de bienes</td>
+</tr>
+<tr>
+<td>ISLM-CON-LM</td>
+<td>Curva LM</td>
+<td>Combinaciones (Y,i) con <strong>mercado de dinero</strong> en equilibrio; pendiente positiva</td>
+<td>≠ oferta de dinero</td>
+</tr>
+<tr>
+<td>ISLM-CON-ACEL</td>
+<td>Efecto acelerador (b1)</td>
+<td>∂I/∂Y = <strong>+b1</strong>: más ingreso ⇒ más inversión</td>
+<td>confundir con b2</td>
+</tr>
+<tr>
+<td>ISLM-CON-DESP</td>
+<td>Efecto desplazamiento (b2)</td>
+<td>∂I/∂i = <strong>−b2</strong>: más tasa ⇒ menos inversión (crowding-out)</td>
+<td>confundir con b1</td>
+</tr>
+<tr>
+<td>ISLM-CON-MOVDESP</td>
+<td>Movimiento vs desplazamiento</td>
+<td>Un shock de gasto/dinero <strong>desplaza</strong> la curva; un cambio de i sobre la misma curva es <strong>movimiento</strong></td>
+<td>mover la curva equivocada</td>
+</tr>
+<tr>
+<td>ISLM-CON-REG</td>
+<td>Régimen LM</td>
+<td>LM con pendiente (M/P fijo) vs LM horizontal (tasa objetivo)</td>
+<td>ignorar el régimen</td>
+</tr>
+<tr>
+<td><strong>ISLM-CON-MEZCLA</strong> ⊕</td>
+<td>Mezcla de políticas (<em>policy mix</em>)</td>
+<td>Fiscal y monetaria pueden <strong>coordinarse</strong> o <strong>contraponerse</strong>; el resultado sobre Y e i depende de la combinación, no de cada una por separado</td>
+<td>leer una expansión fiscal sin mirar qué hizo el banco central</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Regla del bloque:</strong> antes de desplazar nada, <strong>clasificar el shock</strong>: ¿afecta gasto planeado (⇒ IS), saldos reales/demanda de dinero (⇒ LM), o es respuesta endógena (⇒ movimiento, no desplazamiento)?</p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISLM-CON-MEZCLA (coordinación)</td>
+<td><strong>2021</strong>: transferencias fiscales masivas + TPM en 0,50 % ⇒ IS y LM ambas expansivas; demanda interna <strong>+21,6 %</strong>, FBCF <strong>+17,6 %</strong></td>
+<td>Atribuir todo el boom a una sola de las dos políticas</td>
+</tr>
+<tr>
+<td>ISLM-CON-MEZCLA (conflicto)</td>
+<td><strong>2022-2023</strong>: retiro de transferencias + TPM en <strong>11,25 %</strong> ⇒ ambas contractivas; FBCF <strong>+3,9 %</strong> y luego <strong>−1,1 %</strong>, consumo privado <strong>−4,9 %</strong> en 2023</td>
+<td>Esperar que el ajuste fuera suave porque "solo subió la tasa"</td>
+</tr>
+<tr>
+<td>ISLM-CON-DESP (crowding-out)</td>
+<td>El alza de tasas largas de 2021 (BTP-10 <strong>+300 pb</strong>) se identifica como factor que deprimió componentes de la inversión privada (IPoM, BCCh, diciembre-2021, Recuadro V.1)</td>
+<td>Suponer que la inversión solo responde al ingreso</td>
+</tr>
+<tr>
+<td>ISLM-CON-ACEL</td>
+<td><strong>2025</strong>: FBCF <strong>+7,0 %</strong> con demanda interna <strong>+4,2 %</strong> y TPM ya en niveles bajos</td>
+<td>Predecir caída de inversión cada vez que hay expansión fiscal</td>
+</tr>
+<tr>
+<td>ISLM-CON-REG</td>
+<td>El BCCh fija la <strong>TPM</strong> (bloque <code>DIN</code>, §3.1): entre Reuniones la LM relevante es <strong>horizontal</strong></td>
+<td>Usar siempre LM con pendiente y sobreestimar el crowding-out</td>
+</tr>
+<tr>
+<td>ISLM-CON-IS (shock que no es de tasa)</td>
+<td><strong>2026</strong>: la inversión materializada cae por debajo de lo proyectado por <strong>postergación de proyectos</strong> a la espera de una ley, no por la tasa (Minuta RPM, julio-2026)</td>
+<td>Buscar la explicación en la LM cuando el shock fue a la IS</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaporte <code>ISLM-MOD-CERRADA</code></h2>
+<p><strong>El quiebre.</strong> Cuando Rosa fue a renovar el crédito en 2022, el ejecutivo le dijo dos cosas en la misma frase: "está más caro el crédito" y "está vendiendo menos". Ella creyó que eran dos problemas. Son <strong>el mismo problema visto desde los dos mercados</strong>: la tasa alta viene del mercado de dinero, las ventas bajas del mercado de bienes, y ambos se determinan a la vez. Ese "a la vez" es el bloque entero.</p>
+<pre><code class="language-yaml">id: ISLM-MOD-CERRADA
+tipo: Modelo
+pregunta: &quot;¿Cómo un shock altera uno o ambos mercados y cuál es el nuevo equilibrio simultáneo (Y*, i*)?&quot;
+endogenas: [Y, i, I (inversión)]
+exogenas_cierre: [c0, c1, (T fijo) o (t si proporcional), b0, b1, b2, G, Ms/P o i objetivo]
+ecuaciones:
+  bienes_IS:  [&quot;Y = C + I + G&quot;]
+  consumo:    [&quot;T fijo:  C = c0 + c1(Y − T)&quot;, &quot;proporcional:  C = c0 + c1(1 − t)Y&quot;]
+  inversion:  [&quot;I = b0 + b1·Y − b2·i&quot;]
+  dinero_LM:  [&quot;Ms/P = d1·Y − d2·i&quot;]
+solucion_IS_Tfijo:      &quot;Y = 1/(1 − c1 − b1) · (c0 − c1·T + b0 + G − b2·i)&quot;
+solucion_IS_proporcional:&quot;Y = 1/(1 − c1(1−t) − b1) · (c0 + b0 + G − b2·i)&quot;
+ajuste_horizonte: &quot;La tasa i ajusta rápido (bonos); Y ajusta lento (inventarios). Corto plazo, P fijo.&quot;
+limites: &quot;Economía cerrada; oferta agregada y expectativas fuera del modelo; sin canal bancario.&quot;
+errores_objetivo: [ISLM-ERR-01, ISLM-ERR-02, ISLM-ERR-03, ISLM-ERR-04, ISLM-ERR-05, ISLM-ERR-06MIX]  # ← ampliado en v0.2
+macrolab: &quot;Uso directo de la pestaña IS-LM y enlaces de escenarios.&quot;
+fuente: {id: F1, unidad: 4}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Multiplicador según el cierre de impuestos:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Enfoque</th>
+<th>Multiplicador del gasto autónomo</th>
+<th>Efecto de subir t</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T fijo</td>
+<td><code>1 / (1 − c1 − b1)</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>T = t·Y (proporcional)</td>
+<td><code>1 / (1 − c1(1 − t) − b1)</code></td>
+<td>↑ t ⇒ ↓ multiplicador (estabilizador automático)</td>
+</tr>
+</tbody>
+</table>
+<p>El término <code>b1</code> (acelerador) <strong>aumenta</strong> el multiplicador; el impuesto proporcional <code>t</code> lo <strong>reduce</strong>. Sin acelerador (b1 = 0) se recuperan las fórmulas del bloque de bienes.</p>
+<p><strong>Traducción de la descomposición de la inversión, que es el corazón analítico del bloque.</strong> <em>Antes de la fórmula:</em> cuando el Estado gasta más pasan dos cosas a la inversión privada, y tiran en sentidos opuestos. La economía se mueve, y eso <strong>anima</strong> a invertir. Pero la tasa sube, y eso <strong>desanima</strong>. Cuál gana no es una cuestión de doctrina: es una comparación de dos números. <em>Después:</em></p>
+<pre><code>ΔI = b1·ΔY − b2·Δi
+     ↑          ↑
+  acelerador  desplazamiento
+</code></pre>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En <code>ISLM-EX-03</code> la expansión fiscal <strong>reduce</strong> la inversión privada. (2) Ocurre <strong>porque</strong> en esa calibración <code>b2 = 5</code> pesa más que <code>b1 = 0,1</code> dada la pendiente de la LM. (3) <strong>Deja de cumplirse</strong> de dos maneras que el bloque ahora muestra explícitamente: con un acelerador mayor respecto de <code>b2</code>, y —de forma tajante— <strong>bajo LM horizontal</strong>, donde <code>Δi = 0</code> y la inversión <strong>sube</strong> en <code>b1·ΔY</code> (ver el nuevo <code>ISLM-EX-05</code>, donde ΔI = <strong>+20</strong>). "La expansión fiscal desplaza a la inversión" <strong>no es una regla del modelo</strong>: es un resultado condicional (<code>ISLM-ERR-02</code>).</p>
+</blockquote>
+<hr />
+<h3>3.1 ⊕ La mezcla de políticas chilena, 2020-2026</h3>
+<p>El error más caro que comete un estudiante frente a una noticia macro es leer una política sola. Chile ofrece los tres casos en seis años.</p>
+<table>
+<thead>
+<tr>
+<th>Período</th>
+<th>Política fiscal (IS)</th>
+<th>Política monetaria (LM)</th>
+<th>Mezcla</th>
+<th>Qué se observó</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2020-2021</strong></td>
+<td>Muy expansiva: transferencias masivas (IFE, bonos)</td>
+<td>Muy expansiva: TPM en <strong>0,50 %</strong>, mínimo técnico, más medidas no convencionales</td>
+<td><strong>Coordinada expansiva</strong></td>
+<td>Demanda interna <strong>+21,6 %</strong>, FBCF <strong>+17,6 %</strong>, PIB <strong>+11,7 %</strong> (2021)</td>
+</tr>
+<tr>
+<td><strong>2022-2023</strong></td>
+<td>Contractiva: fin de las transferencias</td>
+<td>Fuertemente contractiva: TPM a <strong>11,25 %</strong></td>
+<td><strong>Coordinada contractiva</strong></td>
+<td>Demanda interna <strong>−3,7 %</strong> y consumo privado <strong>−4,9 %</strong> en 2023; FBCF <strong>−1,1 %</strong></td>
+</tr>
+<tr>
+<td><strong>2024-2025</strong></td>
+<td>Neutral a moderada</td>
+<td>Expansiva: TPM baja <strong>625 pb</strong> entre julio 2023 y diciembre 2024</td>
+<td>Distensión</td>
+<td>FBCF pasa de <strong>−1,6 %</strong> (2024) a <strong>+7,0 %</strong> (2025)</td>
+</tr>
+<tr>
+<td><strong>2026</strong></td>
+<td><em>"Mayor empuje del gasto público"</em> proyectado</td>
+<td><strong>TPM en 4,50 %</strong>, mantenida; cautela</td>
+<td><strong>Divergente</strong></td>
+<td>Consumo desacelerando; inversión bajo lo proyectado</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Fuentes en §12.2; cada cifra anual proviene de la edición del IPoM más reciente que la reporta como efectiva.)</em></p>
+<p><strong>Cómo se lee cada fila con el modelo.</strong> En 2021, IS y LM se desplazan <strong>ambas</strong> hacia la expansión: por eso <code>Y</code> sube mucho y la tasa <strong>no</strong> sube (queda anclada abajo). En 2022-2023 ocurre lo contrario, y por eso la caída es tan marcada: no hay una política que amortigüe a la otra. En 2024-2025 la LM se relaja sola, y el resultado —FBCF saltando de −1,6 % a +7,0 %— es el <strong>acelerador y el desplazamiento operando juntos en la dirección favorable</strong>: más actividad <em>y</em> tasa menor.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>ISLM-ERR-06MIX</code> ⊕ (nuevo): evaluar una política sin declarar qué hizo la otra.</p>
+<p><strong>Límite.</strong> Esta tabla <strong>no permite concluir</strong> cuánto del movimiento observado se debe a cada política. Es una lectura de consistencia entre el modelo y los datos, no una descomposición causal — eso exigiría identificación econométrica, fuera de Macro 1.</p>
+<hr />
+<h3>3.2 ⊕ El régimen LM importa más de lo que parece</h3>
+<p>En <code>DIN</code> quedó establecido que el Banco Central de Chile <strong>fija la TPM</strong>, no la cantidad de dinero. La consecuencia para este bloque es directa y grande.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LM con pendiente (M/P fijo)</th>
+<th><strong>LM horizontal (tasa objetivo)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Expansión fiscal ⇒ tasa</td>
+<td>sube</td>
+<td><strong>no cambia</strong> (entre Reuniones)</td>
+</tr>
+<tr>
+<td>Multiplicador efectivo</td>
+<td><strong>menor</strong> que el del bloque <code>BIE</code></td>
+<td><strong>el completo</strong> del bloque <code>BIE</code></td>
+</tr>
+<tr>
+<td>Crowding-out</td>
+<td><strong>sí</strong></td>
+<td><strong>no</strong>, mientras el BC sostenga la tasa</td>
+</tr>
+<tr>
+<td>Efecto sobre inversión</td>
+<td>ambiguo: <code>b1·ΔY − b2·Δi</code></td>
+<td><strong>positivo</strong>: <code>b1·ΔY</code>, acelerador puro</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La honestidad que corresponde.</strong> La LM horizontal describe el corto plazo <strong>entre Reuniones</strong>. Si la expansión fiscal presiona la inflación, el Consejo puede subir la TPM en la Reunión siguiente — y entonces la tasa sube, pero <strong>por decisión de política, no por el mecanismo de mercado</strong>. Distinguir ambas causas es lo que separa un análisis de una consigna, y es lo que evalúa <code>ISLM-EX-05</code>.</p>
+<p><code>[Ilustración sugerida: mismo desplazamiento de IS sobre dos LM —una con pendiente y una horizontal— con ΔY y Δi anotados en cada caso y la inversión resultante con su signo.]</code></p>
+<hr />
+<h2>4. Circuito <code>ISLM-CIR-01</code> — Equilibrio simultáneo y desequilibrios</h2>
+<p><strong>Paso 0 — Clasificar el shock (obligatorio):</strong> ¿IS (gasto planeado), LM (saldos reales/demanda de dinero) o movimiento endógeno? <strong>Y paso 0-bis (nuevo): ¿qué está haciendo la <em>otra</em> política al mismo tiempo?</strong></p>
+<pre><code>Shock → Curva inicial → Impacto al punto viejo → Velocidad → Trayectoria →
+Nuevo equilibrio → Inversión → Política/regla → Evidencia → Revisión
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shock</td>
+<td>Identifique evento y parámetro: G, T, t, b0, Ms/P o i objetivo.</td>
+</tr>
+<tr>
+<td>Curva inicial</td>
+<td>¿Se desplaza IS, LM o ambas? Justifique por ecuación.</td>
+</tr>
+<tr>
+<td>Impacto al punto viejo</td>
+<td>¿Qué excesos aparecen en bienes y dinero?</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>¿Qué ajusta primero: i o Y? (i rápido, Y lento)</td>
+</tr>
+<tr>
+<td>Trayectoria</td>
+<td>Trace la ruta de retorno, no solo una flecha entre equilibrios.</td>
+</tr>
+<tr>
+<td>Nuevo equilibrio</td>
+<td>Calcule/ubique Y<em> e i</em>. <strong>Sin redondear magnitudes intermedias.</strong></td>
+</tr>
+<tr>
+<td>Inversión</td>
+<td>Descomponga ΔI = b1·ΔY − b2·Δi (acelerador vs desplazamiento).</td>
+</tr>
+<tr>
+<td>Política/regla</td>
+<td>¿Coordinación o conflicto entre instrumentos? (<code>ISLM-ERR-06MIX</code>)</td>
+</tr>
+<tr>
+<td>Evidencia</td>
+<td>Cruce actividad, tasa, crédito e inversión.</td>
+</tr>
+<tr>
+<td>Revisión</td>
+<td>¿Cambiaría la conclusión bajo LM horizontal o parámetros distintos?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Los 4 cuadrantes de desequilibrio (Nota "Desequilibrios"):</strong> para un punto (Y,i) arbitrario se compara con cada curva. Como <code>i</code> ajusta rápido, la trayectoria típica es <strong>primero vertical hacia la LM</strong> (ajuste de la tasa por cartera de bonos) y <strong>luego horizontal hacia la IS</strong> (ajuste de Y por inventarios).</p>
+<table>
+<thead>
+<tr>
+<th>Punto</th>
+<th>Respecto de IS</th>
+<th>Respecto de LM</th>
+<th>Primero ajusta</th>
+<th>Luego</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A (sobre IS, sobre LM)</td>
+<td>exceso oferta de bienes</td>
+<td>exceso oferta de dinero</td>
+<td>i↓ hacia LM</td>
+<td>Y↓ hacia IS</td>
+</tr>
+<tr>
+<td>B (sobre IS, bajo LM)</td>
+<td>exceso oferta de bienes</td>
+<td>exceso demanda de dinero</td>
+<td>i↑ hacia LM</td>
+<td>Y↓ hacia IS</td>
+</tr>
+<tr>
+<td>C (bajo IS, sobre LM)</td>
+<td>exceso demanda de bienes</td>
+<td>exceso oferta de dinero</td>
+<td>i↓ hacia LM</td>
+<td>Y↑ hacia IS</td>
+</tr>
+<tr>
+<td>D (bajo IS, bajo LM)</td>
+<td>exceso demanda de bienes</td>
+<td>exceso demanda de dinero</td>
+<td>i↑ hacia LM</td>
+<td>Y↑ hacia IS</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> antes/después + trayectoria + descomposición de inversión + límite.
+<strong>Regla de revisión:</strong> reabrir si solo se informa ΔY/Δi sin mecanismo, si el régimen LM no está declarado, <strong>o si se evaluó una política sin decir qué hacía la otra</strong>.</p>
+<hr />
+<h2>5. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISLM-ERR-01</td>
+<td>Mover la curva equivocada</td>
+<td>Mecanismo mal asignado</td>
+<td>Exigir la ecuación afectada por el shock</td>
+</tr>
+<tr>
+<td>ISLM-ERR-02</td>
+<td>Crowding-out "total" por definición</td>
+<td>Ignora el acelerador y los parámetros</td>
+<td>Descomponer ΔI = b1·ΔY − b2·Δi</td>
+</tr>
+<tr>
+<td>ISLM-ERR-03</td>
+<td>Confundir acelerador (b1) con desplazamiento (b2)</td>
+<td>Signo del efecto sobre I invertido</td>
+<td>Preguntar cuál derivada: ∂I/∂Y o ∂I/∂i</td>
+</tr>
+<tr>
+<td>ISLM-ERR-04</td>
+<td>Ignorar el régimen LM (pendiente vs horizontal)</td>
+<td>Modelo mal cerrado</td>
+<td>Declarar LM con pendiente u horizontal</td>
+</tr>
+<tr>
+<td>ISLM-ERR-05</td>
+<td>Leer solo el punto final</td>
+<td>Pierde la trayectoria de ajuste</td>
+<td>Pedir qué ajusta primero (i) y luego (Y)</td>
+</tr>
+<tr>
+<td><strong>ISLM-ERR-06MIX</strong> ⊕</td>
+<td>Evaluar una política sin declarar qué hace la otra</td>
+<td>Atribuye a la fiscal (o a la monetaria) el resultado conjunto de ambas</td>
+<td>Pedir la tabla de mezcla: qué hizo el Fisco y qué hizo el banco central en el mismo período</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada y verificada)</h2>
+<h3><code>ISLM-EX-01</code> — IS, LM y equilibrio con <strong>T fijo</strong> · derivación · intermedia</h3>
+<p><strong>Errores objetivo:</strong> ISLM-ERR-01, ISLM-ERR-04. <em>(Adaptado de Ayudantía 8, Ej. 1.)</em>
+<strong>Datos:</strong> C = 220 + 0,65(Y − T); T = 90; I = 280 + 0,25Y − 55i; G = 320; Ms/P = 500; Md = 0,12Y − 45i.
+<strong>Se pide:</strong> derive IS, derive LM, encuentre (Y<em>, i</em>).</p>
+<p><strong>Pauta sellada (recalculada el 2026-08-15; ver Hallazgo 2 del aviso inicial):</strong>
+- <strong>IS:</strong> Y = 220 + 0,65(Y−90) + 280 + 0,25Y − 55i + 320 = 761,5 + 0,9Y − 55i ⇒ 0,1Y = 761,5 − 55i ⇒ <strong>Y = 7.615 − 550i</strong>.
+- <strong>LM:</strong> 500 = 0,12Y − 45i ⇒ <strong>Y = 4.166,67 + 375i</strong>.
+- <strong>Equilibrio:</strong> 7.615 − 550i = 4.166,67 + 375i ⇒ 3.448,33 = 925i ⇒ <strong>i* = 3,7279 % ≈ 3,73 %</strong>; <strong>Y* ≈ 5.564,6</strong>.</p>
+<blockquote>
+<p><strong>Corrección de v0.1.</strong> v0.1 informaba <code>Y* ≈ 5.563,5</code>, que resulta de reemplazar <code>i</code> <strong>ya redondeado a 3,73</strong> en la IS. Con <code>i*</code> sin redondear, <code>Y* = 7.615 − 550(3,72792) = 5.564,64</code>. <strong>Se acepta como correcta cualquier respuesta en el entorno 5.564-5.565</strong>; se penaliza redondear la tasa antes de calcular <code>Y</code>, que es el vicio de fondo.</p>
+</blockquote>
+<p>Nota: el coeficiente sobre Y en la IS es (1 − c1 − b1) = 1 − 0,65 − 0,25 = 0,10 ⇒ multiplicador 10 (el acelerador b1 = 0,25 lo eleva).</p>
+<hr />
+<h3><code>ISLM-EX-02</code> — IS-LM con <strong>impuesto proporcional T = t·Y</strong> · derivación + política · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ISLM-ERR-01, ISLM-ERR-02. <em>(Extiende Ayudantía 4 al equilibrio simultáneo.)</em>
+<strong>Datos:</strong> c0 = 100; c1 = 0,75; <strong>t = 0,2</strong>; I = 300 − 40i (b0 = 300, b1 = 0, b2 = 40); G = 400; Md = 0,25Y − 50i; Ms/P = 350.
+<strong>Se pide:</strong> (1) IS, (2) LM, (3) equilibrio; (4) expansión fiscal a G = 460.</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15 — exacta en todos sus valores):</strong>
+- Consumo con impuesto proporcional: C = 100 + 0,75(1 − 0,2)Y = 100 + 0,6Y. Multiplicador = 1/(1 − 0,6) = 2,5.
+- <strong>IS:</strong> Y = 2,5·(100 + 300 + 400 − 40i) = 2,5·(800 − 40i) ⇒ <strong>Y = 2.000 − 100i</strong>.
+- <strong>LM:</strong> 350 = 0,25Y − 50i ⇒ <strong>Y = 1.400 + 200i</strong>.
+- <strong>Equilibrio:</strong> 2.000 − 100i = 1.400 + 200i ⇒ 600 = 300i ⇒ <strong>i* = 2 %</strong>, <strong>Y* = 1.800</strong>.
+- <strong>(4) G = 460:</strong> IS ⇒ Y = 2,5·(860 − 40i) = <strong>2.150 − 100i</strong>; nuevo equilibrio 2.150 − 100i = 1.400 + 200i ⇒ 750 = 300i ⇒ <strong>i* = 2,5 %</strong>, <strong>Y* = 1.900</strong> (ΔY = +100). El impuesto proporcional actúa como <strong>estabilizador automático</strong>: el multiplicador (2,5) es menor que sin impuesto proporcional.</p>
+<p><strong>Ancla real (v0.2).</strong> El estabilizador automático no es una curiosidad de pizarra: es la razón por la que la recaudación cae sola en las recesiones y sube sola en los auges, amortiguando el ciclo sin que nadie legisle nada. En el ajuste chileno de 2023, con la demanda interna cayendo <strong>−3,7 %</strong>, ese mecanismo operó en la dirección amortiguadora.</p>
+<p><strong>Evidencia de dominio:</strong> deriva C = c0 + c1(1−t)Y correctamente y explica por qué el multiplicador cae con t.</p>
+<hr />
+<h3><code>ISLM-EX-03</code> — Expansión fiscal, acelerador y crowding-out · diagnóstico · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ISLM-ERR-02, ISLM-ERR-03. <em>(De la Nota "Desplazamiento y Acelerador".)</em>
+<strong>Datos:</strong> C = 50 + 0,8Y; I = 10 + 0,1Y − 5i; G = 100; Ms/P = 100; Md = 0,25Y − 10i. <em>(T = 0.)</em> El gobierno <strong>aumenta G en 20</strong>.
+<strong>Se pide:</strong> equilibrio inicial y final; el cambio en la inversión privada; ¿hay crowding-out? ¿domina el acelerador o el desplazamiento?</p>
+<p><strong>⚠ Pauta sellada CORREGIDA y verificada el 2026-08-15 (ver Hallazgo 1 del aviso inicial):</strong></p>
+<ul>
+<li><strong>IS₁:</strong> Y = 50 + 0,8Y + 10 + 0,1Y − 5i + 100 ⇒ Y − 0,9Y = 160 − 5i ⇒ 0,1Y = 160 − 5i ⇒ <strong>Y = 1.600 − 50i</strong>.
+  <em>(v0.1 escribía <code>Y = 1.200 − 50i</code>; el cociente correcto es 160/0,1 = 1.600.)</em></li>
+<li><strong>LM:</strong> 100 = 0,25Y − 10i ⇒ <strong>Y = 400 + 40i</strong>.</li>
+<li><strong>Equilibrio inicial:</strong> 1.600 − 50i = 400 + 40i ⇒ 1.200 = 90i ⇒ <strong>i₁ = 13,33 %</strong>, <strong>Y₁ = 933,33</strong>.</li>
+<li>ΔG = 20, multiplicador = 1/(1 − 0,8 − 0,1) = 10 ⇒ la IS se desplaza 200 ⇒ <strong>IS₂: Y = 1.800 − 50i</strong>.</li>
+<li><strong>Equilibrio final:</strong> 1.800 − 50i = 400 + 40i ⇒ 1.400 = 90i ⇒ <strong>i₂ = 15,56 %</strong>, <strong>Y₂ = 1.022,22</strong>.</li>
+<li><strong>Inversión:</strong> I₁ = 10 + 0,1·933,33 − 5·13,33 = <strong>36,67</strong>; I₂ = 10 + 0,1·1.022,22 − 5·15,56 = <strong>34,44</strong> ⇒ <strong>ΔI = −2,22 (−6,06 %)</strong>.</li>
+<li><strong>Descomposición:</strong> ΔI = b1·ΔY − b2·Δi = 0,1·88,89 − 5·2,22 = <strong>8,89 − 11,11 = −2,22</strong> ✓</li>
+<li><strong>Diagnóstico:</strong> la producción crece <strong>9,52 %</strong> y la inversión privada cae <strong>6,06 %</strong> ⇒ <strong>hay crowding-out</strong>. Aquí <strong>domina el efecto desplazamiento (b2 = 5)</strong> sobre el acelerador (b1 = 0,1): la subida de la tasa pesa más que el empuje del ingreso.</li>
+</ul>
+<blockquote>
+<p><strong>Nota importante sobre el desplazamiento de la IS.</strong> Los 200 son cuánto se <strong>corre la curva IS</strong>, no cuánto crece <code>Y</code> en equilibrio. <code>Y</code> sube solo <strong>88,89</strong> porque la LM tiene pendiente y la tasa sube, frenando el gasto. Confundir el desplazamiento de la curva con el cambio del equilibrio es una variante frecuente de <code>ISLM-ERR-05</code>.</p>
+</blockquote>
+<p><strong>Evidencia de dominio:</strong> descompone ΔI = b1·ΔY − b2·Δi y atribuye el resultado a la relación b1/b2 (no a "crowding-out por definición", ISLM-ERR-02; no confunde b1 con b2, ISLM-ERR-03).</p>
+<hr />
+<h3><code>ISLM-EX-04</code> — Desequilibrio y trayectoria de retorno · diagnóstico de cuadrante · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ISLM-ERR-04, ISLM-ERR-05. <em>(De la Nota "Desequilibrios".)</em>
+<strong>Con la IS-LM corregida de EX-03</strong> (IS: <strong>Y = 1.600 − 50i</strong>; LM: Y = 400 + 40i; equilibrio <strong>i = 13,33 %, Y = 933,33</strong>): considere el punto (Y = 600, i = 6 %).
+<strong>Se pide:</strong> (1) ubique el punto respecto de IS y LM; (2) identifique los excesos en cada mercado; (3) describa la trayectoria de retorno.</p>
+<p><strong>⚠ Pauta sellada CORREGIDA y verificada el 2026-08-15 (hereda el Hallazgo 1):</strong>
+- En Y = 600: la IS pide i = (1.600 − 600)/50 = <strong>20 %</strong>; la LM pide i = (600 − 400)/40 = <strong>5 %</strong>. El punto tiene <strong>i = 6 %</strong>, es decir <strong>i &lt; i_IS (20) ⇒ exceso de demanda de bienes</strong> (inventarios ↓) y <strong>i &gt; i_LM (5) ⇒ exceso de oferta de dinero</strong>. Es el <strong>cuadrante C</strong>.
+- <strong>Trayectoria:</strong> como la tasa ajusta primero, exceso de oferta de dinero ⇒ compra de bonos ⇒ <strong>i↓ (vertical hacia la LM)</strong>; luego, exceso de demanda de bienes ⇒ <strong>Y↑ (horizontal hacia la IS)</strong>, hasta el equilibrio (933,33; 13,33 %).</p>
+<blockquote>
+<p><strong>Qué cambió y qué no.</strong> Con la IS de v0.1 el punto también caía en el <strong>cuadrante C</strong> y la trayectoria era la misma; cambian los valores de referencia (i_IS pasa de 12 % a 20 %) y el equilibrio de destino. <strong>La enseñanza del ejercicio se conserva íntegra.</strong></p>
+</blockquote>
+<p><strong>Evidencia de dominio:</strong> declara el régimen, ubica el cuadrante con las tasas de cada curva, y respeta el orden i→Y (no lee solo el punto final, ISLM-ERR-05).</p>
+<hr />
+<h3>⊕ <code>ISLM-EX-05</code> — La misma expansión fiscal bajo <strong>LM horizontal</strong> · comparación de regímenes · avanzada</h3>
+<p><em>(Cierra <code>BL-ISLM-03</code> del backlog de v0.1.)</em></p>
+<p><strong>Errores objetivo:</strong> ISLM-ERR-02, ISLM-ERR-04, ISLM-ERR-06MIX.
+<strong>Marco narrativo.</strong> Es la misma economía de <code>ISLM-EX-03</code>, con un solo cambio: el banco central <strong>fija la tasa</strong> —como hace el de Chile— en lugar de fijar la cantidad de dinero.</p>
+<p><strong>Datos:</strong> idénticos a <code>ISLM-EX-03</code> (C = 50 + 0,8Y; I = 10 + 0,1Y − 5i; G = 100; T = 0), pero el banco central sostiene una <strong>tasa objetivo i = 8 %</strong> y provee la cantidad de dinero que haga falta. El gobierno <strong>aumenta G en 20</strong>.
+<strong>Se pide:</strong> (1) Y inicial y final; (2) ΔY, y compárelo con el ΔY de <code>ISLM-EX-03</code>; (3) ΔI y su descomposición; (4) ¿hay crowding-out?; (5) ¿bajo qué condición deja de valer esta respuesta?</p>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li>Con <code>i</code> fijo en 8, la IS se evalúa directamente: <strong>Y₁ = 1.600 − 50·8 = 1.200</strong>. Con G = 120: <strong>Y₂ = 1.800 − 50·8 = 1.400</strong>.</li>
+<li><strong>ΔY = 200</strong>, que es <strong>exactamente el multiplicador completo</strong> (10 × 20). En <code>ISLM-EX-03</code>, con LM de pendiente positiva, ΔY fue solo <strong>88,89</strong>. La diferencia —111,11— es lo que se pierde por el alza de tasa cuando el banco central <strong>no</strong> acomoda.</li>
+<li>I₁ = 10 + 0,1·1.200 − 5·8 = <strong>90</strong>; I₂ = 10 + 0,1·1.400 − 5·8 = <strong>110</strong> ⇒ <strong>ΔI = +20</strong>. Descomposición: <code>ΔI = b1·ΔY − b2·Δi = 0,1·200 − 5·0 = 20 − 0 = +20</code>. <strong>Acelerador puro</strong>: el desplazamiento es cero porque <code>Δi = 0</code>.</li>
+<li><strong>No hay crowding-out.</strong> La inversión privada <strong>sube</strong> 22,2 %. Este resultado es la refutación limpia de <code>ISLM-ERR-02</code>: el crowding-out no es una propiedad de la expansión fiscal, es una consecuencia de que la tasa suba, y la tasa sube solo si el régimen monetario la deja subir.</li>
+<li>Deja de valer apenas el banco central <strong>cambie su tasa objetivo</strong>. Si la expansión fiscal presiona la inflación y el Consejo sube la TPM en la Reunión siguiente, la tasa sube y reaparece el desplazamiento — <strong>pero por decisión de política, no por el mecanismo de mercado del cierre A</strong>. La LM horizontal describe el corto plazo entre Reuniones, no un compromiso permanente.</li>
+</ol>
+<p><strong>Comparación para llevar al pizarrón:</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LM con pendiente (EX-03)</th>
+<th><strong>LM horizontal (EX-05)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ΔY</td>
+<td>+88,89</td>
+<td><strong>+200</strong></td>
+</tr>
+<tr>
+<td>Δi</td>
+<td>+2,22 pp</td>
+<td><strong>0</strong></td>
+</tr>
+<tr>
+<td>ΔI</td>
+<td><strong>−2,22</strong></td>
+<td><strong>+20</strong></td>
+</tr>
+<tr>
+<td>¿Crowding-out?</td>
+<td>Sí</td>
+<td><strong>No</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Evidencia de dominio:</strong> obtiene ΔY = 200 y explica que el multiplicador completo reaparece porque no hay alza de tasa; y sobre todo, <strong>condiciona la respuesta al compromiso del banco central</strong> en el punto (5) en lugar de declararla universal.</p>
+<p><code>[Ilustración sugerida: un solo gráfico con IS₁, IS₂, la LM con pendiente y la LM horizontal en i = 8 %, marcando los dos equilibrios finales y la brecha de 111,11 en el eje Y.]</code></p>
+<hr />
+<h2>7. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> Clasifico el shock ___ (IS/LM/movimiento) · declaro el cierre de impuestos ___ (T fijo / t·Y) y el régimen LM ___ · <strong>la otra política está haciendo</strong> ___ · la curva ___ se desplaza porque ___ · al punto viejo aparece exceso de ___ · ajusta primero i ___ luego Y ___ · nuevo (Y<em>,i</em>) = ___ · ΔI = b1·ΔY − b2·Δi = ___ · revisaría si ___.
+<strong>Nivel B:</strong> shock → curva → trayectoria (i luego Y) → nuevo equilibrio → descomposición de inversión → supuesto.
+<strong>Nivel C:</strong> <em>"Derive el equilibrio bajo el cierre indicado, analice la inversión (acelerador vs desplazamiento) y señale qué cambiaría bajo LM horizontal."</em></p>
+<h3>7.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla la fila 2021 de la tabla de mezcla (§3.1)</td>
+<td>Ubicar cada hecho en una curva y decir por qué la tasa no subió</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entrega la fila <strong>2022-2023</strong> con cifras crudas</td>
+<td>Narrar el ajuste con ambas curvas, la trayectoria i→Y y el efecto sobre la inversión</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>la minuta de RPM de julio de 2026</strong>, cruda</td>
+<td>Clasificar cada elemento (¿IS o LM?), declarar el régimen y predecir la dirección del efecto sobre <code>Y</code> e <code>I</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insumo listo para el Nivel C.</strong> La minuta de julio de 2026 describe consumo desacelerando por fundamentos —expectativas a la baja, ingresos reales frenándose, mercado laboral débil— e inversión materializada bajo lo proyectado por <strong>postergación de proyectos a la espera de una ley</strong>. El estudiante debe advertir que <strong>ninguno de los dos es un shock de la LM</strong>: son desplazamientos de la IS con la tasa mantenida en 4,50 %.</p>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>ISLM-EX-01 (una parte)</td>
+<td>Derivar IS o LM y ubicar el equilibrio</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>ISLM-EX-03 + <strong>ISLM-EX-05</strong> + noticia fiscal chilena real</td>
+<td>Diagnóstico de crowding-out <strong>bajo los dos regímenes</strong>, con datos y narración</td>
+</tr>
+<tr>
+<td><strong>Solemne (parte de 40 %)</strong></td>
+<td>ISLM-EX-01 y EX-02</td>
+<td>Derivación completa + política; ambos cierres de impuestos</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %)</strong></td>
+<td>IS-LM + desequilibrios + puente a economía abierta</td>
+<td>Integración de trayectorias y descomposición de inversión</td>
+</tr>
+</tbody>
+</table>
+<p>Referencia real: Solemnes 2025 y Examen 2025 (en <code>Pruebas_Macro1</code>) contienen ítems de este tipo; conviene calibrar el nivel de los ejercicios contra esas pautas.</p>
+<p><strong>Regla de corrección:</strong> no declarar el régimen LM, o evaluar una política sin la otra, se corrigen como errores de <strong>formulación</strong>. <strong>Redondear magnitudes intermedias antes del cálculo final se penaliza aunque el resultado quede cerca</strong> (ver <code>ISLM-EX-01</code>).</p>
+<hr />
+<h2>9. Integración con MacroLab</h2>
+<blockquote>
+<p><strong>Arquitectura de dos capas (precisada en v0.2).</strong> MacroLab tiene <strong>dos niveles</strong>, y este bloque vive en el superior:
+- <strong>Capa superior — MacroLab Shock Simulator</strong> (<code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>): pestañas Inicio, <strong>Tablero macro</strong>, Lectura de datos, Shocks y transmisión, <strong>IS-LM</strong>, <strong>IS-LM-BP</strong>, <strong>OA-DA</strong>, Atlas de shocks, Marco institucional, Lentes institucionales, Comparador Phillips, Crónicas, Glosario e Instrucciones.
+- <strong>Capa inferior — sub-app <code>macro1/</code></strong>: cinco ventanas de laboratorio (<code>Lab · Índices</code>, <code>Lab · PIB por gasto</code>, <code>Lab · Mercado de bienes</code>, <code>Lab · Dinero / tasa</code>, <code>Lab · Mercado laboral</code>) para los bloques de medición, bienes, dinero y laboral.</p>
+<p>La pestaña <strong>IS-LM</strong> de la capa superior implementa exactamente este bloque, con la notación del curso.</p>
+</blockquote>
+<h3>⚑ Verificación cruzada del Hallazgo 1 contra el propio simulador</h3>
+<p>El módulo IS-LM expone los parámetros <code>c₀, c₁, b₀, b₁, b₂, G, T, M/P, d₁, d₂</code> y un selector de <strong>régimen LM</strong> con dos opciones: <em>LM con pendiente positiva</em> y <em>LM horizontal (i exógena)</em>. Su calibración base 2026 es <code>c₀ = 120 · c₁ = 0,65 · b₀ = 90 · b₁ = 0,10 · b₂ = 22 · G = 220 · T = 180 · d₁ = 0,90 · d₂ = 60</code>, con <code>i</code> fija en <strong>4,5 %</strong> cuando se elige el régimen horizontal — el nivel efectivo de la TPM.</p>
+<p>Se ejecutó su solver (<code>calcISLM</code>) con los parámetros de <code>ISLM-EX-03</code> el 2026-08-15:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>v0.1</th>
+<th><strong>v0.2 (corregido)</strong></th>
+<th><strong>MacroLab</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y de equilibrio</td>
+<td>755,56</td>
+<td><strong>933,33</strong></td>
+<td><strong>933,33</strong> ✔</td>
+</tr>
+<tr>
+<td>i de equilibrio</td>
+<td>8,89 %</td>
+<td><strong>13,33 %</strong></td>
+<td><strong>13,33 %</strong> ✔</td>
+</tr>
+<tr>
+<td>Y tras ΔG = 20</td>
+<td>844,44</td>
+<td><strong>1.022,22</strong></td>
+<td><strong>1.022,22</strong> ✔</td>
+</tr>
+<tr>
+<td>i tras ΔG = 20</td>
+<td>11,11 %</td>
+<td><strong>15,56 %</strong></td>
+<td><strong>15,56 %</strong> ✔</td>
+</tr>
+<tr>
+<td>ΔI</td>
+<td>−2,2 (−5,4 %)</td>
+<td><strong>−2,22 (−6,06 %)</strong></td>
+<td><strong>−2,22 (−6,06 %)</strong> ✔</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El simulador confirma la corrección y no reproduce en ningún caso los valores de v0.1.</strong> Lo mismo ocurre con <code>ISLM-EX-01</code>: <code>calcISLM</code> entrega <strong>Y* = 5.564,64</strong>, la cifra de v0.2, y no el 5.563,5 de v0.1. Esto eleva el Hallazgo 1 de "recálculo propio" a <strong>discrepancia confirmada por una segunda implementación independiente</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pestaña <strong>IS-LM</strong>, régimen <em>LM con pendiente positiva</em></td>
+<td>Reproducir <code>ISLM-EX-01</code>, <code>ISLM-EX-03</code> y <code>ISLM-EX-04</code>; leer la descomposición acelerador/crowding-out que el propio módulo imprime</td>
+<td>No tratar la salida del simulador como evidencia causal real</td>
+</tr>
+<tr>
+<td>Pestaña <strong>IS-LM</strong>, régimen <em>LM horizontal (i exógena)</em></td>
+<td>Reproducir <code>ISLM-EX-05</code> cambiando <strong>solo el selector de régimen</strong>: el contraste queda a la vista sin tocar ningún parámetro</td>
+<td>No presentar la LM horizontal como caso hipotético: es el régimen del BCCh</td>
+</tr>
+<tr>
+<td>Pestaña <strong>Tablero macro</strong></td>
+<td>Contextualizar la tabla de mezcla de políticas (§3.1) con las series anuales 2010-2025</td>
+<td>El Tablero es lectura de contexto, no salida del modelo</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sobre <code>ISLM-EX-02</code> (impuesto proporcional).</strong> El módulo trabaja con <code>T</code> fijo y <strong>no tiene parámetro <code>t</code></strong>. Se reproduce por equivalencia: ingresar <code>c₁ = c₁(1−t) = 0,60</code>, <code>b₁ = 0</code>, <code>T = 0</code>. Así el simulador entrega <code>Y* = 1.800 · i* = 2 %</code> y, con <code>G = 460</code>, <code>Y* = 1.900 · i* = 2,5 %</code> — las cifras de la pauta. <strong>Hay que declarar la equivalencia al estudiante</strong>, o creerá que el simulador modela el impuesto proporcional (<code>BL-ISLM-10</code>).</p>
+<p><strong>Protocolo:</strong> el estudiante deriva el equilibrio a mano → lo reproduce en la pestaña IS-LM → <strong>cambia solo el selector de régimen</strong> y observa desaparecer el crowding-out (<code>ISLM-EX-05</code>) → narra la descomposición ΔI = b1·ΔY − b2·Δi bajo los dos regímenes.</p>
+<hr />
+<h2>10. Cierre y backlog</h2>
+<p><strong>Definición de Terminado:</strong> todo nodo con fuente/versión/estado; los <strong>cinco</strong> ejercicios probados; ambos cierres de impuestos cubiertos; el régimen LM declarado; ninguna plantilla entrega la cadena mecánicamente; ⊕ toda pauta recalculada de forma independiente antes de sellarse; ⊕ ninguna cifra intermedia redondeada.</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-ISLM-01</td>
+<td><strong>Corregir en la Nota "Desplazamiento y Acelerador"</strong> la frase "acelerador domina (b2 alto)" → "desplazamiento domina (b2 alto)"</td>
+<td>alta</td>
+<td>edición del material original</td>
+</tr>
+<tr>
+<td>BL-ISLM-02</td>
+<td><strong>Corregir en la Nota "Desequilibrios"</strong> el signo <code>+b2i</code> → <code>−b2i</code> en la condición IS</td>
+<td>alta</td>
+<td>edición del material original</td>
+</tr>
+<tr>
+<td>BL-ISLM-03</td>
+<td>Añadir ejercicio con <strong>LM horizontal</strong> (cierre de tasa objetivo) para contrastar eficacia fiscal</td>
+<td><strong>CERRADA</strong></td>
+<td>resuelto con el nuevo <code>ISLM-EX-05</code></td>
+</tr>
+<tr>
+<td>BL-ISLM-04</td>
+<td>Calibrar dificultad contra Solemne 2 y Examen 2025 reales</td>
+<td>media</td>
+<td>revisión de pautas</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-05</strong> ⊕</td>
+<td><strong>Validar la corrección aritmética de <code>ISLM-EX-03</code> y <code>ISLM-EX-04</code>.</strong> La IS correcta es <code>Y = 1.600 − 50i</code> (v0.1 tenía 1.200). Todos los valores de equilibrio cambian; el diagnóstico cualitativo se conserva. <strong>Revisar si estos ejercicios ya se entregaron a estudiantes en versiones anteriores del curso</strong> y, en tal caso, emitir fe de erratas</td>
+<td><strong>CRÍTICA</strong></td>
+<td>antes de cualquier uso en clase o evaluación</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-06</strong> ⊕</td>
+<td>Validar la corrección de <code>ISLM-EX-01</code>: <code>Y* ≈ 5.564,6</code>, no 5.563,5 (v0.1 redondeó <code>i</code> antes de sustituir). Decidir el criterio de tolerancia al corregir</td>
+<td>alta</td>
+<td>antes de la Solemne</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-07</strong> ⊕</td>
+<td>Revisar si el mismo error de división de <code>ISLM-EX-03</code> aparece en la Nota de Estudio 7 o en la Ayudantía 8 originales, de donde proviene el ejercicio</td>
+<td><strong>alta</strong></td>
+<td>auditoría del material fuente</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-08</strong> ⊕</td>
+<td>Decidir si <code>ISLM-CON-MEZCLA</code> y <code>ISLM-ERR-06MIX</code> se incorporan al registro maestro o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-09</strong> ⊕</td>
+<td><strong>Verificación cruzada incorporada.</strong> El solver <code>calcISLM</code> del Shock Simulator confirma las cifras corregidas de <code>ISLM-EX-01</code>, <code>EX-03</code>, <code>EX-04</code> y <code>EX-05</code>. Queda por decidir si esa comprobación se convierte en un <strong>test automatizado</strong> del repo (junto a <code>test_formulas_selladas.js</code>), de modo que cualquier futura divergencia entre biblioteca y simulador salte sola</td>
+<td><strong>alta</strong></td>
+<td>desarrollo del repo</td>
+</tr>
+<tr>
+<td><strong>BL-ISLM-10</strong> ⊕</td>
+<td>El módulo IS-LM del simulador <strong>no tiene parámetro <code>t</code></strong> (impuesto proporcional). Decidir entre añadirlo o documentar de forma permanente la equivalencia <code>c₁ ← c₁(1−t)</code> en la guía del estudiante, para que <code>ISLM-EX-02</code> no induzca a error</td>
+<td>media</td>
+<td>desarrollo del repo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Curva IS</strong></td>
+<td>Todas las combinaciones de ventas y tasa en que las bodegas quedan como se planeó</td>
+<td>ISLM-CON-IS</td>
+</tr>
+<tr>
+<td><strong>Curva LM</strong></td>
+<td>Todas las combinaciones de ventas y tasa en que la gente tiene en el bolsillo justo lo que quiere tener</td>
+<td>ISLM-CON-LM</td>
+</tr>
+<tr>
+<td><strong>Equilibrio simultáneo</strong></td>
+<td>El único punto donde las dos cosas anteriores pasan al mismo tiempo</td>
+<td>(Y<em>, i</em>)</td>
+</tr>
+<tr>
+<td><strong>Desplazar vs moverse sobre la curva</strong></td>
+<td>Cambiar de mapa vs caminar dentro del mismo mapa</td>
+<td>ISLM-CON-MOVDESP</td>
+</tr>
+<tr>
+<td><strong>Efecto acelerador (b1)</strong></td>
+<td>Invierto porque me está yendo bien</td>
+<td>+b1·ΔY</td>
+</tr>
+<tr>
+<td><strong>Efecto desplazamiento (b2)</strong></td>
+<td>No invierto porque el crédito está caro</td>
+<td>−b2·Δi</td>
+</tr>
+<tr>
+<td><strong>Crowding-out</strong></td>
+<td>El Estado y las empresas haciendo fila por el mismo crédito</td>
+<td>ISLM-CON-DESP</td>
+</tr>
+<tr>
+<td><strong>LM horizontal</strong></td>
+<td>El banco central promete el precio y atiende a todos los que lleguen</td>
+<td>ISLM-CON-REG</td>
+</tr>
+<tr>
+<td><strong>Mezcla de políticas</strong></td>
+<td>Dos personas empujando el mismo auto: juntas o en contra</td>
+<td>ISLM-CON-MEZCLA</td>
+</tr>
+<tr>
+<td><strong>Trayectoria i → Y</strong></td>
+<td>El precio cambia hoy; la producción, en semanas</td>
+<td>ISLM-ERR-05</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>Dos correcciones aritméticas en pautas selladas, documentadas y no silenciadas.</strong> <code>ISLM-EX-03</code> tenía la IS mal despejada (1.200 en lugar de 1.600), lo que arrastraba a <code>ISLM-EX-04</code>; <code>ISLM-EX-01</code> propagaba un redondeo. Ambas con derivación completa en el aviso inicial y con entradas críticas en el backlog (<code>BL-ISLM-05</code> a <code>BL-ISLM-07</code>). <strong>El diagnóstico cualitativo de los dos ejercicios se conserva.</strong></li>
+<li><strong>Ejercicio nuevo <code>ISLM-EX-05</code>, que cierra <code>BL-ISLM-03</code>:</strong> la misma expansión fiscal bajo <strong>LM horizontal</strong>. Resultado: ΔY = <strong>200</strong> (multiplicador completo), Δi = 0, <strong>ΔI = +20</strong>. Es la refutación limpia de <code>ISLM-ERR-02</code>.</li>
+<li><strong>Personaje-ancla:</strong> Rosa Millán continúa; su crédito de 2022 abre el pasaporte con la frase del ejecutivo del banco ("está más caro el crédito y está vendiendo menos") como planteamiento del equilibrio simultáneo.</li>
+<li><strong>Ancla histórica central (§3.1):</strong> la tabla de mezcla de políticas 2020-2026, con los tres casos canónicos —coordinada expansiva, coordinada contractiva, divergente— documentados con cifras de demanda interna, FBCF, consumo privado y TPM.</li>
+<li><strong>Nodos nuevos dentro del esquema:</strong> concepto <code>ISLM-CON-MEZCLA</code>; error <code>ISLM-ERR-06MIX</code>; ejercicio <code>ISLM-EX-05</code>. Una arista nueva en el grafo (<code>DIN-CON-CIERRE → ISLM-CON-REG</code>).</li>
+<li><strong>Advertencia de coincidencia frente a regla:</strong> el crowding-out de <code>ISLM-EX-03</code> presentado como resultado condicional, con <code>ISLM-EX-05</code> como contraejemplo dentro del mismo bloque.</li>
+<li><strong>Regla de corrección ampliada:</strong> redondear magnitudes intermedias se penaliza aunque el resultado quede cerca — precisamente el vicio del Hallazgo 2.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demanda interna 2021 · FBCF 2021 · PIB 2021</td>
+<td>+21,6 % · +17,6 % · +11,7 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>TPM en su mínimo técnico (2020)</td>
+<td>0,50 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2020</td>
+</tr>
+<tr>
+<td>TPM diciembre 2021</td>
+<td>4,0 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Alza del BTP-10 en 2021 y efecto sobre inversión privada</td>
+<td>≈ 300 pb; Recuadro V.1</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>TPM diciembre 2022</td>
+<td>11,25 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>FBCF 2022 · demanda interna 2022</td>
+<td>+3,9 % · +2,3 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>FBCF 2023 · demanda interna 2023 · consumo privado 2023</td>
+<td>−1,1 % · −3,7 % · −4,9 %</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2024 y dic. 2025</td>
+</tr>
+<tr>
+<td>Reducción de la TPM julio 2023 → diciembre 2024</td>
+<td>625 pb (11,25 % → 5,00 %)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>FBCF 2024 · FBCF 2025 · demanda interna 2025</td>
+<td>−1,6 % · +7,0 % · +4,2 %</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Proyección 2026: mayor empuje del gasto público, menor impulso del consumo</td>
+<td>descripción cualitativa</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>TPM vigente</td>
+<td><strong>4,50 %</strong>, mantenida por unanimidad</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>Inversión materializada bajo lo proyectado; posible postergación de proyectos</td>
+<td>cita textual</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota de vintage.</strong> Cada cifra anual proviene de la edición del IPoM más reciente que la reporta como efectiva (<code>MED-ERR-09REV</code>).</p>
+<p><strong>Marcadores de verificación pendientes:</strong> ninguno en datos de coyuntura. Los pendientes de este bloque son de <strong>validación docente</strong> de las dos correcciones aritméticas (<code>BL-ISLM-05</code>, <code>BL-ISLM-06</code>, <code>BL-ISLM-07</code>).</p>
+<hr />
+<p><em>Notación y ejercicios anclados en los materiales reales del curso (Ayudantías 4 y 8, Notas IS-LM). Los cinco equilibrios de esta edición fueron derivados y verificados con aritmética exacta el 2026-08-15.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

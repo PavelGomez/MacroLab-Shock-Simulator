@@ -1,0 +1,20 @@
+#!/bin/sh
+# Hook de pre-commit — MacroLab
+#
+# Corre la capa de auditoría antes de permitir un commit. Si una pauta sellada
+# de la biblioteca deja de coincidir con el solver del simulador, el commit se
+# detiene. No es burocracia: así se detectó el error de la IS en ISLM-EX-03.
+#
+# Instalación:  sh scripts/install-hooks.sh
+# Saltar (sólo con motivo declarado):  git commit --no-verify
+
+set -e
+echo "── Auditoría MacroLab (pre-commit)"
+
+command -v node >/dev/null 2>&1 || { echo "  ⚠ node no encontrado: se omite la auditoría."; exit 0; }
+
+node --check script.js
+node test_pautas_biblioteca.js
+node scripts/check-manifest.js
+
+echo "✔ Auditoría OK — commit permitido."

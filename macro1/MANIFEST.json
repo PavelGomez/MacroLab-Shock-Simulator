@@ -1,20 +1,21 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.6.5",
+  "lab_version": "0.7.0",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
   "identity_line": "Macroeconomía · Profesor Pável Gómez · 2026",
   "lab_identity_line": "Macroeconomía I · Profesor Pável Gómez · 2026",
-  "content_version": "macro1-notas-2026-08-cumulative-revision",
+  "content_version": "macro1-bloques-2026-08",
   "learning_schema": "macrolab-learning-context/0.2",
   "scenario_schema": "macrolab-macro1-scenario/1.1",
-  "generated_at": "2026-08-05T21:00:00.000Z",
+  "generated_at": "2026-08-15T00:00:00.000Z",
   "tests": [
     "test_paquete.js",
     "test_loop_clase3.js",
     "test_formulas_selladas.js",
-    "test_retroalimentacion_pedagogica.js"
+    "test_retroalimentacion_pedagogica.js",
+    "test_pautas_biblioteca.js"
   ],
   "notes": [
     {
@@ -100,6 +101,69 @@
       "file": "notas/nota-06-mercado-dinero.html",
       "title": "Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros",
       "linked_from_class": null
+    },
+    {
+      "id": "nota-b1-medicion",
+      "file": "notas/nota-b1-medicion.html",
+      "title": "Bloque 1 · Medición de la Actividad Económica",
+      "linked_from_class": 2,
+      "kind": "bloque",
+      "summary": "PIB nominal y real, PNB, IPC y deflactor, PIB per cápita, gasto vs producción sectorial y el rol de las expectativas, con datos del BCCh y el INE.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b2-mercado-bienes",
+      "file": "notas/nota-b2-mercado-bienes.html",
+      "title": "Bloque 2 · El Mercado de Bienes",
+      "linked_from_class": 3,
+      "kind": "bloque",
+      "summary": "Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b3-mercado-dinero",
+      "file": "notas/nota-b3-mercado-dinero.html",
+      "title": "Bloque 3 · El Mercado de Dinero",
+      "linked_from_class": 4,
+      "kind": "bloque",
+      "summary": "Demanda de dinero, precio del bono y los dos cierres monetarios, con la TPM del Banco Central como régimen efectivo.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b4-islm",
+      "file": "notas/nota-b4-islm.html",
+      "title": "Bloque 4 · IS-LM en economía cerrada",
+      "linked_from_class": 5,
+      "kind": "bloque",
+      "summary": "Equilibrio simultáneo, impuestos fijos y proporcionales, acelerador y crowding-out, y la mezcla de políticas chilena 2020-2026.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b5-islm-bp",
+      "file": "notas/nota-b5-islm-bp.html",
+      "title": "Bloque 5 · IS-LM-BP en economía abierta",
+      "linked_from_class": 6,
+      "kind": "bloque",
+      "summary": "Mundell-Fleming con la convención E = CLP/USD sellada, canal comercial frente a canal financiero y el ajuste externo 2021-2026.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b6-oa-da",
+      "file": "notas/nota-b6-oa-da.html",
+      "title": "Bloque 6 · El Modelo OA-DA",
+      "linked_from_class": 7,
+      "kind": "bloque",
+      "summary": "Oferta y demanda agregadas, brecha de producto y expectativas, con el shock del petróleo de 2026 cuantificado por el Banco Central.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
+    },
+    {
+      "id": "nota-b7-mercado-laboral",
+      "file": "notas/nota-b7-mercado-laboral.html",
+      "title": "Bloque 7 · El Mercado Laboral",
+      "linked_from_class": 8,
+      "kind": "bloque",
+      "summary": "Indicadores del INE, equilibrio WS-PS y tasa natural, con el episodio del millón de inactivos como advertencia de lectura.",
+      "source_version": "MAC-GRAPH-MVP reedición 2026-08-15"
     }
   ],
   "images": [
@@ -120,6 +184,14 @@
     {
       "note": "nota-06",
       "reason": "Revisar la numeración de este apartado. En el original las preguntas del ejemplo se rotulan «a.» y, a continuación, «c.»: no existe un apartado «b.». Se conserva el rótulo «c.» tal como lo escribió el autor, porque el salto puede indicar una pregunta ausente y no una simple errata de numeración."
+    },
+    {
+      "note": "todas las notas de bloque",
+      "reason": "Los grafos de prerrequisitos venían en sintaxis Mermaid y se publican como bloque de texto rotulado '[Grafo de prerrequisitos]'. Si se incorpora un renderizador Mermaid al sitio, conviene regenerarlas."
+    },
+    {
+      "note": "MANIFEST",
+      "reason": "lab_version sube de 0.6.5 a 0.7.0 por dos cambios de comportamiento: el módulo IS-LM incorpora régimen tributario T fija / T = t·Y, y se agrega la capa de auditoría test_pautas_biblioteca.js que confronta las pautas selladas de la biblioteca con los solvers."
     }
   ]
 }

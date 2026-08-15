@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 6 · El Modelo OA-DA &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Oferta y demanda agregadas, brecha de producto y expectativas, con el shock del petróleo de 2026 cuantificado por el Banco Central.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 6: El Modelo OA-DA (capstone / lógica gráfica)</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>OADA</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> núcleo gráfico listo
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 2 · <strong>Texto base:</strong> Blanchard 7ª (OA-DA)
+<strong>Materiales del curso usados:</strong> Nota de Estudio 8 (mercado laboral), Nota de Estudio 9 (OA-DA), Nota de Estudio 10 (visión integrada IS-LM ↔ OA-DA)
+<strong>Prerrequisitos:</strong> <code>ISLM</code> (para DA), mercado laboral (para OA) · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Bloque capstone, marcado como opcional según el tiempo. Entrega la <strong>lógica gráfica general</strong>: derivación de OA (desde el mercado laboral) y de DA (desde IS-LM con P variable), la distinción <strong>corto plazo / mediano plazo</strong> vía la brecha <code>Y − Yn</code> y la revisión de expectativas, y el análisis gráfico de shocks de demanda y de oferta.</p>
+<p><strong>Qué cambia respecto de v0.1.</strong> Arquitectura intacta: mismos IDs, mismo pasaporte, mismos tres ejercicios (más uno nuevo). El cambio de fondo es que el ejemplo guía del bloque —"un alza del petróleo"— <strong>dejó de ser hipotético</strong>: Chile está viviendo exactamente ese shock en 2026, y el Banco Central publicó un Recuadro con la cuantificación de sus canales directo e indirecto. <code>OADA-EX-04</code> convierte ese material en un ejercicio con números. Rosa Millán continúa desde los cinco bloques anteriores.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong>, IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>.</p>
+</blockquote>
+<hr />
+<h2>0. Alcance del bloque</h2>
+<ul>
+<li><strong>OA</strong> se deriva del mercado laboral (WS-PS): salarios <code>W = Pe·F(u,z)</code>, precios <code>P = (1+m)W</code>, y <code>u = 1 − Y/L</code>. Requiere haber visto mercado laboral (Nota 8) como puente.</li>
+<li><strong>DA</strong> se deriva del IS-LM dejando variar P: <code>P↑ ⇒ M/P↓ ⇒ LM izquierda ⇒ i↑ ⇒ Y↓</code>.</li>
+<li><strong>Foco:</strong> lógica gráfica y clasificación de shocks; el álgebra completa de mediano plazo queda como extensión.</li>
+<li><strong>Mercado laboral:</strong> se activa aquí como dependencia (BL-06 del Manual original).</li>
+</ul>
+<p>IDs: <code>OADA-CON-*</code>, <code>OADA-MOD-*</code>, <code>OADA-CIR-*</code>, <code>OADA-ERR-*</code>, <code>OADA-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: el mismo mes, dos titulares que se contradicen</h3>
+<p>Rosa leyó dos cosas en agosto de 2026 y no supo cuál creer.</p>
+<ul>
+<li><em>"La inflación casi no subió: el IPC de julio avanzó apenas 0,1 % en el mes."</em> (INE, julio-2026)</li>
+<li><em>"La inflación viene subiendo con fuerza: pasó de 2,4 % en febrero a 3,9 % en mayo."</em> (IPoM, BCCh, junio-2026)</li>
+</ul>
+<p><strong>Las dos son verdaderas.</strong> Y la razón por la que parecen contradecirse es el bloque entero.</p>
+<p>Entre febrero y mayo, el precio internacional del petróleo subió por las tensiones en Medio Oriente y arrastró a los combustibles locales: la inflación <strong>del componente volátil</strong> llegó a <strong>5,1 %</strong> anual en mayo. En julio, ese mismo componente se dio vuelta: la gasolina cayó <strong>8,5 %</strong> en el mes y el transporte <strong>3,5 %</strong>, tirando el índice general hacia abajo. Mientras tanto, el <strong>IPC subyacente</strong> —el que excluye lo volátil— se mantuvo en <strong>3,2 %</strong> en mayo y siguió subiendo <strong>0,5 %</strong> mensual en julio.</p>
+<blockquote>
+<p><strong>Lo que este bloque enseña a ver:</strong> ese shock <strong>no entró por la demanda</strong>. Nadie compró más. Entró por los <strong>costos</strong> — y un shock de costos hace algo que ningún shock de demanda hace: <strong>empuja los precios hacia arriba y la producción hacia abajo al mismo tiempo</strong>. Por eso es tan difícil de responder, y por eso el Banco Central le dedicó un Recuadro completo.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: línea de IPC total (2,4 % → 3,9 % → 3,5 %) junto a la del IPC subyacente (plana en torno a 3,2 %) entre febrero y julio de 2026, con la banda de meta sombreada.]</code></p>
+<p><strong>Decisión de alcance declarada.</strong> El bloque trabaja con la <strong>lógica gráfica</strong>. La cuantificación que aparece en <code>OADA-EX-04</code> proviene de estimaciones publicadas por el Banco Central y <strong>no se deriva del modelo del curso</strong>: se usa para dar magnitud a un mecanismo que el modelo explica cualitativamente.</p>
+<hr />
+<h2>1. Grafo de prerrequisitos</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  LAB[LAB: mercado laboral&lt;br/&gt;W=Pe·F&amp;#40;u,z&amp;#41;; P=&amp;#40;1+m&amp;#41;W] --&gt; OA[OADA-CON-OA&lt;br/&gt;OA: P=f&amp;#40;Y&amp;#41;, pendiente +]
+  ISLM[ISLM cerrado] --&gt; DA[OADA-CON-DA&lt;br/&gt;DA: P=f&amp;#40;Y&amp;#41;, pendiente −]
+  OA --&gt; EQ[OADA-MOD-EQ&lt;br/&gt;Equilibrio OA=DA]
+  DA --&gt; EQ
+  EQ --&gt; BRECHA[OADA-CON-BRECHA&lt;br/&gt;Y − Yn]
+  POT[OADA-CON-POTENCIAL&lt;br/&gt;Yn se mueve] --&gt; BRECHA
+  BRECHA --&gt; EXP[OADA-CON-EXP&lt;br/&gt;Revisión de Pe]
+  EXP --&gt; MP[OADA-CON-MEDIANO&lt;br/&gt;Mediano plazo: Y→Yn]
+  ABR[ABR: shock de términos&lt;br/&gt;de intercambio] --&gt; OA
+</code></pre>
+<p><em>Las cuatro relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan dos:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OADA-CON-POTENCIAL</td>
+<td>DETERMINA</td>
+<td>OADA-CON-BRECHA</td>
+</tr>
+<tr>
+<td>ABR-CON-XN</td>
+<td>ES_CANAL_DE</td>
+<td>OADA-CON-OA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OADA-CON-OA</td>
+<td>Oferta agregada</td>
+<td>Pendiente <strong>positiva</strong>: Y↑ ⇒ u↓ ⇒ W↑ ⇒ P↑</td>
+<td>≠ oferta de un bien</td>
+</tr>
+<tr>
+<td>OADA-CON-DA</td>
+<td>Demanda agregada</td>
+<td>Pendiente <strong>negativa</strong> en (Y,P); viene del IS-LM</td>
+<td>≠ Z = C+I+G del mercado de bienes (esa es (Y,DA))</td>
+</tr>
+<tr>
+<td>OADA-CON-PvsPI</td>
+<td>Nivel de precios P vs inflación π</td>
+<td><strong>P es nivel; π = ΔP/P es tasa</strong></td>
+<td>confundir P con inflación</td>
+</tr>
+<tr>
+<td>OADA-CON-BRECHA</td>
+<td>Brecha de producto</td>
+<td>Y − Yn (Yn = producto natural)</td>
+<td>≠ variación de Y</td>
+</tr>
+<tr>
+<td>OADA-CON-PLAZO</td>
+<td>Corto vs mediano plazo</td>
+<td>Corto: Pe dado, OA fija. Mediano: Pe se revisa, OA se mueve hasta Y=Yn</td>
+<td>mezclar horizontes en un salto</td>
+</tr>
+<tr>
+<td><strong>OADA-CON-POTENCIAL</strong> ⊕</td>
+<td>El producto natural <strong>se mueve</strong></td>
+<td>Un shock de oferta transitorio puede bajar <code>Yn</code> <strong>sin abrir brecha</strong>: bajan Y y Yn a la vez</td>
+<td>leer toda caída de Y como brecha negativa</td>
+</tr>
+<tr>
+<td><strong>OADA-CON-DIRIND</strong> ⊕</td>
+<td>Efecto directo vs indirecto de un shock de costos</td>
+<td>Directo: el bien encarecido dentro de la canasta. Indirecto: ese bien como <strong>insumo</strong> del resto</td>
+<td>quedarse solo con el directo</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Regla del bloque:</strong> distinga siempre <strong>P (nivel)</strong> de <strong>π (tasa)</strong>, y <strong>el impacto de corto plazo</strong> del <strong>estado de mediano plazo</strong>. Casi todos los errores del bloque vienen de colapsar estas dos distinciones. <strong>v0.2 agrega una tercera: distinga un movimiento de <code>Y</code> de un movimiento de <code>Yn</code>.</strong></p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OADA-CON-BRECHA (positiva)</td>
+<td><strong>2021</strong>: <em>"la economía operó ampliamente por sobre su nivel potencial"</em> en el tercer trimestre (IPoM, BCCh, dic-2021)</td>
+<td>Celebrar el 11,7 % de crecimiento sin ver que era insostenible</td>
+</tr>
+<tr>
+<td>OADA-CON-EXP (desancladas)</td>
+<td><strong>Dic-2022</strong>: expectativas a dos años sobre la meta; empresarios (EDEP) en <strong>7 %</strong></td>
+<td>Suponer que un shock de costos siempre se disipa solo</td>
+</tr>
+<tr>
+<td>OADA-CON-EXP (ancladas)</td>
+<td><strong>2026</strong>: expectativas a dos años <strong>en torno a 3 %</strong> pese al shock del petróleo</td>
+<td>Predecir una espiral que los datos no muestran</td>
+</tr>
+<tr>
+<td>OADA-CON-OA (shock de costos)</td>
+<td><strong>2026</strong>: IPC total 2,4 % (feb) → <strong>3,9 %</strong> (may) por combustibles; volátil en <strong>5,1 %</strong>, subyacente en <strong>3,2 %</strong></td>
+<td>Clasificarlo como shock de demanda y mover la curva equivocada</td>
+</tr>
+<tr>
+<td>OADA-CON-POTENCIAL</td>
+<td><strong>Junio 2026</strong>: el PIB no minero <strong>potencial</strong> de 2026 se revisa de <strong>2,3 %</strong> a <strong>1,9 %</strong>, y el BCCh advierte que la sorpresa <em>"tiene efectos sobre el PIB potencial y no sobre la brecha de actividad"</em></td>
+<td>Leer la baja actividad como brecha negativa y pedir estímulo</td>
+</tr>
+<tr>
+<td>OADA-CON-PvsPI</td>
+<td>Julio 2026: IPC mensual <strong>0,1 %</strong>, anual <strong>3,5 %</strong>, índice <strong>112,45</strong></td>
+<td>Decir "la inflación fue 112,45"</td>
+</tr>
+<tr>
+<td>OADA-CON-DIRIND</td>
+<td>Combustibles: <strong>6,4 %</strong> de la canasta IPC (efecto directo) pero solo ≈<strong>2 %</strong> del costo de producción del resto (efecto indirecto)</td>
+<td>Suponer que el efecto indirecto es tan grande como el directo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaporte <code>OADA-MOD-EQ</code></h2>
+<p><strong>El quiebre.</strong> En 2022 Rosa subió el precio del kilo de pan tres veces y se sintió culpable, porque le pareció que estaba aprovechándose. No lo estaba: le habían subido la harina, la luz y el flete. <strong>Ese es un movimiento de la OA, no de la DA</strong> — y la diferencia entre ambos es lo que decide si la respuesta correcta es enfriar la economía o esperar a que pase.</p>
+<pre><code class="language-yaml">id: OADA-MOD-EQ
+tipo: Modelo
+pregunta: &quot;¿El shock entra por demanda, costos, productividad o expectativas, y cómo cambia entre corto y mediano plazo?&quot;
+endogenas: [Y, P, brecha; Pe en la dinámica de mediano plazo]
+exogenas_cierre: [DA autónoma (desde IS-LM), Pe inicial, m (margen), z, productividad, shock de costos]
+ecuaciones:
+  OA: &quot;P = (1+m)·Pe·F(1 − Y/L, z)   (pendiente positiva en (Y,P))&quot;
+  DA: &quot;de IS-LM con P variable: P↑ ⇒ M/P↓ ⇒ Y↓   (pendiente negativa)&quot;
+  brecha: &quot;Brecha = Y − Yn&quot;
+  equilibrio: &quot;OA = DA&quot;
+ajuste_horizonte: &quot;Corto: Pe dado. Mediano: si Y&gt;Yn, Pe y W suben, OA se desplaza hacia arriba hasta Y=Yn (y viceversa).&quot;
+limites: &quot;No es pronóstico; producto potencial y oferta simplificados; Yn tratado como dato cuando en la práctica se estima y se revisa.&quot;
+errores_objetivo: [OADA-ERR-01, OADA-ERR-02, OADA-ERR-03, OADA-ERR-04, OADA-ERR-05YN]  # ← ampliado en v0.2
+macrolab: &quot;Uso directo de OA-DA y trayectorias; cruzar con Tablero (IPC, actividad).&quot;
+fuente: {id: F1, unidad: 2}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Derivación de OA (ejemplo de tu Nota 9, verificado):</strong> con m = 0,1, F(u,z) = 1 − u, L = 10.193.231:
+<code>W = Pe·(1 − u)</code> y <code>u = 1 − Y/L</code> ⇒ <code>W = Pe·(Y/L)</code> ⇒ <code>P = 1,1·W = 1,1·Pe·Y/L</code>. La OA es creciente en Y para Pe dado y se <strong>desplaza hacia arriba</strong> si sube Pe, m o z.</p>
+<p><strong>Derivación de DA (lógica gráfica):</strong> partiendo del IS-LM, un P mayor reduce los saldos reales M/P, desplaza la LM a la izquierda, sube i y reduce Y ⇒ relación <strong>negativa</strong> entre P e Y. La DA se desplaza con cualquier shock de IS o LM (G, T, Ms, confianza).</p>
+<p><strong>Traducción de la OA antes y después de la fórmula.</strong> <em>Antes:</em> si la economía produce más, se necesita más gente; si se necesita más gente, hay que pagar mejor para conseguirla; si el salario sube y el margen no cambia, el precio sube. <em>Después:</em> <code>P = (1+m)·Pe·F(1 − Y/L, z)</code> encadena esos tres pasos en una sola línea — y muestra que la OA se mueve entera si cambia <strong>el margen (m)</strong>, <strong>lo que se espera de los precios (Pe)</strong> o <strong>las condiciones laborales (z)</strong>, aunque <code>Y</code> no se mueva.</p>
+<blockquote>
+<p><strong>Nota de régimen (v0.2), heredada del bloque <code>DIN</code>.</strong> La derivación clásica de la DA usa <code>M/P</code>: si <code>P</code> sube, los saldos reales caen y la LM se desplaza. Con un banco central que fija la <strong>tasa</strong> —como el chileno— el canal literal es otro: el BCCh <strong>responde</strong> al alza de precios subiendo la TPM, y eso reduce <code>Y</code>. La DA sigue teniendo pendiente negativa, pero por <strong>regla de política</strong> y no por saldos reales. Conviene decirlo al derivarla, para no dejar al estudiante con un mecanismo que no opera en Chile (<code>ISLM-ERR-04</code>).</p>
+</blockquote>
+<hr />
+<h3>3.1 ⊕ El shock del petróleo de 2026, con números</h3>
+<p>El Banco Central publicó en junio de 2026 un Recuadro dedicado a este shock. Sirve para ver la anatomía completa de un desplazamiento de la OA.</p>
+<p><strong>Los dos canales, cuantificados</strong> (IPoM, BCCh, junio-2026, Recuadro II.1; estimaciones de Guzmán et al., 2026):</p>
+<table>
+<thead>
+<tr>
+<th>Canal</th>
+<th>Cómo opera</th>
+<th>Magnitud estimada ante <strong>+10 %</strong> del petróleo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Directo</strong></td>
+<td>El combustible está <strong>dentro</strong> de la canasta del IPC (<strong>6,4 %</strong> de la canasta base 2023; la gasolina sola, <strong>3,4 %</strong>)</td>
+<td>La gasolina local sube ≈ <strong>5 %</strong> a un año ⇒ <strong>+0,2 pp</strong> del IPC. Para combustibles como un todo: ≈ <strong>+4 %</strong> ⇒ <strong>+0,3 pp</strong></td>
+</tr>
+<tr>
+<td><strong>Indirecto</strong></td>
+<td>El combustible es <strong>insumo</strong> de todo lo demás: transporte, flete, producción. Representa ≈ <strong>2 %</strong> del costo de producción total de lo que consumen los hogares</td>
+<td><strong>+0,1 a +0,3 pp</strong> en los precios del resto de bienes y servicios, a un año</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lo que esta tabla enseña y el modelo gráfico no puede mostrar.</strong> El efecto <strong>directo</strong> es más grande y más rápido que el <strong>indirecto</strong> — porque el combustible pesa 6,4 % en lo que la gente compra, pero solo 2 % en lo que cuesta producir el resto. Por eso el shock aparece primero en el componente <strong>volátil</strong> del IPC (5,1 % anual en mayo) y solo después, y más suave, en el <strong>subyacente</strong> (3,2 %).</p>
+<p><strong>Y lo que decide el mediano plazo.</strong> El propio Recuadro dice de qué depende el tamaño total: <em>"las características propias del shock —particularmente su magnitud y persistencia— y las condiciones macroeconómicas bajo las cuales ocurre, incluyendo el estado del ciclo económico y la evolución de las expectativas de inflación"</em>. Traducido al modelo: <strong>cuán arriba se mueve la OA, y si se queda arriba, depende de la brecha y de <code>Pe</code>.</strong> Es literalmente <code>OADA-CIR-01</code>.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En 2026 el shock del petróleo se traspasó <em>"en línea con promedios históricos"</em>, sin espiral. (2) Ocurrió <strong>porque</strong> las expectativas a dos años estaban ancladas en <strong>3 %</strong> y la brecha de actividad se mantenía <strong>levemente negativa</strong>. (3) <strong>Deja de cumplirse</strong> si el shock ocurre con expectativas desancladas y brecha positiva — como en 2022, cuando los empresarios esperaban <strong>7 %</strong> a dos años y el IPC cerró en <strong>12,8 %</strong>. <strong>El mismo shock de costos produce resultados distintos según el estado de la economía</strong>: eso es lo que hay que enseñar, y no "el petróleo sube la inflación en X".</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos planos OA-DA con el mismo desplazamiento de OA hacia arriba —uno con brecha negativa y Pe anclado, otro con brecha positiva y Pe subiendo— mostrando que el segundo termina mucho más arriba.]</code></p>
+<hr />
+<h3>3.2 ⊕ La distinción difícil: cuando lo que se mueve es <code>Yn</code></h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Si la economía está produciendo menos de lo que podría, ¿no debería el gobierno o el Banco Central hacer algo?"</em></p>
+<p><strong>Depende de por qué produce menos</strong>, y esa es la distinción más sofisticada del bloque.</p>
+<p>El IPoM de junio de 2026 lo plantea con precisión: la actividad del primer trimestre sorprendió a la baja, y sin embargo <em>"la brecha de actividad no se corrige de forma relevante"</em>. La razón: <em>"la sorpresa respecto de lo esperado se asocia a factores de oferta transitorios, que tienen efectos sobre el PIB potencial y no sobre la brecha de actividad"</em>. Coherentemente, el crecimiento del <strong>PIB no minero potencial</strong> de 2026 se revisó de <strong>2,3 %</strong> (marzo) a <strong>1,9 %</strong> (junio).</p>
+<p><strong>Traducción.</strong> Si la economía produce menos porque no puede —una faena minera detenida, una cosecha mala, menos biomasa pesquera— entonces <strong><code>Y</code> bajó, pero <code>Yn</code> bajó con ella</strong>. La brecha <code>Y − Yn</code> casi no se mueve. Estimular la demanda en ese caso no aumentaría la producción: aumentaría los precios, porque la capacidad no está ahí.</p>
+<table>
+<thead>
+<tr>
+<th>Situación</th>
+<th>Y</th>
+<th>Yn</th>
+<th>Brecha</th>
+<th>Respuesta que corresponde</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Caída de demanda</td>
+<td>baja</td>
+<td>igual</td>
+<td><strong>se abre negativa</strong></td>
+<td>Estímulo de demanda tiene sentido</td>
+</tr>
+<tr>
+<td>Shock de oferta transitorio</td>
+<td>baja</td>
+<td><strong>baja también</strong></td>
+<td><strong>casi no cambia</strong></td>
+<td>Estimular sube precios, no producción</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Conexión con el error objetivo.</strong> <code>OADA-ERR-05YN</code> ⊕ (nuevo): leer toda caída de <code>Y</code> como brecha negativa, sin preguntar si <code>Yn</code> se movió.</p>
+<p><strong>Límite honesto.</strong> <code>Yn</code> <strong>no se observa</strong>: se estima, y la estimación se revisa —de 2,3 % a 1,9 % en un trimestre—. Un análisis que dependa de forma crítica del valor exacto de la brecha es un análisis frágil, y conviene decirlo. Es la versión OA-DA de <code>MED-ERR-09REV</code>.</p>
+<hr />
+<h2>4. Circuito <code>OADA-CIR-01</code> — Corto y mediano plazo</h2>
+<pre><code>Tipo de shock → Objeto inicial → Corto plazo → Brecha → Mercado laboral/costos →
+Expectativas → Mediano plazo → Persistencia → Evidencia → Revisión
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tipo de shock</td>
+<td>¿Demanda, costos, productividad, Pe o mixto?</td>
+</tr>
+<tr>
+<td>Objeto inicial</td>
+<td>¿Se mueve DA, OA <strong>o Yn</strong>?</td>
+</tr>
+<tr>
+<td>Corto plazo</td>
+<td>Determine la dirección de Y y P.</td>
+</tr>
+<tr>
+<td>Brecha</td>
+<td>Compare Y con Yn. <strong>¿Se movió Yn también?</strong></td>
+</tr>
+<tr>
+<td>Mercado laboral/costos</td>
+<td>¿Qué ocurre con desempleo, salarios y márgenes?</td>
+</tr>
+<tr>
+<td>Expectativas</td>
+<td>¿Pe se revisa? ¿Hay anclaje o segunda vuelta?</td>
+</tr>
+<tr>
+<td>Mediano plazo</td>
+<td>¿Cómo se desplaza OA y hacia qué equilibrio?</td>
+</tr>
+<tr>
+<td>Persistencia</td>
+<td>¿Transitorio, persistente o secuencial/mixto?</td>
+</tr>
+<tr>
+<td>Evidencia</td>
+<td>Cruce IPC, IPC SAE, actividad, empleo, expectativas, TPM. <strong>Separe el componente volátil del subyacente.</strong></td>
+</tr>
+<tr>
+<td>Revisión</td>
+<td>¿Qué dato revelaría que se clasificó mal el shock?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> dos horizontes + brecha + mecanismo expectativas-salarios + dato de revisión.
+<strong>Regla de revisión:</strong> reabrir si se confunde P con inflación, si no aparece Yn, si un shock mixto se trata como un solo desplazamiento atemporal, <strong>o si se atribuyó a la brecha un movimiento del potencial</strong>.</p>
+<hr />
+<h2>5. Lógica gráfica de shocks (núcleo del bloque)</h2>
+<table>
+<thead>
+<tr>
+<th>Shock</th>
+<th>Curva que se mueve (corto plazo)</th>
+<th>Corto plazo (Y, P)</th>
+<th>Mediano plazo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Demanda +</strong> (↑G, ↑Ms, ↑confianza)</td>
+<td>DA → derecha</td>
+<td>Y↑, P↑ (brecha Y&gt;Yn)</td>
+<td>Pe↑ ⇒ OA↑ hasta volver a Yn con <strong>P más alto</strong></td>
+</tr>
+<tr>
+<td><strong>Demanda −</strong></td>
+<td>DA → izquierda</td>
+<td>Y↓, P↓ (brecha Y&lt;Yn)</td>
+<td>Pe↓ ⇒ OA↓ hasta Yn con P más bajo</td>
+</tr>
+<tr>
+<td><strong>Oferta / costos +</strong> (↑petróleo, ↑m)</td>
+<td><strong>OA → arriba</strong> (no DA)</td>
+<td>Y↓, P↑ (estanflación)</td>
+<td>según anclaje de Pe; puede persistir</td>
+</tr>
+<tr>
+<td><strong>Productividad +</strong></td>
+<td>OA → abajo / Yn↑</td>
+<td>Y↑, P↓</td>
+<td>nuevo Yn más alto</td>
+</tr>
+<tr>
+<td>⊕ <strong>Oferta transitoria −</strong> (faena detenida, mala cosecha)</td>
+<td><strong>OA → arriba y Yn → izquierda</strong></td>
+<td>Y↓, P↑</td>
+<td><strong>la brecha casi no cambia</strong>; se revierte al disiparse el factor</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Ejemplo guía (petróleo), ahora con datos reales.</strong> Un alza del petróleo es un shock de <strong>costos</strong> ⇒ mueve la <strong>OA hacia arriba</strong>, no la DA (OADA-ERR-02). Resultado de corto plazo: Y↓ y P↑ (estanflación). En Chile 2026 esto se observó como IPC total subiendo de <strong>2,4 %</strong> a <strong>3,9 %</strong> entre febrero y mayo, con el <strong>volátil en 5,1 %</strong> y el <strong>subyacente en 3,2 %</strong>: la firma estadística de un shock que entra por costos y no por demanda.</p>
+</blockquote>
+<hr />
+<h2>6. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OADA-ERR-01</td>
+<td>P confundido con inflación</td>
+<td>Mezcla nivel y tasa</td>
+<td>Pedir la trayectoria de P_t y de π_t por separado</td>
+</tr>
+<tr>
+<td>OADA-ERR-02</td>
+<td>Un shock de costos "mueve la DA"</td>
+<td>Clasificación errónea</td>
+<td>Identificar el costo unitario y mover OA primero</td>
+</tr>
+<tr>
+<td>OADA-ERR-03</td>
+<td>Ignorar Yn / omitir la segunda vuelta</td>
+<td>Pierde el ajuste de mediano plazo</td>
+<td>Preguntar dónde está Yn y si Pe se revisa</td>
+</tr>
+<tr>
+<td>OADA-ERR-04</td>
+<td>Tratar un shock mixto como un desplazamiento atemporal</td>
+<td>Oculta la secuencia oferta-demanda</td>
+<td>Separar fases y condiciones de revisión</td>
+</tr>
+<tr>
+<td><strong>OADA-ERR-05YN</strong> ⊕</td>
+<td>Atribuir a la brecha lo que fue un movimiento del producto potencial</td>
+<td>Recomienda estímulo donde solo habría inflación; y trata como observable algo que se estima y se revisa</td>
+<td>Preguntar: "¿bajó <code>Y</code> porque no se quiso comprar o porque no se pudo producir?" y pedir la revisión más reciente del potencial</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>7. Ejercicios semilla (foco gráfico)</h2>
+<h3><code>OADA-EX-01</code> — Alza del petróleo: nivel, inflación y brecha · simulación guiada · intermedia</h3>
+<p><strong>Errores objetivo:</strong> OADA-ERR-01, OADA-ERR-02.
+<strong>Tarea:</strong> clasifique el shock, dibuje el movimiento de corto plazo en (Y,P), identifique la brecha, y describa el mediano plazo bajo (a) expectativas ancladas y (b) desancladas.
+<strong>Pauta sellada:</strong> shock de <strong>costos</strong> ⇒ OA↑ (no DA). Corto plazo: <strong>Y↓, P↑</strong> (estanflación), brecha Y&lt;Yn. (a) ancladas: sin segunda vuelta, la OA revierte al disiparse el shock. (b) desancladas: Pe↑ ⇒ nueva alza de OA ⇒ persistencia inflacionaria. Distinga <strong>P (nivel) de π (tasa)</strong> todo el tiempo.</p>
+<p><strong>Ancla real (v0.2).</strong> Los dos escenarios de esta pauta <strong>ocurrieron los dos en Chile, con cuatro años de diferencia</strong>: el caso (a) es 2026, con expectativas a dos años en 3 % y traspaso "en línea con promedios históricos"; el caso (b) es 2022, con los empresarios esperando 7 % a dos años y el IPC cerrando en 12,8 %. Al corregir, conviene pedir que el estudiante nombre cuál es cuál.</p>
+<h3><code>OADA-EX-02</code> — Expansión fiscal cerca vs lejos de capacidad · comparación paramétrica · avanzada</h3>
+<p><strong>Errores objetivo:</strong> OADA-ERR-03.
+<strong>Tarea:</strong> una expansión de DA (↑G) con la economía <strong>lejos</strong> de Yn vs <strong>cerca</strong> de Yn.
+<strong>Pauta sellada:</strong> lejos de Yn (OA relativamente plana): ΔY grande, ΔP pequeño. Cerca de Yn (OA empinada): ΔY pequeño, ΔP grande. En mediano plazo, en ambos casos Y→Yn y el efecto permanente es sobre <strong>P</strong>, no sobre Y.</p>
+<p><strong>Ancla real (v0.2).</strong> <strong>2021 es el caso "cerca de Yn" llevado al extremo</strong>: la economía operaba <em>"ampliamente por sobre su nivel potencial"</em> y el estímulo se tradujo, en 2022, en un IPC de diciembre de <strong>12,8 %</strong>. <strong>2020 es el caso "lejos de Yn"</strong>: con el Imacec <strong>14,5 %</strong> bajo su nivel de febrero, el estímulo tuvo mucho espacio antes de presionar precios. El mismo instrumento, resultados opuestos, según dónde estaba la economía.</p>
+<h3><code>OADA-EX-03</code> — Pandemia como shock mixto y secuencial · secuencia narrativa · avanzada</h3>
+<p><strong>Errores objetivo:</strong> OADA-ERR-04.
+<strong>Tarea:</strong> clasifique la pandemia como shock <strong>mixto</strong> (oferta y demanda) y ordene las fases.
+<strong>Pauta sellada:</strong> fase 1 shock de oferta (OA↑, Y↓, P↑) + caída de demanda (DA↓); fase 2 recuperación de demanda con oferta aún restringida (P↑). Debe <strong>separar fases</strong> y dar una condición de revisión por fase, no un único desplazamiento atemporal.</p>
+<p><strong>Ancla real (v0.2), con los datos de los bloques anteriores.</strong> Fase 1 (2020): Imacec desestacionalizado cae <strong>14,5 %</strong> entre febrero y mayo, con comercio <strong>−17,2 %</strong> y servicios <strong>−16,5 %</strong> pero <strong>minería +1,3 %</strong> — restricción de oferta muy desigual por sector. Fase 2 (2021): la demanda vuelve con fuerza (demanda interna <strong>+21,6 %</strong>) sobre una oferta todavía restringida y con la economía <strong>por sobre el potencial</strong> ⇒ presión de precios que estalla en 2022 (IPC de diciembre <strong>12,8 %</strong>). La secuencia es la enseñanza del ejercicio.</p>
+<hr />
+<h3>⊕ <code>OADA-EX-04</code> — El shock del petróleo de 2026, cuantificado · clasificación + magnitud · avanzada</h3>
+<p><strong>Errores objetivo:</strong> OADA-ERR-01, OADA-ERR-02, OADA-ERR-05YN, <code>MED-ERR-24</code>.
+<strong>Marco narrativo.</strong> Rosa quiere saber si le van a volver a subir la harina y el flete, y si eso significa que "viene otra vez lo de 2022".</p>
+<p><strong>Datos entregados al estudiante</strong> (todos oficiales; trazabilidad en §12):</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Petróleo WTI-Brent, julio 2026</td>
+<td>≈ US$100/barril, <strong>+14 %</strong> respecto de la Reunión anterior</td>
+<td>Minuta RPM N° 323</td>
+</tr>
+<tr>
+<td>Ponderación de combustibles en el IPC (base 2023)</td>
+<td><strong>6,4 %</strong> (gasolina sola: 3,4 %)</td>
+<td>IPoM junio 2026, Recuadro II.1</td>
+</tr>
+<tr>
+<td>Regla estimada, efecto <strong>directo</strong></td>
+<td>+10 % del petróleo ⇒ combustibles +4 % a un año ⇒ <strong>+0,3 pp</strong> del IPC</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Regla estimada, efecto <strong>indirecto</strong></td>
+<td>+10 % del petróleo ⇒ <strong>+0,1 a +0,3 pp</strong> en el resto de precios, a un año</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Peso de los combustibles en el costo de producción del resto</td>
+<td>≈ <strong>2 %</strong></td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC total anual: febrero → mayo 2026</td>
+<td>2,4 % → <strong>3,9 %</strong></td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC volátil / subyacente, mayo 2026</td>
+<td><strong>5,1 %</strong> / <strong>3,2 %</strong></td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC julio 2026: mensual / anual / energía mensual</td>
+<td>0,1 % / 3,5 % / <strong>−3,0 %</strong></td>
+<td>INE, Boletín Nº 333</td>
+</tr>
+<tr>
+<td>Expectativas de inflación a dos años</td>
+<td>en torno a <strong>3 %</strong></td>
+<td>IPoM junio 2026</td>
+</tr>
+<tr>
+<td>Brecha de actividad proyectada</td>
+<td><strong>levemente negativa</strong> en el horizonte</td>
+<td>ídem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Se pide:</strong></p>
+<ol>
+<li>Clasifique el shock y diga <strong>qué curva se mueve y hacia dónde</strong>. Justifique por qué <strong>no</strong> es un shock de demanda.</li>
+<li>Estime el efecto sobre el IPC a un año de un alza de <strong>14 %</strong> del petróleo, escalando las reglas entregadas. Dé un rango y <strong>declare el supuesto</strong> que hace posible el escalamiento.</li>
+<li>El IPC de julio subió apenas <strong>0,1 %</strong> mensual y la energía cayó <strong>3,0 %</strong>. ¿Contradice esto su respuesta en (2)? Distinga <strong>nivel</strong> de <strong>tasa</strong> y <strong>shock</strong> de <strong>reversión del shock</strong>.</li>
+<li>Con expectativas ancladas en 3 % y brecha levemente negativa, ¿qué predice el modelo para el mediano plazo? Contraste con lo que habría predicho en el escenario de 2022.</li>
+<li>Enuncie una afirmación que estos datos <strong>no</strong> permiten sostener.</li>
+</ol>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li>Shock de <strong>costos</strong> ⇒ la <strong>OA se desplaza hacia arriba</strong>; la DA no se mueve. No es de demanda porque <strong>nadie decidió comprar más</strong>: subió el precio de un insumo importado. La firma estadística lo confirma — el componente <strong>volátil</strong> saltó a 5,1 % mientras el <strong>subyacente</strong> se mantuvo en 3,2 %; un shock de demanda habría empujado a los dos.</li>
+<li>Escalando linealmente desde la regla del +10 %: factor 1,4.
+   - Directo: 0,3 × 1,4 = <strong>≈ 0,42 pp</strong>
+   - Indirecto: (0,1 a 0,3) × 1,4 = <strong>≈ 0,14 a 0,42 pp</strong>
+   - <strong>Total ≈ 0,6 a 0,8 pp</strong> de IPC adicional a un año.
+   <strong>Supuesto declarado:</strong> que la respuesta es <strong>lineal</strong> en el tamaño del shock. Las propias estimaciones citadas son promedios y el Recuadro advierte que el efecto depende de la magnitud, la persistencia y el estado del ciclo — de modo que este número es un <strong>orden de magnitud</strong>, no una proyección (<code>MED-ERR-24</code>).</li>
+<li><strong>No lo contradice.</strong> Son objetos distintos en dos sentidos. Primero, <strong>nivel y tasa</strong>: el 0,1 % es la variación <strong>mensual</strong> de julio; la estimación de (2) es un efecto <strong>acumulado a un año</strong>. Segundo, <strong>shock y reversión</strong>: en julio el petróleo local bajó —energía <strong>−3,0 %</strong>, gasolina <strong>−8,5 %</strong>—, es decir la OA empezó a volver hacia abajo. Que un shock de costos se revierta es exactamente lo que el modelo predice cuando <strong>el shock es transitorio y las expectativas están ancladas</strong>. La señal a vigilar no es el índice general sino el <strong>subyacente</strong>, que en julio siguió subiendo <strong>0,5 %</strong> mensual.</li>
+<li>Con <code>Pe</code> anclado en 3 % y brecha <strong>negativa</strong>: sin segunda vuelta. La OA vuelve hacia abajo al disiparse el shock y la inflación converge a la meta —el escenario central del propio Banco Central prevé el retorno a <strong>3 %</strong> durante el segundo trimestre de 2027—. En <strong>2022</strong> el escenario era el opuesto en las dos dimensiones: brecha <strong>positiva</strong> (la economía venía operando sobre el potencial) y expectativas <strong>desancladas</strong> (empresarios en 7 % a dos años). El mismo tipo de shock terminó en un IPC de diciembre de <strong>12,8 %</strong>. <strong>La diferencia no está en el shock: está en el estado de la economía que lo recibe.</strong></li>
+<li>Cualquiera de estas: <em>"el petróleo sube la inflación 0,6 pp"</em> como ley general (es una estimación condicional a este contexto); <em>"como el IPC de julio fue 0,1 %, el shock terminó"</em> (<code>OADA-ERR-01</code> y confusión shock/reversión); <em>"la brecha negativa exige estímulo"</em> (parte de la debilidad viene de factores de oferta transitorios que mueven <code>Yn</code>, no la brecha — <code>OADA-ERR-05YN</code>); <em>"esto es igual a 2022"</em> (la diferencia en <code>Pe</code> y en la brecha es precisamente lo que cambia el resultado).</li>
+</ol>
+<p><strong>Evidencia de dominio:</strong> clasifica el shock por su firma estadística (volátil vs subyacente) y no por intuición; escala la estimación <strong>declarando la linealidad como supuesto</strong>; y en el punto (4) atribuye la diferencia con 2022 al <strong>estado de la economía</strong>, no al shock.</p>
+<p><code>[Ilustración sugerida: IPC total, volátil y subyacente entre febrero y julio de 2026 en un mismo gráfico, mostrando que el volátil sube y baja mientras el subyacente apenas se mueve.]</code></p>
+<hr />
+<h2>8. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> Clasifico el shock ___ (demanda/costos/productividad/Pe/mixto) · objeto inicial ___ (DA/OA/<strong>Yn</strong>) · corto plazo (Y,P) ___ · brecha Y−Yn ___ · <strong>¿se movió Yn?</strong> ___ · mercado laboral/costos ___ · ¿Pe se revisa? ___ · mediano plazo ___ · persistencia ___ · distingo P de π ___ · revisaría si ___.
+<strong>Nivel B:</strong> tipo de shock → curva → corto plazo → brecha → expectativas → mediano plazo → supuesto.
+<strong>Nivel C:</strong> <em>"Clasifique el shock, muestre corto y mediano plazo, y señale qué dato revelaría una clasificación errónea."</em></p>
+<h3>8.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla el shock del petróleo 2026 completo (§0.1 y §3.1)</td>
+<td>Ubicar cada dato en el modelo y decir por qué el subyacente casi no se movió</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entrega el episodio <strong>2021-2022</strong> con cifras crudas</td>
+<td>Narrar las dos fases, la brecha positiva y el desanclaje, con OA y DA</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>un boletín de IPC del INE del mes</strong>, crudo</td>
+<td>Clasificar qué parte del movimiento es volátil y qué parte es subyacente, y decir qué curva se movió</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>9. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>OADA-EX-01/03 + <strong>OADA-EX-04</strong> + noticia real (petróleo, IPC)</td>
+<td>Clasifica el shock y narra corto/mediano plazo</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %)</strong></td>
+<td>OA-DA como integración final</td>
+<td>Conecta IS-LM (DA), mercado laboral (OA) y expectativas</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regla de corrección:</strong> clasificar mal el shock (mover DA cuando corresponde OA) se corrige como error de <strong>formulación</strong> y pesa más que cualquier error de trazado. <strong>Atribuir a la brecha un movimiento del potencial se corrige igual.</strong></p>
+<hr />
+<h2>10. Integración con MacroLab y cierre</h2>
+<blockquote>
+<p><strong>Dónde vive este bloque.</strong> En la <strong>capa superior</strong> de MacroLab —el Shock Simulator publicado en <code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>—, pestaña <strong>OA-DA</strong>. Es, con diferencia, el bloque mejor servido por el simulador.</p>
+</blockquote>
+<p>El módulo OA-DA expone <code>intercepto y pendiente de DA</code>, <code>Pᵉ</code>, <code>μ</code> (margen), <code>γ</code>, <code>z</code>, <code>L</code>, <code>A</code> y un <strong>shock de costos</strong>, y entrega <code>Y</code> y <code>P</code> iniciales y finales más la <strong>brecha respecto de Yₙ</strong>, sobre el plano (Y, P) con las tres curvas. Es decir, implementa exactamente el pasaporte <code>OADA-MOD-EQ</code>, incluido el parámetro que este bloque más necesita: <strong><code>Pᵉ</code></strong>, que es lo que permite mostrar la diferencia entre expectativas ancladas y desancladas.</p>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pestaña <strong>OA-DA</strong>, control <strong>shock de costos</strong></td>
+<td>Montar <code>OADA-EX-01</code> en vivo: aplicar el shock, ver <code>Y↓</code> y <code>P↑</code>, y luego <strong>mover <code>Pᵉ</code></strong> para contrastar el caso (a) anclado con el (b) desanclado — que son 2026 y 2022 respectivamente</td>
+<td>El simulador entrega <strong>niveles de P</strong>, no tasas de inflación. No leer ΔP como π (<code>OADA-ERR-01</code>)</td>
+</tr>
+<tr>
+<td>Pestaña <strong>OA-DA</strong>, pendiente de OA vía <code>L</code>, <code>A</code>, <code>μ</code>, <code>z</code></td>
+<td>Montar <code>OADA-EX-02</code>: comparar una OA plana (lejos de Yₙ, caso 2020) con una empinada (cerca de Yₙ, caso 2021)</td>
+<td>La brecha que informa el módulo es respecto de <strong>su</strong> <code>Yₙ</code> calibrado, no del potencial estimado por el BCCh</td>
+</tr>
+<tr>
+<td>Pestaña <strong>Tablero macro</strong></td>
+<td>Cruzar el ejercicio con las series anuales 2010-2025 de <strong>PIB, IPC, desempleo, TPM, CLP/USD, cobre y WTI</strong> (fuente base BCCh; cobre Cochilco; WTI FRED)</td>
+<td>Las series llegan a 2025: los datos de 2026 de <code>OADA-EX-04</code> vienen del IPoM y del boletín del INE, <strong>no</strong> del Tablero</td>
+</tr>
+<tr>
+<td>Pestaña <strong>Atlas de shocks</strong> y <strong>Crónicas</strong></td>
+<td>Cargar los episodios ya preparados —pandemia, energía, cobre— que corresponden a <code>OADA-EX-03</code></td>
+<td>No tratar un escenario cargado como pronóstico</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Lo que el módulo no distingue.</strong> No separa el <strong>efecto directo</strong> del <strong>indirecto</strong> de un shock de costos (§3.1): esa descomposición, con las ponderaciones del IPC, se hace a mano con el Recuadro II.1. Y la distinción entre un movimiento de <code>Y</code> y uno de <code>Yₙ</code> (§3.2) exige mover <code>L</code> o <code>A</code> a propósito y decirlo: el simulador no la señala solo.</p>
+</blockquote>
+<p><strong>Definición de Terminado (núcleo gráfico):</strong> OA y DA derivadas y bien orientadas; la tabla de shocks cubierta; corto y mediano plazo distinguidos; P vs π sostenido en todo ejercicio; ⊕ <code>Yn</code> distinguido de <code>Y</code>; ⊕ todo dato de coyuntura con fuente y fecha.</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-OADA-01</td>
+<td>Completar mercado laboral (Nota 8) como bloque previo formal</td>
+<td>media</td>
+<td>antes de OA-DA operativo pleno</td>
+</tr>
+<tr>
+<td>BL-OADA-02</td>
+<td>Añadir álgebra de mediano plazo (convergencia a Yn)</td>
+<td>baja</td>
+<td>si el tiempo lo permite</td>
+</tr>
+<tr>
+<td>BL-OADA-03</td>
+<td>Enlace MacroLab OA-DA con casos reales chilenos (petróleo, pandemia)</td>
+<td><strong>casi cerrada</strong></td>
+<td>La pestaña OA-DA y el Atlas de shocks ya traen los episodios; falta <strong>fijar los enlaces reproducibles</strong> de los escenarios que corresponden a <code>OADA-EX-01</code>, <code>EX-03</code> y <code>EX-04</code></td>
+</tr>
+<tr>
+<td><strong>BL-OADA-08</strong> ⊕</td>
+<td>Verificar que el <code>Yₙ</code> calibrado en el módulo OA-DA sea consistente con el <code>L</code> que usa la derivación de OA de la Nota 9 y con la fuerza de trabajo del bloque <code>LAB</code> (<code>BL-OADA-07</code>, <code>BL-LAB-04</code>). Son tres valores que hoy no están conciliados</td>
+<td><strong>alta</strong></td>
+<td>coordinar biblioteca y simulador</td>
+</tr>
+<tr>
+<td><strong>BL-OADA-09</strong> ⊕</td>
+<td>Evaluar si el módulo OA-DA puede mostrar por separado el <strong>efecto directo</strong> y el <strong>indirecto</strong> de un shock de costos (§3.1). Hoy entrega el efecto total; la descomposición es el aporte analítico más específico de <code>OADA-EX-04</code></td>
+<td>media</td>
+<td>desarrollo del repo</td>
+</tr>
+<tr>
+<td><strong>BL-OADA-04</strong> ⊕</td>
+<td>Validar el escalamiento lineal de <code>OADA-EX-04</code> ítem 2. Las reglas del Recuadro II.1 están estimadas para +10 %; extrapolarlas a +14 % es razonable pero no está avalado por la fuente</td>
+<td><strong>alta</strong></td>
+<td>antes de usar el rango 0,6-0,8 pp en evaluación</td>
+</tr>
+<tr>
+<td><strong>BL-OADA-05</strong> ⊕</td>
+<td>Revisar la derivación de la DA para hacer explícito el canal de <strong>regla de política</strong> (banco central que fija la tasa) junto al canal clásico de saldos reales, en la Nota de Estudio 9</td>
+<td><strong>alta</strong></td>
+<td>edición del material original</td>
+</tr>
+<tr>
+<td><strong>BL-OADA-06</strong> ⊕</td>
+<td>Decidir si <code>OADA-CON-POTENCIAL</code>, <code>OADA-CON-DIRIND</code> y <code>OADA-ERR-05YN</code> se incorporan al registro maestro o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-OADA-07</strong> ⊕</td>
+<td>Verificar el valor de <code>L = 10.193.231</code> usado en la derivación de OA de la Nota 9: conviene contrastarlo con la fuerza de trabajo vigente del INE y declarar el año al que corresponde</td>
+<td>media</td>
+<td>coordinar con el bloque <code>LAB</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Oferta agregada</strong></td>
+<td>Cuánto está dispuesto a producir el país a cada nivel de precios</td>
+<td>OADA-CON-OA</td>
+</tr>
+<tr>
+<td><strong>Demanda agregada</strong></td>
+<td>Cuánto quiere comprar el país a cada nivel de precios</td>
+<td>OADA-CON-DA</td>
+</tr>
+<tr>
+<td><strong>Producto natural (Yn)</strong></td>
+<td>Lo que la economía puede producir sin recalentarse, como el ritmo sostenible de un corredor</td>
+<td>OADA-CON-BRECHA</td>
+</tr>
+<tr>
+<td><strong>Brecha de producto</strong></td>
+<td>Ir más rápido o más lento que ese ritmo sostenible</td>
+<td>Y − Yn</td>
+</tr>
+<tr>
+<td><strong>Shock de costos</strong></td>
+<td>Sube la harina: hay que subir el pan aunque no entre más gente</td>
+<td>OA↑</td>
+</tr>
+<tr>
+<td><strong>Estanflación</strong></td>
+<td>Menos pan y más caro al mismo tiempo</td>
+<td>Y↓, P↑</td>
+</tr>
+<tr>
+<td><strong>Expectativas ancladas</strong></td>
+<td>Nadie pide reajuste porque todos creen que fue pasajero</td>
+<td>Pe = meta</td>
+</tr>
+<tr>
+<td><strong>Segunda vuelta</strong></td>
+<td>El sueldo sube porque subió el pan, y el pan sube porque subió el sueldo</td>
+<td>Pe↑ ⇒ OA↑</td>
+</tr>
+<tr>
+<td><strong>Efecto directo</strong></td>
+<td>El combustible que está en tu boleta</td>
+<td>6,4 % de la canasta</td>
+</tr>
+<tr>
+<td><strong>Efecto indirecto</strong></td>
+<td>El combustible del camión que trajo lo que compraste</td>
+<td>≈2 % del costo de producción</td>
+</tr>
+<tr>
+<td><strong>Componente volátil</strong></td>
+<td>Lo que sube y baja como montaña rusa: bencina y verduras</td>
+<td>IPC volátil</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>El ejemplo guía dejó de ser hipotético.</strong> El "alza del petróleo" que v0.1 usaba como ilustración es el shock que Chile vive en 2026, y el Banco Central publicó su cuantificación (Recuadro II.1, IPoM junio 2026). <code>OADA-EX-04</code> lo convierte en ejercicio con números y rangos.</li>
+<li><strong>Personaje-ancla:</strong> Rosa Millán continúa; sus tres alzas del kilo de pan en 2022 abren el pasaporte como caso de desplazamiento de la OA y no de la DA.</li>
+<li><strong>Quiebre de apertura (§0.1):</strong> dos titulares reales del mismo mes que parecen contradecirse —IPC de julio +0,1 % frente a inflación anual subiendo de 2,4 % a 3,9 %— y cuya reconciliación <strong>es</strong> el bloque.</li>
+<li><strong>Concepto nuevo de alto valor (§3.2):</strong> <code>OADA-CON-POTENCIAL</code>. El IPoM de junio de 2026 documenta un caso donde la actividad sorprende a la baja y <strong>la brecha casi no se mueve</strong>, porque el shock afectó al potencial: el PIB no minero potencial de 2026 se revisó de 2,3 % a 1,9 %. De ahí sale <code>OADA-ERR-05YN</code>.</li>
+<li><strong>Efecto directo vs indirecto cuantificado (§3.1):</strong> combustibles pesan <strong>6,4 %</strong> de la canasta del IPC pero solo ≈<strong>2 %</strong> del costo de producción del resto — lo que explica por qué el volátil salta (5,1 %) y el subyacente casi no (3,2 %).</li>
+<li><strong>Los tres ejercicios de v0.1 recibieron ancla real</strong> sin alterar sus pautas: <code>EX-01</code> con los casos (a) 2026 y (b) 2022; <code>EX-02</code> con 2021 (cerca de Yn) y 2020 (lejos); <code>EX-03</code> con la secuencia pandémica documentada con datos sectoriales.</li>
+<li><strong>Nota de régimen en la derivación de la DA:</strong> con un banco central que fija la tasa, la pendiente negativa de la DA opera por <strong>regla de política</strong>, no por saldos reales. Queda como <code>BL-OADA-05</code> para corregir en la Nota 9.</li>
+<li><strong>Advertencia de coincidencia frente a regla:</strong> el traspaso "en línea con promedios históricos" de 2026 presentado como resultado <strong>condicional</strong> al anclaje de expectativas y a la brecha negativa, con 2022 como contraejemplo.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Petróleo WTI-Brent, julio 2026</td>
+<td>≈ US$100/barril, +14 % vs Reunión anterior</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>IPC total anual: febrero → mayo 2026</td>
+<td>2,4 % → <strong>3,9 %</strong></td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>IPC componente volátil, mayo 2026</td>
+<td><strong>5,1 %</strong> anual</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC subyacente, mayo 2026</td>
+<td><strong>3,2 %</strong> anual</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Ponderación de combustibles en el IPC base 2023</td>
+<td><strong>6,4 %</strong> (gasolina 3,4 %)</td>
+<td>ídem, Recuadro II.1</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Efecto directo estimado: +10 % petróleo</td>
+<td>combustibles ≈ +4 % a un año ⇒ <strong>+0,3 pp</strong> del IPC</td>
+<td>ídem (Guzmán et al., 2026)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Efecto indirecto estimado: +10 % petróleo</td>
+<td><strong>+0,1 a +0,3 pp</strong> en el resto de precios a un año</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Peso de combustibles en el costo de producción</td>
+<td>≈ <strong>2 %</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Brecha de actividad proyectada</td>
+<td>levemente negativa en el horizonte</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB no minero <strong>potencial</strong> 2026</td>
+<td>revisado de <strong>2,3 %</strong> (marzo) a <strong>1,9 %</strong> (junio)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Sorpresa de actividad atribuida a oferta transitoria, no a la brecha</td>
+<td>cita textual</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Retorno proyectado del IPC a 3 %</td>
+<td>segundo trimestre de 2027</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Expectativas de inflación a dos años</td>
+<td>en torno a <strong>3 %</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC julio 2026: mensual / anual / índice</td>
+<td>0,1 % / 3,5 % / 112,45</td>
+<td>INE, Boletín IPC Nº 333</td>
+<td>7 de agosto de 2026</td>
+</tr>
+<tr>
+<td>IPC julio 2026: sin volátiles mensual / energía mensual / gasolina mensual</td>
+<td>0,5 % / <strong>−3,0 %</strong> / <strong>−8,5 %</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Economía por sobre el potencial en el 3T-2021</td>
+<td>cita textual</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Expectativas a dos años, empresarios (EDEP), dic-2022</td>
+<td><strong>7,0 %</strong></td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>IPC de diciembre 2022</td>
+<td><strong>12,8 %</strong></td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2023</td>
+</tr>
+<tr>
+<td>Imacec desestacionalizado feb→may 2020 y por sector</td>
+<td>−14,5 %; comercio −17,2 %, servicios −16,5 %, minería +1,3 %</td>
+<td>BCCh, serie empalmada</td>
+<td>actualización 3 de agosto de 2026</td>
+</tr>
+<tr>
+<td>Demanda interna 2021</td>
+<td>+21,6 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculo propio declarado:</strong> el rango de <strong>0,6 a 0,8 pp</strong> de <code>OADA-EX-04</code> ítem 2 escala <strong>linealmente</strong> las reglas del Recuadro II.1 (estimadas para +10 %) a un shock de +14 %. El supuesto de linealidad es del autor de esta edición, <strong>no de la fuente</strong> (<code>BL-OADA-04</code>).</p>
+<p><strong>Marcadores de verificación pendientes:</strong> dos, <code>BL-OADA-04</code> (validez del escalamiento lineal) y <code>BL-OADA-07</code> (el valor de <code>L</code> en la derivación de OA de la Nota 9). Ningún dato de coyuntura queda sin fuente y fecha.</p>
+<hr />
+<p><em>Bloque capstone (lógica gráfica). Derivación de OA verificada contra la Nota 9. Anclado en Notas 8, 9 y 10. Reedición cerrada el 2026-08-15.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

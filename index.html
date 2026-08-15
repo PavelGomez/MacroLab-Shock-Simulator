@@ -672,7 +672,9 @@
               <label title="Sensibilidad de la inversión al ingreso (acelerador): cuánto sube I cuando sube Y">b₁ · acelerador <input id="islm-b1" type="number" step="0.01"></label>
               <label title="Sensibilidad de la inversión a la tasa de interés: cuánto cae I cuando sube i">b₂ · sens. inversión a i <input id="islm-b2" type="number" step="0.1"></label>
               <label title="Gasto público: componente fiscal exógeno de la demanda agregada">G · gasto público <input id="islm-G" type="number" step="0.1"></label>
+              <label title="Régimen tributario: T fija (impuesto autónomo) o T = t·Y (impuesto proporcional, estabilizador automático)">Régimen tributario <select id="islm-taxmode"></select></label>
               <label title="Impuestos netos: recaudación menos transferencias">T · impuestos netos <input id="islm-T" type="number" step="0.1"></label>
+              <label title="Tasa de impuesto proporcional: fracción del ingreso recaudada. Solo opera si el régimen tributario es T = t·Y">t · tasa impositiva <input id="islm-t" type="number" step="0.01" min="0" max="0.6"></label>
               <label title="Oferta real de dinero: masa monetaria dividida por nivel de precios">M/P · oferta real dinero <input id="islm-MP" type="number" step="0.1"></label>
               <label title="Sensibilidad de la demanda de dinero al ingreso: cuánto sube Md cuando sube Y">d₁ · sens. Md a Y <input id="islm-d1" type="number" step="0.01"></label>
               <label title="Sensibilidad de la demanda de dinero a la tasa: cuánto baja Md cuando sube i">d₂ · sens. Md a i <input id="islm-d2" type="number" step="0.1"></label>

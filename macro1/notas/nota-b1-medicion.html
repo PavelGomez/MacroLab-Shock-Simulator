@@ -1,0 +1,2099 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 1 · Medición de la Actividad Económica &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="PIB nominal y real, PNB, IPC y deflactor, PIB per cápita, gasto vs producción sectorial y el rol de las expectativas, con datos del BCCh y el INE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 1: Medición de la Actividad Económica</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>MED</code> · <strong>Versión:</strong> 0.4 (reedición de v0.3) · <strong>Estado:</strong> listo para clase 1 · <strong>Verificaciones cerradas</strong>
+<strong>Profesor:</strong> Pável Gómez · <strong>Fuente rectora:</strong> Programa de Asignatura 2025-2 (F1), Unidad 1
+<strong>Texto base:</strong> Blanchard, <em>Macroeconomía</em>, 7ª ed. · <strong>Fecha de cierre de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p><strong>Qué cambia respecto de v0.3.</strong> La arquitectura pedagógica se conserva íntegra: mismos IDs, mismos pasaportes, mismas pautas selladas y verificadas, mismo circuito de análisis. Lo que se agrega es (a) un <strong>personaje-ancla</strong> que atraviesa el bloque y seguirá en los bloques 2 a 7, (b) <strong>densidad histórica chilena</strong> con cifras trazables a BCCh e INE, (c) <strong>indicaciones de ilustración</strong> explícitas, y (d) los <strong>cinco refuerzos</strong> exigidos para este bloque: PIB per cápita, PIB vs PNB en profundidad, IPC vs deflactor en profundidad, gasto vs producción sectorial, y expectativas como puente. Los valores numéricos de las pautas selladas fueron <strong>recalculados y confirmados</strong> el 2026-08-15.</p>
+<p><strong>Cierre de verificaciones.</strong> Todas las cifras de coyuntura de esta edición están tomadas de fuentes primarias: tabulados de población del INE (base 2024), boletín del IPC del INE, series y notas de prensa del Imacec del Banco Central, y siete Informes de Política Monetaria entre diciembre de 2020 y junio de 2026. La trazabilidad completa —dato, valor, fuente y fecha de publicación— está en <strong>§12.2</strong>. <strong>No queda ningún marcador de verificación abierto en el bloque.</strong></p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>, sellada 2026-08-03): formato numérico chileno (coma decimal, punto de miles, espacio antes de <code>%</code>, signo menos tipográfico <code>−</code>); regla <strong>coincidencia frente a regla</strong> en tres partes; IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>. No se reexplican en cada sección.</p>
+</blockquote>
+<hr />
+<h2>0. Decisiones de diseño y alcance del bloque (declaradas, no silenciosas)</h2>
+<p><strong>Alcance del bloque Medición (v0.4).</strong> Cuatro objetos: (1) PIB nominal y real; (2) PNB; (3) inflación medida por IPC y por deflactor del PIB; (4) detalle de cálculo del IPC. Esta edición <strong>profundiza</strong> dentro de esos cuatro objetos —PIB per cápita, doble lectura gasto/producción, mecánica de Laspeyres y de composición— sin abrir objetos nuevos. La <strong>Balanza de Pagos NO es prioridad al inicio</strong>: se difiere al bloque de economía abierta (IS-LM-BP), donde se usa como canal externo. Queda en el backlog como dependencia futura, no como contenido de esta miniunidad.</p>
+<p><strong>Re-secuenciación Blanchard (declarada).</strong> El programa lista los conceptos de OA-DA en su Unidad 2 y el modelo IS-LM en la Unidad 4. El MVP los reordena a la secuencia constructiva de Blanchard (medición → bienes → dinero → IS-LM cerrado → IS-LM abierto → OA-DA como capstone): cada modelo simultáneo se introduce solo después de dominar sus mercados componentes. <strong>No</strong> altera los contenidos del programa; altera su orden de presentación. [R]</p>
+<p>Convención de identificadores del bloque: <code>MED-CON-*</code> (conceptos), <code>MED-MOD-*</code> (pasaportes/sistemas de medición), <code>MED-CIR-*</code> (circuito), <code>MED-ERR-*</code> (errores), <code>MED-EX-*</code> (ejercicios), <code>MED-IND-*</code> (indicadores/evidencias). Todo nodo declara fuente, versión, estado y responsable.</p>
+<hr />
+<h3>0.1 El personaje-ancla del curso: Rosa Millán</h3>
+<p><strong>Rosa Millán</strong> tiene 54 años y una panadería, <em>La Espiga</em>, en Estación Central. Compra harina, paga luz, contrata a dos personas, arrienda el local, exporta nada y consume bastante. En febrero de 2020 vendía bien. En mayo de 2020 no vendía casi nada. En 2022 subió el precio del kilo de pan tres veces en un año y se sintió culpable. En julio de 2026 leyó en el diario que "los precios casi no subieron" y no le calzó con su boleta de la luz.</p>
+<p>Rosa no sabe macroeconomía. Sabe algo más útil para nosotros: <strong>sabe cuándo un número no le calza con su vida.</strong> Todo este bloque consiste en darle a esa intuición un aparato de medición.</p>
+<blockquote>
+<p><strong>Continuidad del curso.</strong> Rosa reaparece en los seis bloques siguientes: sus decisiones de gasto en Mercado de Bienes, su crédito y la TPM en Mercado de Dinero, la harina importada en economía abierta, sus dos trabajadoras en Mercado Laboral. <strong>No se la vuelve a presentar</strong>: a partir del bloque 2 basta una frase de enlace.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: viñeta de apertura — mostrador de La Espiga con tres precios del kilo de pan (2019, 2022, 2026) escritos con tiza; se resalta que los tres números son "niveles", no "tasas".]</code></p>
+<hr />
+<h3>0.2 El quiebre que abre el bloque</h3>
+<p>El lunes 3 de agosto de 2026 el Banco Central informó que el Imacec de junio <strong>creció 2,4 %</strong> respecto de junio de 2025 (Imacec, BCCh, junio-2026). Cuatro días después, el INE informó que el IPC de julio <strong>subió 0,1 %</strong> en el mes (IPC, INE, julio-2026). Rosa leyó los dos titulares y sacó una conclusión razonable y equivocada: <em>"la economía crece y los precios están quietos; entonces estoy mejor."</em></p>
+<p>Las tres cosas que fallan en esa frase son exactamente el bloque:</p>
+<ol>
+<li><strong>"la economía crece"</strong> — ¿creció la producción o creció el valor de la producción? ¿creció para todos los sectores? ¿creció por persona? El mismo informe dice que el Imacec <strong>no minero</strong> creció solo <strong>1,4 %</strong> y que la minería creció <strong>9,8 %</strong> (Imacec, BCCh, junio-2026). El promedio no describe a nadie.</li>
+<li><strong>"los precios están quietos"</strong> — el 0,1 % es la variación <strong>mensual</strong> del índice <strong>general</strong>. El IPC <strong>sin volátiles</strong> de ese mismo mes subió <strong>0,5 %</strong>, y la división energía cayó <strong>−3,0 %</strong>, arrastrada por la gasolina (<strong>−8,5 %</strong>) (IPC, INE, julio-2026). Los precios que Rosa paga todos los meses no estaban quietos; el promedio estaba quieto.</li>
+<li><strong>"estoy mejor"</strong> — ninguno de los dos indicadores mide bienestar, ni distribución, ni el ingreso de Rosa.</li>
+</ol>
+<p><code>[Ilustración sugerida: los dos titulares reales (Imacec 2,4 % · IPC 0,1 %) enfrentados a dos gráficos de barras — Imacec por sector y IPC por división — resaltando minería +9,8 % y transporte −3,5 %.]</code></p>
+<hr />
+<h2>1. Grafo de prerrequisitos del bloque</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  subgraph Contables[&quot;Objetos contables&quot;]
+    VA[MED-CON-VA&lt;br/&gt;Valor agregado]
+    BF[MED-CON-BIENFINAL&lt;br/&gt;Bien final vs intermedio]
+    FLUJO[MED-CON-STOCKFLUJO&lt;br/&gt;Stock vs flujo]
+    NIVTASA[MED-CON-NIVELTASA&lt;br/&gt;Nivel vs tasa]
+  end
+  BF --&gt; PIB[MED-MOD-PIB&lt;br/&gt;Sistema PIB]
+  VA --&gt; PIB
+  FLUJO --&gt; PIB
+  PIB --&gt; NR[MED-CON-NOMINALREAL&lt;br/&gt;Nominal vs real]
+  NR --&gt; PRECIOS[MED-MOD-PRECIOS&lt;br/&gt;Nivel de precios e inflación]
+  NIVTASA --&gt; PRECIOS
+  PRECIOS --&gt; IPCDET[MED-MOD-IPCDET&lt;br/&gt;Detalle cálculo IPC]
+  PIB --&gt; PNB[MED-MOD-PNB&lt;br/&gt;PIB → PNB]
+  PIB --&gt; CREC[MED-CON-CRECIMIENTO&lt;br/&gt;Crecimiento real]
+  NR --&gt; CREC
+  CREC --&gt; PC[MED-CON-PERCAPITA&lt;br/&gt;PIB per cápita]
+  PIB --&gt; GP[MED-CON-GASTOvsPROD&lt;br/&gt;Gasto vs producción sectorial]
+  PRECIOS -.puente.-&gt; EXP[MED-CON-EXPECT&lt;br/&gt;Expectativas: puente]
+  EXP -.puente.-&gt; BLOQ23[/Bienes y Dinero&lt;br/&gt;bloques 2-3/]
+  GP -.puente.-&gt; BIENES[/Mercado de Bienes&lt;br/&gt;bloque 2/]
+  PRECIOS -.puente.-&gt; OADA[/OA-DA&lt;br/&gt;bloque futuro/]
+  PNB -.puente.-&gt; ABIERTA[/Economía abierta&lt;br/&gt;bloque futuro/]
+</code></pre>
+<p><strong>Relaciones tipadas del bloque (semilla para <code>relaciones.csv</code>):</strong></p>
+<p><em>Las ocho relaciones de v0.3 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan cuatro:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+<th>fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MED-CON-CRECIMIENTO</td>
+<td>ES_PRERREQUISITO_DE</td>
+<td>MED-CON-PERCAPITA</td>
+<td>F1 U1</td>
+</tr>
+<tr>
+<td>MED-MOD-PIB</td>
+<td>ES_LECTURA_ALTERNATIVA_DE</td>
+<td>MED-CON-GASTOvsPROD</td>
+<td>Blanchard cap.2</td>
+</tr>
+<tr>
+<td>MED-CON-GASTOvsPROD</td>
+<td>ES_PUENTE_A</td>
+<td>BIE-MOD-DA</td>
+<td>F1 U2</td>
+</tr>
+<tr>
+<td>MED-MOD-PRECIOS</td>
+<td>ES_PUENTE_A</td>
+<td>MED-CON-EXPECT</td>
+<td>IPoM, BCCh</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos (lo que se propaga si se confunde)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MED-CON-BIENFINAL</td>
+<td>Bien final vs intermedio</td>
+<td>Solo el valor final (o la suma de valores agregados) entra al PIB</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED-CON-NOMINALREAL</td>
+<td>PIB nominal vs real</td>
+<td>Nominal mezcla precio y cantidad; real fija precios</td>
+<td>"PIB creció" (¿nominal o real?)</td>
+</tr>
+<tr>
+<td>MED-CON-NIVELTASA</td>
+<td>Nivel vs tasa</td>
+<td>IPC/deflactor son <strong>niveles</strong> (índices); inflación es su <strong>tasa de variación</strong></td>
+<td>"El IPC subió" ≠ "hubo inflación de IPC %"</td>
+</tr>
+<tr>
+<td>MED-CON-STOCKFLUJO</td>
+<td>Stock vs flujo</td>
+<td>PIB es flujo (por período); riqueza/deuda son stock</td>
+<td>—</td>
+</tr>
+<tr>
+<td>MED-CON-PIBvsPNB</td>
+<td>PIB vs PNB</td>
+<td>PIB = producción en el territorio; PNB = ingreso de los nacionales (PIB + renta neta del exterior)</td>
+<td>"producto nacional" usado laxamente</td>
+</tr>
+<tr>
+<td>MED-CON-DEFLvsIPC</td>
+<td>Deflactor vs IPC</td>
+<td>Deflactor = todos los bienes producidos, ponderaciones corrientes (Paasche); IPC = canasta fija del hogar, ponderaciones base (Laspeyres)</td>
+<td>ambos "miden precios" pero no son intercambiables</td>
+</tr>
+<tr>
+<td>MED-CON-CRECIMIENTO</td>
+<td>Crecimiento real</td>
+<td>Variación del PIB <strong>real</strong> entre períodos</td>
+<td>crecimiento nominal ≠ crecimiento real</td>
+</tr>
+<tr>
+<td><strong>MED-CON-PERCAPITA</strong> ⊕</td>
+<td>PIB per cápita</td>
+<td>PIB real / población. Es un <strong>promedio</strong>, no una distribución</td>
+<td>"el ingreso de los chilenos"</td>
+</tr>
+<tr>
+<td><strong>MED-CON-GASTOvsPROD</strong> ⊕</td>
+<td>Gasto vs producción sectorial</td>
+<td>El mismo PIB leído por quién gasta (C+I+G+X−M) o por qué se produjo (sectores)</td>
+<td>"demanda agregada" usada como sinónimo de PIB sin declarar el enfoque</td>
+</tr>
+<tr>
+<td><strong>MED-CON-EXPECT</strong> ⊕</td>
+<td>Expectativas (puente, no evaluable aquí)</td>
+<td>El dato medido hoy y lo que los agentes <strong>esperan</strong> son objetos distintos</td>
+<td>"la inflación" (¿efectiva o esperada?)</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.4.</p>
+<blockquote>
+<p><strong>Regla de oro del bloque:</strong> <em>nunca</em> comparar dos magnitudes sin declarar (a) si es nivel o tasa, (b) si es nominal o real, (c) el período y la frontera contable. <strong>v0.4 agrega (d): si es total o por persona, y (e) si es promedio o composición.</strong></p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<p>Cada concepto se enseña con al menos un episodio real. Esta tabla es el índice; el desarrollo está en §3.</p>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MED-CON-NIVELTASA</td>
+<td>IPC de julio de 2026: variación mensual 0,1 %, índice general 112,45, variación a 12 meses 3,5 % (INE, julio-2026)</td>
+<td>Decir "la inflación fue 112" o "los precios cayeron porque el IPC subió menos que el mes pasado"</td>
+</tr>
+<tr>
+<td>MED-CON-NOMINALREAL</td>
+<td>Ciclo inflacionario 2021-2023: ventas nominales de una pyme crecen mientras el volumen cae</td>
+<td>Leer facturación en pesos como producción</td>
+</tr>
+<tr>
+<td>MED-CON-CRECIMIENTO</td>
+<td>Imacec desestacionalizado: 101,55 en feb-2020 → 86,82 en may-2020, es decir <strong>−14,5 %</strong> (BCCh, serie 2018 = 100)</td>
+<td>Confundir la caída de nivel con la tasa anual publicada</td>
+</tr>
+<tr>
+<td>MED-CON-PERCAPITA</td>
+<td>Actividad 2019 → 2025: <strong>+13,09 %</strong> (BCCh) frente a población <strong>+5,23 %</strong> (INE): por persona, <strong>+7,46 %</strong></td>
+<td>Concluir "cada persona está 13 % mejor"</td>
+</tr>
+<tr>
+<td>MED-CON-PIBvsPNB</td>
+<td>Saldo de la cuenta de rentas: <strong>−5,6 % del PIB</strong> al primer trimestre de 2026, asociado a flujos de inversión extranjera directa (IPoM, BCCh, junio-2026)</td>
+<td>Atribuir a Chile ingreso que se remesa al exterior</td>
+</tr>
+<tr>
+<td>MED-CON-DEFLvsIPC</td>
+<td>Diciembre 2022: IPC 12,8 % y sin volátiles 10,7 %; julio 2026: IPC +0,1 % mensual y sin volátiles +0,5 % (BCCh/INE)</td>
+<td>Concluir "no hubo inflación" desde el índice general</td>
+</tr>
+<tr>
+<td><strong>Revisión de datos</strong> (<code>MED-ERR-09REV</code>)</td>
+<td>El crecimiento de 2023: 0,0 % → 0,2 % → 0,5 % en tres IPoM sucesivos (BCCh)</td>
+<td>Citar una cifra de cuentas nacionales sin su fecha, o comparar dos años de informes distintos</td>
+</tr>
+<tr>
+<td>MED-CON-GASTOvsPROD</td>
+<td>Mayo de 2020: minería <strong>+1,3 %</strong> mientras comercio <strong>−17,2 %</strong> y servicios <strong>−16,5 %</strong> frente a feb-2020 (BCCh, desest.)</td>
+<td>Creer que "la economía cayó 14 %" describe a todos los sectores</td>
+</tr>
+<tr>
+<td>MED-CON-EXPECT</td>
+<td>Expectativas a dos años: EOF <strong>5,3 %</strong> (sept-2022) → <strong>3,8 %</strong> (dic-2022) → <strong>≈3 %</strong> (2023 en adelante), con empresarios en <strong>7 %</strong> en dic-2022 (IPoM, BCCh)</td>
+<td>Suponer que las decisiones dependen solo del dato de hoy</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaportes de los sistemas de medición</h2>
+<p>Cada pasaporte responde: qué mide, qué determina, qué deja fuera, qué error revela.</p>
+<h3>3.1 <code>MED-MOD-PIB</code> — Sistema de medición del PIB</h3>
+<p><strong>El quiebre.</strong> A Rosa le preguntan cuánto "produjo" <em>La Espiga</em> el año pasado. Ella dice: "vendí 92 millones". Su contador le corrige: de esos 92, unos 34 fueron harina, levadura, luz y bolsas que compró hechas. Lo que <em>La Espiga</em> agregó fueron 58. Si el país sumara los 92 de Rosa <strong>y</strong> los 34 del molino, contaría la harina dos veces y el PIB de Chile sería una mentira aritmética.</p>
+<p><strong>Traducción antes de la fórmula.</strong> <em>Valor agregado</em> significa: lo que vale lo que sale de tu puerta menos lo que valía lo que entró por ella. Sumar los valores agregados de todos es lo mismo que sumar solo lo que llega al consumidor final — por eso las tres identidades de abajo dan el mismo número.</p>
+<pre><code class="language-yaml">id: MED-MOD-PIB
+tipo: SistemaDeMedicion
+pregunta: &quot;¿Qué se produjo, dónde, cuándo y a qué precios se está valorando?&quot;
+resultados_calculados: [PIB nominal, PIB real, crecimiento real, deflactor]
+datos_del_ejercicio: [precios, cantidades, año base, frontera del período]
+identidades:
+  - &quot;PIB = C + I + G + X − M&quot;          # enfoque del gasto
+  - &quot;PIB = Σ valores agregados&quot;        # enfoque del valor agregado
+  - &quot;PIB = Σ ingresos (w + r + ...)&quot;   # enfoque del ingreso
+naturaleza: &quot;Sistema de medición y consistencia; NO es un modelo de equilibrio.&quot;
+horizonte: &quot;Período de medición definido.&quot;
+limites: &quot;No mide bienestar, distribución, informalidad plena ni sostenibilidad.&quot;
+errores_objetivo: [MED-ERR-01, MED-ERR-02, MED-ERR-04, MED-ERR-24, MED-ERR-07PC]   # ← ampliado en v0.4
+macrolab: &quot;Tablero como lectura contextual; NO usar un shock del simulador para enseñar la identidad.&quot;
+fuente: {id: F1, unidad: 1}
+version: 0.3.0
+estado: aprobado
+propietario: profesor
+</code></pre>
+<p><code>[Ilustración sugerida: cadena trigo → molino → panadería → consumidor, con el valor agregado de cada eslabón en barras apiladas cuya suma iguala el precio final del pan.]</code></p>
+<blockquote>
+<p><strong>Límite declarado:</strong> que el PIB de Chile suba no permite concluir que Rosa vendió más, ni que su margen mejoró, ni que el país esté mejor.</p>
+</blockquote>
+<hr />
+<h3>3.2 <code>MED-MOD-PNB</code> — Producto Nacional Bruto</h3>
+<p><strong>El quiebre.</strong> Rosa vio en televisión que "la minería explicó casi todo el crecimiento del mes" (y es cierto: minería <strong>+9,8 %</strong> anual en junio de 2026, contra <strong>1,4 %</strong> del Imacec no minero — BCCh, junio-2026). Su pregunta fue: <em>"¿y esa plata dónde queda?"</em> Es la pregunta exacta que separa el PIB del PNB.</p>
+<pre><code class="language-yaml">id: MED-MOD-PNB
+tipo: SistemaDeMedicion
+pregunta: &quot;¿Cuánto ingreso generan los factores NACIONALES, dentro y fuera del territorio?&quot;
+identidad: &quot;PNB = PIB + Renta neta de factores con el exterior (RNFE)&quot;
+RNFE: &quot;renta recibida por nacionales desde el exterior − renta pagada a factores del exterior&quot;
+distincion_clave: &quot;PIB = criterio de TERRITORIO (dónde se produce). PNB = criterio de NACIONALIDAD (quién recibe el ingreso).&quot;
+ejemplo: &quot;Utilidades de una minera extranjera operando en Chile: SUMAN al PIB de Chile, RESTAN del PNB de Chile (renta pagada al exterior).&quot;
+naturaleza: &quot;Ajuste contable del PIB; no es un modelo de equilibrio.&quot;
+limites: &quot;Requiere datos de renta de factores; su uso analítico pleno llega con la cuenta corriente (economía abierta).&quot;
+errores_objetivo: [MED-ERR-06PNB, MED-ERR-24]
+fuente: {id: F1, unidad: 1}
+version: 0.3.0
+estado: aprobado
+propietario: profesor
+</code></pre>
+<blockquote>
+<p>Regla mnemónica: <strong>PIB = territorio; PNB = nacionalidad.</strong> Si la renta neta con el exterior es negativa (el país paga más renta al exterior de la que recibe), entonces <strong>PNB &lt; PIB</strong>.</p>
+</blockquote>
+<p><em>(YAML <code>[Sin cambios respecto de la versión anterior]</code>. El desarrollo histórico exigido está en §3.6.)</em></p>
+<hr />
+<h3>3.3 <code>MED-MOD-PRECIOS</code> — Nivel de precios e inflación</h3>
+<p><strong>El quiebre.</strong> El 7 de agosto de 2026 el INE publicó: IPC de julio <strong>+0,1 %</strong> mensual. Rosa había pagado ese mes 2,4 % más de electricidad (suministro de electricidad, +2,4 % mensual, INE julio-2026) y el arriendo le subió 0,6 %. ¿Mintió el INE? No. El mismo mes la gasolina cayó <strong>−8,5 %</strong> y el transporte aéreo <strong>−9,4 %</strong>, y esas bajas compensaron casi todas las alzas. <strong>El índice general no describe a ningún hogar: describe al hogar promedio.</strong> Rosa, que no tiene auto, vive en una economía distinta de la que mide el titular.</p>
+<pre><code class="language-yaml">id: MED-MOD-PRECIOS
+tipo: SistemaDeMedicion
+pregunta: &quot;¿Cómo cambia el costo de una canasta y en qué difiere de los precios de la producción doméstica?&quot;
+resultados_calculados: [IPC, deflactor, inflación]
+datos_del_ejercicio: [canasta y ponderaciones, precios observados, año base]
+identidades:
+  - &quot;IPC_t = (valor canasta fija a precios t / valor canasta fija a precios base) × 100&quot;   # Laspeyres
+  - &quot;Deflactor_t = (PIB nominal_t / PIB real_t) × 100&quot;                                       # Paasche
+  - &quot;Inflación_t = (Índice_t − Índice_{t−1}) / Índice_{t−1} × 100&quot;
+naturaleza: &quot;Medición; no incorpora conducta ni equilibrio.&quot;
+limites: &quot;IPC no es costo de vida individual; el deflactor no incluye importaciones directamente.&quot;
+errores_objetivo: [MED-ERR-02, MED-ERR-03, MED-ERR-24, MED-ERR-08COMP]   # ← ampliado en v0.4
+macrolab: &quot;Tablero IPC/IPC SAE como evidencia posterior; no reemplaza el cálculo de índices.&quot;
+fuente: {id: F1, unidad: 1}
+version: 0.3.0
+estado: aprobado
+</code></pre>
+<p><strong>El IPC chileno real, para que la canasta deje de ser abstracta.</strong> La canasta vigente tiene base anual 2023 = 100 y 13 divisiones con ponderaciones fijas. Las cuatro mayores en julio de 2026 (INE):</p>
+<table>
+<thead>
+<tr>
+<th>División</th>
+<th>Ponderación</th>
+<th>Índice jul-2026</th>
+<th>Var. mensual</th>
+<th>Incidencia (pp.)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alimentos y bebidas no alcohólicas</td>
+<td>22,15348</td>
+<td>112,37</td>
+<td>0,7 %</td>
+<td>0,153</td>
+</tr>
+<tr>
+<td>Vivienda y servicios básicos</td>
+<td>16,76332</td>
+<td>123,09</td>
+<td>0,7 %</td>
+<td>0,120</td>
+</tr>
+<tr>
+<td>Transporte</td>
+<td>13,45108</td>
+<td>107,54</td>
+<td>−3,5 %</td>
+<td>−0,472</td>
+</tr>
+<tr>
+<td>Salud</td>
+<td>8,21206</td>
+<td>113,71</td>
+<td>0,4 %</td>
+<td>0,030</td>
+</tr>
+<tr>
+<td><strong>Índice general</strong></td>
+<td>100</td>
+<td><strong>112,45</strong></td>
+<td><strong>0,1 %</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Traducción.</strong> La <em>ponderación</em> es cuánto pesa cada división en el gasto del hogar promedio: de cada 100 pesos, unos 22 se van en comida. La <em>incidencia</em> es cuánto de la variación total del índice aportó esa división: es la ponderación multiplicada por la variación de la división. Por eso transporte, que pesa 13,45, pudo empujar el índice general 0,472 puntos hacia abajo él solo.</p>
+<p><code>[Ilustración sugerida: barras horizontales de incidencias por división en julio 2026, con transporte en rojo a la izquierda y el resto en azul a la derecha; una línea vertical marca el 0,1 % resultante.]</code></p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En julio de 2026 el IPC general subió menos que el IPC sin volátiles. (2) Ocurre <strong>porque</strong> ese mes el componente volátil (combustibles) cayó fuerte: gasolina −8,5 %, diésel −13,5 %. (3) <strong>Deja de cumplirse</strong> en cualquier mes en que los combustibles suban: entonces el índice general supera al subyacente. No existe la regla "el IPC general siempre sube menos que el sin volátiles".</p>
+</blockquote>
+<hr />
+<h3>3.4 <code>MED-MOD-IPCDET</code> — Detalle del cálculo del IPC (canasta, base, valor de la canasta e índice)</h3>
+<p>El IPC es un índice de <strong>Laspeyres</strong>: mide cuánto cuesta hoy la <strong>misma canasta fija</strong> que consumía el hogar en el año base. El procedimiento tiene cuatro piezas explícitas.</p>
+<pre><code class="language-yaml">id: MED-MOD-IPCDET
+tipo: SistemaDeMedicion
+pregunta: &quot;¿Cuánto cuesta hoy la canasta fija del año base, expresado como índice?&quot;
+piezas:
+  1_canasta: &quot;Lista de bienes y sus CANTIDADES FIJAS del año base (q^base). No cambian entre períodos.&quot;
+  2_base: &quot;Año de referencia cuyo índice se normaliza a 100.&quot;
+  3_valor_de_la_canasta: &quot;Costo de comprar la canasta fija a los precios de cada período: VC_t = Σ (p_i,t · q_i^base).&quot;
+  4_ipc: &quot;IPC_t = (VC_t / VC_base) × 100.&quot;
+inflacion: &quot;π_t = (IPC_t − IPC_{t−1}) / IPC_{t−1} × 100.  El IPC es NIVEL; la inflación es su TASA.&quot;
+naturaleza: &quot;Ponderaciones FIJAS (base) ⇒ Laspeyres ⇒ tiende a sobreestimar el costo de vida (no capta sustitución).&quot;
+contraste_con_deflactor: &quot;El deflactor del PIB usa cantidades CORRIENTES de la producción (Paasche) y cubre todo lo producido, no una canasta fija de consumo.&quot;
+errores_objetivo: [MED-ERR-03, MED-ERR-24, MED-ERR-08COMP]   # ← ampliado en v0.4
+fuente: {id: F1, unidad: 1}
+version: 0.3.1
+estado: aprobado
+</code></pre>
+<p><strong>Procedimiento paso a paso (con la canasta de EX-02: 30 Pan + 8 Servicios, base 2019):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Qué se hace</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① Canasta</td>
+<td>Fijar cantidades base: q_Pan = 30, q_Serv = 8 (constantes todos los años)</td>
+<td 30_="30," 8="8" Pan:="Pan:" Serv:="Serv:">canasta =</td>
+</tr>
+<tr>
+<td>② Base</td>
+<td>Elegir 2019 como año base (IPC_2019 ≡ 100)</td>
+<td>base = 2019</td>
+</tr>
+<tr>
+<td>③ Valor de la canasta</td>
+<td>VC_t = p_Pan,t·30 + p_Serv,t·8</td>
+<td>ver tabla ↓</td>
+</tr>
+<tr>
+<td>④ IPC</td>
+<td>IPC_t = VC_t / VC_2019 × 100</td>
+<td>ver tabla ↓</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>p_Pan</th>
+<th>p_Serv</th>
+<th>Valor de la canasta VC_t</th>
+<th>IPC_t = VC_t/140×100</th>
+<th>Inflación IPC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>2</td>
+<td>10</td>
+<td>2·30 + 10·8 = <strong>140</strong></td>
+<td><strong>100,00</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>2,1</td>
+<td>13</td>
+<td>2,1·30 + 13·8 = 63 + 104 = <strong>167</strong></td>
+<td>167/140×100 = <strong>119,29</strong></td>
+<td><strong>+19,29 %</strong></td>
+</tr>
+<tr>
+<td>2021</td>
+<td>2,8</td>
+<td>16</td>
+<td>2,8·30 + 16·8 = 84 + 128 = <strong>212</strong></td>
+<td>212/140×100 = <strong>151,43</strong></td>
+<td><strong>+26,95 %</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Pauta sellada de v0.3, recalculada y confirmada el 2026-08-15.)</em></p>
+<blockquote>
+<p><strong>Lectura:</strong> el "valor de la canasta" (VC) es la magnitud intermedia clave — es lo que cuesta la canasta fija en pesos de cada año. El IPC solo la re-expresa como índice base 100. Un estudiante que no calcula VC explícitamente suele saltar al índice y confundir nivel con tasa (MED-ERR-03).</p>
+<p><strong>Por qué IPC ≠ deflactor aquí:</strong> el deflactor 2020 fue 118,89 y el IPC 119,29; en 2021, 155,38 vs 151,43. La divergencia no es un error de cálculo: el deflactor pesa con la <strong>producción corriente</strong> (que se desplaza hacia Servicios, más caros) y el IPC con una <strong>canasta fija del hogar</strong> (más intensiva en Pan). Miden universos distintos.</p>
+</blockquote>
+<p><strong>Ancla a la realidad.</strong> El INE hace exactamente esto, con 13 divisiones en lugar de dos bienes y con base anual 2023 = 100. El índice general de julio de 2026 fue <strong>112,45</strong>: la canasta de 2023 cuesta hoy un 12,45 % más que entonces. Ese 12,45 % <strong>no</strong> es la inflación de julio (0,1 %) ni la de doce meses (3,5 %): es el acumulado desde la base. Tres números distintos del mismo indicador — el error MED-ERR-03 en estado puro.</p>
+<p><code>[Ilustración sugerida: un mismo IPC de 112,45 con tres flechas rotuladas "0,1 % vs mes anterior", "3,5 % vs julio 2025", "12,45 % vs base 2023", para separar nivel de tasa y tasa de horizonte.]</code></p>
+<hr />
+<h3>3.5 ⊕ PIB per cápita — el promedio que no describe a nadie</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Si la economía es más grande que hace seis años, ¿por qué mi hija arrienda una pieza y yo a su edad arrendaba un departamento?"</em></p>
+<p><strong>Historia, con las dos series verificadas.</strong> El Imacec promedio de 2019 fue 100,55 y el de 2025 fue 113,71 (BCCh, índice desestacionalizado empalmado, base 2018 = 100, serie actualizada el 03-08-2026). Es decir, el volumen de actividad creció <strong>+13,09 %</strong> en seis años. Pero el Imacec mide la <strong>torta</strong>, no la <strong>porción</strong>. En el mismo período la población de Chile pasó de <strong>19.040.037</strong> a <strong>20.036.669</strong> personas: <strong>+5,23 %</strong> (INE, <em>Estimaciones y proyecciones de población 1992-2070</em>, base 2024, población al 30 de junio).</p>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>Población al 30 de junio</th>
+<th>Variación anual</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td>19.040.037</td>
+<td>+1,52 %</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>19.235.540</td>
+<td>+1,03 %</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>19.391.613</td>
+<td>+0,81 %</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>19.581.575</td>
+<td>+0,98 %</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>19.756.365</td>
+<td>+0,89 %</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>19.904.328</td>
+<td>+0,75 %</td>
+</tr>
+<tr>
+<td>2025</td>
+<td><strong>20.036.669</strong></td>
+<td>+0,66 %</td>
+</tr>
+</tbody>
+</table>
+<p>Dos hechos que conviene decir en voz alta: <strong>2025 es el año en que Chile cruza los 20 millones de habitantes</strong>, y el ritmo de crecimiento poblacional se ha ido <strong>frenando</strong> de forma sostenida —de 1,52 % en 2019 a 0,66 % en 2025—, de modo que el denominador del PIB per cápita crece cada año un poco menos.</p>
+<p><strong>Traducción antes de la fórmula.</strong> El PIB per cápita es dividir la torta entre los comensales. La torta creció 13,09 % y llegaron 5,23 % más comensales: la porción creció bastante menos que la torta, pero creció.</p>
+<p><strong>Fórmula.</strong></p>
+<pre><code>PIB per cápita_t = PIB real_t / Población_t
+
+Cálculo exacto:        1 + g(per cápita) = (1 + g(PIB real)) / (1 + g(Población))
+Aproximación de tasas: g(per cápita) ≈ g(PIB real) − g(Población)
+</code></pre>
+<p><strong>Aritmética del punto, con ambas series verificadas (2019 → 2025):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Magnitud</th>
+<th>Valor</th>
+<th>Cómo se obtiene</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crecimiento del volumen de actividad</td>
+<td><strong>+13,09 %</strong></td>
+<td>113,71 / 100,55 − 1 (Imacec promedio anual, BCCh)</td>
+</tr>
+<tr>
+<td>Crecimiento de la población</td>
+<td><strong>+5,23 %</strong></td>
+<td>20.036.669 / 19.040.037 − 1 (INE, base 2024)</td>
+</tr>
+<tr>
+<td><strong>Crecimiento por persona (exacto)</strong></td>
+<td><strong>+7,46 %</strong></td>
+<td>1,1309 / 1,0523 − 1</td>
+</tr>
+<tr>
+<td>Crecimiento por persona (aproximado)</td>
+<td>+7,85 %</td>
+<td>13,09 − 5,23</td>
+</tr>
+<tr>
+<td><strong>Brecha de la aproximación</strong></td>
+<td><strong>0,39 pp</strong></td>
+<td>la resta sobreestima</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) Aquí la aproximación "restar las tasas" da 7,85 % y el cálculo exacto 7,46 %: se parecen. (2) Se parecen <strong>porque</strong> ambas tasas son pequeñas y el término cruzado es despreciable. (3) <strong>Deja de cumplirse</strong> con tasas grandes: si la actividad creciera 50 % y la población 30 %, la resta daría 20 % y el valor exacto es 1,50/1,30 − 1 = 15,38 %, casi cinco puntos menos. La regla "se restan las tasas" es una aproximación, no una identidad.</p>
+</blockquote>
+<p><strong>Lectura del resultado.</strong> Seis años de crecimiento agregado de 13,09 % se convirtieron en <strong>7,46 % por persona</strong>: <strong>algo más de un cuarenta por ciento del crecimiento se lo llevó el denominador.</strong> Ese es el número que el titular "la economía creció" nunca menciona.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>MED-ERR-07PC</code> ⊕ (nuevo): concluir mejora individual desde crecimiento agregado. Es una especie de <code>MED-ERR-24</code> —cálculo correcto sobre una magnitud mal formulada—, con una consecuencia política grande: sostiene o destruye argumentos públicos según convenga.</p>
+<p><strong>Límite.</strong> El PIB per cápita <strong>no permite concluir</strong> que "cada persona" esté mejor. Es una media aritmética: sube igual si el ingreso de todos crece 5 % que si el de la mitad no cambia y el de la otra mitad crece 10 %. La distribución exige otros instrumentos (Encuesta Casen, coeficiente de Gini), que no son objeto de este bloque.</p>
+<p><code>[Ilustración sugerida: dos gráficos superpuestos 2019-2025 — índice de PIB real y índice de población en la misma base 100 — con el área entre ambas curvas sombreada como "lo que efectivamente llega por persona".]</code></p>
+<hr />
+<h3>3.6 ⊕ PIB vs PNB en profundidad — el cobre que se produce aquí y el ingreso que se va</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"El cobre se saca en Chile. ¿Es plata chilena?"</em></p>
+<p><strong>Historia, con dato verificable.</strong> En junio de 2026 la minería fue el motor del Imacec: <strong>+9,8 %</strong> anual, mientras el Imacec no minero creció <strong>1,4 %</strong> (BCCh, junio-2026). Toda esa producción ocurre en territorio chileno, así que <strong>suma al PIB de Chile sin excepción</strong>. Pero una parte relevante de la minería chilena es propiedad de empresas extranjeras, y sus utilidades son ingreso de factores extranjeros. El IPoM de junio de 2026 lo cuantifica: el <strong>déficit de la cuenta de rentas alcanzó −5,6 % del PIB</strong> al primer trimestre de 2026, asociado a los flujos de inversión extranjera directa (IPoM, BCCh, junio-2026).</p>
+<p><strong>Paso a paso, con la utilidad de una minera extranjera de 100 unidades:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Momento contable</th>
+<th>PIB de Chile</th>
+<th>PNB de Chile</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① Se extrae y vende el cobre</td>
+<td><strong>+100</strong></td>
+<td>+100</td>
+<td>Producción en territorio chileno</td>
+</tr>
+<tr>
+<td>② Se determina que la utilidad pertenece a accionistas extranjeros</td>
+<td>+100</td>
+<td><strong>−100</strong></td>
+<td>Renta pagada a factores del exterior</td>
+</tr>
+<tr>
+<td>③ Resultado del período</td>
+<td><strong>+100</strong></td>
+<td><strong>0</strong></td>
+<td>El mismo hecho suma al PIB y no suma al PNB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El caso simétrico (para que la distinción no quede sesgada a un signo).</strong> Una ingeniera chilena trabaja dos años en Perú y envía dinero a su familia en Chile. Su producción ocurre en territorio peruano: <strong>suma al PIB de Perú, no al de Chile</strong>. Pero es ingreso de un factor chileno: <strong>suma al PNB de Chile</strong>. Lo mismo vale para los dividendos que empresas chilenas obtienen de sus filiales en el exterior. La RNFE es una <strong>resta de dos flujos</strong>, no un descuento.</p>
+<p><strong>Traducción.</strong> El PIB pregunta <em>dónde se paró la máquina</em>. El PNB pregunta <em>de quién es el bolsillo donde cae la plata</em>. Casi nunca coinciden, y en un país receptor neto de inversión extranjera el PNB es sistemáticamente menor.</p>
+<p><strong>Fórmula y magnitud de orden.</strong></p>
+<pre><code>PNB = PIB + RNFE
+RNFE = renta recibida del exterior − renta pagada al exterior
+
+Si RNFE ≈ −5,6 % del PIB (aproximación al saldo de rentas, 1T-2026):
+PNB ≈ 0,944 × PIB      →  PIB = 100  ⇒  PNB ≈ 94,4
+</code></pre>
+<blockquote>
+<p><strong>Precisión que corresponde declarar.</strong> El saldo de la cuenta de rentas de la balanza de pagos es la aproximación de mercado más cercana a la RNFE, pero su definición exacta (renta primaria, reinversión de utilidades, criterios de devengo) pertenece al bloque de <strong>economía abierta</strong>. Aquí se usa solo como <strong>orden de magnitud</strong>; la Balanza de Pagos sigue diferida (<code>BL-MED-03</code>).</p>
+</blockquote>
+<p><strong>Conexión con el error objetivo.</strong> <code>MED-ERR-06PNB</code>: atribuir a Chile el ingreso de factores extranjeros. En su versión de titular: <em>"la minería aportó X mil millones a los chilenos"</em>, que confunde producción en el territorio con ingreso de los nacionales.</p>
+<p><strong>Límite.</strong> Que PNB &lt; PIB <strong>no permite concluir</strong> que la inversión extranjera perjudique a Chile: esa utilidad se genera sobre capital, empleo y tributación que el PIB sí captura, y el juicio requiere instrumentos que este bloque no tiene.</p>
+<p><code>[Ilustración sugerida: mapa de Chile con dos cajas — "producido aquí" (PIB) y "de chilenos" (PNB) — y dos flechas cruzando la frontera en sentidos opuestos, rotuladas renta pagada y renta recibida.]</code></p>
+<hr />
+<h3>3.7 ⊕ IPC vs deflactor en profundidad — por qué el país construyó dos termómetros</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Si ya existe el IPC, ¿para qué hay otro número de precios que sale en las noticias del Banco Central?"</em></p>
+<p><strong>Por qué existen dos y no uno.</strong> Responden preguntas distintas:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>IPC</th>
+<th>Deflactor del PIB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pregunta que responde</td>
+<td>¿Cuánto cuesta vivir para el hogar promedio?</td>
+<td>¿A qué precios se está valorando todo lo que el país produjo?</td>
+</tr>
+<tr>
+<td>Universo</td>
+<td>Canasta fija de consumo del hogar</td>
+<td>Toda la producción del período</td>
+</tr>
+<tr>
+<td>Ponderaciones</td>
+<td><strong>Fijas</strong>, del año base (Laspeyres)</td>
+<td><strong>Corrientes</strong>, de la producción del período (Paasche)</td>
+</tr>
+<tr>
+<td>Incluye importados de consumo</td>
+<td><strong>Sí</strong> (el hogar los compra)</td>
+<td><strong>No directamente</strong> (no son producción doméstica)</td>
+</tr>
+<tr>
+<td>Incluye bienes de capital y exportaciones</td>
+<td>No</td>
+<td><strong>Sí</strong></td>
+</tr>
+<tr>
+<td>Quién lo publica en Chile</td>
+<td>INE</td>
+<td>Banco Central (Cuentas Nacionales)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Por qué Laspeyres tiende a sobreestimar el costo de vida.</strong> La canasta está congelada. Si el pan sube y el arroz no, Rosa compra menos pan y más arroz — pero el índice sigue comprando 30 panes todos los meses, porque así fue definido. Al ignorar esa <strong>sustitución</strong>, el índice mide el costo de mantener el consumo antiguo, que es mayor que el costo de mantener el mismo bienestar. La distorsión no es un error: es el precio de la comparabilidad. Un índice con canasta variable sería más realista y no permitiría comparar dos años, porque estaría cambiando la regla al mismo tiempo que mide.</p>
+<p><strong>Por qué el deflactor puede moverse sin que ningún precio cambie.</strong> Esto es lo que casi nadie ve. El deflactor es un promedio ponderado por lo que se produjo. Si la economía deja de producir un bien barato y produce más de uno caro, el promedio sube <strong>aunque los precios de ambos bienes estén congelados</strong>. En <code>MED-EX-02</code> esto pasa literalmente: entre 2020 y 2021 la producción se desplaza hacia Servicios (más caros) y el deflactor sube 30,70 % mientras el IPC sube 26,95 %. Parte de esa brecha es <strong>composición</strong>, no precios.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>MED-ERR-08COMP</code> ⊕ (nuevo): leer todo movimiento del deflactor como movimiento de precios, cuando puede ser un cambio en qué se produce.</p>
+<p><strong>Caso de cierre chileno: el ciclo 2021-2025, con cifras.</strong> El episodio que Rosa recuerda —cuando subió el pan tres veces en un año— no es una impresión: es el mayor ciclo inflacionario chileno desde la instalación de las metas de inflación. Cada cifra proviene del IPoM que la reporta como <strong>efectiva</strong>, no como proyección:</p>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>IPC promedio</th>
+<th>IPC diciembre</th>
+<th>IPC sin volátiles, diciembre</th>
+<th>Reportado como efectivo en</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td>4,5 %</td>
+<td>7,2 %</td>
+<td>5,2 %</td>
+<td>IPoM diciembre 2022</td>
+</tr>
+<tr>
+<td><strong>2022</strong></td>
+<td><strong>11,6 %</strong></td>
+<td><strong>12,8 %</strong></td>
+<td><strong>10,7 %</strong></td>
+<td>IPoM diciembre 2023</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>7,3 %</td>
+<td>3,4 %</td>
+<td>4,7 %</td>
+<td>IPoM diciembre 2024</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>3,9 %</td>
+<td>4,5 %</td>
+<td>4,3 %</td>
+<td>IPoM diciembre 2025</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>4,2 %</td>
+<td>3,5 %</td>
+<td>3,3 %</td>
+<td>IPoM junio 2026</td>
+</tr>
+</tbody>
+</table>
+<p>El peak de la inflación anual ocurrió en el <strong>tercer trimestre de 2022</strong> (IPoM, BCCh, diciembre-2022), y diciembre de 2022 cerró en <strong>12,8 %</strong>: más de cuatro veces la meta de 3 %.</p>
+<p><strong>La respuesta de política, en la misma escala de tiempo.</strong> La TPM es el instrumento y su trayectoria cuenta la misma historia desde el otro lado:</p>
+<table>
+<thead>
+<tr>
+<th>Momento</th>
+<th>TPM</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Diciembre 2020</td>
+<td><strong>0,50 %</strong> (mínimo técnico)</td>
+<td>IPoM diciembre 2020</td>
+</tr>
+<tr>
+<td>Junio 2021 → diciembre 2021</td>
+<td>0,5 % → <strong>4,0 %</strong></td>
+<td>IPoM diciembre 2021</td>
+</tr>
+<tr>
+<td>Diciembre 2022</td>
+<td><strong>11,25 %</strong> (peak, mantenida)</td>
+<td>IPoM diciembre 2022</td>
+</tr>
+<tr>
+<td>Diciembre 2023</td>
+<td><strong>8,25 %</strong> (−300 pb desde julio)</td>
+<td>IPoM diciembre 2023</td>
+</tr>
+<tr>
+<td>Diciembre 2024</td>
+<td><strong>5,00 %</strong> (−625 pb desde julio de 2023)</td>
+<td>IPoM diciembre 2024</td>
+</tr>
+<tr>
+<td>Referencia: TPM neutral nominal estimada</td>
+<td>3,75 %–4,75 %</td>
+<td>IPoM diciembre 2025</td>
+</tr>
+<tr>
+<td><strong>Julio 2026</strong></td>
+<td><strong>4,50 %</strong> (mantenida por unanimidad)</td>
+<td>Minuta RPM N° 323, 27-28 de julio de 2026</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Traducción.</strong> En dos años y medio la tasa de referencia pasó de 0,5 % a 11,25 % y volvió a 5 %. Rosa lo vivió como "el crédito se puso imposible y después aflojó". Es el mismo hecho, medido.</p>
+<p><strong>Por qué esto pertenece a este bloque y no al de política monetaria.</strong> Porque el punto no es el mecanismo —eso llega en Mercado de Dinero e IS-LM— sino que <strong>el diagnóstico dependió de cuál termómetro se mirara</strong>. En diciembre de 2022 el IPC general marcaba 12,8 % y el sin volátiles 10,7 %: dos puntos de diferencia, y esa diferencia era exactamente la pregunta de política, porque decía cuánto del shock era energía y alimentos importados —que pasan— y cuánto era presión difundida —que se queda. De ese episodio salió a la conversación pública el <strong>IPC sin volátiles</strong> (IPC SAE).</p>
+<p>Julio de 2026 muestra el mismo problema con el signo invertido: IPC general <strong>+0,1 %</strong>, IPC sin volátiles <strong>+0,5 %</strong>, energía <strong>−3,0 %</strong> (INE, julio-2026). En 2022 el general exageraba la presión de fondo; en 2026 la esconde. <strong>Ningún índice es "el verdadero": cada uno responde una pregunta distinta, y quien elige mal el índice se equivoca de diagnóstico aunque el cálculo esté impecable</strong> (ERR-24).</p>
+<p><code>[Ilustración sugerida: líneas de IPC diciembre e IPC sin volátiles diciembre 2021-2025 con la banda de meta 3 % sombreada, y debajo, en el mismo eje temporal, la escalera de la TPM de 0,5 % a 11,25 % y de vuelta a 5 %.]</code></p>
+<p><strong>Límite.</strong> Que el IPC suba más que el deflactor <strong>no permite concluir</strong> que el INE o el Banco Central estén midiendo mal, ni que uno sea "el verdadero". Permite concluir que el hogar promedio y la producción nacional enfrentan canastas distintas.</p>
+<p><code>[Ilustración sugerida: dos canastas dibujadas lado a lado — una fija con etiqueta "hogar 2023" y otra que cambia de contenido año a año con etiqueta "producción del período" — bajo un mismo eje de precios.]</code></p>
+<hr />
+<h3>3.8 ⊕ El mismo PIB, dos lecturas: gasto y producción sectorial</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Cuando dicen que la economía cayó 14 % en 2020, ¿cayó la panadería igual que la mina?"</em></p>
+<p><strong>Historia, con dato verificable.</strong> No. Entre febrero y mayo de 2020, en la serie desestacionalizada del Imacec (BCCh, base 2018 = 100):</p>
+<table>
+<thead>
+<tr>
+<th>Sector</th>
+<th>Índice feb-2020</th>
+<th>Índice may-2020</th>
+<th>Variación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Imacec total</strong></td>
+<td>101,55</td>
+<td>86,82</td>
+<td><strong>−14,5 %</strong></td>
+</tr>
+<tr>
+<td>Minería</td>
+<td>96,21</td>
+<td>97,42</td>
+<td><strong>+1,3 %</strong></td>
+</tr>
+<tr>
+<td>Industria manufacturera</td>
+<td>99,63</td>
+<td>89,67</td>
+<td>−10,0 %</td>
+</tr>
+<tr>
+<td>Comercio</td>
+<td>96,99</td>
+<td>80,33</td>
+<td><strong>−17,2 %</strong></td>
+</tr>
+<tr>
+<td>Servicios</td>
+<td>102,51</td>
+<td>85,61</td>
+<td><strong>−16,5 %</strong></td>
+</tr>
+<tr>
+<td>Impuestos sobre los productos</td>
+<td>101,08</td>
+<td>79,63</td>
+<td>−21,2 %</td>
+</tr>
+</tbody>
+</table>
+<p><em>Índices a dos decimales para que las variaciones de la última columna sean reproducibles por el estudiante. Serie desestacionalizada empalmada, base 2018 = 100 (BCCh).</em></p>
+<p>La minería <strong>creció</strong> mientras el país caía casi 15 %: se extrae a cielo abierto, no depende de que la gente salga de la casa. La panadería de Rosa vive en la columna de comercio y servicios. <strong>El promedio no describió a nadie: describió la mezcla.</strong></p>
+<p><code>[Ilustración sugerida: líneas del Imacec total, minería, comercio y servicios entre ene-2020 y dic-2021 en base feb-2020 = 100, resaltando el cruce donde minería queda sobre 100 y comercio bajo 80.]</code></p>
+<p><strong>Las dos lecturas, formalmente.</strong></p>
+<pre><code>Enfoque del GASTO       (¿quién compró?)   :  PIB = C + I + G + X − M
+Enfoque de la PRODUCCIÓN (¿qué se produjo?):  PIB = Σ valor agregado sectorial + impuestos sobre los productos
+</code></pre>
+<p><strong>Traducción.</strong> Son dos maneras de contar la misma fiesta: por lo que cada invitado consumió, o por lo que cada cocina preparó. Los dos totales deben coincidir por construcción contable — si no coinciden, alguien contó mal, no "la economía cambió".</p>
+<p><strong>Ejemplo mínimo para ver que cuadra.</strong> Rosa vende 100 en pan a hogares, y para ello compró 40 de harina al molino, que a su vez no compró insumos.</p>
+<table>
+<thead>
+<tr>
+<th>Enfoque</th>
+<th>Cálculo</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gasto</td>
+<td>C = 100 (el pan que compran los hogares); la harina no la compra ningún consumidor final</td>
+<td><strong>100</strong></td>
+</tr>
+<tr>
+<td>Producción</td>
+<td>VA molino = 40 + VA panadería = (100 − 40) = 60</td>
+<td><strong>100</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Mismo número, dos preguntas: el enfoque del gasto dice <em>los hogares gastaron 100</em>; el de la producción dice <em>40 los produjo el molino y 60 la panadería</em>.</p>
+<p><strong>Composición sectorial chilena hoy, como lectura de contexto.</strong> En junio de 2026 los índices desestacionalizados (base 2018 = 100) estaban en: Imacec total <strong>114,32</strong>; servicios <strong>124,09</strong>; comercio <strong>121,79</strong>; industria <strong>106,37</strong>; <strong>minería 91,43</strong> (BCCh). Es decir, en volumen la minería produce hoy <strong>menos que en 2018</strong>, mientras servicios y comercio producen más de un 20 % por sobre ese año — aun cuando en el margen la minería sea el sector que más crece.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En junio de 2026 la minería es el sector que más crece (<strong>+9,8 %</strong> anual) y a la vez el que produce menos respecto de 2018 (índice 91,43). (2) Ocurre <strong>porque</strong> una tasa alta sobre una base baja convive con un nivel bajo: son objetos distintos (<code>MED-CON-NIVELTASA</code>). (3) <strong>Deja de cumplirse</strong> apenas la minería acumule algunos años de crecimiento: entonces tasa alta y nivel alto coincidirán. "El sector que más crece es el más grande" no es una regla.</p>
+</blockquote>
+<p><strong>Conexión con el error objetivo.</strong> <code>MED-ERR-08COMP</code> y <code>MED-ERR-24</code>: tratar el agregado como descripción de sus partes.</p>
+<p><strong>Límite.</strong> La composición sectorial es <strong>lectura contextual del Tablero/INE-BCCh</strong>, no un modelo de equilibrio: no explica <em>por qué</em> un sector cae, solo registra que cayó. La explicación llega con el bloque de Mercado de Bienes (<code>BIE-*</code>), donde <code>C + I + G + X − M</code> deja de ser una identidad contable y pasa a ser conducta.</p>
+<hr />
+<h3>3.9 ⊕ Expectativas: por qué este bloque contable ya necesita mirar hacia adelante</h3>
+<blockquote>
+<p><strong>Declaración de alcance.</strong> Esta subsección es <strong>puente conceptual, no contenido evaluable del bloque Medición</strong>. No entra en Controles ni en la Solemne 1 como ítem propio. Se retoma con modelo en <strong>Mercado de Bienes</strong> (inversión y consumo) y sobre todo en <strong>Mercado de Dinero e IS-LM</strong> (tasa de interés real y política monetaria).</p>
+</blockquote>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Yo subí el precio del pan en enero porque supuse que la harina iba a seguir subiendo. ¿Eso lo mide alguien?"</em></p>
+<p><strong>Historia, con dato verificable.</strong> Sí, y es una de las variables que el Banco Central vigila con más cuidado. En el IPoM de junio de 2026, con inflación efectiva por sobre la meta y expectativas para diciembre de 2026 en <strong>4,1 %</strong>, las expectativas a <strong>un año</strong> estaban en torno a <strong>3,1 %</strong> y a <strong>dos años</strong> —el horizonte de la política monetaria— <strong>en torno a 3 %</strong>, que es exactamente la meta (IPoM, BCCh, junio-2026). Ese es el sentido técnico de la frase "expectativas ancladas": los agentes creen que el shock actual es transitorio.</p>
+<p><strong>Y ahora el contraste, que es lo que hace visible el concepto.</strong> No siempre estuvieron ancladas. En diciembre de 2022, en el peak del ciclo, las expectativas a <strong>dos años</strong> estaban claramente <strong>sobre</strong> la meta (IPoM, BCCh, diciembre-2022):</p>
+<table>
+<thead>
+<tr>
+<th>Medida de expectativas a dos años</th>
+<th>Antes del IPoM de septiembre 2022</th>
+<th>Diciembre 2022</th>
+<th>Junio 2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EEE (economistas)</td>
+<td>4,0 %</td>
+<td><strong>3,5 %</strong></td>
+<td>≈3 %</td>
+</tr>
+<tr>
+<td>EOF (operadores financieros)</td>
+<td>5,3 %</td>
+<td><strong>3,8 %</strong></td>
+<td>≈3 %</td>
+</tr>
+<tr>
+<td>EDEP (empresarios)</td>
+<td>—</td>
+<td><strong>7,0 %</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Compensaciones inflacionarias</td>
+<td>—</td>
+<td><strong>4,2 %</strong></td>
+<td>≈3 %</td>
+</tr>
+</tbody>
+</table>
+<p>Dos lecturas que valen el ejercicio completo. Primero: en diciembre de 2022 los <strong>empresarios</strong> —los que efectivamente fijan precios, como Rosa— esperaban <strong>7 %</strong> a dos años, más del doble que los economistas. Quién responde la encuesta cambia la respuesta. Segundo: entre septiembre y diciembre de 2022 la EOF cayó de 5,3 % a 3,8 % <strong>sin que la inflación efectiva bajara todavía</strong>: lo que cambió fue la creencia sobre el futuro, no el dato del presente. Desde el IPoM de diciembre de 2023 las medidas a dos años vuelven a ubicarse <strong>en 3 %</strong> y ahí siguen.</p>
+<p><strong>Por qué esto pertenece a un bloque de medición.</strong> Porque muestra que hay objetos económicos que <strong>no se miden mirando el pasado</strong>. Rosa fijó su precio en enero según lo que <em>esperaba</em> de la harina, no según el IPC de diciembre. Ese comportamiento no aparece en ninguna identidad contable de este bloque, y sin embargo mueve el número que este bloque mide.</p>
+<p><strong>El mecanismo institucional.</strong> El IPoM existe, en parte, para eso: el Banco Central publica cuatro veces al año su visión y sus proyecciones precisamente para que las expectativas se formen alrededor de la meta de 3 % y no alrededor del último dato. Es una institución de medición que <strong>actúa</strong> sobre lo que mide.</p>
+<p><strong>El caso de expectativas como shock, ahora documentado.</strong> El IPoM de diciembre de 2021 describe el mecanismo en sus propias palabras: <em>"La elevada incertidumbre y la mayor percepción de riesgo en torno a la economía chilena ha reducido el apetito por los activos locales y de largo plazo"</em>, con mayor demanda por instrumentos en moneda extranjera, una <strong>depreciación del peso de casi 18 % durante 2021</strong> pese al alto precio del cobre, y una contracción de la oferta de crédito en la que la Encuesta de Crédito Bancario y el IPN identifican la incertidumbre como motivo principal. El informe cierra: <em>"las proyecciones del escenario central recogen el impacto negativo de estos factores en las perspectivas para la inversión"</em> (IPoM, BCCh, diciembre-2021).</p>
+<p>Ese párrafo es el concepto entero. <strong>La inversión se ajustó por lo que se esperaba, no por lo que ya había pasado</strong>, y el precio del cobre —una variable dura y favorable— no alcanzó a compensarlo.</p>
+<blockquote>
+<p>El movimiento del tipo de cambio se menciona aquí solo como síntoma. Su medición, su convención (<code>E = CLP/USD</code>, con E↑ = depreciación) y su papel analítico pertenecen al bloque de <strong>economía abierta</strong>.</p>
+</blockquote>
+<p><strong>Traducción.</strong> Medir es sacar una foto. Decidir es apostar a la próxima foto. Este bloque enseña a sacar la foto bien; los bloques siguientes enseñan qué hacen los agentes con ella.</p>
+<p><strong>Límite.</strong> Que las expectativas estén ancladas en 3 % <strong>no permite concluir</strong> que la inflación efectiva vaya a ser 3 %: son objetos distintos, y confundirlos es una variante de <code>MED-CON-NIVELTASA</code> proyectada al futuro.</p>
+<p><code>[Ilustración sugerida: una línea de inflación efectiva volátil y una línea plana de expectativas a dos años en 3 %, con la banda de meta sombreada, para mostrar visualmente qué significa "ancladas".]</code></p>
+<hr />
+<h3>3.10 ⊕ El dato que cambia: por qué el crecimiento de un año tiene más de una cifra oficial</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Busqué cuánto creció Chile en 2023 y encontré tres números distintos, todos del Banco Central. ¿Cuál es el bueno?"</em></p>
+<p><strong>Historia.</strong> Los tres son buenos. Son el mismo indicador medido en tres momentos, con más información cada vez. Comparando la tabla de escenario interno de cuatro IPoM sucesivos:</p>
+<table>
+<thead>
+<tr>
+<th>Crecimiento del PIB</th>
+<th>IPoM dic. 2023</th>
+<th>IPoM dic. 2024</th>
+<th>IPoM dic. 2025</th>
+<th>IPoM jun. 2026</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>2023</strong></td>
+<td>0,0 % <em>(proyección de cierre)</em></td>
+<td>0,2 %</td>
+<td><strong>0,5 %</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2024</strong></td>
+<td>—</td>
+<td>2,3 % <em>(proyección de cierre)</em></td>
+<td>2,6 %</td>
+<td><strong>2,8 %</strong></td>
+</tr>
+</tbody>
+</table>
+<p>El crecimiento de 2023 pasó de 0,0 % a 0,5 % y el de 2024 de 2,3 % a 2,8 %: <strong>medio punto porcentual en ambos casos</strong>, aparecido después de que el año terminara.</p>
+<p><strong>Traducción.</strong> Las Cuentas Nacionales no son una foto: son un revelado que sigue trabajando meses después de apretar el obturador. Primero llegan datos parciales y estimaciones; después, declaraciones de impuestos, encuestas sectoriales y balances de empresas. Cada tanda mejora la medición del <strong>mismo</strong> hecho pasado.</p>
+<p><strong>Tres advertencias que se derivan de esto.</strong></p>
+<ol>
+<li>La cifra del IPoM de diciembre para el <strong>año en curso</strong> es todavía una <strong>proyección de cierre</strong>, no un dato: el año no ha terminado. Confundirlas es la versión temporal de <code>MED-ERR-24</code>.</li>
+<li>Comparar el crecimiento de 2023 tomado de un informe con el de 2024 tomado de otro <strong>mezcla vintages</strong> y puede inventar una aceleración que no existe. Cuando se comparan dos años, ambos deben venir del <strong>mismo</strong> informe.</li>
+<li>Una revisión al alza no significa que "creció más": significa que <strong>se midió mejor</strong> lo mismo que ya había ocurrido.</li>
+</ol>
+<p><strong>Conexión con el error objetivo.</strong> <code>MED-ERR-09REV</code> ⊕ (nuevo): tratar un dato de cuentas nacionales como definitivo, o comparar cifras de distintas ediciones sin declararlo.</p>
+<p><strong>Límite.</strong> Que un dato se revise <strong>no permite concluir</strong> que la medición sea poco confiable ni que hubo manipulación. Permite concluir que la medición es un proceso con calendario, y que toda cifra debe citarse con su fuente <strong>y su fecha de publicación</strong> — que es exactamente lo que hace la tabla de trazabilidad de §12.2.</p>
+<blockquote>
+<p><strong>Cierre del circuito.</strong> Este es el contenido sustantivo del último paso de <code>MED-CIR-01</code> ("Revisión: ¿qué dato o reclasificación cambiaría la conclusión?"). La respuesta ahora tiene nombre: la próxima revisión de Cuentas Nacionales.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: cuatro barras para el crecimiento de 2023 y 2024, una por edición del IPoM, mostrando cómo la misma barra sube de 0,0 a 0,5 y de 2,3 a 2,8 con el paso de las ediciones.]</code></p>
+<hr />
+<h2>4. Circuito de análisis <code>MED-CIR-01</code> — Medición y consistencia</h2>
+<p><code>[Sin cambios respecto de la versión anterior — ver §4 del original: secuencia de diez pasos, tabla de preguntas de control, producto del estudiante y regla de revisión.]</code></p>
+<p><strong>Agregado de v0.4 — el circuito en la voz de Rosa (Nivel A).</strong> Antes de aplicarlo a un ejercicio, el estudiante lo ve aplicado a la pregunta del §0.2:</p>
+<blockquote>
+<p><em>Mido</em> si estoy mejor · <em>frontera y período</em>: mi hogar, este año · <em>unidad</em>: la noticia me dio una tasa (2,4 %) y otra tasa (0,1 %), ninguna en pesos míos · <em>clasifico</em>: la primera es producción del territorio, la segunda es precios del hogar promedio · <em>fórmula</em>: ninguna de las dos calcula mi ingreso real · <em>chequeo</em>: ¿es total o per cápita? ¿es promedio o mi canasta? · <em>interpreto</em>: creció la producción, sobre todo minera; los precios promedio se movieron poco porque bajó el combustible · <em>límite</em>: nada de esto dice si Rosa está mejor · <em>revisaría si</em>: tuviera mi ingreso nominal y el IPC de mi canasta efectiva.</p>
+</blockquote>
+<p><strong>Regla de revisión (ampliada en v0.4):</strong> reabrir si la clasificación cambia numerador/denominador, si se confundió nivel con tasa, <strong>o si se usó un agregado para describir un caso particular</strong> (<code>MED-ERR-07PC</code>, <code>MED-ERR-08COMP</code>).</p>
+<hr />
+<h2>5. Errores objetivo del bloque (con sonda diagnóstica)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MED-ERR-01</td>
+<td>Doble contabilización</td>
+<td>PIB sobredimensionado</td>
+<td>Pedir mapa de etapas y valor agregado</td>
+</tr>
+<tr>
+<td>MED-ERR-02</td>
+<td>Nominal tratado como real</td>
+<td>Confunde precio y cantidad</td>
+<td>Exigir descomposición precio-cantidad / año base</td>
+</tr>
+<tr>
+<td>MED-ERR-03</td>
+<td>IPC confundido con inflación</td>
+<td>Confunde nivel con tasa</td>
+<td>Comparar IPC_t con IPC_{t−1}</td>
+</tr>
+<tr>
+<td>MED-ERR-04</td>
+<td>Incluir bienes usados / transferencias / financieras</td>
+<td>PIB inflado con transacciones que no son producción del período</td>
+<td>Preguntar "¿esto es producción <strong>nueva</strong> de este período?"</td>
+</tr>
+<tr>
+<td>MED-ERR-06PNB</td>
+<td>Confundir PIB con PNB (territorio vs nacionalidad)</td>
+<td>Atribuye al país el ingreso de factores extranjeros o viceversa</td>
+<td>Pedir a quién pertenece la renta y dónde se produjo</td>
+</tr>
+<tr>
+<td><strong>MED-ERR-07PC</strong> ⊕</td>
+<td>Concluir mejora individual desde crecimiento agregado</td>
+<td>Traslada una media a una afirmación sobre personas; sostiene argumentos públicos falsos</td>
+<td>Pedir el denominador: "¿entre cuántos se divide?" y luego "¿todos reciben el promedio?"</td>
+</tr>
+<tr>
+<td><strong>MED-ERR-08COMP</strong> ⊕</td>
+<td>Leer un cambio de composición como cambio de precios (o el agregado como descripción de sus partes)</td>
+<td>Atribuye a inflación lo que es recomposición sectorial; describe a todos los sectores con el promedio</td>
+<td>Pedir el desagregado: incidencias por división (IPC) o índices por sector (Imacec)</td>
+</tr>
+<tr>
+<td><strong>MED-ERR-09REV</strong> ⊕</td>
+<td>Tratar un dato de cuentas nacionales como definitivo, o comparar cifras de distintas ediciones sin declararlo</td>
+<td>Inventa aceleraciones o desaceleraciones que son artefactos de vintage; confunde proyección de cierre con dato</td>
+<td>Pedir la <strong>fecha de publicación</strong> de cada cifra y verificar que las comparadas vengan del mismo informe</td>
+</tr>
+<tr>
+<td>MED-ERR-24</td>
+<td>Cálculo correcto desde formulación conceptual errónea</td>
+<td>Resultado numérico engañoso</td>
+<td>Puntuar la <strong>formulación</strong> antes que el procedimiento</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada)</h2>
+<h3><code>MED-EX-01</code> — ¿Entra o no entra en el PIB? · clasificación · básica</h3>
+<p><strong>Marco narrativo (v0.4).</strong> Rosa cierra su año y quiere saber qué parte de su vida "existe" para el PIB. Los siete ítems son transacciones que ella hizo o vio.</p>
+<p><strong>Errores objetivo:</strong> MED-ERR-01, MED-ERR-04.
+<strong>Instrucción:</strong> para cada ítem, indique si suma al PIB de Chile de <strong>este año</strong>, y si sí, por qué monto y en qué componente (C, I, G, X, M); si no, justifique.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Transacción</th>
+<th>¿Entra?</th>
+<th>Pauta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td>Una panadería vende $500 en pan a consumidores</td>
+<td><strong>Sí</strong></td>
+<td>+$500 en C (bien final del período)</td>
+</tr>
+<tr>
+<td>b</td>
+<td>La misma panadería compró $200 de harina a un molino</td>
+<td><strong>No (por separado)</strong></td>
+<td>Insumo intermedio; su valor ya está en el pan. Contarlo sería doble contabilización (ERR-01)</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Compra de un auto usado de 2019 entre particulares</td>
+<td><strong>No</strong></td>
+<td>No es producción de este período (ERR-04); solo la <strong>comisión</strong> del intermediario entra como servicio</td>
+</tr>
+<tr>
+<td>d</td>
+<td>El Estado paga $300 en pensiones</td>
+<td><strong>No</strong></td>
+<td>Transferencia, no compra de bienes/servicios (ERR-04); entraría vía el consumo que financie</td>
+</tr>
+<tr>
+<td>e</td>
+<td>Una minera exporta $1.000 en cobre</td>
+<td><strong>Sí</strong></td>
+<td>+$1.000 en X</td>
+</tr>
+<tr>
+<td>f</td>
+<td>Un hogar compra un smartphone importado por $400</td>
+<td><strong>C +400, M +400 ⇒ neto 0 al PIB</strong></td>
+<td>Se consume pero no se produjo aquí; la importación se resta</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Construcción de una casa nueva no vendida aún</td>
+<td><strong>Sí</strong></td>
+<td>+Inversión (inventario/vivienda del período)</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Pauta sellada <code>[Sin cambios respecto de la versión anterior]</code>.)</em></p>
+<p><strong>Extensión narrativa opcional (no altera la pauta):</strong> pedir al estudiante que agregue el ítem (h) <em>"la utilidad de la minera del ítem (e) se remesa a su casa matriz en el extranjero"</em> y responda: ¿cambia el PIB? <strong>No</strong> (ya se contabilizó la producción). ¿Cambia el PNB? <strong>Sí, lo reduce.</strong> Conecta EX-01 con §3.6 sin abrir la Balanza de Pagos.</p>
+<p><strong>Evidencia de dominio:</strong> distingue producción-del-período de reventa/transferencia, y trata correctamente el bien intermedio y el importado.</p>
+<hr />
+<h3><code>MED-EX-02</code> — PIB, IPC y deflactor 2019–2021 · cálculo integrado · intermedia</h3>
+<p><strong>Marco narrativo (v0.4).</strong> La economía de dos bienes es, deliberadamente, la economía de Rosa: <strong>Pan</strong> y <strong>Servicios</strong>. Los precios del ejercicio no son datos de Chile: son una calibración didáctica, y así se declara.</p>
+<p><strong>Errores objetivo:</strong> MED-ERR-02, MED-ERR-03, MED-ERR-24.
+<strong>Datos.</strong> Economía con dos bienes finales, Pan (P) y Servicios (S). <strong>Año base 2019.</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2019</th>
+<th>2020</th>
+<th>2021</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precio Pan (p_P)</td>
+<td>2</td>
+<td>2,1</td>
+<td>2,8</td>
+</tr>
+<tr>
+<td>Cantidad Pan (q_P)</td>
+<td>20</td>
+<td>40</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Precio Servicios (p_S)</td>
+<td>10</td>
+<td>13</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Cantidad Servicios (q_S)</td>
+<td>10</td>
+<td>10</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Canasta fija del hogar representativo (para el IPC, cantidades base 2019):</strong> 30 unidades de Pan y 8 de Servicios.</p>
+<p><strong>Se pide:</strong> (1) PIB nominal y real de cada año; (2) deflactor del PIB; (3) crecimiento real 2020 y 2021; (4) IPC y su inflación; (5) explicar por qué deflactor ≠ IPC.</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>PIB nominal</th>
+<th>PIB real</th>
+<th>Deflactor</th>
+<th>Crec. real</th>
+<th>IPC</th>
+<th>Inflación IPC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019</td>
+<td><strong>140</strong></td>
+<td><strong>140</strong></td>
+<td><strong>100,00</strong></td>
+<td>—</td>
+<td><strong>100,00</strong></td>
+<td>—</td>
+</tr>
+<tr>
+<td>2020</td>
+<td><strong>214</strong></td>
+<td><strong>180</strong></td>
+<td><strong>118,89</strong></td>
+<td><strong>+28,57 %</strong></td>
+<td><strong>119,29</strong></td>
+<td><strong>+19,29 %</strong></td>
+</tr>
+<tr>
+<td>2021</td>
+<td><strong>404</strong></td>
+<td><strong>260</strong></td>
+<td><strong>155,38</strong></td>
+<td><strong>+44,44 %</strong></td>
+<td><strong>151,43</strong></td>
+<td><strong>+26,95 %</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Cálculos clave: PIB nominal_t = Σ p_t·q_t; PIB real_t = Σ p_2019·q_t; Deflactor = nominal/real×100; IPC_t = (Σ p_t·q_base) / (Σ p_2019·q_base) × 100, con denominador 2·30 + 10·8 = 140.</p>
+<p><strong>(5)</strong> El deflactor pondera con las <strong>cantidades corrientes de la producción</strong> (Paasche) y cubre <em>todo</em> lo producido; el IPC usa una <strong>canasta fija del hogar</strong> (Laspeyres). Como la composición de la producción se desplaza hacia Servicios (más caros) y la canasta del hogar es más intensiva en Pan, ambos índices divergen. <strong>No</strong> son intercambiables (ERR-03).</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla</strong> (<code>GOB-CONV-ED</code> §2, ya advertida en el corpus). (1) Aquí el IPC de 2020 (119,29) <strong>supera</strong> al deflactor (118,89). (2) Ocurre <strong>porque</strong> la canasta fija elegida es más intensiva en Pan que la producción de ese año; con otra canasta el orden se invierte. (3) <strong>Deja de cumplirse</strong> ya en 2021 dentro de este mismo ejercicio: el deflactor (155,38) supera al IPC (151,43). No existe la regla "el IPC va por sobre el deflactor".</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos líneas 2019-2021 —IPC y deflactor, ambas base 100— que se cruzan entre 2020 y 2021, con el cruce marcado y rotulado "aquí se rompe la regla falsa".]</code></p>
+<p><strong>Evidencia de dominio:</strong> escribe la fórmula antes de reemplazar, no confunde nivel (índice) con tasa (inflación), y explica la divergencia por composición/ponderación, no por error de cálculo.</p>
+<hr />
+<h3><code>MED-EX-03</code> — Diagnóstico de titulares nominales · diagnóstico de error · intermedia</h3>
+<p><strong>Errores objetivo:</strong> MED-ERR-02, MED-ERR-24.
+<strong>Instrucción:</strong> un titular afirma: <em>"El PIB de la economía creció 44 % en 2021: un récord histórico de expansión."</em> Usando los datos de MED-EX-02, diagnostique el error del titular y reescriba la afirmación correcta.</p>
+<p><strong>Pauta (redacción corregida en v0.4 — las cifras selladas no cambian; ver <code>BL-MED-04</code>):</strong></p>
+<p>Los tres números en juego, todos verificados: <strong>PIB nominal 2021/2020 = +88,79 %</strong>, <strong>PIB real 2021/2020 = +44,44 %</strong>, <strong>deflactor 2021/2020 = +30,70 %</strong>.</p>
+<p>El titular usa el número <strong>real</strong> (44 %) pero lo presenta sin declararlo y le adosa un juicio ("récord histórico") que la cifra no sostiene. Hay por tanto <strong>dos fallas separadas</strong> que el estudiante debe distinguir:</p>
+<ol>
+<li><strong>Falla de formulación (ERR-24):</strong> el titular no declara si el 44 % es nominal o real. Un lector que asuma "nominal" concluirá algo falso; uno que asuma "real" acertará por suerte. Una cifra sin su unidad no es información.</li>
+<li><strong>Falla de interpretación:</strong> aun siendo real, ese 44 % proviene de una calibración didáctica de dos bienes, no de una serie histórica; "récord histórico" es una afirmación sobre una serie larga que aquí no existe.</li>
+</ol>
+<p><strong>Afirmación correcta:</strong> <em>"La producción real creció 44,44 % en 2021. El PIB nominal creció bastante más (88,79 %) porque además subieron los precios: el deflactor pasó de 118,89 a 155,38, un alza de 30,70 %."</em></p>
+<p>El estudiante debe (a) identificar qué magnitud usó el titular y declarar cuál es, (b) descomponer precio vs cantidad con los tres números, (c) reescribir la afirmación con la magnitud y el juicio que los datos permiten.</p>
+<blockquote>
+<p>Sonda si el estudiante acierta el número pero no el mecanismo: pedir que separe explícitamente el componente-precio del componente-cantidad, y que verifique 1,4444 × 1,3070 ≈ 1,8879.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: barra del crecimiento nominal 88,79 % partida en dos segmentos rotulados "cantidades +44,44 %" y "precios +30,70 %", con la nota de que se multiplican, no se suman.]</code></p>
+<hr />
+<h3>⊕ <code>MED-EX-04</code> — Leer el Imacec real: nivel, tasa, sector y persona · lectura de datos oficiales · intermedia</h3>
+<p><strong>Errores objetivo:</strong> MED-ERR-07PC, MED-ERR-08COMP, MED-CON-NIVELTASA, MED-ERR-24.
+<strong>Marco narrativo.</strong> Rosa trae los dos titulares del §0.2 y pregunta si "la economía creció" significa que ella creció.</p>
+<p><strong>Datos entregados al estudiante</strong> (todos oficiales y trazables; ver §12.2):</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Imacec junio 2026, variación anual</td>
+<td>2,4 %</td>
+<td>BCCh, nota de prensa 03-08-2026</td>
+</tr>
+<tr>
+<td>Imacec <strong>no minero</strong> junio 2026, variación anual</td>
+<td>1,4 %</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Minería junio 2026, variación anual</td>
+<td>9,8 %</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Industria manufacturera junio 2026, variación anual</td>
+<td>−0,7 %</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec desest., índice jun-2026 (base 2018 = 100)</td>
+<td>114,32</td>
+<td>BCCh, serie empalmada</td>
+</tr>
+<tr>
+<td>Minería desest., índice jun-2026</td>
+<td>91,43</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Servicios desest., índice jun-2026</td>
+<td>124,09</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec desest., índice feb-2020 / may-2020</td>
+<td>101,55 / 86,82</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Minería desest., índice feb-2020 / may-2020</td>
+<td>96,21 / 97,42</td>
+<td>ídem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Se pide:</strong>
+1. Calcule la variación del Imacec total y de la minería entre febrero y mayo de 2020. Interprete el signo de cada una.
+2. En junio de 2026 la minería es el sector que <strong>más crece</strong> y a la vez tiene el índice <strong>más bajo</strong> de la tabla. Explique por qué eso no es una contradicción.
+3. Entre 2019 y 2025 el Imacec promedio pasó de 100,55 a 113,71 y la población de 19.040.037 a 20.036.669 personas. Calcule el crecimiento por persona de forma <strong>exacta</strong> y con la <strong>aproximación</strong> de restar tasas. Escriba las fórmulas antes de reemplazar y explique la brecha.
+4. El crecimiento del PIB de 2023 aparece como 0,0 % en el IPoM de diciembre de 2023, 0,2 % en el de diciembre de 2024 y 0,5 % en el de diciembre de 2025. ¿Cuál cita usted y por qué? ¿Qué haría si tuviera que compararlo con el crecimiento de 2024?
+5. Enuncie una afirmación que estos datos <strong>no</strong> permiten sostener.</p>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li>Imacec total: 86,82/101,55 − 1 = <strong>−14,5 %</strong>. Minería: 97,42/96,21 − 1 = <strong>+1,3 %</strong>. El agregado cayó fuerte y un sector relevante subió: el promedio describe la mezcla, no las partes (ERR-08COMP).</li>
+<li>Porque <strong>tasa</strong> y <strong>nivel</strong> son objetos distintos (<code>MED-CON-NIVELTASA</code>). Un sector que cayó mucho puede crecer mucho desde una base baja sin haber recuperado su nivel: índice 91,43 significa que produce <strong>menos que en 2018</strong>, y +9,8 % significa que produce más que hace doce meses. Ambas cosas a la vez.</li>
+<li>Actividad: 113,71/100,55 − 1 = <strong>+13,09 %</strong>. Población: 20.036.669/19.040.037 − 1 = <strong>+5,23 %</strong>. <strong>Exacto:</strong> 1,1309/1,0523 − 1 = <strong>+7,46 %</strong>. <strong>Aproximado:</strong> 13,09 − 5,23 = <strong>+7,85 %</strong>. La brecha de <strong>0,39 pp</strong> aparece porque la resta ignora el término cruzado; es pequeña aquí porque ambas tasas son pequeñas, y crece con tasas grandes.</li>
+<li>Se cita <strong>0,5 %</strong>, que es la medición más completa, <strong>declarando la fuente y su fecha</strong> (IPoM diciembre 2025). Para compararlo con 2024 hay que tomar <strong>ambos años del mismo informe</strong>: en el IPoM de junio de 2026, 2024 aparece en 2,8 %. Mezclar el 0,0 % de 2023 (informe de 2023) con el 2,8 % de 2024 (informe de 2026) exagera la aceleración con un artefacto de vintage (ERR-09REV).</li>
+<li>Cualquiera de estas: <em>"los chilenos están 2,4 % mejor"</em> (ERR-07PC: es producción, no ingreso, y es total, no per cápita); <em>"todos los sectores crecieron"</em> (ERR-08COMP: la industria cayó −0,7 %); <em>"la minería ya se recuperó"</em> (nivel 91,43 &lt; 100); <em>"en 2023 la economía no creció"</em> (ERR-09REV: esa fue la proyección de cierre, la medición final fue 0,5 %).</li>
+</ol>
+<p><strong>Evidencia de dominio:</strong> distingue nivel de tasa sobre datos reales, no extrapola el agregado a las partes, y formula al menos un límite correcto sin ayuda.</p>
+<p><code>[Ilustración sugerida: panel doble — a la izquierda, barras de variación anual por sector en junio 2026; a la derecha, los mismos sectores en niveles de índice base 2018 = 100, con línea horizontal en 100.]</code></p>
+<hr />
+<h2>7. Plantilla de narración <code>MED-PLANT-NARR</code> (retirada gradual del andamiaje)</h2>
+<p><strong>Nivel A — completo (primeras clases):</strong>
+Mido ___ (objeto) · en la frontera/período ___ · en unidad ___ (nivel/tasa, nominal/real, <strong>total/per cápita</strong>) · clasifico ___ · aplico la fórmula ___ · calculo ___ · chequeo ___ (base=100 / identidad cuadra) · interpreto que cambió ___ (precio/cantidad/<strong>composición</strong>) · el límite es ___ · revisaría si ___.</p>
+<p><strong>Nivel B — reducido (mitad de bloque):</strong> objeto → unidad → fórmula → resultado → interpretación (precio vs cantidad vs composición) → límite.</p>
+<p><strong>Nivel C — abierto (cierre/evaluación):</strong> <em>"Calcule la magnitud pedida, declare sus supuestos de medición y señale qué reclasificación cambiaría su conclusión."</em></p>
+<p>La plantilla debe alternar: ítems sin dato de año base (obligan a pedirlo), un índice presentado como si fuera tasa (trampa ERR-03), y dos cálculos correctos con interpretación distinta.</p>
+<h3>7.1 ⊕ Retirada gradual también en la narrativa</h3>
+<p>El andamiaje narrativo se retira en paralelo al analítico. La regla es simple: <strong>Rosa habla cada vez menos y el estudiante cada vez más.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>Rosa formula la pregunta <em>y</em> el docente desarrolla la respuesta completa (§0.2 es el modelo)</td>
+<td>Seguir el razonamiento e identificar en qué paso del circuito está cada frase</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Rosa formula la pregunta; el estudiante desarrolla la respuesta con la plantilla a la vista</td>
+<td>Escribir el tramo narrativo: cálculo + interpretación + límite, en prosa</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td><strong>El estudiante formula la pregunta de Rosa</strong> a partir de un dato oficial que se le entrega crudo (por ejemplo, el boletín del IPC del mes)</td>
+<td>Producir la pregunta que el dato responde, resolverla y declarar qué <strong>no</strong> responde</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>El salto de B a C es el que evalúa realmente: pasar de contestar bien a <strong>saber qué pregunta cabe hacerle a un número</strong>.</p>
+</blockquote>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<p>El programa evalúa: <strong>Solemnes (2) 40 % · Controles 15 % · Trabajo de aplicación 15 % · Examen 30 %.</strong> El bloque se conecta así:</p>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas del bloque que lo alimentan</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>MED-EX-01, MED-EX-03, <strong>MED-EX-04 (ítems 1-2)</strong></td>
+<td>Ítems cortos de clasificación y diagnóstico de error; corrigen rápido, revelan ERR-01/02/03/04/08COMP</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>MED-EX-02 + <strong>MED-EX-04 completo</strong> + narración Nivel B/C sobre una serie real <strong>del boletín del INE o de la nota de prensa del BCCh</strong>, verificando la aritmética en <code>Lab · Índices</code></td>
+<td>El estudiante calcula índices de datos reales, narra e identifica límites</td>
+</tr>
+<tr>
+<td><strong>Solemne 1 (parte de 40 %)</strong></td>
+<td>Integración medición → primeros modelos</td>
+<td>Un ítem de cálculo (tipo EX-02) + un ítem conceptual (nivel/tasa, nominal/real, <strong>total/per cápita</strong>)</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %)</strong></td>
+<td>Medición como base transversal</td>
+<td>Aparece integrada: interpretar un resultado de modelo exige medir bien primero</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No evaluable en este bloque:</strong> §3.9 (expectativas) es puente y no genera ítems propios.</p>
+<p><strong>Regla de corrección (transversal):</strong> la <strong>formulación</strong> se puntúa antes que el procedimiento. Un cálculo impecable sobre una magnitud mal definida no demuestra dominio (ERR-24). Gráfico y narración se puntúan por separado.</p>
+<hr />
+<h2>9. Integración con MacroLab (bloque Medición)</h2>
+<blockquote>
+<p><strong>Arquitectura de dos capas (precisada en v0.4).</strong> MacroLab tiene <strong>dos niveles</strong> y este bloque usa los dos:
+- <strong>Capa superior — MacroLab Shock Simulator</strong> (<code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>): incluye la pestaña <strong>Tablero macro</strong>, con series anuales <strong>2010-2025</strong> de PIB, IPC, desempleo, TPM, CLP/USD, cobre y WTI. Fuente base: Banco Central de Chile, Base de Datos Estadísticos; cobre de Cochilco y WTI de FRED. También <strong>Lectura de datos</strong> y <strong>Atlas de shocks</strong>.
+- <strong>Capa inferior — sub-app <code>macro1/</code></strong>: cinco ventanas de laboratorio, de las que este bloque usa dos.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tablero macro</strong> (capa superior)</td>
+<td>Leer series y quiebres <strong>después</strong> de dominar la construcción de indicadores; contrastar el índice calculado a mano con la serie publicada</td>
+<td>No reemplaza el cálculo de PIB/IPC ni las fronteras contables. Las series <strong>llegan a 2025</strong>: los datos de 2026 de <code>MED-EX-04</code> vienen del Imacec y del boletín del INE</td>
+</tr>
+<tr>
+<td><strong>Lectura de datos</strong> (capa superior)</td>
+<td>Protocolo de interpretación antes de bajar al cálculo</td>
+<td>Es método de lectura, no fuente primaria</td>
+</tr>
+<tr>
+<td><code>Lab · Índices</code> (sub-app <code>macro1/</code>)</td>
+<td>Reproducir <code>MED-EX-02</code> completo: PIB nominal, PIB real, deflactor e IPC con canasta fija</td>
+<td>El preset de canasta cambia el orden entre IPC y deflactor: <strong>declarar el preset siempre</strong> (<code>GOB-CONV-ED</code> §2.4)</td>
+</tr>
+<tr>
+<td><code>Lab · PIB por gasto</code> (sub-app <code>macro1/</code>)</td>
+<td>Resolver <code>MED-EX-01</code> (¿entra o no entra, y en qué componente?)</td>
+<td>Es clasificación contable, no medición de bienestar</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Límite declarado.</strong> El Tablero <strong>no trae series mensuales ni sectoriales</strong>. La heterogeneidad sectorial de 2020 y los índices desestacionalizados de <code>MED-EX-04</code> provienen de la serie del Imacec del BCCh (§12.2), no del Tablero.</p>
+<p><strong>Protocolo de actividad (Trabajo de aplicación):</strong> el profesor fija el enlace reproducible del <strong>Tablero macro</strong> → el estudiante calcula a mano un índice de un tramo → contrasta con la serie del Tablero y <strong>verifica su aritmética en <code>Lab · Índices</code></strong> → explica una divergencia (base, cobertura, ponderación, <strong>composición</strong>) → registra un límite y una condición de revisión.</p>
+<hr />
+<h2>10. Cierre y backlog del bloque</h2>
+<p><strong>Checklist de cierre (Definición de Terminado):</strong>
+- [ ] Todo nodo tiene fuente, versión, estado y propietario.
+- [ ] Los <strong>cuatro</strong> ejercicios probados con al menos una respuesta real o simulada.
+- [ ] Ninguna plantilla entrega mecánicamente la cadena correcta.
+- [ ] Un tercero entiende el bloque sin explicación oral extensa.
+- [ ] ⊕ Ninguna igualdad de pauta se presenta sin su condición paramétrica (<code>GOB-CONV-ED</code> §2.5).
+- [ ] ⊕ Todo dato de coyuntura tiene fuente y fecha, o marcador de verificación pendiente.</p>
+<p><strong>Backlog del bloque Medición:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-MED-01</td>
+<td>Crear enlace Tablero MacroLab (serie PIB/IPC real) para el Trabajo de aplicación</td>
+<td>media</td>
+<td>El <strong>Tablero macro</strong> ya existe con series 2010-2025; falta fijar el enlace reproducible y el preset de <code>Lab · Índices</code></td>
+</tr>
+<tr>
+<td><strong>BL-MED-10</strong> ⊕</td>
+<td>El Tablero macro es <strong>anual y agregado</strong>. Evaluar si conviene incorporar (a) la serie <strong>mensual del Imacec desestacionalizado por sector</strong>, que es la que sostiene <code>MED-EX-04</code> y §3.8, y (b) el <strong>IPC sin volátiles</strong>, hoy ausente. Sin ellas, esos ejercicios dependen de datos pegados en la hoja</td>
+<td>media</td>
+<td>desarrollo del repo</td>
+</tr>
+<tr>
+<td>BL-MED-02</td>
+<td>Registrar errores observados en clase 1 y recalibrar sondas</td>
+<td>continua</td>
+<td>tras primera aplicación</td>
+</tr>
+<tr>
+<td>BL-MED-03</td>
+<td><strong>Balanza de Pagos</strong> — diferida a economía abierta (IS-LM-BP); no es contenido de este bloque</td>
+<td>diferida</td>
+<td>bloque de economía abierta</td>
+</tr>
+<tr>
+<td><strong>BL-MED-04</strong> ⊕</td>
+<td>Redacción de la pauta de <code>MED-EX-03</code> corregida en v0.4: la versión v0.3 contenía un paréntesis confuso ("44 %… en realidad el titular mezcla"). Cifras selladas sin cambio; prosa reescrita</td>
+<td><strong>hecha en v0.4</strong></td>
+<td>validación del profesor</td>
+</tr>
+<tr>
+<td><strong>BL-MED-05</strong> ⊕</td>
+<td>Verificar contra INE la variación de población 2019-2025 y sustituir los escenarios ilustrativos de §3.5 por la cifra efectiva</td>
+<td><strong>CERRADA</strong></td>
+<td>INE, <em>Estimaciones y proyecciones 1992-2070</em>, base 2024: población 2019 = 19.040.037 y 2025 = 20.036.669 (<strong>+5,23 %</strong>). §3.5 reescrita con la serie completa; escenarios ilustrativos eliminados</td>
+</tr>
+<tr>
+<td><strong>BL-MED-06</strong> ⊕</td>
+<td>Verificar contra IPoM/INE las cifras del ciclo inflacionario 2021-2023 (peak, trayectoria de TPM) y de los episodios de incertidumbre 2021-2022</td>
+<td><strong>CERRADA</strong></td>
+<td>Siete IPoM (dic. 2020 a jun. 2026). §3.7 incorpora la tabla de IPC efectivo 2021-2025 y la trayectoria de TPM 0,50 % → 11,25 % → 5,00 %; §3.9 incorpora las expectativas a dos años por encuesta y la cita del IPoM dic-2021 sobre incertidumbre e inversión</td>
+</tr>
+<tr>
+<td><strong>BL-MED-07</strong> ⊕</td>
+<td>Decidir si <code>MED-ERR-07PC</code>, <code>MED-ERR-08COMP</code> y <code>MED-ERR-09REV</code> se incorporan al registro maestro de errores del paquete o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-MED-08</strong> ⊕</td>
+<td>Confirmar el nivel vigente de la TPM a mediados de 2026</td>
+<td><strong>CERRADA</strong></td>
+<td>Minuta de la RPM N° 323 (27-28 de julio de 2026): el Consejo mantuvo la TPM en <strong>4,50 %</strong> por unanimidad. Incorporado a §3.7 y §12.2</td>
+</tr>
+<tr>
+<td><strong>BL-MED-09</strong> ⊕</td>
+<td>Evaluar si <code>MED-EX-04</code> (cinco ítems) es demasiado extenso para un Control de 20 puntos y, en ese caso, partirlo: ítems 1-2 para Control, ítems 3-5 para Trabajo de aplicación</td>
+<td>media</td>
+<td>calibración contra pruebas reales</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<p>No son definiciones formales (esas están en §2 y §3); son los puentes que se usan en clase.</p>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Flujo</strong></td>
+<td>El agua que pasa por la llave en un mes</td>
+<td>PIB, producción, inflación</td>
+</tr>
+<tr>
+<td><strong>Stock</strong></td>
+<td>El agua acumulada en el estanque</td>
+<td>Riqueza, deuda, capital</td>
+</tr>
+<tr>
+<td><strong>Nivel</strong></td>
+<td>La marca en la regla</td>
+<td>IPC = 112,45</td>
+</tr>
+<tr>
+<td><strong>Tasa</strong></td>
+<td>Cuánto se movió la marca desde la última vez</td>
+<td>Inflación = 0,1 % mensual</td>
+</tr>
+<tr>
+<td><strong>Valor agregado</strong></td>
+<td>Lo que vale lo que sale menos lo que valía lo que entró</td>
+<td>La panadería de Rosa: 100 − 40</td>
+</tr>
+<tr>
+<td><strong>Ponderación</strong></td>
+<td>Cuánto pesa cada compra en el bolsillo del mes</td>
+<td>Alimentos = 22,15 de cada 100 pesos</td>
+</tr>
+<tr>
+<td><strong>Incidencia</strong></td>
+<td>Cuánto empujó cada división al índice total</td>
+<td>Transporte: −0,472 puntos en julio 2026</td>
+</tr>
+<tr>
+<td><strong>Canasta fija (Laspeyres)</strong></td>
+<td>La lista del supermercado congelada en 2023</td>
+<td>IPC</td>
+</tr>
+<tr>
+<td><strong>Ponderación corriente (Paasche)</strong></td>
+<td>La lista que se rehace cada año con lo que efectivamente se produjo</td>
+<td>Deflactor</td>
+</tr>
+<tr>
+<td><strong>Renta de factores</strong></td>
+<td>De quién es el bolsillo donde cae la plata</td>
+<td>RNFE, PIB vs PNB</td>
+</tr>
+<tr>
+<td><strong>Per cápita</strong></td>
+<td>Dividir la torta entre los comensales</td>
+<td>PIB per cápita</td>
+</tr>
+<tr>
+<td><strong>Desestacionalizado</strong></td>
+<td>Descontar que en enero siempre se vende más helado</td>
+<td>Series Imacec</td>
+</tr>
+<tr>
+<td><strong>Expectativas ancladas</strong></td>
+<td>Que nadie apure la compra porque todos creen que el precio va a estar igual</td>
+<td>IPoM, meta de 3 %</td>
+</tr>
+<tr>
+<td><strong>Revisión / vintage</strong></td>
+<td>La misma radiografía leída por un segundo médico con más exámenes a la vista</td>
+<td>Crecimiento de 2023: 0,0 % → 0,5 %</td>
+</tr>
+<tr>
+<td><strong>Proyección de cierre</strong></td>
+<td>Calcular cuánto vendiste el año cuando aún quedan dos meses</td>
+<td>Cifra del IPoM de diciembre para el año en curso</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.3</h3>
+<ol>
+<li><strong>Personaje-ancla:</strong> Rosa Millán, panadera de Estación Central. Atraviesa las diez secciones y continúa en los bloques 2 a 7 sin volver a presentarse.</li>
+<li><strong>Episodios históricos incorporados:</strong> desplome y heterogeneidad sectorial de 2020 (Imacec desestacionalizado feb→may 2020, con minería en positivo); <strong>ciclo inflacionario completo 2021-2025 con IPC efectivo e IPC sin volátiles año a año, y la trayectoria de la TPM de 0,50 % a 11,25 % y de vuelta a 5,00 %</strong>; <strong>desanclaje y reanclaje de las expectativas a dos años entre 2022 y 2023</strong>; <strong>el episodio de incertidumbre de 2021 y su efecto documentado sobre crédito e inversión</strong>; coyuntura de julio-agosto de 2026 (Imacec +2,4 % con no minero +1,4 %; IPC +0,1 % con sin volátiles +0,5 %); saldo de rentas de −5,6 % del PIB como caso PIB/PNB.</li>
+<li><strong>Cinco refuerzos exigidos, agregados como §3.5 a §3.9:</strong> PIB per cápita; PIB vs PNB con caso minero y caso simétrico de remesas; IPC vs deflactor con mecánica de Laspeyres, sustitución, efecto composición e IPC sin volátiles; doble lectura gasto/producción sectorial; expectativas como puente declarado no evaluable.</li>
+<li><strong>Sexta sección añadida (§3.10), no pedida pero derivada de las fuentes:</strong> la <strong>revisión de datos</strong> de cuentas nacionales — el crecimiento de 2023 pasó de 0,0 % a 0,5 % y el de 2024 de 2,3 % a 2,8 % entre ediciones del IPoM. Da contenido sustantivo al último paso de <code>MED-CIR-01</code>.</li>
+<li><strong>Nodos nuevos dentro del esquema de IDs:</strong> conceptos <code>MED-CON-PERCAPITA</code>, <code>MED-CON-GASTOvsPROD</code>, <code>MED-CON-EXPECT</code>; errores <code>MED-ERR-07PC</code>, <code>MED-ERR-08COMP</code>, <code>MED-ERR-09REV</code>; ejercicio <code>MED-EX-04</code> (cinco ítems). Grafo y tabla de relaciones actualizados con cuatro aristas nuevas.</li>
+<li><strong>Ilustraciones sugeridas nuevas:</strong> dieciséis marcas <code>[Ilustración sugerida: ...]</code>, una por tramo narrativo, cada una en una línea.</li>
+<li><strong>Advertencias de coincidencia frente a regla añadidas:</strong> cuatro nuevas (IPC general vs sin volátiles en julio 2026; IPC vs deflactor en <code>MED-EX-02</code>, que se invierte dentro del mismo ejercicio; tasa alta con nivel bajo en minería 2026; <strong>la aproximación "restar tasas" en el cálculo per cápita</strong>).</li>
+<li><strong>Pautas selladas:</strong> todas recalculadas y confirmadas el 2026-08-15. Ninguna cifra cambió. Se corrigió la <strong>prosa</strong> de la pauta de <code>MED-EX-03</code>, que en v0.3 mezclaba el 44 % real con el 88,8 % nominal en un paréntesis ambiguo (<code>BL-MED-04</code>).</li>
+<li><strong>Verificaciones cerradas.</strong> <code>BL-MED-05</code> (población) y <code>BL-MED-06</code> (ciclo inflacionario, TPM, expectativas) quedan <strong>cerradas</strong> con fuentes primarias: tabulados del INE base 2024 y siete IPoM entre diciembre de 2020 y junio de 2026. Los escenarios ilustrativos de PIB per cápita fueron <strong>reemplazados por la serie efectiva</strong>. <code>BL-MED-08</code> también quedó cerrada con la minuta de la RPM de julio de 2026 (TPM en <strong>4,50 %</strong>). <strong>No queda ningún marcador de verificación abierto en el bloque.</strong></li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Fecha de publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPC, variación mensual julio 2026</td>
+<td>0,1 %</td>
+<td>INE, Boletín IPC Nº 333</td>
+<td>7 de agosto de 2026</td>
+</tr>
+<tr>
+<td>IPC, variación 12 meses julio 2026</td>
+<td>3,5 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC, índice general julio 2026 (base 2023 = 100)</td>
+<td>112,45</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC sin volátiles, variación mensual julio 2026</td>
+<td>0,5 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>IPC energía / alimentos, variación mensual julio 2026</td>
+<td>−3,0 % / 0,7 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Gasolina / diésel, variación mensual julio 2026</td>
+<td>−8,5 % / −13,5 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Transporte, variación mensual e incidencia julio 2026</td>
+<td>−3,5 % · −0,472 pp.</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Suministro de electricidad, variación mensual julio 2026</td>
+<td>2,4 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Ponderaciones IPC: alimentos / vivienda / transporte / salud</td>
+<td>22,15348 · 16,76332 · 13,45108 · 8,21206</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec junio 2026, variación anual</td>
+<td>2,4 %</td>
+<td>BCCh, nota de prensa Imacec junio 2026</td>
+<td>3 de agosto de 2026</td>
+</tr>
+<tr>
+<td>Imacec no minero junio 2026, variación anual</td>
+<td>1,4 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Minería / comercio / servicios / industria, variación anual junio 2026</td>
+<td>9,8 % · 5,4 % · 1,7 % · −0,7 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec desestacionalizado, índices feb-2020 y may-2020 (base 2018 = 100)</td>
+<td>101,55 · 86,82</td>
+<td>BCCh, serie F032.IMC.IND…EP18, empalmada</td>
+<td>actualización 3 de agosto de 2026</td>
+</tr>
+<tr>
+<td>Minería / comercio / servicios desest., feb-2020 → may-2020</td>
+<td>+1,3 % · −17,2 % · −16,5 %</td>
+<td>ídem (cálculo propio sobre la serie)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec desest., índices junio 2026: total / minería / comercio / servicios / industria</td>
+<td>114,32 · 91,43 · 121,79 · 124,09 · 106,37</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec promedio anual 2019 y 2025</td>
+<td>100,55 · 113,71</td>
+<td>ídem (cálculo propio sobre la serie)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Saldo de la cuenta de rentas, 1T-2026</td>
+<td>−5,6 % del PIB</td>
+<td>BCCh, IPoM junio 2026</td>
+<td>junio de 2026 (cierre estadístico 10 de junio)</td>
+</tr>
+<tr>
+<td>Déficit de cuenta corriente, 1T-2026</td>
+<td>0,6 % del PIB</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Expectativas de inflación: dic-2026 / 1 año / 2 años</td>
+<td>4,1 % · 3,1 % · ≈3 %</td>
+<td>ídem (EEE, EOF, seguros de inflación)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Proyección de crecimiento del PIB 2026</td>
+<td>1,0 %–1,75 %</td>
+<td>ídem, Tabla 3</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Meta de inflación del BCCh (horizonte 2 años)</td>
+<td>3 %</td>
+<td>ídem, marco de política</td>
+<td>ídem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Serie de población (INE, <em>Estimaciones y proyecciones de población 1992-2070</em>, base 2024, población al 30 de junio):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Población 2019 → 2025</td>
+<td>19.040.037 → 20.036.669 (<strong>+5,23 %</strong>)</td>
+<td>INE, tabulados base 2024</td>
+<td>base 2024</td>
+</tr>
+<tr>
+<td>Variación anual 2019 … 2025</td>
+<td>1,52 % · 1,03 % · 0,81 % · 0,98 % · 0,89 % · 0,75 % · 0,66 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Chile supera 20 millones de habitantes</td>
+<td>2025</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB per cápita 2019 → 2025 (cálculo propio)</td>
+<td>+7,46 % exacto · +7,85 % aproximado</td>
+<td>Imacec (BCCh) ÷ población (INE)</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Serie de inflación efectiva y política monetaria (cada cifra tomada del IPoM que la reporta como efectiva, no como proyección):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPC promedio / diciembre / sin volátiles dic. <strong>2021</strong></td>
+<td>4,5 % · 7,2 % · 5,2 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>IPC promedio / diciembre / sin volátiles dic. <strong>2022</strong></td>
+<td>11,6 % · <strong>12,8 %</strong> · 10,7 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2023</td>
+</tr>
+<tr>
+<td>IPC promedio / diciembre / sin volátiles dic. <strong>2023</strong></td>
+<td>7,3 % · 3,4 % · 4,7 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>IPC promedio / diciembre / sin volátiles dic. <strong>2024</strong></td>
+<td>3,9 % · 4,5 % · 4,3 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2025</td>
+</tr>
+<tr>
+<td>IPC promedio / diciembre / sin volátiles dic. <strong>2025</strong></td>
+<td>4,2 % · 3,5 % · 3,3 %</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Peak de la inflación anual del ciclo</td>
+<td>tercer trimestre de 2022</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>TPM diciembre 2020</td>
+<td>0,50 % (mínimo técnico)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2020</td>
+</tr>
+<tr>
+<td>TPM junio 2021 → diciembre 2021</td>
+<td>0,5 % → 4,0 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>TPM diciembre 2022</td>
+<td><strong>11,25 %</strong></td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>TPM diciembre 2023</td>
+<td>8,25 % (−300 pb desde julio)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2023</td>
+</tr>
+<tr>
+<td>TPM diciembre 2024</td>
+<td>5,00 % (−625 pb desde julio 2023)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>TPM neutral nominal estimada</td>
+<td>3,75 %–4,75 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2025</td>
+</tr>
+<tr>
+<td>Expectativas a 2 años, EEE / EOF, dic. 2022</td>
+<td>3,5 % · 3,8 % (4,0 % y 5,3 % antes de sept. 2022)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>Expectativas a 2 años, EDEP empresarios, dic. 2022</td>
+<td>7,0 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Compensaciones inflacionarias a 2 años, dic. 2022</td>
+<td>4,2 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Expectativas a 2 años desde dic. 2023</td>
+<td>3,0 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2023 y siguientes</td>
+</tr>
+<tr>
+<td>Depreciación del peso durante 2021</td>
+<td>casi 18 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Incertidumbre como motivo de restricción de crédito e impacto en inversión</td>
+<td>cita textual</td>
+<td>BCCh, IPoM (ECB e IPN)</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Crecimiento del PIB <strong>2023</strong> según edición</td>
+<td>0,0 % → 0,2 % → 0,5 %</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2023 · dic. 2024 · dic. 2025</td>
+</tr>
+<tr>
+<td>Crecimiento del PIB <strong>2024</strong> según edición</td>
+<td>2,3 % → 2,6 % → 2,8 %</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2024 · dic. 2025 · jun. 2026</td>
+</tr>
+<tr>
+<td>Crecimiento del PIB 2020</td>
+<td>−5,8 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Crecimiento del PIB 2021</td>
+<td>11,7 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+</tbody>
+</table>
+<p>| TPM vigente a julio de 2026 | <strong>4,50 %</strong> (mantenida por unanimidad) | BCCh, Minuta RPM N° 323 | 27-28 de julio de 2026 |</p>
+<p><strong>Marcadores de verificación pendientes tras esta edición: ninguno.</strong> Todos los datos del bloque tienen fuente y fecha de publicación.</p>
+<hr />
+<p><em>Reedición histórico-analítica cerrada el 2026-08-15. Valores de las pautas selladas recalculados y confirmados computacionalmente en esa fecha; cifras de coyuntura extraídas de las fuentes institucionales listadas en §12.2. Este documento resume y opera el bloque; la fuente de verdad estructurada son los nodos YAML/relaciones que aquí se siembran.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

@@ -21,7 +21,8 @@ const dashboardL2 = {
   ccPib: [1.5,-1.3,-3.6,-4.1,-1.7,-2.3,-1.7,-2.3,-3.6,-3.4,1.4,-6.8,-8.4,-3.2,-2.1,-1.8]
 };
 
-const ISLM_DEFAULTS = { c0:120, c1:0.65, b0:90, b1:0.10, b2:22, G:220, T:180, MP:380, d1:0.90, d2:60, iFixed:4.5 };
+const ISLM_DEFAULTS = { c0:120, c1:0.65, b0:90, b1:0.10, b2:22, G:220, T:180, t:0.20, MP:380, d1:0.90, d2:60, iFixed:4.5 };
+const ISLM_TAXMODES = { fixed:'T fija (impuesto autónomo)', proportional:'T = t·Y (impuesto proporcional)' };
 const ISLM_REGIMES = { upward:'LM con pendiente positiva', horizontal:'LM horizontal (i exógena)' };
 const ISLM_SHOCKS = {
   none:{label:'Sin shock',delta:{},watch:'PIB/IMACEC, tasas de mercado, crédito e inversión',changedText:'No cambia ningún parámetro.',reality:'Base docente de referencia.'},
@@ -784,22 +785,24 @@ function restoreScenarioFromUrl(){
 }
 
 /* ========== IS-LM ========== */
-function calcISLM(p,regime){const A=1-p.c1-p.b1;const K=p.c0-p.c1*p.T+p.b0+p.G;let Y,i;if(regime==='horizontal'){i=p.iFixed;Y=safeDiv(K-p.b2*i,A)}else{Y=safeDiv(p.d2*K+p.b2*p.MP,p.d2*A+p.b2*p.d1);i=safeDiv(p.d1*Y-p.MP,p.d2)}const investment=p.b0+p.b1*Y-p.b2*i;return{A,K,Y,i,investment}}
-function isCurve(p){const A=1-p.c1-p.b1;const K=p.c0-p.c1*p.T+p.b0+p.G;return Y=>safeDiv(K-A*Y,p.b2)}
+function calcISLM(p,regime,taxMode='fixed'){const prop=taxMode==='proportional';const mpc=prop?p.c1*(1-p.t):p.c1;const A=1-mpc-p.b1;const K=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;let Y,i;if(regime==='horizontal'){i=p.iFixed;Y=safeDiv(K-p.b2*i,A)}else{Y=safeDiv(p.d2*K+p.b2*p.MP,p.d2*A+p.b2*p.d1);i=safeDiv(p.d1*Y-p.MP,p.d2)}const investment=p.b0+p.b1*Y-p.b2*i;const taxes=prop?p.t*Y:p.T;const mult=A!==0?1/A:NaN;return{A,K,Y,i,investment,mpc,mult,taxes,taxMode}}
+function isCurve(p,taxMode='fixed'){const prop=taxMode==='proportional';const mpc=prop?p.c1*(1-p.t):p.c1;const A=1-mpc-p.b1;const K=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;return Y=>safeDiv(K-A*Y,p.b2)}
 function lmCurve(p,regime){if(regime==='horizontal')return()=>p.iFixed;return Y=>safeDiv(p.d1*Y-p.MP,p.d2)}
 function renderISLM(){
   const regime=document.getElementById('islm-regime').value;
+  const taxModeEl=document.getElementById('islm-taxmode');
+  const taxMode=taxModeEl?taxModeEl.value:'fixed';
   const shockKey=document.getElementById('islm-shock').value;
   const shock=ISLM_SHOCKS[shockKey];
   const base=readParams('islm',ISLM_DEFAULTS);
   const fin=applyDelta(base,shock.delta);
-  const initial=calcISLM(base,regime);
-  const final_=calcISLM(fin,regime);
+  const initial=calcISLM(base,regime,taxMode);
+  const final_=calcISLM(fin,regime,taxMode);
   const xr=centeredRange([initial.Y,final_.Y],320,0);
   const yr=centeredRange([initial.i,final_.i,base.iFixed,fin.iFixed],4.5,0);
   drawChart('islm','islm-chart',{type:'scatter',data:{datasets:[
-    {type:'line',label:'IS inicial',data:buildLine(isCurve(base),xr.min,xr.max),borderColor:'#2d6ea3',borderWidth:2.4,pointRadius:0},
-    {type:'line',label:'IS final',data:buildLine(isCurve(fin),xr.min,xr.max),borderColor:'#7cb4df',borderWidth:2.4,borderDash:[6,6],pointRadius:0},
+    {type:'line',label:'IS inicial',data:buildLine(isCurve(base,taxMode),xr.min,xr.max),borderColor:'#2d6ea3',borderWidth:2.4,pointRadius:0},
+    {type:'line',label:'IS final',data:buildLine(isCurve(fin,taxMode),xr.min,xr.max),borderColor:'#7cb4df',borderWidth:2.4,borderDash:[6,6],pointRadius:0},
     {type:'line',label:'LM inicial',data:buildLine(lmCurve(base,regime),xr.min,xr.max),borderColor:'#16a34a',borderWidth:2.4,pointRadius:0},
     {type:'line',label:'LM final',data:buildLine(lmCurve(fin,regime),xr.min,xr.max),borderColor:'#8ad1a3',borderWidth:2.4,borderDash:[6,6],pointRadius:0},
     pointDataset('Eq. inicial',initial.Y,initial.i,{radius:5,bg:'#0f2740',border:'#0f2740',borderWidth:1}),
@@ -1043,10 +1046,11 @@ function buildScenarioText(model){
   let lines=[`MacroLab Shock Simulator — Escenario exportado (${now})`,`Modelo: ${model}`,``];
   if(model==='IS-LM'){
     const regime=document.getElementById('islm-regime').value;
+    const _tmEl=document.getElementById('islm-taxmode');const _tm=_tmEl?_tmEl.value:'fixed';
     const shockKey=document.getElementById('islm-shock').value;
     const shock=ISLM_SHOCKS[shockKey];
     const p=readParams('islm',ISLM_DEFAULTS);
-    const eq=calcISLM(p,regime);
+    const eq=calcISLM(p,regime,_tm);
     const fin=calcISLM(applyDelta(p,shock.delta),regime);
     lines.push(`Régimen: ${ISLM_REGIMES[regime]}`,`Shock: ${shock.label}`,`Parámetros: ${JSON.stringify(p)}`,``,`Equilibrio inicial: Y=${round(eq.Y)}, i=${round(eq.i)}, Inv=${round(eq.investment)}`,`Equilibrio final: Y=${round(fin.Y)}, i=${round(fin.i)}, Inv=${round(fin.investment)}`,``,`Qué mirar: ${shock.watch}`);
   } else if(model==='IS-LM-BP'){
@@ -1068,7 +1072,7 @@ function buildScenarioText(model){
 }
 function buildShareHash(model){
   let data={m:model};
-  if(model==='IS-LM'){data.r=document.getElementById('islm-regime').value;data.s=document.getElementById('islm-shock').value;const p=readParams('islm',ISLM_DEFAULTS);data.p=p}
+  if(model==='IS-LM'){data.r=document.getElementById('islm-regime').value;const _tm2=document.getElementById('islm-taxmode');if(_tm2)data.tm=_tm2.value;data.s=document.getElementById('islm-shock').value;const p=readParams('islm',ISLM_DEFAULTS);data.p=p}
   else if(model==='IS-LM-BP'){data.s=document.getElementById('islmbp-shock').value;data.p=readParams('islmbp',ISLMBP_DEFAULTS)}
   else if(model==='OA-DA'){data.s=document.getElementById('oada-shock').value;data.p=readParams('oada',OADA_DEFAULTS)}
   return '#scenario='+encodeURIComponent(JSON.stringify(data));
@@ -1077,7 +1081,7 @@ function loadFromHash(){
   if(!location.hash.startsWith('#scenario='))return;
   try{
     const data=JSON.parse(decodeURIComponent(location.hash.slice(10)));
-    if(data.m==='IS-LM'){activateTab('islm');if(data.r)document.getElementById('islm-regime').value=data.r;if(data.s)document.getElementById('islm-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islm-${k}`);if(el)el.value=v});renderISLM()}
+    if(data.m==='IS-LM'){activateTab('islm');if(data.r)document.getElementById('islm-regime').value=data.r;if(data.tm&&document.getElementById('islm-taxmode'))document.getElementById('islm-taxmode').value=data.tm;if(data.s)document.getElementById('islm-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islm-${k}`);if(el)el.value=v});renderISLM()}
     else if(data.m==='IS-LM-BP'){activateTab('islmbp');if(data.s)document.getElementById('islmbp-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`islmbp-${k}`);if(el)el.value=v});renderISLMBP()}
     else if(data.m==='OA-DA'){activateTab('oada');if(data.s)document.getElementById('oada-shock').value=data.s;if(data.p)Object.entries(data.p).forEach(([k,v])=>{const el=document.getElementById(`oada-${k}`);if(el)el.value=v});renderOADA()}
   }catch(e){/* ignore bad hash */}
@@ -1151,6 +1155,7 @@ function init(){
   if(window.Chart){Chart.defaults.font.family='Inter, system-ui, sans-serif';Chart.defaults.color='#5e7184';Chart.defaults.devicePixelRatio=Math.max(2,window.devicePixelRatio||1)}
   initTabs();initWelcomeModal();initDarkMode();initExportButtons();initQuizzes();
   populateSelect('islm-regime',ISLM_REGIMES);
+  if(document.getElementById('islm-taxmode'))populateSelect('islm-taxmode',ISLM_TAXMODES);
   populateSelect('islm-shock',ISLM_SHOCKS);
   populateSelect('islmbp-shock',ISLMBP_SHOCKS);
   populateSelect('oada-shock',OADA_SHOCKS);

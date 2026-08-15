@@ -1,0 +1,1084 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 7 · El Mercado Laboral &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Indicadores del INE, equilibrio WS-PS y tasa natural, con el episodio del millón de inactivos como advertencia de lectura.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 7: El Mercado Laboral</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>LAB</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> listo para clase
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 5 · <strong>Texto base:</strong> Blanchard 7ª, cap. 7
+<strong>Materiales del curso usados:</strong> Nota de Estudio 8 (mercado laboral), Ayudantía 9 (indicadores laborales)
+<strong>Prerrequisitos:</strong> <code>MED</code> (nivel vs tasa) · <strong>Es prerrequisito de:</strong> <code>OADA</code> · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Bloque puente entre el corto plazo (IS-LM) y el mediano plazo (OA-DA). Cubre (1) los <strong>indicadores del mercado laboral</strong> con datos reales del INE de Chile, y (2) el <strong>equilibrio WS-PS</strong> que determina la <strong>tasa natural de desempleo</strong> y, con ella, el producto natural Yn — la base de la curva de oferta agregada.</p>
+<p><strong>Qué cambia respecto de v0.1.</strong> Arquitectura intacta: mismos IDs, mismos pasaportes, mismas pautas selladas —recalculadas y confirmadas el 2026-08-15, sin cambios de cifras—. Se agregan dos cosas que este bloque necesitaba: (a) el episodio del <strong>millón de inactivos</strong> de 2020-2021, que convierte el "cuidado con el denominador" de advertencia técnica en la diferencia entre un diagnóstico correcto y uno completamente falso; y (b) la <strong>informalidad</strong> y la <strong>caída del salario real</strong> de 2026, que hoy son los dos hechos centrales del mercado laboral chileno. Rosa Millán cierra aquí el recorrido de los siete bloques.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong>, IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>.</p>
+</blockquote>
+<hr />
+<h2>0. Alcance y rol del bloque</h2>
+<p>El mercado laboral cumple dos funciones en Macro 1: primero, la <strong>medición</strong> de la salud del empleo (participación, ocupación, desempleo); segundo, la <strong>determinación teórica</strong> del salario real de equilibrio y la tasa natural de desempleo (un), que fija el producto natural Yn del bloque OA-DA. Sin este bloque, la curva OA "aparece" sin microfundamento.</p>
+<p>IDs: <code>LAB-CON-*</code>, <code>LAB-MOD-*</code>, <code>LAB-CIR-*</code>, <code>LAB-ERR-*</code>, <code>LAB-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: la tasa de desempleo que baja sin que nadie encuentre trabajo</h3>
+<p>Rosa tuvo dos trabajadoras hasta 2020. En abril de ese año despidió a una. Esa persona buscó trabajo unos meses, no encontró, y dejó de buscar: se quedó en la casa cuidando a su madre. <strong>En las estadísticas dejó de ser desocupada y pasó a ser inactiva.</strong> Y en el momento en que dejó de buscar, <strong>la tasa de desempleo de Chile bajó un poquito.</strong></p>
+<p>No es un tecnicismo. El IPoM de diciembre de 2021 registra la magnitud del fenómeno: <em>"hay alrededor de </em><em>un millón de inactivos más</em><em> que en enero del 2020"</em>, con una recuperación del empleo frenada por <em>"una oferta de trabajo que sigue contenida"</em>.</p>
+<p><strong>Un millón de personas.</strong> Si una parte relevante de ellas hubiera seguido buscando trabajo, la tasa de desempleo publicada habría sido mucho más alta. La tasa no mintió: <strong>midió lo que mide</strong>, que es desocupados sobre <strong>fuerza de trabajo</strong> — y la fuerza de trabajo se había encogido.</p>
+<blockquote>
+<p><strong>La disciplina que instala este bloque:</strong> una tasa de desempleo que baja puede significar dos cosas opuestas —que la gente encontró trabajo, o que dejó de buscarlo— y <strong>la tasa sola no distingue entre ambas</strong>. Para distinguirlas hay que mirar la <strong>tasa de ocupación</strong>, cuyo denominador no se mueve cuando alguien se desanima. <code>LAB-EX-04</code> demuestra esto con aritmética.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos flujos hacia afuera del casillero "desocupados" —uno hacia "ocupados" y otro hacia "inactivos"— mostrando que ambos bajan la tasa de desempleo pero solo uno sube la tasa de ocupación.]</code></p>
+<hr />
+<h2>1. Grafo de prerrequisitos</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  NIVTASA[MED: nivel vs tasa] --&gt; IND[LAB-MOD-IND&lt;br/&gt;Indicadores INE]
+  IND --&gt; U[LAB-CON-U&lt;br/&gt;Tasa de desempleo u]
+  IND --&gt; INF[LAB-CON-INFORMAL&lt;br/&gt;Formal vs informal]
+  U --&gt; WS[LAB-CON-WS&lt;br/&gt;Salarios: W=Pe·F&amp;#40;u,z&amp;#41;]
+  MARK[LAB-CON-PS&lt;br/&gt;Precios: P=&amp;#40;1+m&amp;#41;W] --&gt; EQ[LAB-MOD-EQ&lt;br/&gt;Equilibrio WS-PS]
+  WS --&gt; EQ
+  EQ --&gt; UN[LAB-CON-UN&lt;br/&gt;Tasa natural un]
+  UN --&gt; YN[LAB-CON-YN&lt;br/&gt;Producto natural Yn]
+  YN -.puente.-&gt; OADA[/OA-DA/]
+  INF -.límite.-&gt; MEDLIM[/MED: el PIB no mide&lt;br/&gt;informalidad plena/]
+</code></pre>
+<p><em>Las seis relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan dos:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB-MOD-IND</td>
+<td>DETERMINA</td>
+<td>LAB-CON-INFORMAL</td>
+</tr>
+<tr>
+<td>LAB-CON-INFORMAL</td>
+<td>ES_LIMITE_DE</td>
+<td>MED-MOD-PIB</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB-CON-PA</td>
+<td>Población activa (fuerza de trabajo)</td>
+<td>Ocupados + desocupados</td>
+<td>≠ población en edad de trabajar (PET)</td>
+</tr>
+<tr>
+<td>LAB-CON-PET</td>
+<td>Población en edad de trabajar</td>
+<td>PA + inactivos (&gt;15 años)</td>
+<td>≠ población total</td>
+</tr>
+<tr>
+<td>LAB-CON-TP</td>
+<td>Tasa de participación</td>
+<td>PA / PET</td>
+<td>≠ tasa de ocupación (denominador distinto)</td>
+</tr>
+<tr>
+<td>LAB-CON-TO</td>
+<td>Tasa de ocupación</td>
+<td>Ocupados / <strong>PET</strong></td>
+<td>≠ tasa de desempleo</td>
+</tr>
+<tr>
+<td>LAB-CON-U</td>
+<td>Tasa de desempleo</td>
+<td>Desocupados / <strong>PA</strong></td>
+<td>denominador PA, no PET</td>
+</tr>
+<tr>
+<td>LAB-CON-WS</td>
+<td>Ecuación de salarios</td>
+<td>W = Pe·F(u,z): salario <strong>nominal</strong> ligado a Pe</td>
+<td>≠ salario real</td>
+</tr>
+<tr>
+<td>LAB-CON-PS</td>
+<td>Ecuación de precios</td>
+<td>P = (1+m)W ⇒ salario real de las empresas = 1/(1+m)</td>
+<td>confundir m con margen sobre ventas</td>
+</tr>
+<tr>
+<td>LAB-CON-UN</td>
+<td>Tasa natural de desempleo</td>
+<td>un donde WS = PS con Pe = P</td>
+<td>≠ desempleo observado (u)</td>
+</tr>
+<tr>
+<td><strong>LAB-CON-INFORMAL</strong> ⊕</td>
+<td>Empleo formal vs informal</td>
+<td>Un informal <strong>está ocupado</strong> para el INE; la tasa de ocupación no distingue calidad ni protección</td>
+<td>"hay empleo" leído como "hay buen empleo"</td>
+</tr>
+<tr>
+<td><strong>LAB-CON-SORPRESA</strong> ⊕</td>
+<td>Sorpresa inflacionaria y salario real</td>
+<td><code>W</code> se negocia contra <code>Pe</code>; si <code>P</code> sorprende al alza, <strong>el salario real cae sin que nadie lo decida</strong></td>
+<td>"les bajaron el sueldo"</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Regla del bloque:</strong> cuidado con los <strong>denominadores</strong>: participación y ocupación se miden sobre PET; desempleo se mide sobre PA (fuerza de trabajo). Es el error de medición más común. <strong>v0.2 agrega:</strong> cuidado también con los <strong>flujos</strong> — la misma variación de una tasa puede venir de movimientos opuestos entre casilleros.</p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB-CON-PA / LAB-ERR-02</td>
+<td><strong>2020-2021</strong>: <em>"alrededor de un millón de inactivos más que en enero del 2020"</em> (IPoM, BCCh, dic-2021)</td>
+<td>Leer la tasa de desempleo como si la fuerza de trabajo fuera constante</td>
+</tr>
+<tr>
+<td>LAB-CON-TO</td>
+<td>La tasa de ocupación no cambia cuando un desocupado se vuelve inactivo (demostrado en <code>LAB-EX-04</code>)</td>
+<td>Usar solo la tasa de desempleo para diagnosticar el mercado laboral</td>
+</tr>
+<tr>
+<td>LAB-CON-INFORMAL</td>
+<td><strong>2026</strong>: <em>"una recomposición desde empleo formal hacia el informal"</em> (IPoM, BCCh, jun-2026)</td>
+<td>Concluir que el empleo mejoró porque los ocupados no cayeron</td>
+</tr>
+<tr>
+<td>LAB-CON-SORPRESA / LAB-ERR-03</td>
+<td><strong>2026</strong>: <em>"el shock externo ha disminuido la variación anual de los salarios reales —producto de la rápida alza de la inflación—"</em> (ídem)</td>
+<td>Buscar la explicación en negociaciones salariales cuando el causante fue el IPC</td>
+</tr>
+<tr>
+<td>LAB-CON-WS (costos nominales)</td>
+<td><strong>Julio 2026</strong>: <em>"costos laborales por hora que se habían acelerado"</em> con salarios <strong>reales</strong> desacelerando (Minuta RPM N° 323)</td>
+<td>Confundir el costo nominal que paga la empresa con el poder de compra que recibe el trabajador</td>
+</tr>
+<tr>
+<td>LAB-CON-UN vs u</td>
+<td><strong>2021</strong>: economía por sobre el potencial con empleo aún por recuperar</td>
+<td>Concluir que <code>u</code> observado es la tasa natural</td>
+</tr>
+<tr>
+<td>LAB-CON-YN</td>
+<td>El <code>Yn</code> se estima y se revisa: el PIB no minero potencial 2026 pasó de 2,3 % a 1,9 % (IPoM, jun-2026)</td>
+<td>Tratar <code>Yn</code> como un dato observable</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaportes del bloque</h2>
+<h3>3.1 <code>LAB-MOD-IND</code> — Indicadores del mercado laboral</h3>
+<p><strong>El quiebre.</strong> Los tres indicadores del INE parecen decir lo mismo con distintas palabras. No lo hacen: <strong>tienen denominadores distintos, y por eso responden a preguntas distintas.</strong></p>
+<pre><code class="language-yaml">id: LAB-MOD-IND
+tipo: SistemaDeMedicion
+pregunta: &quot;¿Cuál es el estado del empleo: cuántos participan, cuántos trabajan, cuántos buscan?&quot;
+formulas:
+  PA: &quot;PA = Ocupados + Desocupados&quot;
+  PET: &quot;PET = PA + Inactivos   (población &gt;15 años)&quot;
+  TP: &quot;Tasa de participación = PA / PET × 100&quot;
+  TO: &quot;Tasa de ocupación = Ocupados / PET × 100&quot;
+  TD: &quot;Tasa de desempleo = Desocupados / PA × 100&quot;
+regla_util: &quot;Cada fórmula relaciona 3 variables: con dos, se despeja la tercera.&quot;
+fuente_datos: &quot;Boletín Estadístico de Empleo, INE Chile (trimestres móviles).&quot;
+limites: &quot;No distingue empleo formal de informal ni calidad del empleo; un desocupado que deja de buscar sale de PA.&quot;
+errores_objetivo: [LAB-ERR-01, LAB-ERR-02, LAB-ERR-05DESAL]   # ← ampliado en v0.2
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Traducción de los tres denominadores.</strong> Piense en la PET como todos los adultos del país. De ellos, unos están <strong>en la cancha</strong> (la fuerza de trabajo: trabajando o buscando) y otros están <strong>en la banca</strong> (inactivos).</p>
+<ul>
+<li><strong>Participación</strong> = qué fracción de los adultos está <strong>en la cancha</strong>.</li>
+<li><strong>Ocupación</strong> = qué fracción de los adultos está <strong>jugando</strong> (trabajando).</li>
+<li><strong>Desempleo</strong> = de los que están <strong>en la cancha</strong>, qué fracción <strong>no está jugando</strong>.</li>
+</ul>
+<blockquote>
+<p>Por eso, cuando alguien se va de la cancha a la banca, <strong>la tasa de desempleo baja</strong> —hay menos gente en la cancha sin jugar— pero <strong>la tasa de ocupación no se mueve</strong>, porque los que juegan y los adultos totales siguen siendo los mismos. Esa asimetría es el contenido de <code>LAB-EX-04</code>.</p>
+</blockquote>
+<hr />
+<h3>3.2 <code>LAB-MOD-EQ</code> — Equilibrio WS-PS y tasa natural</h3>
+<p><strong>El quiebre.</strong> Rosa negoció el sueldo de su trabajadora en enero, pensando que los precios subirían un 3 % en el año. Subieron más. <strong>Ninguna de las dos cambió de opinión y aun así el sueldo real terminó siendo menor del acordado.</strong> Esa es la ecuación WS: los salarios se fijan en pesos, contra una inflación <strong>esperada</strong>, y si la inflación efectiva sorprende, el salario real se ajusta solo.</p>
+<pre><code class="language-yaml">id: LAB-MOD-EQ
+tipo: Modelo
+pregunta: &quot;¿Qué salario real y qué tasa de desempleo equilibran negociación salarial y fijación de precios?&quot;
+ecuaciones:
+  WS: &quot;W = Pe·F(u,z)  ⇒  salario real esperado = F(u,z), decreciente en u&quot;
+  PS: &quot;P = (1+m)·W    ⇒  salario real de precios = 1/(1+m)&quot;
+tasa_natural: &quot;un resuelve F(un,z) = 1/(1+m).  Con F(u,z)=1−u: un = m/(1+m).&quot;
+producto_natural: &quot;Yn = A·Nn = (1−un)·L·A  (con A=1: Yn corresponde a u=un).&quot;
+desplazamientos: &quot;un sube con m (más margen) o z (más seguro de cesantía/poder de negociación).&quot;
+horizonte: &quot;Mediano plazo (equilibrio del mercado de trabajo).&quot;
+limites: &quot;Pe dado en el corto plazo: una sorpresa inflacionaria mueve el salario real sin que nadie renegocie.&quot;
+errores_objetivo: [LAB-ERR-03, LAB-ERR-04]
+fuente: {id: F1, unidad: 5}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Intuición (Nota 8):</strong> a mayor producción, menor desempleo ⇒ mayor poder de negociación ⇒ salarios (y luego precios) suben. La OA hereda de aquí su pendiente positiva.</p>
+<p><strong>La tasa natural, con tres calibraciones para ver de qué depende:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Margen m</th>
+<th>Salario real de las empresas 1/(1+m)</th>
+<th>Tasa natural un = m/(1+m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0,05</td>
+<td>0,9524</td>
+<td><strong>4,76 %</strong></td>
+</tr>
+<tr>
+<td><strong>0,10</strong></td>
+<td><strong>0,9091</strong></td>
+<td><strong>9,09 %</strong></td>
+</tr>
+<tr>
+<td>0,20</td>
+<td>0,8333</td>
+<td><strong>16,67 %</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En <code>LAB-EX-02</code> la tasa natural resulta exactamente <strong>9,09 %</strong>. (2) Lo es <strong>porque</strong> la calibración fija <code>m = 0,1</code> y usa la forma <code>F(u,z) = 1 − u</code>. (3) <strong>Deja de cumplirse</strong> con cualquier otro margen —con <code>m = 0,05</code> la natural es 4,76 %— y con cualquier otra forma funcional de <code>F</code>. <strong>"La tasa natural de Chile es 9 %" no es una afirmación que este ejercicio permita hacer</strong>: es el resultado de una calibración didáctica.</p>
+</blockquote>
+<hr />
+<h3>3.3 ⊕ Los dos hechos del mercado laboral chileno en 2026</h3>
+<p>El IPoM de junio de 2026 y la minuta de la RPM de julio describen un mercado laboral con dos rasgos que el modelo del bloque explica bien, y que conviene enseñar juntos porque parecen contradecirse.</p>
+<p><strong>Hecho 1 — Más empleo informal.</strong> <em>"La tasa de desempleo ha aumentado, mientras distintos indicadores revelan una débil creación de puestos de trabajo y una recomposición desde empleo formal hacia el informal"</em> (IPoM, BCCh, junio-2026).</p>
+<p><strong>Qué significa para la medición.</strong> Un trabajador informal <strong>cuenta como ocupado</strong> en las estadísticas del INE. La tasa de ocupación puede sostenerse mientras la <strong>calidad</strong> del empleo se deteriora: menos contrato, menos cotizaciones, menos estabilidad. <strong>Los indicadores de este bloque no ven esa diferencia</strong> — y eso enlaza directamente con el límite ya declarado del bloque <code>MED</code>: <em>"el PIB no mide bienestar, distribución, informalidad plena ni sostenibilidad"</em>.</p>
+<p><strong>Hecho 2 — Salarios nominales acelerando y salarios reales desacelerando, al mismo tiempo.</strong> La minuta de julio registra <em>"costos laborales por hora que se habían acelerado"</em>, mientras el IPoM de junio dice que <em>"el shock externo ha disminuido la variación anual de los salarios reales —producto de la rápida alza de la inflación—"</em>.</p>
+<p><strong>No es una contradicción: es la ecuación WS.</strong> El salario se fija en <strong>pesos</strong> (nominal) contra una inflación <strong>esperada</strong>. Si <code>P</code> sube más rápido que lo esperado:</p>
+<pre><code>Salario real = W / P
+   ↑ W sube (costo laboral nominal acelera)
+   ↑↑ P sube más rápido (shock del petróleo)
+   ⇒ W/P cae
+</code></pre>
+<p><strong>Nadie decidió bajar sueldos.</strong> El poder de compra se redujo porque el denominador corrió más rápido que el numerador. Es <code>LAB-ERR-03</code> en su versión más costosa: quien no distingue nominal de real no entiende por qué la gente se siente más pobre en un año en que "los sueldos subieron".</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>LAB-CON-SORPRESA</code> y <code>LAB-ERR-03</code>; y con <code>OADA-CON-EXP</code>: si los trabajadores <strong>revisan</strong> <code>Pe</code> al alza en la siguiente negociación, aparece la segunda vuelta salarios-precios que el bloque <code>OADA</code> analiza.</p>
+<p><strong>Límite.</strong> Estos dos hechos <strong>no permiten concluir</strong> que la tasa natural haya cambiado. <code>un</code> es un concepto de <strong>mediano plazo</strong> que depende de <code>m</code> y <code>z</code>; lo descrito aquí es cíclico y de sorpresa inflacionaria. Confundirlos es <code>LAB-ERR-04</code>.</p>
+<p><code>[Ilustración sugerida: dos líneas 2025-2026 —costo laboral nominal por hora subiendo y salario real desacelerando— con la brecha entre ambas sombreada y rotulada "inflación".]</code></p>
+<hr />
+<h2>4. Circuito <code>LAB-CIR-01</code> — Del dato al equilibrio</h2>
+<pre><code>Dato INE → Indicador (fórmula y base) → Flujos entre casilleros → Interpretación →
+Tasa de desempleo u → WS vs PS → Salario real de equilibrio → Tasa natural un →
+Producto natural Yn → Puente a OA
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dato INE</td>
+<td>¿De qué trimestre móvil y qué boletín?</td>
+</tr>
+<tr>
+<td>Indicador</td>
+<td>¿Sobre qué base: PA o PET?</td>
+</tr>
+<tr>
+<td>⊕ Flujos</td>
+<td>Si una tasa cambió, ¿entre qué casilleros se movió la gente? ¿ocupado↔desocupado, o desocupado↔inactivo?</td>
+</tr>
+<tr>
+<td>Interpretación</td>
+<td>¿Mejoró el empleo o se encogió la fuerza de trabajo?</td>
+</tr>
+<tr>
+<td>u</td>
+<td>Calcule con denominador PA.</td>
+</tr>
+<tr>
+<td>WS vs PS</td>
+<td>Salario real esperado F(u,z) frente a 1/(1+m).</td>
+</tr>
+<tr>
+<td>Salario real de equilibrio</td>
+<td>¿Coinciden? ¿Pe = P?</td>
+</tr>
+<tr>
+<td>un</td>
+<td>Resuelva F(un,z) = 1/(1+m).</td>
+</tr>
+<tr>
+<td>Yn</td>
+<td>(1 − un)·L. <strong>Recuerde que se estima y se revisa.</strong></td>
+</tr>
+<tr>
+<td>Puente a OA</td>
+<td>¿Cómo entra Yn en la brecha del bloque OADA?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> ficha de indicadores + determinación de un e interpretación de qué la desplaza.
+<strong>Regla de revisión:</strong> reabrir si se confunde el denominador (PA vs PET), si se trata u observado como un natural, <strong>o si se interpretó un cambio de tasa sin preguntar por los flujos que lo produjeron</strong>.</p>
+<hr />
+<h2>5. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LAB-ERR-01</td>
+<td>Confundir denominador (PA vs PET)</td>
+<td>Tasas mal calculadas</td>
+<td>Preguntar "¿sobre qué base se mide este indicador?"</td>
+</tr>
+<tr>
+<td>LAB-ERR-02</td>
+<td>Tratar inactivos como desocupados</td>
+<td>Sobreestima desempleo</td>
+<td>Recordar: desocupado busca activamente</td>
+</tr>
+<tr>
+<td>LAB-ERR-03</td>
+<td>Confundir salario nominal (WS) con real</td>
+<td>Mecanismo WS-PS mal leído</td>
+<td>Dividir por P y explicitar Pe</td>
+</tr>
+<tr>
+<td>LAB-ERR-04</td>
+<td>Tratar u observado como tasa natural</td>
+<td>Diagnóstico de mediano plazo erróneo</td>
+<td>Preguntar si Pe = P (equilibrio)</td>
+</tr>
+<tr>
+<td><strong>LAB-ERR-05DESAL</strong> ⊕</td>
+<td>Leer una caída de la tasa de desempleo como mejora, sin verificar si la fuerza de trabajo se encogió</td>
+<td>Diagnóstico invertido: se celebra un deterioro. Con un millón de personas saliendo de la fuerza de trabajo, la tasa mejora en el papel</td>
+<td>Pedir la <strong>tasa de ocupación</strong> en el mismo período; si no subió, no hubo más empleo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada y verificada)</h2>
+<h3><code>LAB-EX-01</code> — Indicadores laborales con datos INE · cálculo/tabla · básica</h3>
+<p><strong>Errores objetivo:</strong> LAB-ERR-01, LAB-ERR-02. <em>(De Nota 8; formato fill-the-table como en el Examen real.)</em>
+<strong>Datos (trimestre móvil feb–abr 2024, INE):</strong> ocupados = 9.339.296; desocupados = 870.239; inactivos = 6.135.006.
+<strong>Se pide:</strong> PA, PET, tasa de participación, de ocupación y de desempleo (2 decimales).</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong>
+- PA = 9.339.296 + 870.239 = <strong>10.209.535</strong>
+- PET = PA + inactivos = 10.209.535 + 6.135.006 = <strong>16.344.541</strong>
+- Tasa de participación = 10.209.535 / 16.344.541 × 100 = <strong>62,46 %</strong>
+- Tasa de ocupación = 9.339.296 / 16.344.541 × 100 = <strong>57,14 %</strong>
+- Tasa de desempleo = 870.239 / 10.209.535 × 100 = <strong>8,52 %</strong></p>
+<p><strong>Evidencia de dominio:</strong> usa PET en participación/ocupación y PA en desempleo (LAB-ERR-01 evitado).</p>
+<h3><code>LAB-EX-02</code> — Tasa natural de desempleo desde WS-PS · derivación · intermedia</h3>
+<p><strong>Errores objetivo:</strong> LAB-ERR-03, LAB-ERR-04.
+<strong>Datos:</strong> F(u,z) = 1 − u; margen m = 0,1 (Pe = P en equilibrio).
+<strong>Se pide:</strong> (1) el salario real según WS y según PS; (2) la tasa natural un; (3) qué pasa con un si sube el seguro de cesantía (z↑) o el margen (m↑).</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong>
+- WS: salario real = F(u,z) = 1 − u. PS: salario real = 1/(1+m) = 1/1,1 ≈ <strong>0,909</strong>.
+- Equilibrio: 1 − un = 1/(1+m) ⇒ <strong>un = m/(1+m) = 0,1/1,1 = 9,09 %</strong>.
+- (3) z↑ ⇒ la curva WS sube (más poder de negociación) ⇒ <strong>un sube</strong>. m↑ ⇒ PS baja el salario real ⇒ <strong>un sube</strong>. Ambos elevan la tasa natural.</p>
+<p><strong>Advertencia de coincidencia (v0.2).</strong> Ver §3.2: el 9,09 % depende enteramente de <code>m = 0,1</code>. Con <code>m = 0,05</code> la natural sería 4,76 %. <strong>No es una estimación de la tasa natural chilena.</strong></p>
+<p><strong>Evidencia de dominio:</strong> distingue salario nominal de real y no confunde un (mediano plazo) con u observado.</p>
+<h3><code>LAB-EX-03</code> — Diagnóstico: ¿desempleo cíclico o estructural? · conceptual tipo Solemne · intermedia</h3>
+<p><strong>Tarea (estilo prueba real):</strong> el INE informa desempleo de 8,7 %. Un comentarista dice que "basta más gasto público para eliminarlo". Comente usando la distinción entre desempleo observado y tasa natural.
+<strong>Pauta sellada:</strong> la política de demanda (más G) reduce el desempleo por debajo de un solo transitoriamente; en mediano plazo, si u&lt;un, salarios y precios suben (segunda vuelta) y u vuelve a un. Reducir un <strong>estructural</strong> requiere cambiar m o z (competencia, instituciones laborales), no demanda agregada.</p>
+<p><strong>Ancla real (v0.2).</strong> El caso chileno de 2021 muestra el mecanismo completo: la economía operó <em>"ampliamente por sobre su nivel potencial"</em> gracias a un estímulo enorme de demanda — y el resultado de mediano plazo no fue empleo permanentemente mayor, sino un IPC de diciembre de <strong>12,8 %</strong> en 2022. Es exactamente lo que predice la pauta.</p>
+<hr />
+<h3>⊕ <code>LAB-EX-04</code> — El millón de inactivos: por qué la tasa de desempleo puede engañar · aritmética de flujos · intermedia</h3>
+<p><strong>Errores objetivo:</strong> LAB-ERR-01, LAB-ERR-02, LAB-ERR-05DESAL.
+<strong>Marco narrativo.</strong> La trabajadora que Rosa despidió en 2020 dejó de buscar trabajo a los seis meses. Multiplique ese caso por cientos de miles.</p>
+<p><strong>Contexto real.</strong> El IPoM de diciembre de 2021 reporta <em>"alrededor de un millón de inactivos más que en enero del 2020"</em>, con una recuperación del empleo frenada por una oferta de trabajo contenida.</p>
+<p><strong>Datos.</strong> Parta de la situación de <code>LAB-EX-01</code>: ocupados = 9.339.296; desocupados = 870.239; inactivos = 6.135.006. Considere dos escenarios alternativos, ambos con <strong>500.000 personas</strong> cambiando de casillero:</p>
+<ul>
+<li><strong>Escenario A (desaliento):</strong> 500.000 desocupados <strong>dejan de buscar</strong> y pasan a inactivos. <strong>Nadie consigue empleo.</strong></li>
+<li><strong>Escenario B (mejora real):</strong> 500.000 desocupados <strong>encuentran trabajo</strong>.</li>
+</ul>
+<p><strong>Se pide:</strong> calcule las tres tasas en cada escenario; compare; y diga cuál indicador distingue A de B.</p>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Base</strong></th>
+<th><strong>A — desaliento</strong></th>
+<th><strong>B — mejora real</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ocupados</td>
+<td>9.339.296</td>
+<td>9.339.296</td>
+<td>9.839.296</td>
+</tr>
+<tr>
+<td>Desocupados</td>
+<td>870.239</td>
+<td>370.239</td>
+<td>370.239</td>
+</tr>
+<tr>
+<td>Inactivos</td>
+<td>6.135.006</td>
+<td>6.635.006</td>
+<td>6.135.006</td>
+</tr>
+<tr>
+<td>PA</td>
+<td>10.209.535</td>
+<td>9.709.535</td>
+<td>10.209.535</td>
+</tr>
+<tr>
+<td>PET</td>
+<td>16.344.541</td>
+<td>16.344.541</td>
+<td>16.344.541</td>
+</tr>
+<tr>
+<td>Tasa de participación</td>
+<td>62,46 %</td>
+<td><strong>59,41 %</strong></td>
+<td>62,46 %</td>
+</tr>
+<tr>
+<td><strong>Tasa de ocupación</strong></td>
+<td>57,14 %</td>
+<td><strong>57,14 %</strong></td>
+<td><strong>60,20 %</strong></td>
+</tr>
+<tr>
+<td><strong>Tasa de desempleo</strong></td>
+<td>8,52 %</td>
+<td><strong>3,81 %</strong></td>
+<td><strong>3,63 %</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Las tres lecturas que el estudiante debe producir:</strong></p>
+<ol>
+<li><strong>La tasa de desempleo baja casi lo mismo en los dos escenarios</strong> —de 8,52 % a 3,81 % en A y a 3,63 % en B— pese a que en A <strong>no se creó un solo empleo</strong>. Un titular que informe solo la tasa de desempleo describiría ambos casos con la misma frase.</li>
+<li><strong>La tasa de ocupación es idéntica en la base y en A (57,14 %)</strong> y solo sube en B (60,20 %). Es el indicador que distingue los dos escenarios, porque su denominador es la <strong>PET</strong>, que no cambia cuando alguien se desanima.</li>
+<li><strong>La tasa de participación cae 3,05 pp en A</strong> y no se mueve en B. Es la señal de alarma: participación bajando junto con desempleo bajando es la firma del desaliento.</li>
+</ol>
+<p><strong>Regla operativa que se lleva el estudiante.</strong> <em>Nunca leer la tasa de desempleo sola.</em> Léala siempre junto a la <strong>tasa de ocupación</strong> y a la <strong>participación</strong>. Si el desempleo baja y la ocupación no sube, la mejora es estadística, no económica (<code>LAB-ERR-05DESAL</code>).</p>
+<p><strong>Límite.</strong> Los 500.000 de este ejercicio son una <strong>cifra didáctica</strong> elegida para hacer visible el mecanismo. El dato real citado —un millón de inactivos adicionales entre enero de 2020 y fines de 2021— corresponde a una variación acumulada del <strong>stock</strong> de inactivos, no a un flujo aplicable directamente a la muestra de un trimestre móvil de 2024. <strong>No mezcle ambas cifras en una misma tabla</strong> (<code>MED-CON-STOCKFLUJO</code>).</p>
+<p><code>[Ilustración sugerida: tres barras de tasa de desempleo (base, A, B) casi iguales en A y B, junto a tres barras de tasa de ocupación donde solo B se despega.]</code></p>
+<hr />
+<h3>⊕ <code>LAB-EX-05</code> — Plantilla de tabla multi-período, formato Examen · práctica de cálculo · básica-intermedia</h3>
+<p><em>(Cierra parcialmente <code>BL-LAB-01</code>: entrega el formato de 20 celdas del Examen 2025. Los datos deben cargarse desde boletines reales del INE.)</em></p>
+<p><strong>Instrucción al estudiante:</strong> complete todas las celdas vacías con <strong>dos decimales</strong>. Cada celda vale 1 punto.</p>
+<table>
+<thead>
+<tr>
+<th>Trimestre móvil</th>
+<th>Ocupados</th>
+<th>Desocupados</th>
+<th>Inactivos</th>
+<th>PA</th>
+<th>PET</th>
+<th>Participación</th>
+<th>Ocupación</th>
+<th>Desempleo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>feb-abr 2024</strong></td>
+<td>9.339.296</td>
+<td>870.239</td>
+<td>6.135.006</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td><em>(cargar del INE)</em></td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td><em>(cargar del INE)</em></td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+<tr>
+<td><em>(cargar del INE)</em></td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variante de dificultad (recomendada, y la que efectivamente discrimina):</strong> en al menos <strong>dos</strong> filas, entregar la <strong>tasa</strong> y <strong>omitir</strong> uno de los niveles, obligando a despejar. Por ejemplo, entregar ocupados, inactivos y tasa de desempleo, y pedir el número de desocupados. La regla útil del pasaporte —<em>cada fórmula relaciona tres variables; con dos se despeja la tercera</em>— está pensada exactamente para esto.</p>
+<p><strong>Ítem de cierre obligatorio (v0.2), 2 puntos adicionales:</strong> <em>"Entre la primera y la última fila, ¿mejoró el mercado laboral? Justifique con </em><em>al menos dos</em><em> indicadores y explique qué habría que observar para distinguir una mejora real de un efecto de desaliento."</em> Este ítem es el que evalúa <code>LAB-ERR-05DESAL</code>; sin él, la tabla mide solo aritmética.</p>
+<blockquote>
+<p><strong>Nota para el docente.</strong> Solo la primera fila trae datos verificados (INE, trimestre móvil feb-abr 2024, tomados de la Nota 8 / Ayudantía 9). <strong>Las demás filas deben completarse con boletines reales del INE antes de usar el ejercicio</strong>; esta edición no inventa cifras laborales (<code>BL-LAB-05</code>).</p>
+</blockquote>
+<hr />
+<h2>7. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> El dato INE es ___ · calculo el indicador ___ (fórmula y base) · la tasa de desempleo es ___ · <strong>los flujos entre casilleros fueron</strong> ___ · en WS el salario real esperado es F(u,z) ___ · en PS es 1/(1+m) ___ · la tasa natural un = ___ · un se desplaza si ___ (m o z) · el producto natural Yn corresponde a ___ · revisaría si ___.
+<strong>Nivel B:</strong> dato → indicador → u → WS vs PS → un → Yn → supuesto.
+<strong>Nivel C:</strong> <em>"Calcule los indicadores, determine la tasa natural y explique qué política la reduce y cuál solo mueve el desempleo transitoriamente."</em></p>
+<h3>7.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla el caso del millón de inactivos (§0.1 y <code>LAB-EX-04</code>)</td>
+<td>Identificar qué casillero se movió y por qué la tasa engañó</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entregan los <strong>dos hechos de 2026</strong> (informalidad y salario real) con las citas del IPoM</td>
+<td>Explicar cada uno con la ecuación correspondiente y decir qué <strong>no</strong> muestran los indicadores</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>un boletín de empleo del INE</strong>, crudo</td>
+<td>Calcular los indicadores, diagnosticar mejora real vs desaliento, y decir qué observaría el mes siguiente para confirmarlo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>LAB-EX-01</td>
+<td>Cálculo rápido de indicadores</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>LAB-EX-03 + <strong>LAB-EX-04</strong> + Boletín INE real</td>
+<td>Diagnóstico cíclico vs estructural, y mejora real vs desaliento, con datos</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %) — Tercera Parte</strong></td>
+<td><strong>LAB-EX-05</strong> (tabla multi-período) + ítem de cierre</td>
+<td>El Examen 2025 incluyó una <strong>tabla de indicadores laborales de 20 celdas</strong> (1 pt c/u); <code>LAB-EX-05</code> replica el formato</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Calibración (Examen 9-jul-2025):</strong> la Tercera Parte fue exactamente un ejercicio de completar tabla de indicadores laborales, 2 decimales, 1 punto por celda. <code>LAB-EX-05</code> entrega ese formato listo, a la espera de los datos del INE.</p>
+</blockquote>
+<p><strong>Regla de corrección:</strong> usar el denominador equivocado se corrige como error de <strong>formulación</strong>, no de cálculo. <strong>Interpretar una caída del desempleo sin verificar la ocupación se corrige igual</strong>, aunque las cinco celdas estén perfectas.</p>
+<hr />
+<h2>9. Integración con MacroLab</h2>
+<p>MacroLab <strong>sí tiene</strong> módulo laboral: la ventana <code>Lab · Mercado laboral</code> de la sub-app <code>macro1/</code>, con indicadores y WS-PS, más la serie anual de desempleo 2010-2025 en el <strong>Tablero macro</strong> de la capa superior.</p>
+<blockquote>
+<p><strong>Arquitectura de dos capas (precisada en v0.2).</strong> El <strong>Tablero macro</strong> de la capa superior (<code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>) <strong>sí existe</strong> e incluye la serie anual de <strong>desempleo 2010-2025</strong>, junto a PIB, IPC, TPM, CLP/USD, cobre y WTI. La ventana de cálculo está en la sub-app <code>macro1/</code>: <code>Lab · Mercado laboral</code>. Este bloque usa las dos.</p>
+<p><strong>Salvedad para <code>LAB-EX-05</code>:</strong> el Tablero trae la <strong>tasa de desempleo anual</strong>, no los niveles de ocupados, desocupados e inactivos por trimestre móvil que la tabla necesita. Esos siguen viniendo de los boletines del INE (<code>BL-LAB-05</code>). Y es justamente por eso que la tasa de desempleo del Tablero, leída sola, no permite distinguir mejora real de desaliento: <code>LAB-EX-04</code> es el antídoto.</p>
+</blockquote>
+<p><strong>Hallazgo favorable: la ventana reproduce exactamente las pautas de este bloque.</strong> Verificado el 2026-08-15 ejecutando su propio código con los datos de <code>LAB-EX-01</code> (9.339.296 / 870.239 / 6.135.006): entrega <strong>PA = 10.209.535, PET = 16.344.541, participación 62,46 %, ocupación 57,14 %, desempleo 8,52 %</strong>. Y con los dos escenarios de <code>LAB-EX-04</code> confirma el punto central: la tasa de ocupación <strong>no se mueve</strong> con el desaliento.</p>
+<table>
+<thead>
+<tr>
+<th>Entrada real</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lab · Mercado laboral</code>, bloque de indicadores</td>
+<td>Resolver <code>LAB-EX-01</code> y <strong>montar <code>LAB-EX-04</code> en vivo</strong>: ingresar la base, luego el escenario de desaliento, luego el de empleo real, y proyectar las tres tasas cambiando frente al curso</td>
+<td>La ventana <strong>no distingue empleo formal de informal</strong> ni muestra los <strong>flujos</strong> entre casilleros: el estudiante debe leer los tres indicadores y sacar él la conclusión (<code>LAB-ERR-05DESAL</code>)</td>
+</tr>
+<tr>
+<td><code>Lab · Mercado laboral</code>, bloque WS-PS</td>
+<td>Verificar <code>LAB-EX-02</code>: con el margen <code>m</code> entrega <code>un = m/(1+m)</code> y el salario real <code>1/(1+m)</code>; en <code>m = 0,1</code> da <strong>9,09 %</strong> y <strong>0,909</strong></td>
+<td>No leer ese 9,09 % como estimación de la tasa natural chilena (§3.2)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Límite del instrumento, declarado.</strong> <code>LAB-EX-04</code> funciona muy bien <em>proyectando</em> la ventana y cambiando los datos a la vista, pero el simulador <strong>no visualiza la transición</strong>: muestra tres fotos, no la película. Esa es exactamente la extensión que pide <code>BL-LAB-03</code>.</p>
+<p><strong>Propuesta de extensión (reiterada y precisada en v0.2):</strong> un módulo laboral que muestre no solo las tres tasas sino <strong>los flujos entre los tres casilleros</strong> (ocupado, desocupado, inactivo). Es lo que haría visible <code>LAB-ERR-05DESAL</code>, que ningún gráfico de tasas puede mostrar.</p>
+<hr />
+<h2>10. Cierre y backlog</h2>
+<p><strong>Definición de Terminado:</strong> indicadores con base correcta (PA vs PET); tasa natural derivada de WS-PS; distinción u observado vs un; puente a Yn explícito; ⊕ toda lectura de la tasa de desempleo acompañada de ocupación y participación; ⊕ ninguna cifra laboral sin fuente y trimestre.</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-LAB-01</td>
+<td>Escalar LAB-EX-01 a tabla multi-año de 20 celdas (formato Examen)</td>
+<td><strong>parcialmente cerrada</strong></td>
+<td><code>LAB-EX-05</code> entrega el formato y el ítem de cierre; <strong>faltan los datos INE</strong> de las filas 2 a 4 (<code>BL-LAB-05</code>)</td>
+</tr>
+<tr>
+<td>BL-LAB-02</td>
+<td>Conectar Yn con la curva OA del bloque OADA</td>
+<td>alta</td>
+<td>integración con OA-DA</td>
+</tr>
+<tr>
+<td>BL-LAB-03</td>
+<td>Módulo laboral en MacroLab (indicadores + WS-PS)</td>
+<td>media</td>
+<td>extensión del simulador; <strong>v0.2 precisa que debe incluir flujos entre casilleros</strong>, no solo tasas</td>
+</tr>
+<tr>
+<td><strong>BL-LAB-04</strong> ⊕</td>
+<td><strong>Conciliar el valor de <code>L</code>.</strong> La derivación de OA de la Nota 9 (bloque <code>OADA</code>) usa <code>L = 10.193.231</code>, mientras la PA del trimestre feb-abr 2024 de <code>LAB-EX-01</code> es <strong>10.209.535</strong>. Son cercanos pero distintos: hay que declarar a qué trimestre corresponde cada uno y usar el mismo en ambos bloques</td>
+<td><strong>alta</strong></td>
+<td>coordinar <code>LAB</code> y <code>OADA</code> antes de la clase de OA-DA</td>
+</tr>
+<tr>
+<td><strong>BL-LAB-05</strong> ⊕</td>
+<td>Cargar las filas 2 a 4 de <code>LAB-EX-05</code> con boletines reales del INE (trimestres móviles a elección, idealmente cubriendo 2020, 2021 y 2026 para que el contraste desaliento/recuperación sea visible)</td>
+<td><strong>alta</strong></td>
+<td>antes del Examen</td>
+</tr>
+<tr>
+<td><strong>BL-LAB-06</strong> ⊕</td>
+<td>Verificar la cifra del <strong>millón de inactivos adicionales</strong> contra la serie de la ENE del INE, y precisar el período exacto de comparación (el IPoM dice "respecto de enero del 2020")</td>
+<td>media</td>
+<td>antes de usarla en una pauta con cálculo</td>
+</tr>
+<tr>
+<td><strong>BL-LAB-07</strong> ⊕</td>
+<td>Decidir si <code>LAB-CON-INFORMAL</code>, <code>LAB-CON-SORPRESA</code> y <code>LAB-ERR-05DESAL</code> se incorporan al registro maestro o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Población en edad de trabajar (PET)</strong></td>
+<td>Todos los adultos del país</td>
+<td>denominador de TP y TO</td>
+</tr>
+<tr>
+<td><strong>Fuerza de trabajo (PA)</strong></td>
+<td>Los que están en la cancha: jugando o esperando entrar</td>
+<td>denominador de TD</td>
+</tr>
+<tr>
+<td><strong>Inactivo</strong></td>
+<td>El que se fue a la banca y ya no espera entrar</td>
+<td>LAB-ERR-02</td>
+</tr>
+<tr>
+<td><strong>Tasa de participación</strong></td>
+<td>Qué fracción de los adultos está en la cancha</td>
+<td>PA/PET</td>
+</tr>
+<tr>
+<td><strong>Tasa de ocupación</strong></td>
+<td>Qué fracción de los adultos está jugando</td>
+<td>Ocupados/PET</td>
+</tr>
+<tr>
+<td><strong>Tasa de desempleo</strong></td>
+<td>De los que están en la cancha, cuántos no juegan</td>
+<td>Desocupados/PA</td>
+</tr>
+<tr>
+<td><strong>Desaliento</strong></td>
+<td>Dejar de buscar: bajas el desempleo sin conseguir trabajo</td>
+<td>LAB-ERR-05DESAL</td>
+</tr>
+<tr>
+<td><strong>Empleo informal</strong></td>
+<td>Trabaja, pero sin contrato ni cotizaciones: cuenta como ocupado</td>
+<td>LAB-CON-INFORMAL</td>
+</tr>
+<tr>
+<td><strong>Ecuación WS</strong></td>
+<td>El sueldo se negocia en pesos, apostando a cuánto subirán los precios</td>
+<td>W = Pe·F(u,z)</td>
+</tr>
+<tr>
+<td><strong>Margen (m)</strong></td>
+<td>Cuánto le suma la empresa al costo laboral para poner el precio</td>
+<td>P = (1+m)W</td>
+</tr>
+<tr>
+<td><strong>Tasa natural (un)</strong></td>
+<td>El desempleo que queda incluso cuando nada anda mal</td>
+<td>un = m/(1+m)</td>
+</tr>
+<tr>
+<td><strong>Sorpresa inflacionaria</strong></td>
+<td>Los precios corrieron más rápido que tu sueldo, sin que nadie lo decidiera</td>
+<td>LAB-CON-SORPRESA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>Verificación limpia:</strong> las tres pautas selladas se recalcularon y <strong>son correctas</strong>; ninguna cifra cambió.</li>
+<li><strong>Personaje-ancla:</strong> Rosa Millán cierra aquí el recorrido de los siete bloques. La trabajadora que despidió en 2020 y que dejó de buscar trabajo es el caso individual del fenómeno agregado del millón de inactivos.</li>
+<li><strong>Episodio histórico central (§0.1 y <code>LAB-EX-04</code>):</strong> <em>"alrededor de un millón de inactivos más que en enero del 2020"</em> (IPoM, dic-2021). Convierte la advertencia sobre denominadores en el hallazgo de que <strong>una caída del desempleo puede significar lo contrario de lo que parece</strong>.</li>
+<li><strong>Ejercicio nuevo <code>LAB-EX-04</code></strong> con aritmética completa: 500.000 personas moviéndose de casillero dan una tasa de desempleo de <strong>3,81 %</strong> por desaliento frente a <strong>3,63 %</strong> por empleo real — casi idénticas — mientras la tasa de ocupación se queda en <strong>57,14 %</strong> en un caso y sube a <strong>60,20 %</strong> en el otro. De ahí sale <code>LAB-ERR-05DESAL</code>.</li>
+<li><strong>Ejercicio nuevo <code>LAB-EX-05</code></strong>, que entrega el formato de tabla de 20 celdas del Examen 2025 con su ítem de cierre conceptual, cerrando parcialmente <code>BL-LAB-01</code>.</li>
+<li><strong>Los dos hechos de 2026 (§3.3):</strong> la recomposición <strong>hacia empleo informal</strong> —que los indicadores no distinguen, enlazando con el límite declarado del bloque <code>MED</code>— y la <strong>caída del salario real por sorpresa inflacionaria</strong>, con costos laborales nominales acelerando al mismo tiempo. Es <code>LAB-ERR-03</code> mostrado con datos.</li>
+<li><strong>Nodos nuevos dentro del esquema:</strong> conceptos <code>LAB-CON-INFORMAL</code> y <code>LAB-CON-SORPRESA</code>; error <code>LAB-ERR-05DESAL</code>; ejercicios <code>LAB-EX-04</code> y <code>LAB-EX-05</code>. Dos aristas nuevas en el grafo, una de las cuales conecta de vuelta con <code>MED-MOD-PIB</code>.</li>
+<li><strong>Discrepancia detectada entre bloques (<code>BL-LAB-04</code>):</strong> la Nota 9 usa <code>L = 10.193.231</code> para derivar la OA y <code>LAB-EX-01</code> usa una PA de <strong>10.209.535</strong>. Hay que declarar el trimestre de cada una y unificar.</li>
+<li><strong>Advertencia de coincidencia frente a regla:</strong> la tasa natural de 9,09 % presentada como consecuencia de <code>m = 0,1</code>, con tabla de tres calibraciones — <strong>no</strong> como estimación para Chile.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Período / publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ocupados / desocupados / inactivos</td>
+<td>9.339.296 / 870.239 / 6.135.006</td>
+<td>INE, Boletín de Empleo (vía Nota 8 y Ayudantía 9)</td>
+<td>trimestre móvil feb-abr 2024</td>
+</tr>
+<tr>
+<td>Inactivos adicionales respecto de enero de 2020</td>
+<td>≈ <strong>1 millón</strong></td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Oferta de trabajo contenida como freno a la recuperación del empleo</td>
+<td>descripción cualitativa (IPN de noviembre)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Crecimiento de salarios nominales en 2021 mayor que en 2020</td>
+<td>descripción cualitativa</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Tasa de desempleo al alza, débil creación de empleo, recomposición hacia informalidad</td>
+<td>cita textual</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Caída de la variación anual de los <strong>salarios reales</strong> por el alza de la inflación</td>
+<td>cita textual</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Costos laborales por hora acelerando</td>
+<td>cita textual</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>Costos laborales como factor relevante en la evolución de costos (EDEP, IPN)</td>
+<td>descripción cualitativa</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Economía por sobre el potencial en el 3T-2021</td>
+<td>cita textual</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>IPC de diciembre 2022</td>
+<td>12,8 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2023</td>
+</tr>
+<tr>
+<td>PIB no minero potencial 2026 revisado</td>
+<td>2,3 % → 1,9 %</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculos propios declarados:</strong> los escenarios A y B de <code>LAB-EX-04</code> usan <strong>500.000 personas</strong> como cifra <strong>didáctica</strong> aplicada a la base de feb-abr 2024. No corresponden a un flujo observado y no deben citarse como dato de Chile.</p>
+<p><strong>Marcadores de verificación pendientes:</strong> tres, todos en el backlog — <code>BL-LAB-04</code> (conciliación de <code>L</code>), <code>BL-LAB-05</code> (datos INE para <code>LAB-EX-05</code>) y <code>BL-LAB-06</code> (precisar el período del millón de inactivos).</p>
+<hr />
+<p><em>Indicadores y tasa natural anclados en la Nota 8 y la Ayudantía 9 (datos INE Chile). Pautas selladas de v0.1 recalculadas y confirmadas el 2026-08-15, sin cambios de cifras. Reedición cerrada el 2026-08-15.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

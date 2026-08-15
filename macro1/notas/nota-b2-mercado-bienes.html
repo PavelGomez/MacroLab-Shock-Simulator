@@ -1,0 +1,1262 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 2 · El Mercado de Bienes &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 2: El Mercado de Bienes</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>BIE</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> listo para clase
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 2 y 3 · <strong>Texto base:</strong> Blanchard 7ª, cap. 3
+<strong>Prerrequisito:</strong> bloque <code>MED</code> (nominal/real, identidad PIB = C + I + G) · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Cubre el mercado de bienes en economía cerrada con precios dados: demanda agregada (Z = C + I + G), función de consumo, equilibrio por inventarios, y el <strong>multiplicador</strong> con impuesto autónomo (T fijo). El impuesto proporcional (T = t·Y) se desarrolla en el bloque IS-LM. Ejercicios con pauta sellada y verificada.</p>
+<p><strong>Qué cambia respecto de v0.1.</strong> Arquitectura intacta: mismos IDs, mismo pasaporte <code>BIE-MOD-EQ</code>, mismas pautas selladas —recalculadas y confirmadas el 2026-08-15, sin cambios de cifras—. Se agrega densidad histórica sobre el episodio chileno 2020-2023, que es el experimento natural de manual para este bloque: una inyección de liquidez a los hogares de <strong>28 % del PIB</strong>, un consumo privado que creció <strong>20,3 %</strong> en un año y un ajuste posterior que lo hizo caer <strong>4,9 %</strong>. Rosa Millán continúa desde el bloque <code>MED</code>.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong> en tres partes, IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>. No se reexplican aquí.</p>
+</blockquote>
+<hr />
+<h2>0. Alcance y decisiones del bloque</h2>
+<ul>
+<li><strong>Economía cerrada, precios fijos, tasa de interés dada:</strong> la inversión es exógena (Ī) en este bloque; se endogeniza (I = b0 + b1·Y − b2·i) recién al construir la IS.</li>
+<li><strong>Impuestos autónomos (T fijo)</strong> aquí; el caso proporcional <code>T = t·Y</code> se trata en el bloque IS-LM cerrado, como pidió el diseño del curso. Se deja el gancho declarado al final.</li>
+<li><strong>Puente hacia IS:</strong> este mercado, resuelto para un <code>i</code> dado, es un punto de la IS. La IS reúne los equilibrios del mercado de bienes para distintas tasas.</li>
+</ul>
+<p>IDs: <code>BIE-CON-*</code>, <code>BIE-MOD-*</code>, <code>BIE-CIR-*</code>, <code>BIE-ERR-*</code>, <code>BIE-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: el año en que Chile gastó como nunca</h3>
+<p>Como ya vimos con Rosa Millán al calcular el IPC, un promedio puede esconder todo lo interesante. Aquí esconde algo más grande.</p>
+<p>En 2021 la <strong>demanda interna</strong> de Chile creció <strong>21,6 %</strong>. Es el número más alto de la serie moderna: los chilenos compraron autos, refrigeradores, televisores y pan como no lo habían hecho nunca. Rosa contrató a una tercera persona y compró un horno nuevo.</p>
+<p>Y sin embargo, el <strong>PIB creció 11,7 %</strong> (IPoM, BCCh, diciembre-2022). Poco más de la mitad.</p>
+<blockquote>
+<p><strong>La pregunta del bloque:</strong> si la gente gastó 21,6 % más, ¿por qué la producción creció la mitad de eso? ¿Dónde se fue el resto del gasto?</p>
+</blockquote>
+<p>La respuesta está en un tercer número del mismo cuadro: las <strong>importaciones crecieron 31,3 %</strong>. Una parte grande de ese gasto no puso a trabajar ninguna máquina chilena: puso a trabajar máquinas en otros países. El modelo de este bloque —economía <strong>cerrada</strong>— no puede ver eso. <strong>Y esa es exactamente la razón por la que hay que declararlo desde el primer minuto</strong>: el multiplicador que vamos a construir es correcto dentro de sus supuestos y sobreestima el efecto real en una economía abierta como Chile.</p>
+<p><code>[Ilustración sugerida: tres barras para 2021 —demanda interna +21,6 %, PIB +11,7 %, importaciones +31,3 %— con una flecha rotulada "fuga" saliendo de la primera hacia la tercera.]</code></p>
+<p><strong>Decisión de alcance declarada.</strong> Este bloque construye el multiplicador cerrado porque es el mecanismo base y hay que dominarlo antes de complicarlo. La corrección por apertura llega en el bloque <strong>IS-LM-BP abierta</strong>, con <code>XN = x0 − x1·Y + x2·E</code>. Mientras tanto, cada vez que se aplique el multiplicador a datos chilenos reales hay que decir en voz alta que sobreestima (<code>BIE-ERR-06FUGA</code>).</p>
+<hr />
+<h2>1. Grafo de prerrequisitos del bloque</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  PIB[MED: identidad&lt;br/&gt;PIB = C+I+G] --&gt; Z[BIE-CON-Z&lt;br/&gt;Demanda Z = C+I+G]
+  IDcond[MED-CON: identidad&lt;br/&gt;vs conducta] --&gt; Cfun[BIE-CON-CFUN&lt;br/&gt;C = c0 + c1·Yd]
+  SF[MED-CON-STOCKFLUJO&lt;br/&gt;stock vs flujo] --&gt; LIQ[BIE-CON-LIQUIDEZ&lt;br/&gt;Liquidez transitoria&lt;br/&gt;vs ingreso del período]
+  LIQ --&gt; Cfun
+  Cfun --&gt; Z
+  Z --&gt; EQ[BIE-MOD-EQ&lt;br/&gt;Equilibrio Y = Z]
+  EQ --&gt; MULT[BIE-CON-MULT&lt;br/&gt;Multiplicador]
+  EQ --&gt; INV[BIE-CON-INV&lt;br/&gt;Inventarios no planeados]
+  MULT -.puente.-&gt; IS[/IS-LM cerrado&lt;br/&gt;bloque futuro/]
+  MULT -.límite.-&gt; ABR[/Fuga por importaciones&lt;br/&gt;IS-LM-BP abierta/]
+</code></pre>
+<p><strong>Relaciones semilla:</strong></p>
+<p><em>Las cinco relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan tres:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MED-CON-STOCKFLUJO</td>
+<td>ES_PRERREQUISITO_DE</td>
+<td>BIE-CON-LIQUIDEZ</td>
+</tr>
+<tr>
+<td>BIE-CON-LIQUIDEZ</td>
+<td>MODIFICA</td>
+<td>BIE-CON-CFUN</td>
+</tr>
+<tr>
+<td>BIE-CON-MULT</td>
+<td>TIENE_LIMITE_EN</td>
+<td>ABR-CON-FUGA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BIE-CON-Z</td>
+<td>Demanda agregada de bienes</td>
+<td>Z = C + I + G es demanda <em>planeada</em></td>
+<td>≠ curva DA del modelo OA-DA (esa es Y-P)</td>
+</tr>
+<tr>
+<td>BIE-CON-CFUN</td>
+<td>Función de consumo</td>
+<td><code>C = c0 + c1·Yd</code> es <strong>conducta</strong>, no identidad</td>
+<td>≠ identidad PIB = C+I+G</td>
+</tr>
+<tr>
+<td>BIE-CON-PMC</td>
+<td>Propensión marginal a consumir (c1)</td>
+<td>0 &lt; c1 &lt; 1; parte de un peso extra de ingreso que se consume</td>
+<td>≠ consumo autónomo c0</td>
+</tr>
+<tr>
+<td>BIE-CON-INV</td>
+<td>Inventarios no planeados</td>
+<td>Señal de desequilibrio, no decisión</td>
+<td>≠ inversión en inventarios planeada</td>
+</tr>
+<tr>
+<td>BIE-CON-MULT</td>
+<td>Multiplicador</td>
+<td>1/(1−c1): efecto total / shock inicial</td>
+<td>≠ el shock mismo</td>
+</tr>
+<tr>
+<td>BIE-CON-YvsYd</td>
+<td>Y vs Yd</td>
+<td>Yd = Y − T (ingreso disponible)</td>
+<td>usar Y donde va Yd infla el consumo</td>
+</tr>
+<tr>
+<td><strong>BIE-CON-LIQUIDEZ</strong> ⊕</td>
+<td>Liquidez transitoria vs ingreso del período</td>
+<td>Sacar plata de un fondo propio es convertir un <strong>stock</strong> en liquidez, no generar un <strong>flujo</strong> de ingreso</td>
+<td>"la gente recibió más ingreso" dicho de un retiro de ahorros</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Regla del bloque:</strong> rotule cada ecuación como <strong>identidad (ID)</strong>, <strong>conducta (COND)</strong> o <strong>condición de equilibrio (EQ)</strong> antes de operar. Es la vacuna contra BIE-ERR-01.</p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BIE-CON-CFUN / BIE-CON-PMC</td>
+<td>De quienes recibieron el IFE, <strong>cerca de dos tercios</strong> destinaron los recursos mayoritariamente a consumo; de quienes retiraron fondos previsionales, <strong>cerca de un tercio</strong>. Y las proporciones <strong>suben en los quintiles de menores ingresos</strong> (IPoM, BCCh, diciembre-2021, Recuadro III.1)</td>
+<td>Tratar c1 como una constante universal, igual para todo peso y todo hogar</td>
+</tr>
+<tr>
+<td>BIE-CON-LIQUIDEZ</td>
+<td>Entre 2020 y 2021 los hogares acumularon liquidez por unos <strong>US$71 mil millones</strong>, ≈ <strong>28 % del PIB</strong> de 2020, sumando ingresos habituales, transferencias del Estado y retiros de fondos (ídem)</td>
+<td>Sumar un retiro de ahorros al ingreso disponible del período</td>
+</tr>
+<tr>
+<td>BIE-CON-INV</td>
+<td>Diferencia entre demanda interna y demanda interna sin variación de existencias: <strong>+3,6 pp</strong> en 2021, <strong>−1,2 pp</strong> en 2020 (BCCh)</td>
+<td>Creer que los inventarios son un residuo sin información</td>
+</tr>
+<tr>
+<td>BIE-CON-MULT</td>
+<td>Demanda interna <strong>+21,6 %</strong> y PIB <strong>+11,7 %</strong> en 2021, con importaciones <strong>+31,3 %</strong></td>
+<td>Aplicar 1/(1−c1) a datos chilenos sin descontar la fuga externa</td>
+</tr>
+<tr>
+<td>BIE-ERR-02 (transferencia ≠ G)</td>
+<td>El IFE es una <strong>transferencia</strong> a hogares, no compra de bienes por el Estado: entra por <code>Yd</code>, no por <code>G</code></td>
+<td>Sumar el IFE directamente a G y multiplicar por 5</td>
+</tr>
+<tr>
+<td>BIE-CON-YvsYd</td>
+<td>Consumo privado <strong>+20,3 %</strong> en 2021 y <strong>−4,9 %</strong> en 2023 (BCCh)</td>
+<td>Explicar la caída de 2023 por "menos ingreso" sin ver que se agotó la liquidez transitoria</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaporte <code>BIE-MOD-EQ</code> — Mercado de bienes (cruz keynesiana)</h2>
+<p><strong>El quiebre.</strong> A comienzos de 2021 a Rosa se le acabó el pan a las once de la mañana tres días seguidos. No había subido el precio ni cambiado la receta: simplemente entraba más gente. Su primera reacción no fue subir el precio —eso vendría después, y es materia del bloque de OA-DA— sino <strong>amasar más</strong>. Esa decisión, repetida por miles de empresas, <em>es</em> el mecanismo de este bloque: cuando la demanda planeada supera lo producido, primero se vacían las estanterías y después sube la producción.</p>
+<pre><code class="language-yaml">id: BIE-MOD-EQ
+tipo: Modelo
+pregunta: &quot;¿Cómo un cambio autónomo del gasto se amplifica hasta un nuevo Y de equilibrio?&quot;
+endogenas: [Y, C, ahorro, inventarios no planeados]
+exogenas_cierre: [c0, c1, T, I (exógena en este bloque), G]
+ecuaciones:
+  identidades:  [&quot;Yd = Y − T&quot;, &quot;S_priv = Yd − C&quot;, &quot;en equilibrio cerrado: I = S_priv + (T − G)&quot;]
+  conducta:     [&quot;C = c0 + c1·Yd&quot;]
+  equilibrio:   [&quot;Y = Z = C + I + G&quot;]
+solucion: &quot;Y* = 1/(1−c1) · (c0 − c1·T + I + G)&quot;
+ajuste_horizonte: &quot;Z&gt;Y ⇒ caen inventarios ⇒ sube producción; Z&lt;Y ⇒ suben inventarios ⇒ baja producción. Corto plazo, P fijo.&quot;
+limites: &quot;No determina la tasa de interés; I exógena; sin sector externo (el multiplicador sobreestima: BIE-ERR-06FUGA).&quot;
+errores_objetivo: [BIE-ERR-01, BIE-ERR-02, BIE-ERR-03, BIE-ERR-04, BIE-ERR-06FUGA, BIE-ERR-07STOCK]   # ← ampliado en v0.2
+macrolab: &quot;Puente hacia IS: resolver localmente primero; luego mostrar que IS reúne equilibrios de bienes para distintos i.&quot;
+fuente: {id: F1, unidad: &quot;2-3&quot;}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>El multiplicador, en una línea:</strong> un aumento autónomo del gasto de ΔA eleva Y en <code>ΔA / (1 − c1)</code>. Con c1 = 0,8 el multiplicador es 5. La intuición: el gasto inicial se convierte en ingreso, que se re-gasta en proporción c1, que se vuelve ingreso otra vez… la suma geométrica converge a 1/(1−c1).</p>
+<p><strong>Traducción de la fórmula antes y después de escribirla.</strong> <em>Antes:</em> si de cada peso extra que recibe la gente se gasta 80 centavos, ese peso no se detiene — vuelve a ser ingreso de otro, que gasta 80 centavos de él, y así. <em>Después:</em> <code>1/(1−0,8) = 5</code> significa que el gasto original termina dando cinco vueltas completas por la economía antes de agotarse. El único freno es lo que se <strong>filtra</strong> en cada vuelta: en este modelo, solo el ahorro.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) Aquí el multiplicador es exactamente <strong>5</strong>. (2) Lo es <strong>porque</strong> la calibración fija <code>c1 = 0,8</code> y el modelo es cerrado sin impuesto proporcional. (3) <strong>Deja de cumplirse</strong> de tres maneras distintas, cada una en su bloque: con <code>T = t·Y</code> el multiplicador baja a <code>1/(1 − c1·(1−t))</code> (IS-LM cerrado); con inversión sensible a la tasa, la LM lo modera (IS-LM); y con importaciones, parte de cada vuelta se fuga al exterior (IS-LM-BP abierta). <strong>"El multiplicador es 5" no es un hecho sobre Chile: es un hecho sobre este ejercicio.</strong></p>
+</blockquote>
+<p><code>[Ilustración sugerida: cruz keynesiana con la recta de 45° y la recta Z, y al lado la escalera de rondas del multiplicador (200 → 160 → 128 → …) sumando 1.000.]</code></p>
+<hr />
+<h3>3.1 ⊕ El experimento natural chileno 2020-2023, leído con el pasaporte</h3>
+<p>Ningún libro de texto pudo diseñar un ejercicio como el que Chile vivió entre 2020 y 2023. Conviene leerlo con el aparato del bloque, paso por paso.</p>
+<p><strong>El shock.</strong> Entre 2020 y 2021 los hogares chilenos acumularon liquidez por cerca de <strong>US$71 mil millones</strong>, equivalentes al <strong>28 % del PIB</strong> de 2020, sumando sus ingresos habituales, las transferencias del Estado (IFE y bonos) y los retiros extraordinarios de fondos de pensiones. Los saldos en cuentas corrientes y a la vista <strong>se duplicaron</strong> respecto de enero de 2020, creciendo unos US$19 mil millones (IPoM, BCCh, diciembre-2021, Recuadro III.1).</p>
+<p><strong>La traducción a parámetros —que es donde se juega el bloque.</strong> Ese shock <strong>no</strong> es un aumento de <code>G</code>. Se reparte en tres casilleros distintos y cada uno entra por una puerta distinta:</p>
+<table>
+<thead>
+<tr>
+<th>Componente del shock</th>
+<th>¿Qué parámetro toca?</th>
+<th>Por qué</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IFE y bonos</td>
+<td><strong>Transferencia</strong>: reduce <code>T</code> neto, entra por <code>Yd</code></td>
+<td>El Estado no compró bienes; le pasó plata al hogar (<code>BIE-ERR-02</code>)</td>
+</tr>
+<tr>
+<td>Retiros de fondos de pensiones</td>
+<td><strong>Ni <code>G</code> ni <code>T</code></strong>: es liquidez desde un stock propio</td>
+<td>El hogar sacó plata de un ahorro suyo; no hubo ingreso nuevo del período (<code>BIE-CON-LIQUIDEZ</code>, <code>BIE-ERR-07STOCK</code>)</td>
+</tr>
+<tr>
+<td>Compras directas del Estado</td>
+<td><strong><code>G</code></strong></td>
+<td>Aquí sí hay demanda pública de bienes y servicios</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El c1 medido en terreno.</strong> La Encuesta de Ocupación y Desocupación del Gran Santiago mostró que <strong>cerca de dos tercios</strong> de quienes recibían IFE destinaban esos recursos mayoritariamente a consumo, frente a <strong>cerca de un tercio</strong> de quienes habían retirado fondos previsionales; y esas proporciones <strong>crecían en los quintiles de menores ingresos</strong> (ídem). Parte relevante del resto fue a <strong>ahorro</strong> —los saldos de ahorro voluntario de las AFP y de ahorro a plazo también se duplicaron, unos US$10 mil millones— y a <strong>pagar deuda</strong>: la deuda no hipotecaria de los hogares cayó <strong>más de US$6 mil millones</strong> entre el primer trimestre de 2020 y el segundo de 2021.</p>
+<blockquote>
+<p><strong>Esto es lo más importante que enseña el episodio.</strong> En el modelo, <code>c1</code> es un número. En la realidad, la fracción que se consume <strong>depende de quién recibe y de qué tipo de recurso es</strong>: un hogar del primer quintil que recibe una transferencia consume casi todo; un hogar de mayores ingresos que retira su propio ahorro consume mucho menos. <strong>Un mismo peso tiene multiplicadores distintos según a quién llegue.</strong> Esa frase no es una opinión política: es lo que muestran los datos, y es la razón por la que el diseño de una política de transferencias importa tanto como su monto.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos barras apiladas —IFE y retiros AFP— partidas en "a consumo" y "a ahorro o pago de deuda", con ~2/3 y ~1/3 en el primer segmento respectivamente.]</code></p>
+<p><strong>El resultado, con la fuga incluida.</strong></p>
+<table>
+<thead>
+<tr>
+<th>2021</th>
+<th>Valor</th>
+<th>Lectura con el bloque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demanda interna</td>
+<td><strong>+21,6 %</strong></td>
+<td>El gasto planeado <code>Z</code> se disparó</td>
+</tr>
+<tr>
+<td>Consumo privado</td>
+<td><strong>+20,3 %</strong></td>
+<td>El canal fue <code>C</code>, tal como predice la función de consumo</td>
+</tr>
+<tr>
+<td>Formación bruta de capital fijo</td>
+<td>+17,6 %</td>
+<td>También reaccionó <code>I</code>, que aquí tratamos como exógena</td>
+</tr>
+<tr>
+<td><strong>PIB</strong></td>
+<td><strong>+11,7 %</strong></td>
+<td>La producción interna creció <strong>la mitad</strong> que el gasto</td>
+</tr>
+<tr>
+<td>Importaciones</td>
+<td><strong>+31,3 %</strong></td>
+<td>La diferencia se fue afuera: <strong>fuga</strong></td>
+</tr>
+<tr>
+<td>Exportaciones</td>
+<td>−1,5 %</td>
+<td>No compensó</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El ajuste posterior, que cierra la historia.</strong> Terminadas las transferencias y agotada la liquidez, el consumo privado cayó <strong>−4,9 %</strong> en 2023 y la demanda interna <strong>−3,7 %</strong>, mientras el PIB apenas creció <strong>0,5 %</strong> (IPoM, BCCh, diciembre-2025). El multiplicador funciona en ambas direcciones: la misma cadena que amplifica un impulso amplifica su retiro.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En 2021 el PIB creció aproximadamente la mitad que la demanda interna. (2) Ocurrió <strong>porque</strong> ese año la fuga por importaciones fue excepcionalmente alta (+31,3 %), en parte por la composición del gasto —bienes durables importados—. (3) <strong>Deja de cumplirse</strong> en otros años: en 2024 el PIB creció <strong>2,8 %</strong> con demanda interna de apenas <strong>1,2 %</strong>, porque las exportaciones (+7,2 %) tiraron del carro. No existe la regla "el PIB crece la mitad que la demanda interna".</p>
+</blockquote>
+<p><strong>Límite.</strong> Este relato <strong>no permite concluir</strong> cuánto vale <code>c1</code> en Chile, ni estimar el multiplicador chileno. Para eso hacen falta métodos econométricos que están fuera del curso. Permite concluir algo más modesto y más útil: <strong>que los canales del modelo son reales y observables</strong>, y que el modelo cerrado los describe de forma incompleta en una dirección conocida.</p>
+<hr />
+<h2>4. Circuito <code>BIE-CIR-01</code> — Gasto, inventarios y multiplicador</h2>
+<pre><code>Shock → Traducción a parámetro → Gasto planeado → Brecha de planes →
+Inventarios → Producción → Retroalimentación → Nuevo equilibrio → Ahorro/inversión → Evidencia/revisión
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shock</td>
+<td>¿Qué componente autónomo cambia y por qué?</td>
+</tr>
+<tr>
+<td>Traducción a parámetro</td>
+<td>¿Cambia c0, T, I o G? <strong>Una transferencia no es G</strong> (entra vía Yd). <strong>Un retiro de ahorros no es ninguno de los cuatro</strong> (es liquidez desde un stock).</td>
+</tr>
+<tr>
+<td>Gasto planeado</td>
+<td>Reescriba Z = C + I + G y calcule el cambio inicial.</td>
+</tr>
+<tr>
+<td>Brecha de planes</td>
+<td>¿Z es mayor o menor que Y al nivel previo?</td>
+</tr>
+<tr>
+<td>Inventarios</td>
+<td>¿Se acumulan o se reducen inventarios no planeados?</td>
+</tr>
+<tr>
+<td>Producción</td>
+<td>¿Cómo responden las empresas?</td>
+</tr>
+<tr>
+<td>Retroalimentación</td>
+<td>¿Cómo el nuevo ingreso altera el consumo (vía c1)?</td>
+</tr>
+<tr>
+<td>Nuevo equilibrio</td>
+<td>Calcule Y* y compruebe Y = Z.</td>
+</tr>
+<tr>
+<td>Ahorro/inversión</td>
+<td>Verifique I = S_priv + (T − G).</td>
+</tr>
+<tr>
+<td>Evidencia/revisión</td>
+<td>¿Qué datos de ventas, inventarios o consumo confirmarían el mecanismo? <strong>¿Y cuánto del efecto se habría fugado a importaciones?</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> diagrama causal + cálculo + gráfico de 45° + narrativa.
+<strong>Regla de revisión:</strong> reabrir si no aparece el ajuste de inventarios, si se altera la línea de 45°, <strong>o si se aplicó el multiplicador cerrado a un caso chileno sin declarar la fuga</strong>.</p>
+<h3>4.1 ⊕ Dónde mirar los inventarios en los datos reales</h3>
+<p>El paso "Inventarios" del circuito parece el más abstracto y es el que tiene <strong>observación directa</strong> en las cuentas nacionales chilenas. El Banco Central publica dos filas contiguas: <em>demanda interna</em> y <em>demanda interna sin variación de existencias</em>. La distancia entre ambas es el rastro de los inventarios.</p>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>Demanda interna</th>
+<th>Sin variación de existencias</th>
+<th>Diferencia</th>
+<th>Lectura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2020</td>
+<td>−9,1 %</td>
+<td>−7,9 %</td>
+<td><strong>−1,2 pp</strong></td>
+<td>Se <strong>vaciaron</strong> bodegas: se vendió de lo acumulado</td>
+</tr>
+<tr>
+<td><strong>2021</strong></td>
+<td><strong>+21,6 %</strong></td>
+<td><strong>+18,0 %</strong></td>
+<td><strong>+3,6 pp</strong></td>
+<td>Se <strong>repusieron</strong> stocks con fuerza tras el vaciamiento</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>+2,3 %</td>
+<td>+2,9 %</td>
+<td>−0,6 pp</td>
+<td>Desacumulación leve</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>−3,7 %</td>
+<td>−2,7 %</td>
+<td>−1,0 pp</td>
+<td>Ajuste: se produce menos que lo que se vende</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>+1,2 %</td>
+<td>+0,7 %</td>
+<td>+0,5 pp</td>
+<td>Reposición modesta</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>+4,2 %</td>
+<td>+3,8 %</td>
+<td>+0,4 pp</td>
+<td>Reposición modesta</td>
+</tr>
+</tbody>
+</table>
+<p><em>Cada fila proviene de la edición del IPoM más reciente que la reporta como cifra efectiva; las cifras de un mismo año difieren entre ediciones (véase <code>MED-ERR-09REV</code> en el bloque de Medición).</em></p>
+<blockquote>
+<p><strong>Advertencia técnica que hay que decirle al estudiante.</strong> La diferencia entre dos <strong>tasas de crecimiento</strong> es una <strong>aproximación</strong> de la contribución de las existencias, no su contribución exacta en puntos porcentuales. El <strong>signo</strong> y el <strong>orden de magnitud</strong> son informativos; la cifra exacta requiere las contribuciones publicadas por el Banco Central. Presentarla como contribución exacta sería un <code>MED-ERR-24</code> de manual.</p>
+</blockquote>
+<p><strong>Por qué esto vale la pena.</strong> Rosa vaciando su vitrina en 2021 y volviendo a llenarla es literalmente la fila de 2021 de esta tabla, multiplicada por miles de empresas. El inventario no planeado deja de ser un artificio del modelo y pasa a ser un dato que el estudiante puede ir a buscar.</p>
+<p><code>[Ilustración sugerida: barras de la diferencia DI − DI sin existencias, 2020-2025, con el +3,6 pp de 2021 destacado y una vitrina de pan dibujada vacía en 2020 y llena en 2021.]</code></p>
+<hr />
+<h2>5. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BIE-ERR-01</td>
+<td>Identidad confundida con conducta</td>
+<td>"C sube porque Y = C+I+G"</td>
+<td>Etiquetar cada ecuación ID/COND/EQ</td>
+</tr>
+<tr>
+<td>BIE-ERR-02</td>
+<td>Transferencia contabilizada como G</td>
+<td>Sobreestima el efecto directo</td>
+<td>Pasar la transferencia por Yd y la función de consumo</td>
+</tr>
+<tr>
+<td>BIE-ERR-03</td>
+<td>Línea de 45° desplazada</td>
+<td>Error gráfico estructural</td>
+<td>Preguntar qué representa cada punto de la recta de 45°</td>
+</tr>
+<tr>
+<td>BIE-ERR-04</td>
+<td>Saltar del shock a Y sin mecanismo</td>
+<td>Acierta el número, no el proceso</td>
+<td>Exigir el paso por inventarios y retroalimentación</td>
+</tr>
+<tr>
+<td>BIE-ERR-05</td>
+<td>Usar Y donde corresponde Yd</td>
+<td>Consumo inflado</td>
+<td>Pedir Yd = Y − T explícito</td>
+</tr>
+<tr>
+<td><strong>BIE-ERR-06FUGA</strong> ⊕</td>
+<td>Aplicar el multiplicador cerrado a un caso chileno real sin declarar la fuga por importaciones</td>
+<td>Sobreestima el efecto, a veces por un factor grande; produce recomendaciones de política irreales</td>
+<td>Preguntar: "¿cuánto de ese gasto compra bienes producidos <strong>aquí</strong>?" y pedir la cifra de importaciones del episodio</td>
+</tr>
+<tr>
+<td><strong>BIE-ERR-07STOCK</strong> ⊕</td>
+<td>Tratar un retiro de ahorros (u otra conversión de stock en liquidez) como ingreso del período</td>
+<td>Infla <code>Yd</code>, infla el consumo previsto y confunde un cambio de cartera con un flujo nuevo</td>
+<td>Pedir el origen del recurso: "¿de dónde salió esa plata: se produjo este período o ya existía?" (<code>MED-CON-STOCKFLUJO</code>)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada)</h2>
+<h3><code>BIE-EX-01</code> — Transferencia vs gasto público · comparación de escenarios · intermedia</h3>
+<p><strong>Marco narrativo (v0.2).</strong> Es la decisión que enfrentó el Fisco chileno en 2020: ¿comprar directamente, o transferirle plata a los hogares? Las dos cosas cuestan lo mismo en el presupuesto y <strong>no</strong> producen el mismo efecto sobre la producción.</p>
+<p><strong>Errores objetivo:</strong> BIE-ERR-02, BIE-ERR-05.
+<strong>Datos:</strong> c1 = 0,8 (multiplicador base 5). El gobierno evalúa dos medidas de <strong>$200</strong> cada una: (A) aumentar G en 200; (B) entregar una transferencia de 200 a los hogares.
+<strong>Se pide:</strong> el efecto sobre Y de cada una y por qué difieren.</p>
+<p><strong>Pauta sellada (redacción corregida en v0.2 — las cifras no cambian; ver <code>BL-BIE-04</code>):</strong></p>
+<ul>
+<li><strong>(A) Gasto público.</strong> Los 200 son <strong>demanda de bienes desde el primer peso</strong>: el Estado compra. ΔY = 1/(1−c1)·200 = 5·200 = <strong>1.000</strong>.</li>
+<li><strong>(B) Transferencia.</strong> Los 200 <strong>no son demanda todavía</strong>: son ingreso disponible del hogar. El hogar consume <code>c1</code> de ellos y ahorra el resto:</li>
+<li>primera vuelta de gasto: 0,8·200 = <strong>160</strong></li>
+<li>se ahorra y no circula: 0,2·200 = <strong>40</strong></li>
+<li>ΔY = 5·160 = <strong>800</strong>, que es lo mismo que <code>c1/(1−c1)·200 = 4·200 = 800</code>.</li>
+<li><strong>Diferencia = 1.000 − 800 = 200.</strong> Y esa diferencia tiene una lectura exacta: son los <strong>40 que el hogar ahorró en la primera vuelta</strong>, amplificados por el mismo multiplicador: 5 · 40 = <strong>200</strong>. La transferencia no es "menos potente" por una razón misteriosa: <strong>pierde una vuelta</strong>, porque el primer eslabón lo decide el hogar y no el Estado.</li>
+</ul>
+<p><strong>Ancla real.</strong> Es exactamente por esto que el IFE, siendo una transferencia enorme, no se traduce peso a peso en producción: parte se ahorró y parte pagó deuda —los saldos de ahorro voluntario y a plazo se duplicaron y la deuda no hipotecaria cayó más de US$6 mil millones (IPoM, BCCh, diciembre-2021)—. Y la fracción consumida <strong>fue mayor en los quintiles de menores ingresos</strong>, de modo que a quién se transfiere cambia el resultado.</p>
+<p><strong>Evidencia de dominio:</strong> no trata la transferencia como G (BIE-ERR-02) y justifica la diferencia por el eslabón de consumo perdido, no por memoria.</p>
+<hr />
+<h3><code>BIE-EX-02</code> — Equilibrio y multiplicador · cálculo de mecanismo · intermedia</h3>
+<p><strong>Errores objetivo:</strong> BIE-ERR-01, BIE-ERR-04.
+<strong>Datos:</strong> C = c0 + c1·(Y − T), con <strong>c0 = 130, c1 = 0,8</strong>; inversión <strong>I = 700</strong>; gasto <strong>G = 900</strong>; impuestos <strong>T = 900</strong>.
+<strong>Se pide:</strong> (1) el multiplicador; (2) Y de equilibrio; (3) consumo C; (4) ahorro privado S; (5) verificar I = S_priv + (T − G).</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Magnitud</th>
+<th>Fórmula</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Multiplicador</td>
+<td>1/(1−0,8)</td>
+<td><strong>5</strong></td>
+</tr>
+<tr>
+<td>Gasto autónomo A</td>
+<td>c0 − c1·T + I + G = 130 − 720 + 700 + 900</td>
+<td><strong>1.010</strong></td>
+</tr>
+<tr>
+<td>Y*</td>
+<td>5 · 1.010</td>
+<td><strong>5.050</strong></td>
+</tr>
+<tr>
+<td>Yd</td>
+<td>5.050 − 900</td>
+<td>4.150</td>
+</tr>
+<tr>
+<td>C</td>
+<td>130 + 0,8·4.150</td>
+<td><strong>3.450</strong></td>
+</tr>
+<tr>
+<td>S_priv</td>
+<td>Yd − C = 4.150 − 3.450</td>
+<td><strong>700</strong></td>
+</tr>
+<tr>
+<td>Chequeo</td>
+<td>I = S_priv + (T − G) = 700 + (900 − 900)</td>
+<td><strong>700 = 700 ✓</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Como el presupuesto está equilibrado (T = G), la condición se reduce a <strong>S_priv = I = 700</strong>, y Z = C+I+G = 3.450+700+900 = 5.050 = Y ✓.</p>
+<blockquote>
+<p><strong>Advertencia de coincidencia</strong> (<code>GOB-CONV-ED</code>). Que aquí el ahorro privado iguale a la inversión <strong>no es una regla</strong>: ocurre solo porque <code>T = G = 900</code> y el término <code>(T − G)</code> se anula. La condición de equilibrio es siempre <code>I = S_priv + (T − G)</code>. Compruébelo en <code>BIE-EX-03</code>: con <code>G = 1.100</code> el ahorro privado sube a <strong>900</strong> mientras la inversión sigue en <strong>700</strong>, y lo único que se mantiene es el cierre completo. Quien memorice <code>S = I</code> fallará el ejercicio siguiente.</p>
+</blockquote>
+<p><strong>Evidencia de dominio:</strong> escribe la condición de equilibrio (no la identidad) y verifica el cierre ahorro-inversión.</p>
+<hr />
+<h3><code>BIE-EX-03</code> — Shock fiscal y nueva trayectoria · predicción-revisión · intermedia</h3>
+<p><strong>Errores objetivo:</strong> BIE-ERR-04, BIE-ERR-03.
+<strong>Continúa BIE-EX-02.</strong> El gobierno <strong>aumenta G en 200</strong> (de 900 a 1.100).
+<strong>Se pide:</strong> (1) prediga la dirección y magnitud de ΔY <em>antes</em> de calcular; (2) calcule; (3) narre el ajuste por inventarios; (4) señale qué revisaría.</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong></p>
+<ul>
+<li>ΔY = 5 · 200 = <strong>1.000</strong>; nuevo <strong>Y* = 6.050</strong>.</li>
+<li>Ajuste: al subir G, Z &gt; Y al nivel viejo (5.050) ⇒ <strong>caen inventarios no planeados</strong> ⇒ las empresas suben producción ⇒ el nuevo ingreso re-alimenta el consumo (c1) ⇒ converge en Y* = 6.050.</li>
+<li>Cierre ahorro-inversión: C = 130 + 0,8·(6.050 − 900) = <strong>4.250</strong>; S_priv = 6.050 − 900 − 4.250 = <strong>900</strong>; (T − G) = 900 − 1.100 = <strong>−200</strong>; luego I = S_priv + (T − G) = 900 − 200 = <strong>700 ✓</strong>.
+  <strong>Aquí <code>S_priv ≠ I</code></strong> (900 frente a 700). La igualdad que aparecía en <code>BIE-EX-02</code> dependía de <code>T = G</code>; lo que se conserva siempre es el cierre completo. Este contraste es el objetivo del ejercicio tanto como el multiplicador.</li>
+<li>Revisión: la magnitud depende de c1; si c1 fuera menor (más ahorro), el multiplicador y ΔY serían menores. También cambia si el gasto se financia con impuestos (multiplicador de presupuesto equilibrado).</li>
+</ul>
+<p><strong>Ancla narrativa (v0.2).</strong> El paso "caen inventarios no planeados" no es una metáfora: es lo que muestran los datos chilenos de 2021, cuando la demanda interna corrió 3,6 puntos por delante de la demanda sin variación de existencias (§4.1). Rosa quedándose sin pan a las once es el microfundamento de esa fila.</p>
+<p><strong>Evidencia de dominio:</strong> la narración pasa por inventarios (no salta al resultado, BIE-ERR-04) y condiciona la magnitud a c1.</p>
+<hr />
+<h3>⊕ <code>BIE-EX-04</code> — El impulso de 2020-2021 con el modelo en la mano · lectura de datos oficiales · avanzada</h3>
+<p><strong>Errores objetivo:</strong> BIE-ERR-02, BIE-ERR-06FUGA, BIE-ERR-07STOCK, BIE-ERR-04.
+<strong>Marco narrativo.</strong> Rosa quiere entender por qué su panadería tuvo el mejor año de su vida en 2021 y uno de los peores en 2023, sin haber cambiado nada de lo que hace.</p>
+<p><strong>Datos entregados al estudiante</strong> (todos oficiales; trazabilidad en §12):</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Liquidez acumulada por los hogares 2020-2021</td>
+<td>≈ US$71 mil millones ≈ <strong>28 % del PIB</strong> de 2020</td>
+</tr>
+<tr>
+<td>Destino a consumo: receptores de IFE / de retiros de fondos</td>
+<td>≈ <strong>2/3</strong> / ≈ <strong>1/3</strong></td>
+</tr>
+<tr>
+<td>Demanda interna 2021</td>
+<td>+21,6 %</td>
+</tr>
+<tr>
+<td>Consumo privado 2021</td>
+<td>+20,3 %</td>
+</tr>
+<tr>
+<td>PIB 2021</td>
+<td>+11,7 %</td>
+</tr>
+<tr>
+<td>Importaciones 2021</td>
+<td>+31,3 %</td>
+</tr>
+<tr>
+<td>Demanda interna sin variación de existencias 2021</td>
+<td>+18,0 %</td>
+</tr>
+<tr>
+<td>Consumo privado 2023</td>
+<td>−4,9 %</td>
+</tr>
+<tr>
+<td>Supuesto del modelo</td>
+<td>c1 = 0,8 ⇒ multiplicador cerrado = 5</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Se pide:</strong></p>
+<ol>
+<li>Clasifique cada componente del impulso —IFE, bonos, retiros de fondos de pensiones, compras del Estado— según el parámetro del modelo que toca: <code>G</code>, <code>T</code>, o ninguno de los dos. Justifique el caso de los retiros.</li>
+<li>Un analista aplica el multiplicador: "un impulso de 28 % del PIB con multiplicador 5 debería haber elevado el PIB en 140 %". El PIB creció 11,7 %. Enumere <strong>tres</strong> razones distintas por las que el cálculo está mal, y clasifique cada una con el error objetivo que le corresponde.</li>
+<li>Calcule la diferencia entre demanda interna y demanda interna sin existencias en 2021 e interprétela con <code>BIE-CON-INV</code>.</li>
+<li>Explique la caída del consumo privado de 2023 usando el mismo mecanismo que explicó el alza de 2021.</li>
+<li>Enuncie una afirmación que estos datos <strong>no</strong> permiten sostener.</li>
+</ol>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li>
+<p><strong>IFE y bonos:</strong> transferencias ⇒ entran por <code>Yd</code> (equivalen a un <code>T</code> menor), <strong>no</strong> por <code>G</code> (<code>BIE-ERR-02</code>). <strong>Compras del Estado:</strong> <code>G</code>. <strong>Retiros de fondos:</strong> <strong>ninguno de los dos</strong>. El hogar convirtió un <strong>stock</strong> propio en liquidez; no hubo producción ni ingreso nuevo del período. Sí altera el consumo, pero no a través de <code>Yd</code> del modelo simple, sino relajando una restricción de liquidez (<code>BIE-CON-LIQUIDEZ</code>, <code>BIE-ERR-07STOCK</code>).</p>
+</li>
+<li>
+<p>Tres razones, en orden de gravedad:
+   - <strong>Es un stock, no un flujo de un período</strong> (<code>BIE-ERR-07STOCK</code>). Los 28 % del PIB se acumularon a lo largo de <strong>dos años</strong> e incluyen los ingresos habituales; no son un ΔA autónomo de un año. Multiplicarlos por 5 mezcla stock con flujo.
+   - <strong>No todo se gastó</strong> (<code>BIE-ERR-02</code> y <code>BIE-CON-PMC</code>). Cerca de dos tercios de los receptores de IFE y <strong>un tercio</strong> de quienes retiraron fondos destinaron los recursos principalmente a consumo; el resto fue ahorro y pago de deuda. El impulso efectivo sobre <code>Z</code> fue una fracción del total.
+   - <strong>Buena parte se fugó al exterior</strong> (<code>BIE-ERR-06FUGA</code>). Las importaciones crecieron <strong>31,3 %</strong>: ese gasto fue demanda, pero no demanda por producción chilena. El multiplicador cerrado no tiene dónde registrar esa filtración.
+   - <em>(Falla adicional aceptable como cuarta razón: aplicar un modelo de precios fijos a un año en que los precios se movieron — materia del bloque OA-DA.)</em></p>
+</li>
+<li>
+<p>21,6 − 18,0 = <strong>+3,6 pp</strong>. Interpretación: las empresas <strong>repusieron inventarios</strong> con fuerza; una parte del gasto de 2021 fue a llenar bodegas vaciadas en 2020 (cuando la diferencia fue <strong>−1,2 pp</strong>). Es el paso "Inventarios" del circuito, observado. <em>Recordar que la diferencia de tasas aproxima la contribución, no la mide exactamente.</em></p>
+</li>
+<li>
+<p>El mismo mecanismo, con el signo invertido: agotada la liquidez transitoria y terminadas las transferencias, <code>Yd</code> efectivo y el consumo autónomo caen ⇒ <code>Z &lt; Y</code> ⇒ <strong>se acumulan inventarios no planeados</strong> ⇒ las empresas reducen producción ⇒ el menor ingreso reduce el consumo vía <code>c1</code> ⇒ el consumo privado cae <strong>−4,9 %</strong> en 2023. <strong>El multiplicador amplifica en las dos direcciones</strong>; no es un mecanismo de expansión, es un mecanismo de amplificación.</p>
+</li>
+<li>
+<p>Cualquiera de estas: <em>"el multiplicador chileno es 5"</em> (la calibración es del ejercicio, no una estimación); <em>"c1 en Chile es 0,8"</em> (no se estima con estos datos); <em>"las transferencias no sirven"</em> (los datos muestran que una fracción alta se consumió, sobre todo en los quintiles bajos; juzgar la política requiere criterios que este bloque no tiene); <em>"el PIB siempre crece la mitad que la demanda interna"</em> (en 2024 el PIB creció 2,8 % con demanda interna de 1,2 %).</p>
+</li>
+</ol>
+<p><strong>Evidencia de dominio:</strong> distingue los tres canales del impulso, identifica al menos dos de las tres fallas del cálculo ingenuo, y usa el mismo mecanismo para la expansión y para el ajuste.</p>
+<p><code>[Ilustración sugerida: línea de tiempo 2020-2023 con cuatro hitos —vaciamiento de inventarios, inyección de liquidez, boom de demanda con fuga a importaciones, ajuste— y bajo cada hito el parámetro del modelo que se movió.]</code></p>
+<hr />
+<h2>7. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> Predigo que Y ___ · el shock cambia el parámetro ___ · el gasto planeado Z ___ · aparece brecha Z−Y ___ · los inventarios ___ · la producción ___ · el consumo reacciona vía c1 ___ · nuevo Y<em> = ___ · verifico I = S+(T−G) ___ · </em><em>la fuga que este modelo no ve sería</em><em> ___ · revisaría si ___.
+</em><em>Nivel B:</em><em> shock → parámetro → mecanismo de inventarios en 3 pasos → Y</em> → chequeo ahorro-inversión → supuesto.
+<strong>Nivel C:</strong> <em>"Calcule el nuevo equilibrio, explique el ajuste por inventarios y señale qué parámetro haría la respuesta sensible."</em></p>
+<h3>7.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla el episodio 2021 completo (§3.1 es el modelo)</td>
+<td>Identificar en qué paso del circuito cae cada hecho del relato</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entrega el episodio de <strong>2023</strong> con las cifras crudas</td>
+<td>Narrar el ajuste completo, con inventarios y signo invertido</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>solo una noticia fiscal reciente</strong>, sin cifras procesadas</td>
+<td>Traducirla a parámetros, predecir dirección y magnitud, declarar la fuga y el supuesto que más pesa</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insumo listo para el Nivel C: la minuta de la RPM de julio de 2026.</strong> El Consejo del Banco Central mantuvo la TPM en <strong>4,50 %</strong> por unanimidad (Minuta RPM N° 323, 27-28 de julio de 2026) y en sus antecedentes describe, sin usar una sola ecuación, dos movimientos que este bloque sí sabe nombrar:</p>
+<blockquote>
+<p><em>"El consumo había reducido su dinamismo, comportamiento que era esperado dado el deterioro de sus fundamentos, entre ellos el mercado laboral, que permanecía débil… Las expectativas de los consumidores (IPEC) continuaban mostrando descensos… y los ingresos reales de los hogares habían reducido su expansión."</em></p>
+<p><em>"La inversión materializada estaba siendo inferior a la proyectada, especialmente en el sector energético e inmobiliario… No podía descartarse que el comportamiento reciente de la inversión respondiera a una </em><em>postergación de proyectos</em><em> a la espera de poder utilizar las normas que contenía el citado Proyecto de Ley."</em></p>
+</blockquote>
+<p><strong>Consigna para el estudiante:</strong> traduzca ambos párrafos a parámetros del modelo (¿se mueve <code>c0</code>, <code>c1</code>, <code>Yd</code>, <code>I</code>, <code>G</code>?), prediga la dirección de <code>Y*</code>, narre el ajuste por inventarios y declare qué parte del efecto este modelo <strong>no</strong> puede ver.</p>
+<p><strong>Nota para el docente.</strong> El segundo párrafo es especialmente valioso porque describe una caída de <code>I</code> <strong>por expectativas</strong>, no por tasa de interés: los proyectos existen y se posponen a la espera de una norma. En este bloque <code>I</code> es exógena, de modo que el estudiante solo puede registrarlo como un ΔI negativo; el mecanismo completo llega en IS-LM. Conviene decirlo explícitamente para que la limitación se lea como decisión de diseño y no como omisión.</p>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas del bloque</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>BIE-EX-01, <strong>BIE-EX-04 (ítem 1)</strong></td>
+<td>Comparación corta transferencia vs G y clasificación de un impulso real; revela BIE-ERR-02 y BIE-ERR-07STOCK</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>BIE-EX-03 + <strong>BIE-EX-04 completo</strong> + narración sobre una noticia fiscal real</td>
+<td>Predice, calcula, narra el ajuste y revisa supuestos</td>
+</tr>
+<tr>
+<td><strong>Solemne (parte de 40 %)</strong></td>
+<td>BIE-EX-02</td>
+<td>Cálculo de equilibrio + verificación ahorro-inversión</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %)</strong></td>
+<td>Multiplicador como base de la IS</td>
+<td>El mercado de bienes reaparece dentro de IS-LM</td>
+</tr>
+</tbody>
+</table>
+<p>Regla de corrección: la <strong>formulación</strong> (identidad vs conducta vs equilibrio) se puntúa antes que el procedimiento. <strong>Aplicar el multiplicador cerrado a un caso chileno sin declarar la fuga se corrige como error de formulación, no de cálculo.</strong></p>
+<hr />
+<h2>9. Integración con MacroLab</h2>
+<blockquote>
+<p><strong>Arquitectura de dos capas (precisada en v0.2).</strong> La sub-app <code>macro1/</code> trae la ventana <code>Lab · Mercado de bienes</code>, que implementa <strong>exactamente</strong> el modelo de esta miniunidad. La <strong>capa superior</strong> —el Shock Simulator en <code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>— tiene la pestaña <strong>IS-LM</strong>, que es hacia donde apunta el gancho de este bloque: allí la inversión deja de ser exógena y aparecen <code>b₁</code>, <code>b₂</code> y la tasa.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Entrada real</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lab · Mercado de bienes</code></td>
+<td>Resolver <code>BIE-EX-02</code> y <code>BIE-EX-03</code> con los sliders <code>c0</code>, <code>c1</code>, <code>I</code>, <code>G</code>, <code>T</code>; verificar el multiplicador, el gasto autónomo, <code>Y*</code> y el cierre ahorro-inversión. <strong>Incluye el interruptor de impuesto proporcional</strong> (<code>T = t·Y</code>), que sirve para adelantar el gancho del bloque <code>ISLM</code></td>
+<td>No presentar el multiplicador del simulador como estimación del multiplicador <strong>chileno</strong>: es la calibración que el usuario elija</td>
+</tr>
+<tr>
+<td><code>Lab · PIB por gasto</code></td>
+<td>Practicar <code>BIE-EX-01</code> (¿entra o no entra, y en qué componente?)</td>
+<td>Es clasificación contable, no conducta</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Límite del instrumento, declarado.</strong> <code>Lab · Mercado de bienes</code> trata la inversión como <strong>exógena</strong> (un slider <code>I</code>), igual que este bloque: <strong>no tiene tasa de interés, ni acelerador <code>b₁</code>, ni sector externo.</strong> Eso es una virtud pedagógica aquí —coincide con el alcance declarado en §0— y una limitación para <code>BIE-EX-04</code>, cuya fuga por importaciones no puede mostrarse ahí. El paso siguiente es la pestaña <strong>IS-LM</strong> de la capa superior (bloque <code>ISLM</code>) y luego <strong>IS-LM-BP</strong>, donde <code>x₁</code> formaliza esa fuga (bloque <code>ABR</code>).</p>
+<p><strong>Protocolo (ajustado a lo que existe):</strong> resolver el equilibrio a mano → reproducirlo en <code>Lab · Mercado de bienes</code> y comprobar que coinciden → variar <code>c1</code> y observar cómo cambian la pendiente de <code>Z</code> y el salto de <code>Y*</code> → discutir a mano, y solo a mano, cuánto de ese salto se habría fugado a importaciones en el caso chileno de 2021.</p>
+<hr />
+<h2>10. Cierre y backlog</h2>
+<p><strong>Definición de Terminado:</strong> todo nodo con fuente/versión/estado; los <strong>cuatro</strong> ejercicios probados; ninguna plantilla entrega la cadena mecánicamente; se verifica el cierre ahorro-inversión; ⊕ ninguna aplicación a datos chilenos omite la declaración de fuga; ⊕ todo dato de coyuntura lleva fuente y fecha.</p>
+<p><strong>Gancho declarado (impuesto proporcional):</strong> cuando <code>T = t·Y</code>, el multiplicador cambia a <code>1 / (1 − c1·(1 − t))</code>. Este caso se desarrolla en el bloque <strong>IS-LM cerrado</strong>, con ambos enfoques (T fijo y T = t·Y), como fija el diseño del curso.</p>
+<p><strong>Segundo gancho declarado (apertura), nuevo en v0.2:</strong> con importaciones que dependen del ingreso, parte de cada vuelta del multiplicador se filtra al exterior y el multiplicador efectivo cae. Se desarrolla en <strong>IS-LM-BP abierta</strong> con <code>XN = x0 − x1·Y + x2·E</code>, convención <code>E = CLP/USD</code> (E↑ = depreciación).</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-BIE-01</td>
+<td>Enlace MacroLab que muestre la construcción de IS variando i</td>
+<td>media</td>
+<td>selección de escenario</td>
+</tr>
+<tr>
+<td>BL-BIE-02</td>
+<td>Añadir 1 ejercicio con NX (apertura) como transición</td>
+<td>baja</td>
+<td>tras IS-LM abierto — <strong>parcialmente cubierto por <code>BIE-EX-04</code> ítem 2</strong></td>
+</tr>
+<tr>
+<td>BL-BIE-03</td>
+<td>Registrar errores de clase y recalibrar sondas</td>
+<td>continua</td>
+<td>tras primera aplicación</td>
+</tr>
+<tr>
+<td><strong>BL-BIE-04</strong> ⊕</td>
+<td>Redacción de la pauta de <code>BIE-EX-01</code> corregida en v0.2: la versión v0.1 contenía una frase truncada ("los hogares ahorran una fracción… en realidad la transferencia pierde el primer eslabón"). Cifras selladas sin cambio; prosa reescrita con la descomposición 160 / 40 y la verificación 5·40 = 200</td>
+<td><strong>hecha en v0.2</strong></td>
+<td>validación del profesor</td>
+</tr>
+<tr>
+<td><strong>BL-BIE-05</strong> ⊕</td>
+<td><strong>Discrepancia detectada en la fuente.</strong> El IPoM de diciembre de 2021 cita la acumulación de liquidez de los hogares como <strong>US$85 mil millones ≈ 34 % del PIB</strong> en el Resumen y como <strong>US$71 mil millones ≈ 28 % del PIB</strong> en el Recuadro III.1 (con gráfico que marca 71,4), con definiciones que no calzan entre sí. En esta edición se usa <strong>la del Recuadro</strong>, por ser la documentada con detalle. Confirmar cuál corresponde antes de publicar</td>
+<td><strong>alta</strong></td>
+<td>antes de usar la cifra en clase</td>
+</tr>
+<tr>
+<td><strong>BL-BIE-06</strong> ⊕</td>
+<td>Decidir si <code>BIE-CON-LIQUIDEZ</code>, <code>BIE-ERR-06FUGA</code> y <code>BIE-ERR-07STOCK</code> se incorporan al registro maestro del paquete o quedan locales al bloque. Nota: <code>BIE-ERR-06FUGA</code> es candidato natural a migrar al bloque <code>ABR</code></td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-BIE-07</strong> ⊕</td>
+<td>Verificar si conviene sustituir la contribución aproximada de existencias (diferencia de tasas) por las contribuciones en pp que publica el BCCh en Cuentas Nacionales</td>
+<td>media</td>
+<td>antes de evaluar <code>BIE-EX-04</code> ítem 3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Demanda planeada (Z)</strong></td>
+<td>Lo que la gente pensaba comprar hoy al levantarse</td>
+<td>Z = C + I + G</td>
+</tr>
+<tr>
+<td><strong>Inventario no planeado</strong></td>
+<td>El pan que sobró, o los clientes que se fueron sin pan</td>
+<td>BIE-CON-INV</td>
+</tr>
+<tr>
+<td><strong>Multiplicador</strong></td>
+<td>El eco: cada rebote más débil, pero suman más que el grito</td>
+<td>1/(1−c1)</td>
+</tr>
+<tr>
+<td><strong>Propensión marginal a consumir</strong></td>
+<td>De cada mil pesos extra, cuántos vuelven al mostrador</td>
+<td>c1</td>
+</tr>
+<tr>
+<td><strong>Consumo autónomo (c0)</strong></td>
+<td>Lo que se compra igual, aunque no haya entrado plata</td>
+<td>c0</td>
+</tr>
+<tr>
+<td><strong>Ingreso disponible (Yd)</strong></td>
+<td>Lo que queda en el bolsillo después del Servicio de Impuestos Internos</td>
+<td>Yd = Y − T</td>
+</tr>
+<tr>
+<td><strong>Transferencia</strong></td>
+<td>El Estado te pasa plata; tú decides en qué se gasta</td>
+<td>IFE, BIE-ERR-02</td>
+</tr>
+<tr>
+<td><strong>Gasto público (G)</strong></td>
+<td>El Estado compra y ya decidió en qué</td>
+<td>G</td>
+</tr>
+<tr>
+<td><strong>Liquidez transitoria</strong></td>
+<td>Romper el chanchito: hay más plata en la mano, pero nadie produjo nada nuevo</td>
+<td>BIE-CON-LIQUIDEZ</td>
+</tr>
+<tr>
+<td><strong>Fuga por importaciones</strong></td>
+<td>Parte del eco rebota fuera de la sala</td>
+<td>BIE-ERR-06FUGA</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>Personaje-ancla:</strong> Rosa Millán continúa desde el bloque <code>MED</code> con una sola frase de enlace, sin reintroducción. Su vitrina vacía a las once es el microfundamento del ajuste por inventarios.</li>
+<li><strong>Episodio histórico central:</strong> el impulso 2020-2021 y el ajuste 2022-2023, tratado como experimento natural y leído paso a paso con el circuito <code>BIE-CIR-01</code> (§3.1).</li>
+<li><strong>Hallazgo pedagógico principal:</strong> la propensión a consumir <strong>medida</strong> difiere por tipo de recurso y por quintil —≈2/3 de los receptores de IFE frente a ≈1/3 de quienes retiraron fondos destinaron los recursos mayoritariamente a consumo—. Convierte <code>c1</code> de constante en variable de diseño.</li>
+<li><strong>Inventarios observables:</strong> §4.1 muestra que la distancia entre demanda interna y demanda interna sin variación de existencias es el rastro empírico de <code>BIE-CON-INV</code>, con la serie 2020-2025 y la advertencia de que es una aproximación.</li>
+<li><strong>Límite del modelo declarado desde §0:</strong> la fuga por importaciones (+31,3 % en 2021) explica por qué el PIB creció 11,7 % con demanda interna de 21,6 %, y funda el nuevo <code>BIE-ERR-06FUGA</code>.</li>
+<li><strong>Nodos nuevos dentro del esquema:</strong> concepto <code>BIE-CON-LIQUIDEZ</code>; errores <code>BIE-ERR-06FUGA</code> y <code>BIE-ERR-07STOCK</code>; ejercicio <code>BIE-EX-04</code> (cinco ítems). Tres aristas nuevas en el grafo.</li>
+<li><strong>Advertencias de coincidencia frente a regla:</strong> dos nuevas (el multiplicador 5 como calibración, con sus tres modos de ruptura; el PIB creciendo la mitad que la demanda interna, que se rompe en 2024).</li>
+<li><strong>Pautas selladas:</strong> las tres recalculadas y confirmadas el 2026-08-15. <strong>Ninguna cifra cambió.</strong> Se corrigió la <strong>prosa</strong> de <code>BIE-EX-01</code>, que en v0.1 quedaba truncada (<code>BL-BIE-04</code>).</li>
+<li><strong>Una discrepancia de fuente detectada y declarada, no silenciada:</strong> <code>BL-BIE-05</code>.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Demanda interna 2021</td>
+<td>+21,6 %</td>
+<td>BCCh, IPoM, escenario interno</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>Demanda interna sin var. de existencias 2021</td>
+<td>+18,0 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Consumo privado 2021</td>
+<td>+20,3 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Consumo total 2021</td>
+<td>+18,2 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Formación bruta de capital fijo 2021</td>
+<td>+17,6 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2021</td>
+<td>+11,7 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Exportaciones / importaciones 2021</td>
+<td>−1,5 % · <strong>+31,3 %</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2020</td>
+<td>−5,8 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Demanda interna 2020 / sin existencias</td>
+<td>−9,1 % · −7,9 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Consumo privado 2020</td>
+<td>−7,5 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>FBCF 2020 · exportaciones · importaciones</td>
+<td>−11,5 % · −1,0 % · −12,7 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2022 · demanda interna · sin existencias</td>
+<td>2,1 % · 2,3 % · 2,9 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>Consumo privado 2022</td>
+<td>+1,6 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2023 · demanda interna · sin existencias</td>
+<td>0,5 % · −3,7 % · −2,7 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2025</td>
+</tr>
+<tr>
+<td>Consumo privado 2023</td>
+<td><strong>−4,9 %</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2024 · demanda interna · sin existencias</td>
+<td>2,8 % · 1,2 % · 0,7 %</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Consumo privado 2024 · exportaciones 2024</td>
+<td>1,1 % · 7,2 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>PIB 2025 · demanda interna · sin existencias</td>
+<td>2,5 % · 4,2 % · 3,8 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Consumo privado 2025 · FBCF 2025</td>
+<td>2,7 % · 7,0 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Liquidez acumulada de los hogares 2020-2021</td>
+<td>≈ US$71 mil millones ≈ <strong>28 % del PIB</strong> de 2020</td>
+<td>BCCh, IPoM, Recuadro III.1</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Saldos en cuentas corrientes y a la vista</td>
+<td>se duplicaron vs enero 2020 (≈ +US$19 mil millones)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Ahorro voluntario AFP y ahorro a plazo</td>
+<td>se duplicaron (≈ +US$10 mil millones)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Caída de deuda no hipotecaria de hogares (1T-2020 a 2T-2021)</td>
+<td>&gt; US$6 mil millones</td>
+<td>ídem (CMF, Suseso, SP)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Destino principal a consumo: IFE / retiros de fondos</td>
+<td>≈ 2/3 · ≈ 1/3, creciente en quintiles bajos</td>
+<td>ídem (Encuesta de Ocupación y Desocupación, Gran Santiago)</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Consumo de bienes durables 2021</td>
+<td>&gt; 60 % sobre el nivel previo a la crisis social y la pandemia</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>TPM vigente</td>
+<td><strong>4,50 %</strong> (mantenida por unanimidad)</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>Consumo: dinamismo menor, IPEC a la baja, ingresos reales desacelerando</td>
+<td>descripción cualitativa (cita textual)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Inversión materializada inferior a la proyectada; posible postergación de proyectos</td>
+<td>descripción cualitativa (cita textual)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Imacec total, mayo 2026, variación anual</td>
+<td>−0,9 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota de vintage.</strong> Cada fila anual proviene de la edición del IPoM más reciente que la reporta como cifra <strong>efectiva</strong>. Las cifras de un mismo año difieren entre ediciones —el PIB de 2023 fue 0,0 %, luego 0,2 % y luego 0,5 %—; comparar dos años tomados de informes distintos es <code>MED-ERR-09REV</code>.</p>
+<p><strong>Marcadores de verificación pendientes:</strong> uno, <code>BL-BIE-05</code> (discrepancia interna del IPoM de diciembre de 2021 entre 85 y 71 mil millones de dólares). Ningún otro dato queda sin fuente y fecha.</p>
+<hr />
+<p><em>Reedición histórico-analítica cerrada el 2026-08-15. Pautas selladas de v0.1 recalculadas y confirmadas computacionalmente en esa fecha, sin cambios de cifras. Datos de coyuntura extraídos de los Informes de Política Monetaria del Banco Central de Chile listados en §12.2.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

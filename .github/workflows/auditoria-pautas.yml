@@ -1,0 +1,29 @@
+name: Auditoría biblioteca ↔ simulador
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pautas:
+    name: Pautas selladas vs solvers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Sintaxis de script.js
+        run: node --check script.js
+      - name: Auditoría de pautas selladas
+        run: node test_pautas_biblioteca.js
+      - name: Suites del sub-app macro1
+        working-directory: macro1
+        run: |
+          for t in test_paquete.js test_formulas_selladas.js; do
+            if [ -f "$t" ]; then echo "── $t"; node "$t"; fi
+          done
+      - name: Integridad del MANIFEST y de las notas enlazadas
+        run: node scripts/check-manifest.js

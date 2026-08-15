@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 5 · IS-LM-BP en economía abierta &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Mundell-Fleming con la convención E = CLP/USD sellada, canal comercial frente a canal financiero y el ajuste externo 2021-2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 5: IS-LM-BP en economía abierta (Mundell-Fleming)</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>ABR</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> listo para clase
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 4 · <strong>Texto base:</strong> Blanchard 7ª (economía abierta)
+<strong>Materiales del curso usados:</strong> Ayudantía 11 (IS-LM-BP), Nota de Estudio 10 (visión integrada)
+<strong>Prerrequisito:</strong> <code>ISLM</code> (economía cerrada) · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Extiende el IS-LM a economía abierta con movilidad de capitales y régimen cambiario. Sella la <strong>convención del tipo de cambio (E = CLP/USD)</strong> — el crítico BL-01 de la auditoría — y desarrolla la eficacia de políticas bajo <strong>flotación</strong> y bajo <strong>tipo de cambio fijo</strong>.</p>
+<p><strong>Qué cambia respecto de v0.1.</strong> Arquitectura intacta: misma convención sellada, mismo pasaporte, mismos cuatro ejercicios. <strong>Las cuatro pautas selladas fueron recalculadas con aritmética exacta el 2026-08-15 y son correctas en todos sus valores</strong> — a diferencia del bloque <code>ISLM</code>, aquí no hubo hallazgos. Se agrega el ancla histórica: Chile <strong>flota</strong>, de modo que la columna "flotación" de la tabla de eficacia es la que describe al país; y se incorpora el episodio de 2021 —cobre al alza y peso depreciándose al mismo tiempo— que obliga a distinguir el canal comercial del financiero. Rosa Millán continúa desde los cuatro bloques anteriores.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code> y <code>GOB-CONV-TC</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong>, tasas en por ciento, <strong>E = CLP/USD con E↑ = depreciación</strong>.</p>
+</blockquote>
+<hr />
+<h2>0. Convención sellada del tipo de cambio (resuelve BL-01) y alcance</h2>
+<p><strong>Convención del curso (a fijar antes de todo ejercicio):</strong></p>
+<ul>
+<li><strong>E = CLP/USD</strong> = precio del dólar en pesos (cotización directa).</li>
+<li><strong>E ↑ = depreciación nominal</strong> del peso (el dólar cuesta más pesos).</li>
+<li><strong>Depreciación mejora las exportaciones netas:</strong> <code>XN = x0 − x1·Y + x2·E</code>, con <strong>x2 &gt; 0</strong> (el coeficiente de E es <strong>positivo</strong>).</li>
+<li><strong>Tasas en porcentaje</strong> (i<em> = 6 significa 6 %, </em><em>no</em>* 0,06): mantener consistencia con los coeficientes calibrados en %.</li>
+</ul>
+<blockquote>
+<p>Con esta convención, en la IS el término de E entra <strong>con signo +</strong> (E↑ ⇒ Y↑ vía XN) y el de la tasa con <strong>signo −</strong> (i↑ ⇒ Y↓). Esta hoja es la referencia única: cualquier ejercicio que no la declare se reabre (ABR-ERR-01).</p>
+</blockquote>
+<p><strong>Alcance:</strong> movilidad <strong>perfecta</strong> de capitales (BP horizontal en i = i*), dos regímenes cambiarios (flotación y fijo), y la eficacia comparada de política fiscal y monetaria. Marshall-Lerner / curva J y movilidad imperfecta quedan como extensiones futuras.</p>
+<p>IDs: <code>ABR-CON-*</code>, <code>ABR-MOD-*</code>, <code>ABR-CIR-*</code>, <code>ABR-ERR-*</code>, <code>ABR-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: el año en que el cobre subió 51 % y el peso se depreció igual</h3>
+<p>A Rosa la harina le llegó más cara en 2021 y ella no entendía por qué. <em>"Si a Chile le está yendo bien con el cobre, ¿no debería estar más barato el dólar?"</em></p>
+<p>Es exactamente la pregunta correcta, y la respuesta es que <strong>hay dos canales tirando en sentidos opuestos</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Hecho de 2021</th>
+<th>Valor</th>
+<th>Canal</th>
+<th>Qué predice para E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precio del cobre, promedio anual</td>
+<td>280 → <strong>423</strong> US$cent/lb (<strong>+51,1 %</strong>)</td>
+<td><strong>Comercial</strong>: más dólares entrando por exportaciones</td>
+<td>E <strong>baja</strong> (apreciación)</td>
+</tr>
+<tr>
+<td>Salida hacia activos externos por incertidumbre y liquidaciones previsionales</td>
+<td>mayor demanda por depósitos e instrumentos en dólares</td>
+<td><strong>Financiero</strong>: más demanda de dólares</td>
+<td>E <strong>sube</strong> (depreciación)</td>
+</tr>
+<tr>
+<td><strong>Resultado observado</strong></td>
+<td><strong>el peso se depreció casi 18 % durante 2021</strong></td>
+<td><strong>ganó el financiero</strong></td>
+<td>E <strong>subió</strong></td>
+</tr>
+</tbody>
+</table>
+<p>El IPoM lo dice sin rodeos: <em>"a pesar del alto precio del cobre y del mayor diferencial de tasas, el peso ha tenido una depreciación significativa (casi 18 %) durante el 2021"</em> (IPoM, BCCh, diciembre-2021).</p>
+<blockquote>
+<p><strong>La disciplina que instala este bloque:</strong> frente a cualquier noticia cambiaria hay que preguntar <strong>por cuál de los dos canales</strong> opera, y <strong>cuál domina</strong>. Un modelo que solo mire el comercio se habría equivocado de signo todo el año 2021.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos flechas opuestas sobre el eje de E —"cobre +51 %" empujando hacia abajo y "salida de capitales" empujando hacia arriba— con el resultado neto de +18 % marcado.]</code></p>
+<h3>0.2 Chile flota: cuál columna de la tabla de eficacia hay que leer</h3>
+<p>Chile opera con <strong>flotación cambiaria</strong> dentro de un esquema de metas de inflación — el propio marco de política del Banco Central lo declara al describir el régimen que Chile comparte con otros países. Eso tiene una consecuencia inmediata y fuerte para este bloque: <strong>la columna operativa de la tabla de eficacia es la de flotación</strong>, donde el modelo, bajo movilidad perfecta, concluye que la política fiscal es impotente sobre <code>Y</code>.</p>
+<p>Esa conclusión es tan fuerte que exige declarar de inmediato el supuesto que la produce (§3.2): <strong>movilidad perfecta de capitales</strong>, es decir <code>i = i*</code> exactamente. Chile tiene movilidad alta, <strong>no perfecta</strong>, y la diferencia es visible en los datos.</p>
+<hr />
+<h2>1. Grafo de prerrequisitos</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  ISLM[ISLM cerrado&lt;br/&gt;IS, LM] --&gt; IS[ABR-CON-IS&lt;br/&gt;IS abierta: Y=a−αi+βE]
+  CONV[ABR-CON-CONV&lt;br/&gt;E=CLP/USD, E↑=deprec.] --&gt; IS
+  ISLM --&gt; LM[ABR-CON-LM&lt;br/&gt;LM: Y=γ+δi]
+  BP[ABR-CON-BP&lt;br/&gt;BP: i=i* movilidad perfecta] --&gt; EQ[ABR-MOD-BP&lt;br/&gt;Equilibrio Y*,i*,E*]
+  PRIMA[ABR-CON-PRIMA&lt;br/&gt;i = i* + prima] --&gt; BP
+  IS --&gt; EQ
+  LM --&gt; EQ
+  EQ --&gt; REG[ABR-CON-REGIMEN&lt;br/&gt;fijo vs flotación]
+  REG --&gt; EFIC[ABR-CON-EFICACIA&lt;br/&gt;fiscal vs monetaria]
+  BIEFUGA[BIE: fuga por&lt;br/&gt;importaciones] --&gt; IS
+</code></pre>
+<p><em>Las cuatro relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan dos:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABR-CON-PRIMA</td>
+<td>MODIFICA</td>
+<td>ABR-CON-BP</td>
+</tr>
+<tr>
+<td>BIE-ERR-06FUGA</td>
+<td>SE_FORMALIZA_EN</td>
+<td>ABR-CON-XN</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABR-CON-CONV</td>
+<td>Convención de E</td>
+<td>E = CLP/USD; E↑ = depreciación</td>
+<td>cotización inversa (USD/CLP) invierte todo</td>
+</tr>
+<tr>
+<td>ABR-CON-BP</td>
+<td>Curva BP (movilidad perfecta)</td>
+<td>Horizontal en i = i*; el capital fija la tasa</td>
+<td>≠ balanza comercial</td>
+</tr>
+<tr>
+<td>ABR-CON-REGIMEN</td>
+<td>Régimen cambiario</td>
+<td>Flotación: Ms fijo, E ajusta. Fijo: BC mueve Ms para defender E</td>
+<td>mezclar los dos</td>
+</tr>
+<tr>
+<td>ABR-CON-EFICACIA</td>
+<td>Eficacia de política</td>
+<td>Depende del régimen (ver tabla)</td>
+<td>asumir que la fiscal siempre funciona igual</td>
+</tr>
+<tr>
+<td>ABR-CON-XN</td>
+<td>Exportaciones netas</td>
+<td>XN = x0 − x1·Y + x2·E (x2 &gt; 0)</td>
+<td>signo de E</td>
+</tr>
+<tr>
+<td><strong>ABR-CON-PRIMA</strong> ⊕</td>
+<td>Prima por riesgo país</td>
+<td>La condición real es <code>i = i* + prima</code>, y la prima <strong>se mueve</strong></td>
+<td>tratar <code>i = i*</code> como identidad</td>
+</tr>
+<tr>
+<td><strong>ABR-CON-CANALES</strong> ⊕</td>
+<td>Canal comercial vs canal financiero</td>
+<td>El comercio mueve E por bienes; las finanzas por carteras, y <strong>son mucho más rápidas</strong></td>
+<td>explicar el dólar solo con exportaciones</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Primera bifurcación (antes que la política): el régimen.</strong> No se puede evaluar un shock sin declarar flotación vs. fijo y la movilidad de capitales.</p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABR-CON-CANALES</td>
+<td>2021: cobre <strong>+51,1 %</strong> (280 → 423 US$cent/lb) y <strong>peso depreciado casi 18 %</strong> (IPoM, BCCh, dic-2021)</td>
+<td>Predecir apreciación por el precio del cobre y equivocarse de signo todo el año</td>
+</tr>
+<tr>
+<td>ABR-CON-PRIMA</td>
+<td>En 2021 las tasas largas chilenas subieron el <strong>doble</strong> que en economías comparables, atribuido a <em>"mayor percepción de riesgo"</em> (ídem)</td>
+<td>Usar <code>i = i*</code> literalmente y no ver el diferencial</td>
+</tr>
+<tr>
+<td>ABR-CON-XN</td>
+<td>Importaciones <strong>+31,3 %</strong> en 2021 con PIB <strong>+11,7 %</strong>: la fuga que el bloque <code>BIE</code> no podía modelar</td>
+<td>Aplicar el multiplicador cerrado a Chile</td>
+</tr>
+<tr>
+<td>ABR-CON-REGIMEN</td>
+<td>Chile <strong>flota</strong> dentro de un esquema de metas de inflación</td>
+<td>Leer la columna de tipo de cambio fijo al analizar Chile</td>
+</tr>
+<tr>
+<td>Ajuste externo</td>
+<td>Cuenta corriente: <strong>−6,6 %</strong> del PIB (2021) → <strong>−8,7 %</strong> (2022) → <strong>−1,2 %</strong> (2025) → <strong>−0,6 %</strong> al 1T-2026</td>
+<td>Creer que un déficit alto es permanente, o que se corrige sin ajuste del gasto</td>
+</tr>
+<tr>
+<td>Shock de términos de intercambio</td>
+<td>Julio 2026: petróleo (WTI-Brent) cerca de <strong>US$100</strong> el barril, <strong>+14 %</strong> respecto de la Reunión anterior (Minuta RPM, julio-2026)</td>
+<td>Tratar un shock de precio externo como si fuera un shock de demanda interna</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaporte <code>ABR-MOD-BP</code></h2>
+<p><strong>El quiebre.</strong> Rosa importa parte de su harina. Cuando el dólar sube, su costo sube y no puede hacer nada. Cuando el dólar sube, además, el pan chileno se vuelve más competitivo frente al importado y ella vende más. <strong>Las dos cosas ocurren a la vez y con distinta velocidad</strong>: el costo le llega el mes siguiente, la ventaja competitiva tarda mucho más. Ese desfase es el corazón del canal comercial.</p>
+<pre><code class="language-yaml">id: ABR-MOD-BP
+tipo: Modelo
+pregunta: &quot;¿Cómo cambia la eficacia de políticas y shocks externos según el régimen cambiario y la movilidad de capitales?&quot;
+endogenas: [Y, i, E (flotación) o Ms (fijo)]
+exogenas: [i*, x0, G, y Ms/P (flotación) o E (fijo)]
+convencion: &quot;E = CLP/USD; E↑ = depreciación; XN = x0 − x1·Y + x2·E con x2 &gt; 0; tasas en %.&quot;
+ecuaciones:
+  IS:  &quot;Y = a − α·i + β·E     (forma lineal, β&gt;0)&quot;
+  LM:  &quot;Y = γ + δ·i&quot;
+  BP:  &quot;i = i*                (movilidad perfecta ⇒ BP horizontal)&quot;
+orden_de_solucion:
+  flotacion: &quot;1) LM∩BP ⇒ i=i* ⇒ Y* desde LM.  2) IS con (Y*,i*) ⇒ despejar E*.&quot;
+  fijo:      &quot;E dado; el BC ajusta Ms/P para sostener i=i* ⇒ Y lo fija la IS.&quot;
+ajuste_horizonte: &quot;Flujos financieros y E ajustan antes que comercio y Y. Corto plazo.&quot;
+limites: &quot;Movilidad perfecta (i = i* sin prima); Marshall-Lerner/curva J y pass-through fuera del modelo básico.&quot;
+errores_objetivo: [ABR-ERR-01, ABR-ERR-02, ABR-ERR-03, ABR-ERR-04, ABR-ERR-05PRIMA]  # ← ampliado en v0.2
+macrolab: &quot;Uso directo de la pestaña IS-LM-BP; verificar convención de E.&quot;
+fuente: {id: F1, unidad: 4}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Eficacia de política (movilidad perfecta):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Política</th>
+<th>Flotación</th>
+<th>Tipo de cambio fijo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Fiscal</strong> (ΔG)</td>
+<td><strong>Impotente sobre Y</strong>: BP horizontal fija Y en LM∩BP; el impulso se drena por apreciación de E (↓XN)</td>
+<td><strong>Potente</strong>: el BC acomoda Ms para sostener E; Y sube</td>
+</tr>
+<tr>
+<td><strong>Monetaria</strong> (ΔMs)</td>
+<td><strong>Potente</strong>: LM se desplaza, Y sube, E se deprecia</td>
+<td><strong>Impotente</strong>: cualquier ΔMs se revierte por flujos de capital al defender E</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Mnemónico: <strong>cada régimen "apaga" una política.</strong> Flotación mata la fiscal; fijo mata la monetaria (bajo movilidad perfecta).</p>
+</blockquote>
+<hr />
+<h3>3.1 ⊕ Los dos canales, y por qué el financiero suele llegar primero</h3>
+<p><strong>El punto que hay que instalar antes de cualquier cálculo.</strong> El tipo de cambio se mueve por dos razones distintas:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Canal comercial</strong></th>
+<th><strong>Canal financiero</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qué lo mueve</td>
+<td>Exportaciones e importaciones de bienes y servicios</td>
+<td>Compra y venta de activos: bonos, depósitos, acciones</td>
+</tr>
+<tr>
+<td>Velocidad</td>
+<td>Meses; embarques, contratos, cosechas</td>
+<td><strong>Horas</strong>; basta una orden</td>
+</tr>
+<tr>
+<td>En el modelo</td>
+<td><code>XN = x0 − x1·Y + x2·E</code></td>
+<td><code>i = i*</code> (la BP)</td>
+</tr>
+<tr>
+<td>Ejemplo chileno</td>
+<td>El cobre alto de 2021</td>
+<td>Las salidas hacia activos externos de 2021</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Por qué esto importa tanto en la práctica.</strong> Los flujos financieros son órdenes de magnitud más rápidos que los comerciales. Por eso, ante una noticia, <strong>el tipo de cambio reacciona primero al canal financiero</strong> aunque los fundamentos comerciales apunten al lado contrario. El año 2021 es el ejemplo perfecto: el cobre subió <strong>51,1 %</strong> —fundamento comercial fuerte hacia la apreciación— y aun así el peso se depreció <strong>casi 18 %</strong>, porque la incertidumbre y las liquidaciones previsionales empujaron capitales hacia afuera.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>ABR-ERR-06CANAL</code> ⊕ (nuevo): explicar el tipo de cambio solo por el comercio, ignorando la cartera.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) En 2021 el peso se depreció pese al cobre alto. (2) Ocurrió <strong>porque</strong> ese año el shock financiero fue excepcionalmente grande. (3) <strong>Deja de cumplirse</strong> en períodos tranquilos, cuando el canal comercial sí domina y un cobre alto se asocia a un peso más fuerte. <strong>No existe la regla "el cobre no afecta al dólar"</strong>: existe la regla de que hay que mirar los dos canales y ver cuál pesa más.</p>
+</blockquote>
+<hr />
+<h3>3.2 ⊕ El supuesto que sostiene la conclusión más fuerte del bloque</h3>
+<p>El modelo dice, bajo flotación, que <strong>la política fiscal es impotente sobre <code>Y</code></strong>. Es una conclusión grande y conviene mostrar de qué depende, porque un estudiante que se la lleve sin condiciones la aplicará mal toda su vida profesional.</p>
+<p><strong>Depende íntegramente de la BP horizontal</strong>, es decir de <code>i = i*</code>: movilidad <strong>perfecta</strong> de capitales. Si la tasa doméstica no puede despegarse de la externa, cualquier presión al alza de <code>i</code> atrae capitales instantáneamente, aprecia el peso y drena el impulso fiscal vía <code>XN</code>.</p>
+<p><strong>Chile no cumple ese supuesto de forma exacta.</strong> La condición realista es:</p>
+<pre><code>i = i* + prima por riesgo país (+ expectativa de depreciación)
+</code></pre>
+<p>y <strong>la prima se mueve</strong>. El IPoM de diciembre de 2021 lo documenta: el alza de tasas largas chilenas <em>"dobla lo observado en un conjunto de economías comparables"</em>, con <em>"una parte significativa explicada por la mayor percepción de riesgo"</em>. Si <code>i</code> puede separarse de <code>i*</code>, la BP no es exactamente horizontal, la impotencia fiscal no es total, y <strong>el resultado del modelo pasa de ser un teorema a ser una tendencia</strong>.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>ABR-ERR-05PRIMA</code> ⊕ (nuevo): tratar <code>i = i*</code> como identidad y concluir que la política fiscal chilena "no sirve".</p>
+<p><strong>Límite declarado.</strong> Este bloque <strong>mantiene</strong> el supuesto de movilidad perfecta porque es el que permite resolver el modelo con las herramientas del curso. Lo que agrega v0.2 es la <strong>obligación de decir en voz alta que es un supuesto</strong>, y de nombrar la dirección en que sesga la conclusión: <strong>exagera la impotencia fiscal bajo flotación</strong>.</p>
+<p><code>[Ilustración sugerida: tres BP superpuestas —horizontal (movilidad perfecta), con pendiente suave (movilidad alta), y desplazada hacia arriba por un alza de la prima— sobre el mismo par IS-LM.]</code></p>
+<hr />
+<h3>3.3 ⊕ El ajuste externo chileno 2021-2026, leído con el modelo</h3>
+<p>La cuenta corriente cuenta la historia del bloque en una sola fila de números.</p>
+<table>
+<thead>
+<tr>
+<th>Año</th>
+<th>Cuenta corriente (% del PIB)</th>
+<th>Qué estaba pasando</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td><strong>−6,6 %</strong></td>
+<td>Boom de demanda interna: importaciones <strong>+31,3 %</strong></td>
+</tr>
+<tr>
+<td><strong>2022</strong></td>
+<td><strong>−8,7 %</strong></td>
+<td>Peak del déficit; el gasto interno todavía por sobre la capacidad</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>−3,2 %</td>
+<td>Ajuste: demanda interna <strong>−3,7 %</strong>, importaciones <strong>−10,9 %</strong></td>
+</tr>
+<tr>
+<td>2024</td>
+<td>−1,2 %</td>
+<td>Consolidación, con exportaciones <strong>+7,2 %</strong></td>
+</tr>
+<tr>
+<td>2025</td>
+<td>−1,2 %</td>
+<td>Estabilidad</td>
+</tr>
+<tr>
+<td>1T-2026</td>
+<td><strong>−0,6 %</strong></td>
+<td>Mejora por términos de intercambio (cobre y litio)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lectura con el modelo.</strong> El déficit de cuenta corriente <strong>no se cerró por una devaluación</strong> ni por una política cambiaria: se cerró porque <strong>cayó la demanda interna</strong>, y con ella las importaciones — el término <code>−x1·Y</code> de la ecuación de <code>XN</code>. De <strong>−8,7 %</strong> a <strong>−1,2 %</strong> del PIB hay <strong>7,5 puntos porcentuales</strong> de ajuste en tres años, y el mecanismo principal fue <code>Y</code>, no <code>E</code>.</p>
+<blockquote>
+<p><strong>Este es el punto más contraintuitivo del bloque y conviene decirlo explícitamente:</strong> en la ecuación <code>XN = x0 − x1·Y + x2·E</code>, la prensa habla casi siempre de <code>E</code> y el ajuste chileno reciente ocurrió sobre todo por <code>Y</code>.</p>
+</blockquote>
+<p><strong>Límite.</strong> La cuenta corriente incluye además el saldo de rentas —<strong>−5,6 % del PIB</strong> al 1T-2026, ligado a la inversión extranjera directa (§<code>MED</code> 3.6)—, que <strong>no</strong> es comercio de bienes y no responde a <code>E</code> del modo en que lo hace <code>XN</code>. La descomposición completa pertenece a la Balanza de Pagos, que este curso trata como lectura, no como modelo.</p>
+<hr />
+<h2>4. Circuito <code>ABR-CIR-01</code> — Economía abierta</h2>
+<pre><code>Shock externo/interno → Convención → Régimen → Canal financiero → Canal comercial →
+Curvas → Equilibrio → Política → Horizonte → Evidencia/revisión
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shock</td>
+<td>¿Cambia x0, i<em>, G, Ms/P, expectativas, la </em><em>prima por riesgo</em>* o términos de intercambio?</td>
+</tr>
+<tr>
+<td>Convención</td>
+<td>Declare E = CLP/USD: E↑ es depreciación.</td>
+</tr>
+<tr>
+<td>Régimen</td>
+<td>¿Flotación o fijo? ¿Movilidad perfecta? <strong>¿Se sostiene ese supuesto en el caso analizado?</strong></td>
+</tr>
+<tr>
+<td>Canal financiero</td>
+<td>¿Cómo cambian flujos, diferencial de tasas y E? <strong>Llega primero.</strong></td>
+</tr>
+<tr>
+<td>Canal comercial</td>
+<td>¿Cómo cambia XN, con qué rezago y elasticidades? <strong>Llega después.</strong></td>
+</tr>
+<tr>
+<td>Curvas</td>
+<td>¿Se desplaza IS, LM o BP?</td>
+</tr>
+<tr>
+<td>Equilibrio</td>
+<td>Compare Y, i, E; <strong>Y estable NO implica ausencia de ajuste</strong> (ajusta E).</td>
+</tr>
+<tr>
+<td>Política</td>
+<td>¿Qué instrumento queda disponible bajo el régimen?</td>
+</tr>
+<tr>
+<td>Horizonte</td>
+<td>¿Marshall-Lerner / curva J alteran el corto plazo?</td>
+</tr>
+<tr>
+<td>Evidencia/revisión</td>
+<td>Observe CLP/USD, cobre, i*, spreads, XN, precios importados.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> mapa de doble canal (financiero/comercial) + comparación de variables + condición de régimen.
+<strong>Regla de revisión:</strong> reabrir si no se declara convención de E, régimen u horizonte comercial, <strong>o si se explicó un movimiento del tipo de cambio con un solo canal</strong>.</p>
+<hr />
+<h2>5. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABR-ERR-01</td>
+<td>Signo de E invertido / convención no declarada</td>
+<td>Invierte el canal externo</td>
+<td>Exigir declarar E = CLP/USD en cada ejercicio</td>
+</tr>
+<tr>
+<td>ABR-ERR-02</td>
+<td>"Y no cambia ⇒ no hubo ajuste" (bajo flotación)</td>
+<td>Pierde el canal principal (E)</td>
+<td>Comparar el vector (Y, i, E), no solo Y</td>
+</tr>
+<tr>
+<td>ABR-ERR-03</td>
+<td>Omitir el régimen antes de evaluar la política</td>
+<td>Conclusión de eficacia errónea</td>
+<td>Preguntar régimen y movilidad primero</td>
+</tr>
+<tr>
+<td>ABR-ERR-04</td>
+<td>Usar i = 0,06 en vez de 6 con coeficientes en %</td>
+<td>Escalas inconsistentes</td>
+<td>Verificar unidades de tasa vs coeficientes</td>
+</tr>
+<tr>
+<td><strong>ABR-ERR-05PRIMA</strong> ⊕</td>
+<td>Tratar <code>i = i*</code> como identidad y no como supuesto</td>
+<td>Concluye impotencia fiscal absoluta; ignora que la prima se mueve y que la BP puede tener pendiente</td>
+<td>Pedir el diferencial observado entre la tasa chilena y la externa en el episodio analizado</td>
+</tr>
+<tr>
+<td><strong>ABR-ERR-06CANAL</strong> ⊕</td>
+<td>Explicar el tipo de cambio con un solo canal (casi siempre el comercial)</td>
+<td>Predice el signo equivocado cuando domina la cartera, como en 2021</td>
+<td>Pedir los dos canales por separado y una razón para decidir cuál domina</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada y verificada) — de tu Ayudantía 11</h2>
+<p><strong>Datos base (P = 1):</strong> C = 30 + 0,75(Y − T); T = 80; I = 60 + 0,15Y − 0,25i; G = 120; XN = 50 − 0,10Y + 0,30E; Ms/P = 900; Md = 60 + 0,50Y − 0,20i; i* = 6.</p>
+<blockquote>
+<p><strong>Verificación v0.2.</strong> Las cuatro pautas de este bloque fueron rederivadas con aritmética exacta el 2026-08-15. <strong>Todas correctas; ninguna cifra cambió.</strong></p>
+</blockquote>
+<h3><code>ABR-EX-01</code> — Equilibrio bajo flotación + movilidad perfecta · derivación · intermedia</h3>
+<p><strong>Errores objetivo:</strong> ABR-ERR-01, ABR-ERR-04.
+<strong>Pauta sellada (confirmada):</strong>
+- <strong>IS:</strong> constantes (−30 + 60 + 120 + 50) = 200; coef. de Y (0,75 + 0,15 − 0,10) = 0,80 ⇒ 0,2Y = 200 − 0,25i + 0,30E ⇒ <strong>Y = 1.000 − 1,25i + 1,5E</strong>.
+- <strong>LM:</strong> 900 = 60 + 0,5Y − 0,2i ⇒ <strong>Y = 1.680 + 0,4i</strong>.
+- <strong>BP:</strong> i = i<em> = 6 ⇒ </em><em>Y* = 1.680 + 0,4·6 = 1.682,4</em><em>.
+- </em><em>E*:</em><em> 1.682,4 = 1.000 − 1,25·6 + 1,5E = 992,5 + 1,5E ⇒ </em><em>E* ≈ 459,93</em>*.</p>
+<blockquote>
+<p><strong>Nota de escala (v0.2).</strong> <code>E ≈ 460</code> en este ejercicio es un valor del modelo, no una predicción del peso chileno. Coincide en orden de magnitud con niveles históricos del CLP/USD, lo que ayuda a la intuición, pero <strong>no debe presentarse como un pronóstico</strong> (<code>MED-ERR-24</code>).</p>
+</blockquote>
+<h3><code>ABR-EX-02</code> — Shock fiscal ΔG = +40 bajo flotación · predicción-revisión · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ABR-ERR-02, ABR-ERR-03.
+<strong>Pauta sellada (confirmada):</strong> multiplicador = 1/0,2 = 5; ΔG·m = 200 ⇒ nueva IS: <strong>Y = 1.200 − 1,25i + 1,5E</strong>. Como LM∩BP no cambia, <strong>Y sigue en 1.682,4</strong> e i = 6; despejando E: 1.682,4 = 1.200 − 7,5 + 1,5E ⇒ <strong>E ≈ 326,60</strong>. <strong>Interpretación:</strong> E <strong>baja (apreciación)</strong>; XN cae y neutraliza el impulso fiscal ⇒ <strong>fiscal impotente sobre Y bajo flotación</strong> (el ajuste es todo en E, no en Y — ABR-ERR-02 evitado).</p>
+<p><strong>Advertencia obligatoria (v0.2).</strong> Esta impotencia es <strong>exacta solo bajo movilidad perfecta</strong> (§3.2). Con prima por riesgo variable la BP no es horizontal y el drenaje es <strong>parcial</strong>. Al corregir, se exige que el estudiante nombre el supuesto (<code>ABR-ERR-05PRIMA</code>).</p>
+<h3><code>ABR-EX-03</code> — Expansión monetaria ΔMs = +200 bajo flotación · avanzada</h3>
+<p><strong>Pauta sellada (confirmada):</strong> nueva LM: 1.100 = 60 + 0,5Y − 0,2i ⇒ <strong>Y = 2.080 + 0,4i</strong>; con i = 6 ⇒ <strong>Y = 2.082,4</strong>. IS original (G sin cambio): 2.082,4 = 992,5 + 1,5E ⇒ <strong>E ≈ 726,60</strong>. <strong>Comparación:</strong> Y <strong>sube</strong> (LM→derecha), i sigue en i<em>, E </em><em>sube (depreciación)</em><em> para que XN acompañe el mayor Y ⇒ </em><em>monetaria potente bajo flotación</em>*.</p>
+<p><strong>Ancla real (v0.2).</strong> Esta es la lógica de fondo del régimen chileno: bajo flotación, el instrumento que sí muerde es el monetario, y por eso el Banco Central lo usa como su herramienta principal (bloque <code>DIN</code>).</p>
+<h3><code>ABR-EX-04</code> — Shock fiscal ΔG = +40 bajo tipo de cambio <strong>fijo</strong> · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ABR-ERR-03.
+<strong>Pauta sellada (confirmada):</strong> E fijo en E<em> = 459,93, i = i</em> = 6. La IS (con ΔG) determina Y: Y = 1.200 − 1,25·6 + 1,5·459,93 = 1.200 − 7,5 + 689,9 ⇒ <strong>Y = 1.882,4</strong>. Para sostener i = 6 y ese Y, el BC fija Ms/P = Md = 60 + 0,5·1.882,4 − 0,2·6 = <strong>1.000</strong> (sube de 900 a 1.000). Nueva LM: <strong>Y = 1.880 + 0,4i</strong> (pasa por (1.882,4; 6)). <strong>Intuición:</strong> bajo fijo el BC acomoda Ms para defender E ⇒ <strong>fiscal potente</strong> (Y↑), <strong>monetaria estéril</strong> (cualquier ΔMs autónomo se revierte por flujos de capital).</p>
+<p><strong>Nota de contexto (v0.2).</strong> Chile <strong>no</strong> está en este régimen. El ejercicio se resuelve para entender por contraste qué gana y qué pierde un país al fijar: gana potencia fiscal, <strong>pierde la política monetaria</strong>, que es justamente el instrumento con el que el BCCh conduce la inflación hacia la meta de 3 %.</p>
+<hr />
+<h3>⊕ <code>ABR-EX-05</code> — El puzzle de 2021: cobre al alza y peso a la baja · diagnóstico de canales · avanzada</h3>
+<p><strong>Errores objetivo:</strong> ABR-ERR-06CANAL, ABR-ERR-05PRIMA, ABR-ERR-01.
+<strong>Marco narrativo.</strong> Rosa pregunta por qué le subió la harina importada en el mejor año del cobre en una década.</p>
+<p><strong>Datos entregados al estudiante</strong> (todos oficiales; trazabilidad en §12):</p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precio del cobre, promedio anual 2020 → 2021</td>
+<td>280 → <strong>423</strong> US$cent/lb</td>
+</tr>
+<tr>
+<td>Variación del peso durante 2021</td>
+<td><strong>depreciación de casi 18 %</strong></td>
+</tr>
+<tr>
+<td>Tasas largas chilenas en 2021 (BTP-10)</td>
+<td><strong>+300 pb</strong>, el <strong>doble</strong> que en economías comparables</td>
+</tr>
+<tr>
+<td>Causa señalada del alza de tasas largas</td>
+<td>liquidaciones masivas de ahorros previsionales; incertidumbre político-legislativa; <strong>mayor percepción de riesgo</strong></td>
+</tr>
+<tr>
+<td>Comportamiento de cartera observado</td>
+<td>mayor demanda por depósitos y cuentas corrientes en dólares e instrumentos que invierten en el exterior</td>
+</tr>
+<tr>
+<td>Importaciones 2021 · demanda interna 2021</td>
+<td>+31,3 % · +21,6 %</td>
+</tr>
+<tr>
+<td>Cuenta corriente 2021</td>
+<td><strong>−6,6 %</strong> del PIB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Se pide:</strong>
+1. Calcule la variación porcentual del precio del cobre y diga, <strong>usando la convención sellada</strong>, qué le habría hecho a <code>E</code> si solo operara el canal comercial.
+2. Describa el canal financiero de ese año y qué le hace a <code>E</code>.
+3. El peso se depreció. ¿Qué canal dominó? Justifique con un argumento de <strong>velocidad y magnitud</strong>, no de preferencia.
+4. En el modelo, la BP es horizontal en <code>i = i*</code>. ¿Es compatible con que las tasas chilenas hayan subido el doble que las comparables? ¿Qué habría que agregar al modelo?
+5. Enuncie una afirmación que estos datos <strong>no</strong> permiten sostener.</p>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li><code>423/280 − 1 = **+51,1 %**</code>. Con la convención <code>E = CLP/USD</code>, más dólares entrando por exportaciones significa mayor oferta de dólares ⇒ el dólar se abarata en pesos ⇒ <strong><code>E</code> baja: apreciación</strong>. El canal comercial, solo, predice apreciación.</li>
+<li>Salida de capitales: los agentes aumentan su demanda de activos en moneda extranjera, es decir <strong>compran dólares</strong> ⇒ mayor demanda de dólares ⇒ <strong><code>E</code> sube: depreciación</strong>. En el modelo esto corresponde a un aumento de la <strong>prima por riesgo</strong>, que desplaza la BP hacia arriba.</li>
+<li>Dominó el <strong>financiero</strong>: el resultado observado fue depreciación de casi 18 %. El argumento es de <strong>velocidad y magnitud</strong> — una recomposición de cartera se ejecuta en horas y movilizó volúmenes muy grandes (los retiros previsionales sumaron una fracción relevante del PIB, §<code>BIE</code>), mientras que el mayor ingreso por cobre entra a lo largo de meses y por embarques.</li>
+<li><strong>No es compatible con <code>i = i*</code> estricto.</strong> Si la tasa doméstica sube el doble que la de economías comparables, existe un diferencial persistente, es decir <strong><code>i = i* + prima</code></strong> con prima <strong>creciente</strong>. Habría que (a) agregar la prima a la BP y (b) permitir que la BP se <strong>desplace</strong> cuando cambia la percepción de riesgo — y, en un modelo más fino, darle <strong>pendiente</strong> (movilidad imperfecta). Es <code>ABR-ERR-05PRIMA</code> en su forma constructiva.</li>
+<li>Cualquiera de estas: <em>"el precio del cobre no afecta al tipo de cambio"</em> (sí lo afecta; ese año fue superado por otro canal — <code>ABR-ERR-06CANAL</code> invertido); <em>"la depreciación se debió a los retiros"</em> como afirmación causal única (el IPoM menciona <strong>varios</strong> factores y no cuantifica cada uno); <em>"con flotación el tipo de cambio siempre absorbe el shock"</em> (absorbió parte; la cuenta corriente igual se deterioró a −6,6 % del PIB).</li>
+</ol>
+<p><strong>Evidencia de dominio:</strong> separa los dos canales con signo correcto, no elige el ganador por intuición sino por velocidad y magnitud, y <strong>propone la modificación del modelo</strong> en el punto 4 en lugar de descartar el modelo.</p>
+<p><code>[Ilustración sugerida: 2021 en dos paneles —precio del cobre subiendo y CLP/USD subiendo a la vez— con una nota que marque que ambos suben, lo que el canal comercial solo no puede explicar.]</code></p>
+<hr />
+<h2>7. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> Declaro convención E = CLP/USD ___ y régimen ___ · el shock afecta ___ · canal financiero: i y flujos ___ · canal comercial: XN ___ · <strong>cuál llega primero y cuál domina</strong> ___ · se desplaza la curva ___ · orden de solución (flotación: LM∩BP→Y<em>, luego IS→E; fijo: IS→Y, BC ajusta Ms) ___ · nuevo (Y, i, E) = ___ · el instrumento disponible es ___ · </em><em>el supuesto de movilidad perfecta sesga la conclusión hacia</em><em> ___ · revisaría si ___.
+</em><em>Nivel B:</em><em> régimen → curva → orden de solución → (Y,i,E) → eficacia de política → supuesto.
+</em><em>Nivel C:</em><em> </em>"Resuelva el equilibrio bajo el régimen indicado, compare el vector (Y,i,E) y explique por qué una de las dos políticas es impotente."*</p>
+<h3>7.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla el puzzle de 2021 completo (§0.1 y §3.1)</td>
+<td>Identificar canal, signo y dominancia en el relato ya hecho</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entrega el <strong>ajuste externo 2022-2025</strong> con la serie de cuenta corriente</td>
+<td>Explicar el cierre del déficit por <code>Y</code> y no por <code>E</code>, con la ecuación de XN a la vista</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>la minuta de RPM de julio de 2026</strong>, cruda</td>
+<td>Clasificar el shock del petróleo (¿externo, de términos de intercambio, de qué curva?), declarar régimen y convención, y predecir el vector (Y, i, E)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insumo listo para el Nivel C.</strong> En julio de 2026 el petróleo (WTI-Brent) volvió a cerca de <strong>US$100</strong> el barril, <strong>+14 %</strong> respecto de la Reunión anterior, por la escalada del conflicto en Medio Oriente. Chile es <strong>importador</strong> de petróleo: es un deterioro de términos de intercambio. El estudiante debe declarar la convención, ubicar el shock (afecta <code>x0</code> y, vía costos, la inflación), y explicar por qué la respuesta de política no es obvia — el shock sube precios y baja actividad a la vez, lo que anticipa el bloque <code>OADA</code>.</p>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>ABR-EX-01</td>
+<td>Derivar IS/LM/BP y hallar E*</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>ABR-EX-02/03 + <strong>ABR-EX-05</strong> + noticia CLP/USD o cobre real</td>
+<td>Predice el efecto sobre (Y,i,E) y contrasta con datos</td>
+</tr>
+<tr>
+<td><strong>Solemne 2 / Examen (40 % y 30 %)</strong></td>
+<td>ABR-EX-04 + comparación de regímenes</td>
+<td>Eficacia fiscal/monetaria bajo fijo vs flotación</td>
+</tr>
+</tbody>
+</table>
+<p>Referencia real: la Solemne 2 y el Examen 2025 (en <code>Pruebas_Macro1</code>) incluyen economía abierta; calibrar contra esas pautas.</p>
+<p><strong>Regla de corrección:</strong> no declarar la convención de E o el régimen se corrige como error de <strong>formulación</strong>. <strong>Afirmar impotencia fiscal sin nombrar el supuesto de movilidad perfecta se corrige igual</strong>, aunque el cálculo sea correcto.</p>
+<hr />
+<h2>9. Integración con MacroLab</h2>
+<blockquote>
+<p><strong>Dónde vive este bloque.</strong> En la <strong>capa superior</strong> de MacroLab —el Shock Simulator publicado en <code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>—, pestaña <strong>IS-LM-BP</strong>. La sub-app <code>macro1/</code> (cinco ventanas de laboratorio) cubre medición, bienes, dinero y laboral; la economía abierta está arriba.</p>
+</blockquote>
+<h3>⚑ Verificación cruzada de las cuatro pautas contra el propio simulador</h3>
+<p>El módulo IS-LM-BP expone <code>c₀, c₁, b₀, b₁, b₂, x₀, x₁, x₂, G, T, M/P, d₁, d₂, i*</code> y entrega <code>Y</code>, <code>i = i*</code>, un <strong>índice de tipo de cambio</strong> y <code>NX</code>. Se ejecutó su solver (<code>calcISLMBP</code>) con los datos base de la Ayudantía 11 el 2026-08-15:</p>
+<table>
+<thead>
+<tr>
+<th>Ejercicio</th>
+<th>Pauta sellada</th>
+<th>MacroLab</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ABR-EX-01</code></td>
+<td>Y = 1.682,4 · E ≈ 459,93</td>
+<td><strong>1.682,4 · 459,93</strong> ✔</td>
+</tr>
+<tr>
+<td><code>ABR-EX-02</code> (ΔG = +40)</td>
+<td>Y = 1.682,4 (sin cambio) · E ≈ 326,60</td>
+<td><strong>1.682,4 · 326,60</strong> ✔</td>
+</tr>
+<tr>
+<td><code>ABR-EX-03</code> (ΔMs = +200)</td>
+<td>Y = 2.082,4 · E ≈ 726,60</td>
+<td><strong>2.082,4 · 726,60</strong> ✔</td>
+</tr>
+</tbody>
+</table>
+<p>Las tres coinciden al decimal. El simulador entrega además <code>NX ≈ 19,74</code> en el caso base, un dato que la pauta no calculaba y que puede pedirse como ítem adicional.</p>
+<blockquote>
+<p><strong>Salvedad de calibración, importante al cargar los datos.</strong> La demanda de dinero de la Ayudantía 11 es <code>Md = 60 + 0,50Y − 0,20i</code>, con una <strong>constante de 60</strong> que el módulo no tiene (su forma es <code>Md = d₁Y − d₂i</code>). Para reproducir el ejercicio hay que ingresar <strong><code>M/P = 840</code></strong>, no 900: es decir <code>900 − 60</code>. Sin ese ajuste el simulador entrega otro <code>Y</code> y el estudiante concluirá que la pauta está mal. Ver <code>BL-ABR-08</code>.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Entrada</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pestaña <strong>IS-LM-BP</strong></td>
+<td>Reproducir <code>ABR-EX-01</code> a <code>EX-03</code>; separar canal interno/externo; ver <code>E</code> y <code>NX</code> moverse mientras <code>Y</code> no lo hace (el punto de <code>ABR-ERR-02</code>)</td>
+<td>Verificar siempre la convención de <code>E</code> del módulo contra <code>GOB-CONV-TC</code> antes de interpretar el signo</td>
+</tr>
+<tr>
+<td>Pestaña <strong>Tablero macro</strong></td>
+<td>Contrastar el modelo con las series reales de <strong>CLP/USD, cobre y WTI</strong> 2010-2025 que el Tablero incluye: es el insumo natural del puzzle de 2021 (§0.1)</td>
+<td>El Tablero es lectura de contexto, no salida del modelo</td>
+</tr>
+<tr>
+<td>Pestaña <strong>Atlas de shocks</strong></td>
+<td>Cargar episodios reales (cobre, energía) como escenarios pre-armados</td>
+<td>No tratar un escenario del Atlas como pronóstico</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lo que sigue sin soporte:</strong> <code>ABR-EX-04</code> (tipo de cambio <strong>fijo</strong>) y <code>ABR-EX-05</code> (el puzzle de 2021 con prima por riesgo). El módulo implementa <strong>flotación con movilidad perfecta</strong>; no tiene régimen fijo ni prima variable. Ambos se resuelven a mano — y esa ausencia es exactamente el límite que §3.2 pide declarar.</p>
+<hr />
+<h2>10. Cierre y backlog</h2>
+<p><strong>Definición de Terminado:</strong> convención de E sellada y declarada en cada ejercicio; los <strong>cinco</strong> ejercicios probados; ambos regímenes cubiertos; el vector (Y,i,E) comparado (no solo Y); ⊕ el supuesto de movilidad perfecta declarado cada vez que se concluya impotencia fiscal; ⊕ todo movimiento cambiario explicado con los dos canales.</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-ABR-01</td>
+<td><strong>Sellar la hoja de convención E = CLP/USD</strong> en todos los materiales (Ayudantía 11 ya la usa; unificar en notas)</td>
+<td>alta (era BL-01 global)</td>
+<td>edición de materiales</td>
+</tr>
+<tr>
+<td>BL-ABR-02</td>
+<td>Añadir extensión Marshall-Lerner / curva J (horizonte comercial)</td>
+<td>media</td>
+<td>tras primera aplicación</td>
+</tr>
+<tr>
+<td>BL-ABR-03</td>
+<td>Ejercicio con movilidad imperfecta (BP con pendiente)</td>
+<td><strong>media-alta</strong> (elevada en v0.2)</td>
+<td><code>ABR-EX-05</code> ítem 4 ya lo pide conceptualmente; falta la versión con cálculo</td>
+</tr>
+<tr>
+<td><strong>BL-ABR-04</strong> ⊕</td>
+<td>Verificar la magnitud exacta de la depreciación del peso en 2021. El IPoM de diciembre de 2021 dice <em>"casi 18 %"</em>; conviene contrastar con la serie de tipo de cambio observado del BCCh antes de usar la cifra en una pauta con cálculo</td>
+<td>media</td>
+<td>antes de evaluar con esa cifra</td>
+</tr>
+<tr>
+<td><strong>BL-ABR-05</strong> ⊕</td>
+<td>Decidir si <code>ABR-CON-PRIMA</code>, <code>ABR-CON-CANALES</code>, <code>ABR-ERR-05PRIMA</code> y <code>ABR-ERR-06CANAL</code> se incorporan al registro maestro o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-ABR-06</strong> ⊕</td>
+<td>Evaluar si conviene un ejercicio dedicado al <strong>shock de términos de intercambio</strong> (petróleo 2026), que es el puente natural hacia <code>OADA</code></td>
+<td>media</td>
+<td>tras el bloque OA-DA</td>
+</tr>
+<tr>
+<td><strong>BL-ABR-07</strong> ⊕</td>
+<td>El módulo IS-LM-BP implementa <strong>flotación con movilidad perfecta</strong>. Evaluar si se agrega (a) régimen de <strong>tipo de cambio fijo</strong>, que dejaría <code>ABR-EX-04</code> reproducible, y (b) una <strong>prima por riesgo</strong> desplazable, que haría visible <code>ABR-EX-05</code> y <code>ABR-ERR-05PRIMA</code>. Ambas son las extensiones de mayor rendimiento pedagógico del bloque</td>
+<td><strong>alta</strong></td>
+<td>desarrollo del repo</td>
+</tr>
+<tr>
+<td><strong>BL-ABR-08</strong> ⊕</td>
+<td><strong>Desajuste de calibración detectado.</strong> La Ayudantía 11 usa <code>Md = 60 + 0,50Y − 0,20i</code> (con constante) y el módulo usa <code>Md = d₁Y − d₂i</code> (sin constante). Reproducir el ejercicio exige ingresar <code>M/P = 840</code> en vez de 900. Decidir entre: (a) documentar la equivalencia en la guía, o (b) reescribir la Ayudantía 11 sin constante para que los datos se carguen tal cual</td>
+<td><strong>alta</strong></td>
+<td>antes de usar el simulador en este bloque</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E = CLP/USD</strong></td>
+<td>Cuántos pesos cuesta un dólar, como el precio del pan</td>
+<td>ABR-CON-CONV</td>
+</tr>
+<tr>
+<td><strong>Depreciación (E↑)</strong></td>
+<td>El dólar subió: lo importado se encarece, lo nuestro se abarata para afuera</td>
+<td>E↑</td>
+</tr>
+<tr>
+<td><strong>Canal comercial</strong></td>
+<td>Los dólares que llegan en barco</td>
+<td>XN</td>
+</tr>
+<tr>
+<td><strong>Canal financiero</strong></td>
+<td>Los dólares que llegan por transferencia, y se van igual de rápido</td>
+<td>BP</td>
+</tr>
+<tr>
+<td><strong>Curva BP horizontal</strong></td>
+<td>Una manguera tan ancha que la presión nunca sube</td>
+<td>i = i*</td>
+</tr>
+<tr>
+<td><strong>Prima por riesgo país</strong></td>
+<td>El recargo que te cobran por ser tú, no por el producto</td>
+<td>ABR-CON-PRIMA</td>
+</tr>
+<tr>
+<td><strong>Impotencia fiscal bajo flotación</strong></td>
+<td>Empujar un bote cuya amarra está fija al muelle</td>
+<td>ABR-EX-02</td>
+</tr>
+<tr>
+<td><strong>Términos de intercambio</strong></td>
+<td>Cuántos sacos de harina te compra un camión de cobre</td>
+<td>cobre, petróleo</td>
+</tr>
+<tr>
+<td><strong>Cuenta corriente</strong></td>
+<td>Si el país gasta más de lo que produce, alguien afuera le está prestando</td>
+<td>§3.3</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>Verificación limpia:</strong> las cuatro pautas selladas se rederivaron con aritmética exacta y <strong>son correctas</strong>. A diferencia del bloque <code>ISLM</code>, aquí no hubo hallazgos.</li>
+<li><strong>Personaje-ancla:</strong> Rosa Millán continúa; su harina importada abre el bloque con la pregunta del cobre y el dólar.</li>
+<li><strong>Episodio histórico central (§0.1 y §3.1):</strong> el puzzle de 2021 —cobre <strong>+51,1 %</strong> y peso depreciándose <strong>casi 18 %</strong>— que obliga a separar el canal comercial del financiero y a decidir cuál domina por velocidad y magnitud.</li>
+<li><strong>Declaración de régimen (§0.2):</strong> Chile <strong>flota</strong>, de modo que la columna operativa de la tabla de eficacia es la de flotación, con la conclusión fuerte de impotencia fiscal — y por eso mismo el bloque ahora exige declarar el supuesto que la produce.</li>
+<li><strong>Supuesto explicitado (§3.2):</strong> <code>i = i*</code> es movilidad <strong>perfecta</strong>; Chile tiene movilidad alta con <strong>prima por riesgo variable</strong>, documentada en 2021. Se declara la dirección del sesgo: el modelo <strong>exagera</strong> la impotencia fiscal.</li>
+<li><strong>Ajuste externo (§3.3):</strong> la serie de cuenta corriente de <strong>−8,7 %</strong> (2022) a <strong>−1,2 %</strong> (2025) y <strong>−0,6 %</strong> al 1T-2026, con la lectura contraintuitiva de que el ajuste operó por <code>Y</code>, no por <code>E</code>.</li>
+<li><strong>Nodos nuevos dentro del esquema:</strong> conceptos <code>ABR-CON-PRIMA</code> y <code>ABR-CON-CANALES</code>; errores <code>ABR-ERR-05PRIMA</code> y <code>ABR-ERR-06CANAL</code>; ejercicio <code>ABR-EX-05</code> (cinco ítems). Dos aristas nuevas en el grafo, una de las cuales <strong>cierra el gancho declarado del bloque <code>BIE</code></strong> (la fuga por importaciones se formaliza aquí en <code>x1</code>).</li>
+<li><strong>Advertencia de coincidencia frente a regla:</strong> el peso depreciándose con cobre alto, presentado como resultado condicional del año 2021 y no como regla.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Precio del cobre BML, promedio 2020</td>
+<td>280 US$cent/lb</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>Precio del cobre BML, promedio 2021</td>
+<td><strong>423</strong> US$cent/lb</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Precio del cobre BML, promedio 2023 · 2024</td>
+<td>385 · 415 US$cent/lb</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2025</td>
+</tr>
+<tr>
+<td>Precio del cobre BML, promedio 2025 · proyección 2026</td>
+<td>451 · 580 US$cent/lb</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Depreciación del peso durante 2021</td>
+<td>casi <strong>18 %</strong> (cita textual)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Alza del BTP-10 en 2021 y comparación internacional</td>
+<td>≈ <strong>300 pb</strong>; el doble de economías comparables</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Atribución del alza</td>
+<td>liquidaciones previsionales, incertidumbre político-legislativa, mayor percepción de riesgo</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Recomposición de cartera hacia moneda extranjera</td>
+<td>mayor demanda de depósitos y cuentas en dólares e instrumentos externos</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Importaciones 2021 · demanda interna 2021</td>
+<td>+31,3 % · +21,6 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>Cuenta corriente 2021 · 2022</td>
+<td>−6,6 % · <strong>−8,7 %</strong> del PIB</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2022 y dic. 2024</td>
+</tr>
+<tr>
+<td>Cuenta corriente 2023 · 2024 · 2025</td>
+<td>−3,2 % · −1,2 % · −1,2 % del PIB</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2025 y jun. 2026</td>
+</tr>
+<tr>
+<td>Cuenta corriente al 1T-2026 (12 meses)</td>
+<td><strong>−0,6 %</strong> del PIB</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Importaciones 2023 · exportaciones 2024</td>
+<td>−10,9 % · +7,2 %</td>
+<td>BCCh, IPoM</td>
+<td>dic. 2025 y jun. 2026</td>
+</tr>
+<tr>
+<td>Saldo de la cuenta de rentas al 1T-2026</td>
+<td>−5,6 % del PIB</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>Petróleo WTI-Brent, julio 2026</td>
+<td>cerca de <strong>US$100</strong>/barril, <strong>+14 %</strong> vs Reunión anterior</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>TPM vigente</td>
+<td>4,50 %</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Supuesto de tipo de cambio real en la proyección</td>
+<td>se mantiene en torno a su nivel</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nota de vintage.</strong> Cada cifra anual proviene de la edición del IPoM más reciente que la reporta como efectiva (<code>MED-ERR-09REV</code>).</p>
+<p><strong>Marcadores de verificación pendientes:</strong> uno, <code>BL-ABR-04</code> (magnitud exacta de la depreciación de 2021, citada por el IPoM como <em>"casi 18 %"</em>). Ningún otro dato queda sin fuente y fecha.</p>
+<hr />
+<p><em>Notación y ejercicios anclados en la Ayudantía 11. Convención de E sellada (E = CLP/USD, E↑ = depreciación, x2 &gt; 0). Los cinco equilibrios de esta edición fueron derivados y verificados con aritmética exacta el 2026-08-15.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>

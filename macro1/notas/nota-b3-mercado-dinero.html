@@ -1,0 +1,979 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloque 3 · El Mercado de Dinero &middot; Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Demanda de dinero, precio del bono y los dos cierres monetarios, con la TPM del Banco Central como régimen efectivo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --accent:#2d6ea3; --bg:#f3f6fa; --card:#fff; --line:#d8e1ea;
+  --muted:#556676; --navy:#0f2740; --navy-deep:#091a2d; --text:#1c2a35; --focus:#fbbf24; --radius:18px;
+  --accent-soft:#eaf3fb; --shadow:0 10px 28px rgba(17,35,52,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:5.5rem}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px; line-height:1.6;
+}
+a{color:var(--accent)}
+a:hover{color:#204f75}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:4px}
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:100;
+  background:var(--navy);color:#fff;padding:.6rem 1rem;border-radius:0 0 var(--radius) 0;
+}
+.skip:focus{left:0}
+
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  display:flex;gap:.75rem;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;
+  background:var(--card);border-bottom:1px solid var(--line);
+  padding:.6rem clamp(1rem,4vw,2.5rem);
+}
+.topbar a,.topbar button{
+  font:inherit;font-size:.9rem;font-weight:600;
+  border:1px solid var(--line);border-radius:999px;
+  padding:.45rem 1rem;background:var(--card);color:var(--accent);
+  text-decoration:none;cursor:pointer;
+}
+.topbar a:hover,.topbar button:hover{background:var(--bg);border-color:var(--accent)}
+.topbar button,.topbar a.dl{background:var(--accent);color:#fff;border-color:var(--accent)}
+.topbar button:hover,.topbar a.dl:hover{background:#204f75;color:#fff}
+.topbar .where{font-size:.82rem;color:var(--muted);font-weight:500}
+
+header.masthead{
+  background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);color:#fff;
+  padding:calc(4.2rem + 1.6rem) clamp(1rem,4vw,2.5rem) 2rem;
+}
+.masthead .inner{max-width:80ch;margin:0 auto}
+.eyebrow{
+  display:block;font-size:.84rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.82);margin:0 0 .9rem;
+}
+.masthead h1{font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.25;margin:0 0 .9rem;font-weight:700}
+.masthead .meta{margin:0;color:#d3e2ef;font-size:.94rem}
+.masthead .brand{margin:1.4rem 0 0}
+.masthead .brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+
+main{
+  max-width:80ch;margin:0 auto;padding:2rem clamp(1rem,4vw,2.5rem) 3rem;
+}
+main > *{max-width:72ch}
+main > figure,main > table,main > .toc,main > .wide,main > .tabla-wrap{max-width:100%}
+
+.toc{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.1rem 1.4rem;margin:0 0 2.4rem;
+}
+.toc h2{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 .7rem;border:0;padding:0}
+.toc ol{margin:0;padding-left:1.3rem;display:grid;gap:.3rem}
+.toc ol.sub{margin:.3rem 0 .1rem;padding-left:1.1rem;gap:.2rem;font-size:.93em;color:var(--muted)}
+.toc a{text-decoration:none}
+.toc a:hover{text-decoration:underline}
+
+h2{
+  font-size:1.32rem;line-height:1.3;margin:2.6rem 0 .8rem;color:var(--navy);
+  padding-bottom:.4rem;border-bottom:2px solid var(--line);
+}
+h3{font-size:1.12rem;line-height:1.35;margin:1.9rem 0 .6rem;color:var(--navy)}
+h4{font-size:1rem;margin:1.5rem 0 .5rem;color:var(--navy)}
+h5{font-size:.95rem;margin:1.3rem 0 .45rem;color:#24486b}
+h6{font-size:.92rem;margin:1.2rem 0 .4rem;color:#24486b}
+p{margin:0 0 1rem}
+ul,ol{margin:0 0 1.1rem;padding-left:1.5rem}
+li{margin:0 0 .45rem}
+ul.sub,ol.sub-list{margin:.45rem 0 .2rem;padding-left:1.4rem}
+ul.sub{list-style:circle}
+
+figure{margin:1.8rem 0;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:1rem}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);text-align:center}
+.tabla-wrap{overflow-x:auto;margin:1.6rem 0}
+table{border-collapse:collapse;width:100%;margin:1.6rem 0;font-size:.94rem}
+.tabla-wrap table{margin:0}
+th,td{border:1px solid var(--line);padding:.5rem .7rem;text-align:left}
+thead th{background:#eef3f8;color:var(--navy)}
+caption{caption-side:top;text-align:left;font-size:.88rem;color:var(--muted);margin-bottom:.5rem}
+p.nota-tabla{font-size:.85rem;color:var(--muted);margin:-.6rem 0 1.4rem}
+
+.formula{
+  background:#f5f8fb;border:1px solid var(--line);border-radius:10px;
+  padding:.85rem 1rem;margin:1.2rem 0;font-family:Georgia,"Times New Roman",serif;
+  font-size:1.02rem;text-align:center;overflow-x:auto;color:var(--text);
+}
+.formula .frac,.frac{
+  display:inline-flex;flex-direction:column;vertical-align:middle;
+  text-align:center;margin:0 .25em;
+}
+.frac > .num{border-bottom:1px solid currentColor;padding:0 .35em .1em}
+.frac > .den{padding:.1em .35em 0}
+.nary{display:inline-flex;align-items:center;margin:0 .2em}
+.nary .op{font-size:1.5em;line-height:1}
+.nary .lim{display:inline-flex;flex-direction:column;font-size:.7em;line-height:1.05;margin-left:.1em}
+.nary .lim sup,.nary .lim sub{position:static;vertical-align:baseline;font-size:1em}
+.rad{border-top:1px solid currentColor;padding:0 .2em}
+sub,sup{line-height:0}
+
+mark.revisar{background:#fff2c2;color:#4a3600;padding:0 .18em;border-bottom:2px solid #d9a400}
+.concept-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1.2rem 0}
+.concept-card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:12px;padding:1rem}
+.concept-card h3{margin:0 0 .4rem;font-size:1rem}
+.identity-path{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:.5rem;align-items:center;background:var(--navy);color:#fff;border-radius:16px;padding:1rem;margin:1.4rem 0;text-align:center}
+.identity-path .node{background:rgba(255,255,255,.12);border-radius:10px;padding:.75rem}.identity-path strong{display:block;color:#fff}.identity-path .arrow{font-size:1.3rem;color:#9fd0f5}
+.warning-note{background:#fff8e8;border:1px solid #ead29a;border-left:5px solid #b87800;border-radius:12px;padding:1rem 1.15rem;margin:1.3rem 0}
+@media(max-width:650px){.concept-grid{grid-template-columns:1fr}.identity-path{grid-template-columns:1fr}.identity-path .arrow{transform:rotate(90deg)}}
+
+footer{
+  border-top:1px solid var(--line);background:var(--card);
+  padding:1.6rem clamp(1rem,4vw,2.5rem) 2.4rem;color:var(--muted);font-size:.9rem;
+}
+footer .inner{max-width:80ch;margin:0 auto}
+footer p{margin:0 0 .4rem}
+footer .who{color:var(--navy);font-weight:700}
+footer .disclaimer{color:var(--muted)}
+
+.print-head{display:none}
+
+@media print{
+  .topbar,.toc,.skip{display:none !important}
+  @page{margin:2cm}
+  html,body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.8em;color:#555}
+  header.masthead{background:#fff;color:#000;padding:0 0 1rem;border-bottom:2px solid #000}
+  .masthead .eyebrow,.masthead .meta{color:#333}
+  .masthead .brand{display:none}
+  main{max-width:none;padding:0}
+  main > *{max-width:none}
+  h2{border-bottom:1px solid #666;color:#000}
+  h3,h4,h5,h6{color:#000}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+  h4,h5,h6{break-after:avoid;page-break-after:avoid}
+  figure,table,li{break-inside:avoid;page-break-inside:avoid}
+  p{orphans:3;widows:3}
+  figure{border:1px solid #999;background:#fff}
+  .formula{background:#fff;border:1px solid #999}
+  .tabla-wrap{overflow:visible}
+  thead th{background:#eee;color:#000}
+  mark.revisar{background:none;color:#000;border-bottom:2px solid #000;font-weight:700}
+  footer{background:#fff;border-top:1px solid #666;padding:1rem 0 0;color:#000}
+  .print-head{
+    display:block;border-bottom:1px solid #999;padding-bottom:.4rem;margin-bottom:1rem;
+    font-size:9.5pt;color:#333;
+  }
+}
+
+/* --- ajustes propios de las notas de bloque --- */
+main.nota{max-width:informal;}
+.wrap{max-width:56rem;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+.volver{display:inline-block;margin-bottom:1rem;font-size:.9rem}
+table{width:100%;border-collapse:collapse;margin:1.1rem 0;font-size:.93rem;background:var(--card);box-shadow:var(--shadow);border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left;vertical-align:top}
+th{background:var(--accent-soft);font-weight:600}
+pre{background:var(--navy-deep);color:#e6edf5;padding:.9rem 1rem;border-radius:10px;overflow-x:auto;font-size:.86rem}
+code{background:var(--accent-soft);padding:.1rem .35rem;border-radius:4px;font-size:.9em}
+pre code{background:none;padding:0;color:inherit}
+blockquote{border-left:4px solid var(--accent);background:var(--accent-soft);margin:1.1rem 0;padding:.7rem 1rem;border-radius:0 10px 10px 0}
+h1{font-size:1.9rem;line-height:1.25;margin:.3rem 0 .6rem}
+h2{margin-top:2.2rem;padding-top:.6rem;border-top:2px solid var(--line);color:var(--navy)}
+h3{margin-top:1.6rem;color:var(--navy)}
+.meta{color:var(--muted);font-size:.9rem;margin-bottom:1.4rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<div class="wrap">
+<a class="volver" href="../index.html">&larr; Volver a MacroLab · Macroeconomía I</a>
+<main class="nota" id="contenido">
+<h1>Macroeconomía 1 — Miniunidad 3: El Mercado de Dinero</h1>
+<h2>Reedición histórico-analítica</h2>
+<p><strong>Paquete:</strong> <code>MAC-GRAPH-MVP</code> · <strong>Bloque:</strong> <code>DIN</code> · <strong>Versión:</strong> 0.2 (reedición de v0.1) · <strong>Estado:</strong> listo para clase
+<strong>Fuente rectora:</strong> Programa 2025-2 (F1), Unidad 2 · <strong>Texto base:</strong> Blanchard 7ª, cap. 4
+<strong>Prerrequisito:</strong> <code>MED</code> (nominal/real, nivel vs tasa) · <strong>Fecha de esta edición:</strong> 2026-08-15</p>
+<blockquote>
+<p>Cubre la determinación de la tasa de interés por equilibrio de cartera: demanda de dinero, oferta real, precio del bono y su relación inversa con la tasa, y <strong>los dos cierres monetarios</strong> (M/P exógeno vs. tasa objetivo). Puente directo hacia la LM. Aritmética de bonos y demanda de dinero sellada y verificada.</p>
+<p><strong>Qué cambia respecto de v0.1.</strong> Arquitectura intacta: mismos IDs, mismo pasaporte, mismas pautas selladas —recalculadas y confirmadas el 2026-08-15, sin cambios de cifras—. Se agrega el ancla histórica que este bloque necesitaba con más urgencia que ninguno: <strong>Chile opera de hecho con el cierre B</strong> (fija la TPM, no la cantidad de dinero), de modo que el "cierre exótico" del libro es el régimen real del país. Y se incorpora el episodio de 2021 —tasas largas subiendo 300 pb y fondos de pensiones conservadores perdiendo valor— que convierte la relación inversa precio-tasa de tecnicismo en noticia. Rosa Millán continúa desde los bloques <code>MED</code> y <code>BIE</code>.</p>
+<p><strong>Convenciones de gobierno aplicadas</strong> (<code>GOB-CONV-ED</code>): formato numérico chileno, regla <strong>coincidencia frente a regla</strong>, IDs <code>&lt;BLOQUE&gt;-&lt;TIPO&gt;-&lt;n&gt;</code>, tasas en por ciento.</p>
+</blockquote>
+<hr />
+<h2>0. Alcance y decisiones del bloque</h2>
+<ul>
+<li><strong>Dos activos:</strong> dinero (no paga interés) y bonos (pagan i). La riqueza financiera se reparte entre ambos.</li>
+<li><strong>Dos cierres, ambos legítimos:</strong> (i) el banco central fija la <strong>oferta real M/P</strong> y la tasa <code>i</code> se ajusta; (ii) el banco central fija la <strong>tasa objetivo <code>i</code></strong> (TPM) y la cantidad de dinero se ajusta endógenamente. Confundirlos es el error central del bloque.</li>
+<li><strong>Puente hacia LM:</strong> el equilibrio del mercado de dinero para distintos niveles de Y traza la LM.</li>
+</ul>
+<p>IDs: <code>DIN-CON-*</code>, <code>DIN-MOD-*</code>, <code>DIN-CIR-*</code>, <code>DIN-ERR-*</code>, <code>DIN-EX-*</code>.</p>
+<h3>0.1 El quiebre que abre el bloque: el banco central no fija la cantidad de dinero</h3>
+<p>Rosa fue al banco en 2022 a renovar el crédito del horno y le dijeron que la tasa había subido "porque subió la del Banco Central". Su pregunta fue buena: <em>"¿Y el Banco Central por qué no imprime más plata y la baja?"</em></p>
+<p>La respuesta obliga a declarar el régimen, que es la disciplina completa de este bloque. El Banco Central de Chile <strong>no anuncia cuántos pesos habrá en la economía</strong>. Anuncia una <strong>tasa</strong>: la Tasa de Política Monetaria, que se decide en la Reunión de Política Monetaria <strong>ocho veces al año</strong> (IPoM, BCCh). En julio de 2026 el Consejo la mantuvo en <strong>4,50 %</strong>, por unanimidad (Minuta RPM N° 323, 27-28 de julio de 2026).</p>
+<blockquote>
+<p><strong>Consecuencia que hay que decir en voz alta el primer día.</strong> En Chile, la <strong>cantidad de dinero es endógena</strong>. El Banco Central pone el precio y deja que la cantidad se acomode a lo que el público demande a ese precio. El cierre A —M/P exógeno, tasa endógena— es el que aparece primero en el libro y es el que <strong>no</strong> describe a Chile. Se enseña porque hace visible el mecanismo de cartera, no porque sea el régimen vigente.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: dos paneles del mercado de dinero —oferta vertical (cierre A) y oferta horizontal a la altura de la TPM (cierre B)— con el mismo desplazamiento de Md y resultados distintos rotulados "sube i" y "sube M/P".]</code></p>
+<p><strong>Decisión de alcance declarada.</strong> Este bloque trabaja con dos activos y sin sistema bancario explícito: no hay multiplicador de depósitos, encaje ni canal de crédito formalizado. Cuando aparezcan datos de tasas de colocación chilenas se usarán como <strong>evidencia de transmisión</strong>, no como parte del modelo.</p>
+<hr />
+<h2>1. Grafo de prerrequisitos</h2>
+<pre><code>[Grafo de prerrequisitos]
+graph LR
+  NR[MED: nominal vs real] --&gt; OR[DIN-CON-OFERTAREAL&lt;br/&gt;M/P]
+  NIVTASA[MED: nivel vs tasa] --&gt; BOND[DIN-CON-BONO&lt;br/&gt;precio del bono ↔ i]
+  OR --&gt; EQ[DIN-MOD-EQ&lt;br/&gt;M/P = Md&amp;#40;Y,i&amp;#41;]
+  MD[DIN-CON-MD&lt;br/&gt;Md = d1·Y − d2·i] --&gt; EQ
+  BOND --&gt; EQ
+  EQ --&gt; CIERRE[DIN-CON-CIERRE&lt;br/&gt;M/P fijo vs i objetivo]
+  CIERRE --&gt; PISO[DIN-CON-PISO&lt;br/&gt;mínimo técnico de la tasa]
+  EQ --&gt; TRANS[DIN-CON-TRANSMISION&lt;br/&gt;TPM → tasas de mercado]
+  EQ -.puente.-&gt; LM[/LM en IS-LM&lt;br/&gt;bloque futuro/]
+</code></pre>
+<p><em>Las cuatro relaciones de v0.1 quedan <code>[Sin cambios respecto de la versión anterior — ver §1 del original]</code>.</em> Se agregan tres:</p>
+<table>
+<thead>
+<tr>
+<th>subject_id</th>
+<th>relation_type</th>
+<th>object_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIN-CON-CIERRE</td>
+<td>TIENE_LIMITE_EN</td>
+<td>DIN-CON-PISO</td>
+</tr>
+<tr>
+<td>DIN-MOD-EQ</td>
+<td>ES_PRERREQUISITO_DE</td>
+<td>DIN-CON-TRANSMISION</td>
+</tr>
+<tr>
+<td>DIN-CON-TRANSMISION</td>
+<td>ES_PUENTE_A</td>
+<td>BIE-CON-Z</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>2. Conceptos clave y homónimos</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Concepto</th>
+<th>Distinción crítica</th>
+<th>Homónimo peligroso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIN-CON-OFERTAREAL</td>
+<td>Oferta real M/P</td>
+<td>El BC controla M (nominal); P dado ⇒ controla M/P en corto plazo</td>
+<td>≠ riqueza</td>
+</tr>
+<tr>
+<td>DIN-CON-MD</td>
+<td>Demanda de dinero</td>
+<td>Crece con Y (transacciones), cae con i (costo de oportunidad)</td>
+<td>≠ demanda de bienes</td>
+</tr>
+<tr>
+<td>DIN-CON-BONO</td>
+<td>Precio del bono vs tasa</td>
+<td><strong>Relación inversa</strong>: PB↑ ⇒ i↓</td>
+<td>tratarlos en el mismo sentido</td>
+</tr>
+<tr>
+<td>DIN-CON-CIERRE</td>
+<td>Régimen monetario</td>
+<td>O se fija M/P <strong>o</strong> se fija i, no ambos</td>
+<td>fijar los dos a la vez sobredetermina</td>
+</tr>
+<tr>
+<td>DIN-CON-MOVvsDESP</td>
+<td>Movimiento vs desplazamiento</td>
+<td>Un cambio en Y <strong>mueve la demanda de dinero</strong> (desplaza Md), no "mueve LM"</td>
+<td>confundir con desplazar LM</td>
+</tr>
+<tr>
+<td><strong>DIN-CON-PISO</strong> ⊕</td>
+<td>Mínimo técnico de la tasa</td>
+<td>Con el cierre B, la tasa objetivo tiene un piso; bajo ese piso el BC debe actuar sobre <strong>cantidades</strong></td>
+<td>"el BC siempre puede bajar la tasa"</td>
+</tr>
+<tr>
+<td><strong>DIN-CON-TRANSMISION</strong> ⊕</td>
+<td>Traspaso de la TPM a las tasas de mercado</td>
+<td>La TPM es la tasa <strong>de política</strong>, no la que paga Rosa; el traspaso es parcial, con rezago y distinto por plazo</td>
+<td>"subió la TPM, entonces mi crédito sube lo mismo"</td>
+</tr>
+</tbody>
+</table>
+<p>⊕ = nuevo en v0.2.</p>
+<blockquote>
+<p><strong>Regla del bloque:</strong> antes de operar, <strong>declare el cierre</strong>: ¿M/P exógeno (i endógena) o i objetivo (M/P endógena)? Sin esa declaración, el modelo queda sobredeterminado (DIN-ERR-11).</p>
+</blockquote>
+<h3>2.1 Ancla histórica por concepto</h3>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Ancla histórica chilena</th>
+<th>Qué error habría cometido quien no domina el concepto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIN-CON-CIERRE</td>
+<td>El BCCh fija la <strong>TPM</strong> en ocho Reuniones al año; en julio de 2026 la mantuvo en <strong>4,50 %</strong> (Minuta RPM N° 323)</td>
+<td>Buscar en las noticias "cuánto dinero emitió el Banco Central" para predecir la tasa</td>
+</tr>
+<tr>
+<td>DIN-CON-PISO</td>
+<td>En 2020 la TPM llegó a su <strong>mínimo técnico de 0,50 %</strong> y el BCCh recurrió a medidas no convencionales: FX swap, REPO, recompra de títulos, compra de bonos bancarios y la <strong>FCIC</strong> (IPoM, BCCh, diciembre-2020)</td>
+<td>Suponer que siempre queda espacio para bajar la tasa</td>
+</tr>
+<tr>
+<td>DIN-CON-BONO</td>
+<td>Durante 2021 el rendimiento del <strong>BTP-10</strong> subió cerca de <strong>300 pb</strong>, y eso produjo <em>"pérdida de valor de los fondos de pensiones más conservadores"</em> (IPoM, BCCh, diciembre-2021)</td>
+<td>No entender por qué un fondo "conservador", lleno de bonos, puede perder plata</td>
+</tr>
+<tr>
+<td>DIN-CON-TRANSMISION</td>
+<td>Entre julio de 2023 y diciembre de 2024 la TPM bajó <strong>625 pb</strong>, y las tasas de créditos de consumo y comerciales retrocedieron <strong>≈600</strong> y <strong>≈700 pb</strong> (IPoM, BCCh, diciembre-2024)</td>
+<td>Suponer traspaso instantáneo y de uno a uno</td>
+</tr>
+<tr>
+<td>DIN-CON-MD</td>
+<td>El fuerte aumento de saldos en cuentas corrientes y a la vista en 2020-2021 (§<code>BIE</code>) con TPM en el mínimo técnico</td>
+<td>Leer más dinero en circulación como causa automática de una tasa menor</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3. Pasaporte <code>DIN-MOD-EQ</code> — Mercado de dinero</h2>
+<p><strong>El quiebre.</strong> Rosa tiene $2.000.000 guardados para reponer el horno el próximo año. Puede dejarlos en la cuenta corriente —disponibles, sin ganar nada— o comprar un instrumento a un año que le rinde. Cada persona y cada empresa de Chile resuelve esa misma disyuntiva todos los días, y <strong>la suma de todas esas decisiones es lo que fija la tasa de interés</strong> cuando el banco central no la fija él. Eso es todo el modelo.</p>
+<pre><code class="language-yaml">id: DIN-MOD-EQ
+tipo: Modelo
+pregunta: &quot;¿Qué ajuste de cartera restablece M/P = Md(Y, i)?&quot;
+endogenas_cierre_A: [i]          # si M/P es exógeno
+endogenas_cierre_B: [M/P]        # si i es objetivo del BC
+exogenas: [Y (en análisis parcial), y M/P o i según cierre]
+ecuaciones:
+  identidad: [&quot;M/P = oferta real; riqueza = dinero + bonos&quot;]
+  conducta:  [&quot;Md = d1·Y − d2·i   (creciente en Y, decreciente en i)&quot;]
+  equilibrio:[&quot;M/P = Md(Y, i)&quot;]
+mecanismo_de_ajuste: &quot;Exceso de dinero ⇒ los agentes compran bonos ⇒ precio del bono sube ⇒ i baja (y viceversa).&quot;
+horizonte: &quot;Muy corto / corto plazo, P dado.&quot;
+limites: &quot;Dos activos; transmisión bancaria y expectativas simplificadas; sin sistema bancario ni piso de tasa dentro del modelo.&quot;
+errores_objetivo: [DIN-ERR-09, DIN-ERR-10, DIN-ERR-11, DIN-ERR-13TRANS]   # ← ampliado en v0.2
+macrolab: &quot;Preparación para LM con pendiente y LM horizontal (cierre de tasa).&quot;
+fuente: {id: F1, unidad: 2}
+version: 0.2.0
+estado: aprobado
+</code></pre>
+<p><strong>Traducción de la demanda de dinero antes y después de la fórmula.</strong> <em>Antes:</em> la gente quiere plata a mano por dos razones que empujan en sentidos distintos — porque hace más transacciones (y eso crece con el ingreso) y porque tenerla a mano cuesta poco cuando la alternativa rinde poco (y eso cae con la tasa). <em>Después:</em> <code>Md = d1·Y − d2·i</code> dice exactamente eso: <code>d1</code> mide cuánta plata a mano exige cada peso de actividad, <code>d2</code> mide cuán sensible es la gente al costo de oportunidad.</p>
+<hr />
+<h3>3.1 ⊕ El cierre B no es un caso especial: es Chile</h3>
+<p>El libro presenta primero el cierre A —el banco central fija <code>M/P</code>— porque hace visible el ajuste de cartera. Conviene decirle al estudiante, en la misma clase, que <strong>ese no es el régimen chileno</strong>.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><strong>Cierre A</strong> (M/P exógeno)</th>
+<th><strong>Cierre B</strong> (tasa objetivo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Qué anuncia el banco central</td>
+<td>Una cantidad de dinero</td>
+<td>Una <strong>tasa</strong> (la TPM)</td>
+</tr>
+<tr>
+<td>Qué se ajusta</td>
+<td>La tasa <code>i</code></td>
+<td>La cantidad <code>M/P</code></td>
+</tr>
+<tr>
+<td>Forma de la LM</td>
+<td>Con pendiente positiva</td>
+<td><strong>Horizontal</strong> a la altura de la TPM</td>
+</tr>
+<tr>
+<td>Si sube <code>Y</code></td>
+<td>Sube <code>i</code></td>
+<td><code>i</code> no cambia; el BC provee más dinero</td>
+</tr>
+<tr>
+<td>¿Describe a Chile?</td>
+<td><strong>No</strong></td>
+<td><strong>Sí</strong>, desde el esquema de metas de inflación</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cómo se ve el cierre B en la práctica.</strong> El Consejo del Banco Central se reúne ocho veces al año, vota un nivel de TPM y lo comunica. En la Reunión de julio de 2026 el acta registra que <em>"la única opción plausible para esta Reunión era mantener la Tasa de Política Monetaria (TPM) en 4,5 %"</em>, y los cinco Consejeros votaron en ese sentido (Minuta RPM N° 323). En ninguna parte del acta aparece una decisión sobre cuántos pesos habrá en circulación: <strong>esa cantidad es el resultado, no el instrumento</strong>.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) Bajo el cierre B, un aumento de <code>Y</code> deja la tasa <strong>inalterada</strong>. (2) Ocurre <strong>porque</strong> el banco central se comprometió a defender un nivel de tasa y acomoda la cantidad de dinero. (3) <strong>Deja de cumplirse</strong> apenas el banco central cambie su objetivo: si el mayor <code>Y</code> lo lleva a subir la TPM en la Reunión siguiente, la tasa sube — pero <strong>por decisión de política</strong>, no por el mecanismo de mercado del cierre A. Distinguir ambas causas es exactamente lo que evalúa <code>DIN-EX-02</code>.</p>
+</blockquote>
+<hr />
+<h3>3.2 ⊕ Cuando el cierre B se queda sin espacio: el mínimo técnico de 2020</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Si el Banco Central pone la tasa, ¿por qué en la pandemia no la puso en cero y listo?"</em></p>
+<p><strong>Historia.</strong> Casi lo hizo. En 2020 la TPM llegó a su <strong>mínimo técnico de 0,50 %</strong> y ahí se detuvo. Un banco central no puede bajar mucho más una tasa nominal: si el rendimiento de los instrumentos se vuelve negativo, conviene guardar el dinero en efectivo, y el mecanismo deja de operar. Ese piso tiene nombre en este bloque: <code>DIN-CON-PISO</code>.</p>
+<p><strong>Lo que hizo entonces.</strong> Cuando el precio ya no se puede bajar, se actúa sobre <strong>cantidades</strong>. El IPoM de diciembre de 2020 describe la combinación: <em>"una TPM en su mínimo técnico (0,5 %) y la implementación de una serie de medidas no convencionales"</em>, entre ellas programas de <strong>FX swap y REPO</strong>, recompra de títulos de deuda del propio Banco Central, compra de bonos bancarios, y la <strong>Facilidad de Financiamiento Condicional al Incremento de las Colocaciones (FCIC)</strong>.</p>
+<p><strong>Traducción.</strong> Con la tasa en el piso, el banco central dejó de ser el que pone el precio y pasó a ser el que pone la cantidad — <strong>es decir, se movió del cierre B al cierre A</strong>, no por gusto teórico sino por necesidad. Los dos cierres del bloque no son dos capítulos alternativos de un libro: son dos herramientas y Chile usó ambas en el mismo ciclo.</p>
+<p><strong>Límite.</strong> Este bloque <strong>no permite concluir</strong> si esas medidas funcionaron ni cuánto. Solo permite concluir que <strong>existe un piso</strong> y que bajo el piso cambia el instrumento.</p>
+<p><code>[Ilustración sugerida: escalera de la TPM 2019-2026 con la línea del mínimo técnico en 0,5 % marcada y el tramo 2020-2021 sombreado como "zona de medidas no convencionales".]</code></p>
+<hr />
+<h3>3.3 ⊕ Por qué un fondo conservador puede perder plata: el bono en la vida real</h3>
+<p><strong>Pregunta que abre Rosa.</strong> Su hermana, que tiene sus ahorros en el fondo E —"el más seguro"—, perdió plata en 2021. <em>"¿Cómo pierde el fondo seguro?"</em></p>
+<p><strong>Historia.</strong> Durante 2021 el rendimiento de los bonos del gobierno a diez años en pesos (<strong>BTP-10</strong>) subió cerca de <strong>300 pb</strong>, un alza que <em>"dobla lo observado en un conjunto de economías comparables"</em>, empujada por las liquidaciones masivas de ahorros previsionales y por la incertidumbre político-legislativa. El IPoM registra la consecuencia sin rodeos: el alza de las tasas largas <em>"ha repercutido en la pérdida de valor de los fondos de pensiones más conservadores"</em> (IPoM, BCCh, diciembre-2021).</p>
+<p><strong>El mecanismo, que es exactamente <code>DIN-CON-BONO</code>.</strong> Un fondo conservador está lleno de bonos. Un bono ya emitido paga un monto fijo. Si la tasa de mercado sube, ese pago fijo vale menos hoy, así que <strong>su precio cae</strong>. Quien lo tiene en cartera registra la pérdida aunque no venda nada y aunque el emisor no haya fallado. <strong>El fondo "seguro" es seguro frente al riesgo de no pago, no frente al riesgo de tasa.</strong></p>
+<p><strong>La aritmética, con la fórmula del propio bloque extendida a diez años.</strong> Un bono cupón cero que paga $100 dentro de <em>n</em> años vale hoy <code>PB = 100 / (1+i)^n</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Plazo</th>
+<th>Precio con i = 3 %</th>
+<th>Precio con i = 6 %</th>
+<th>Variación del precio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 año</td>
+<td>97,09</td>
+<td>94,34</td>
+<td><strong>−2,8 %</strong></td>
+</tr>
+<tr>
+<td>5 años</td>
+<td>86,26</td>
+<td>74,73</td>
+<td><strong>−13,4 %</strong></td>
+</tr>
+<tr>
+<td><strong>10 años</strong></td>
+<td><strong>74,41</strong></td>
+<td><strong>55,84</strong></td>
+<td><strong>−25,0 %</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dos lecciones en una tabla.</strong> Primera: subir la tasa 300 pb no es un detalle — a diez años recorta el precio una cuarta parte. Segunda: <strong>el daño crece con el plazo</strong>. Un instrumento a un año casi no se mueve; uno a diez, sí. Por eso el episodio golpeó a los fondos con más bonos largos.</p>
+<blockquote>
+<p><strong>Coincidencia frente a regla.</strong> (1) Aquí una subida de 3 % a 6 % baja el precio exactamente <strong>25 %</strong>. (2) Es así <strong>porque</strong> se supuso un bono <strong>cupón cero a diez años</strong> y esas dos tasas puntuales. (3) <strong>Deja de cumplirse</strong> con otro plazo (a un año la caída es 2,8 %), con otro nivel de tasas, o con un bono con cupones —como los BTP reales—, cuya duración efectiva es menor que su plazo y que por tanto cae menos. La cifra de la tabla es <strong>ilustrativa del orden de magnitud</strong>, no una medición de la pérdida efectiva de los fondos.</p>
+</blockquote>
+<p><code>[Ilustración sugerida: curva precio-tasa de un bono cupón cero para plazos de 1, 5 y 10 años, con los puntos 3 % y 6 % marcados y la caída de precio anotada en cada curva.]</code></p>
+<hr />
+<h3>3.4 ⊕ La TPM no es la tasa que paga Rosa: transmisión parcial y con rezago</h3>
+<p><strong>Pregunta que abre Rosa.</strong> <em>"Si la TPM bajó de 11,25 % a 4,5 %, ¿por qué mi crédito no bajó lo mismo?"</em></p>
+<p><strong>Historia, con cifras.</strong> El Consejo redujo la TPM en <strong>625 pb</strong> entre julio de 2023 y diciembre de 2024, llevándola de 11,25 % a <strong>5,00 %</strong>. En el mismo período, las tasas de los créditos <strong>de consumo</strong> retrocedieron alrededor de <strong>600 pb</strong> y las <strong>comerciales</strong> alrededor de <strong>700 pb</strong> (IPoM, BCCh, diciembre-2024).</p>
+<p><strong>Lectura.</strong> El traspaso fue <strong>grande pero no idéntico</strong>, y difiere por tipo de crédito: las comerciales se movieron más que la TPM y las de consumo un poco menos. La tasa que enfrenta un hogar o una pyme incorpora, además de la TPM, el costo de fondeo del banco, el riesgo del deudor, el plazo y la competencia del mercado. Nada de eso está en el modelo de dos activos de este bloque.</p>
+<p><strong>Conexión con el error objetivo.</strong> <code>DIN-ERR-13TRANS</code> ⊕ (nuevo): suponer traspaso instantáneo y de uno a uno desde la TPM a todas las tasas.</p>
+<p><strong>Límite.</strong> Que la TPM haya bajado 625 pb <strong>no permite concluir</strong> cuánto bajó el crédito de una empresa concreta. El modelo predice el <strong>signo</strong> y aproxima el <strong>orden de magnitud</strong>; la cifra exacta requiere el canal bancario, que se estudia fuera de Macro 1.</p>
+<hr />
+<h2>4. Circuito <code>DIN-CIR-01</code> — Cartera y tasa de interés</h2>
+<pre><code>Régimen → Shock → Demanda/oferta real → Desequilibrio → Cartera →
+Precio del bono → Tasa → Nuevo equilibrio → Transmisión → Evidencia/revisión
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Paso</th>
+<th>Pregunta de control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Régimen</td>
+<td>¿Se fija M/P y ajusta i, o se fija i como tasa objetivo? <strong>¿Hay espacio bajo el piso?</strong></td>
+</tr>
+<tr>
+<td>Shock</td>
+<td>¿Cambia M, P, Y, la preferencia por liquidez o la tasa objetivo?</td>
+</tr>
+<tr>
+<td>Demanda/oferta real</td>
+<td>Compare M/P con Md(Y,i) en el punto inicial.</td>
+</tr>
+<tr>
+<td>Desequilibrio</td>
+<td>¿Exceso de oferta o de demanda de dinero?</td>
+</tr>
+<tr>
+<td>Cartera</td>
+<td>¿Los agentes compran o venden bonos?</td>
+</tr>
+<tr>
+<td>Precio del bono</td>
+<td>¿Sube o baja? <strong>¿A qué plazo? El efecto crece con el plazo.</strong></td>
+</tr>
+<tr>
+<td>Tasa</td>
+<td>Use la relación inversa precio–rendimiento.</td>
+</tr>
+<tr>
+<td>Nuevo equilibrio</td>
+<td>Compruebe M/P = Md.</td>
+</tr>
+<tr>
+<td>Transmisión</td>
+<td>¿Cómo afectaría la nueva tasa a inversión y gasto? (gancho a IS-LM) <strong>¿Traspaso completo o parcial?</strong></td>
+</tr>
+<tr>
+<td>Evidencia/revisión</td>
+<td>¿Qué observar en TPM, tasas de mercado, crédito y saldos?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Producto:</strong> cadena de ajuste de cartera con signos y condición final.
+<strong>Regla de revisión:</strong> reabrir si se mezclan cierres monetarios, si se afirma que "Y desplaza LM", <strong>o si se supone traspaso uno a uno de la TPM</strong>.</p>
+<hr />
+<h2>5. Errores objetivo del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Error</th>
+<th>Consecuencia</th>
+<th>Sonda diagnóstica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DIN-ERR-09</td>
+<td>Un cambio en Y "desplaza la LM" en vez de mover la demanda de dinero</td>
+<td>Curva equivocada</td>
+<td>Fijar qué está en los ejes y qué parámetro cambia</td>
+</tr>
+<tr>
+<td>DIN-ERR-10</td>
+<td>Precio del bono y tasa en el mismo sentido</td>
+<td>Invierte el ajuste de cartera</td>
+<td>Usar un bono simple y su rendimiento</td>
+</tr>
+<tr>
+<td>DIN-ERR-11</td>
+<td>Mezclar los dos cierres (M/P y i fijos a la vez)</td>
+<td>Modelo sobredeterminado</td>
+<td>Exigir declarar LM con pendiente u horizontal</td>
+</tr>
+<tr>
+<td>DIN-ERR-12</td>
+<td>Confundir dinero con riqueza</td>
+<td>Demanda mal especificada</td>
+<td>Recordar reparto cartera: dinero + bonos</td>
+</tr>
+<tr>
+<td><strong>DIN-ERR-13TRANS</strong> ⊕</td>
+<td>Suponer traspaso instantáneo y de uno a uno de la TPM a todas las tasas</td>
+<td>Predice cambios de crédito que no ocurren; atribuye al banco central lo que decide un banco comercial</td>
+<td>Pedir la comparación TPM vs tasa de colocación en un episodio real, y preguntar por plazo y riesgo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Ejercicios semilla (con pauta sellada)</h2>
+<h3><code>DIN-EX-01</code> — Exceso de dinero, bonos y tasa · ordenamiento causal · básica</h3>
+<p><strong>Errores objetivo:</strong> DIN-ERR-10, DIN-ERR-12.
+<strong>Contexto:</strong> un bono cupón-cero paga <strong>$100</strong> dentro de un año. Su precio hoy es <strong>PB</strong>, y su rendimiento es <code>i = 100/PB − 1</code>.
+<strong>Se pide:</strong> (1) calcule i si PB = 95,238; (2) el BC inyecta dinero (exceso de oferta de dinero): ordene la cadena causal hasta la nueva tasa; (3) si el precio del bono pasa a 96,154, ¿cuál es la nueva i?</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong>
+- (1) i = 100/95,238 − 1 = <strong>5,00 %</strong>.
+- (2) Exceso de oferta de dinero ⇒ los agentes <strong>compran bonos</strong> ⇒ el <strong>precio del bono sube</strong> ⇒ el <strong>rendimiento i baja</strong>. (No confundir dinero con riqueza: el exceso es de <em>dinero</em>, que se traslada a <em>bonos</em>.)
+- (3) i = 100/96,154 − 1 = <strong>4,00 %</strong>. La tasa <strong>bajó</strong> de 5 % a 4 %, consistente con el precio del bono al alza (DIN-ERR-10 evitado).</p>
+<p><strong>Ancla real (v0.2).</strong> Este ejercicio es el episodio de 2021 al revés. Allí el flujo fue <strong>de bonos hacia dinero</strong> —liquidaciones masivas de ahorros previsionales— y la cadena corrió en sentido contrario: se venden bonos ⇒ baja su precio ⇒ <strong>sube</strong> la tasa. El BTP-10 subió cerca de 300 pb (§3.3).</p>
+<p><strong>Evidencia de dominio:</strong> la cadena respeta la relación inversa precio-tasa y ubica correctamente el desequilibrio en el mercado de dinero.</p>
+<hr />
+<h3><code>DIN-EX-02</code> — Dos cierres monetarios · comparación de modelos · avanzada</h3>
+<p><strong>Marco narrativo (v0.2).</strong> El ítem (3) de este ejercicio describe literalmente lo que hace el Banco Central de Chile todos los días. Conviene decirlo al corregir.</p>
+<p><strong>Errores objetivo:</strong> DIN-ERR-09, DIN-ERR-11.
+<strong>Datos:</strong> demanda real de dinero <code>M/P = d1·Y − d2·i</code>, con <strong>d1 = 0,8, d2 = 20</strong>. Situación base: <strong>Y = 1.000, M/P = 760</strong>.
+<strong>Se pide:</strong> (1) la tasa de equilibrio base; (2) sube la actividad a <strong>Y = 1.010</strong>; resuelva la nueva tasa bajo <strong>cierre A (M/P fijo en 760)</strong>; (3) resuelva bajo <strong>cierre B (tasa objetivo i = 2 %)</strong>: ¿qué debe hacer el BC con M/P?; (4) explique por qué NO se "desplaza la LM" en el paso 2.</p>
+<p><strong>Pauta sellada (recalculada y confirmada el 2026-08-15):</strong>
+- (1) i = (0,8·1.000 − 760)/20 = (800 − 760)/20 = <strong>2,00 %</strong>.
+- (2) Cierre A: i = (0,8·1.010 − 760)/20 = (808 − 760)/20 = <strong>2,40 %</strong>. La tasa <strong>sube</strong> porque mayor Y eleva la demanda de dinero contra una oferta fija.
+- (3) Cierre B: para mantener i = 2 % con Y = 1.010, se necesita M/P = 0,8·1.010 − 20·2 = 808 − 40 = <strong>768</strong>. El BC <strong>sube M/P de 760 a 768</strong> (acomoda la mayor demanda). La tasa no cambia.
+- (4) El aumento de Y <strong>desplaza la curva de demanda de dinero</strong> hacia la derecha (más transacciones); NO es un desplazamiento de la LM. La LM es otro objeto (relación Y-i de equilibrio monetario); aquí estamos dentro del mercado de dinero para un Y dado (DIN-ERR-09 evitado).</p>
+<p><strong>Cierre docente (v0.2).</strong> El paso (3) es el régimen chileno: el Consejo fija la tasa y la cantidad se acomoda. El paso (2) es el mundo que el libro usa para enseñar el mecanismo. Un estudiante que sepa resolver los dos y <strong>decir cuál es cuál</strong> ya domina el bloque.</p>
+<p><strong>Evidencia de dominio:</strong> distingue los dos cierres, no los mezcla (DIN-ERR-11), y separa "mover la demanda de dinero" de "desplazar la LM".</p>
+<hr />
+<h3>⊕ <code>DIN-EX-03</code> — El fondo conservador que perdió plata · lectura de un episodio real · intermedia</h3>
+<p><strong>Errores objetivo:</strong> DIN-ERR-10, DIN-ERR-12, DIN-ERR-13TRANS.
+<strong>Marco narrativo.</strong> La hermana de Rosa tenía sus ahorros en el fondo más conservador y perdió valor en 2021. Hay que explicárselo sin usar la palabra "mercado" como si fuera una explicación.</p>
+<p><strong>Datos entregados al estudiante:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alza del rendimiento del BTP-10 durante 2021</td>
+<td>≈ <strong>300 pb</strong></td>
+<td>IPoM, BCCh, diciembre 2021</td>
+</tr>
+<tr>
+<td>Efecto registrado</td>
+<td>pérdida de valor de los fondos de pensiones más conservadores</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Causas señaladas</td>
+<td>liquidaciones masivas de ahorros previsionales e incertidumbre político-legislativa</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>TPM entre julio 2023 y diciembre 2024</td>
+<td>−625 pb (de 11,25 % a 5,00 %)</td>
+<td>IPoM, BCCh, diciembre 2024</td>
+</tr>
+<tr>
+<td>Tasas de consumo / comerciales en el mismo período</td>
+<td>≈ −600 pb / ≈ −700 pb</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Fórmula disponible</td>
+<td><code>PB = 100/(1+i)^n</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Se pide:</strong>
+1. Explique, con la cadena de cartera del circuito, por qué una venta masiva de bonos <strong>sube</strong> la tasa larga. Nombre cada eslabón.
+2. Calcule cuánto cae el precio de un bono cupón cero <strong>a 10 años</strong> si su tasa pasa de 3 % a 6 %, y repita el cálculo <strong>a 1 año</strong>. Explique por qué el plazo importa.
+3. Un titular afirma: <em>"El Banco Central subió las tasas y por eso cayeron los fondos de pensiones en 2021."</em> Diagnostique el error. (Recuerde en qué nivel estaba la TPM durante buena parte de 2021.)
+4. Con los datos de 2023-2024, evalúe la afirmación <em>"cuando la TPM baja 625 pb, todos los créditos bajan 625 pb"</em>.
+5. Enuncie una afirmación que estos datos <strong>no</strong> permiten sostener.</p>
+<p><strong>Pauta sellada (verificada computacionalmente el 2026-08-15):</strong></p>
+<ol>
+<li>Liquidación de ahorros previsionales ⇒ los fondos <strong>venden bonos</strong> para pagar los retiros ⇒ aumenta la oferta de bonos en el mercado ⇒ <strong>cae el precio del bono</strong> ⇒ como el pago futuro es fijo, un precio menor implica un <strong>rendimiento mayor</strong> ⇒ <strong>sube la tasa larga</strong>. Es <code>DIN-CON-BONO</code> operando en sentido inverso a <code>DIN-EX-01</code>.</li>
+<li>A 10 años: <code>100/1,03^10 = 74,41</code> y <code>100/1,06^10 = 55,84</code> ⇒ <strong>−25,0 %</strong>. A 1 año: <code>97,09</code> y <code>94,34</code> ⇒ <strong>−2,8 %</strong>. El plazo importa porque el descuento se aplica <strong>de forma compuesta</strong>: mientras más lejos está el pago, más veces se multiplica el factor <code>1/(1+i)</code> y más pesa cualquier cambio de <code>i</code>. Por eso los fondos con bonos largos sufrieron más.</li>
+<li>Doble error. Primero, <strong>de hecho</strong>: durante buena parte de 2021 la TPM estuvo en niveles muy bajos —partió el año en el mínimo técnico de 0,50 %— y el alza del BTP-10 se atribuye a liquidaciones previsionales y a incertidumbre, no a la política monetaria. Segundo, <strong>de concepto</strong>: la TPM es una tasa <strong>de muy corto plazo</strong>, y lo que movió el valor de los fondos fue la tasa <strong>larga</strong>; son objetos distintos y no se mueven juntos por definición (<code>DIN-ERR-13TRANS</code>).</li>
+<li>Es falsa, aunque razonablemente cercana: consumo ≈ −600 pb y comerciales ≈ −700 pb frente a una TPM de −625 pb. El traspaso es <strong>alto pero no unitario</strong> y <strong>difiere por tipo de crédito</strong>, porque la tasa final incluye fondeo, riesgo, plazo y competencia. El modelo de este bloque predice bien el <strong>signo</strong>, no la cifra.</li>
+<li>Cualquiera de estas: <em>"los fondos conservadores son riesgosos"</em> (lo que muestra el episodio es que son sensibles al riesgo de <strong>tasa</strong>, que es otra cosa); <em>"la caída de precio fue exactamente 25 %"</em> (esa cifra es de un bono cupón cero hipotético, no de la cartera efectiva); <em>"el Banco Central puede evitar que suban las tasas largas"</em> (no está en el modelo ni entre sus instrumentos directos).</li>
+</ol>
+<p><strong>Evidencia de dominio:</strong> nombra los eslabones de la cadena sin saltarse el precio del bono, entiende por qué el plazo amplifica, y separa tasa de política de tasa de mercado.</p>
+<p><code>[Ilustración sugerida: línea del BTP-10 durante 2021 subiendo ~300 pb junto a una línea plana de la TPM en su mínimo técnico, para mostrar que corto y largo plazo se movieron en sentidos distintos.]</code></p>
+<hr />
+<h2>7. Plantilla de narración (retirada gradual)</h2>
+<p><strong>Nivel A:</strong> Declaro el régimen ___ (M/P fijo / i objetivo) · el shock cambia ___ · compara M/P con Md ___ · el desequilibrio es ___ · los agentes compran/venden bonos ___ · el precio del bono ___ · la tasa ___ · nuevo equilibrio M/P = Md ___ · transmisión a inversión ___ · <strong>el traspaso a la tasa que enfrenta un hogar sería</strong> ___ · revisaría si ___.
+<strong>Nivel B:</strong> régimen → shock → desequilibrio → cartera/bono → tasa → equilibrio → supuesto.
+<strong>Nivel C:</strong> <em>"Determine la tasa (o la cantidad de dinero, según el régimen), explique el ajuste de cartera y señale qué cambiaría bajo el otro cierre."</em></p>
+<h3>7.1 ⊕ Retirada gradual en la narrativa</h3>
+<table>
+<thead>
+<tr>
+<th>Nivel</th>
+<th>Quién narra</th>
+<th>Tarea del estudiante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A</strong></td>
+<td>El docente desarrolla el episodio de 2021 completo (§3.3)</td>
+<td>Ubicar cada hecho en un eslabón del circuito</td>
+</tr>
+<tr>
+<td><strong>B</strong></td>
+<td>Se entrega el episodio de <strong>2020</strong> (TPM en el piso, medidas de cantidad)</td>
+<td>Explicar por qué el instrumento cambió y qué cierre describe cada tramo</td>
+</tr>
+<tr>
+<td><strong>C</strong></td>
+<td>Se entrega <strong>una minuta de RPM reciente</strong>, cruda</td>
+<td>Identificar el régimen, la decisión, el argumento, y predecir la dirección del efecto sobre inversión y gasto</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Insumo listo para el Nivel C.</strong> La minuta de la RPM de julio de 2026 contiene todo lo necesario: la decisión (mantener en 4,50 %, unánime), el diagnóstico de consumo débil con expectativas a la baja e ingresos reales desacelerando, y la inversión por debajo de lo proyectado. El estudiante debe declarar el régimen, ubicar la decisión y <strong>no</strong> confundir la TPM con las tasas que pagan hogares y empresas.</p>
+<hr />
+<h2>8. Mapeo a la evaluación del programa</h2>
+<table>
+<thead>
+<tr>
+<th>Instrumento (peso)</th>
+<th>Piezas</th>
+<th>Cómo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Controles (15 %)</strong></td>
+<td>DIN-EX-01, <strong>DIN-EX-03 (ítems 1-2)</strong></td>
+<td>Aritmética de bono + cadena causal corta; revela DIN-ERR-10</td>
+</tr>
+<tr>
+<td><strong>Trabajo de aplicación (15 %)</strong></td>
+<td>DIN-EX-02 + <strong>DIN-EX-03 completo</strong> + lectura de una decisión de TPM real</td>
+<td>Compara los dos cierres con una minuta del banco central</td>
+</tr>
+<tr>
+<td><strong>Solemne (parte de 40 %)</strong></td>
+<td>DIN-EX-02 (cierre A)</td>
+<td>Cálculo de tasa de equilibrio</td>
+</tr>
+<tr>
+<td><strong>Examen (30 %)</strong></td>
+<td>Mercado de dinero dentro de la LM</td>
+<td>Reaparece integrado en IS-LM</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regla de corrección:</strong> no declarar el cierre se corrige como error de <strong>formulación</strong>, antes que cualquier revisión del procedimiento.</p>
+<hr />
+<h2>9. Integración con MacroLab</h2>
+<blockquote>
+<p><strong>Arquitectura de dos capas (precisada en v0.2).</strong> La sub-app <code>macro1/</code> trae <code>Lab · Dinero / tasa</code>, que resuelve el <strong>mercado de dinero</strong> para un <code>Y</code> dado — el alcance exacto de este bloque. La <strong>capa superior</strong> —el Shock Simulator en <code>pavelgomez.github.io/MacroLab-Shock-Simulator/</code>— tiene la pestaña <strong>IS-LM</strong>, donde la LM sí se dibuja y, sobre todo, donde un <strong>selector de régimen</strong> ofrece <em>LM con pendiente positiva</em> y <em>LM horizontal (i exógena)</em>. Ese selector es la representación literal de <code>DIN-CON-CIERRE</code>, y su valor de <code>i</code> por defecto es <strong>4,5 %</strong>: la TPM vigente.</p>
+</blockquote>
+<p><strong>Hallazgo favorable: la calibración por defecto del simulador es la de <code>DIN-EX-02</code>.</strong> La ventana arranca con <code>Y = 1.000 · M/P = 760 · d₁ = 0,8 · d₂ = 20</code> y resuelve <code>i = (d₁·Y − M/P)/d₂</code>, que entrega <strong>exactamente 2,00 %</strong>. Verificado el 2026-08-15 ejecutando el propio código del simulador.</p>
+<table>
+<thead>
+<tr>
+<th>Entrada real</th>
+<th>Uso permitido</th>
+<th>Riesgo a evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Lab · Dinero / tasa</code></td>
+<td>Resolver <code>DIN-EX-02</code> completo: subir <code>Y</code> a 1.010 con <code>M/P</code> fijo entrega <strong>2,40 %</strong> (cierre A); subir <code>M/P</code> a 768 devuelve la tasa a <strong>2,00 %</strong> (cierre B). También muestra el <strong>precio del bono</strong> que paga 100, con lo que se verifica <code>DIN-EX-01</code>: a 5 % da <strong>95,238</strong> y a 4 % da <strong>96,154</strong></td>
+<td>El simulador <strong>no declara el cierre por sí solo</strong>: el estudiante debe declararlo. Cambiar <code>M/P</code> para sostener la tasa <em>es</em> el cierre B, y hay que nombrarlo</td>
+</tr>
+</tbody>
+</table>
+<p>| Pestaña <strong>IS-LM</strong> (capa superior), selector de <strong>régimen LM</strong> | Cerrar el bloque mostrando los dos cierres como dos opciones de un desplegable: <em>LM con pendiente positiva</em> frente a <em>LM horizontal (i exógena)</em>. Es <code>DIN-CON-CIERRE</code> hecho control de interfaz | Es ya el bloque siguiente: usarlo <strong>solo al cierre</strong>, cuando el mecanismo de cartera esté dominado |</p>
+<p><strong>Límite del instrumento, declarado.</strong> <code>Lab · Dinero / tasa</code> resuelve el mercado de dinero <strong>a <code>Y</code> dado</strong> y <strong>no traza la LM</strong>. Para verla hay que subir a la pestaña IS-LM, donde la LM aparece pero ya dentro del equilibrio simultáneo.</p>
+<p><strong>Protocolo:</strong> el estudiante resuelve la tasa a mano bajo cada cierre → <strong>reproduce ambos casos en <code>Lab · Dinero / tasa</code></strong> y comprueba que coinciden → <strong>traza la LM en papel</strong> uniendo los puntos que obtuvo variando <code>Y</code> → <strong>recién entonces</strong> abre la pestaña IS-LM y comprueba que su LM dibujada a mano coincide con la del simulador → narra la diferencia de régimen y dice cuál corresponde a Chile.</p>
+<hr />
+<h2>10. Cierre y backlog</h2>
+<p><strong>Definición de Terminado:</strong> todo nodo con fuente/versión/estado; los <strong>tres</strong> ejercicios probados; el régimen se declara siempre; ninguna plantilla entrega la cadena mecánicamente; ⊕ ningún dato de coyuntura sin fuente y fecha; ⊕ ninguna afirmación de traspaso TPM→crédito sin su calificación.</p>
+<p><strong>Backlog:</strong></p>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Acción</th>
+<th>Prioridad</th>
+<th>Condición</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BL-DIN-01</td>
+<td>Enlace MacroLab que contraste LM con pendiente vs horizontal</td>
+<td>media</td>
+<td>selección de escenario</td>
+</tr>
+<tr>
+<td>BL-DIN-02</td>
+<td>Añadir ejercicio de preferencia por liquidez (shock a d2)</td>
+<td>baja</td>
+<td>tras IS-LM</td>
+</tr>
+<tr>
+<td>BL-DIN-03</td>
+<td>Registrar errores de clase y recalibrar sondas</td>
+<td>continua</td>
+<td>tras primera aplicación</td>
+</tr>
+<tr>
+<td><strong>BL-DIN-04</strong> ⊕</td>
+<td>Verificar el nivel exacto de la TPM en cada mes de 2021 para afinar el ítem 3 de <code>DIN-EX-03</code>. Se sabe que partió el año en el mínimo técnico (0,50 %) y cerró en 4,0 % tras la RPM de diciembre; la trayectoria intermedia mes a mes no está en las fuentes de esta corrida</td>
+<td>media</td>
+<td>antes de evaluar <code>DIN-EX-03</code> ítem 3</td>
+</tr>
+<tr>
+<td><strong>BL-DIN-05</strong> ⊕</td>
+<td>Decidir si <code>DIN-CON-PISO</code>, <code>DIN-CON-TRANSMISION</code> y <code>DIN-ERR-13TRANS</code> se incorporan al registro maestro o quedan locales al bloque</td>
+<td>media</td>
+<td>revisión de gobierno</td>
+</tr>
+<tr>
+<td><strong>BL-DIN-06</strong> ⊕</td>
+<td>Evaluar si conviene sustituir el bono cupón cero de §3.3 por un bono con cupones y duración, o dejar la simplificación declarada</td>
+<td>baja</td>
+<td>según nivel del grupo</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>11. ⊕ Glosario de analogías del bloque</h2>
+<table>
+<thead>
+<tr>
+<th>Término técnico</th>
+<th>Analogía cotidiana</th>
+<th>Dónde aparece</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Demanda de dinero</strong></td>
+<td>Cuánta plata quieres tener en el bolsillo, no cuánta tienes en total</td>
+<td>Md = d1·Y − d2·i</td>
+</tr>
+<tr>
+<td><strong>Costo de oportunidad de la liquidez</strong></td>
+<td>Lo que dejas de ganar por tener la plata a mano</td>
+<td>el término −d2·i</td>
+</tr>
+<tr>
+<td><strong>Oferta real (M/P)</strong></td>
+<td>Cuántos panes compra el dinero que circula, no cuántos billetes hay</td>
+<td>M/P</td>
+</tr>
+<tr>
+<td><strong>Bono</strong></td>
+<td>Un papel que promete un monto fijo en una fecha fija</td>
+<td>PB = 100/(1+i)^n</td>
+</tr>
+<tr>
+<td><strong>Relación inversa precio-tasa</strong></td>
+<td>Si el premio es fijo, pagar menos por la rifa es ganar más</td>
+<td>DIN-CON-BONO</td>
+</tr>
+<tr>
+<td><strong>Riesgo de tasa</strong></td>
+<td>El fondo seguro no quiebra, pero puede valer menos mañana</td>
+<td>fondos conservadores, 2021</td>
+</tr>
+<tr>
+<td><strong>Tasa de política (TPM)</strong></td>
+<td>El precio que fija el Banco Central, no el que te cobra tu banco</td>
+<td>DIN-CON-TRANSMISION</td>
+</tr>
+<tr>
+<td><strong>Mínimo técnico</strong></td>
+<td>El escalón más bajo de la escalera: bajo eso conviene el colchón</td>
+<td>DIN-CON-PISO</td>
+</tr>
+<tr>
+<td><strong>Cantidad endógena</strong></td>
+<td>El Banco Central pone el precio y sirve todo lo que le pidan a ese precio</td>
+<td>cierre B</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>12. Novedades de esta edición</h2>
+<h3>12.1 Resumen para auditoría rápida contra v0.1</h3>
+<ol>
+<li><strong>Personaje-ancla:</strong> Rosa Millán continúa desde <code>MED</code> y <code>BIE</code> con una frase de enlace; su crédito, sus ahorros y el fondo de su hermana abren tres de las secciones nuevas.</li>
+<li><strong>Corrección de énfasis, que es el cambio de fondo:</strong> el <strong>cierre B es el régimen chileno</strong>. El bloque ahora lo declara en §0.1 y lo desarrolla en §3.1, con la minuta de la RPM de julio de 2026 como evidencia (TPM en <strong>4,50 %</strong>, unánime, ocho Reuniones al año). El cierre A se enseña por su valor mecánico, no como descripción del país.</li>
+<li><strong>Episodios históricos incorporados:</strong> el <strong>mínimo técnico de 0,50 %</strong> en 2020 con medidas no convencionales (FX swap, REPO, recompra, compra de bonos bancarios, FCIC); el alza de <strong>300 pb del BTP-10</strong> en 2021 con pérdida de valor de los fondos conservadores; y el traspaso de la TPM a tasas de mercado entre 2023 y 2024 (<strong>−625 pb</strong> de TPM frente a <strong>≈−600</strong> y <strong>≈−700 pb</strong> de consumo y comerciales).</li>
+<li><strong>Nodos nuevos dentro del esquema:</strong> conceptos <code>DIN-CON-PISO</code> y <code>DIN-CON-TRANSMISION</code>; error <code>DIN-ERR-13TRANS</code>; ejercicio <code>DIN-EX-03</code> (cinco ítems). Tres aristas nuevas en el grafo.</li>
+<li><strong>Aritmética nueva verificada:</strong> tabla precio-tasa de un bono cupón cero a 1, 5 y 10 años, que muestra por qué el plazo amplifica (−2,8 % frente a −25,0 % ante el mismo cambio de tasa).</li>
+<li><strong>Advertencias de coincidencia frente a regla:</strong> dos nuevas (la tasa que no se mueve bajo el cierre B; la caída de precio de exactamente 25 %, que depende del plazo y del supuesto de cupón cero).</li>
+<li><strong>Pautas selladas:</strong> las dos recalculadas y confirmadas el 2026-08-15. <strong>Ninguna cifra cambió</strong>, y no se detectaron problemas de redacción en ellas.</li>
+<li><strong>Un marcador de verificación abierto:</strong> <code>BL-DIN-04</code>, la trayectoria mes a mes de la TPM durante 2021.</li>
+</ol>
+<h3>12.2 Trazabilidad de los datos de coyuntura chilena usados</h3>
+<table>
+<thead>
+<tr>
+<th>Dato</th>
+<th>Valor</th>
+<th>Fuente</th>
+<th>Publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TPM vigente</td>
+<td><strong>4,50 %</strong>, mantenida por unanimidad (5 votos)</td>
+<td>BCCh, Minuta RPM N° 323</td>
+<td>27-28 de julio de 2026</td>
+</tr>
+<tr>
+<td>Frecuencia de las Reuniones de Política Monetaria</td>
+<td>8 al año</td>
+<td>BCCh, IPoM, marco de política</td>
+<td>junio 2026</td>
+</tr>
+<tr>
+<td>TPM en su mínimo técnico</td>
+<td><strong>0,50 %</strong></td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2020</td>
+</tr>
+<tr>
+<td>Medidas no convencionales vigentes en 2020</td>
+<td>FX swap, REPO, recompra de títulos de deuda del BC, compra de bonos bancarios, FCIC</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>TPM diciembre 2021</td>
+<td>4,0 % (desde 0,5 % en junio)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Alza del rendimiento del BTP-10 durante 2021</td>
+<td>≈ <strong>300 pb</strong>, el doble de economías comparables</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2021</td>
+</tr>
+<tr>
+<td>Efecto sobre fondos de pensiones conservadores</td>
+<td>pérdida de valor (cita textual)</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Causas señaladas del alza de tasas largas</td>
+<td>liquidaciones masivas de ahorros previsionales; incertidumbre político-legislativa</td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>TPM diciembre 2022</td>
+<td>11,25 %</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2022</td>
+</tr>
+<tr>
+<td>Reducción de la TPM desde julio de 2023 a diciembre de 2024</td>
+<td><strong>625 pb</strong> (11,25 % → 5,00 %)</td>
+<td>BCCh, IPoM</td>
+<td>diciembre 2024</td>
+</tr>
+<tr>
+<td>Caída de tasas de créditos de consumo / comerciales, mismo período</td>
+<td>≈ <strong>600 pb</strong> / ≈ <strong>700 pb</strong></td>
+<td>ídem</td>
+<td>ídem</td>
+</tr>
+<tr>
+<td>Meta de inflación (horizonte 2 años)</td>
+<td>3 %</td>
+<td>BCCh, IPoM</td>
+<td>junio 2026</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cálculos propios declarados:</strong> la tabla precio-tasa de §3.3 y <code>DIN-EX-03</code> ítem 2 usa <code>PB = 100/(1+i)^n</code> con un <strong>bono cupón cero hipotético</strong>; ilustra el orden de magnitud del efecto y <strong>no</strong> mide la pérdida efectiva de ningún fondo.</p>
+<p><strong>Marcadores de verificación pendientes:</strong> uno, <code>BL-DIN-04</code>. Ningún otro dato queda sin fuente y fecha.</p>
+<hr />
+<p><em>Reedición histórico-analítica cerrada el 2026-08-15. Pautas selladas de v0.1 recalculadas y confirmadas computacionalmente en esa fecha, sin cambios de cifras.</em></p>
+</main>
+<p class="meta">Macroeconomía I &middot; Prof. Pável Gómez &middot; Universidad Finis Terrae &middot; 2026</p>
+</div>
+</body>
+</html>
