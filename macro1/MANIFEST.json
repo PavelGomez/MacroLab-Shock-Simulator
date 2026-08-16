@@ -68,13 +68,13 @@
     {
       "id": "nota-01",
       "file": "notas/nota-01-introduccion.html",
-      "title": "Introducción a la Macroeconomía: Un curso aplicado y práctico",
+      "title": "Nota de estudio 1 · Introducción a la macroeconomía",
       "linked_from_class": 1
     },
     {
       "id": "nota-02",
       "file": "notas/nota-02-fuentes-datos.html",
-      "title": "Las Principales Fuentes de Datos Macroeconómicos de Chile y el Mundo",
+      "title": "Nota de estudio 2 · Fuentes de datos macroeconómicos",
       "linked_from_class": 1
     },
     {
@@ -104,7 +104,7 @@
     {
       "id": "nota-b1-medicion",
       "file": "notas/nota-b1-medicion.html",
-      "title": "Bloque 1 · Medición de la Actividad Económica",
+      "title": "Nota de estudio 3 · Medición de la actividad económica",
       "linked_from_class": 2,
       "kind": "bloque",
       "summary": "PIB nominal y real, PNB, IPC y deflactor, PIB per cápita, gasto vs producción sectorial y el rol de las expectativas, con datos del BCCh y el INE.",
@@ -114,7 +114,7 @@
     {
       "id": "nota-b2-mercado-bienes",
       "file": "notas/nota-b2-mercado-bienes.html",
-      "title": "Bloque 2 · El Mercado de Bienes",
+      "title": "Nota de estudio 4 · El mercado de bienes",
       "linked_from_class": 3,
       "kind": "bloque",
       "summary": "Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.",
