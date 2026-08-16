@@ -105,21 +105,21 @@
       "id": "nota-b1-medicion",
       "file": "notas/nota-b1-medicion.html",
       "title": "Bloque 1 · Medición de la Actividad Económica",
-      "linked_from_class": null,
+      "linked_from_class": 2,
       "kind": "bloque",
       "summary": "PIB nominal y real, PNB, IPC y deflactor, PIB per cápita, gasto vs producción sectorial y el rol de las expectativas, con datos del BCCh y el INE.",
       "source_version": "MAC-GRAPH-MVP reedición 2026-08-15",
-      "published": false
+      "published": true
     },
     {
       "id": "nota-b2-mercado-bienes",
       "file": "notas/nota-b2-mercado-bienes.html",
       "title": "Bloque 2 · El Mercado de Bienes",
-      "linked_from_class": null,
+      "linked_from_class": 3,
       "kind": "bloque",
       "summary": "Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.",
       "source_version": "MAC-GRAPH-MVP reedición 2026-08-15",
-      "published": false
+      "published": true
     },
     {
       "id": "nota-b3-mercado-dinero",

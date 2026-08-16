@@ -55,6 +55,10 @@ const idxPath = path.join(macro1, 'notas', 'index.html');
 fs.existsSync(idxPath) ? ok('notas/index.html existe') : fail('falta notas/index.html');
 const idxHtml = fs.existsSync(idxPath) ? fs.readFileSync(idxPath, 'utf8') : '';
 const homeHtml = fs.readFileSync(path.join(macro1, 'index.html'), 'utf8');
+const notesBaseMatch = homeHtml.match(/const\s+NOTES_BASE\s*=\s*"([^"]*)"/);
+const notesBase = notesBaseMatch ? notesBaseMatch[1] : 'notas/';
+const linkedFromHome = file => homeHtml.includes('notas/' + file) ||
+  (notesBase === 'notas/' && new RegExp(`href\\s*:\\s*"${file.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`).test(homeHtml));
 
 const bloques = (manifest.notes || []).filter(n => n.kind === 'bloque');
 const publicados = bloques.filter(n => n.published !== false);
@@ -63,7 +67,7 @@ const retirados  = bloques.filter(n => n.published === false);
 for (const n of publicados) {
   const file = n.file.split('/').pop();
   idxHtml.includes(file) ? ok(`${n.id} enlazado desde el índice`) : fail(`${n.id} NO aparece en notas/index.html`);
-  if (!homeHtml.includes('notas/' + file)) fail(`${n.id} NO aparece en la Ruta por clases (macro1/index.html)`);
+  if (!linkedFromHome(file)) fail(`${n.id} NO aparece en la Ruta por clases (macro1/index.html)`);
 }
 
 // Un bloque con published:false debe estar retirado de VERDAD de los dos sitios.
@@ -71,7 +75,7 @@ for (const n of publicados) {
 for (const n of retirados) {
   const file = n.file.split('/').pop();
   const enIndice = idxHtml.includes(file);
-  const enRuta   = homeHtml.includes('notas/' + file);
+  const enRuta   = linkedFromHome(file);
   if (enIndice) fail(`${n.id} está marcado published:false pero SIGUE enlazado en notas/index.html`);
   if (enRuta)   fail(`${n.id} está marcado published:false pero SIGUE enlazado en la Ruta por clases`);
   if (!enIndice && !enRuta) ok(`${n.id} retirado de la navegación (published:false), archivo conservado`);
