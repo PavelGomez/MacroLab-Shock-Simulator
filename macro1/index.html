@@ -1442,8 +1442,8 @@ function renderGuidedTraining(route,state){
     <div class="loop-fact"><strong>${orientation?"Orientación de trabajo":"Sin diagnóstico forzado"}</strong><p>${orientation?escapeText(orientation.label):"No se registró una categoría de error. La práctica comprueba los conceptos fundamentales y permite avanzar sin inventar un diagnóstico."}</p></div>
     <div class="training-ticket"><strong>${escapeText(drill.title)}</strong><p>${escapeText(drill.prompt)}</p>${drill.fields.map(field=>`<label>${escapeText(field.label)}<select data-class-field="guided_${field.id}">${selectOptions(field.options,String(f[`guided_${field.id}`]||""))}</select></label>`).join("")}<p class="field-note"><strong>Criterio observable:</strong> ${escapeText(drill.criterion)}</p></div>
     ${activeClass==="2"?`<div class="mini-grid"><label>Resultado (a) revisado<input type="number" step="0.01" data-class-field="revisedA" value="${escapeText(f.revisedA||"")}"></label><label>Resultado (b) revisado<input type="number" step="0.01" data-class-field="revisedB" value="${escapeText(f.revisedB||"")}"></label><label>Resultado (c) revisado<input type="number" step="0.01" data-class-field="revisedC" value="${escapeText(f.revisedC||"")}"></label></div>${classInput("revisedAnswer","Reescribe ahora tu respuesta completa","textarea",'rows="6"')}`:renderClass1RevisionEditor(state)}
-    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Cerrar y descargar mi reporte con práctica pendiente</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Completar rutina y descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
-    <details class="alt"><summary>Respaldo técnico opcional</summary><p class="field-note">El archivo JSON no está pensado para leerlo: sirve para conservar datos estructurados o continuar un diagnóstico con otra herramienta. <strong>No necesitas entregarlo ni abrirlo para completar la actividad.</strong></p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar respaldo JSON</button></details><div class="status" id="classActionStatus" aria-live="polite"></div>`;
+    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Descargar mi reporte (práctica pendiente)</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
+    <div class="notice"><strong>Reporte y continuidad son archivos distintos</strong><p>El reporte HTML es para leer, guardar, compartir o imprimir como PDF. El PDF y el HTML no contienen el registro estructurado y no se pueden importar.</p><p>Para comenzar la clase siguiente, descarga además el archivo JSON.</p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar archivo para continuar (.json)</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;
 }
 function downloadTextFile(textValue,mime,filename){
   const blob=new Blob([textValue],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement("a");
@@ -1866,9 +1866,9 @@ function handleClassAction(action){
     return;
   }
   if(action==="exportJson"&&guidedMode()){
-    const closure=state.guidedPassed?"rutina_completada":"sesion_con_practica_pendiente";
-    downloadTextFile(JSON.stringify(guidedPayload(state,closure),null,2),"application/json",`MacroLab_Clase${activeClass}_respaldo_tecnico.json`);
-    classStatus("Respaldo técnico JSON descargado. No necesitas abrirlo para usar tu retroalimentación.","ok");return;
+    const closure=state.completed?"rutina_completada":"sesion_con_practica_pendiente";
+    downloadTextFile(JSON.stringify(guidedPayload(state,closure),null,2),"application/json",`MacroLab_Clase${activeClass}_continuidad.json`);
+    classStatus(`Archivo JSON descargado. Cárgalo al comenzar la Clase ${Number(activeClass)+1}; el reporte HTML o PDF es únicamente para lectura.`,"ok");return;
   }
   if(action==="export"||action==="exportPending"){
     if(guidedMode()){
@@ -2396,13 +2396,18 @@ const Learning=(()=>{
     generated_at:new Date().toISOString(),
     entries:entries.map(e=>JSON.parse(JSON.stringify(e)))
   });
-  // Validación de importación: el schema_version manda. Se rechaza con mensaje claro.
-  function fromObject(data){
+  // La validación pura permite reconocer el formato antes de modificar la memoria.
+  function validateObject(data){
     if(!data||typeof data!=="object")return {ok:false,error:"El archivo no contiene un objeto JSON."};
     if(data.schema_version!==LEARNING_SCHEMA)return {ok:false,error:`schema_version «${String(data.schema_version)}» no coincide con «${LEARNING_SCHEMA}». No se importó nada.`};
     if(!Array.isArray(data.entries))return {ok:false,error:"El archivo no contiene una lista «entries»."};
     const bad=data.entries.find(e=>!e||e.schema_version!==LEARNING_SCHEMA||!e.attempt_id);
     if(bad)return {ok:false,error:"Al menos una entrada no declara el mismo schema_version o no tiene attempt_id."};
+    return {ok:true,count:data.entries.length};
+  }
+  // Learning.fromObject conserva su contrato vigente y sólo muta tras validar todo.
+  function fromObject(data){
+    const validation=validateObject(data);if(!validation.ok)return validation;
     entries=data.entries.map(e=>{
       const copy=JSON.parse(JSON.stringify(e));
       if(copy.application&&!Array.isArray(copy.application.verification_attempts))copy.application.verification_attempts=[];
@@ -2410,7 +2415,7 @@ const Learning=(()=>{
     });
     return {ok:true,count:entries.length};
   }
-  return {create,all,byId,latest,patch,clear,toObject,fromObject,newId};
+  return {create,all,byId,latest,patch,clear,toObject,validateObject,fromObject,newId};
 })();
 
 /* ---------- 2 · Ejercicios dirigidos, como datos (§7 del encargo) ---------- */
@@ -3091,11 +3096,12 @@ function renderRouteEntry(){
   host.hidden=false;
   if(!importedMemory){
     host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Antes de comenzar</h3>
-      <p class="field-note">Esta página no guarda nada por su cuenta: no hay cuenta, no hay servidor y no se usa el almacenamiento del navegador. Si ya trabajaste antes y descargaste tu ficha, cárgala ahora para recuperar tu memoria de aprendizaje.</p>
+      <p class="field-note">Esta página no guarda nada por su cuenta: no hay cuenta, no hay servidor y no se usa el almacenamiento del navegador. Si ya trabajaste antes, carga el archivo JSON descargado al cerrar la clase anterior.</p>
       <div class="actions">
         <button class="btn" type="button" id="entryFresh">Comenzar sin registro</button>
       </div>
-      <label for="entryFile">Continuar con mi ficha <span class="class-source">archivo JSON descargado antes</span><input type="file" id="entryFile" accept="application/json,.json"></label>
+      <label for="entryFile">Continuar con un archivo de aprendizaje (.json)<span class="class-source">Selecciona el archivo JSON para continuar; los reportes PDF o HTML son únicamente para lectura.</span><input type="file" id="entryFile" accept="application/json,.json"></label>
+      <p class="field-note"><strong>¿Tienes un PDF?</strong> Consérvalo como reporte de consulta. Para continuar necesitas el archivo JSON descargado al cerrar la clase anterior.</p>
       <p class="status" id="entryStatus"></p>`;
     document.getElementById("entryFresh").addEventListener("click",()=>{
       routeEntryResolved=true;renderRouteEntry();
@@ -3107,16 +3113,28 @@ function renderRouteEntry(){
     });
     return;
   }
+  if(importedMemory.kind==="class_session"){
+    const nextClass=String(importedMemory.classId+1);
+    host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Archivo de aprendizaje recuperado</h3>
+      <p class="field-note">Se reconstruyó solamente una vista del registro. <strong>No se restauró ningún control ni desbloqueo</strong> de la sesión terminada.</p>
+      <div class="memory-view"><dl><dt>Clase recuperada</dt><dd>Clase ${importedMemory.classId}${importedMemory.classTitle?` · ${escapeText(importedMemory.classTitle)}`:""}</dd><dt>Fecha del registro</dt><dd>${escapeText(importedMemory.generatedLabel)}</dd><dt>Estado de cierre</dt><dd>${escapeText(importedMemory.closureLabel)}</dd></dl></div>
+      <div class="actions"><button class="btn" type="button" id="entryContinue">Continuar en la Clase ${nextClass}</button></div>`;
+    document.getElementById("entryContinue").addEventListener("click",()=>{
+      routeEntryResolved=true;host.hidden=true;host.innerHTML="";selectClass(nextClass,true);
+    });
+    return;
+  }
   const entries=Learning.all().filter(e=>!e.variant_of);
   host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Tu memoria de aprendizaje, recuperada</h3>
     <p class="field-note">Se reconstruyó la <strong>vista</strong> de lo que registraste antes. <strong>No se restauró ningún control</strong>: el paso, los campos y los desbloqueos empiezan de cero, porque pertenecen a una sesión que ya terminó.</p>
     <div class="memory-view">
+      <dl><dt>Clase recuperada</dt><dd>Clase 3</dd><dt>Fecha del registro</dt><dd>${escapeText(importedMemory.generatedLabel||"No informada")}</dd><dt>Estado del registro</dt><dd>Memoria de aprendizaje recuperada</dd></dl>
       <strong>${entries.length} ${entries.length===1?"entrada":"entradas"} de la clase 3</strong>
       <ul class="chain">${entries.map(e=>`<li>${escapeText(e.activity_id)} · ${escapeText(e.diagnosis.learner_confirmed_code||("discrepancia de "+DISCREPANCY_LABEL[e.discrepancy.kind]))} · <span class="state-pill ${STATUS_CLASS[e.status]||"state-open"}">${escapeText(STATUS_LABEL[e.status]||e.status)}</span></li>`).join("")}</ul>
       <p class="field-note">${escapeText(memorySuggestion())}</p>
     </div>
     <div class="actions">
-      <button class="btn" type="button" id="entryContinue">Continuar desde el paso 1</button>
+      <button class="btn" type="button" id="entryContinue">Continuar en la Clase 3</button>
       <button class="btn secondary" type="button" id="entryOpenRecord">Ver el registro completo</button>
     </div>
     <p class="status" id="entryStatus"></p>`;
@@ -3130,17 +3148,26 @@ function renderRouteEntry(){
 function importMemoryAtEntry(file){
   const reader=new FileReader();
   reader.onload=()=>{
-    const result=importLearningRecordText(String(reader.result||""));
+    const parsed=parseImportedLearningFile(String(reader.result||""));
     const el=document.getElementById("entryStatus");
-    if(!result.ok){
-      if(el){el.className="notice error status";el.textContent="No se importó: "+result.error}
-      announce("No se importó la ficha: "+result.error);
+    if(!parsed.ok){
+      if(el){
+        el.className="notice error status";el.textContent=parsed.message;
+        if(parsed.technical){const details=document.createElement("details"),summary=document.createElement("summary"),code=document.createElement("code");summary.textContent="Detalle técnico opcional";code.textContent=parsed.technical;details.append(summary,code);el.append(details)}
+      }
+      announce(parsed.message);
       return;
     }
-    importedMemory={count:result.count,at:localStamp()};
+    if(parsed.kind==="learning_context"){
+      const applied=Learning.fromObject(parsed.data);
+      if(!applied.ok)return;
+      importedMemory={kind:parsed.kind,count:applied.count,at:localStamp(),generatedLabel:importedGeneratedLabel(parsed.data.generated_at)};
+    }else{
+      importedMemory={kind:parsed.kind,classId:parsed.classId,classTitle:parsed.data.class_title||"",generatedLabel:parsed.generatedLabel,closureLabel:parsed.closureLabel};
+    }
     routeEntryResolved=true;
     renderRouteEntry();
-    announce(`Ficha cargada: ${result.count} ${result.count===1?"entrada":"entradas"}. Se reconstruyó la vista de memoria; los controles no se restauraron.`);
+    announce(parsed.kind==="class_session"?`Registro de la Clase ${parsed.classId} cargado. Puedes continuar en la Clase ${parsed.classId+1} desde el paso 1.`:`Registro cargado: ${importedMemory.count} ${importedMemory.count===1?"entrada":"entradas"}. Se reconstruyó la vista de memoria; los controles no se restauraron.`);
   };
   reader.onerror=()=>{
     const el=document.getElementById("entryStatus");
@@ -3254,6 +3281,35 @@ function clearLearningRecord(){
   renderLearningRecord();
   if(activeClass===LOOP_CLASS){renderClassSteps();renderClassWorkbench();}
   recordStatus("Registro borrado. No queda ninguna entrada en memoria y la clase 3 vuelve al paso 1 con todo bloqueado de nuevo.","warn");
+}
+function importedClosureLabel(value){
+  return ({rutina_completada:"Rutina completada",sesion_con_practica_pendiente:"Sesión cerrada con práctica pendiente",respaldo_en_progreso:"Registro en progreso"})[value]||String(value||"No informado");
+}
+function importedGeneratedLabel(value){
+  if(!value)return "No informada";
+  const date=new Date(value);
+  return Number.isNaN(date.getTime())?"No informada":date.toLocaleString("es-CL");
+}
+// Reconoce y valida sin modificar Learning, controles, pasos ni desbloqueos.
+function parseImportedLearningFile(text){
+  const source=String(text||"").trim();
+  const guidance="Selecciona el archivo JSON para continuar descargado al cerrar la clase anterior; los reportes PDF o HTML son únicamente para lectura.";
+  if(source.startsWith("%PDF")||/^<!doctype html|^<html/i.test(source))return {ok:false,kind:"invalid",message:guidance,technical:"El contenido corresponde a un reporte PDF o HTML, no a un archivo de aprendizaje JSON."};
+  let data=null;
+  try{data=JSON.parse(source)}catch(err){return {ok:false,kind:"invalid",message:"No pudimos leer ese archivo como un registro de aprendizaje. "+guidance,technical:"JSON malformado: "+err.message}}
+  if(!data||typeof data!=="object"||Array.isArray(data))return {ok:false,kind:"invalid",message:"El archivo no tiene el formato de aprendizaje esperado. "+guidance,technical:"La raíz debe ser un objeto JSON."};
+  if(data.schema_version==="macrolab-macro1-class-session/1.1"){
+    const classId=Number(data.class_id),plain=value=>value&&typeof value==="object"&&!Array.isArray(value);
+    const valid=(classId===1||classId===2)&&plain(data.answers)&&plain(data.training)&&typeof data.closure==="string"&&data.closure.trim()&&(!Object.hasOwn(data,"generated_at")||typeof data.generated_at==="string");
+    if(!valid)return {ok:false,kind:"invalid",message:"El archivo parece provenir de una clase anterior, pero está incompleto o dañado. Descarga nuevamente el archivo JSON para continuar.",technical:"La sesión requiere class_id 1 o 2, closure, answers y training válidos; generated_at debe ser texto si existe."};
+    return {ok:true,kind:"class_session",classId,data,generatedLabel:importedGeneratedLabel(data.generated_at),closureLabel:importedClosureLabel(data.closure)};
+  }
+  if(data.schema_version===LEARNING_SCHEMA){
+    const validation=Learning.validateObject(data);
+    if(!validation.ok)return {ok:false,kind:"invalid",message:"El registro de la Clase 3 está incompleto o dañado y no se importó. Selecciona el archivo JSON original.",technical:validation.error};
+    return {ok:true,kind:"learning_context",data,count:validation.count};
+  }
+  return {ok:false,kind:"incompatible",message:"Este archivo no es compatible con la continuidad de MacroLab. Selecciona el archivo JSON descargado al cerrar la clase anterior.",technical:`Formato declarado: ${String(data.schema_version||"sin identificar")}.`};
 }
 function importLearningRecordText(text){
   let data=null;
@@ -3440,7 +3496,7 @@ function init(){
 }
 // Superficie mínima de inspección para las pruebas automáticas del loop. Sólo expone
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
-window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
+window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,parseImportedLearningFile,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
   lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();
