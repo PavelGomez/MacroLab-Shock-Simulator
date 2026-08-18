@@ -652,7 +652,9 @@ async function main() {
   clickClass(w3, "error");
   ok(/Paso 6 de 6/.test(stepText(w3)), "v0.6 · la respuesta diagnóstica asigna una práctica coherente");
   setField(w3, "guided_a", "above");setField(w3, "guided_b", "previous");
-  setField(w3, "revisedA", "2");setField(w3, "revisedB", "103");setField(w3, "revisedC", "192");
+  setField(w3, "revisionDecisionA", "reformulate");setField(w3, "revisedA", "2");
+  setField(w3, "revisionDecisionB", "confirm");setField(w3, "revisionDecisionC", "confirm");
+  setField(w3, "revisionDecisionExplanation", "reformulate");
   setField(w3, "revisedAnswer", "El deflactor es un índice de la producción interna; el IPC usa una canasta y la inflación es una tasa entre períodos. El PIB usa territorio y el PNB residencia. El PNF es un flujo de ingresos del período, no el stock acumulado de inversión extranjera.");
   clickClass(w3, "guidedCheck");
   ok(/Criterio cumplido/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6 · la práctica se decide por evidencia observable");

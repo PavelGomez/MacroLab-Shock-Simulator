@@ -14,7 +14,8 @@
     "test_paquete.js",
     "test_loop_clase3.js",
     "test_formulas_selladas.js",
-    "test_retroalimentacion_pedagogica.js"
+    "test_retroalimentacion_pedagogica.js",
+    "test_auditoria_transversal.js"
   ],
   "notes": [
     {
@@ -201,7 +202,7 @@
     },
     {
       "note": "tests",
-      "reason": "test_pautas_biblioteca.js audita el simulador de la capa superior y vive en la raíz del repo, no en macro1/. Por eso no se declara aquí: este manifiesto describe las suites del sub-app macro1, que test_paquete.js exige que sean exactamente cuatro."
+      "reason": "test_pautas_biblioteca.js audita el simulador de la capa superior y vive en la raíz del repo, no en macro1/. Por eso no se declara aquí: este manifiesto describe las cinco suites del sub-app macro1, incluida la auditoría transversal de evaluación."
     },
     {
       "note": "notas de bloque",
