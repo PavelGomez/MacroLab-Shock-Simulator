@@ -29,6 +29,6 @@ jobs:
         working-directory: macro1
         run: |
           set -e
-          for t in test_paquete.js test_formulas_selladas.js; do
+          for t in test_paquete.js test_loop_clase3.js test_formulas_selladas.js test_retroalimentacion_pedagogica.js test_auditoria_transversal.js; do
             if [ -f "$t" ]; then echo "── $t"; node "$t"; fi
           done
