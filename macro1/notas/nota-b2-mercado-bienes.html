@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nota de estudio 4 · El mercado de bienes</title>
 <meta name="author" content="Pável Gómez Valera">
-<meta name="description" content="Nota de estudio 4: el mercado de bienes">
+<meta name="description" content="Nota de estudio 4: consumo, gasto planeado, equilibrio, inversión planeada y efectiva, inventarios y multiplicador en el mercado de bienes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -388,10 +388,10 @@ son tres: los hogares, las empresas y el Estado.</p>
 <p><strong>La fórmula.</strong></p>
 <pre><code>Z = C + I + G</code></pre>
 <p>Esto dice que el gasto planeado total es la suma del consumo de los
-hogares, <code>C</code>; la <strong>inversión</strong> de las empresas,
-<code>I</code> —máquinas, galpones, camiones, viviendas nuevas, el horno
-de Rosa—; y el <strong>gasto del Gobierno</strong> en bienes y
-servicios, <code>G</code>.</p>
+hogares, <code>C</code>; la <strong>inversión planeada</strong> de las
+empresas, <code>I</code> —máquinas, galpones, camiones, viviendas
+nuevas, el horno de Rosa—; y el <strong>gasto del Gobierno</strong> en
+bienes y servicios, <code>G</code>.</p>
 <p>Dos advertencias van pegadas a la fórmula. <strong>Primera:</strong>
 se usa <code>Z</code> y no <code>Y</code> a propósito. <code>Y</code> es
 lo que efectivamente se produjo; <code>Z</code> es lo que se planea
@@ -413,9 +413,10 @@ un dato de esa segunda fila. Cuál de los dos pesó más en el total
 <strong>no se decide comparando las dos tasas</strong>: para eso haría
 falta saber cuánto pesa cada componente dentro del gasto, un dato que
 esta unidad no usa.</p>
-<p><strong>El límite.</strong> En este bloque <code>I</code> se trata
-como <strong>exógena</strong>: un número dado desde fuera, que no
-reacciona a nada de lo que el modelo determina. Es un supuesto fuerte y
+<p><strong>El límite.</strong> En este bloque la inversión
+<strong>planeada</strong>, <code>I</code>, se trata como
+<strong>exógena</strong>: un número dado desde fuera, que no reacciona a
+nada de lo que el modelo determina. Es un supuesto fuerte y
 evidentemente falso —Rosa compró el horno <em>porque</em> vendía más— y
 se levanta cuando la inversión pase a depender del ingreso y de la tasa
 de interés. Aquí la mantenemos fija para ver un mecanismo a la vez. Y
@@ -433,13 +434,15 @@ la producción siga al gasto <strong>es un supuesto</strong>, no una
 ley.</p>
 <p><strong>La traducción.</strong> El modelo supone que, en el corto
 plazo, los <strong>precios están dados</strong> y las empresas tienen
-capacidad para producir más. Entonces, cuando la demanda supera lo
-producido, la señal no llega por el precio: llega por las
-<strong>estanterías</strong>. Los inventarios —las existencias
-acumuladas— se vacían, y una empresa que ve caer sus existencias produce
-más. Al revés, si el gasto planeado es menor que lo producido, las
-existencias se acumulan solas, y esa acumulación no la decidió nadie: es
-la señal de que hay que producir menos.</p>
+capacidad para producir más. Si el gasto planeado supera a la
+producción, las ventas reducen los inventarios <strong>por debajo de lo
+que las empresas habían planeado</strong>. No cayó el inventario
+deseado: cayó el inventario efectivo respecto de esa meta. La empresa
+responde elevando la producción del período siguiente, primero con la
+capacidad, las horas y los insumos que tiene y, si hace falta,
+contratando trabajadores. Al revés, si el gasto planeado es menor que lo
+producido, aparecen bienes no vendidos y los inventarios quedan por
+encima de lo planeado: esa es la señal para producir menos.</p>
 <p>Por eso el equilibrio se define así:</p>
 <pre><code>Y = Z</code></pre>
 <p>Esto dice que la producción es igual al gasto planeado. Dicho de otro
@@ -452,25 +455,32 @@ cumple siempre: es una <strong>condición</strong>, el único punto en que
 nadie tiene motivo para cambiar lo que hace. Fuera de ese punto hay
 inventarios moviéndose, y ese movimiento es lo que empuja la producción
 hacia el equilibrio.</p>
-<p><strong>El ancla.</strong> Los inventarios chilenos dejaron huella, y
-se puede ir a buscarla: el Banco Central publica dos filas contiguas, la
-<strong>demanda interna</strong> y la demanda interna
-<strong>sin</strong> variación de existencias. En 2021 la primera creció
-<strong>21,6 %</strong> y la segunda <strong>18,0 %</strong>; la
-distancia entre las dos es de <strong>3,6 puntos porcentuales</strong>
-—un punto porcentual es la diferencia entre dos porcentajes, no un
-porcentaje de un porcentaje— y es el rastro de las bodegas que hubo que
-reponer con el gasto disparado. En 2020 pasó lo contrario: la demanda
-interna cayó <strong>9,1 %</strong> y, sin existencias, <strong>7,9
-%</strong>; la distancia fue de <strong>−1,2 puntos
-porcentuales</strong>, las bodegas vaciándose mientras el gasto caía.
-Ahora bien, hay que decirlo con precisión: restar dos <strong>tasas de
-crecimiento</strong> entrega solo una <strong>aproximación</strong> de
-la contribución de las existencias, no su valor exacto. Por eso usamos
-el signo y el orden de magnitud para leer el mecanismo, pero no
-presentamos esa resta como una contribución contable exacta. Aun así
-alcanza para lo que importa aquí: los inventarios no son un residuo de
-la contabilidad, son el termómetro del desajuste.</p>
+<p>La contabilidad registra la sorpresa como <strong>inversión no
+planeada en existencias</strong>. En esta versión del modelo:</p>
+<pre><code>inversión no planeada = Y − Z
+inversión efectiva = inversión planeada + inversión no planeada</code></pre>
+<p>Si <code>Z &gt; Y</code>, la inversión no planeada es negativa: se
+vendió de la bodega y la inversión efectiva resulta menor que la
+planeada. Si <code>Z &lt; Y</code>, es positiva: quedaron bienes sin
+vender y la inversión efectiva resulta mayor que la planeada. Cuando
+<code>Y = Z</code>, la sorpresa es cero y ambas coinciden. Por eso la
+identidad contable se cumple siempre con la <strong>inversión
+efectiva</strong>, aunque <code>Y = Z</code> solo se cumpla en
+equilibrio.</p>
+<p><strong>El ancla.</strong> Los inventarios chilenos dejan una huella
+que se puede medir: el Banco Central publica la <strong>variación
+efectiva de existencias</strong> dentro de la inversión. En 2021 la
+demanda interna creció <strong>21,6 %</strong> y, sin variación de
+existencias, <strong>18,0 %</strong>; la distancia entre ambas tasas fue
+<strong>3,6 puntos porcentuales</strong>. En 2020 fue <strong>−1,2
+puntos porcentuales</strong>. Esa resta aproxima el aporte de las
+existencias y permite ver su signo y orden de magnitud, no su
+contribución contable exacta. Hay además un límite decisivo: las cuentas
+nacionales observan lo que efectivamente ocurrió, pero no separan qué
+parte del movimiento de inventarios fue planeada y cuál sorprendió a las
+empresas. Los datos muestran que las bodegas se movieron; por sí solos
+no prueban si en ese momento <code>Z &gt; Y</code> o
+<code>Z &lt; Y</code>.</p>
 <p><strong>La conversión.</strong> Usted ya puede hacer algo que antes
 no: <strong>rotular una ecuación antes de operar con ella</strong>. Ante
 cualquier igualdad del bloque, pregúntese cuál de estas tres cosas es.
@@ -765,35 +775,43 @@ demanda, las empresas producen distinto antes que cotizar distinto.</p>
 planeada</strong> a lo que todos juntos —hogares, empresas y Estado—
 pensaban comprar. Cuando la demanda planeada supera a la producción,
 alguien pone la diferencia, y la pone la bodega: se vende de lo guardado
-y los inventarios caen <strong>sin que nadie lo haya planeado</strong>.
-Al revés, si se produce más de lo que se quiso comprar, la bodega se
-llena sola. Ese vaciamiento o esa acumulación no planeada es la señal:
-las empresas la leen y ajustan la producción hasta que desaparece.</p>
+y el inventario efectivo cae <strong>respecto de lo que las empresas
+querían mantener</strong>. Al revés, si se produce más de lo que se
+quiso comprar, quedan bienes sin vender y el inventario efectivo supera
+lo planeado. Esa variación no planeada es la señal: las empresas ajustan
+la producción siguiente —con capacidad, horas, insumos y, si hace falta,
+empleo— hasta que la sorpresa desaparece.</p>
 <p><strong>La fórmula.</strong></p>
 <pre><code>Z = C + I + G          demanda planeada
 Y = Z                  equilibrio: cuando el cambio no planeado de inventarios es cero</code></pre>
 <p>Esto dice, en castellano: <strong>Z</strong> es todo lo que se
 pensaba comprar —<strong>C</strong>, el consumo de los hogares;
-<strong>I</strong>, la inversión de las empresas, que aquí se toma como
-dada, porque qué la mueve no se modela en este bloque;
+<strong>I</strong>, la inversión planeada de las empresas, que aquí se
+toma como dada, porque qué la mueve no se modela en este bloque;
 <strong>G</strong>, las compras del Gobierno—, y <strong>Y</strong> es
 lo que se produjo. El equilibrio no es un lugar cómodo ni deseable: es
 el nivel de producción en el que las bodegas dejan de moverse por
 sorpresa. Mientras se muevan, la producción sigue cambiando.</p>
+<p>La contabilidad llama <strong>inversión efectiva</strong> a la
+inversión planeada más la variación no planeada de existencias. Si
+<code>Z &gt; Y</code>, esa variación es negativa y la inversión efectiva
+queda por debajo de la planeada; si <code>Z &lt; Y</code>, es positiva y
+queda por encima. Solo en equilibrio coinciden.</p>
 <p>Dos nombres que va a necesitar en los ejercicios: el <strong>ingreso
 disponible</strong> es lo que queda después de pagar impuestos,
 <code>Y − T</code>, y el <strong>ahorro privado</strong> —lo escribimos
 <code>S_priv</code>, la «S» de ahorro y «priv» de privado— es la parte
 de ese ingreso disponible que el hogar no consume.</p>
 <p><strong>El ancla.</strong> El paso de los inventarios parece el más
-abstracto y es el que se puede ir a mirar. El Banco Central publica dos
-filas contiguas: la <strong>demanda interna</strong> —todo lo que se
+abstracto y una parte sí se puede ir a mirar. El Banco Central publica
+dos filas contiguas: la <strong>demanda interna</strong> —todo lo que se
 gastó dentro del país— y la demanda interna <strong>sin variación de
 existencias</strong> («existencias» es el nombre que las cuentas
-nacionales le dan a los inventarios). La distancia entre ambas es el
-rastro que dejan las bodegas. Las dos primeras columnas de la tabla son
-variaciones anuales, cuánto cambió cada una respecto del año anterior;
-la tercera es esa distancia, en puntos porcentuales.</p>
+nacionales le dan a los inventarios). La distancia entre ambas deja ver
+el movimiento <strong>efectivo</strong> de las bodegas. Las dos primeras
+columnas de la tabla son variaciones anuales, cuánto cambió cada una
+respecto del año anterior; la tercera es esa distancia, en puntos
+porcentuales.</p>
 <p><strong>Tabla 3.</strong> Demanda interna con y sin variación de
 existencias, 2020 y 2021. Variación anual en porcentaje; la diferencia,
 en puntos porcentuales (pp).</p>
@@ -845,30 +863,33 @@ en puntos porcentuales (pp).</p>
 </tr>
 </tbody>
 </table>
-<p>Léalas de a dos. En <strong>2020</strong> la diferencia fue
-<strong>−1,2 puntos porcentuales</strong>: se vendió de lo acumulado,
-las bodegas se vaciaron. En <strong>2021</strong> fue <strong>+3,6
-puntos porcentuales</strong>, la mayor de estos seis años: una parte
-grande del gasto fue a <strong>volver a llenar</strong> las bodegas
-vaciadas el año anterior. Rosa quedándose sin pan a las once,
-multiplicada por miles de empresas, es esa fila. En <strong>2022 y
-2023</strong> la diferencia volvió al terreno negativo, <strong>−0,6 y
-−1,0 puntos</strong>: se producía menos de lo que se vendía, el mismo
-mecanismo andando para atrás.</p>
-<p><strong>La conversión.</strong> Ante cualquier discusión sobre si la
-economía se acelera o se frena, usted ya tiene un lugar donde mirar que
-no es el titular: la distancia entre esas dos filas, y su signo.</p>
-<p><strong>El límite.</strong> Tres, y ninguno es menor. Primero, la
+<p>Léalas de a dos. En <strong>2020</strong> la variación efectiva de
+existencias hizo una contribución negativa; en <strong>2021</strong> la
+hizo positiva, y la distancia entre las tasas llegó a <strong>+3,6
+puntos porcentuales</strong>, la mayor de estos seis años. En
+<strong>2022 y 2023</strong> volvió al terreno negativo, <strong>−0,6 y
+−1,0 puntos</strong>. Eso permite describir el signo del movimiento
+efectivo de inventarios. No permite saber si cada movimiento había sido
+decidido con anticipación o sorprendió a las empresas.</p>
+<p><strong>La conversión.</strong> Ante cualquier discusión sobre
+inventarios, usted ya sabe hacer dos preguntas: ¿qué signo tuvo la
+variación efectiva de existencias?, ¿y contamos con información
+adicional para saber si fue planeada o inesperada? La primera se puede
+buscar en las cuentas nacionales; la segunda no viene respondida por esa
+fila.</p>
+<p><strong>El límite.</strong> Cuatro, y ninguno es menor. Primero, la
 diferencia entre dos <strong>tasas de crecimiento</strong>
 <strong>aproxima</strong> el aporte de las existencias, no lo mide: el
 signo y el orden de magnitud sirven —y eso es todo lo que le pedimos
 leer en la última columna—, pero decir «las existencias aportaron
 exactamente 3,6 puntos» es decir más de lo que el dato aguanta. Segundo,
-todo esto vale con <strong>precios fijos</strong>, y 2021 y 2022 fueron
-precisamente años de precios en movimiento: para ese episodio el modelo
-acierta la dirección del ajuste y el mecanismo, no la magnitud. Tercero,
-el mecanismo explica <strong>cómo</strong> se ajusta la producción, no
-si el nivel al que llega es bueno ni sostenible.</p>
+la variación observada mezcla inventarios planeados y no planeados: no
+es un indicador directo de <code>Z − Y</code>. Tercero, todo esto vale
+con <strong>precios fijos</strong>, y 2021 y 2022 fueron precisamente
+años de precios en movimiento: el modelo ofrece una forma de organizar
+el mecanismo, no una estimación de su magnitud. Cuarto, el mecanismo
+explica <strong>cómo</strong> se ajusta la producción, no si el nivel al
+que llega es bueno ni sostenible.</p>
 <blockquote>
 <p><strong>Para ir más lejos.</strong> <em>No hace falta leer esto para
 continuar.</em> Hay una segunda manera de escribir el mismo equilibrio,
@@ -876,10 +897,13 @@ por el lado del ahorro: lo que no se consume ni se recauda tiene que
 financiar lo que se invierte. La condición completa es
 <code>I = S_priv + (T − G)</code>: la inversión iguala al <strong>ahorro
 privado</strong> más el <strong>ahorro del Gobierno</strong>, que es lo
-que el Estado recauda menos lo que gasta. Los dos términos de la derecha
-se mueven por separado, y esa igualdad —la completa— es la que se
-conserva siempre. En los ejercicios va a comprobar qué pasa con cada
-término cuando el Gobierno gasta más de lo que recauda.</p>
+que el Estado recauda menos lo que gasta. Con la <strong>inversión
+efectiva</strong>, esta igualdad es una identidad contable y se cumple
+siempre. Si <code>I</code> representa la inversión planeada de nuestra
+función <code>Z</code>, la igualdad es una condición de equilibrio: se
+cumple cuando la inversión no planeada en existencias es cero. En los
+ejercicios va a comprobar qué pasa con cada término cuando el Gobierno
+gasta más de lo que recauda.</p>
 </blockquote>
 <hr />
 <h3 id="3-el-eco-por-qué-el-empujón-vuelve-más-grande">3. El eco: por
@@ -1126,8 +1150,9 @@ el efecto directo desde el primer paso.</p>
 mecanismo.</strong> <em>Síntoma:</em> «subió <code>G</code>, entonces
 <code>Y</code> sube tanto», y punto. <em>Corrección:</em> el número
 puede estar bien y el ejercicio igual estar malo. Falta el camino: la
-demanda supera a la producción, caen los inventarios no planeados, las
-empresas producen más, el ingreso nuevo alimenta más consumo.</p>
+demanda planeada supera a la producción, el inventario efectivo cae
+respecto de lo planeado, las empresas producen más y el ingreso nuevo
+alimenta más consumo.</p>
 <p><strong>4. Usar el ingreso total donde corresponde el ingreso
 disponible.</strong> <em>Síntoma:</em> calcular el consumo con
 <code>Y</code> en vez de con <code>Y − T</code>. <em>Corrección:</em>
@@ -1350,7 +1375,7 @@ deben citarse como tales.</li>
   </article>
 </main>
 <footer class="pie">
-  <p class="descarga"><a class="btn-pdf" href="Bloque2_alumno.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 16.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 18h14v2H5z"/></svg>Descargar esta nota en PDF (1.1 MB)</a></p>
+  <p class="descarga"><a class="btn-pdf" href="Bloque2_alumno.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 16.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 18h14v2H5z"/></svg>Descargar esta nota en PDF (0.8 MB)</a></p>
   <p>Profesor: Pável Gómez Valera · Macroeconomía · Profesor Pável Gómez · 2026 · Herramienta de aprendizaje, no de predicción · Versión del paquete 0.7.0</p>
 </footer>
 </body>

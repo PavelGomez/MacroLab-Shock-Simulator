@@ -146,7 +146,7 @@ assertAligned(wrong3,"Clase 3 incorrecta");
 const inventoryError=evaluate(3,{answerA:"950",answerB:"1050",testMechanism:"Cuando aumenta G, los inventarios aumentan y después sube la producción, el ingreso y el consumo."});
 const inventoryCriterion=inventoryError.feedback.criteria.find(x=>x.criterion_id==="C3-INVENTORIES");
 eq(inventoryCriterion.gap.type,"error_conceptual","Clase 3 · distingue dirección conceptual equivocada de una ausencia");
-ok(inventoryCriterion.recommendation.includes("dirección de los inventarios"),"Clase 3 · recomienda corregir el mecanismo concreto");
+ok(inventoryCriterion.recommendation.includes("dirección del inventario efectivo"),"Clase 3 · recomienda corregir el mecanismo concreto");
 assertAligned(inventoryError,"Clase 3 con error conceptual");
 
 const noCriterion=evaluate(3,{answerA:"950",answerB:"1050",testMechanism:"Los inventarios caen."});

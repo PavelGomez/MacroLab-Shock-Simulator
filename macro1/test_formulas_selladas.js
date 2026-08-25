@@ -309,9 +309,9 @@ function main() {
     "BIE-DRILL-SI-01 · el cierre 700 = 700 de BIE-EX-02 se verifica");
   eq(L.drillCheck("BIE-DRILL-LABEL-01", { eq1: "identidad", eq2: "conducta", eq3: "condición de equilibrio" }).passed, true,
     "BIE-DRILL-LABEL-01 · identidad, conducta y condición de equilibrio");
-  eq(L.drillCheck("BIE-DRILL-INV-01", { link1: "caen los inventarios no planeados", link2: "las empresas elevan la producción" }).passed, true,
-    "BIE-DRILL-INV-01 · inventarios no planeados y luego producción");
-  eq(L.drillCheck("BIE-DRILL-INV-01", { link1: "las empresas elevan la producción", link2: "caen los inventarios no planeados" }).passed, false,
+  eq(L.drillCheck("BIE-DRILL-INV-01", { link1: "el inventario efectivo cae respecto de lo planeado", link2: "las empresas elevan la producción" }).passed, true,
+    "BIE-DRILL-INV-01 · inventario efectivo bajo lo planeado y luego producción");
+  eq(L.drillCheck("BIE-DRILL-INV-01", { link1: "las empresas elevan la producción", link2: "el inventario efectivo cae respecto de lo planeado" }).passed, false,
     "BIE-DRILL-INV-01 · el orden de los eslabones importa");
 
   /* ===== El contrato de escenario sellado sigue intacto ==================== */
