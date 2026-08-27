@@ -166,7 +166,7 @@ async function main() {
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
-  eq(L.LEARNING_LAB_VERSION, "0.6.5", "la versión del contexto de aprendizaje es 0.6.5");
+  eq(L.LEARNING_LAB_VERSION, "0.7.0", "la versión del contexto de aprendizaje coincide con el manifiesto");
   eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-cumulative-revision", "la versión de contenido exportada coincide con el manifiesto");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
@@ -204,7 +204,7 @@ async function main() {
 
   /* --- 1 · puerta de entrada de la ruta (P1.7) ----------------------------- */
   ok(q(w, "#routeEntry #entryFresh"), "P1.7 · existe «Comenzar sin registro» en la entrada de la ruta");
-  ok(q(w, "#routeEntry #entryFile"), "P1.7 · existe «Continuar con mi ficha» en la entrada de la ruta");
+  ok(q(w, "#routeEntry #entryFile"), "P1.7 · existe «Continuar con un archivo de aprendizaje» en la entrada de la ruta");
   q(w, "#entryFresh").dispatchEvent(new w.MouseEvent("click", { bubbles: true }));
   ok(q(w, "#routeEntry").hidden, "P1.7 · elegir «comenzar sin registro» retira la puerta de entrada");
 
@@ -652,12 +652,14 @@ async function main() {
   clickClass(w3, "error");
   ok(/Paso 6 de 6/.test(stepText(w3)), "v0.6 · la respuesta diagnóstica asigna una práctica coherente");
   setField(w3, "guided_a", "above");setField(w3, "guided_b", "previous");
-  setField(w3, "revisedA", "2");setField(w3, "revisedB", "103");setField(w3, "revisedC", "192");
+  setField(w3, "revisionDecisionA", "reformulate");setField(w3, "revisedA", "2");
+  setField(w3, "revisionDecisionB", "confirm");setField(w3, "revisionDecisionC", "confirm");
+  setField(w3, "revisionDecisionExplanation", "reformulate");
   setField(w3, "revisedAnswer", "El deflactor es un índice de la producción interna; el IPC usa una canasta y la inflación es una tasa entre períodos. El PIB usa territorio y el PNB residencia. El PNF es un flujo de ingresos del período, no el stock acumulado de inversión extranjera.");
   clickClass(w3, "guidedCheck");
   ok(/Criterio cumplido/.test(q(w3, "#guidedPracticeStatus").textContent), "v0.6 · la práctica se decide por evidencia observable");
   ok(q(w3, '[data-class-action="export"]')&&/reporte/.test(q(w3, '[data-class-action="export"]').textContent), "v0.6 · la salida principal es un reporte legible");
-  ok(/Respaldo técnico opcional/.test(q(w3, "#classWorkbench").textContent), "v0.6 · el JSON queda explícitamente como respaldo opcional");
+  ok(/Descargar archivo para continuar/.test(q(w3, "#classWorkbench").textContent), "el JSON de continuidad queda como acción visible y explícita");
 
   // La Clase 1 se concentra ahora en lectura de evidencia y causalidad.
   L3.selectClass("1");
@@ -698,7 +700,7 @@ async function main() {
   clickClass(w5, "test");setField(w5, "revisionFocus", "causality");clickClass(w5, "feedback");
   setField(w5, "diagnosticProbe", "__unsure__");clickClass(w5, "error");
   ok(q(w5, '[data-class-field="revision_metadata"]')&&q(w5, '[data-class-field="revision_causality"]'), "revisión dirigida · sólo aparecen preguntas para fuente/período y límite causal realmente ausentes");
-  ok(q(w5, ".revision-gap .reading-return")&&/Nota 1/.test(q(w5, ".revision-gap .reading-return").textContent), "revisión dirigida · cada faltante ofrece retorno a una sección específica");
+  ok(q(w5, ".revision-gap .reading-return")&&/Nota (?:de estudio )?1/.test(q(w5, ".revision-gap .reading-return").textContent), "revisión dirigida · cada faltante ofrece retorno a una sección específica");
   ok([...w5.document.querySelectorAll(".revision-gap .reading-return")].every(link=>/nota-01-introduccion\.html#2-1/.test(link.getAttribute("href"))), "revisión dirigida · los retornos apuntan a anclas verificadas de la lectura, no a una página genérica");
   setField(w5, "guided_a", "projection");setField(w5, "guided_b", "passport");setField(w5, "guided_c", "scenario");setField(w5, "guided_d", "mechanism");
   setField(w5, "revisionDecision", "keep");

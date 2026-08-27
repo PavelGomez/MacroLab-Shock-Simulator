@@ -733,6 +733,20 @@ const NOTES_BASE="notas/";
 const PUBLIC_NOTES_BASE="https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/notas/";
 
 const fmt=(n,d=2)=>Number(n).toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d});
+function parseStudentNumber(raw){
+  const text=String(raw??"").trim().replace(/\s/g,"").replace(/%$/,"");
+  if(!text)return NaN;
+  const normalized=text.includes(",")&&!text.includes(".")?text.replace(",","."):text;
+  return Number(normalized);
+}
+function evaluateNumericAnswer(raw,expected,spec={}){
+  const value=parseStudentNumber(raw),tolerance=spec.tolerance??.03;
+  if(!Number.isFinite(value))return {ok:false,value:NaN,canonical:NaN,representation:"invalid"};
+  const candidates=[{canonical:value,representation:spec.unit||"value"}];
+  if(spec.acceptProportion)candidates.push({canonical:value*100,representation:"proportion"});
+  const best=candidates.sort((a,b)=>Math.abs(a.canonical-expected)-Math.abs(b.canonical-expected))[0];
+  return {...best,value,ok:Math.abs(best.canonical-expected)<tolerance};
+}
 const num=id=>Number(document.getElementById(id).value);
 const setValue=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value;};
 const validNumbers=elements=>elements.every(el=>el.checkValidity()&&Number.isFinite(Number(el.value)));
@@ -835,11 +849,12 @@ const CLASS_ROUTES={
       {label:"Laboratorio de índices de esta página",url:"#med"}
     ],
     test:{
-      prompt:"En 2018 (base), PIB nominal = PIB real = 200. En 2019, PIB nominal = 210,12, PIB real = 204 y PNF = −12. Calcule: (a) crecimiento real, (b) deflactor del PIB y (c) PNB de 2019. Explique por qué el PNF no es inversión extranjera acumulada y por qué el deflactor no es, por sí solo, la inflación IPC.",
+      prompt:"En 2018 (base), PIB nominal = PIB real = 200. En 2019, PIB nominal = 210,12, PIB real = 204 y PNF real, valorado a precios de 2018, = −12. Calcule: (a) crecimiento real, (b) deflactor del PIB y (c) PNB real de 2019. Explique por qué el PNF no es inversión extranjera acumulada y por qué el deflactor no es, por sí solo, la inflación IPC.",
       type:"numeric",
       expected:{answerA:2,answerB:103,answerC:192},
-      answerLabels:{answerA:"Crecimiento real (a)",answerB:"Deflactor (b)",answerC:"PNB (c)"},
-      model:"Crecimiento real = (204/200 − 1)×100 = 2,00%. Deflactor = (210,12/204)×100 = 103,00. PNB = PIB + PNF = 204 − 12 = 192. El PNF es un flujo neto de ingresos de factores durante 2019: contrapone lo recibido por residentes desde el exterior con lo recibido en Chile por no residentes. No es el stock de inversión extranjera acumulado en una fecha. El deflactor cubre la producción interna; el IPC sigue una canasta de consumo y su inflación exige comparar índices entre períodos.",
+      answerLabels:{answerA:"Crecimiento real (a, %)",answerB:"Deflactor (b, índice base 2018=100)",answerC:"PNB real (c, precios de 2018)"},
+      answerSpecs:{answerA:{unit:"%",acceptProportion:true,tolerance:.03},answerB:{unit:"índice",tolerance:.03},answerC:{unit:"nivel",tolerance:.03}},
+      model:"Crecimiento real = (204/200 − 1)×100 = 2,00%. Deflactor = (210,12/204)×100 = 103,00. Como el PNF está valorado a los mismos precios de 2018, PNB real = PIB real + PNF real = 204 − 12 = 192. El PNF es un flujo neto de ingresos de factores durante 2019: contrapone lo recibido por residentes desde el exterior con lo recibido en Chile por no residentes. No es el stock de inversión extranjera acumulado en una fecha. El deflactor cubre la producción interna; el IPC sigue una canasta de consumo y su inflación exige comparar índices entre períodos.",
       keywords:[/(canasta|consumo|ipc)/i,/(producci|deflactor|precios)/i,/(pnf|pago.*factor|ingreso.*factor)/i,/(flujo|stock|acumulad|resident|territor)/i]
     },
     errors:[
@@ -873,9 +888,9 @@ const CLASS_ROUTES={
       ]}
     ],
     brief:[
-      "La identidad Y = C + I + G no basta para resolver el modelo: se agregan conductas como C = c₀ + c₁(Y−T) y una condición de equilibrio Y = Z.",
+      "La identidad Y = C + I efectiva + G se cumple siempre; para resolver el modelo se agregan conductas como C = c₀ + c₁(Y−T) y la condición de equilibrio Y = Z.",
       "El multiplicador describe la realimentación del ingreso sobre el consumo. El diagrama de 45° es una representación del mercado de bienes, no el nombre del mercado.",
-      "El mecanismo pasa por inventarios no planeados. El cierre contable verifica I = S privado + (T−G); una transferencia modifica ingreso disponible, no se registra como G."
+      "La I de Z es inversión planeada. La inversión efectiva suma la variación no planeada Y−Z; fuera del equilibrio pueden diferir. El cierre contable usa la inversión efectiva; una transferencia modifica ingreso disponible, no se registra como G."
     ],
     indicatorPrompt:"Elige en el IPoM una referencia a consumo, inversión o gasto. Señala si es dato o proyección y traduce la noticia a una variable autónoma del mercado de bienes, declarando qué mantienes constante.",
     links:[
@@ -886,7 +901,7 @@ const CLASS_ROUTES={
       prompt:"Economía cerrada: C = 100 + 0,5(Y−150), I = 250 y G = 200. Calcule (a) Y* inicial y (b) Y* si G aumenta 25%. Explique el mecanismo completo, incluido el papel de los inventarios.",
       type:"numeric",
       expected:{answerA:950,answerB:1050},
-      model:"Z = 100 + 0,5(Y−150) + 250 + 200 = 475 + 0,5Y. Por Y=Z, Y*=950 y el multiplicador es 2. G aumenta 50, por lo que ΔY=100 y Y* nuevo=1.050. Al subir G, Z supera inicialmente a Y; caen inventarios no planeados, las empresas elevan producción e ingreso y el mayor ingreso vuelve a elevar C hasta el nuevo equilibrio.",
+      model:"Z = 100 + 0,5(Y−150) + 250 + 200 = 475 + 0,5Y. Por Y=Z, Y*=950 y el multiplicador es 2. G aumenta 50, por lo que ΔY=100 y Y* nuevo=1.050. Al subir G, Z supera inicialmente a Y; el inventario efectivo cae respecto de lo planeado y la inversión efectiva queda bajo la planeada. Las empresas elevan producción —con capacidad, horas e insumos y, si hace falta, empleo—; suben el ingreso y el consumo hasta el nuevo equilibrio, donde ambas inversiones coinciden.",
       keywords:[/(inventario)/i,/(producci|ingreso)/i,/(consumo|propensi|c1|0,5)/i]
     },
     errors:[
@@ -914,9 +929,9 @@ const GUIDED_DIAGNOSTICS={
       "C1-Q-SCOPE":{label:"Limitar la afirmación a la evidencia disponible",description:"La interpretación debe decir qué permite afirmar la fuente y qué evidencia adicional sería necesaria.",drill:"C1-DRILL-EVIDENCE"}
     },
     probe:{question:"Si un informe proyecta crecimiento de 2% para 2026, ¿qué puedes afirmar sólo con ese dato?",options:[
-      ["__concept_ok__","Que el escenario publicado contempla 2% para 2026; todavía no es un resultado observado ni prueba una causa."],
       ["C1-Q-STATUS","Que la economía ya creció 2% durante 2026."],
       ["C1-Q-CAUSALITY","Que una política específica causó necesariamente ese crecimiento."],
+      ["__concept_ok__","Que el escenario publicado contempla 2% para 2026; todavía no es un resultado observado ni prueba una causa."],
       ["__unsure__","Todavía no estoy seguro."],
       ["__none__","Ninguna alternativa expresa lo que pensé."]
     ]}
@@ -933,8 +948,8 @@ const GUIDED_DIAGNOSTICS={
       "C2-Q-EXPLANATION":{label:"Completar la justificación económica",description:"Los cálculos pueden estar bien, pero falta explicar qué mide cada resultado.",drill:"C2-DRILL-COVERAGE"}
     },
     probe:{question:"¿Cuál interpretación integra correctamente los resultados del ejercicio?",options:[
-      ["__concept_ok__","103 es el nivel del deflactor; PNB = 192 y el PNF −12 es un flujo de ingresos, no inversión acumulada."],
       ["C2-Q-INDEX-RATE","103 significa que la inflación fue 103% en 2019."],
+      ["__concept_ok__","103 es el nivel del deflactor; PNB = 192 y el PNF −12 es un flujo de ingresos, no inversión acumulada."],
       ["C2-Q-COVERAGE","Deflactor e IPC son siempre el mismo índice de precios."],
       ["C2-Q-PNF","El PNF −12 representa el stock total de inversión extranjera."],
       ["__unsure__","Todavía no estoy seguro."],
@@ -948,16 +963,16 @@ const GUIDED_DRILLS={
     prompt:"Antes de reescribir, identifica qué mide la cifra, cuánto indica, a qué período corresponde, si es observada o proyectada y cuál es su fuente. Luego decide qué permite afirmar.",
     criterion:"Indicar que el 2% es una proyección del PIB para 2026, identificar el IPoM como fuente y explicar que la cifra no demuestra por sí sola qué medida causó el crecimiento.",
     fields:[
-      {id:"a",label:"¿El 2% ya fue observado o todavía es una proyección?",reportLabel:"Reconociste que el 2% es una proyección para 2026.",options:[["projection","Es una proyección para 2026"],["observed","Es un resultado ya observado"],["cause","Es un efecto causal comprobado"]],answer:"projection"},
-      {id:"b",label:"¿Qué información debe acompañar al valor 2%?",reportLabel:"Identificaste las cinco piezas que permiten interpretar la cifra: qué mide, cuánto, cuándo, estado y fuente.",options:[["passport","Qué mide, cuánto, cuándo, si es observado o proyectado y cuál es la fuente"],["number","Sólo el número, porque es fácil de entender"],["opinion","La opinión de quien lo cita"]],answer:"passport"},
+      {id:"a",label:"¿El 2% ya fue observado o todavía es una proyección?",reportLabel:"Reconociste que el 2% es una proyección para 2026.",options:[["observed","Es una estimación preliminar de un resultado ya observado"],["projection","Es una proyección para 2026"],["cause","Es un efecto causal ya identificado"]],answer:"projection"},
+      {id:"b",label:"¿Qué información debe acompañar al valor 2%?",reportLabel:"Identificaste las cinco piezas que permiten interpretar la cifra: qué mide, cuánto, cuándo, estado y fuente.",options:[["number","PIB, 2%, 2026 y Banco Central; con eso basta"],["opinion","El número y la interpretación de quien lo cita"],["passport","Qué mide, cuánto, cuándo, si es observado o proyectado y cuál es la fuente específica"]],answer:"passport"},
       {id:"c",label:"¿Qué permite afirmar por sí sola la proyección?",reportLabel:"Reconociste que la proyección describe el escenario publicado, pero no confirma el resultado final.",options:[["scenario","Describe el escenario publicado"],["cause","Identifica definitivamente la política que lo causó"],["observed","Confirma el resultado final del año"]],answer:"scenario"},
       {id:"d",label:"¿Qué necesitarías para afirmar que una medida causó el crecimiento?",reportLabel:"Reconociste que una causa exige explicar la cadena de pasos y usar otros datos para descartar explicaciones alternativas.",options:[["mechanism","Explicar la cadena de pasos y usar otros datos para descartar explicaciones alternativas"],["repeat","Repetir la cifra con mayor seguridad"],["source_only","Conocer sólo el nombre de la fuente"]],answer:"mechanism"}
     ]
   },
   "C2-DRILL-GROWTH":{
     title:"Crecimiento real en un caso nuevo",prompt:"Si el PIB real pasa de 300 a 306, identifica la variación y su naturaleza.",criterion:"Obtener 2% y reconocer que es una tasa de crecimiento.",fields:[
-      {id:"a",label:"Crecimiento real",options:[["2","2%"],["6","6%"],["102","102%"]],answer:"2"},
-      {id:"b",label:"El resultado es…",options:[["rate","una tasa de variación"],["index","un índice de precios"],["level","un nivel de PIB nominal"]],answer:"rate"}
+      {id:"a",label:"Crecimiento real",options:[["6","6%"],["2","2%"],["102","102%"]],answer:"2"},
+      {id:"b",label:"El resultado es…",options:[["index","un índice de precios"],["level","un nivel de PIB real"],["rate","una tasa de variación"]],answer:"rate"}
     ]
   },
   "C2-DRILL-PNF":{
@@ -965,28 +980,28 @@ const GUIDED_DRILLS={
     prompt:"Recupera en orden tiempo, territorio, residencia y signo antes de volver al ejercicio completo.",
     criterion:"Distinguir flujo/stock y territorio/residencia, aplicar PNB = PIB + PNF e interpretar el signo.",
     fields:[
-      {id:"a",label:"¿Qué tipo de cantidad es el PNF?",options:[["flow","Flujo durante un período"],["stock","Stock en una fecha"],["trade","Exportaciones netas"]],answer:"flow"},
-      {id:"b",label:"El PIB organiza la producción primero según…",options:[["territory","territorio económico"],["residence","residencia de quien recibe"],["nationality","nacionalidad del propietario"]],answer:"territory"},
+      {id:"a",label:"¿Qué tipo de cantidad es el PNF?",options:[["stock","Stock de activos en una fecha"],["flow","Flujo de ingresos durante un período"],["trade","Saldo del comercio de bienes y servicios"]],answer:"flow"},
+      {id:"b",label:"El PIB organiza la producción primero según…",options:[["residence","residencia de quien recibe el ingreso"],["nationality","nacionalidad del propietario"],["territory","territorio donde ocurre la producción"]],answer:"territory"},
       {id:"c",label:"El PNB atribuye ingreso primero según…",options:[["residence","residencia económica"],["territory","lugar físico únicamente"],["currency","moneda del pago"]],answer:"residence"},
-      {id:"d",label:"Con PIB 204 y PNF −12, el PNB es…",options:[["192","192"],["216","216"],["12","12"]],answer:"192"}
+      {id:"d",label:"Con PIB 204 y PNF −12, el PNB es…",options:[["216","216"],["192","192"],["12","12"]],answer:"192"}
     ]
   },
   "C2-DRILL-DEFLATOR":{
     title:"Deflactor en un caso nuevo",prompt:"Con PIB nominal 220 y PIB real 200, calcula e interpreta el deflactor.",criterion:"Obtener 110 y reconocer que es un nivel de índice.",fields:[
-      {id:"a",label:"Deflactor",options:[["110","110"],["10","10"],["1.1","1,1"]],answer:"110"},
+      {id:"a",label:"Deflactor",options:[["10","10"],["1.1","1,1"],["110","110"]],answer:"110"},
       {id:"b",label:"El resultado es…",options:[["index","un índice con base 100"],["inflation","inflación de 110%"],["growth","crecimiento real"]],answer:"index"}
     ]
   },
   "C2-DRILL-INDEX":{
     title:"Índice frente a tasa",prompt:"Interpreta un índice 103 y decide qué información adicional exige una tasa de inflación.",criterion:"Interpretar 103 respecto de la base y exigir un índice de otro período para calcular inflación.",fields:[
-      {id:"a",label:"Índice 103 significa…",options:[["above","nivel de precios 3% sobre el período base"],["inflation","inflación de 103%"],["growth","crecimiento real de 3%"]],answer:"above"},
-      {id:"b",label:"Para calcular inflación necesito…",options:[["previous","el índice de otro período comparable"],["real","sólo el PIB real del mismo año"],["nothing","ningún otro dato"]],answer:"previous"}
+      {id:"a",label:"Índice 103 significa…",options:[["inflation","inflación acumulada de 103%"],["above","nivel de precios 3% sobre el período base"],["growth","crecimiento real de 3%"]],answer:"above"},
+      {id:"b",label:"Para calcular inflación necesito…",options:[["real","el PIB real del mismo año"],["nothing","la base 100, sin otro período"],["previous","el índice de otro período comparable"]],answer:"previous"}
     ]
   },
   "C2-DRILL-COVERAGE":{
     title:"Deflactor e IPC",prompt:"Asigna a cada indicador su cobertura correcta.",criterion:"Distinguir producción interna de canasta de consumo y completar la explicación revisada.",fields:[
       {id:"a",label:"Deflactor del PIB",options:[["production","precios de la producción interna corriente"],["basket","costo de una canasta fija de consumo"],["wages","salarios únicamente"]],answer:"production"},
-      {id:"b",label:"IPC",options:[["basket","costo de una canasta de consumo"],["production","toda la producción interna"],["nominal","PIB nominal dividido por PIB real"]],answer:"basket"}
+      {id:"b",label:"IPC",options:[["production","precios de todos los bienes producidos internamente"],["basket","costo de una canasta de consumo de los hogares"],["nominal","razón entre PIB nominal y PIB real"]],answer:"basket"}
     ]
   }
 };
@@ -1019,7 +1034,7 @@ const PEDAGOGICAL_CRITERIA={
   3:[
     {id:"C3-INITIAL-EQUILIBRIUM",name:"Calcular el equilibrio inicial",checkIds:["c3-initial"],numericField:"answerA",expected:"Debías obtener el equilibrio inicial Y* = 950 usando Y = Z.",achieved:"El laboratorio devolvió Y* inicial = 950, igual que la pauta.",missing:"El equilibrio inicial no coincide con 950 o no hay un resultado verificable.",why:"La instrucción (a) pide el equilibrio inicial. La pauta resuelve la condición Y = Z con los parámetros dados.",action:"Reconstruye Z = 475 + 0,5Y y despeja Y en la condición Y = Z.",example:"Ejemplo: «Y = 475 + 0,5Y, por lo tanto Y* = 950».",notes:[{title:"Nota de estudio 4 · Equilibrio en el mercado de bienes",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"error_de_calculo"},
     {id:"C3-NEW-EQUILIBRIUM",name:"Calcular el nuevo equilibrio después del aumento de G",checkIds:["c3-new"],numericField:"answerB",expected:"Debías reconocer que G sube de 200 a 250 y que, con multiplicador 2, el nuevo equilibrio es Y* = 1.050.",achieved:"El laboratorio devolvió Y* nuevo = 1.050, igual que la pauta.",missing:"El nuevo equilibrio no coincide con 1.050 o no hay un resultado verificable.",why:"La instrucción (b) pide aplicar un aumento de G de 25%. La pauta convierte ese porcentaje en ΔG = 50 y aplica el multiplicador 2.",action:"Calcula primero el nuevo G y luego multiplica ΔG por 2 antes de sumarlo al equilibrio inicial.",example:"Ejemplo: «G pasa a 250; ΔY = 2×50 = 100; Y* nuevo = 1.050».",notes:[{title:"Nota de estudio 4 · Multiplicador y equilibrio",href:"nota-b2-mercado-bienes.html#3-el-eco-por-qué-el-empujón-vuelve-más-grande"}],gapType:"error_de_calculo"},
-    {id:"C3-INVENTORIES",name:"Explicar la señal de inventarios no planeados",checkIds:["c3-inventories"],source:"testMechanism",patterns:[/inventario/i,/existencias/i,/bodega/i,/bienes no vendidos/i],expected:"Debías explicar que, al subir G, el gasto planeado supera inicialmente la producción y caen los inventarios no planeados.",achieved:"Incluiste los inventarios como la señal que activa el ajuste.",missing:"No explicaste qué ocurre con los inventarios cuando el gasto planeado supera inicialmente la producción.",why:"La pregunta exige el mecanismo completo, incluido el papel de los inventarios. La pauta usa su caída como señal para que las empresas ajusten la producción.",action:"Agrega una oración entre el aumento de G y la decisión de producir: indica que caen los inventarios no planeados.",example:"Ejemplo: «Como Z supera a Y, las ventas reducen los inventarios más de lo planeado».",notes:[{title:"Nota de estudio 4 · Inventarios y ajuste de la producción",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"mecanismo_ausente",errorRules:[{pattern:/(?:inventarios?|existencias?)\s+(?:no\s+planead[oa]s?\s+)?(?:suben|aumentan)|(?:suben|aumentan)\s+(?:los\s+)?(?:inventarios?|existencias?)/i,type:"error_conceptual",detail:"Indicaste que los inventarios aumentan. Cuando el gasto planeado supera a la producción, los inventarios no planeados caen.",action:"Cambia la dirección de los inventarios y conecta su caída con el aumento posterior de la producción."}]},
+    {id:"C3-INVENTORIES",name:"Explicar la señal de inventarios no planeados",checkIds:["c3-inventories"],source:"testMechanism",patterns:[/inventario/i,/existencias/i,/bodega/i,/bienes no vendidos/i],expected:"Debías explicar que, al subir G, el gasto planeado supera inicialmente la producción y el inventario efectivo cae respecto de lo planeado.",achieved:"Incluiste los inventarios como la señal que activa el ajuste.",missing:"No explicaste qué ocurre con los inventarios cuando el gasto planeado supera inicialmente la producción.",why:"La pregunta exige el mecanismo completo, incluido el papel de los inventarios. La pauta usa la caída del inventario efectivo respecto del planeado como señal para ajustar la producción.",action:"Agrega una oración entre el aumento de G y la decisión de producir: indica que las ventas reducen los inventarios por debajo de lo planeado.",example:"Ejemplo: «Como Z supera a Y, las ventas reducen los inventarios más de lo planeado».",notes:[{title:"Nota de estudio 4 · Inventarios y ajuste de la producción",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"mecanismo_ausente",errorRules:[{pattern:/(?:inventarios?|existencias?)\s+(?:no\s+planead[oa]s?\s+)?(?:suben|aumentan)|(?:suben|aumentan)\s+(?:los\s+)?(?:inventarios?|existencias?)/i,type:"error_conceptual",detail:"Indicaste que los inventarios aumentan. Cuando el gasto planeado supera a la producción, el inventario efectivo cae respecto de lo planeado.",action:"Cambia la dirección del inventario efectivo y conecta su caída respecto del plan con el aumento posterior de la producción."}]},
     {id:"C3-PRODUCTION-INCOME",name:"Conectar inventarios con producción e ingreso",checkIds:["c3-production-income"],source:"testMechanism",patterns:[/producci/i,/ingreso/i,/renta/i,/empresas.*(elev|aument|sub)/i],expected:"Debías explicar que la caída de inventarios lleva a las empresas a elevar la producción y que esa producción genera mayor ingreso.",achieved:"Conectaste el ajuste con producción o ingreso, como exige la pauta.",missing:"No conectaste la señal de inventarios con la decisión de las empresas de elevar producción e ingreso.",why:"La pregunta pide el mecanismo, no sólo el resultado. La pauta ubica producción e ingreso entre el shock de G y el nuevo equilibrio.",action:"Agrega una oración causal: la caída de inventarios hace que las empresas eleven la producción, lo que aumenta el ingreso.",example:"Ejemplo: «Las empresas responden a la caída de inventarios aumentando la producción; así también sube el ingreso».",notes:[{title:"Nota de estudio 4 · Equilibrio en el mercado de bienes",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"relacion_causal_incompleta"},
     {id:"C3-CONSUMPTION-FEEDBACK",name:"Explicar la realimentación del consumo",checkIds:["c3-consumption"],source:"testMechanism",patterns:[/consumo/i,/propensi/i,/c1/i,/0,5/i,/hogares.*gast/i],expected:"Debías cerrar la cadena explicando que el mayor ingreso eleva el consumo y vuelve a aumentar el gasto planeado hasta el nuevo equilibrio.",achieved:"Incluiste la realimentación del ingreso sobre el consumo.",missing:"No explicaste que el aumento del ingreso eleva el consumo y prolonga el ajuste hasta el nuevo equilibrio.",why:"La pauta usa esa realimentación para explicar el multiplicador. Sin ella, tu respuesta salta del aumento de G al resultado final.",action:"Agrega una oración que conecte mayor ingreso con mayor consumo y con una nueva ronda de gasto planeado.",example:"Ejemplo: «El mayor ingreso aumenta el consumo; esa nueva demanda impulsa otra ronda de producción».",notes:[{title:"Nota de estudio 4 · Función de consumo",href:"nota-b2-mercado-bienes.html#2-la-función-de-consumo-de-dónde-sale-la-c"}],gapType:"relacion_causal_incompleta"}
   ]
@@ -1135,6 +1150,8 @@ const CLASS_FIELD_RULES={
   contradiction:{label:"Afirmación que contradice la pauta",min:8,help:"Cita o resume una afirmación concreta de tu respuesta."},
   revisionFocus:{label:"Primer foco de revisión",required:true},diagnosticProbe:{label:"Pregunta diagnóstica",required:true},
   revisionDecision:{label:"Decisión sobre la respuesta inicial",required:true},
+  revisionDecisionA:{label:"Decisión sobre crecimiento real",required:true},revisionDecisionB:{label:"Decisión sobre deflactor",required:true},
+  revisionDecisionC:{label:"Decisión sobre PNB",required:true},revisionDecisionExplanation:{label:"Decisión sobre la explicación",required:true},
   revisedAnswer:{label:"Ajuste o corrección",min:8,help:"Agrega sólo lo que deseas corregir o mejorar; la respuesta inicial se conserva automáticamente."},
   errorCode:{label:"Código de error",required:true},errorEvidence:{label:"Evidencia del error",min:12,help:"Señala dónde se observa el error en tu propia respuesta."},
   drill:{label:"Microentrenamiento",required:true},successCriterion:{label:"Criterio observable de éxito",min:8,help:"Define qué resultado permitirá saber que la práctica funcionó."},
@@ -1190,7 +1207,7 @@ function renderClass1ConceptBridge(state){
   const f=state.fields;
   return `${renderClassJourneyMap()}<section class="memory-anchor"><strong>Gancho de memoria: el pasaporte del dato</strong><p>Un número sin identidad es un número suelto. Antes de interpretarlo, busca siempre cinco casillas:</p><div class="data-passport" aria-label="Cinco datos que identifican una cifra"><span><b>Qué</b>variable exacta</span><span><b>Cuánto</b>valor y unidad</span><span><b>Cuándo</b>período y frecuencia</span><span><b>Estado</b>observado, estimado o proyectado</span><span><b>Origen</b>fuente y fecha de consulta</span></div><p class="field-note">Estas cinco casillas identifican la cifra. Para explicar por qué ocurrió también debes describir la cadena de pasos que produciría el resultado y compararla con otros datos que permitan descartar causas alternativas.</p></section>
     <fieldset class="bridge-questions"><legend><strong>Antes del desafío: dos decisiones cortas</strong></legend>
-      <label>1. “El PIB crecerá 2% durante 2026”, publicado como escenario del IPoM, es…<select data-class-field="bridgeEvidence">${selectOptions([["projection","una proyección"],["observed","un resultado ya observado"]],String(f.bridgeEvidence||""))}</select></label>
+      <label>1. “El PIB crecerá 2% durante 2026”, publicado como escenario del IPoM, es…<select data-class-field="bridgeEvidence">${selectOptions([["observed","un resultado ya observado"],["projection","una proyección"]],String(f.bridgeEvidence||""))}</select></label>
       <label>2. Esa cifra, por sí sola, permite afirmar…<select data-class-field="bridgeClaim">${selectOptions([["scenario","qué crecimiento contempla el escenario publicado"],["cause","qué política causó definitivamente ese crecimiento"]],String(f.bridgeClaim||""))}</select></label>
       <p class="field-note">Estas decisiones recuperan lo trabajado en las Notas 1 y 2; el desafío te pedirá integrarlas en una explicación.</p>
     </fieldset>`;
@@ -1235,9 +1252,9 @@ function renderClass2ConceptBridge(state){
       <p class="field-note"><strong>Precisión:</strong> “domicilio permanente”, “domicilio fiscal”, “casa matriz” o “destino de la renta” pueden aportar información, pero no reemplazan el criterio estadístico central: dónde está el vínculo económico principal y duradero. Una filial no adopta automáticamente la residencia de la casa matriz.</p>
     </details></details>
     <fieldset class="bridge-questions"><legend><strong>Antes del desafío: tres preguntas cortas</strong></legend>
-      <label>1. “Ingreso recibido durante 2025” es…<select data-class-field="bridgeFlow">${selectOptions([["flow","un flujo"],["stock","un stock"]],String(f.bridgeFlow||""))}</select></label>
+      <label>1. “Ingreso recibido durante 2025” es…<select data-class-field="bridgeFlow">${selectOptions([["stock","un stock"],["flow","un flujo"]],String(f.bridgeFlow||""))}</select></label>
       <label>2. El PIB de Chile pregunta primero…<select data-class-field="bridgePib">${selectOptions([["territory","dónde ocurrió la producción"],["residence","quién recibió el ingreso"]],String(f.bridgePib||""))}</select></label>
-      <label>3. El PNB de Chile pregunta primero…<select data-class-field="bridgePnb">${selectOptions([["residence","si el ingreso corresponde a residentes de Chile"],["territory","si la producción ocurrió dentro de Chile"]],String(f.bridgePnb||""))}</select></label>
+      <label>3. El PNB de Chile pregunta primero…<select data-class-field="bridgePnb">${selectOptions([["territory","si la producción ocurrió dentro de Chile"],["residence","si el ingreso corresponde a residentes de Chile"]],String(f.bridgePnb||""))}</select></label>
       <p class="field-note">No son una prueba aparte: recuperan la teoría de la Nota 3 antes de combinarla con los cálculos.</p>
     </fieldset>`;
 }
@@ -1394,6 +1411,7 @@ function class1RevisionRequirements(state,useCumulative=false){
 }
 function validateClass1Revision(state){
   if(!validateClassFields(["revisionDecision"]))return false;
+  if(state.fields.revisionDecision==="add"&&!validateClassFields(["revisedAnswer"]))return false;
   const missing=class1RevisionRequirements(state,false).filter(item=>!item.ok),problems=[];
   missing.forEach(item=>{
     const el=document.querySelector(`[data-class-field="revision_${item.id}"]`),value=String(state.fields[`revision_${item.id}`]||"").trim();
@@ -1415,15 +1433,50 @@ function renderClass1RevisionEditor(state){
     : `<section><h4>No necesitas reescribir</h4><div class="notice ok"><strong>La respuesta inicial ya contiene las cuatro piezas solicitadas.</strong><p>Después de resolver la práctica objetiva, puedes conservarla tal como está o agregar una precisión opcional.</p></div></section>`;
   return `<section class="revision-source"><strong>Tu respuesta inicial se conserva y cuenta</strong><p class="field-note">MacroLab evaluará esta respuesta junto con cualquier ajuste. No tienes que escribirla letra por letra otra vez.</p><blockquote>${escapeText(class1OriginalAnswer(state))}</blockquote></section>
     <div class="revision-inventory"><section><h4>Ya está presente</h4>${present.length?`<ul class="criterion-list">${presentList}</ul>`:"<p class=\"field-note\">Todavía no se reconocen las piezas centrales; usa las preguntas de la derecha.</p>"}</section>${missingSummary}</div>
-    <div class="revision-decision"><label>¿Qué harás con tu respuesta inicial?<select data-class-field="revisionDecision">${selectOptions([["keep","La conservo y completo sólo lo que falte"],["add","La conservo y agrego una precisión o corrección"]],String(f.revisionDecision||""))}</select></label><label>Precisión o corrección adicional <span class="field-note">(opcional)</span><textarea rows="3" data-class-field="revisedAnswer">${escapeText(f.revisedAnswer||"")}</textarea></label><p class="field-note">No escribas «mantengo mi respuesta» como sustituto de ella: ya está conservada arriba. Usa este espacio sólo si quieres añadir algo.</p></div>`;
+    <div class="revision-decision"><label>¿Qué harás con tu respuesta inicial?<select data-class-field="revisionDecision" data-revision-toggle>${selectOptions([["keep","Confirmo mi respuesta inicial"],["add","Quiero agregar una precisión o corrección"]],String(f.revisionDecision||""))}</select></label>${f.revisionDecision==="add"?`<label>Precisión o corrección adicional<textarea rows="3" data-class-field="revisedAnswer">${escapeText(f.revisedAnswer||"")}</textarea></label>`:""}<p class="field-note">La respuesta inicial permanece visible y cuenta. El campo de reescritura sólo aparece si eliges agregar una precisión o corrección.</p></div>`;
+}
+const CLASS2_REVISION_ITEMS=[
+  {key:"answerA",revised:"revisedA",decision:"revisionDecisionA",label:"Crecimiento real",unit:"%"},
+  {key:"answerB",revised:"revisedB",decision:"revisionDecisionB",label:"Deflactor del PIB",unit:"índice base 2018=100"},
+  {key:"answerC",revised:"revisedC",decision:"revisionDecisionC",label:"PNB de 2019",unit:"precios de 2018"}
+];
+function class2EffectiveRaw(state,item){return state.fields[item.decision]==="reformulate"?state.fields[item.revised]:state.fields[item.key]}
+function class2EffectiveExplanation(state){return state.fields.revisionDecisionExplanation==="reformulate"?String(state.fields.revisedAnswer||"").trim():String(state.fields.testMechanism||"").trim()}
+function renderClass2RevisionEditor(state){
+  const f=state.fields,route=CLASS_ROUTES[2];
+  const results=CLASS2_REVISION_ITEMS.map(item=>{
+    const initial=String(f[item.key]??""),decision=String(f[item.decision]||"");
+    const evaluation=evaluateNumericAnswer(initial,route.test.expected[item.key],route.test.answerSpecs?.[item.key]);
+    const interpreted=evaluation.representation==="proportion"?` · interpretado como ${fmt(evaluation.canonical)}%`:"";
+    return `<section class="revision-gap"><h4>${escapeText(item.label)} <span class="class-source">${escapeText(item.unit)}</span></h4><p><strong>Tu respuesta previa:</strong> ${escapeText(initial||"—")}${escapeText(interpreted)}</p><label>¿Qué quieres hacer?<select data-class-field="${item.decision}" data-revision-toggle>${selectOptions([["confirm","Confirmar mi respuesta previa"],["reformulate","Reformular este resultado"]],decision)}</select></label>${decision==="reformulate"?`<label>Nuevo valor de ${escapeText(item.label)}<input type="text" inputmode="decimal" data-class-field="${item.revised}" value="${escapeText(f[item.revised]||"")}"></label>`:""}</section>`;
+  }).join("");
+  const explanationDecision=String(f.revisionDecisionExplanation||"");
+  return `<section class="revision-source"><strong>Revisa con memoria, un resultado a la vez</strong><p class="field-note">Cada bloque muestra qué respondiste y la unidad esperada. Puedes confirmar o reformular; sólo al reformular se abre un campo nuevo.</p></section><div class="revision-inventory">${results}</div><section class="revision-gap"><h4>Explicación económica</h4><blockquote>${escapeText(f.testMechanism||"—")}</blockquote><label>¿Qué quieres hacer?<select data-class-field="revisionDecisionExplanation" data-revision-toggle>${selectOptions([["confirm","Confirmar mi explicación previa"],["reformulate","Reformular mi explicación"]],explanationDecision)}</select></label>${explanationDecision==="reformulate"?classInput("revisedAnswer","Nueva explicación completa","textarea",'rows="6"'):""}</section>`;
+}
+function validateClass2Revision(state){
+  const required=[...CLASS2_REVISION_ITEMS.map(item=>item.decision),"revisionDecisionExplanation"];
+  if(!validateClassFields(required))return false;
+  for(const item of CLASS2_REVISION_ITEMS){
+    if(state.fields[item.decision]==="reformulate"&&!Number.isFinite(parseStudentNumber(state.fields[item.revised]))){classStatus(`Escribe un nuevo valor válido para ${item.label}.`);document.querySelector(`[data-class-field="${item.revised}"]`)?.focus();return false}
+  }
+  if(state.fields.revisionDecisionExplanation==="reformulate"&&String(state.fields.revisedAnswer||"").trim().length<8){classStatus("Desarrolla la nueva explicación antes de comprobarla.");document.querySelector('[data-class-field="revisedAnswer"]')?.focus();return false}
+  return true;
+}
+function class2RevisionSummary(state){
+  const route=CLASS_ROUTES[2],lines=CLASS2_REVISION_ITEMS.map(item=>{
+    const raw=class2EffectiveRaw(state,item),evaluation=evaluateNumericAnswer(raw,route.test.expected[item.key],route.test.answerSpecs?.[item.key]);
+    const shown=evaluation.representation==="proportion"?`${raw} (equivale a ${fmt(evaluation.canonical)}%)`:String(raw||"—");
+    return `${item.label} (${item.unit}): ${shown} · ${state.fields[item.decision]==="reformulate"?"reformulada":"confirmada"}`;
+  });
+  return `${lines.join("\n")}\n\nExplicación ${state.fields.revisionDecisionExplanation==="reformulate"?"reformulada":"confirmada"}:\n${class2EffectiveExplanation(state)||"—"}`;
 }
 function guidedPracticeResult(state){
   const drill=GUIDED_DRILLS[state.guidedDrillId],f=state.fields;
   const fieldChecks=drill.fields.map(field=>({kind:"concept",criterionId:`guided-${field.id}`,label:field.reportLabel||field.label,ok:String(f[`guided_${field.id}`]||"")===field.answer,status:String(f[`guided_${field.id}`]||"")===field.answer?"logrado":"por_mejorar"}));
-  const revised=activeClass==="1"?class1CumulativeAnswer(state):String(f.revisedAnswer||"").trim();
+  const revised=activeClass==="1"?class1CumulativeAnswer(state):class2EffectiveExplanation(state);
   let revisionChecks=[];
   if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({kind:"written",criterionId:item.id,label:item.label,ok:item.ok,status:item.status,evidence:item.evidence,expected:item.expected,achieved:item.achieved,missing:item.missing,action:item.action,example:item.example}));else revisionChecks=[
-    {label:"corrige los resultados a 2, 103 y 192",ok:Math.abs(Number(f.revisedA)-2)<.03&&Math.abs(Number(f.revisedB)-103)<.03&&Math.abs(Number(f.revisedC)-192)<.03},
+    {label:"confirma o corrige crecimiento, deflactor y PNB con sus unidades",ok:CLASS2_REVISION_ITEMS.every(item=>evaluateNumericAnswer(class2EffectiveRaw(state,item),CLASS_ROUTES[2].test.expected[item.key],CLASS_ROUTES[2].test.answerSpecs?.[item.key]).ok)},
     {label:"distingue deflactor e IPC",ok:/deflactor/i.test(revised)&&/(ipc|canasta)/i.test(revised)},
     {label:"distingue índice y tasa",ok:/(índice|indice)/i.test(revised)&&/(tasa|inflaci[oó]n)/i.test(revised)},
     {label:"explica PNF como flujo y no como inversión acumulada",ok:/(pnf|pago.*factor)/i.test(revised)&&/flujo/i.test(revised)&&/(stock|acumulad)/i.test(revised)},
@@ -1441,9 +1494,9 @@ function renderGuidedTraining(route,state){
     ${renderClassJourneyMap("practice")}
     <div class="loop-fact"><strong>${orientation?"Orientación de trabajo":"Sin diagnóstico forzado"}</strong><p>${orientation?escapeText(orientation.label):"No se registró una categoría de error. La práctica comprueba los conceptos fundamentales y permite avanzar sin inventar un diagnóstico."}</p></div>
     <div class="training-ticket"><strong>${escapeText(drill.title)}</strong><p>${escapeText(drill.prompt)}</p>${drill.fields.map(field=>`<label>${escapeText(field.label)}<select data-class-field="guided_${field.id}">${selectOptions(field.options,String(f[`guided_${field.id}`]||""))}</select></label>`).join("")}<p class="field-note"><strong>Criterio observable:</strong> ${escapeText(drill.criterion)}</p></div>
-    ${activeClass==="2"?`<div class="mini-grid"><label>Resultado (a) revisado<input type="number" step="0.01" data-class-field="revisedA" value="${escapeText(f.revisedA||"")}"></label><label>Resultado (b) revisado<input type="number" step="0.01" data-class-field="revisedB" value="${escapeText(f.revisedB||"")}"></label><label>Resultado (c) revisado<input type="number" step="0.01" data-class-field="revisedC" value="${escapeText(f.revisedC||"")}"></label></div>${classInput("revisedAnswer","Reescribe ahora tu respuesta completa","textarea",'rows="6"')}`:renderClass1RevisionEditor(state)}
-    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Cerrar y descargar mi reporte con práctica pendiente</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Completar rutina y descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
-    <details class="alt"><summary>Respaldo técnico opcional</summary><p class="field-note">El archivo JSON no está pensado para leerlo: sirve para conservar datos estructurados o continuar un diagnóstico con otra herramienta. <strong>No necesitas entregarlo ni abrirlo para completar la actividad.</strong></p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar respaldo JSON</button></details><div class="status" id="classActionStatus" aria-live="polite"></div>`;
+    ${activeClass==="2"?renderClass2RevisionEditor(state):renderClass1RevisionEditor(state)}
+    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Descargar mi reporte (práctica pendiente)</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
+    <div class="notice"><strong>Reporte y continuidad son archivos distintos</strong><p>El reporte HTML es para leer, guardar, compartir o imprimir como PDF. El PDF y el HTML no contienen el registro estructurado y no se pueden importar.</p><p>Para comenzar la clase siguiente, descarga además el archivo JSON.</p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar archivo para continuar (.json)</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;
 }
 function downloadTextFile(textValue,mime,filename){
   const blob=new Blob([textValue],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement("a");
@@ -1474,12 +1527,12 @@ function guidedStudentReport(state,closure){
   const route=CLASS_ROUTES[activeClass],payload=guidedPayload(state,closure),f=state.fields,probe=GUIDED_DIAGNOSTICS[activeClass].probe.options.find(([v])=>v===f.diagnosticProbe),drill=GUIDED_DRILLS[state.guidedDrillId],result=guidedPracticeResult(state);
   const checks=result.checks.map(x=>`<li><strong>${x.ok?"Cumplido":"Pendiente"}:</strong> ${escapeText(x.label)}</li>`).join("");
   const orientation=payload.diagnosis.label||"No se asignó una categoría: el sistema conservó la incertidumbre y propuso una práctica fundamental.";
-  const revised=activeClass==="2"?`Resultados revisados: (a) ${f.revisedA||"—"}; (b) ${f.revisedB||"—"}; (c) ${f.revisedC||"—"}\n\n${f.revisedAnswer||"—"}`:class1CumulativeAnswer(state);
+  const revised=activeClass==="2"?class2RevisionSummary(state):class1CumulativeAnswer(state);
   const class1BaseNeeds=activeClass==="1"?class1RevisionRequirements(state,false).filter(item=>!item.ok):[];
   const class1Additions=activeClass==="1"?class1RevisionAdditions(state):[];
   const revisionSection=activeClass==="1"
     ? `<h2>8. Mi respuesta después de los ajustes</h2><div class="box"><strong>Respuesta inicial conservada:</strong>\n${escapeText(class1OriginalAnswer(state))}\n\n<strong>Ajustes añadidos:</strong>\n${class1Additions.length?class1Additions.map(item=>`${escapeText(item.label)}: ${escapeText(item.text)}`).join("\n"):"No fue necesario volver a escribir: se mantuvo la respuesta inicial."}\n\n<strong>Respuesta inicial y ajustes leídos en conjunto:</strong>\n${escapeText(revised)}</div>${class1BaseNeeds.length?`<p><strong>Lecturas específicas usadas para completar:</strong></p><ul>${class1BaseNeeds.map(item=>`<li><a href="${PUBLIC_NOTES_BASE+escapeText(item.href)}">${escapeText(item.reading)}</a> — ${escapeText(item.question)}</li>`).join("")}</ul>`:`<p>La respuesta inicial ya contenía las piezas conceptuales solicitadas; la práctica comprobó su reconocimiento sin exigir una copia.</p>`}`
-    : `<h2>8. Mi respuesta revisada</h2><div class="box">${escapeText(revised)}</div>`;
+    : `<h2>8. Mi respuesta revisada</h2><div class="box"><strong>Respuesta previa, decisión y resultado final</strong>\n${escapeText(revised)}</div>`;
   const sections=[
     `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a resultado observado; datos que identifican una cifra —qué mide, cuánto, cuándo, estado y fuente—; diferencia entre describir un escenario y explicar una causa":"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB"}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
     `<h2>1. Pregunta trabajada</h2><div class="box">${escapeText(route.test.prompt)}</div>`,
@@ -1541,7 +1594,7 @@ function updateFieldGuidance(el){
 }
 function fieldRuleIssue(rule,value){
   const text=String(value??"").trim();
-  if(rule.kind==="number"&&(!text||!Number.isFinite(Number(text))))return "escribe un número";
+  if(rule.kind==="number"&&!Number.isFinite(parseStudentNumber(text)))return "escribe un número";
   if(rule.required&&!text)return "es obligatorio";
   if(rule.min&&text.length<rule.min)return `mínimo ${rule.min} caracteres; llevas ${text.length}`;
   return "";
@@ -1670,7 +1723,7 @@ function renderClassWorkbench(moveFocus=false){
     else html+=renderChallengeTransition(activeClass);
     html+=`<h3>Pregunta tipo prueba: responde antes de ver la pauta</h3><div class="prompt">${escapeText(route.test.prompt)}</div>`;
     if(route.test.type==="prose")html+=classInput("testProse","Respuesta fundada","textarea",'rows="6"');
-    else html+=`<div class="mini-grid">${Object.keys(route.test.expected).map(key=>classInput(key,route.test.answerLabels?.[key]||`Respuesta (${key.slice(-1).toLowerCase()})`,"number",'step="0.01"')).join("")}</div>${classInput("testMechanism","Explicación del mecanismo y de los conceptos","textarea",'rows="6"')}`;
+    else html+=`<div class="mini-grid">${Object.keys(route.test.expected).map(key=>classInput(key,route.test.answerLabels?.[key]||`Respuesta (${key.slice(-1).toLowerCase()})`,"text",'inputmode="decimal" autocomplete="off"')).join("")}</div>${activeClass==="2"?'<p class="field-note"><strong>Formato:</strong> el crecimiento se informa en porcentaje. Puedes escribir 2, 2%, 0,02 o 0.02; MacroLab reconocerá esas formas como 2%. El deflactor se escribe como índice base 100 (103), no como 1,03.</p>':""}${classInput("testMechanism","Explicación del mecanismo y de los conceptos","textarea",'rows="6"')}`;
     html+=`<div class="actions"><button class="btn" type="button" data-class-action="test">Entregar respuesta y revelar retroalimentación</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;}
   }else if(step===3){
     if(loop){html+=renderLoopReview(route,state)}else if(guidedMode()){html+=renderGuidedComparison(route,state)}else{
@@ -1704,7 +1757,7 @@ function renderClassWorkbench(moveFocus=false){
         if(name==="diagChoice")syncDiagnosisEvidence();
       }
     };
-    el.addEventListener("input",save);el.addEventListener("change",save);
+    el.addEventListener("input",save);el.addEventListener("change",()=>{save();if(el.hasAttribute("data-revision-toggle"))renderClassWorkbench()});
   });
   host.querySelectorAll("[data-class-radio-field]").forEach(el=>el.addEventListener("change",()=>{
     if(el.checked){state.fields[el.dataset.classRadioField]=el.value;const status=document.getElementById("classActionStatus");if(status){status.className="status";status.textContent=""}}
@@ -1760,14 +1813,16 @@ function scoreClassTest(){
     // Se marcan como tales para que se muestren antes y con prioridad sobre la cobertura.
     Object.keys(test.expected).forEach((key,index)=>{
       const letter=String.fromCharCode(97+index);
-      const written=fields[key],value=Number(written);
+      const written=fields[key],evaluation=evaluateNumericAnswer(written,test.expected[key],test.answerSpecs?.[key]);
+      const value=evaluation.value;
       const expected=test.expected[key];
-      const ok=Number.isFinite(value)&&String(written??"").trim()!==""&&Math.abs(value-expected)<.03;
+      const ok=evaluation.ok;
+      const interpreted=evaluation.representation==="proportion"?` (interpretado como ${fmt(evaluation.canonical)}%)`:"";
       checks.push({
         id:`c${activeClass}-${activeClass==="2"?["growth","deflator","pnb"][index]:["initial","new"][index]}`,criterionId:activeClass==="2"?["C2-GROWTH","C2-DEFLATOR","C2-PNB"][index]:["C3-INITIAL-EQUILIBRIUM","C3-NEW-EQUILIBRIUM"][index],ok,numeric:true,key,expected,written:String(written??""),
         label:`cálculo (${letter}) cercano a ${fmt(expected)}`,
         detail:ok
-          ? `Cálculo (${letter}): escribiste ${fmt(value)} y la pauta da ${fmt(expected)}.`
+          ? `Cálculo (${letter}): escribiste ${fmt(value)}${interpreted} y la pauta da ${fmt(expected)}.`
           : `Cálculo (${letter}): escribiste ${String(written??"").trim()===""?"nada":fmt(Number.isFinite(value)?value:0)} y la pauta da ${fmt(expected)}. La diferencia no es de redacción: es de cifra.`
       });
     });
@@ -1859,16 +1914,16 @@ function handleClassAction(action){
   if(action==="guidedCheck"){
     if(activeClass==="1"){
       if(!validateClass1Revision(state))return;
-    }else if(!validateClassFields(["revisedAnswer"]))return;
+    }else if(!validateClass2Revision(state))return;
     state.guidedChecked=true;
     const result=guidedPracticeResult(state);state.guidedPassed=result.passed;
     renderClassWorkbench();
     return;
   }
   if(action==="exportJson"&&guidedMode()){
-    const closure=state.guidedPassed?"rutina_completada":"sesion_con_practica_pendiente";
-    downloadTextFile(JSON.stringify(guidedPayload(state,closure),null,2),"application/json",`MacroLab_Clase${activeClass}_respaldo_tecnico.json`);
-    classStatus("Respaldo técnico JSON descargado. No necesitas abrirlo para usar tu retroalimentación.","ok");return;
+    const closure=state.completed?"rutina_completada":"sesion_con_practica_pendiente";
+    downloadTextFile(JSON.stringify(guidedPayload(state,closure),null,2),"application/json",`MacroLab_Clase${activeClass}_continuidad.json`);
+    classStatus(`Archivo JSON descargado. Cárgalo al comenzar la Clase ${Number(activeClass)+1}; el reporte HTML o PDF es únicamente para lectura.`,"ok");return;
   }
   if(action==="export"||action==="exportPending"){
     if(guidedMode()){
@@ -2396,13 +2451,18 @@ const Learning=(()=>{
     generated_at:new Date().toISOString(),
     entries:entries.map(e=>JSON.parse(JSON.stringify(e)))
   });
-  // Validación de importación: el schema_version manda. Se rechaza con mensaje claro.
-  function fromObject(data){
+  // La validación pura permite reconocer el formato antes de modificar la memoria.
+  function validateObject(data){
     if(!data||typeof data!=="object")return {ok:false,error:"El archivo no contiene un objeto JSON."};
     if(data.schema_version!==LEARNING_SCHEMA)return {ok:false,error:`schema_version «${String(data.schema_version)}» no coincide con «${LEARNING_SCHEMA}». No se importó nada.`};
     if(!Array.isArray(data.entries))return {ok:false,error:"El archivo no contiene una lista «entries»."};
     const bad=data.entries.find(e=>!e||e.schema_version!==LEARNING_SCHEMA||!e.attempt_id);
     if(bad)return {ok:false,error:"Al menos una entrada no declara el mismo schema_version o no tiene attempt_id."};
+    return {ok:true,count:data.entries.length};
+  }
+  // Learning.fromObject conserva su contrato vigente y sólo muta tras validar todo.
+  function fromObject(data){
+    const validation=validateObject(data);if(!validation.ok)return validation;
     entries=data.entries.map(e=>{
       const copy=JSON.parse(JSON.stringify(e));
       if(copy.application&&!Array.isArray(copy.application.verification_attempts))copy.application.verification_attempts=[];
@@ -2410,7 +2470,7 @@ const Learning=(()=>{
     });
     return {ok:true,count:entries.length};
   }
-  return {create,all,byId,latest,patch,clear,toObject,fromObject,newId};
+  return {create,all,byId,latest,patch,clear,toObject,validateObject,fromObject,newId};
 })();
 
 /* ---------- 2 · Ejercicios dirigidos, como datos (§7 del encargo) ---------- */
@@ -2453,10 +2513,10 @@ const BIE_DRILLS={
     error:"BIE-ERR-04",
     title:"Cadena de ajuste con dos eslabones omitidos",
     prompt:"Ordena la cadena: sube G en 50 → el gasto planeado Z supera a la producción Y → ▢ → ▢ → sube el ingreso y con él el consumo vía c₁ → nuevo equilibrio con Y = Z.",
-    criterion:"Primer eslabón: caen los inventarios no planeados. Segundo: las empresas elevan la producción.",
+    criterion:"Primer eslabón: el inventario efectivo cae respecto de lo planeado. Segundo: las empresas elevan la producción.",
     fields:[
-      {id:"link1",label:"Tercer eslabón de la cadena",kind:"select",options:["caen los inventarios no planeados","las empresas elevan la producción","sube el nivel de precios","el Banco Central baja la tasa"],answer:"caen los inventarios no planeados"},
-      {id:"link2",label:"Cuarto eslabón de la cadena",kind:"select",options:["caen los inventarios no planeados","las empresas elevan la producción","sube el nivel de precios","el Banco Central baja la tasa"],answer:"las empresas elevan la producción"}
+      {id:"link1",label:"Tercer eslabón de la cadena",kind:"select",options:["el inventario efectivo cae respecto de lo planeado","las empresas elevan la producción","sube el nivel de precios","el Banco Central baja la tasa"],answer:"el inventario efectivo cae respecto de lo planeado"},
+      {id:"link2",label:"Cuarto eslabón de la cadena",kind:"select",options:["el inventario efectivo cae respecto de lo planeado","las empresas elevan la producción","sube el nivel de precios","el Banco Central baja la tasa"],answer:"las empresas elevan la producción"}
     ]
   },
   "BIE-DRILL-YD-01":{
@@ -3091,11 +3151,12 @@ function renderRouteEntry(){
   host.hidden=false;
   if(!importedMemory){
     host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Antes de comenzar</h3>
-      <p class="field-note">Esta página no guarda nada por su cuenta: no hay cuenta, no hay servidor y no se usa el almacenamiento del navegador. Si ya trabajaste antes y descargaste tu ficha, cárgala ahora para recuperar tu memoria de aprendizaje.</p>
+      <p class="field-note">Esta página no guarda nada por su cuenta: no hay cuenta, no hay servidor y no se usa el almacenamiento del navegador. Si ya trabajaste antes, carga el archivo JSON descargado al cerrar la clase anterior.</p>
       <div class="actions">
         <button class="btn" type="button" id="entryFresh">Comenzar sin registro</button>
       </div>
-      <label for="entryFile">Continuar con mi ficha <span class="class-source">archivo JSON descargado antes</span><input type="file" id="entryFile" accept="application/json,.json"></label>
+      <label for="entryFile">Continuar con un archivo de aprendizaje (.json)<span class="class-source">Selecciona el archivo JSON para continuar; los reportes PDF o HTML son únicamente para lectura.</span><input type="file" id="entryFile" accept="application/json,.json"></label>
+      <p class="field-note"><strong>¿Tienes un PDF?</strong> Consérvalo como reporte de consulta. Para continuar necesitas el archivo JSON descargado al cerrar la clase anterior.</p>
       <p class="status" id="entryStatus"></p>`;
     document.getElementById("entryFresh").addEventListener("click",()=>{
       routeEntryResolved=true;renderRouteEntry();
@@ -3107,16 +3168,28 @@ function renderRouteEntry(){
     });
     return;
   }
+  if(importedMemory.kind==="class_session"){
+    const nextClass=String(importedMemory.classId+1);
+    host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Archivo de aprendizaje recuperado</h3>
+      <p class="field-note">Se reconstruyó solamente una vista del registro. <strong>No se restauró ningún control ni desbloqueo</strong> de la sesión terminada.</p>
+      <div class="memory-view"><dl><dt>Clase recuperada</dt><dd>Clase ${importedMemory.classId}${importedMemory.classTitle?` · ${escapeText(importedMemory.classTitle)}`:""}</dd><dt>Fecha del registro</dt><dd>${escapeText(importedMemory.generatedLabel)}</dd><dt>Estado de cierre</dt><dd>${escapeText(importedMemory.closureLabel)}</dd></dl></div>
+      <div class="actions"><button class="btn" type="button" id="entryContinue">Continuar en la Clase ${nextClass}</button></div>`;
+    document.getElementById("entryContinue").addEventListener("click",()=>{
+      routeEntryResolved=true;host.hidden=true;host.innerHTML="";selectClass(nextClass,true);
+    });
+    return;
+  }
   const entries=Learning.all().filter(e=>!e.variant_of);
   host.innerHTML=`<h3 id="routeEntryTitle" tabindex="-1">Tu memoria de aprendizaje, recuperada</h3>
     <p class="field-note">Se reconstruyó la <strong>vista</strong> de lo que registraste antes. <strong>No se restauró ningún control</strong>: el paso, los campos y los desbloqueos empiezan de cero, porque pertenecen a una sesión que ya terminó.</p>
     <div class="memory-view">
+      <dl><dt>Clase recuperada</dt><dd>Clase 3</dd><dt>Fecha del registro</dt><dd>${escapeText(importedMemory.generatedLabel||"No informada")}</dd><dt>Estado del registro</dt><dd>Memoria de aprendizaje recuperada</dd></dl>
       <strong>${entries.length} ${entries.length===1?"entrada":"entradas"} de la clase 3</strong>
       <ul class="chain">${entries.map(e=>`<li>${escapeText(e.activity_id)} · ${escapeText(e.diagnosis.learner_confirmed_code||("discrepancia de "+DISCREPANCY_LABEL[e.discrepancy.kind]))} · <span class="state-pill ${STATUS_CLASS[e.status]||"state-open"}">${escapeText(STATUS_LABEL[e.status]||e.status)}</span></li>`).join("")}</ul>
       <p class="field-note">${escapeText(memorySuggestion())}</p>
     </div>
     <div class="actions">
-      <button class="btn" type="button" id="entryContinue">Continuar desde el paso 1</button>
+      <button class="btn" type="button" id="entryContinue">Continuar en la Clase 3</button>
       <button class="btn secondary" type="button" id="entryOpenRecord">Ver el registro completo</button>
     </div>
     <p class="status" id="entryStatus"></p>`;
@@ -3130,17 +3203,26 @@ function renderRouteEntry(){
 function importMemoryAtEntry(file){
   const reader=new FileReader();
   reader.onload=()=>{
-    const result=importLearningRecordText(String(reader.result||""));
+    const parsed=parseImportedLearningFile(String(reader.result||""));
     const el=document.getElementById("entryStatus");
-    if(!result.ok){
-      if(el){el.className="notice error status";el.textContent="No se importó: "+result.error}
-      announce("No se importó la ficha: "+result.error);
+    if(!parsed.ok){
+      if(el){
+        el.className="notice error status";el.textContent=parsed.message;
+        if(parsed.technical){const details=document.createElement("details"),summary=document.createElement("summary"),code=document.createElement("code");summary.textContent="Detalle técnico opcional";code.textContent=parsed.technical;details.append(summary,code);el.append(details)}
+      }
+      announce(parsed.message);
       return;
     }
-    importedMemory={count:result.count,at:localStamp()};
+    if(parsed.kind==="learning_context"){
+      const applied=Learning.fromObject(parsed.data);
+      if(!applied.ok)return;
+      importedMemory={kind:parsed.kind,count:applied.count,at:localStamp(),generatedLabel:importedGeneratedLabel(parsed.data.generated_at)};
+    }else{
+      importedMemory={kind:parsed.kind,classId:parsed.classId,classTitle:parsed.data.class_title||"",generatedLabel:parsed.generatedLabel,closureLabel:parsed.closureLabel};
+    }
     routeEntryResolved=true;
     renderRouteEntry();
-    announce(`Ficha cargada: ${result.count} ${result.count===1?"entrada":"entradas"}. Se reconstruyó la vista de memoria; los controles no se restauraron.`);
+    announce(parsed.kind==="class_session"?`Registro de la Clase ${parsed.classId} cargado. Puedes continuar en la Clase ${parsed.classId+1} desde el paso 1.`:`Registro cargado: ${importedMemory.count} ${importedMemory.count===1?"entrada":"entradas"}. Se reconstruyó la vista de memoria; los controles no se restauraron.`);
   };
   reader.onerror=()=>{
     const el=document.getElementById("entryStatus");
@@ -3254,6 +3336,35 @@ function clearLearningRecord(){
   renderLearningRecord();
   if(activeClass===LOOP_CLASS){renderClassSteps();renderClassWorkbench();}
   recordStatus("Registro borrado. No queda ninguna entrada en memoria y la clase 3 vuelve al paso 1 con todo bloqueado de nuevo.","warn");
+}
+function importedClosureLabel(value){
+  return ({rutina_completada:"Rutina completada",sesion_con_practica_pendiente:"Sesión cerrada con práctica pendiente",respaldo_en_progreso:"Registro en progreso"})[value]||String(value||"No informado");
+}
+function importedGeneratedLabel(value){
+  if(!value)return "No informada";
+  const date=new Date(value);
+  return Number.isNaN(date.getTime())?"No informada":date.toLocaleString("es-CL");
+}
+// Reconoce y valida sin modificar Learning, controles, pasos ni desbloqueos.
+function parseImportedLearningFile(text){
+  const source=String(text||"").trim();
+  const guidance="Selecciona el archivo JSON para continuar descargado al cerrar la clase anterior; los reportes PDF o HTML son únicamente para lectura.";
+  if(source.startsWith("%PDF")||/^<!doctype html|^<html/i.test(source))return {ok:false,kind:"invalid",message:guidance,technical:"El contenido corresponde a un reporte PDF o HTML, no a un archivo de aprendizaje JSON."};
+  let data=null;
+  try{data=JSON.parse(source)}catch(err){return {ok:false,kind:"invalid",message:"No pudimos leer ese archivo como un registro de aprendizaje. "+guidance,technical:"JSON malformado: "+err.message}}
+  if(!data||typeof data!=="object"||Array.isArray(data))return {ok:false,kind:"invalid",message:"El archivo no tiene el formato de aprendizaje esperado. "+guidance,technical:"La raíz debe ser un objeto JSON."};
+  if(data.schema_version==="macrolab-macro1-class-session/1.1"){
+    const classId=Number(data.class_id),plain=value=>value&&typeof value==="object"&&!Array.isArray(value);
+    const valid=(classId===1||classId===2)&&plain(data.answers)&&plain(data.training)&&typeof data.closure==="string"&&data.closure.trim()&&(!Object.hasOwn(data,"generated_at")||typeof data.generated_at==="string");
+    if(!valid)return {ok:false,kind:"invalid",message:"El archivo parece provenir de una clase anterior, pero está incompleto o dañado. Descarga nuevamente el archivo JSON para continuar.",technical:"La sesión requiere class_id 1 o 2, closure, answers y training válidos; generated_at debe ser texto si existe."};
+    return {ok:true,kind:"class_session",classId,data,generatedLabel:importedGeneratedLabel(data.generated_at),closureLabel:importedClosureLabel(data.closure)};
+  }
+  if(data.schema_version===LEARNING_SCHEMA){
+    const validation=Learning.validateObject(data);
+    if(!validation.ok)return {ok:false,kind:"invalid",message:"El registro de la Clase 3 está incompleto o dañado y no se importó. Selecciona el archivo JSON original.",technical:validation.error};
+    return {ok:true,kind:"learning_context",data,count:validation.count};
+  }
+  return {ok:false,kind:"incompatible",message:"Este archivo no es compatible con la continuidad de MacroLab. Selecciona el archivo JSON descargado al cerrar la clase anterior.",technical:`Formato declarado: ${String(data.schema_version||"sin identificar")}.`};
 }
 function importLearningRecordText(text){
   let data=null;
@@ -3440,7 +3551,7 @@ function init(){
 }
 // Superficie mínima de inspección para las pruebas automáticas del loop. Sólo expone
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
-window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
+window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,parseStudentNumber,evaluateNumericAnswer,class2RevisionSummary,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,parseImportedLearningFile,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
   lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();

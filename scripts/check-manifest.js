@@ -43,9 +43,9 @@ for (const t of manifest.tests || []) {
   const existe = fs.existsSync(path.join(root, t)) || fs.existsSync(path.join(macro1, t));
   existe ? ok(`test ${t}`) : fail(`falta test ${t}`);
 }
-// test_paquete.js exige exactamente cuatro suites de macro1
-if ((manifest.tests || []).length !== 4) {
-  fail(`el MANIFEST declara ${(manifest.tests || []).length} suites; test_paquete.js exige exactamente 4. ` +
+// test_paquete.js exige exactamente cinco suites de macro1
+if ((manifest.tests || []).length !== 5) {
+  fail(`el MANIFEST declara ${(manifest.tests || []).length} suites; test_paquete.js exige exactamente 5. ` +
        `Los tests de la raíz (p. ej. test_pautas_biblioteca.js) NO se declaran aquí.`);
 }
 

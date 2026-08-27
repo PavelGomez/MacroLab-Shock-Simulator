@@ -348,7 +348,7 @@ if (manifest && Array.isArray(manifest.tests)) {
     if (!exists(path.join(ROOT, suite))) fail("9", `la suite declarada en el manifiesto no existe en disco: ${suite}.`);
   }
   check();
-  if (manifest.tests.length !== 4) fail("9", `el manifiesto declara ${manifest.tests.length} suites; deben ser cuatro.`);
+  if (manifest.tests.length !== 5) fail("9", `el manifiesto declara ${manifest.tests.length} suites; deben ser cinco.`);
 }
 
 /* 10. privacidad: sin identidad personal, sin backend, sin almacenamiento local */
