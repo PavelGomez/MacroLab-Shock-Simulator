@@ -69,8 +69,33 @@ hr{border:none;border-top:1px solid var(--line);margin:2.2rem 0}
 .pie{margin:2.5rem auto 0;max-width:52rem;padding:0 clamp(1rem,4vw,2rem);
 color:var(--muted);font-size:.82rem;text-align:center}
 .pie .descarga{margin-bottom:1.2rem}
-@media print{.topbar,.skip,.pie .descarga{display:none}main{padding-top:1rem}
-.card{box-shadow:none;border:none}.pagebreak{display:block;page-break-after:always}}
+@media print{
+html{font-size:11pt}
+body{font-size:1rem;line-height:1.42;background:#fff}
+.topbar,.skip,.pie .descarga{display:none}
+main{max-width:100%;padding:0;margin:0}
+.card{box-shadow:none;border:none;padding:0;border-radius:0;background:transparent}
+.aviso{padding:.5rem .8rem;margin:0 0 1rem;font-size:.82rem;break-inside:avoid}
+h1{font-size:1.55rem;margin:0 0 .5rem;padding-bottom:.3rem;break-after:avoid}
+h1:first-of-type{margin-top:0}
+h2{font-size:1.08rem;margin:1.1rem 0 .4rem;break-after:avoid}
+h3{font-size:.95rem;margin:.85rem 0 .3rem;break-after:avoid}
+.meta-line{margin:.1rem 0}
+p{margin:0 0 .55rem;orphans:3;widows:3}
+pre{font-size:.8rem;line-height:1.38;padding:.55rem .75rem;margin:.55rem 0;break-inside:avoid}
+table{font-size:.8rem;margin:.7rem 0;break-inside:avoid;break-before:avoid}
+th,td{padding:.32rem .5rem}
+blockquote{padding:.55rem .8rem;margin:.7rem 0;font-size:.86rem;break-inside:avoid}
+figure{margin:.8rem 0;break-inside:avoid}
+p:has(> img){break-inside:avoid;break-before:avoid;break-after:avoid}
+img{border:none}
+hr{margin:1.1rem 0}
+ol,ul{margin:0 0 .55rem;padding-left:1.2rem}
+li{margin-bottom:.25rem}
+.pie{margin-top:1.2rem;padding:0}
+.pie p{font-size:.72rem}
+.pagebreak{display:none}
+}
 </style>
 </head>
 <body>
@@ -1416,7 +1441,7 @@ deben citarse como tales.</li>
   </article>
 </main>
 <footer class="pie">
-  <p class="descarga"><a class="btn-pdf" href="Nota_estudio4_mercado_bienes.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 16.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 18h14v2H5z"/></svg>Descargar esta nota en PDF (0,6 MB)</a></p>
+  <p class="descarga"><a class="btn-pdf" href="Nota_estudio4_mercado_bienes.pdf" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 16.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 18h14v2H5z"/></svg>Descargar esta nota en PDF (0,7 MB)</a></p>
   <p>Profesor: Pável Gómez Valera · Macroeconomía · Profesor Pável Gómez · 2026 · Herramienta de aprendizaje, no de predicción · Versión del paquete 0.7.0</p>
 </footer>
 </body>
