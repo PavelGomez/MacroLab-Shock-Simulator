@@ -949,20 +949,55 @@ aumento del gasto autónomo. Ejemplo con cifras redondas, sin unidad.</p>
 </table>
 <p>El empujón de 100 terminó levantando la producción en 500: cinco
 veces. Ese 5 no sale de la tabla; sale de la fórmula.</p>
-<p><strong>La fórmula.</strong></p>
-<pre><code>Y = (1/(1 − c1))·(c0 + I + G − c1·T)</code></pre>
-<p>Léala en voz alta así: la producción <strong>Y</strong> es igual al
-<strong>multiplicador</strong> —uno dividido por uno menos la propensión
-marginal a consumir— multiplicado por todo el <strong>gasto
-autónomo</strong>: el consumo que se hace de todos modos,
-<code>c0</code>, aunque no haya entrado plata; la inversión,
-<code>I</code>; las compras del Gobierno, <code>G</code>; y menos
-<code>c1·T</code>, la parte del ingreso que, por irse en impuestos, ya
-no llega al mostrador. «Autónomo» quiere decir lo que no depende del
-nivel de producción de este período. Con <code>c1 = 0,8</code> el
-multiplicador es <code>1/(1 − 0,8) = 5</code>: por eso 100 se
-convirtieron en 500. Con un <code>c1</code> más chico, el multiplicador
-es menor y el eco se apaga antes.</p>
+<p><strong>La derivación.</strong> La tabla convence con números; el
+álgebra prueba que el resultado vale para cualquier número, no solo
+para este ejemplo. Son las mismas tres ecuaciones que ya conoce,
+encadenadas paso a paso:</p>
+<pre><code>Y = Z                        equilibrio
+Z = C + I + G                demanda planeada
+C = c0 + c1·(Y − T)          conducta de consumo</code></pre>
+<p><strong>Paso 1.</strong> Sustituya <code>C</code> en la ecuación de
+la demanda:</p>
+<pre><code>Z = c0 + c1·(Y − T) + I + G</code></pre>
+<p><strong>Paso 2.</strong> Use la condición de equilibrio (<code>Y =
+Z</code>) para reemplazar <code>Z</code> por <code>Y</code>. Este es
+el paso que convierte una ecuación sobre el gasto planeado en una
+ecuación sobre la producción:</p>
+<pre><code>Y = c0 + c1·(Y − T) + I + G</code></pre>
+<p><strong>Paso 3.</strong> Distribuya <code>c1</code> sobre <code>(Y
+− T)</code>:</p>
+<pre><code>Y = c0 + c1·Y − c1·T + I + G</code></pre>
+<p><strong>Paso 4.</strong> Junte a la izquierda todo lo que tiene
+<code>Y</code> —reste <code>c1·Y</code> de ambos lados— y a la derecha
+todo lo que no depende de <code>Y</code>:</p>
+<pre><code>Y − c1·Y = c0 + I + G − c1·T
+(1 − c1)·Y = c0 + I + G − c1·T</code></pre>
+<p><strong>Paso 5.</strong> Divida ambos lados por <code>(1 −
+c1)</code>. Como <code>c1</code> está entre 0 y 1, <code>(1 −
+c1)</code> nunca es cero, así que la división siempre es válida:</p>
+<pre><code>Y = [1/(1 − c1)] · (c0 + I + G − c1·T)</code></pre>
+<p>Es la misma fórmula que anticipó la Tabla 4, pero ahora deducida
+—no adivinada— y válida para cualquier <code>c0</code>,
+<code>I</code>, <code>G</code>, <code>T</code> y <code>c1</code>, no
+solo para 100 y 0,8.</p>
+<p><strong>Los dos bloques.</strong> Mire la fórmula del Paso 5 y
+separe lo que multiplica de lo que es multiplicado. Al segundo grupo
+—todo lo que no depende del ingreso de este período— lo llamamos, como
+en la Nota 5, <strong>gasto autónomo</strong>, <code>A</code>:</p>
+<pre><code>A ≡ c0 + I + G − c1·T</code></pre>
+<p>Con ese nombre, la fórmula del Paso 5 se escribe en una sola
+línea:</p>
+<pre><code>Y = [1/(1 − c1)] · A</code></pre>
+<p>De aquí en adelante, cualquier pregunta sobre qué mueve la
+producción se reduce a una de estas dos: ¿cambió el
+<strong>multiplicador</strong>, <code>1/(1 − c1)</code>? ¿O cambió el
+<strong>gasto autónomo</strong>, <code>A</code>?</p>
+<p><strong>Con números.</strong> Con <code>c1 = 0,8</code>, el
+multiplicador es <code>1/(1 − 0,8) = 5</code>: por eso el aumento de
+100 en <code>G</code> —el mismo de la Tabla 4— terminó levantando la
+producción en 500. Con un <code>c1</code> más chico, el multiplicador
+es menor y el eco se apaga antes. «Autónomo» quiere decir lo que no
+depende del nivel de producción de este período.</p>
 <p><strong>El ancla.</strong> En <strong>2021</strong> la demanda
 interna creció <strong>21,6 %</strong> y el consumo privado <strong>20,3
 %</strong>, mientras el PIB creció <strong>11,7 %</strong>. El gráfico
@@ -1281,6 +1316,12 @@ bodega</td>
 <tr>
 <td>Consumo autónomo (<code>c0</code>)</td>
 <td>Lo que se compra igual, aunque no haya entrado plata</td>
+</tr>
+<tr>
+<td>Gasto autónomo (<code>A</code>)</td>
+<td>Todo lo que empuja la producción sin depender de ella:
+<code>c0</code> más la inversión, el gasto público y el efecto de los
+impuestos</td>
 </tr>
 <tr>
 <td>Ingreso disponible (<code>Y − T</code>)</td>
