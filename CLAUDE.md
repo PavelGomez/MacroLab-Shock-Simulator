@@ -78,8 +78,10 @@ lee en runtime. Para que una nota aparezca hacen falta tres cosas:
 2. una fila en `macro1/notas/index.html`
 3. un enlace en la tarjeta de la Ruta por clases de `macro1/index.html`
 
-`scripts/check-manifest.js` verifica las tres. Los siete bloques de la biblioteca
-(`nota-b1-medicion` … `nota-b7-mercado-laboral`) están publicados así desde v0.7.0.
+`scripts/check-manifest.js` verifica las tres. Solo `nota-b1-medicion` y `nota-b2-mercado-bienes`
+(versiones para estudiantes) están publicadas. Las versiones docentes `nota-b3` a `nota-b7`
+se retiraron el 2026-09-17 porque contenían pautas selladas: **nunca publicar la versión
+docente de un bloque**; las notas de dinero e IS-LM se publicarán como versiones para estudiantes.
 
 ## Convenciones de código
 - JavaScript vanilla sin clases ES6 (funciones nombradas)
