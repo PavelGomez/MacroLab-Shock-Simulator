@@ -1,0 +1,27 @@
+# Línea base 2026-09-21T17:41:41-03:00 · rama tramo-4-7-ajustes · 54b3cbc
+script.js sintaxis OK
+── test_pautas_biblioteca.js
+✔ 35 comprobaciones OK · biblioteca y simulador coinciden.
+── scripts/check-manifest.js
+✔ MANIFEST íntegro, notas visibles y editorialmente conformes.
+── macro1/test_paquete.js
+Comprobaciones: 1037 · fallos: 0 · advertencias: 0
+RESULTADO: OK
+── macro1/test_loop_clase3.js
+Aserciones: 260 · fallos: 0
+RESULTADO: OK
+── macro1/test_formulas_selladas.js
+Aserciones: 423 · fallos: 0
+RESULTADO: OK
+── macro1/test_retroalimentacion_pedagogica.js
+Aserciones: 948 · fallos: 0
+RESULTADO: OK
+── macro1/test_auditoria_transversal.js
+Aserciones: 18 · fallos: 0
+RESULTADO: OK
+── macro1/test_export_import_continuidad.js
+test_export_import_continuidad.js — 36 aserciones · RESULTADO: OK
+── macro1/test_formulas_clases4_7.js
+Aserciones: 272 · fallos: 0
+RESULTADO: OK
+TODAS LAS SUITES EN VERDE

@@ -140,7 +140,10 @@
       "kind": "historico",
       "label": "material histórico 2025",
       "in_main_navigation": false,
-      "replaced_by": "nota-b3-dinero-alumno"
+      "replaced_by": "nota-b3-dinero-alumno",
+      "sha256": "cc11c95f8b711b5ecb4cd7b96a36af522c79d9c178f417d78b00fb84c212fdcf",
+      "source_version": "Edición corregida 18-09-2026 · Historico_2025 (GATE 4, fila 6; reemplazo confirmado 21-09-2026)",
+      "integration_changes": "copia sin edición; corrige la definición de la TPM, sustituye el ejemplo de 2008-2009 por la TPM en 0,50 % de 2020 (BCCh, IPoM dic. 2020) y agrega la equivalencia Md/P = Y·L(i) con d₁Y − d₂i"
     },
     {
       "id": "nota-b1-medicion",
@@ -338,6 +341,78 @@
       "class_id": null,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
       "sha256": "a0a3bb1c7197bd878ecdcf4be2a2bcdf29b9c55bcc8797fae9b49ed01aee0b42"
+    }
+  ],
+  "practice_statements": [
+    {
+      "id": "ayudantia-transicion-bienes",
+      "file": "notas/ayudantias/ayudantia-transicion-bienes.pdf",
+      "title": "Ayudantía de transición · mercado de bienes",
+      "kind": "enunciado-practica",
+      "class_id": 4,
+      "pauta": "pauta-ayudantia-transicion-bienes",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "1bbf2d6cd396be49cd02ade6ac066f426800905a2d0253edab02b4ef48e56e36"
+    },
+    {
+      "id": "ayudantia-clase4-dinero-bonos-tasa",
+      "file": "notas/ayudantias/ayudantia-clase4-dinero-bonos-tasa.pdf",
+      "title": "Ayudantía · Clase 4 · Dinero, bonos y tasa",
+      "kind": "enunciado-practica",
+      "class_id": 4,
+      "pauta": "pauta-clase4-dinero-bonos-tasa",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "bb7d605996aa53d4cf91382a761c06d48502b8221269de6b3339079b97d375f8"
+    },
+    {
+      "id": "ayudantia-clase5-inversion-is",
+      "file": "notas/ayudantias/ayudantia-clase5-inversion-is.pdf",
+      "title": "Ayudantía · Clase 5 · Inversión y curva IS",
+      "kind": "enunciado-practica",
+      "class_id": 5,
+      "pauta": "pauta-clase5-inversion-is",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "4284080e9cdd95f062326897836d8d4ad8a03213054d21063cbb2fbf1e69616e"
+    },
+    {
+      "id": "ayudantia-clase6-islm",
+      "file": "notas/ayudantias/ayudantia-clase6-islm.pdf",
+      "title": "Ayudantía · Clase 6 · IS-LM en economía cerrada",
+      "kind": "enunciado-practica",
+      "class_id": 6,
+      "pauta": "pauta-clase6-islm",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "d223ca0ba114cfcd7269c77402b64cf7db7982d7bbcb637339a0668eab0b88e3"
+    },
+    {
+      "id": "ayudantia-clase7-desequilibrios",
+      "file": "notas/ayudantias/ayudantia-clase7-desequilibrios.pdf",
+      "title": "Ayudantía · Clase 7 · Desequilibrios, desplazamiento y acelerador",
+      "kind": "enunciado-practica",
+      "class_id": 7,
+      "pauta": "pauta-clase7-desequilibrios",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "bcff5f1219187847bbab900b6b52ee1750af8e280b684de7fffd254faa5e94e9"
+    },
+    {
+      "id": "ayudantia-consolidacion-islm-72744",
+      "file": "notas/ayudantias/ayudantia-consolidacion-islm-72744.pdf",
+      "title": "Ayudantía de consolidación IS-LM (sección 72744)",
+      "kind": "enunciado-practica",
+      "class_id": null,
+      "pauta": "pauta-consolidacion-islm-72744",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "c6edcaf6d2bde377998615679481b5c851c087ae732954ad9d6f578e2b80d1b1"
+    },
+    {
+      "id": "ayudantia-refuerzo-simulacro-72745",
+      "file": "notas/ayudantias/ayudantia-refuerzo-simulacro-72745.pdf",
+      "title": "Sesión de refuerzo gráfico y simulacro (sección 72745)",
+      "kind": "enunciado-practica",
+      "class_id": null,
+      "pauta": "pauta-refuerzo-simulacro-72745",
+      "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
+      "sha256": "2c9536bd710b9c224b5efe8f7b6cba0af423b37b6ecc8f514553343d209a6e9e"
     }
   ]
 }
