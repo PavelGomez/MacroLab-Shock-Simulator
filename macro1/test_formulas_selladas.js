@@ -23,7 +23,10 @@
  *   9. mercado laboral · participación 62,46, ocupación 57,14, desempleo 8,52;
  *  10. WS–PS · uₙ = 9,09% con m = 0,1;
  *  11. variante isomorfa · multiplicador 2,5, Y* 1.100 y 1.200;
- *  12. los seis ejercicios dirigidos, en positivo y en negativo.
+ *  12. los seis ejercicios dirigidos, en positivo y en negativo;
+ *  13. tramo 4-7 · test_formulas_clases4_7.js: expected de las Clases 4 a 7, isomorfas,
+ *      controles de las guías del simulador y ejercicios guiados. Corre aquí para que el
+ *      MANIFEST siga declarando exactamente cinco suites.
  *
  * Imprime el número real de aserciones y sale con código 1 si algo falla.
  */
@@ -321,6 +324,12 @@ function main() {
    "MED-EX-01", "MED-EX-PNB"].forEach(id =>
     ok(source.includes(`id:"${id}"`), `el id de actividad ${id} sigue en el catálogo, sin renombrar`));
   ok(/schema_version:"macrolab-macro1-scenario\/1\.1"/.test(source), "el contrato de escenario conserva su schema_version");
+
+  /* ===== 13 · Tramo 4-7 (Clases 4 a 7) ===================================== */
+  // Suite propia, integrada aquí: sus aserciones y fallos se suman a los de esta prueba.
+  const tramo = require("./test_formulas_clases4_7.js").run();
+  assertions += tramo.assertions;
+  tramo.failures.forEach(f => failures.push("[tramo 4-7] " + f));
 
   /* ---------- resumen ---------- */
   const line = "─".repeat(72);

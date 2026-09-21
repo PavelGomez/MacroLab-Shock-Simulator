@@ -269,6 +269,10 @@
     {
       "note": "notas 5 a 8",
       "reason": "Las copias integradas difieren del origen (Macro1_GPT/07_Produccion_notas) solo en tres ajustes de publicación declarados en integration_changes. Conviene devolverlos al origen para que el próximo copiado no los pierda."
+    },
+    {
+      "note": "tests",
+      "reason": "test_formulas_clases4_7.js (tramo 4-7) no se declara como sexta suite: corre dentro de test_formulas_selladas.js, que suma sus aserciones y fallos. Así se conserva la regla de exactamente cinco suites (test_paquete.js, check-manifest.js y el CI) y el CI la ejecuta sin cambios. También puede correrse sola."
     }
   ],
   "practice_keys": [
