@@ -140,7 +140,10 @@
       "kind": "historico",
       "label": "material histórico 2025",
       "in_main_navigation": false,
-      "replaced_by": "nota-b3-dinero-alumno"
+      "replaced_by": "nota-b3-dinero-alumno",
+      "sha256": "cc11c95f8b711b5ecb4cd7b96a36af522c79d9c178f417d78b00fb84c212fdcf",
+      "source_version": "Edición corregida 18-09-2026 · Historico_2025 (GATE 4, fila 6; reemplazo confirmado 21-09-2026)",
+      "integration_changes": "copia sin edición; corrige la definición de la TPM, sustituye el ejemplo de 2008-2009 por la TPM en 0,50 % de 2020 (BCCh, IPoM dic. 2020) y agrega la equivalencia Md/P = Y·L(i) con d₁Y − d₂i"
     },
     {
       "id": "nota-b1-medicion",
