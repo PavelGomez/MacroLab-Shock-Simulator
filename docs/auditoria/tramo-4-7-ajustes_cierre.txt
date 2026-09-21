@@ -1,0 +1,41 @@
+# Cierre 2026-09-21T17:48:02-03:00 · rama tramo-4-7-ajustes · 7b2aa72
+script.js sintaxis OK
+── test_pautas_biblioteca.js
+✔ 35 comprobaciones OK · biblioteca y simulador coinciden.
+── scripts/check-manifest.js
+✔ MANIFEST íntegro, notas visibles y editorialmente conformes.
+── macro1/test_paquete.js
+Comprobaciones: 1044 · fallos: 0 · advertencias: 0
+RESULTADO: OK
+── macro1/test_loop_clase3.js
+Aserciones: 260 · fallos: 0
+RESULTADO: OK
+── macro1/test_formulas_selladas.js
+Aserciones: 423 · fallos: 0
+RESULTADO: OK
+── macro1/test_retroalimentacion_pedagogica.js
+Aserciones: 948 · fallos: 0
+RESULTADO: OK
+── macro1/test_auditoria_transversal.js
+Aserciones: 18 · fallos: 0
+RESULTADO: OK
+── macro1/test_export_import_continuidad.js
+test_export_import_continuidad.js — 36 aserciones · RESULTADO: OK
+── macro1/test_formulas_clases4_7.js
+Aserciones: 272 · fallos: 0
+RESULTADO: OK
+TODAS LAS SUITES EN VERDE
+── Reglas §4 (v6)
+Docente_privado (158 archivos distintos revisados, en Macro1_GPT/ y Macroeconomia1/): 0 coincidencias por sha256 con los 12 archivos agregados o modificados · 0 menciones en lo agregado.
+Funciones de cálculo (calcISLM, isCurve, lmCurve, crossSolve, moneyInterest, calc*): script.js idéntico a origin/main (0 líneas de diff); 0 definiciones de cálculo tocadas en el resto.
+Pautas de controles, solemnes o exámenes: ninguna (los 8 archivos nuevos son nota-06 histórica y 7 enunciados de práctica).
+Ficha de la Clase 4: enlace principal = comunicado RPM 8-09-2026 (decisión del profesor, 21-09).
+── sha256 de los archivos copiados (= Manifiesto_integracion_GATE4.tsv)
+cc11c95f8b711b5ecb4cd7b96a36af522c79d9c178f417d78b00fb84c212fdcf  macro1/notas/nota-06-mercado-dinero.html
+bb7d605996aa53d4cf91382a761c06d48502b8221269de6b3339079b97d375f8  macro1/notas/ayudantias/ayudantia-clase4-dinero-bonos-tasa.pdf
+4284080e9cdd95f062326897836d8d4ad8a03213054d21063cbb2fbf1e69616e  macro1/notas/ayudantias/ayudantia-clase5-inversion-is.pdf
+d223ca0ba114cfcd7269c77402b64cf7db7982d7bbcb637339a0668eab0b88e3  macro1/notas/ayudantias/ayudantia-clase6-islm.pdf
+bcff5f1219187847bbab900b6b52ee1750af8e280b684de7fffd254faa5e94e9  macro1/notas/ayudantias/ayudantia-clase7-desequilibrios.pdf
+c6edcaf6d2bde377998615679481b5c851c087ae732954ad9d6f578e2b80d1b1  macro1/notas/ayudantias/ayudantia-consolidacion-islm-72744.pdf
+2c9536bd710b9c224b5efe8f7b6cba0af423b37b6ecc8f514553343d209a6e9e  macro1/notas/ayudantias/ayudantia-refuerzo-simulacro-72745.pdf
+1bbf2d6cd396be49cd02ade6ac066f426800905a2d0253edab02b4ef48e56e36  macro1/notas/ayudantias/ayudantia-transicion-bienes.pdf
