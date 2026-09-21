@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crónica · Más caro el crédito y menos ventas: un solo problema — Macroeconomía I</title>
+<meta name="author" content="Pável Gómez">
+<meta name="description" content="Crónica de la Clase 6: por qué el mercado de bienes y el mercado de dinero se determinan a la vez, y cómo leer esa simultaneidad con IS-LM.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--accent:#2d6ea3;--bg:#f3f6fa;--card:#fff;--line:#d8e1ea;--muted:#556676;--navy:#0f2740;--deep:#091a2d;--text:#1c2a35;--focus:#fbbf24;--warm:#b45309;--warm-soft:#fff7e8}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:5rem}body{margin:0;background:var(--bg);color:var(--text);font:16.5px/1.68 "Inter",system-ui,sans-serif}a{color:var(--accent)}:focus-visible{outline:3px solid var(--focus);outline-offset:2px}.skip{position:absolute;left:-9999px}.skip:focus{left:0;z-index:100;background:var(--navy);color:#fff;padding:.6rem 1rem}
+.topbar{position:fixed;inset:0 0 auto;z-index:20;display:flex;justify-content:space-between;gap:1rem;align-items:center;background:#fff;border-bottom:1px solid var(--line);padding:.65rem clamp(1rem,4vw,2.5rem)}.topbar a{border:1px solid var(--line);border-radius:999px;padding:.42rem .9rem;text-decoration:none;font-weight:700}.where{font-size:.82rem;color:var(--muted)}
+header{background:linear-gradient(180deg,var(--navy),var(--deep));color:#fff;padding:calc(4.2rem + 1.8rem) clamp(1rem,4vw,2.5rem) 2.4rem}.inner,main,footer .inner{max-width:78ch;margin:auto}.eyebrow{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#b9d5ea}.masthead h1{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin:.4rem 0}.bajada{font-size:1.08rem;color:#d4e4ef;max-width:65ch}.meta{color:#9fbdd6;font-size:.9rem}.brand img{height:44px;width:auto;background:#fff;padding:.4rem .7rem;border-radius:10px}
+main{padding:2rem clamp(1rem,4vw,2.5rem) 3rem}.toc,.scene,.anchor,figure{background:#fff;border:1px solid var(--line);border-radius:16px;padding:1.1rem 1.3rem;margin:1.4rem 0}.toc h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;border:0;margin:0 0 .6rem}.toc ol{margin:0;padding-left:1.2rem}.toc a{text-decoration:none}h2{font-size:1.4rem;line-height:1.3;color:var(--navy);border-bottom:2px solid var(--line);padding-bottom:.4rem;margin:2.8rem 0 .8rem}h3{color:var(--navy)}p{margin:0 0 1rem}.lead{font-size:1.08rem}.scene{border-left:5px solid var(--accent)}.scene strong{color:var(--navy)}.anchor{background:var(--warm-soft);border-color:#ead29a;border-left:5px solid var(--warm)}.anchor strong{color:#7a4300}figure svg{display:block;width:100%;height:auto}figcaption{text-align:center;color:var(--muted);font-size:.86rem;margin-top:.6rem}
+.chain{list-style:none;padding:1rem;margin:1.5rem 0;background:var(--navy);color:#e8f1f8;border-radius:16px}.chain li{background:rgba(255,255,255,.09);border-radius:9px;padding:.6rem .8rem}.chain li+li{margin-top:1.45rem;position:relative}.chain li+li::before{content:"↓";position:absolute;top:-1.25rem;left:50%;color:#9fd0f5}.chain strong{color:#fff}.questions{background:#eaf3fb;border:1px solid #bcd8ee;border-radius:14px;padding:1rem 1.2rem}.questions li{margin:.45rem 0}
+.table-wrap{overflow-x:auto;margin:1.2rem 0}table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{border:1px solid var(--line);padding:.5rem .6rem;text-align:left}th{background:#eaf3fb;color:var(--navy)}
+.lab{background:#eef7f0;border:1px solid #bfe3c8;border-radius:14px;padding:1rem 1.2rem;margin:1.4rem 0}.lab h3{margin:0 0 .5rem;color:#1f6b3c;font-size:1rem}.lab ol{margin:.4rem 0 0;padding-left:1.2rem}.lab li{margin:.5rem 0}.lab code{background:#fff;border:1px solid #bfe3c8;border-radius:4px;padding:.05rem .35rem;font-size:.92em}
+.legend{display:flex;gap:1.3rem;flex-wrap:wrap;justify-content:center;margin:.7rem 0 0;font-size:.84rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:.45rem}.legend i{width:16px;height:16px;border-radius:4px;display:inline-block;flex:none}.legend i.line{height:4px;border-radius:2px}
+.nextstep{background:#f4f1fb;border:1px solid #dad0f2;border-radius:14px;padding:.9rem 1.2rem;font-size:.93rem;color:#3d2f66;margin:1.4rem 0}.nextstep strong{color:#2f2354}
+footer{background:#fff;border-top:1px solid var(--line);padding:1.5rem clamp(1rem,4vw,2.5rem) 2rem;color:var(--muted);font-size:.88rem}.who{font-weight:800;color:var(--navy)}.print-head{display:none}
+@media print{.topbar,.toc,.skip{display:none!important}@page{margin:1.6cm}html,body{background:#fff;color:#000;font-size:10pt}header{background:#fff;color:#000;padding:0 0 .7rem;border-bottom:2px solid #000}.eyebrow,.bajada,.meta{color:#333}.brand{display:none}main{padding:.8rem 0}.scene,.anchor,figure,.chain,.questions,.lab,.nextstep{break-inside:avoid;background:#fff;color:#000;border:1px solid #999}.chain strong{color:#000}h1,h2,h3{break-after:avoid}.print-head{display:block}footer{padding:.8rem 0}}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<nav class="topbar" aria-label="Acciones de la crónica"><a href="../index.html#route">&larr; Volver a MacroLab</a><span class="where">Crónica · Clase 6</span></nav>
+<header class="masthead"><div class="inner"><p class="print-head">Crónica · Clase 6 · Prof. Pável Gómez</p><p class="eyebrow">Macroeconomía · Profesor Pável Gómez · 2026</p><h1>Más caro el crédito y menos ventas: un solo problema</h1><p class="bajada">El ejecutivo del banco le dijo dos cosas en la misma frase. Rosa creyó que eran dos problemas. Eran el mismo problema, visto desde dos mercados que se resuelven a la vez.</p><p class="meta">Lectura de enganche · 10 minutos · Caso docente compuesto</p><p class="brand"><img src="img/logo-icom-uft.png" alt="Ingeniería Comercial, Facultad de Economía y Negocios, Universidad Finis Terrae" width="759" height="213"></p></div></header>
+<main id="contenido">
+<nav class="toc" aria-labelledby="toc-title"><h2 id="toc-title">El recorrido de esta historia</h2><ol><li><a href="#s1">Dos frases, un solo problema</a></li><li><a href="#s2">Un cruce, no dos mercados aparte</a></li><li><a href="#s3">Seis años, tres mezclas distintas</a></li><li><a href="#s4">Lo que la tabla no puede decir</a></li><li><a href="#s5">Lo que llevarás a MacroLab, paso a paso</a></li></ol></nav>
+<div class="nextstep"><strong>Dónde encaja esta lectura.</strong> Esta crónica es la puerta de entrada. La <strong>Nota de estudio 7 · IS-LM en economía cerrada</strong> deriva el cruce completo y las políticas, con cada fórmula. La <strong>ayudantía de la Clase 6</strong> y la <strong>pestaña IS-LM</strong> —con los pasos exactos al final de esta página— son donde lo practicas con números.</div>
+<p class="lead">Cuando Rosa Millán fue a renovar el crédito en 2022, el ejecutivo le dijo dos cosas en la misma frase: «está más caro el crédito» y «está vendiendo menos». Ella pensó que eran dos noticias. Eran una sola.</p>
+<h2 id="s1">1. Dos frases, un solo problema</h2>
+<div class="scene"><p>La tasa alta viene del mercado de dinero. Las ventas bajas vienen del mercado de bienes. Rosa las escuchó como si fueran independientes, pero ambas salen del mismo ajuste: cuando el Banco Central sube la tasa, encarece el crédito y con eso frena la inversión y el gasto —eso es el mercado de bienes reaccionando al mercado de dinero. Y cuando las ventas caen, la producción y el ingreso también caen, lo que reduce la demanda de dinero para transacciones —eso es el mercado de bienes empujando de vuelta al mercado de dinero.</p><p>Los dos mercados se determinan <strong>a la vez</strong>. Ese «a la vez» es toda esta clase.</p></div>
+<h2 id="s2">2. Un cruce, no dos mercados aparte</h2>
+<p>La curva IS reúne todas las combinaciones de tasa y producción donde el mercado de bienes está en equilibrio. La curva LM reúne todas las combinaciones donde el mercado de dinero está en equilibrio. Solo hay un punto —una tasa y una producción— donde los dos mercados están en equilibrio al mismo tiempo: es el cruce de las dos curvas.</p>
+<figure><svg viewBox="0 0 700 320" role="img" aria-labelledby="islmTitle islmDesc"><title id="islmTitle">Cruce de la IS y la LM</title><desc id="islmDesc">Un plano con la tasa en el eje vertical y la producción en el horizontal. Una recta IS con pendiente negativa y una recta LM con pendiente positiva se cruzan en un único punto de equilibrio, marcado exactamente donde ambas rectas se tocan.</desc>
+<line x1="90" y1="30" x2="90" y2="270" stroke="#0f2740" stroke-width="3"/><line x1="90" y1="270" x2="650" y2="270" stroke="#0f2740" stroke-width="3"/>
+<text x="60" y="40" font-family="Inter" font-weight="700" fill="#0f2740" font-size="14">i</text><text x="640" y="292" font-family="Inter" font-weight="700" fill="#0f2740" font-size="14">Y</text>
+<path d="M120 60 L600 250" stroke="#2d6ea3" stroke-width="4" fill="none"/><text x="595" y="245" font-family="Inter" font-weight="700" fill="#2d6ea3" font-size="15">IS</text>
+<path d="M150 250 L560 60" stroke="#b45309" stroke-width="4" fill="none"/><text x="555" y="55" font-family="Inter" font-weight="700" fill="#7a4300" font-size="15">LM</text>
+<line x1="357" y1="154" x2="357" y2="270" stroke="#9aa9b6" stroke-width="1.5" stroke-dasharray="3 4"/><line x1="90" y1="154" x2="357" y2="154" stroke="#9aa9b6" stroke-width="1.5" stroke-dasharray="3 4"/>
+<circle cx="357" cy="154" r="7" fill="#0f2740"/>
+<line x1="357" y1="154" x2="400" y2="186" stroke="#0f2740" stroke-width="1.5"/>
+<text x="405" y="184" font-family="Inter" font-weight="700" fill="#0f2740" font-size="13">equilibrio</text><text x="405" y="200" font-family="Inter" font-weight="700" fill="#0f2740" font-size="13">(Y*, i*)</text>
+</svg>
+<div class="legend"><span><i class="line" style="background:#2d6ea3"></i> IS · equilibrio del mercado de bienes</span><span><i class="line" style="background:#b45309"></i> LM · equilibrio del mercado de dinero</span><span><i style="background:#0f2740;border-radius:50%"></i> único punto donde ambas rectas se cruzan</span></div>
+<figcaption>El punto donde se cruzan es la única combinación de tasa y producción compatible con el equilibrio de los dos mercados a la vez.</figcaption></figure>
+<div class="anchor"><strong>Gancho de memoria:</strong> la tasa que paga Rosa y las ventas que tiene Rosa no son dos números que le llegan por separado: son las dos coordenadas del mismo punto de cruce.</div>
+<h2 id="s3">3. Seis años, tres mezclas distintas</h2>
+<p>Chile ofrece, entre 2020 y 2026, los tres casos posibles de cómo se combinan la política fiscal (que mueve la IS) y la política monetaria (que mueve la LM).</p>
+<div class="table-wrap"><table><thead><tr><th>Período</th><th>Fiscal (IS)</th><th>Monetaria (LM)</th><th>Mezcla</th><th>Qué se observó</th></tr></thead><tbody>
+<tr><td>2020–2021</td><td>muy expansiva: transferencias masivas</td><td>muy expansiva: TPM en 0,50 %</td><td>coordinada expansiva</td><td>demanda interna +21,3 %; FBCF +16,0 %; PIB +11,3 % (2021)</td></tr>
+<tr><td>2022–2023</td><td>contractiva: fin de las transferencias</td><td>fuertemente contractiva: TPM a 11,25 %</td><td>coordinada contractiva</td><td>demanda interna −3,7 % y consumo de los hogares −4,7 % (2023); FBCF +0,3 % (estancada)</td></tr>
+<tr><td>2024–2025</td><td>neutral a moderada</td><td>expansiva: TPM baja 625 pb</td><td>distensión</td><td>FBCF pasa de −1,6 % (2024) a +7,0 % (2025)</td></tr>
+<tr><td>2026</td><td>mayor empuje del gasto público (proyectado)</td><td>TPM en 4,50 %, mantenida; cautela</td><td>divergente</td><td>consumo desacelerando; inversión bajo lo proyectado</td></tr>
+</tbody></table></div>
+<p>En 2021, la IS y la LM se desplazaron las dos hacia la expansión: por eso la producción subió mucho y la tasa se mantuvo anclada abajo. En 2022–2023 ocurrió lo contrario, y por eso el frenazo fue tan marcado: ninguna de las dos políticas amortiguó a la otra. En 2024–2025, con la LM relajándose sola, la inversión saltó de caer a crecer con fuerza.</p>
+<h2 id="s4">4. Lo que la tabla no puede decir</h2>
+<p><strong>Límite.</strong> Esta tabla muestra que los datos son consistentes con el modelo, fila por fila. No permite calcular cuánto de cada resultado se debió a la política fiscal y cuánto a la monetaria: para eso hace falta resolver el cruce con números, que es exactamente lo que harás en la ayudantía y en la pestaña IS-LM.</p>
+<h2 id="s5">5. Lo que llevarás a MacroLab, paso a paso</h2>
+<div class="questions"><strong>Antes de abrir el laboratorio, intenta responder:</strong><ol><li>Si sube el gasto público, ¿qué curva se desplaza primero: la IS o la LM?</li><li>¿Por qué una expansión fiscal, con la LM de pendiente positiva, termina subiendo la tasa?</li><li>Si el Banco Central mantiene la tasa fija (LM horizontal), ¿qué pasa con la producción cuando sube el gasto?</li><li>¿Qué mezcla de política describe mejor a 2026: coordinada o divergente?</li></ol></div>
+<div class="lab"><h3>Paso a paso en la pestaña IS-LM</h3><ol>
+<li>Abre MacroLab y ve a la pestaña «IS-LM».</li>
+<li>Deja el régimen tributario en «T fija» y el régimen de la LM en «LM con pendiente positiva». Ingresa los parámetros de la economía del curso: c₀ = 100, c₁ = 0,75, T = 80, b₀ = 160, b₁ = 0,15, b₂ = 15, G = 200, d₁ = 0,5, d₂ = 50, M/P = 1.500.</li>
+<li>Con el shock en «Sin shock», lee el equilibrio: Y = 3.400, i = 4 % e inversión 610.</li>
+<li>Elige el shock «Expansión fiscal». Ojo: este shock predefinido sube G en 30, no en 20 como en el texto. Lee los valores finales: Y debería subir a 3.520, i a 5,2 % y la inversión quedarse en 610. La IS se corrió 300 (10 × 30), pero la producción subió solo 120.</li>
+<li>Fíjate en la línea «Acelerador: b1·ΔY. Crowding-out: b2·Δi»: debería mostrar 18 y 18. Las dos piezas se cancelan, y por eso, en esta calibración exacta, la inversión final no cambia.</li>
+<li>Copia, en formato chileno (coma decimal), Y, i e I finales del paso 4: esa es la evidencia —una captura, tres valores y una frase de lectura— que entregarás en la ayudantía.</li>
+</ol></div>
+<p>El hilo de esta crónica es tu mapa: <strong>un shock mueve una curva → cambia el cruce → tasa y producción se ajustan juntas, no por separado</strong>.</p>
+</main>
+<footer><div class="inner"><p class="who">Macroeconomía · Profesor Pável Gómez · 2026</p><p>MacroLab · Macro 1 — extensión docente, versión 0.7.0. Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</p><p>El episodio empresarial es un caso docente compuesto: ilustra un mecanismo y no describe una empresa real.</p></div></footer>
+</body></html>
