@@ -161,6 +161,66 @@
       "summary": "Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.",
       "source_version": "MAC-GRAPH-MVP reedición 2026-08-15",
       "published": true
+    },
+    {
+      "id": "nota-b3-dinero-alumno",
+      "file": "notas/nota-b3-dinero-alumno.html",
+      "title": "Nota de estudio 5 · Dinero, bonos y tasa de interés",
+      "linked_from_class": 4,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Mercado de dinero, ajuste por cartera entre dinero y bonos, los dos cierres y la LM.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota5_dinero_alumno.pdf",
+      "source_sha256": "db33523fb093f9d8fc27053d032c3b32a2c04fd3eea709dc53409454e7b98087",
+      "integrated_sha256": "30450d9011352cfba667a67f0e32414442b2729f16c3feb92e08a0edc1f14710",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4a-inversion-is-alumno",
+      "file": "notas/nota-b4a-inversion-is-alumno.html",
+      "title": "Nota de estudio 6 · Inversión y curva IS",
+      "linked_from_class": 5,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Inversión con tasa, IS desde la cruz keynesiana con T fijo y con T = t·Y, movimiento y desplazamiento.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota6_inversion_IS_alumno.pdf",
+      "source_sha256": "637c08972cbafc457e01d94493ea62bc1d65b3095c4962c9139c335a54be9423",
+      "integrated_sha256": "0f06264a66e159bece27952c9640a770b3a47755f79583f707cea3bebacc5879",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4b-islm-alumno",
+      "file": "notas/nota-b4b-islm-alumno.html",
+      "title": "Nota de estudio 7 · IS-LM en economía cerrada",
+      "linked_from_class": 6,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Equilibrio simultáneo, políticas fiscal y monetaria, mezcla de políticas y LM horizontal.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota7_ISLM_alumno.pdf",
+      "source_sha256": "805924c928ed2fa9984389f728c5d3cb1f29dddeac27f3d0be60b1e3acd94786",
+      "integrated_sha256": "107c0a08bb070437a414ceb608cfeb8135ba359f66b045ff52707e165f966536",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4c-desequilibrios-alumno",
+      "file": "notas/nota-b4c-desequilibrios-alumno.html",
+      "title": "Nota de estudio 8 · Desequilibrios, desplazamiento y acelerador",
+      "linked_from_class": 7,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Cuadrantes de desequilibrio, ruta de ajuste y descomposición ΔI = b₁·ΔY − b₂·Δi.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota8_desequilibrios_alumno.pdf",
+      "source_sha256": "d97d073ed41f4499b44e0adc48d3d6021a9d5e9151f284b8f8ae6d09ed1b1ce6",
+      "integrated_sha256": "df2ffad13d3826dd2c051b3034447ef1775d175e3f0a45caa65ec6dd6f15341a",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
     }
   ],
   "images": [
@@ -205,6 +265,10 @@
     {
       "note": "nota-05, nota-06",
       "reason": "Rotuladas «material histórico 2025» y retiradas de la navegación principal (tramo 4-7). Se conservan en notas/index.html, sección «Material histórico 2025», para no romper enlaces antiguos."
+    },
+    {
+      "note": "notas 5 a 8",
+      "reason": "Las copias integradas difieren del origen (Macro1_GPT/07_Produccion_notas) solo en tres ajustes de publicación declarados en integration_changes. Conviene devolverlos al origen para que el próximo copiado no los pierda."
     }
   ],
   "practice_keys": [
