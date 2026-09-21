@@ -469,6 +469,10 @@
       <button id="class-tab-1" role="tab" aria-selected="true" aria-controls="classWorkbench" tabindex="0" data-class="1">Clase 1 · Introducción</button>
       <button id="class-tab-2" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="2">Clase 2 · Medición</button>
       <button id="class-tab-3" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="3">Clase 3 · Mercado de bienes</button>
+      <button id="class-tab-4" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="4">Clase 4 · Dinero</button>
+      <button id="class-tab-5" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="5">Clase 5 · Curva IS</button>
+      <button id="class-tab-6" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="6">Clase 6 · IS-LM</button>
+      <button id="class-tab-7" role="tab" aria-selected="false" aria-controls="classWorkbench" tabindex="-1" data-class="7">Clase 7 · Ajuste</button>
     </div>
     <article class="card" id="classOverview"></article>
     <nav class="class-steps" aria-label="Pasos de la rutina" id="classSteps"></nav>
@@ -915,6 +919,239 @@ const CLASS_ROUTES={
     drills:["Etiquetar 10 ecuaciones por función.","Narrar cuatro ajustes por inventarios.","Comparar G y transferencias con igual monto.","Resolver y verificar tres cierres ahorro–inversión."],
     lab:"cruz"
   }
+  ,
+  4:{
+    title:"Mercado de dinero, tasa de interés y política monetaria",
+    time:"60–75 min",
+    objectives:["Dibujar el mercado de dinero y leer la tasa antes de calcularla.","Calcular la tasa de un bono y explicar, con frase y cuenta, por qué precio y tasa se mueven en sentidos opuestos.","Resolver la tasa con M/P fijo y la M/P con tasa objetivo, declarando el cierre.","Distinguir un desplazamiento de la demanda de dinero de un desplazamiento de la LM."],
+    preparation:[
+      {order:"1 · Enganche",title:"Crónica de la tasa",purpose:"Primero reconoce quién pone la tasa en Chile y quién decide cuánto dinero circula.",required:true,items:[
+        {label:"La tasa que Rosa no eligió",href:"cronica-clase4-chile-2026.html",location:"imprescindible · 10 min",newTab:true}
+      ]},
+      {order:"2 · Teoría",title:"Nota de Estudio clave",purpose:"Después construye el mercado de dinero: gráfico, ajuste por cartera y dos cierres.",required:true,items:[
+        {label:"Nota de estudio 5 · Dinero, bonos y tasa de interés",href:"nota-b3-dinero-alumno.html",location:"imprescindible",newTab:true}
+      ]},
+      {order:"3 · Operación",title:"Guías y actividades",purpose:"Resuelve primero con lápiz y reproduce después en el laboratorio.",required:true,items:[
+        {label:"Ayudantía · Clase 4 (dinero y tasa)",location:"práctica asignada · enunciado en clase"},
+        {label:"Pauta de práctica · Clase 4",href:"pautas/pauta-clase4-dinero-bonos-tasa.pdf",location:"después de intentarla · PDF",newTab:true},
+        {label:"Laboratorio de dinero y tasa",href:"#din",location:"laboratorio"}
+      ]},
+      {order:"Consulta",title:"Profundización",purpose:"Solo si necesitas más práctica.",required:false,items:[
+        {label:"Blanchard · capítulo 4"},
+        {label:"Nota 6 de 2025 · material histórico (otra notación)"}
+      ]}
+    ],
+    brief:[
+      "La riqueza financiera se reparte entre dinero, que no paga interés, y bonos, que sí. La demanda de dinero Md = d₁Y − d₂i sube con la producción y baja con la tasa.",
+      "Un bono que paga 100 en un año vale PB; su tasa es (100/PB − 1)·100. Con exceso de dinero el público compra bonos, su precio sube y la tasa baja.",
+      "El Banco Central fija M/P y la tasa se ajusta (cierre A), o fija la tasa y M/P se ajusta (cierre B, el de Chile). Un aumento de Y desplaza Md, no la LM."
+    ],
+    indicatorPrompt:"Registra la TPM vigente: fecha de consulta, serie, unidad, frecuencia y si es observada. En una frase, di qué cierre revela el anuncio.",
+    links:[
+      {label:"TPM · serie diaria oficial en la BDE del Banco Central",url:"https://si3.bcentral.cl/siete/ES/Siete/Cuadro/CAP_EST_OMA/MN_EST_OMA/EM_OMA_30?idSerie=F022.TPM.TIN.D001.NO.Z.D"},
+      {label:"IPoM junio 2026",url:"https://www.bcentral.cl/web/banco-central/contenido/-/detalle/publicaciones/politica-monetaria/ipom-junio-2026"},
+      {label:"Laboratorio de dinero y tasa de esta página",url:"#din"}
+    ],
+    test:{
+      prompt:"Demanda real de dinero M/P = 0,8Y − 20i. Base: Y = 1.000 y M/P = 760. Calcule (a) la tasa de equilibrio, (b) la tasa si Y sube a 1.010 con M/P fijo y (c) la M/P que sostiene la tasa inicial con Y = 1.010. Explique el ajuste por cartera de (b).",
+      type:"numeric",
+      expected:{answerA:2,answerB:2.4,answerC:768},
+      answerLabels:{answerA:"Tasa de equilibrio (a, %)",answerB:"Tasa con Y = 1.010 y M/P fijo (b, %)",answerC:"M/P que sostiene la tasa inicial (c, nivel)"},
+      answerSpecs:{answerA:{unit:"%",tolerance:.01},answerB:{unit:"%",tolerance:.01},answerC:{unit:"nivel",tolerance:.5}},
+      model:"(a) 760 = 0,8 × 1.000 − 20i, entonces 20i = 40 e i = 2 %. (b) Con Y = 1.010 y M/P fijo: 760 = 808 − 20i, entonces i = 2,4 %. (c) Para sostener i = 2 % con Y = 1.010: M/P = 808 − 40 = 768; el Banco Central provee 8 más de dinero real comprando bonos. Ajuste por cartera en (b): al subir Y, el público quiere más dinero del que hay; vende bonos, el precio de los bonos baja y la tasa sube hasta que la demanda vuelve a ser 760. En (a) y (b) el Banco Central fija M/P y la tasa se ajusta (cierre A); en (c) fija la tasa y M/P se ajusta (cierre B, el de Chile).",
+      numericChecks:[{id:"c4-rate",criterionId:"C4-RATE"},{id:"c4-rate-new",criterionId:"C4-RATE-NEW"},{id:"c4-money-target",criterionId:"C4-MONEY-TARGET"}],
+      verbalChecks:[
+        {id:"c4-bond",criterionId:"C4-PORTFOLIO-CHAIN",pattern:/bono/i,label:"menciona los bonos en el ajuste por cartera"},
+        {id:"c4-price",criterionId:"C4-PORTFOLIO-CHAIN",pattern:/precio/i,label:"menciona el precio del bono"},
+        {id:"c4-direction",criterionId:"C4-PORTFOLIO-CHAIN",pattern:/(sube|baja)/i,label:"indica hacia dónde se mueven precio y tasa"},
+        {id:"c4-closure",criterionId:"C4-CLOSURE",pattern:/(cierre|tasa objetivo|M\/P fij)/i,label:"declara qué fija el Banco Central"}
+      ]
+    },
+    errors:[
+      ["DIN-ERR-09","Dije que se desplazó la LM cuando se movió Md."],
+      ["DIN-ERR-10","Moví precio del bono y tasa en el mismo sentido."],
+      ["DIN-ERR-11","Fijé M/P y la tasa al mismo tiempo."],
+      ["DIN-ERR-12","Confundí dinero con riqueza."],
+      ["DIN-ERR-13TRANS","Supuse que la TPM se traspasa uno a uno a todos los créditos."],
+      ["DIN-ERR-14SIG","Me equivoqué de signo al despejar i."],
+      ["DIN-ERR-15REAL","Usé M en vez de M/P."]
+    ],
+    drills:["Cuatro precios de bono, cuatro tasas, con frase y cuenta.","Dos afirmaciones, dos cierres.","¿Qué curva se mueve?","M, P y M/P.","Despejar i y verificar."],
+    lab:"din"
+  },
+  5:{
+    title:"Inversión y curva IS",
+    time:"60–75 min",
+    objectives:["Leer b₀, b₁ y b₂ en palabras y con una cuenta, y explicar por qué la inversión lleva −b₂i.","Derivar la IS gráficamente, desde dos cruces keynesianas con tasas distintas, y después algebraicamente, con T fijo y con T = t·Y.","Leer el intercepto y la pendiente de la IS, y explicar por qué el impuesto proporcional la hace más inclinada.","Distinguir un movimiento sobre la IS de un desplazamiento, y calcular cuánto se desplaza con ΔG, con una transferencia y con t."],
+    preparation:[
+      {order:"1 · Enganche",title:"Crónica del horno",purpose:"Primero ve por qué la inversión depende de las ventas y de la tasa al mismo tiempo.",required:true,items:[
+        {label:"El horno que Rosa no habría comprado en 2022",href:"cronica-clase5-chile-2026.html",location:"imprescindible · 10 min",newTab:true}
+      ]},
+      {order:"2 · Teoría",title:"Nota de Estudio clave",purpose:"Después dibuja la IS desde la cruz y derívala con T fijo y con T = t·Y.",required:true,items:[
+        {label:"Nota de estudio 6 · Inversión y curva IS",href:"nota-b4a-inversion-is-alumno.html",location:"imprescindible",newTab:true}
+      ]},
+      {order:"3 · Operación",title:"Guías y actividades",purpose:"Dibuja, deriva y comprueba; el laboratorio verifica puntos de la IS.",required:true,items:[
+        {label:"Pauta · Ayudantía de transición (mercado de bienes)",href:"pautas/pauta-ayudantia-transicion-bienes.pdf",location:"práctica asignada · PDF",newTab:true},
+        {label:"Ayudantía · Clase 5 (inversión e IS)",location:"práctica asignada · enunciado en clase"},
+        {label:"Pauta de práctica · Clase 5",href:"pautas/pauta-clase5-inversion-is.pdf",location:"después de intentarla · PDF",newTab:true},
+        {label:"Laboratorio de mercado de bienes",href:"#cruz",location:"laboratorio"}
+      ]},
+      {order:"Consulta",title:"Profundización",purpose:"Solo si necesitas más práctica.",required:false,items:[
+        {label:"Blanchard · capítulo 5 (bienes e IS)"}
+      ]}
+    ],
+    brief:[
+      "La inversión planeada I = b₀ + b₁Y − b₂i sube con las ventas y baja con la tasa.",
+      "Para cada tasa hay una cruz keynesiana y un equilibrio del mercado de bienes; la IS une esos equilibrios.",
+      "Con impuestos proporcionales, T = t·Y: cada peso de producción deja menos ingreso disponible, el multiplicador es menor y la IS más inclinada. Un cambio de i es un movimiento sobre la IS; un cambio de G, T, t o b₀ la desplaza."
+    ],
+    indicatorPrompt:"Busca la formación bruta de capital fijo o la inversión en el IPoM de junio de 2026. Registra unidad, frecuencia y si es observada o proyectada. En una frase, di qué movería esa noticia en el modelo: b₀, Y o i.",
+    links:[
+      {label:"IPoM junio 2026",url:"https://www.bcentral.cl/web/banco-central/contenido/-/detalle/publicaciones/politica-monetaria/ipom-junio-2026"},
+      {label:"Laboratorio de mercado de bienes",url:"#cruz"}
+    ],
+    test:{
+      prompt:"C = 100 + 0,75(Y − 80); I = 160 + 0,15Y − 15i; G = 200. (a) Y de equilibrio del mercado de bienes con i = 4; (b) con i = 8; (c) intercepto de la IS; (d) desplazamiento de la IS si G sube 20.",
+      type:"numeric",
+      expected:{answerA:3400,answerB:2800,answerC:4000,answerD:200},
+      answerLabels:{answerA:"Y con i = 4 % (a)",answerB:"Y con i = 8 % (b)",answerC:"Intercepto de la IS (c, Y con i = 0)",answerD:"Desplazamiento de la IS si G sube 20 (d)"},
+      answerSpecs:{answerA:{unit:"nivel"},answerB:{unit:"nivel"},answerC:{unit:"nivel"},answerD:{unit:"nivel"}},
+      model:"Con T fijo, Z = 100 + 0,75(Y − 80) + 160 + 0,15Y − 15i + 200 = 400 + 0,9Y − 15i. En equilibrio Y = Z, entonces 0,1Y = 400 − 15i y la IS es Y = 4.000 − 150i. (a) Con i = 4 %: Y = 4.000 − 600 = 3.400. (b) Con i = 8 %: Y = 4.000 − 1.200 = 2.800. (c) El intercepto es 4.000: la producción con i = 0. (d) El multiplicador es 1/(1 − 0,75 − 0,15) = 10; si G sube 20, la IS se desplaza 10 × 20 = 200 a la derecha. Mecanismo: al subir la tasa cae la inversión planeada, el gasto planeado Z queda bajo la producción, los inventarios suben más de lo planeado y las empresas producen menos hasta el nuevo equilibrio. Eso es un movimiento a lo largo de la IS; un cambio de G la desplaza.",
+      numericChecks:[{id:"c5-y-i4",criterionId:"C5-Y-I4"},{id:"c5-y-i8",criterionId:"C5-Y-I8"},{id:"c5-intercept",criterionId:"C5-INTERCEPT"},{id:"c5-shift",criterionId:"C5-SHIFT"}],
+      verbalChecks:[
+        {id:"c5-inventory",criterionId:"C5-INVENTORY",pattern:/inventario/i,label:"usa los inventarios en la derivación"},
+        {id:"c5-planned",criterionId:"C5-INVENTORY",pattern:/(\bZ\b|[Gg]asto planeado)/,label:"compara el gasto planeado Z con la producción"},
+        {id:"c5-move-shift",criterionId:"C5-MOVE-SHIFT",pattern:/(movimiento|sobre la IS|a lo largo|desplaz)/i,label:"distingue movimiento de desplazamiento"}
+      ]
+    },
+    errors:[
+      ["BIE-ERR-02","Registré una transferencia como G."],
+      ["ISLM-ERR-01","Moví la curva equivocada."],
+      ["ISLM-ERR-03","Confundí b₁ con b₂."],
+      ["ISLM-ERR-07DEN","Armé el denominador sin b₁ o con c₁ en lugar de c₁(1 − t)."],
+      ["ISLM-ERR-08SIG","Escribí la inversión con +b₂i."],
+      ["ISLM-ERR-09MOV","Llamé desplazamiento a un cambio de la tasa."]
+    ],
+    drills:["Leer b₀, b₁ y b₂ en palabras y con una cuenta.","Dos cruces, una IS.","Armar el denominador del multiplicador.","Gasto frente a transferencia: 200 frente a 150.","La misma IS con T = 0,2·Y."],
+    lab:"cruz",
+    externalLab:{label:"Pestaña IS-LM de MacroLab (solo la IS)",url:"../?tab=islm"}
+  },
+  6:{
+    title:"IS-LM en economía cerrada",
+    time:"60–75 min",
+    objectives:["Derivar la LM desde el mercado de dinero y leer su pendiente (d₁/d₂) y su intercepto (−(M/P)/d₂), distinguiendo un movimiento sobre la LM de un desplazamiento.","Encontrar (Y*, i*) dibujando IS y LM antes de igualarlas, con T fijo y con T = t·Y, sin redondear intermedios, y cerrar con S + (T − G) = I.","Analizar una política fiscal, una monetaria, una mezcla coordinada y una en conflicto, y explicar por qué el multiplicador fiscal en IS-LM es menor que el keynesiano.","Distinguir la LM con pendiente de la LM horizontal y decir cuál describe mejor a Chile entre Reuniones de política monetaria."],
+    preparation:[
+      {order:"1 · Enganche",title:"Crónica del crédito caro",purpose:"Primero ve por qué la tasa y las ventas de Rosa se explican a la vez.",required:true,items:[
+        {label:"Más caro el crédito y menos ventas: un solo problema",href:"cronica-clase6-chile-2026.html",location:"imprescindible · 10 min",newTab:true}
+      ]},
+      {order:"2 · Teoría",title:"Nota de Estudio clave",purpose:"Después cruza la IS con la LM y analiza políticas y régimen.",required:true,items:[
+        {label:"Nota de estudio 7 · IS-LM en economía cerrada",href:"nota-b4b-islm-alumno.html",location:"imprescindible",newTab:true}
+      ]},
+      {order:"3 · Operación",title:"Guías y actividades",purpose:"Resuelve a mano, reproduce en el simulador y después narra.",required:true,items:[
+        {label:"Ayudantía · Clase 6 (IS-LM)",location:"práctica asignada · enunciado en clase"},
+        {label:"Pauta de práctica · Clase 6",href:"pautas/pauta-clase6-islm.pdf",location:"después de intentarla · PDF",newTab:true},
+        {label:"Pestaña IS-LM de MacroLab",href:"../?tab=islm",location:"simulador",newTab:true}
+      ]},
+      {order:"Consulta",title:"Profundización",purpose:"Solo si necesitas más práctica.",required:false,items:[
+        {label:"Blanchard · capítulo 5"}
+      ]}
+    ],
+    brief:[
+      "La LM reúne los pares (Y, i) en que el mercado de dinero está en equilibrio: i = (d₁/d₂)·Y − (M/P)/d₂. Si sube Y, la economía se mueve sobre la LM; si sube M/P, la LM se desplaza hacia la derecha.",
+      "El equilibrio es el cruce de IS y LM. Una expansión fiscal desplaza la IS, pero Y sube menos que en la cruz keynesiana porque la tasa sube y frena la inversión.",
+      "Si el Banco Central fija la tasa, la LM es horizontal y la expansión fiscal recupera el multiplicador completo."
+    ],
+    indicatorPrompt:"Registra la TPM vigente y una noticia fiscal del IPoM de junio de 2026: fecha de consulta, unidad, frecuencia y si es observada o proyectada. En una frase, di qué curva movería cada una.",
+    links:[
+      {label:"TPM · serie diaria oficial en la BDE del Banco Central",url:"https://si3.bcentral.cl/siete/ES/Siete/Cuadro/CAP_EST_OMA/MN_EST_OMA/EM_OMA_30?idSerie=F022.TPM.TIN.D001.NO.Z.D"},
+      {label:"IPoM junio 2026",url:"https://www.bcentral.cl/web/banco-central/contenido/-/detalle/publicaciones/politica-monetaria/ipom-junio-2026"}
+    ],
+    test:{
+      prompt:"Economía del curso con T fijo: C = 100 + 0,75(Y − 80), I = 160 + 0,15Y − 15i y G = 200. Mercado de dinero: M/P = 1.500 y Md = 0,5Y − 50i. (a) Y*; (b) i*; (c) Y* si G sube 20; (d) i* si G sube 20.",
+      type:"numeric",
+      expected:{answerA:3400,answerB:4,answerC:3480,answerD:4.8},
+      answerLabels:{answerA:"Y* (a)",answerB:"i* (b, %)",answerC:"Y* si G sube 20 (c)",answerD:"i* si G sube 20 (d, %)"},
+      answerSpecs:{answerA:{unit:"nivel"},answerB:{unit:"%",tolerance:.01},answerC:{unit:"nivel"},answerD:{unit:"%",tolerance:.01}},
+      model:"IS con T fijo: Y = 4.000 − 150i. LM: 1.500 = 0,5Y − 50i, es decir, Y = 3.000 + 100i. (a) y (b): 4.000 − 150i = 3.000 + 100i, entonces 250i = 1.000, i* = 4 % e Y* = 3.400. (c) y (d): con G + 20 la IS pasa a Y = 4.200 − 150i; 1.200 = 250i, entonces i* = 4,8 % e Y* = 3.480. La IS se desplazó 200, pero Y sube solo 80: al subir la producción sube la demanda de dinero; con M/P fijo el público vende bonos, la tasa sube y la inversión cae, lo que frena el multiplicador. Con una LM horizontal —el Banco Central fija la TPM— la tasa no subiría y Y aumentaría los 200 completos.",
+      numericChecks:[{id:"c6-y",criterionId:"C6-Y"},{id:"c6-i",criterionId:"C6-I"},{id:"c6-y-fiscal",criterionId:"C6-Y-FISCAL"},{id:"c6-i-fiscal",criterionId:"C6-I-FISCAL"}],
+      verbalChecks:[
+        {id:"c6-money",criterionId:"C6-CHAIN",pattern:/(demanda de dinero|bonos)/i,label:"pasa por la demanda de dinero o los bonos"},
+        {id:"c6-rate",criterionId:"C6-CHAIN",pattern:/(tasa[^.]*sube|sube[^.]*tasa)/i,label:"dice que la tasa sube"},
+        {id:"c6-investment",criterionId:"C6-CHAIN",pattern:/inversi/i,label:"llega a la inversión"},
+        {id:"c6-regime",criterionId:"C6-REGIME",pattern:/(horizontal|pendiente|TPM)/i,label:"declara el régimen de la LM"}
+      ]
+    },
+    errors:[
+      ["ISLM-ERR-01","Moví la curva equivocada."],
+      ["ISLM-ERR-04","No declaré el régimen de la LM."],
+      ["ISLM-ERR-05","Confundí el desplazamiento de la curva con el ΔY de equilibrio."],
+      ["ISLM-ERR-06MIX","Evalué una política sin mirar la otra."],
+      ["DIN-ERR-09","Dije que se desplazó la LM cuando se movió Md."],
+      ["ISLM-ERR-10RED","Redondeé en un paso intermedio."]
+    ],
+    drills:["Derivar y leer la LM.","Dos cruces con su cierre.","Cuatro mezclas de políticas.","El mismo shock con dos regímenes."],
+    lab:null,
+    externalLab:{label:"Pestaña IS-LM de MacroLab",url:"../?tab=islm"}
+  },
+  7:{
+    title:"Desequilibrios, desplazamiento y acelerador",
+    time:"60–75 min",
+    objectives:["Ubicar un punto (Y, i) respecto de la IS y de la LM comparando su tasa con la tasa de cada curva, y nombrar el exceso en cada mercado.","Trazar el retorno al equilibrio: primero la tasa, por bonos, hasta la LM; después la producción, por inventarios, a lo largo de la LM.","Descomponer ΔI = b₁·ΔY − b₂·Δi y explicar por qué con LM horizontal no hay desplazamiento de la inversión.","Leer un episodio chileno de inversión sin atribuirle una causa que los datos no permiten."],
+    preparation:[
+      {order:"1 · Enganche",title:"Crónica del banco y la bodega",purpose:"Primero ve que la tasa cambia en horas y la producción en semanas.",required:true,items:[
+        {label:"La bodega y el banco: quién se entera primero",href:"cronica-clase7-chile-2026.html",location:"imprescindible · 10 min",newTab:true}
+      ]},
+      {order:"2 · Teoría",title:"Nota de Estudio clave",purpose:"Después ubica puntos, traza trayectorias y descompone la inversión.",required:true,items:[
+        {label:"Nota de estudio 8 · Desequilibrios, desplazamiento y acelerador",href:"nota-b4c-desequilibrios-alumno.html",location:"imprescindible",newTab:true}
+      ]},
+      {order:"3 · Operación",title:"Guías y actividades",purpose:"Resuelve, dibuja la ruta y compara regímenes.",required:true,items:[
+        {label:"Ayudantía · Clase 7 (ajuste)",location:"práctica asignada · enunciado en clase"},
+        {label:"Pauta de práctica · Clase 7",href:"pautas/pauta-clase7-desequilibrios.pdf",location:"después de intentarla · PDF",newTab:true},
+        {label:"Pestaña IS-LM de MacroLab",href:"../?tab=islm",location:"simulador",newTab:true}
+      ]},
+      {order:"Consulta",title:"Profundización",purpose:"Solo si necesitas más práctica.",required:false,items:[
+        {label:"Pauta · Ayudantía de consolidación IS-LM (sección 72744)",href:"pautas/pauta-consolidacion-islm-72744.pdf",location:"consultar · PDF",newTab:true},
+        {label:"Pauta · Sesión de refuerzo gráfico y simulacro (sección 72745)",href:"pautas/pauta-refuerzo-simulacro-72745.pdf",location:"consultar · PDF",newTab:true},
+        {label:"Blanchard · capítulo 5"}
+      ]}
+    ],
+    brief:[
+      "Fuera de las curvas hay excesos: sobre la IS sobran bienes (los inventarios suben) y bajo la IS faltan; sobre la LM sobra dinero y bajo la LM falta.",
+      "La tasa se ajusta rápido, por el mercado de bonos, y la producción lento, por inventarios: la economía salta primero a la LM y después avanza sobre ella hasta el equilibrio.",
+      "Tras una expansión fiscal, ΔI = b₁·ΔY − b₂·Δi. Con LM de pendiente positiva puede dominar el desplazamiento; con LM horizontal, Δi = 0 y la inversión sube."
+    ],
+    indicatorPrompt:"Registra la formación bruta de capital fijo 2024–2025 y la TPM del mismo período (IPoM de junio de 2026): unidad, frecuencia y si son observadas. En una frase, di qué pueden y qué no pueden decir esas dos series juntas.",
+    links:[
+      {label:"IPoM junio 2026",url:"https://www.bcentral.cl/web/banco-central/contenido/-/detalle/publicaciones/politica-monetaria/ipom-junio-2026"},
+      {label:"TPM · serie diaria oficial en la BDE del Banco Central",url:"https://si3.bcentral.cl/siete/ES/Siete/Cuadro/CAP_EST_OMA/MN_EST_OMA/EM_OMA_30?idSerie=F022.TPM.TIN.D001.NO.Z.D"}
+    ],
+    test:{
+      prompt:"Economía con T = 0 y multiplicador del mercado de bienes igual a 10. IS: Y = 1.600 − 50i; LM: Y = 400 + 40i; inversión I = 10 + 0,1Y − 5i. El gasto público sube 20. Calcule (a) Y final, (b) i final y (c) ΔI. Explique qué se ajusta primero y qué domina, el acelerador o el desplazamiento.",
+      type:"numeric",
+      expected:{answerA:1022.22,answerB:15.56,answerC:-2.22},
+      answerLabels:{answerA:"Y final (a)",answerB:"i final (b, %)",answerC:"ΔI (c)"},
+      answerSpecs:{answerA:{unit:"nivel"},answerB:{unit:"%"},answerC:{unit:"nivel"}},
+      model:"Inicial: 1.600 − 50i = 400 + 40i, entonces i = 13,33 % e Y = 933,33. Con ΔG = 20 la IS se desplaza 10 × 20 = 200: Y = 1.800 − 50i. (a) y (b): 1.800 − 50i = 400 + 40i, entonces 90i = 1.400, i = 15,56 % e Y = 1.022,22 (sin redondear intermedios: i = 140/9). (c) ΔI = b₁·ΔY − b₂·Δi = 0,1 × 88,89 − 5 × 2,222 = 8,89 − 11,11 = −2,22. Domina el desplazamiento: b₂ multiplicado por la pendiente de la LM (5 × 1/40 = 0,125) supera a b₁ = 0,1. Ajuste: primero la tasa sube rápido por el mercado de bonos y la economía salta a la LM; después la producción sube por inventarios, a lo largo de la LM, hasta el nuevo equilibrio.",
+      numericChecks:[{id:"c7-y",criterionId:"C7-Y"},{id:"c7-i",criterionId:"C7-I"},{id:"c7-di",criterionId:"C7-DELTA-I"}],
+      verbalChecks:[
+        {id:"c7-order",criterionId:"C7-ORDER",pattern:/primero[^.]*(tasa|\bi\b)/i,label:"dice qué se ajusta primero"},
+        {id:"c7-b1",criterionId:"C7-DECOMP",pattern:/b\s*_?[₁1]/i,label:"usa b₁ (acelerador)"},
+        {id:"c7-b2",criterionId:"C7-DECOMP",pattern:/b\s*_?[₂2]/i,label:"usa b₂ (efecto de la tasa)"},
+        {id:"c7-effect",criterionId:"C7-DECOMP",pattern:/(acelerador|desplazamiento|crowding)/i,label:"nombra el efecto que domina"}
+      ]
+    },
+    errors:[
+      ["ISLM-ERR-02","Dije que hay crowding-out por definición."],
+      ["ISLM-ERR-03","Confundí b₁ con b₂."],
+      ["ISLM-ERR-04","No declaré el régimen de la LM."],
+      ["ISLM-ERR-05","Miré solo el punto final."],
+      ["ISLM-ERR-11CUAD","Invertí el exceso al ubicar el punto."],
+      ["ISLM-ERR-12VEL","Hice ajustar primero la producción."]
+    ],
+    drills:["Cuatro puntos, cuatro cuadrantes.","Dibujar la ruta de ajuste.","Tres combinaciones de b₁ y b₂.","El mismo shock con dos regímenes."],
+    lab:null,
+    externalLab:{label:"Pestaña IS-LM de MacroLab",url:"../?tab=islm"}
+  }
 };
 
 /* Diagnóstico guiado de las clases 1 y 2.
@@ -955,6 +1192,109 @@ const GUIDED_DIAGNOSTICS={
       ["__unsure__","Todavía no estoy seguro."],
       ["__none__","Ninguna alternativa expresa lo que pensé."]
     ]}
+  }
+  ,
+  /* Clases 4 a 7 · modo guiado numérico. Los campos revisionOptions, numericSignals,
+     verbalSignals, defaultDrill e ideas son propios de este modo: las clases 1 y 2
+     conservan su lógica escrita a mano y no los leen. */
+  4:{
+    orientations:{
+      "DIN-ERR-10":{label:"Precio del bono y tasa se mueven al revés",description:"Si el precio de un bono que paga 100 sube, la tasa (100/PB − 1)·100 baja. Con exceso de demanda de dinero se venden bonos: el precio baja y la tasa sube.",drill:"DIN-DRILL-BONO-01"},
+      "DIN-ERR-11":{label:"Un cierre a la vez: M/P fija o tasa objetivo",description:"El Banco Central fija M/P y la tasa se ajusta, o fija la tasa y M/P se ajusta. No puede fijar las dos a la vez.",drill:"DIN-DRILL-CIERRE-01"},
+      "DIN-ERR-14SIG":{label:"Despejar la tasa con el signo correcto",description:"De M/P = d₁Y − d₂i sale i = (d₁Y − M/P)/d₂. Comprueba reemplazando: la cuenta debe devolver la M/P de partida.",drill:"DIN-DRILL-CIERRE-01"},
+      "DIN-ERR-09":{label:"Qué se mueve: Md o la LM",description:"Si sube Y, en el gráfico del mercado de dinero se desplaza la demanda Md; en el plano (Y, i) la economía se mueve a lo largo de la misma LM.",drill:"DIN-DRILL-DESP-01"}
+    },
+    probe:{question:"Con M/P fijo, la producción sube. ¿Qué describe mejor el ajuste del mercado de dinero?",options:[
+      ["DIN-ERR-10","El público compra bonos, su precio sube y la tasa también sube."],
+      ["DIN-ERR-09","Se desplaza la LM, porque cambió la demanda de dinero."],
+      ["__concept_ok__","Sube la demanda de dinero; el público vende bonos, su precio baja y la tasa sube hasta que la gente quiere tener la misma M/P."],
+      ["DIN-ERR-11","El Banco Central mantiene la tasa y, a la vez, M/P fijo."],
+      ["__unsure__","Todavía no estoy seguro."],
+      ["__none__","Ninguna alternativa expresa lo que pensé."]
+    ]},
+    revisionOptions:[["calculation","Uno de mis cálculos"],["portfolio","La cadena dinero–bonos–precio–tasa"],["closure","Qué fija el Banco Central"],["curve","Qué curva se mueve"],["unsure","Aún no logro identificarlo"]],
+    numericSignals:{answerA:{code:"DIN-ERR-14SIG"},answerB:{code:"DIN-ERR-14SIG"},answerC:{code:"DIN-ERR-11"}},
+    verbalSignals:[
+      {pattern:/bono/i,text:"Falta pasar por los bonos: el ajuste por cartera ocurre comprando o vendiendo bonos.",code:"DIN-ERR-10"},
+      {pattern:/precio/i,text:"Falta decir qué pasa con el precio del bono y por qué la tasa se mueve al revés.",code:"DIN-ERR-10"},
+      {pattern:/(cierre|tasa objetivo|M\/P fij)/i,text:"Falta declarar qué fija el Banco Central en cada parte: M/P o la tasa.",code:"DIN-ERR-11"}
+    ],
+    defaultDrill:"DIN-DRILL-BONO-01",
+    ideas:"precio del bono y tasa; ajuste por cartera entre dinero y bonos; cierre con M/P fija y cierre con tasa objetivo"
+  },
+  5:{
+    orientations:{
+      "ISLM-ERR-09MOV":{label:"Movimiento sobre la IS frente a desplazamiento",description:"Un cambio de la tasa mueve la economía a lo largo de la IS. Un cambio de G, T, t o b₀ desplaza la curva.",drill:"ISLM-DRILL-CRUZ-01"},
+      "ISLM-ERR-08SIG":{label:"La inversión baja con la tasa: −b₂i",description:"Una tasa más alta encarece el crédito y reduce la inversión planeada; por eso la IS tiene pendiente negativa.",drill:"ISLM-DRILL-CRUZ-01"},
+      "ISLM-ERR-07DEN":{label:"El denominador del multiplicador",description:"Con T fijo, el multiplicador es 1/(1 − c₁ − b₁); con T = t·Y, es 1/(1 − c₁(1 − t) − b₁).",drill:"ISLM-DRILL-t-01"},
+      "BIE-ERR-02":{label:"Transferencia frente a gasto público",description:"Una transferencia cambia el ingreso disponible, no G: solo se gasta c₁ de cada peso en la primera ronda.",drill:"ISLM-DRILL-GT-01"},
+      "C5-Q-INVENTORY":{label:"Los inventarios en la derivación de la IS",description:"Al subir la tasa, Z queda bajo la producción, los inventarios suben más de lo planeado y las empresas producen menos: así se llega al nuevo punto de la IS.",drill:"ISLM-DRILL-CRUZ-01"}
+    },
+    probe:{question:"La tasa sube de 4 % a 8 % y nada más cambia. ¿Qué ocurre en el plano (Y, i)?",options:[
+      ["ISLM-ERR-09MOV","La IS se desplaza a la izquierda."],
+      ["__concept_ok__","La economía se mueve hacia arriba a lo largo de la misma IS: cae la inversión y la producción baja de 3.400 a 2.800."],
+      ["ISLM-ERR-08SIG","La producción sube, porque una tasa más alta aumenta la inversión."],
+      ["__unsure__","Todavía no estoy seguro."],
+      ["__none__","Ninguna alternativa expresa lo que pensé."]
+    ]},
+    revisionOptions:[["calculation","Uno de mis cálculos"],["multiplier","El multiplicador y su denominador"],["inventory","Los inventarios en la derivación"],["movement","Movimiento frente a desplazamiento"],["unsure","Aún no logro identificarlo"]],
+    numericSignals:{answerA:{code:"ISLM-ERR-07DEN"},answerB:{code:"ISLM-ERR-07DEN"},answerC:{code:"ISLM-ERR-07DEN"},answerD:{code:"ISLM-ERR-07DEN"}},
+    verbalSignals:[
+      {pattern:/inventario/i,text:"Falta usar los inventarios para explicar cómo se llega a cada punto de la IS.",code:"C5-Q-INVENTORY"},
+      {pattern:/(movimiento|sobre la IS|a lo largo|desplaz)/i,text:"Falta distinguir un movimiento sobre la IS de un desplazamiento de la IS.",code:"ISLM-ERR-09MOV"}
+    ],
+    defaultDrill:"ISLM-DRILL-CRUZ-01",
+    ideas:"inversión con b₀, b₁ y b₂; dos cruces y una IS; multiplicador con T fijo y con T = t·Y; movimiento frente a desplazamiento"
+  },
+  6:{
+    orientations:{
+      "ISLM-ERR-05":{label:"Desplazamiento de la IS frente a ΔY de equilibrio",description:"Con ΔG = 20 la IS se desplaza 200, pero el nuevo cruce con la LM da ΔY = 80: la tasa sube y frena la inversión.",drill:"ISLM-DRILL-REG-01"},
+      "ISLM-ERR-04":{label:"Declarar el régimen de la LM",description:"Con M/P fijo la LM tiene pendiente positiva; si el Banco Central fija la tasa, la LM es horizontal y el multiplicador vuelve a ser completo.",drill:"ISLM-DRILL-REG-01"},
+      "ISLM-ERR-06MIX":{label:"Leer las dos políticas juntas",description:"Una política fiscal y una monetaria mueven dos curvas; el resultado depende de la combinación.",drill:"ISLM-DRILL-MIX-01"},
+      "DIN-ERR-09":{label:"Movimiento sobre la LM frente a desplazamiento",description:"Un cambio de Y mueve la economía a lo largo de la LM; un cambio de M/P la desplaza.",drill:"ISLM-DRILL-LM-01"},
+      "ISLM-ERR-10RED":{label:"Resolver el cruce sin redondear intermedios",description:"Iguala IS y LM, despeja i con todas sus cifras y recién después calcula Y.",drill:"ISLM-DRILL-LM-01"}
+    },
+    probe:{question:"El gasto público sube 20 con M/P fijo. ¿Por qué Y sube 80 y no 200?",options:[
+      ["ISLM-ERR-05","Porque la IS se desplaza solo 80."],
+      ["DIN-ERR-09","Porque la LM se desplaza hacia la izquierda."],
+      ["ISLM-ERR-04","Porque el Banco Central mantiene la tasa fija."],
+      ["__concept_ok__","Porque al subir Y sube la demanda de dinero, la tasa sube y la inversión cae, lo que frena el multiplicador."],
+      ["__unsure__","Todavía no estoy seguro."],
+      ["__none__","Ninguna alternativa expresa lo que pensé."]
+    ]},
+    revisionOptions:[["calculation","Uno de mis cálculos"],["chain","La cadena dinero–tasa–inversión"],["regime","El régimen de la LM"],["mix","La mezcla de políticas"],["unsure","Aún no logro identificarlo"]],
+    numericSignals:{answerA:{code:"ISLM-ERR-10RED"},answerB:{code:"ISLM-ERR-10RED"},answerC:{code:"ISLM-ERR-05"},answerD:{code:"ISLM-ERR-05"}},
+    verbalSignals:[
+      {pattern:/(demanda de dinero|bonos)/i,text:"Falta pasar por la demanda de dinero o los bonos para explicar por qué sube la tasa.",code:"ISLM-ERR-05"},
+      {pattern:/inversi/i,text:"Falta llegar a la inversión: es ella la que frena el multiplicador.",code:"ISLM-ERR-05"},
+      {pattern:/(horizontal|pendiente|TPM)/i,text:"Falta declarar el régimen: LM con pendiente (M/P fijo) o LM horizontal (tasa fija).",code:"ISLM-ERR-04"}
+    ],
+    defaultDrill:"ISLM-DRILL-REG-01",
+    ideas:"LM desde el mercado de dinero; cruce IS-LM sin redondeo intermedio; expansión fiscal con LM de pendiente positiva y con LM horizontal"
+  },
+  7:{
+    orientations:{
+      "ISLM-ERR-11CUAD":{label:"Ubicar un punto respecto de cada curva",description:"Compara la tasa del punto con la tasa que pide cada curva a esa producción: bajo la IS faltan bienes; sobre la LM sobra dinero.",drill:"ISLM-DRILL-CUAD-01"},
+      "ISLM-ERR-12VEL":{label:"Qué se ajusta primero",description:"La tasa se ajusta en horas por el mercado de bonos; la producción, en semanas por inventarios. Primero se llega a la LM.",drill:"ISLM-DRILL-RUTA-01"},
+      "ISLM-ERR-02":{label:"El desplazamiento no ocurre por definición",description:"ΔI = b₁·ΔY − b₂·Δi: el signo depende de qué término pesa más. Con LM horizontal no hay desplazamiento.",drill:"ISLM-DRILL-DESC-01"},
+      "ISLM-ERR-03":{label:"b₁ es el acelerador; b₂, el efecto de la tasa",description:"b₁ multiplica el cambio de la producción; b₂ multiplica el cambio de la tasa.",drill:"ISLM-DRILL-DESC-01"}
+    },
+    probe:{question:"Tras la expansión fiscal de este ejercicio la inversión cae 2,22. ¿Qué lo explica?",options:[
+      ["ISLM-ERR-02","Una expansión fiscal siempre reduce la inversión: es la definición de crowding-out."],
+      ["ISLM-ERR-03","El acelerador usa b₂ y el efecto de la tasa usa b₁."],
+      ["__concept_ok__","El efecto de la tasa, b₂·Δi = 11,11, supera al acelerador, b₁·ΔY = 8,89."],
+      ["ISLM-ERR-12VEL","La producción se ajustó primero y la tasa todavía no cambió."],
+      ["__unsure__","Todavía no estoy seguro."],
+      ["__none__","Ninguna alternativa expresa lo que pensé."]
+    ]},
+    revisionOptions:[["calculation","Uno de mis cálculos"],["order","Qué se ajusta primero"],["decomposition","La descomposición de ΔI"],["quadrant","Ubicar un punto fuera del equilibrio"],["unsure","Aún no logro identificarlo"]],
+    numericSignals:{answerC:{code:"ISLM-ERR-03"}},
+    verbalSignals:[
+      {pattern:/primero[^.]*(tasa|\bi\b)/i,text:"Falta decir qué se ajusta primero: la tasa, por el mercado de bonos.",code:"ISLM-ERR-12VEL"},
+      {pattern:/(acelerador|desplazamiento|crowding)/i,text:"Falta nombrar qué efecto domina en ΔI y con qué cuenta.",code:"ISLM-ERR-02"}
+    ],
+    defaultDrill:"ISLM-DRILL-DESC-01",
+    ideas:"excesos fuera de las curvas; orden de ajuste tasa → producción; descomposición ΔI = b₁·ΔY − b₂·Δi"
   }
 };
 const GUIDED_DRILLS={
@@ -1004,6 +1344,81 @@ const GUIDED_DRILLS={
       {id:"b",label:"IPC",options:[["production","precios de todos los bienes producidos internamente"],["basket","costo de una canasta de consumo de los hogares"],["nominal","razón entre PIB nominal y PIB real"]],answer:"basket"}
     ]
   }
+  ,
+  /* Clases 4 a 7. Cada cifra de estas alternativas se reproduce en
+     test_formulas_clases4_7.js con las mismas fórmulas del laboratorio. */
+  "DIN-DRILL-BONO-01":{
+    title:"Precio y tasa de un bono",prompt:"Un bono paga 100 dentro de un año. Su tasa es (100/PB − 1)·100.",criterion:"Obtener 4 % con PB = 96,154 y reconocer que, si el precio sube, la tasa baja.",fields:[
+      {id:"a",label:"Si PB = 96,154, la tasa es…",options:[["5","5 %"],["4","4 %"],["96","96 %"]],answer:"4"},
+      {id:"b",label:"Si el precio pasa de 95,238 a 96,154, la tasa…",options:[["up","sube de 4 % a 5 %"],["same","no cambia"],["down","baja de 5 % a 4 %"]],answer:"down"}
+    ]
+  },
+  "DIN-DRILL-CIERRE-01":{
+    title:"Dos cierres del mercado de dinero",prompt:"M/P = 0,5Y − 25i. Base: Y = 2.000 y M/P = 900, con tasa de 4 %. La producción sube a 2.050.",criterion:"Con M/P fijo se ajusta la tasa (5 %); con tasa objetivo se ajusta M/P (925).",fields:[
+      {id:"a",label:"Si M/P queda fija en 900, la tasa…",options:[["5","sube de 4 % a 5 %"],["4","se queda en 4 %"],["3","baja a 3 %"]],answer:"5"},
+      {id:"b",label:"Si el Banco Central mantiene la tasa en 4 %, M/P debe…",options:[["900","quedarse en 900"],["875","bajar a 875"],["925","subir a 925"]],answer:"925"}
+    ]
+  },
+  "DIN-DRILL-DESP-01":{
+    title:"¿Qué curva se mueve?",prompt:"La producción sube y el Banco Central mantiene M/P fija.",criterion:"En el mercado de dinero se desplaza Md; en el plano (Y, i) la economía se mueve a lo largo de la LM.",fields:[
+      {id:"a",label:"En el gráfico del mercado de dinero…",options:[["md","se desplaza la demanda de dinero Md"],["lm","se desplaza la LM"],["ms","se desplaza la oferta M/P"]],answer:"md"},
+      {id:"b",label:"En el plano (Y, i), ese aumento de Y es…",options:[["shift","un desplazamiento de la LM"],["move","un movimiento a lo largo de la LM"],["is","un desplazamiento de la IS"]],answer:"move"}
+    ]
+  },
+  "ISLM-DRILL-CRUZ-01":{
+    title:"Dos cruces, una IS",prompt:"Economía del curso con T fijo: la IS es Y = 4.000 − 150i.",criterion:"Obtener Y = 3.100 con i = 6 % y reconocer que un cambio de la tasa es un movimiento sobre la IS.",fields:[
+      {id:"a",label:"Con i = 6 %, la producción de equilibrio es…",options:[["3100","3.100"],["3400","3.400"],["3700","3.700"]],answer:"3100"},
+      {id:"b",label:"Al pasar la tasa de 4 % a 6 %, la economía…",options:[["shift","desplaza la IS a la izquierda"],["move","se mueve hacia arriba a lo largo de la IS"],["lm","desplaza la LM"]],answer:"move"}
+    ]
+  },
+  "ISLM-DRILL-GT-01":{
+    title:"Gasto público frente a transferencia",prompt:"Economía del curso: c₁ = 0,75 y multiplicador 10.",criterion:"ΔG = 20 desplaza la IS 200; una transferencia de 20 la desplaza 150.",fields:[
+      {id:"a",label:"Si G sube 20, la IS se desplaza…",options:[["150","150"],["20","20"],["200","200"]],answer:"200"},
+      {id:"b",label:"Si en vez de G hay una transferencia de 20, la IS se desplaza…",options:[["150","150, porque en la primera ronda solo se gasta c₁ = 0,75 de cada peso"],["200","200, igual que con G"],["0","0, porque una transferencia no es gasto"]],answer:"150"}
+    ]
+  },
+  "ISLM-DRILL-t-01":{
+    title:"La misma IS con T = 0,2·Y",prompt:"Economía del curso con impuestos proporcionales T = 0,2·Y en lugar de T = 80.",criterion:"El multiplicador baja de 10 a 4 y la IS pasa a ser Y = 1.840 − 60i, más inclinada.",fields:[
+      {id:"a",label:"El multiplicador 1/(1 − c₁(1 − t) − b₁) es…",options:[["10","10"],["4","4"],["5","5"]],answer:"4"},
+      {id:"b",label:"Frente a la IS con T fijo, esta IS es…",options:[["flat","más plana: cada punto de tasa quita 150"],["same","igual de inclinada"],["steep","más inclinada: cada punto de tasa quita 60"]],answer:"steep"}
+    ]
+  },
+  "ISLM-DRILL-LM-01":{
+    title:"Derivar y leer la LM",prompt:"Md = 0,5Y − 50i. La LM es i = (d₁/d₂)·Y − (M/P)/d₂.",criterion:"Leer la pendiente 0,01 y reconocer que un aumento de M/P desplaza la LM a la derecha.",fields:[
+      {id:"a",label:"La pendiente d₁/d₂ de la LM es…",options:[["100","100"],["0.01","0,01: la tasa sube 1 punto por cada 100 de producción"],["0.5","0,5"]],answer:"0.01"},
+      {id:"b",label:"Si M/P sube de 1.500 a 1.600, la LM…",options:[["move","no se mueve; la economía se desliza sobre ella"],["left","se desplaza 200 a la izquierda"],["right","se desplaza 200 a la derecha"]],answer:"right"}
+    ]
+  },
+  "ISLM-DRILL-REG-01":{
+    title:"El mismo shock con dos regímenes",prompt:"Economía del curso: el gasto público sube 20.",criterion:"ΔY = 80 con LM de pendiente positiva (M/P = 1.500) y ΔY = 200 con LM horizontal en 4 %.",fields:[
+      {id:"a",label:"ΔY con LM de pendiente positiva…",options:[["80","80"],["200","200"],["20","20"]],answer:"80"},
+      {id:"b",label:"ΔY con LM horizontal (tasa fija en 4 %)…",options:[["80","80"],["20","20"],["200","200"]],answer:"200"}
+    ]
+  },
+  "ISLM-DRILL-MIX-01":{
+    title:"Mezclas de políticas",prompt:"Cada política mueve una curva; el resultado depende de la combinación.",criterion:"Leer qué variable queda determinada y cuál depende de las magnitudes.",fields:[
+      {id:"a",label:"Expansión fiscal con expansión monetaria…",options:[["both","Y sube; la tasa puede subir, bajar o no cambiar"],["iup","Y sube y la tasa sube siempre"],["ydown","Y baja"]],answer:"both"},
+      {id:"b",label:"Expansión fiscal con contracción monetaria…",options:[["ydown","Y baja siempre"],["iup","la tasa sube; Y puede subir o bajar"],["inone","la tasa no cambia"]],answer:"iup"}
+    ]
+  },
+  "ISLM-DRILL-CUAD-01":{
+    title:"Ubicar un punto fuera del equilibrio",prompt:"IS: Y = 1.600 − 50i; LM: Y = 400 + 40i. Punto (600; 6 %). A esa producción, la IS pide i = 20 % y la LM pide i = 5 %.",criterion:"El punto está bajo la IS (faltan bienes) y sobre la LM (sobra dinero).",fields:[
+      {id:"a",label:"Respecto de la IS, el punto está…",options:[["above","sobre la IS: sobran bienes"],["below","bajo la IS: faltan bienes"],["on","en la IS"]],answer:"below"},
+      {id:"b",label:"Respecto de la LM, el punto está…",options:[["below","bajo la LM: falta dinero"],["on","en la LM"],["above","sobre la LM: sobra dinero"]],answer:"above"}
+    ]
+  },
+  "ISLM-DRILL-RUTA-01":{
+    title:"La ruta de ajuste",prompt:"La economía está fuera de las dos curvas.",criterion:"Primero la tasa, por bonos, hasta la LM; después la producción, por inventarios, a lo largo de la LM.",fields:[
+      {id:"a",label:"Lo primero que se ajusta es…",options:[["i","la tasa, por el mercado de bonos, hasta llegar a la LM"],["y","la producción, por inventarios, hasta llegar a la IS"],["both","ambas a la misma velocidad"]],answer:"i"},
+      {id:"b",label:"Después, la economía…",options:[["alongis","avanza a lo largo de la IS"],["alonglm","avanza a lo largo de la LM hasta el equilibrio"],["jump","salta directo al equilibrio"]],answer:"alonglm"}
+    ]
+  },
+  "ISLM-DRILL-DESC-01":{
+    title:"Descomponer ΔI",prompt:"Tras ΔG = 20: ΔY = 88,89 y Δi = 2,222, con b₁ = 0,1 y b₂ = 5.",criterion:"Acelerador b₁·ΔY = 8,89; desplazamiento b₂·Δi = 11,11; domina el desplazamiento y ΔI = −2,22.",fields:[
+      {id:"a",label:"El acelerador b₁·ΔY es…",options:[["11.11","11,11"],["2.22","2,22"],["8.89","8,89"]],answer:"8.89"},
+      {id:"b",label:"¿Qué domina?",options:[["crowd","el desplazamiento: ΔI = −2,22"],["acc","el acelerador: ΔI es positivo"],["tie","ninguno: ΔI = 0"]],answer:"crowd"}
+    ]
+  }
 };
 const CLASS1_REVISION_GUIDES=[
   {id:"projection",label:"Condición de la cifra",question:"¿El 2% es un resultado ya medido o una proyección? Escríbelo en una frase.",reading:"Nota de estudio 1 · §2.1, Cómo leer una cifra antes de explicarla",href:"nota-01-introduccion.html#2-1-como-leer-una-cifra",expected:"Indicar que el 2% es una proyección para 2026, no un resultado ya medido.",missing:"No indicaste que el 2% es una proyección.",action:"Agrega una oración que diga que el 2% es una proyección para 2026.",example:"Ejemplo: «El 2% es una proyección para 2026».",evidencePatterns:[/proyec/i,/escenario/i,/estim/i],test:text=>/(proyec|escenario|estim)/i.test(text)},
@@ -1037,6 +1452,37 @@ const PEDAGOGICAL_CRITERIA={
     {id:"C3-INVENTORIES",name:"Explicar la señal de inventarios no planeados",checkIds:["c3-inventories"],source:"testMechanism",patterns:[/inventario/i,/existencias/i,/bodega/i,/bienes no vendidos/i],expected:"Debías explicar que, al subir G, el gasto planeado supera inicialmente la producción y el inventario efectivo cae respecto de lo planeado.",achieved:"Incluiste los inventarios como la señal que activa el ajuste.",missing:"No explicaste qué ocurre con los inventarios cuando el gasto planeado supera inicialmente la producción.",why:"La pregunta exige el mecanismo completo, incluido el papel de los inventarios. La pauta usa la caída del inventario efectivo respecto del planeado como señal para ajustar la producción.",action:"Agrega una oración entre el aumento de G y la decisión de producir: indica que las ventas reducen los inventarios por debajo de lo planeado.",example:"Ejemplo: «Como Z supera a Y, las ventas reducen los inventarios más de lo planeado».",notes:[{title:"Nota de estudio 4 · Inventarios y ajuste de la producción",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"mecanismo_ausente",errorRules:[{pattern:/(?:inventarios?|existencias?)\s+(?:no\s+planead[oa]s?\s+)?(?:suben|aumentan)|(?:suben|aumentan)\s+(?:los\s+)?(?:inventarios?|existencias?)/i,type:"error_conceptual",detail:"Indicaste que los inventarios aumentan. Cuando el gasto planeado supera a la producción, el inventario efectivo cae respecto de lo planeado.",action:"Cambia la dirección del inventario efectivo y conecta su caída respecto del plan con el aumento posterior de la producción."}]},
     {id:"C3-PRODUCTION-INCOME",name:"Conectar inventarios con producción e ingreso",checkIds:["c3-production-income"],source:"testMechanism",patterns:[/producci/i,/ingreso/i,/renta/i,/empresas.*(elev|aument|sub)/i],expected:"Debías explicar que la caída de inventarios lleva a las empresas a elevar la producción y que esa producción genera mayor ingreso.",achieved:"Conectaste el ajuste con producción o ingreso, como exige la pauta.",missing:"No conectaste la señal de inventarios con la decisión de las empresas de elevar producción e ingreso.",why:"La pregunta pide el mecanismo, no sólo el resultado. La pauta ubica producción e ingreso entre el shock de G y el nuevo equilibrio.",action:"Agrega una oración causal: la caída de inventarios hace que las empresas eleven la producción, lo que aumenta el ingreso.",example:"Ejemplo: «Las empresas responden a la caída de inventarios aumentando la producción; así también sube el ingreso».",notes:[{title:"Nota de estudio 4 · Equilibrio en el mercado de bienes",href:"nota-b2-mercado-bienes.html#2-la-bodega-decide-cuánto-se-produce"}],gapType:"relacion_causal_incompleta"},
     {id:"C3-CONSUMPTION-FEEDBACK",name:"Explicar la realimentación del consumo",checkIds:["c3-consumption"],source:"testMechanism",patterns:[/consumo/i,/propensi/i,/c1/i,/0,5/i,/hogares.*gast/i],expected:"Debías cerrar la cadena explicando que el mayor ingreso eleva el consumo y vuelve a aumentar el gasto planeado hasta el nuevo equilibrio.",achieved:"Incluiste la realimentación del ingreso sobre el consumo.",missing:"No explicaste que el aumento del ingreso eleva el consumo y prolonga el ajuste hasta el nuevo equilibrio.",why:"La pauta usa esa realimentación para explicar el multiplicador. Sin ella, tu respuesta salta del aumento de G al resultado final.",action:"Agrega una oración que conecte mayor ingreso con mayor consumo y con una nueva ronda de gasto planeado.",example:"Ejemplo: «El mayor ingreso aumenta el consumo; esa nueva demanda impulsa otra ronda de producción».",notes:[{title:"Nota de estudio 4 · Función de consumo",href:"nota-b2-mercado-bienes.html#2-la-función-de-consumo-de-dónde-sale-la-c"}],gapType:"relacion_causal_incompleta"}
+  ]
+  ,
+  4:[
+    {id:"C4-RATE",name:"Calcular la tasa de equilibrio",checkIds:["c4-rate"],numericField:"answerA",expected:"Debías despejar la tasa de 760 = 0,8 × 1.000 − 20i: i = 2 %.",achieved:"Tu tasa de equilibrio es 2 %, igual que la pauta.",missing:"La tasa de equilibrio no coincide con 2 % o quedó sin responder.",why:"La instrucción (a) pide la tasa que iguala la demanda de dinero con la M/P disponible. Con M/P fija, la tasa es la variable que se ajusta.",action:"Reemplaza Y = 1.000 y M/P = 760 y despeja i: primero 20i = 800 − 760.",example:"Ejemplo: «760 = 800 − 20i, entonces i = 2 %».",notes:[{title:"Nota de estudio 5 · El equilibrio: la tasa que hace que el dinero alcance",href:"nota-b3-dinero-alumno.html#5-el-equilibrio-la-tasa-que-hace-que-el-dinero-alcance"}],gapType:"error_de_calculo"},
+    {id:"C4-RATE-NEW",name:"Calcular la tasa con más producción y M/P fija",checkIds:["c4-rate-new"],numericField:"answerB",expected:"Debías reemplazar Y = 1.010 con M/P = 760: 760 = 808 − 20i, i = 2,4 %.",achieved:"Tu nueva tasa es 2,4 %, igual que la pauta.",missing:"La nueva tasa no coincide con 2,4 % o quedó sin responder.",why:"La instrucción (b) mantiene M/P fija. Al subir Y sube la demanda de dinero y la tasa debe subir para que la gente quiera la misma M/P.",action:"Calcula primero 0,8 × 1.010 = 808 y después despeja i con M/P = 760.",example:"Ejemplo: «760 = 808 − 20i, entonces i = 2,4 %».",notes:[{title:"Nota de estudio 5 · Qué se mueve y qué se desplaza",href:"nota-b3-dinero-alumno.html#6-qué-se-mueve-y-qué-se-desplaza"}],gapType:"error_de_calculo"},
+    {id:"C4-MONEY-TARGET",name:"Calcular la M/P que sostiene la tasa objetivo",checkIds:["c4-money-target"],numericField:"answerC",expected:"Debías fijar i = 2 % con Y = 1.010: M/P = 808 − 40 = 768.",achieved:"Tu M/P es 768, igual que la pauta.",missing:"La M/P no coincide con 768 o quedó sin responder.",why:"La instrucción (c) cambia el cierre: el Banco Central fija la tasa y la cantidad de dinero se ajusta a lo que la gente demanda a esa tasa.",action:"Reemplaza i = 2 e Y = 1.010 en 0,8Y − 20i y calcula la M/P.",example:"Ejemplo: «M/P = 0,8 × 1.010 − 20 × 2 = 768».",notes:[{title:"Nota de estudio 5 · Dos maneras de manejar el mismo mercado",href:"nota-b3-dinero-alumno.html#1-dos-maneras-de-manejar-el-mismo-mercado"}],gapType:"error_de_calculo"},
+    {id:"C4-PORTFOLIO-CHAIN",name:"Explicar el ajuste por cartera",checkIds:["c4-bond","c4-price","c4-direction"],source:"testMechanism",patterns:[/bono/i,/precio/i],expected:"Debías explicar que, con más producción y M/P fija, el público vende bonos, el precio de los bonos baja y la tasa sube.",achieved:"Explicaste el ajuste por cartera pasando por los bonos, su precio y el sentido del movimiento.",partial:"Mencionaste parte de la cadena, pero falta unir bonos, precio y sentido del movimiento.",missing:"No explicaste cómo se ajusta la tasa a través del mercado de bonos.",why:"La pregunta pide el ajuste por cartera de (b). La pauta lo explica con la venta de bonos y la relación inversa entre precio y tasa.",action:"Agrega una oración que conecte la mayor demanda de dinero con la venta de bonos, la baja de su precio y la subida de la tasa.",example:"Ejemplo: «Como la gente quiere más dinero, vende bonos; el precio del bono baja y la tasa sube».",notes:[{title:"Nota de estudio 5 · El bono: por qué su precio y su tasa se mueven al revés",href:"nota-b3-dinero-alumno.html#3-el-bono-por-qué-su-precio-y-su-tasa-se-mueven-al-revés"}],gapType:"mecanismo_ausente",errorRules:[{pattern:/precio[^.]*(sube|aumenta)[^.]*tasa[^.]*(sube|aumenta)/i,type:"error_conceptual",detail:"Moviste el precio del bono y la tasa en el mismo sentido. Si el precio sube, la tasa baja.",action:"Corrige el sentido: cuando el precio del bono baja, la tasa sube."}]},
+    {id:"C4-CLOSURE",name:"Declarar el cierre",checkIds:["c4-closure"],source:"testMechanism",patterns:[/(cierre|tasa objetivo|M\/P fij)/i],expected:"Debías declarar que en (a) y (b) el Banco Central fija M/P y la tasa se ajusta, y que en (c) fija la tasa y M/P se ajusta.",achieved:"Declaraste qué fija el Banco Central.",missing:"No declaraste qué fija el Banco Central en cada parte.",why:"Las partes (b) y (c) usan cierres distintos. La pauta exige nombrar cuál variable fija el Banco Central y cuál se ajusta.",action:"Agrega una oración que diga qué fija el Banco Central en (b) y en (c).",example:"Ejemplo: «En (b) el Banco Central fija M/P y se ajusta la tasa; en (c) fija la tasa objetivo y se ajusta M/P».",notes:[{title:"Nota de estudio 5 · Chile usa el cierre B",href:"nota-b3-dinero-alumno.html#2-chile-usa-el-cierre-b"}],gapType:"afirmacion_sin_explicacion"}
+  ],
+  5:[
+    {id:"C5-Y-I4",name:"Calcular Y con i = 4 %",checkIds:["c5-y-i4"],numericField:"answerA",expected:"Debías resolver Y = Z con i = 4 %: Y = 4.000 − 150 × 4 = 3.400.",achieved:"Tu producción con i = 4 % es 3.400, igual que la pauta.",missing:"La producción con i = 4 % no coincide con 3.400 o quedó sin responder.",why:"La instrucción (a) pide el equilibrio del mercado de bienes a una tasa dada. La pauta arma Z y resuelve Y = Z.",action:"Reconstruye Z = 400 + 0,9Y − 15i y despeja Y con i = 4.",example:"Ejemplo: «0,1Y = 400 − 60, entonces Y = 3.400».",notes:[{title:"Nota de estudio 6 · La cruz keynesiana, ahora con la tasa adentro",href:"nota-b4a-inversion-is-alumno.html#3-la-cruz-keynesiana-ahora-con-la-tasa-adentro"}],gapType:"error_de_calculo"},
+    {id:"C5-Y-I8",name:"Calcular Y con i = 8 %",checkIds:["c5-y-i8"],numericField:"answerB",expected:"Debías resolver Y = Z con i = 8 %: Y = 4.000 − 150 × 8 = 2.800.",achieved:"Tu producción con i = 8 % es 2.800, igual que la pauta.",missing:"La producción con i = 8 % no coincide con 2.800 o quedó sin responder.",why:"La instrucción (b) repite la cruz con otra tasa. Los dos equilibrios son dos puntos de la IS.",action:"Repite la cuenta de (a) con i = 8.",example:"Ejemplo: «0,1Y = 400 − 120, entonces Y = 2.800».",notes:[{title:"Nota de estudio 6 · De dos cruces a una curva: la IS",href:"nota-b4a-inversion-is-alumno.html#4-de-dos-cruces-a-una-curva-la-is"}],gapType:"error_de_calculo"},
+    {id:"C5-INTERCEPT",name:"Leer el intercepto de la IS",checkIds:["c5-intercept"],numericField:"answerC",expected:"Debías escribir la IS, Y = 4.000 − 150i, y leer su intercepto: 4.000.",achieved:"Tu intercepto es 4.000, igual que la pauta.",missing:"El intercepto no coincide con 4.000 o quedó sin responder.",why:"La instrucción (c) pide leer la IS: el intercepto es la producción con tasa cero, el gasto autónomo por el multiplicador.",action:"Escribe la IS completa y reemplaza i = 0.",example:"Ejemplo: «Y = 4.000 − 150i; con i = 0, Y = 4.000».",notes:[{title:"Nota de estudio 6 · De dos cruces a una curva: la IS",href:"nota-b4a-inversion-is-alumno.html#4-de-dos-cruces-a-una-curva-la-is"}],gapType:"error_de_calculo"},
+    {id:"C5-SHIFT",name:"Calcular el desplazamiento de la IS",checkIds:["c5-shift"],numericField:"answerD",expected:"Debías multiplicar ΔG = 20 por el multiplicador 1/(1 − 0,75 − 0,15) = 10: la IS se desplaza 200.",achieved:"Tu desplazamiento es 200, igual que la pauta.",missing:"El desplazamiento no coincide con 200 o quedó sin responder.",why:"La instrucción (d) pide cuánto se corre la IS a cada tasa. Es el multiplicador por el cambio del gasto autónomo.",action:"Calcula el multiplicador con c₁ = 0,75 y b₁ = 0,15 y multiplícalo por 20.",example:"Ejemplo: «1/(1 − 0,9) = 10; 10 × 20 = 200».",notes:[{title:"Nota de estudio 6 · Moverse sobre la IS o desplazarla",href:"nota-b4a-inversion-is-alumno.html#1-moverse-sobre-la-is-o-desplazarla"}],gapType:"error_de_calculo"},
+    {id:"C5-INVENTORY",name:"Usar los inventarios en la derivación",checkIds:["c5-inventory","c5-planned"],source:"testMechanism",patterns:[/inventario/i,/(\bZ\b|[Gg]asto planeado)/],expected:"Debías explicar que, al subir la tasa, el gasto planeado Z queda bajo la producción, los inventarios suben más de lo planeado y las empresas producen menos.",achieved:"Explicaste el paso de un equilibrio a otro con el gasto planeado y los inventarios.",partial:"Mencionaste el gasto planeado o los inventarios, pero no los uniste en el ajuste.",missing:"No usaste el gasto planeado ni los inventarios para explicar el nuevo equilibrio.",why:"La IS se deriva desde la cruz keynesiana. La pauta explica cada punto con el ajuste por inventarios del mercado de bienes.",action:"Agrega una oración que compare Z con Y y diga qué pasa con los inventarios.",example:"Ejemplo: «Con más tasa cae la inversión, Z queda bajo Y, los inventarios suben y las empresas producen menos».",notes:[{title:"Nota de estudio 6 · La cruz keynesiana, ahora con la tasa adentro",href:"nota-b4a-inversion-is-alumno.html#3-la-cruz-keynesiana-ahora-con-la-tasa-adentro"}],gapType:"mecanismo_ausente"},
+    {id:"C5-MOVE-SHIFT",name:"Distinguir movimiento de desplazamiento",checkIds:["c5-move-shift"],source:"testMechanism",patterns:[/(movimiento|sobre la IS|a lo largo|desplaz)/i],expected:"Debías decir que un cambio de la tasa es un movimiento a lo largo de la IS y que un cambio de G la desplaza.",achieved:"Distinguiste movimiento sobre la IS de desplazamiento.",missing:"No distinguiste un movimiento sobre la IS de un desplazamiento.",why:"Las partes (a) y (b) cambian la tasa; la parte (d) cambia G. La pauta los lee de forma distinta.",action:"Agrega una oración que clasifique el cambio de tasa y el cambio de G.",example:"Ejemplo: «Subir i mueve la economía a lo largo de la IS; subir G desplaza la IS 200 a la derecha».",notes:[{title:"Nota de estudio 6 · Moverse sobre la IS o desplazarla",href:"nota-b4a-inversion-is-alumno.html#1-moverse-sobre-la-is-o-desplazarla"}],gapType:"afirmacion_sin_explicacion"}
+  ],
+  6:[
+    {id:"C6-Y",name:"Calcular Y* inicial",checkIds:["c6-y"],numericField:"answerA",expected:"Debías igualar IS (Y = 4.000 − 150i) y LM (Y = 3.000 + 100i): Y* = 3.400.",achieved:"Tu Y* es 3.400, igual que la pauta.",missing:"Y* no coincide con 3.400 o quedó sin responder.",why:"La instrucción (a) pide el equilibrio simultáneo. La pauta escribe las dos curvas y las cruza.",action:"Escribe la LM despejando Y de 1.500 = 0,5Y − 50i y cruza con la IS.",example:"Ejemplo: «4.000 − 150i = 3.000 + 100i, entonces i = 4 e Y = 3.400».",notes:[{title:"Nota de estudio 7 · El equilibrio: leerlo en el gráfico antes de calcularlo",href:"nota-b4b-islm-alumno.html#3-el-equilibrio-leerlo-en-el-gráfico-antes-de-calcularlo"}],gapType:"error_de_calculo"},
+    {id:"C6-I",name:"Calcular i* inicial",checkIds:["c6-i"],numericField:"answerB",expected:"Debías despejar la tasa del cruce: 250i = 1.000, i* = 4 %.",achieved:"Tu i* es 4 %, igual que la pauta.",missing:"i* no coincide con 4 % o quedó sin responder.",why:"La instrucción (b) pide la tasa de equilibrio, en por ciento.",action:"Calcula i con todas sus cifras antes de reemplazarla en la IS o en la LM.",example:"Ejemplo: «250i = 1.000, entonces i = 4 %».",notes:[{title:"Nota de estudio 7 · La tasa va en porcentaje",href:"nota-b4b-islm-alumno.html#4-la-tasa-va-en-porcentaje"}],gapType:"error_de_calculo"},
+    {id:"C6-Y-FISCAL",name:"Calcular Y* tras la expansión fiscal",checkIds:["c6-y-fiscal"],numericField:"answerC",expected:"Debías desplazar la IS 200 (Y = 4.200 − 150i) y cruzarla con la misma LM: Y* = 3.480.",achieved:"Tu nuevo Y* es 3.480, igual que la pauta.",missing:"El nuevo Y* no coincide con 3.480 o quedó sin responder.",why:"La instrucción (c) pide el nuevo cruce. La pauta distingue el desplazamiento de la IS (200) del cambio de equilibrio (80).",action:"Escribe la IS nueva con G = 220 y vuelve a cruzarla con la LM.",example:"Ejemplo: «4.200 − 150i = 3.000 + 100i, entonces i = 4,8 e Y = 3.480».",notes:[{title:"Nota de estudio 7 · El equilibrio: leerlo en el gráfico antes de calcularlo",href:"nota-b4b-islm-alumno.html#3-el-equilibrio-leerlo-en-el-gráfico-antes-de-calcularlo"}],gapType:"error_de_calculo"},
+    {id:"C6-I-FISCAL",name:"Calcular i* tras la expansión fiscal",checkIds:["c6-i-fiscal"],numericField:"answerD",expected:"Debías despejar 1.200 = 250i: i* = 4,8 %.",achieved:"Tu nueva i* es 4,8 %, igual que la pauta.",missing:"La nueva i* no coincide con 4,8 % o quedó sin responder.",why:"La instrucción (d) pide la tasa del nuevo equilibrio: es la que frena la inversión.",action:"Calcula i del nuevo cruce sin redondear antes de obtener Y.",example:"Ejemplo: «1.200 = 250i, entonces i = 4,8 %».",notes:[{title:"Nota de estudio 7 · La tasa va en porcentaje",href:"nota-b4b-islm-alumno.html#4-la-tasa-va-en-porcentaje"}],gapType:"error_de_calculo"},
+    {id:"C6-CHAIN",name:"Explicar la cadena del multiplicador IS-LM",checkIds:["c6-money","c6-rate","c6-investment"],source:"testMechanism",patterns:[/(demanda de dinero|bonos)/i,/tasa/i,/inversi/i],expected:"Debías explicar que al subir Y sube la demanda de dinero, la tasa sube y la inversión cae, por eso Y sube 80 y no 200.",achieved:"Explicaste la cadena demanda de dinero → tasa → inversión.",partial:"Mencionaste parte de la cadena, pero falta unir demanda de dinero, tasa e inversión.",missing:"No explicaste por qué Y sube menos que el desplazamiento de la IS.",why:"La pauta compara el multiplicador IS-LM con el keynesiano. La diferencia es la subida de la tasa y su efecto sobre la inversión.",action:"Agrega una oración que vaya de la demanda de dinero a la tasa y de la tasa a la inversión.",example:"Ejemplo: «Al subir Y sube la demanda de dinero; con M/P fija la tasa sube y la inversión cae».",notes:[{title:"Nota de estudio 7 · El mismo problema visto desde dos ventanillas",href:"nota-b4b-islm-alumno.html#1-el-mismo-problema-visto-desde-dos-ventanillas"}],gapType:"relacion_causal_incompleta"},
+    {id:"C6-REGIME",name:"Declarar el régimen de la LM",checkIds:["c6-regime"],source:"testMechanism",patterns:[/(horizontal|pendiente|TPM)/i],expected:"Debías declarar que con M/P fija la LM tiene pendiente positiva y que con tasa fija (TPM) sería horizontal.",achieved:"Declaraste el régimen de la LM.",missing:"No declaraste el régimen de la LM.",why:"El mismo shock da ΔY = 80 o ΔY = 200 según el régimen. La pauta exige decir cuál se usa.",action:"Agrega una oración que diga si la LM tiene pendiente o es horizontal, y por qué.",example:"Ejemplo: «Con M/P fija la LM tiene pendiente positiva; si el Banco Central fijara la TPM sería horizontal».",notes:[{title:"Nota de estudio 7 · Chile fija la tasa: la LM horizontal",href:"nota-b4b-islm-alumno.html#4-chile-fija-la-tasa-la-lm-horizontal"}],gapType:"afirmacion_sin_explicacion"}
+  ],
+  7:[
+    {id:"C7-Y",name:"Calcular la producción final",checkIds:["c7-y"],numericField:"answerA",expected:"Debías desplazar la IS 200 (Y = 1.800 − 50i) y cruzarla con la LM: Y = 1.022,22.",achieved:"Tu producción final es 1.022,22, igual que la pauta.",missing:"La producción final no coincide con 1.022,22 o quedó sin responder.",why:"La instrucción (a) pide el nuevo equilibrio. La pauta desplaza la IS con el multiplicador 10 y la cruza con la misma LM.",action:"Escribe la IS nueva, Y = 1.800 − 50i y cruza con Y = 400 + 40i sin redondear i.",example:"Ejemplo: «90i = 1.400, i = 140/9; Y = 400 + 40 × 140/9 = 1.022,22».",notes:[{title:"Nota de estudio 8 · El día del anuncio",href:"nota-b4c-desequilibrios-alumno.html#1-el-día-del-anuncio"}],gapType:"error_de_calculo"},
+    {id:"C7-I",name:"Calcular la tasa final",checkIds:["c7-i"],numericField:"answerB",expected:"Debías despejar 90i = 1.400: i = 15,56 %.",achieved:"Tu tasa final es 15,56 %, igual que la pauta.",missing:"La tasa final no coincide con 15,56 % o quedó sin responder.",why:"La instrucción (b) pide la tasa del nuevo cruce; su cambio mide el efecto que frena la inversión.",action:"Calcula i = 1.400/90 con dos decimales.",example:"Ejemplo: «i = 1.400/90 = 15,56 %».",notes:[{title:"Nota de estudio 8 · El día del anuncio",href:"nota-b4c-desequilibrios-alumno.html#1-el-día-del-anuncio"}],gapType:"error_de_calculo"},
+    {id:"C7-DELTA-I",name:"Calcular ΔI",checkIds:["c7-di"],numericField:"answerC",expected:"Debías calcular ΔI = b₁·ΔY − b₂·Δi = 8,89 − 11,11 = −2,22.",achieved:"Tu ΔI es −2,22, igual que la pauta.",missing:"ΔI no coincide con −2,22 o quedó sin responder.",why:"La instrucción (c) pide el cambio de la inversión, que junta el acelerador y el efecto de la tasa.",action:"Calcula por separado b₁·ΔY y b₂·Δi y réstalos.",example:"Ejemplo: «0,1 × 88,89 − 5 × 2,222 = −2,22».",notes:[{title:"Nota de estudio 8 · Dos empujones de signo contrario",href:"nota-b4c-desequilibrios-alumno.html#1-dos-empujones-de-signo-contrario"}],gapType:"error_de_calculo"},
+    {id:"C7-ORDER",name:"Declarar el orden de ajuste",checkIds:["c7-order"],source:"testMechanism",patterns:[/primero[^.]*(tasa|\bi\b)/i],expected:"Debías decir que primero se ajusta la tasa, por el mercado de bonos, hasta la LM, y después la producción, por inventarios, a lo largo de la LM.",achieved:"Declaraste que primero se ajusta la tasa.",missing:"No declaraste qué se ajusta primero.",why:"La pregunta pide qué se ajusta primero. La pauta usa las velocidades distintas de bonos e inventarios.",action:"Agrega una oración que empiece con «Primero» y nombre la tasa.",example:"Ejemplo: «Primero sube la tasa por el mercado de bonos; después la producción sube por inventarios a lo largo de la LM».",notes:[{title:"Nota de estudio 8 · Quién reacciona primero y por qué camino",href:"nota-b4c-desequilibrios-alumno.html#3-quién-reacciona-primero-y-por-qué-camino"}],gapType:"afirmacion_sin_explicacion",errorRules:[{pattern:/primero[^.]*(producci[oó]n|\bY\b)[^.]*(se ajusta|sube|cambia)/i,type:"error_conceptual",detail:"Hiciste ajustar primero la producción. La tasa se ajusta en horas; la producción, en semanas.",action:"Cambia el orden: primero la tasa, después la producción."}]},
+    {id:"C7-DECOMP",name:"Descomponer ΔI y decir qué domina",checkIds:["c7-b1","c7-b2","c7-effect"],source:"testMechanism",patterns:[/b\s*_?[₁1]/i,/b\s*_?[₂2]/i,/(acelerador|desplazamiento|crowding)/i],expected:"Debías separar el acelerador (b₁·ΔY = 8,89) del efecto de la tasa (b₂·Δi = 11,11) y concluir que domina el desplazamiento.",achieved:"Descompusiste ΔI con b₁ y b₂ y nombraste el efecto que domina.",partial:"Nombraste parte de la descomposición, pero falta unir b₁, b₂ y el efecto que domina.",missing:"No descompusiste ΔI en acelerador y desplazamiento.",why:"La pregunta pide qué domina. La pauta lo decide comparando los dos términos de ΔI, no por definición.",action:"Agrega una oración con los dos términos de ΔI y el que pesa más.",example:"Ejemplo: «El acelerador b₁·ΔY = 8,89 es menor que b₂·Δi = 11,11: domina el desplazamiento».",notes:[{title:"Nota de estudio 8 · Dos empujones de signo contrario",href:"nota-b4c-desequilibrios-alumno.html#1-dos-empujones-de-signo-contrario"}],gapType:"relacion_causal_incompleta"}
   ]
 };
 
@@ -1144,7 +1590,9 @@ const CLASS_FIELD_RULES={
   testProse:{label:"Respuesta fundada",min:40,help:"Declara tu conclusión y justifícala con los conceptos de la pregunta."},
   bridgeEvidence:{label:"Estado de la cifra",required:true},bridgeClaim:{label:"Alcance de la afirmación",required:true},
   bridgeFlow:{label:"Flujo o stock",required:true},bridgePib:{label:"Criterio del PIB",required:true},bridgePnb:{label:"Criterio del PNB",required:true},
-  answerA:{label:"Respuesta (a)",required:true,kind:"number"},answerB:{label:"Respuesta (b)",required:true,kind:"number"},answerC:{label:"Respuesta (c)",required:true,kind:"number"},
+  answerA:{label:"Respuesta (a)",required:true,kind:"number"},answerB:{label:"Respuesta (b)",required:true,kind:"number"},answerC:{label:"Respuesta (c)",required:true,kind:"number"},answerD:{label:"Respuesta (d)",required:true,kind:"number"},
+  numRevisionA:{label:"Decisión sobre el resultado (a)",required:true},numRevisionB:{label:"Decisión sobre el resultado (b)",required:true},
+  numRevisionC:{label:"Decisión sobre el resultado (c)",required:true},numRevisionD:{label:"Decisión sobre el resultado (d)",required:true},
   testMechanism:{label:"Explicación del mecanismo",min:20,help:"Conecta el shock o cálculo con el proceso económico, no sólo con el resultado."},
   feedbackReflection:{label:"Cambio en el procedimiento",min:15,help:"Nombra una acción concreta que cambiarías al resolver de nuevo."},
   contradiction:{label:"Afirmación que contradice la pauta",min:8,help:"Cita o resume una afirmación concreta de tu respuesta."},
@@ -1197,7 +1645,19 @@ function renderClassJourneyMap(moment="challenge"){
       : ["La Nota 3 introdujo PIB, PNB y PNF; la Nota 4 introdujo índices de precios.","La ficha precisó unidad, período, base y revisión de una serie real.","Calcular crecimiento, deflactor y PNB, y explicar qué significa cada resultado."],
     "3":moment==="practice"
       ? ["Queda registrada antes del laboratorio.","Ecuación, discrepancia y cadena de ajuste por inventarios.","Transferirás el mecanismo a un caso nuevo."]
-      : ["La crónica mostró una bodega que se vacía y la nota construyó el modelo.","La ficha tradujo una noticia a una variable autónoma.","Predecir, simular y explicar el ajuste completo del mercado de bienes."]
+      : ["La crónica mostró una bodega que se vacía y la nota construyó el modelo.","La ficha tradujo una noticia a una variable autónoma.","Predecir, simular y explicar el ajuste completo del mercado de bienes."],
+    "4":moment==="practice"
+      ? ["Queda visible en la comparación y en tu reporte.","Precio del bono y tasa, ajuste por cartera y cierre declarado.","Explicarás la tasa con frase y cuenta."]
+      : ["La crónica mostró quién pone la tasa en Chile y la Nota 5 construyó el mercado de dinero.","La ficha registró la TPM vigente y el cierre que revela.","Calcular la tasa con M/P fija y la M/P con tasa objetivo, y explicar el ajuste por cartera."],
+    "5":moment==="practice"
+      ? ["Queda visible en la comparación y en tu reporte.","Multiplicador, inventarios y movimiento frente a desplazamiento.","Derivarás la IS y sabrás cuánto se desplaza."]
+      : ["La crónica mostró las dos razones para invertir y la Nota 6 derivó la IS.","La ficha tradujo una noticia de inversión a b₀, Y o i.","Resolver dos cruces, escribir la IS y medir su desplazamiento."],
+    "6":moment==="practice"
+      ? ["Queda visible en la comparación y en tu reporte.","Cadena dinero–tasa–inversión y régimen de la LM.","Explicarás por qué Y sube menos que el desplazamiento de la IS."]
+      : ["La crónica mostró un solo problema visto desde dos mercados y la Nota 7 cruzó IS y LM.","La ficha registró la TPM y una noticia fiscal, cada una con su curva.","Resolver el equilibrio IS-LM, aplicar una política fiscal y declarar el régimen."],
+    "7":moment==="practice"
+      ? ["Queda visible en la comparación y en tu reporte.","Orden de ajuste y descomposición de ΔI.","Explicarás qué se mueve primero y qué le pasa a la inversión."]
+      : ["La crónica mostró que la tasa reacciona antes que la bodega y la Nota 8 trazó las rutas.","La ficha juntó la inversión y la TPM sin atribuir causas de más.","Calcular el nuevo equilibrio, descomponer ΔI y decir qué domina."]
   };
   const text=maps[String(activeClass)]||maps["1"];
   const title=moment==="practice"?"Tu mapa: de la respuesta inicial a la revisión":"Cómo se conecta este paso con los anteriores";
@@ -1269,7 +1729,11 @@ function renderChallengeTransition(classId){
       title:"Cómo se conectan los pasos de la Clase 3",
       labels:["La lectura presentó", "La ficha te hizo observar", "Ahora vas a hacer"],
       text:["Identidad, conducta, equilibrio, multiplicador e inventarios. Esto indica exposición, no dominio.", "Un dato o proyección de consumo, inversión o gasto y el supuesto que mantienes fijo.", "Predecir un efecto, resolverlo en el laboratorio y comparar tu predicción con el resultado."]
-    }
+    },
+    "4":{title:"Cómo se conectan los pasos de la Clase 4",labels:["La lectura presentó","La ficha te hizo registrar","Ahora vas a hacer"],text:["Demanda de dinero, bonos y los dos cierres. Esto indica exposición, no dominio.","La TPM vigente y el cierre que revela el anuncio.","Calcular la tasa y la M/P, y explicar el ajuste por cartera con frase y cuenta."]},
+    "5":{title:"Cómo se conectan los pasos de la Clase 5",labels:["La lectura presentó","La ficha te hizo traducir","Ahora vas a hacer"],text:["Inversión con tasa, cruz keynesiana e IS. Esto indica exposición, no dominio.","Una noticia de inversión a b₀, Y o i.","Resolver dos cruces, escribir la IS y medir cuánto se desplaza."]},
+    "6":{title:"Cómo se conectan los pasos de la Clase 6",labels:["La lectura presentó","La ficha te hizo asignar","Ahora vas a hacer"],text:["LM, cruce IS-LM y régimen. Esto indica exposición, no dominio.","Cada noticia a la curva que movería.","Resolver el equilibrio, aplicar una expansión fiscal y declarar el régimen."]},
+    "7":{title:"Cómo se conectan los pasos de la Clase 7",labels:["La lectura presentó","La ficha te hizo contrastar","Ahora vas a hacer"],text:["Excesos fuera de las curvas, orden de ajuste y ΔI. Esto indica exposición, no dominio.","Dos series juntas sin atribuirles una causa de más.","Calcular el nuevo equilibrio, descomponer ΔI y explicar qué se ajusta primero."]}
   };
   const map=maps[String(classId)];if(!map)return "";
   return `<section class="journey-map" aria-label="Conexión entre pasos"><h4>${escapeText(map.title)}</h4><ol class="journey-track">${map.labels.map((label,i)=>`<li><strong>${escapeText(label)}</strong><span>${escapeText(map.text[i])}</span></li>`).join("")}</ol></section>`;
@@ -1297,7 +1761,7 @@ function guidedAnalysis(route,state){
     if(metadata.ok)add("match",metadata.achieved);else if(metadata.status==="parcialmente_logrado")add("missing",`${metadata.achieved} ${metadata.missing}`,"C1-Q-METADATA");else add("missing",metadata.missing,"C1-Q-METADATA");
     if(f.bridgeEvidence!=="projection")add("check","La pregunta previa muestra que todavía conviene separar proyección y observación.","C1-Q-STATUS");
     if(f.bridgeClaim!=="scenario")add("check","La pregunta previa atribuye una causa que el dato no demuestra por sí solo.","C1-Q-CAUSALITY");
-  }else{
+  }else if(activeClass==="2"){
     const numeric=(report.checks||[]).filter(c=>c.numeric);
     if(numeric[0]?.ok)add("match","El crecimiento real calculado coincide con la pauta.");else add("conflict",numeric[0]?.detail||"El crecimiento real no coincide con la pauta.","C2-Q-GROWTH");
     if(numeric[1]?.ok)add("match","El deflactor calculado coincide con la pauta.");else add("conflict",numeric[1]?.detail||"El deflactor no coincide con la pauta.","C2-Q-DEFLATOR");
@@ -1307,10 +1771,19 @@ function guidedAnalysis(route,state){
     if(!/(canasta|consumo|ipc)/i.test(m)||!/(producci|deflactor)/i.test(m))add("missing","Falta contrastar la cobertura del IPC con la del deflactor.","C2-Q-COVERAGE");
     if(!/(pnf|pago.*factor|ingreso.*factor)/i.test(m)||!/(flujo|stock|acumulad)/i.test(m))add("missing","Falta explicar por qué el PNF es un flujo de ingresos y no inversión acumulada.","C2-Q-PNF");
     if(!/(residen|territor)/i.test(m))add("missing","Falta distinguir territorio económico de residencia económica.","C2-Q-BOUNDARY");
+  }else{
+    const config=GUIDED_DIAGNOSTICS[activeClass]||{},m=String(f.testMechanism||""),labels=route.test.answerLabels||{};
+    (report.checks||[]).filter(c=>c.numeric).forEach(c=>{
+      const signal=(config.numericSignals||{})[c.key]||{};
+      if(c.ok)add("match",`${labels[c.key]||c.label}: coincide con la pauta.`);else add("conflict",c.detail||`${labels[c.key]||c.label}: no coincide con la pauta.`,signal.code);
+    });
+    (config.verbalSignals||[]).forEach(signal=>{if(!signal.pattern.test(m))add("missing",signal.text,signal.code)});
   }
   return {items,suggestions};
 }
 function guidedRevisionOptions(){
+  const custom=GUIDED_DIAGNOSTICS[activeClass]&&GUIDED_DIAGNOSTICS[activeClass].revisionOptions;
+  if(custom)return custom;
   if(activeClass==="1")return [["status","Proyección frente a resultado observado"],["metadata","Qué cifra es y de qué fuente proviene"],["causality","Lo que muestra la cifra frente a una causa"],["scope","Qué permite afirmar la fuente"],["unsure","Aún no logro identificarlo"]];
   return [["calculation","Uno de mis cálculos"],["pnf","PIB, PNB y PNF"],["boundary","Territorio frente a residencia"],["index","Índice frente a tasa"],["coverage","Deflactor frente a IPC"],["unsure","Aún no logro identificarlo"]];
 }
@@ -1346,7 +1819,7 @@ function resolveGuidedOrientation(state){
   state.fields.errorEvidence=code
     ? `Orientación confirmada a partir de la respuesta y la comprobación: ${config.orientations[code].label}.`
     : probe==="__none__"?"El alumno indicó que ninguna alternativa representa lo que pensó.":"No hay evidencia suficiente para asignar una categoría; se indicó incertidumbre.";
-  state.guidedDrillId=code?config.orientations[code].drill:(activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE");
+  state.guidedDrillId=code?config.orientations[code].drill:(config.defaultDrill||(activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE"));
   state.guidedPassed=false;
   return code;
 }
@@ -1440,11 +1913,18 @@ const CLASS2_REVISION_ITEMS=[
   {key:"answerB",revised:"revisedB",decision:"revisionDecisionB",label:"Deflactor del PIB",unit:"índice base 2018=100"},
   {key:"answerC",revised:"revisedC",decision:"revisionDecisionC",label:"PNB de 2019",unit:"precios de 2018"}
 ];
+// Ítems de revisión numérica de la clase activa. La Clase 2 conserva sus etiquetas
+// semánticas; las clases 4 a 7 las toman de answerLabels y answerSpecs.
+function numericRevisionItems(){
+  if(activeClass==="2")return CLASS2_REVISION_ITEMS;
+  const test=CLASS_ROUTES[activeClass].test;
+  return Object.keys(test.expected).map(key=>{const letter=key.slice(-1);return {key,revised:`numRevised${letter}`,decision:`numRevision${letter}`,label:(test.answerLabels&&test.answerLabels[key])||`Resultado (${letter.toLowerCase()})`,unit:(test.answerSpecs&&test.answerSpecs[key]&&test.answerSpecs[key].unit)||"valor"}});
+}
 function class2EffectiveRaw(state,item){return state.fields[item.decision]==="reformulate"?state.fields[item.revised]:state.fields[item.key]}
 function class2EffectiveExplanation(state){return state.fields.revisionDecisionExplanation==="reformulate"?String(state.fields.revisedAnswer||"").trim():String(state.fields.testMechanism||"").trim()}
 function renderClass2RevisionEditor(state){
-  const f=state.fields,route=CLASS_ROUTES[2];
-  const results=CLASS2_REVISION_ITEMS.map(item=>{
+  const f=state.fields,route=CLASS_ROUTES[activeClass];
+  const results=numericRevisionItems().map(item=>{
     const initial=String(f[item.key]??""),decision=String(f[item.decision]||"");
     const evaluation=evaluateNumericAnswer(initial,route.test.expected[item.key],route.test.answerSpecs?.[item.key]);
     const interpreted=evaluation.representation==="proportion"?` · interpretado como ${fmt(evaluation.canonical)}%`:"";
@@ -1454,16 +1934,16 @@ function renderClass2RevisionEditor(state){
   return `<section class="revision-source"><strong>Revisa con memoria, un resultado a la vez</strong><p class="field-note">Cada bloque muestra qué respondiste y la unidad esperada. Puedes confirmar o reformular; sólo al reformular se abre un campo nuevo.</p></section><div class="revision-inventory">${results}</div><section class="revision-gap"><h4>Explicación económica</h4><blockquote>${escapeText(f.testMechanism||"—")}</blockquote><label>¿Qué quieres hacer?<select data-class-field="revisionDecisionExplanation" data-revision-toggle>${selectOptions([["confirm","Confirmar mi explicación previa"],["reformulate","Reformular mi explicación"]],explanationDecision)}</select></label>${explanationDecision==="reformulate"?classInput("revisedAnswer","Nueva explicación completa","textarea",'rows="6"'):""}</section>`;
 }
 function validateClass2Revision(state){
-  const required=[...CLASS2_REVISION_ITEMS.map(item=>item.decision),"revisionDecisionExplanation"];
+  const items=numericRevisionItems(),required=[...items.map(item=>item.decision),"revisionDecisionExplanation"];
   if(!validateClassFields(required))return false;
-  for(const item of CLASS2_REVISION_ITEMS){
+  for(const item of items){
     if(state.fields[item.decision]==="reformulate"&&!Number.isFinite(parseStudentNumber(state.fields[item.revised]))){classStatus(`Escribe un nuevo valor válido para ${item.label}.`);document.querySelector(`[data-class-field="${item.revised}"]`)?.focus();return false}
   }
   if(state.fields.revisionDecisionExplanation==="reformulate"&&String(state.fields.revisedAnswer||"").trim().length<8){classStatus("Desarrolla la nueva explicación antes de comprobarla.");document.querySelector('[data-class-field="revisedAnswer"]')?.focus();return false}
   return true;
 }
 function class2RevisionSummary(state){
-  const route=CLASS_ROUTES[2],lines=CLASS2_REVISION_ITEMS.map(item=>{
+  const route=CLASS_ROUTES[activeClass],lines=numericRevisionItems().map(item=>{
     const raw=class2EffectiveRaw(state,item),evaluation=evaluateNumericAnswer(raw,route.test.expected[item.key],route.test.answerSpecs?.[item.key]);
     const shown=evaluation.representation==="proportion"?`${raw} (equivale a ${fmt(evaluation.canonical)}%)`:String(raw||"—");
     return `${item.label} (${item.unit}): ${shown} · ${state.fields[item.decision]==="reformulate"?"reformulada":"confirmada"}`;
@@ -1475,7 +1955,11 @@ function guidedPracticeResult(state){
   const fieldChecks=drill.fields.map(field=>({kind:"concept",criterionId:`guided-${field.id}`,label:field.reportLabel||field.label,ok:String(f[`guided_${field.id}`]||"")===field.answer,status:String(f[`guided_${field.id}`]||"")===field.answer?"logrado":"por_mejorar"}));
   const revised=activeClass==="1"?class1CumulativeAnswer(state):class2EffectiveExplanation(state);
   let revisionChecks=[];
-  if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({kind:"written",criterionId:item.id,label:item.label,ok:item.ok,status:item.status,evidence:item.evidence,expected:item.expected,achieved:item.achieved,missing:item.missing,action:item.action,example:item.example}));else revisionChecks=[
+  if(activeClass==="1")revisionChecks=class1RevisionRequirements(state,true).map(item=>({kind:"written",criterionId:item.id,label:item.label,ok:item.ok,status:item.status,evidence:item.evidence,expected:item.expected,achieved:item.achieved,missing:item.missing,action:item.action,example:item.example}));else if(activeClass!=="2"){
+    const test=CLASS_ROUTES[activeClass].test;
+    revisionChecks=[{label:"confirma o corrige cada resultado numérico con su unidad",ok:numericRevisionItems().every(item=>evaluateNumericAnswer(class2EffectiveRaw(state,item),test.expected[item.key],test.answerSpecs?.[item.key]).ok)},
+      ...(test.verbalChecks||[]).map(check=>({label:check.label,ok:check.pattern.test(revised)}))];
+  }else revisionChecks=[
     {label:"confirma o corrige crecimiento, deflactor y PNB con sus unidades",ok:CLASS2_REVISION_ITEMS.every(item=>evaluateNumericAnswer(class2EffectiveRaw(state,item),CLASS_ROUTES[2].test.expected[item.key],CLASS_ROUTES[2].test.answerSpecs?.[item.key]).ok)},
     {label:"distingue deflactor e IPC",ok:/deflactor/i.test(revised)&&/(ipc|canasta)/i.test(revised)},
     {label:"distingue índice y tasa",ok:/(índice|indice)/i.test(revised)&&/(tasa|inflaci[oó]n)/i.test(revised)},
@@ -1486,7 +1970,7 @@ function guidedPracticeResult(state){
   return {passed:checks.every(x=>x.ok),checks};
 }
 function renderGuidedTraining(route,state){
-  const drill=GUIDED_DRILLS[state.guidedDrillId]||GUIDED_DRILLS[activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE"],f=state.fields;
+  const drill=GUIDED_DRILLS[state.guidedDrillId]||GUIDED_DRILLS[GUIDED_DIAGNOSTICS[activeClass].defaultDrill||(activeClass==="1"?"C1-DRILL-EVIDENCE":"C2-DRILL-COVERAGE")],f=state.fields;
   const code=String(f.errorCode||""),orientation=code&&GUIDED_DIAGNOSTICS[activeClass].orientations[code];
   const result=guidedPracticeResult(state),status=state.guidedChecked
     ? `<div class="notice ${result.passed?"ok":"warn"}" id="guidedPracticeStatus"><strong>${result.passed?(activeClass==="1"?"Comprobaciones guiadas cumplidas.":"Criterio cumplido."):(activeClass==="1"?"Tu respuesta inicial y tus ajustes todavía tienen elementos pendientes.":"La práctica todavía tiene elementos pendientes.")}</strong><ul class="criterion-list">${result.checks.map(x=>`<li class="${x.ok?"ok":"pending"}">${x.status==="parcialmente_logrado"?"Parcialmente logrado":x.ok?"Cumplido":"Pendiente"}: ${escapeText(x.label)}${x.status==="parcialmente_logrado"&&x.missing?` ${escapeText(x.missing)}`:""}</li>`).join("")}</ul>${activeClass==="1"&&result.passed?`<p class="field-note">Esto confirma las decisiones objetivas y la presencia de los elementos pedidos. No reemplaza la lectura docente de la calidad del razonamiento escrito.</p>`:""}</div>`:"";
@@ -1494,10 +1978,19 @@ function renderGuidedTraining(route,state){
     ${renderClassJourneyMap("practice")}
     <div class="loop-fact"><strong>${orientation?"Orientación de trabajo":"Sin diagnóstico forzado"}</strong><p>${orientation?escapeText(orientation.label):"No se registró una categoría de error. La práctica comprueba los conceptos fundamentales y permite avanzar sin inventar un diagnóstico."}</p></div>
     <div class="training-ticket"><strong>${escapeText(drill.title)}</strong><p>${escapeText(drill.prompt)}</p>${drill.fields.map(field=>`<label>${escapeText(field.label)}<select data-class-field="guided_${field.id}">${selectOptions(field.options,String(f[`guided_${field.id}`]||""))}</select></label>`).join("")}<p class="field-note"><strong>Criterio observable:</strong> ${escapeText(drill.criterion)}</p></div>
-    ${activeClass==="2"?renderClass2RevisionEditor(state):renderClass1RevisionEditor(state)}
-    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Descargar mi reporte (práctica pendiente)</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Descargar mi reporte</button>`:""}<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div>
-    <div class="notice"><strong>Reporte y continuidad son archivos distintos</strong><p>El reporte HTML es para leer, guardar, compartir o imprimir como PDF. El PDF y el HTML no contienen el registro estructurado y no se pueden importar.</p><p>Para comenzar la clase siguiente, descarga además el archivo JSON.</p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar archivo para continuar (.json)</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;
+    ${activeClass==="1"?renderClass1RevisionEditor(state):renderClass2RevisionEditor(state)}
+    ${status}<div class="actions"><button class="btn" type="button" data-class-action="guidedCheck">${activeClass==="1"?"Comprobar respuesta inicial + ajustes":"Comprobar mi nueva respuesta"}</button><button class="btn secondary" type="button" data-class-action="exportPending">Descargar mi reporte (práctica pendiente)</button>${state.guidedPassed?`<button class="btn success" type="button" data-class-action="export">Descargar mi reporte</button>`:""}${renderLabActions(route)}</div>
+    <div class="notice"><strong>Reporte y continuidad son archivos distintos</strong><p>El reporte HTML es para leer, guardar, compartir o imprimir como PDF. El PDF y el HTML no contienen el registro estructurado y no se pueden importar.</p><p>${classImportsNext()?"Para comenzar la clase siguiente, descarga además el archivo JSON.":"Descarga además el archivo JSON si quieres conservar el registro estructurado de esta sesión; en esta versión todavía no se importa al comenzar la clase siguiente."}</p><button class="btn secondary" type="button" data-class-action="exportJson">Descargar archivo para continuar (.json)</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;
 }
+// Botón del laboratorio interno (lab) y enlace a la capa superior (externalLab).
+// El enlace externo no importa resultados: sólo abre la pestaña del simulador.
+function renderLabActions(route){
+  const internal=route.lab?`<button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button>`:"";
+  const external=route.externalLab?`<a class="btn secondary" href="${escapeText(route.externalLab.url)}" target="_blank" rel="noopener">${escapeText(route.externalLab.label)} ↗<span class="sr-only"> (abre en una pestaña nueva)</span></a>`:"";
+  return internal+external;
+}
+// Sólo las fichas de las Clases 1 y 2 se importan al comenzar la clase siguiente.
+function classImportsNext(){return activeClass==="1"||activeClass==="2"}
 function downloadTextFile(textValue,mime,filename){
   const blob=new Blob([textValue],{type:mime}),url=URL.createObjectURL(blob),a=document.createElement("a");
   a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),500);
@@ -1527,14 +2020,14 @@ function guidedStudentReport(state,closure){
   const route=CLASS_ROUTES[activeClass],payload=guidedPayload(state,closure),f=state.fields,probe=GUIDED_DIAGNOSTICS[activeClass].probe.options.find(([v])=>v===f.diagnosticProbe),drill=GUIDED_DRILLS[state.guidedDrillId],result=guidedPracticeResult(state);
   const checks=result.checks.map(x=>`<li><strong>${x.ok?"Cumplido":"Pendiente"}:</strong> ${escapeText(x.label)}</li>`).join("");
   const orientation=payload.diagnosis.label||"No se asignó una categoría: el sistema conservó la incertidumbre y propuso una práctica fundamental.";
-  const revised=activeClass==="2"?class2RevisionSummary(state):class1CumulativeAnswer(state);
+  const revised=activeClass==="1"?class1CumulativeAnswer(state):class2RevisionSummary(state);
   const class1BaseNeeds=activeClass==="1"?class1RevisionRequirements(state,false).filter(item=>!item.ok):[];
   const class1Additions=activeClass==="1"?class1RevisionAdditions(state):[];
   const revisionSection=activeClass==="1"
     ? `<h2>8. Mi respuesta después de los ajustes</h2><div class="box"><strong>Respuesta inicial conservada:</strong>\n${escapeText(class1OriginalAnswer(state))}\n\n<strong>Ajustes añadidos:</strong>\n${class1Additions.length?class1Additions.map(item=>`${escapeText(item.label)}: ${escapeText(item.text)}`).join("\n"):"No fue necesario volver a escribir: se mantuvo la respuesta inicial."}\n\n<strong>Respuesta inicial y ajustes leídos en conjunto:</strong>\n${escapeText(revised)}</div>${class1BaseNeeds.length?`<p><strong>Lecturas específicas usadas para completar:</strong></p><ul>${class1BaseNeeds.map(item=>`<li><a href="${PUBLIC_NOTES_BASE+escapeText(item.href)}">${escapeText(item.reading)}</a> — ${escapeText(item.question)}</li>`).join("")}</ul>`:`<p>La respuesta inicial ya contenía las piezas conceptuales solicitadas; la práctica comprobó su reconocimiento sin exigir una copia.</p>`}`
     : `<h2>8. Mi respuesta revisada</h2><div class="box"><strong>Respuesta previa, decisión y resultado final</strong>\n${escapeText(revised)}</div>`;
   const sections=[
-    `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a resultado observado; datos que identifican una cifra —qué mide, cuánto, cuándo, estado y fuente—; diferencia entre describir un escenario y explicar una causa":"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB"}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
+    `<h2>Mapa de este aprendizaje</h2><div class="box"><strong>De dónde vengo:</strong> ${escapeText(learnerAnswer(route))}\n\n<strong>Qué ideas trabajé:</strong> ${activeClass==="1"?"proyección frente a resultado observado; datos que identifican una cifra —qué mide, cuánto, cuándo, estado y fuente—; diferencia entre describir un escenario y explicar una causa":(GUIDED_DIAGNOSTICS[activeClass].ideas||"crecimiento y deflactor; flujo frente a stock; territorio frente a residencia; identidad PIB–PNF–PNB")}.\n\n<strong>A dónde llegué:</strong> ${escapeText(revised)}</div>`,
     `<h2>1. Pregunta trabajada</h2><div class="box">${escapeText(route.test.prompt)}</div>`,
     `<h2>2. Mi respuesta inicial</h2><div class="box">${escapeText(learnerAnswer(route))}</div>`,
     `<h2>3. Sobre mi respuesta inicial: detalle por aspecto</h2>${renderPedagogicalFeedback(payload.explanatory_feedback)}`,
@@ -1628,13 +2121,22 @@ function renderClassSource(source){
   const newTabHint=item.newTab?` <span class="sr-only">(abre en una pestaña nueva)</span>`:"";
   return `<li><a href="${escapeText(url)}"${target}>${label}${newTabHint}</a>${location}</li>`;
 }
-function renderCourseHorizon(){
-  const stops=[
+const COURSE_SEGMENTS=[
+  {label:"tramo inicial",range:"Clases 1–3",stops:[
     {id:"1",title:"Leer evidencia",text:"Agregados, fuentes y límites de una cifra."},
     {id:"2",title:"Medir la economía",text:"Actividad, ingreso, precios e índices."},
     {id:"3",title:"Explicar el ajuste",text:"Conducta, equilibrio, inventarios y multiplicador."}
-  ];
-  return `<section class="course-horizon" aria-label="Ubicación dentro del tramo inicial"><strong>Tu ubicación dentro del tramo inicial: Clases 1–3</strong><div class="horizon-track">${stops.map(stop=>{const current=stop.id===String(activeClass);return `<div class="horizon-stop ${current?"current":""}"${current?' aria-current="step"':""}>${current?'<span class="sr-only">Ubicación actual: </span>':""}<strong>Clase ${stop.id} · ${escapeText(stop.title)}</strong><span>${escapeText(stop.text)}</span></div>`}).join("")}</div></section>`;
+  ]},
+  {label:"tramo de dinero e IS-LM",range:"Clases 4–7",stops:[
+    {id:"4",title:"Explicar la tasa",text:"Dinero, bonos y el precio de la liquidez."},
+    {id:"5",title:"Construir la IS",text:"La tasa entra al mercado de bienes."},
+    {id:"6",title:"Cruzar los mercados",text:"Bienes y dinero se determinan a la vez."},
+    {id:"7",title:"Seguir el ajuste",text:"Qué se mueve primero y qué le pasa a la inversión."}
+  ]}
+];
+function renderCourseHorizon(){
+  const segment=COURSE_SEGMENTS.find(item=>item.stops.some(stop=>stop.id===String(activeClass)))||COURSE_SEGMENTS[0],stops=segment.stops;
+  return `<section class="course-horizon" aria-label="Ubicación dentro del ${segment.label}"><strong>Tu ubicación dentro del ${segment.label}: ${segment.range}</strong><div class="horizon-track">${stops.map(stop=>{const current=stop.id===String(activeClass);return `<div class="horizon-stop ${current?"current":""}"${current?' aria-current="step"':""}>${current?'<span class="sr-only">Ubicación actual: </span>':""}<strong>Clase ${stop.id} · ${escapeText(stop.title)}</strong><span>${escapeText(stop.text)}</span></div>`}).join("")}</div></section>`;
 }
 function renderPreparationGroup(group){
   return `<section class="prep-group ${group.required?"required":"optional"}"><span class="prep-order">${escapeText(group.order)}</span><h5>${escapeText(group.title)}</h5><p class="prep-purpose">${escapeText(group.purpose)}</p><ul>${(group.items||[]).map(renderClassSource).join("")}</ul></section>`;
@@ -1643,34 +2145,38 @@ function renderGlobalEditorialMap(){
   const host=document.getElementById("globalEditorialMap");
   if(!host)return;
   const stageNames=["1 · Enganche","2 · Teoría","3 · Operación","4 · Desafío"];
-  const classLabels={1:"Leer evidencia",2:"Medir la economía",3:"Explicar el ajuste"};
+  const classLabels={1:"Leer evidencia",2:"Medir la economía",3:"Explicar el ajuste",4:"Explicar la tasa",5:"Construir la IS",6:"Cruzar los mercados",7:"Seguir el ajuste"};
   const challengeLabels={
     1:"Auditar una proyección y limitar lo que permite afirmar.",
     2:"Calcular e interpretar PIB, PNB, PNF, deflactor e IPC.",
-    3:"Reconstruir equilibrio, multiplicador y ajuste por inventarios."
+    3:"Reconstruir equilibrio, multiplicador y ajuste por inventarios.",
+    4:"Tasa con M/P fijo y M/P con tasa objetivo.",
+    5:"Dos cruces, una IS y su desplazamiento.",
+    6:"Equilibrio, cierre y política fiscal.",
+    7:"Cuadrante, ruta y signo de ΔI."
   };
   const territories=[
-    {id:"evidence",title:"Entrada · Leer evidencia",text:"Fuentes, agregados y límites de una cifra.",classId:"1"},
-    {id:"measurement",title:"1 · Medición",text:"PIB, PNB, IPC, deflactor y crecimiento.",classId:"2"},
-    {id:"goods",title:"2 · Bienes",text:"Gasto, inventarios y multiplicador.",classId:"3"},
-    {id:"money",title:"3 · Dinero",text:"Bonos, tasa y equilibrio monetario."},
-    {id:"islm",title:"4 · IS–LM",text:"Equilibrio simultáneo y trayectoria."},
+    {id:"evidence",title:"Entrada · Leer evidencia",text:"Fuentes, agregados y límites de una cifra.",classIds:["1"]},
+    {id:"measurement",title:"1 · Medición",text:"PIB, PNB, IPC, deflactor y crecimiento.",classIds:["2"]},
+    {id:"goods",title:"2 · Bienes",text:"Gasto, inventarios y multiplicador.",classIds:["3"]},
+    {id:"money",title:"3 · Dinero",text:"Bonos, tasa y equilibrio monetario.",classIds:["4"]},
+    {id:"islm",title:"4 · IS–LM",text:"Equilibrio simultáneo y trayectoria.",classIds:["5","6","7"]},
     {id:"open",title:"5 · Economía abierta",text:"Tipo de cambio, sector externo y régimen."},
     {id:"oada",title:"6 · Trabajo y OA–DA",text:"Empleo, precios, producto potencial y horizontes."}
   ];
-  const currentTerritory={1:"evidence",2:"measurement",3:"goods"}[activeClass];
+  const currentTerritory=(territories.find(place=>(place.classIds||[]).includes(String(activeClass)))||{}).id;
   const worldStops=territories.map(place=>{
-    const current=place.id===currentTerritory,available=Boolean(place.classId);
+    const current=place.id===currentTerritory,available=Boolean(place.classIds&&place.classIds.length);
     const status=current?"Usted está aquí":available?"Tramo disponible":"Más adelante";
     return `<li class="world-stop ${current?"current":available?"available":"future"}"${current?' aria-current="step"':""}><span class="world-status">${status}</span><strong>${escapeText(place.title)}</strong><p>${escapeText(place.text)}</p></li>`;
   }).join("");
-  const rows=[`<div class="editorial-map-row" role="row"><div class="editorial-map-cell header" role="columnheader"><strong>Clase</strong></div>${stageNames.map(name=>`<div class="editorial-map-cell header" role="columnheader"><strong>${escapeText(name)}</strong></div>`).join("")}</div>`];
-  Object.entries(CLASS_ROUTES).forEach(([id,route])=>{
-    const current=id===String(activeClass);
+  const header=`<div class="editorial-map-row" role="row"><div class="editorial-map-cell header" role="columnheader"><strong>Clase</strong></div>${stageNames.map(name=>`<div class="editorial-map-cell header" role="columnheader"><strong>${escapeText(name)}</strong></div>`).join("")}</div>`;
+  const rowsFor=ids=>[header,...ids.map(id=>{
+    const route=CLASS_ROUTES[id],current=id===String(activeClass);
     const required=route.preparation.filter(group=>group.required).map(group=>`<div class="editorial-map-cell" role="cell"><strong>${escapeText(group.title)}</strong><span>${escapeText(group.purpose)}</span></div>`).join("");
-    rows.push(`<div class="editorial-map-row ${current?"current":""}" role="row"><div class="editorial-map-cell class-label" role="rowheader"${current?' aria-current="step"':""}>${current?'<span class="world-status">Usted está aquí</span>':""}<strong>Clase ${id}</strong><span>${escapeText(classLabels[id])}</span></div>${required}<div class="editorial-map-cell challenge" role="cell"><strong>Pregunta + práctica</strong><span>${escapeText(challengeLabels[id])}</span></div></div>`);
-  });
-  host.innerHTML=`<div class="editorial-map-head"><div><h3 id="globalEditorialMapTitle">Mapamundi de Macro 1: el curso completo</h3><p>Este mapa muestra el horizonte curricular, no el número exacto de clases: cada territorio puede abarcar varias sesiones. El detalle disponible hoy cubre únicamente las Clases 1–3.</p></div><span class="class-source">entrada + 6 territorios</span></div><section class="world-map" aria-labelledby="worldMapTitle"><div class="world-map-head"><div><h4 id="worldMapTitle">De leer una cifra a explicar la economía</h4><p>La ubicación cambia cuando eliges una clase del tramo disponible.</p></div></div><ol class="world-track">${worldStops}</ol></section><div class="detail-map-head"><div><h4>Vista ampliada del tramo inicial disponible</h4><p>Clases 1–3 · todas repiten cuatro estaciones editoriales. Esta tabla no representa el final del curso.</p></div><span class="class-source">detalle, no curso completo</span></div><div class="editorial-map-grid" role="table" aria-label="Arquitectura editorial del tramo inicial, clases 1 a 3">${rows.join("")}</div><p class="editorial-map-caption"><strong>La bibliografía y los bancos de preguntas quedan fuera de esta secuencia:</strong> son consulta o profundización, no una cuarta lectura obligatoria antes de comenzar.</p>`;
+    return `<div class="editorial-map-row ${current?"current":""}" role="row"><div class="editorial-map-cell class-label" role="rowheader"${current?' aria-current="step"':""}>${current?'<span class="world-status">Usted está aquí</span>':""}<strong>Clase ${id}</strong><span>${escapeText(classLabels[id])}</span></div>${required}<div class="editorial-map-cell challenge" role="cell"><strong>Pregunta + práctica</strong><span>${escapeText(challengeLabels[id])}</span></div></div>`;
+  })].join("");
+  host.innerHTML=`<div class="editorial-map-head"><div><h3 id="globalEditorialMapTitle">Mapamundi de Macro 1: el curso completo</h3><p>Este mapa muestra el horizonte curricular, no el número exacto de clases: cada territorio puede abarcar varias sesiones. El detalle disponible hoy cubre las Clases 1–7.</p></div><span class="class-source">entrada + 6 territorios</span></div><section class="world-map" aria-labelledby="worldMapTitle"><div class="world-map-head"><div><h4 id="worldMapTitle">De leer una cifra a explicar la economía</h4><p>La ubicación cambia cuando eliges una clase del tramo disponible.</p></div></div><ol class="world-track">${worldStops}</ol></section><div class="detail-map-head"><div><h4>Vista ampliada del tramo inicial disponible</h4><p>Clases 1–3 · todas repiten cuatro estaciones editoriales. Esta tabla no representa el final del curso.</p></div><span class="class-source">detalle, no curso completo</span></div><div class="editorial-map-grid" role="table" aria-label="Arquitectura editorial del tramo inicial, clases 1 a 3">${rowsFor(["1","2","3"])}</div><div class="detail-map-head"><div><h4>Vista ampliada del tramo 4–7</h4><p>Clases 4–7 · dinero e IS-LM, con las mismas cuatro estaciones editoriales.</p></div><span class="class-source">detalle, no curso completo</span></div><div class="editorial-map-grid" role="table" aria-label="Arquitectura editorial del tramo 4–7, clases 4 a 7">${rowsFor(["4","5","6","7"])}</div><p class="editorial-map-caption"><strong>La bibliografía y los bancos de preguntas quedan fuera de esta secuencia:</strong> son consulta o profundización, no una cuarta lectura obligatoria antes de comenzar.</p>`;
 }
 function renderClassOverview(){
   const route=CLASS_ROUTES[activeClass];
@@ -1742,7 +2248,7 @@ function renderClassWorkbench(moveFocus=false){
     html+=`<h3>Identificación del error dominante</h3><p>Selecciona sólo el error que más explica la diferencia entre tu respuesta y la pauta. Un diagnóstico específico produce un mejor entrenamiento.</p><label>Código de error<select data-class-field="errorCode"><option value="">— Elige uno —</option>${route.errors.map(([code,label])=>`<option value="${code}" ${classField("errorCode")===code?"selected":""}>${code} · ${escapeText(label)}</option>`).join("")}</select></label>${classInput("errorEvidence","¿Dónde se ve ese error en tu respuesta?","textarea",'rows="3"')}<div class="actions"><button class="btn" type="button" data-class-action="error">Diseñar entrenamiento</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;}
   }else{
     if(loop){html+=renderLoopTraining(route,state)}else if(guidedMode()){html+=renderGuidedTraining(route,state)}else{
-    html+=`<h3>Plan de entrenamiento: acción, umbral y nueva evidencia</h3><div class="training-ticket"><strong>Error elegido:</strong> ${escapeText(classField("errorCode")||"aún no registrado")}<label>Microentrenamiento<select data-class-field="drill"><option value="">— Elige una rutina —</option>${route.drills.map(x=>`<option value="${escapeText(x)}" ${classField("drill")===x?"selected":""}>${escapeText(x)}</option>`).join("")}</select></label>${classInput("successCriterion","Criterio observable de éxito")}${classInput("trainingPlan","Cuándo y cómo lo practicarás","textarea",'rows="3"')}</div><div class="actions"><button class="btn success" type="button" data-class-action="export">Cerrar rutina y descargar ficha JSON</button><button class="btn secondary" type="button" data-open-lab="${route.lab}">Practicar en el laboratorio asociado</button></div><div class="status" id="classActionStatus" aria-live="polite"></div>`;}
+    html+=`<h3>Plan de entrenamiento: acción, umbral y nueva evidencia</h3><div class="training-ticket"><strong>Error elegido:</strong> ${escapeText(classField("errorCode")||"aún no registrado")}<label>Microentrenamiento<select data-class-field="drill"><option value="">— Elige una rutina —</option>${route.drills.map(x=>`<option value="${escapeText(x)}" ${classField("drill")===x?"selected":""}>${escapeText(x)}</option>`).join("")}</select></label>${classInput("successCriterion","Criterio observable de éxito")}${classInput("trainingPlan","Cuándo y cómo lo practicarás","textarea",'rows="3"')}</div><div class="actions"><button class="btn success" type="button" data-class-action="export">Cerrar rutina y descargar ficha JSON</button>${renderLabActions(route)}</div><div class="status" id="classActionStatus" aria-live="polite"></div>`;}
   }
   host.innerHTML=html;
   host.querySelectorAll("[data-class-field]").forEach(el=>{
@@ -1808,6 +2314,18 @@ function scoreClassTest(){
     const ids=["c1-projection","c1-observed","c1-causality","c1-metadata"],criteria=["C1-EVIDENCE-STATUS","C1-EVIDENCE-TIME","C1-EVIDENCE-CAUSALITY","C1-EVIDENCE-METADATA"];
     const prose=String(fields.testProse||""),conflicts=[null,null,/(?:la cifra|el dato|la proyecci[oó]n)\s+(?:demuestra|prueba|confirma)\s+que\s+(?:el\s+)?(?:gobierno|una?\s+pol[ií]tica|una?\s+medida)|(?:el\s+)?gobierno\s+caus[oó]/i,null];
     test.keywords.forEach((pattern,i)=>checks.push({id:ids[i],criterionId:criteria[i],ok:pattern.test(prose)&&!(conflicts[i]&&conflicts[i].test(prose)),numeric:false,label:["distingue proyección de observación","aclara que el resultado todavía no está observado","limita la afirmación causal","identifica información de la cifra o su fuente"][i]}));
+  }else if(test.numericChecks){
+    // Clases 4 a 7: identificadores y criterios declarados en los datos de la pregunta.
+    Object.keys(test.expected).forEach((key,index)=>{
+      const letter=String.fromCharCode(97+index),declared=test.numericChecks[index];
+      const written=fields[key],evaluation=evaluateNumericAnswer(written,test.expected[key],test.answerSpecs?.[key]);
+      const value=evaluation.value,expected=test.expected[key],ok=evaluation.ok;
+      checks.push({id:declared.id,criterionId:declared.criterionId,ok,numeric:true,key,expected,written:String(written??""),
+        label:`cálculo (${letter}) cercano a ${fmt(expected)}`,
+        detail:ok?`Cálculo (${letter}): escribiste ${fmt(value)} y la pauta da ${fmt(expected)}.`:`Cálculo (${letter}): escribiste ${String(written??"").trim()===""?"nada":fmt(Number.isFinite(value)?value:0)} y la pauta da ${fmt(expected)}. La diferencia no es de redacción: es de cifra.`});
+    });
+    const mechanism=String(fields.testMechanism||"");
+    (test.verbalChecks||[]).forEach(check=>checks.push({id:check.id,criterionId:check.criterionId,ok:check.pattern.test(mechanism),numeric:false,label:check.label}));
   }else{
     // P1.1 · Los dos primeros son cálculos verificables, no coincidencias verbales.
     // Se marcan como tales para que se muestren antes y con prioridad sobre la cobertura.
@@ -1923,7 +2441,7 @@ function handleClassAction(action){
   if(action==="exportJson"&&guidedMode()){
     const closure=state.completed?"rutina_completada":"sesion_con_practica_pendiente";
     downloadTextFile(JSON.stringify(guidedPayload(state,closure),null,2),"application/json",`MacroLab_Clase${activeClass}_continuidad.json`);
-    classStatus(`Archivo JSON descargado. Cárgalo al comenzar la Clase ${Number(activeClass)+1}; el reporte HTML o PDF es únicamente para lectura.`,"ok");return;
+    classStatus(classImportsNext()?`Archivo JSON descargado. Cárgalo al comenzar la Clase ${Number(activeClass)+1}; el reporte HTML o PDF es únicamente para lectura.`:"Archivo JSON descargado. Guárdalo como registro de la sesión; el reporte HTML o PDF es únicamente para lectura.","ok");return;
   }
   if(action==="export"||action==="exportPending"){
     if(guidedMode()){
@@ -2606,8 +3124,10 @@ function computeDiscrepancy(entry){
   if(kind==="direction")tail=`La dirección predicha (${DIR_PRESENT[pred.direction]||"sin registrar"}) no coincide con la obtenida (${DIR_PRESENT[obsDir]||"indeterminada"}): Y pasa de ${fmt(baseY,0)} a ${fmt(obsY,0)}.`;
   else if(kind==="magnitude")tail=`La dirección era correcta; la magnitud se desvía ${fmt(relative*100,1)}% de la obtenida (Y pasa de ${fmt(baseY,0)} a ${fmt(obsY,0)}).`;
   else if(kind==="closure")tail=`${app.closure_checked?"Verificaste el cierre con cifras que no cuadran":"No verificaste I = S privado + (T − G) en el laboratorio"}. Con tus parámetros: I = ${fmt(closureI,0)} y S privado + (T − G) = ${fmt(closureValue,0)}.`;
-  else if(kind==="mechanism")tail="La dirección y la magnitud concuerdan y el cierre está verificado. Tu explicación no menciona el ajuste por inventarios ni la secuencia producción → ingreso → consumo.";
-  else tail=`La dirección y la magnitud concuerdan, verificaste I = S privado + (T − G) y tu explicación nombra el mecanismo. Y pasa de ${fmt(baseY,0)} a ${fmt(obsY,0)}.`;
+  // Sólo se afirma concordancia en las dimensiones registradas: sin magnitud predicha, no se compara magnitud.
+  const agreed=predMag!==null?"La dirección y la magnitud concuerdan":"La dirección concuerda (no registraste magnitud, así que no se compara)";
+  if(kind==="mechanism")tail=`${agreed} y el cierre está verificado. Tu explicación no menciona el ajuste por inventarios ni la secuencia producción → ingreso → consumo.`;
+  else if(kind==="none")tail=`${agreed}, verificaste I = S privado + (T − G) y tu explicación nombra el mecanismo. Y pasa de ${fmt(baseY,0)} a ${fmt(obsY,0)}.`;
 
   return {kind,predicted:predMag,observed:Number.isFinite(observed)?observed:null,baseline_Y:Number.isFinite(baseY)?baseY:null,observed_Y:Number.isFinite(obsY)?obsY:null,relative_gap:relative,detected,statement:`${head} ${tail}`};
 }
@@ -3079,7 +3599,7 @@ function renderLoopTraining(route,state){
        <div class="actions"><button class="btn secondary" type="button" data-loop-action="drill">Comprobar el ejercicio</button></div>
        <p class="status" id="drillResult">${entry.training.passed===null?"":escapeText(entry.training.passed?"Criterio cumplido.":"Criterio no cumplido todavía.")}</p>
        ${drill.note&&entry.training.passed!==null?`<p class="field-note">${escapeText(drill.note)}</p>`:""}`
-    : `<strong>Sin práctica asignada automáticamente</strong><p class="field-note">Rechazaste los códigos propuestos, así que el sistema no elige por ti. Escoge la práctica que consideres pertinente.</p>
+    : `<strong>Sin práctica asignada automáticamente</strong><p class="field-note">${entry.discrepancy.kind==="none"?"No hubo discrepancia que diagnosticar: registraste una consolidación. Si quieres reforzar, escoge una práctica.":entry.diagnosis.learner_disagreed?"Rechazaste los códigos propuestos, así que el sistema no elige por ti. Escoge la práctica que consideres pertinente.":"No se propusieron códigos para esta discrepancia, así que el sistema no elige por ti. Escoge la práctica que consideres pertinente."}</p>
        <label>Práctica<select data-class-field="drillPick"><option value="">— Elige —</option>${Object.entries(BIE_DRILLS).map(([id,dr])=>`<option value="${id}" ${f.drillPick===id?"selected":""}>${id} · ${escapeText(dr.title)}</option>`).join("")}</select></label>
        <div class="actions"><button class="btn secondary" type="button" data-loop-action="pickdrill">Asignar esta práctica</button></div>`;
 

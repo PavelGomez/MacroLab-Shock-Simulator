@@ -292,6 +292,9 @@ const scenarioState = {};
 /* ========== UTILITY FUNCTIONS ========== */
 function safeDiv(a,b){return a/(Math.abs(b)<EPS?(b<0?-EPS:EPS):b)}
 function round(v,d=2){return Number.isFinite(v)?Number(v).toFixed(d):'—'}
+// Solo presentación, formato es-CL (GOB-CONV-ED): coma decimal, punto de miles y signo −.
+// No se usa en cálculos ni en exportaciones; round() sigue intacto para el resto del sitio.
+function roundCL(v,d=2){return Number.isFinite(v)?Number(v).toLocaleString('es-CL',{minimumFractionDigits:d,maximumFractionDigits:d,useGrouping:true}).replace(/^-/,'−'):'—'}
 function roundNum(v,d=2){return Number.isFinite(v)?Number(v.toFixed(d)):0}
 function clampPositive(v){return Math.max(0,v)}
 function signWord(d,p,n,neutral='se mantiene aproximadamente estable'){return Math.abs(d)<0.03?neutral:d>0?p:n}
@@ -808,15 +811,15 @@ function renderISLM(){
     pointDataset('Eq. inicial',initial.Y,initial.i,{radius:5,bg:'#0f2740',border:'#0f2740',borderWidth:1}),
     pointDataset('Eq. final',final_.Y,final_.i,{radius:8,bg:'rgba(245,158,11,0.18)',border:'#f59e0b',borderWidth:3})
   ]},options:chartOptions('Producción (Y)','Tasa de interés (i)',xr,yr)});
-  setText('islm-y0',round(initial.Y));setText('islm-y1',round(final_.Y));
-  setText('islm-i0',round(initial.i));setText('islm-i1',round(final_.i));
-  setText('islm-inv0',round(initial.investment));setText('islm-inv1',round(final_.investment));
-  setText('islm-equilibrium',`Equilibrio inicial: (Y=${round(initial.Y)}, i=${round(initial.i)}). Final: (Y=${round(final_.Y)}, i=${round(final_.i)}).`);
+  setText('islm-y0',roundCL(initial.Y));setText('islm-y1',roundCL(final_.Y));
+  setText('islm-i0',roundCL(initial.i));setText('islm-i1',roundCL(final_.i));
+  setText('islm-inv0',roundCL(initial.investment));setText('islm-inv1',roundCL(final_.investment));
+  setText('islm-equilibrium',`Equilibrio inicial: (Y = ${roundCL(initial.Y)}; i = ${roundCL(initial.i)} %). Final: (Y = ${roundCL(final_.Y)}; i = ${roundCL(final_.i)} %).`);
   const dY=final_.Y-initial.Y;const di=final_.i-initial.i;const dI=final_.investment-initial.investment;
   setText('islm-explanation',buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI));
   const crowding=Math.max(0,fin.b2*Math.max(0,di));const accelerator=Math.max(0,fin.b1*Math.max(0,dY));
   let dom='';if(regime==='horizontal'){dom='Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='No aparece crowding-out relevante; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El acelerador prima.':'Hay crowding-out parcial.'}else if(dI<0){dom=crowding>accelerator?'Prima el crowding-out.':'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
-  setText('islm-crowd',`Acelerador: b1·ΔY = ${round(accelerator)}. Crowding-out: b2·Δi = ${round(crowding)}. ${dom}`);
+  setText('islm-crowd',`Acelerador: b₁·ΔY = ${roundCL(accelerator)}. Desplazamiento (crowding-out): b₂·Δi = ${roundCL(crowding)}. ${dom}`);
   setHTML('islm-watch',watchPanelCopy('islm',shockKey,shock.watch));
   scenarioState.islm={modelKey:'islm',shockKey,regime,params:{...base},initial,final:final_};
   updateScenarioCard('islm',scenarioState.islm);

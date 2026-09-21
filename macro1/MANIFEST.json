@@ -59,6 +59,38 @@
       "linked_from_class": 3
     },
     {
+      "id": "cronica-clase4",
+      "file": "notas/cronica-clase4-chile-2026.html",
+      "title": "Crónica — La tasa que Rosa no eligió",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 4
+    },
+    {
+      "id": "cronica-clase5",
+      "file": "notas/cronica-clase5-chile-2026.html",
+      "title": "Crónica — El horno que Rosa no habría comprado en 2022",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 5
+    },
+    {
+      "id": "cronica-clase6",
+      "file": "notas/cronica-clase6-chile-2026.html",
+      "title": "Crónica — Más caro el crédito y menos ventas: un solo problema",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 6
+    },
+    {
+      "id": "cronica-clase7",
+      "file": "notas/cronica-clase7-chile-2026.html",
+      "title": "Crónica — La bodega y el banco: quién se entera primero",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 7
+    },
+    {
       "id": "ficha-escucha-cpc",
       "file": "notas/ficha-escucha-cpc-clase1.html",
       "title": "Guía de escucha — Diálogos para el Desarrollo (charla CPC, bloque 2 de la Clase 1)",
@@ -94,13 +126,21 @@
       "id": "nota-05",
       "file": "notas/nota-05-demanda-agregada.html",
       "title": "Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada",
-      "linked_from_class": null
+      "linked_from_class": null,
+      "kind": "historico",
+      "label": "material histórico 2025",
+      "in_main_navigation": false,
+      "replaced_by": "nota-b2-mercado-bienes"
     },
     {
       "id": "nota-06",
       "file": "notas/nota-06-mercado-dinero.html",
       "title": "Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros",
-      "linked_from_class": null
+      "linked_from_class": null,
+      "kind": "historico",
+      "label": "material histórico 2025",
+      "in_main_navigation": false,
+      "replaced_by": "nota-b3-dinero-alumno"
     },
     {
       "id": "nota-b1-medicion",
@@ -121,6 +161,66 @@
       "summary": "Demanda agregada, función de consumo, ajuste por inventarios y multiplicador, leídos sobre el impulso chileno 2020-2021 y su ajuste posterior.",
       "source_version": "MAC-GRAPH-MVP reedición 2026-08-15",
       "published": true
+    },
+    {
+      "id": "nota-b3-dinero-alumno",
+      "file": "notas/nota-b3-dinero-alumno.html",
+      "title": "Nota de estudio 5 · Dinero, bonos y tasa de interés",
+      "linked_from_class": 4,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Mercado de dinero, ajuste por cartera entre dinero y bonos, los dos cierres y la LM.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota5_dinero_alumno.pdf",
+      "source_sha256": "db33523fb093f9d8fc27053d032c3b32a2c04fd3eea709dc53409454e7b98087",
+      "integrated_sha256": "30450d9011352cfba667a67f0e32414442b2729f16c3feb92e08a0edc1f14710",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4a-inversion-is-alumno",
+      "file": "notas/nota-b4a-inversion-is-alumno.html",
+      "title": "Nota de estudio 6 · Inversión y curva IS",
+      "linked_from_class": 5,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Inversión con tasa, IS desde la cruz keynesiana con T fijo y con T = t·Y, movimiento y desplazamiento.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota6_inversion_IS_alumno.pdf",
+      "source_sha256": "637c08972cbafc457e01d94493ea62bc1d65b3095c4962c9139c335a54be9423",
+      "integrated_sha256": "0f06264a66e159bece27952c9640a770b3a47755f79583f707cea3bebacc5879",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4b-islm-alumno",
+      "file": "notas/nota-b4b-islm-alumno.html",
+      "title": "Nota de estudio 7 · IS-LM en economía cerrada",
+      "linked_from_class": 6,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Equilibrio simultáneo, políticas fiscal y monetaria, mezcla de políticas y LM horizontal.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota7_ISLM_alumno.pdf",
+      "source_sha256": "805924c928ed2fa9984389f728c5d3cb1f29dddeac27f3d0be60b1e3acd94786",
+      "integrated_sha256": "107c0a08bb070437a414ceb608cfeb8135ba359f66b045ff52707e165f966536",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
+    },
+    {
+      "id": "nota-b4c-desequilibrios-alumno",
+      "file": "notas/nota-b4c-desequilibrios-alumno.html",
+      "title": "Nota de estudio 8 · Desequilibrios, desplazamiento y acelerador",
+      "linked_from_class": 7,
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "summary": "Cuadrantes de desequilibrio, ruta de ajuste y descomposición ΔI = b₁·ΔY − b₂·Δi.",
+      "source_version": "Fase III-C · GATE 4 (21-09-2026)",
+      "published": true,
+      "pdf": "notas/Nota8_desequilibrios_alumno.pdf",
+      "source_sha256": "d97d073ed41f4499b44e0adc48d3d6021a9d5e9151f284b8f8ae6d09ed1b1ce6",
+      "integrated_sha256": "df2ffad13d3826dd2c051b3034447ef1775d175e3f0a45caa65ec6dd6f15341a",
+      "integration_changes": "pie con versión 0.7.0 y «0,9 MB»; alt de figuras desde su pie; «Cómo reconocer la prueba en esta nota» de h3 a h2"
     }
   ],
   "images": [
@@ -157,6 +257,87 @@
     {
       "note": "notas de bloque",
       "reason": "Retiradas de la navegación el 2026-08-15. Motivo: son la edición DOCENTE (incluyen pautas con respuestas, backlog, trazabilidad y YAML de pasaportes) y se habían publicado como si fueran material del estudiante. Los archivos permanecen en el repo. Se repondrán cuando exista la edición del alumno."
+    },
+    {
+      "note": "pautas de práctica",
+      "reason": "Publicadas por D-G4.1 (GATE 4, 21-09-2026): pautas de ejercicios de práctica de clases y ayudantías. D-G4.4: nunca se publican por adelantado pautas de controles, solemnes ni exámenes; esas preguntas son nuevas respecto de todo lo publicado."
+    },
+    {
+      "note": "nota-05, nota-06",
+      "reason": "Rotuladas «material histórico 2025» y retiradas de la navegación principal (tramo 4-7). Se conservan en notas/index.html, sección «Material histórico 2025», para no romper enlaces antiguos."
+    },
+    {
+      "note": "notas 5 a 8",
+      "reason": "Las copias integradas difieren del origen (Macro1_GPT/07_Produccion_notas) solo en tres ajustes de publicación declarados en integration_changes. Conviene devolverlos al origen para que el próximo copiado no los pierda."
+    },
+    {
+      "note": "tests",
+      "reason": "test_formulas_clases4_7.js (tramo 4-7) no se declara como sexta suite: corre dentro de test_formulas_selladas.js, que suma sus aserciones y fallos. Así se conserva la regla de exactamente cinco suites (test_paquete.js, check-manifest.js y el CI) y el CI la ejecuta sin cambios. También puede correrse sola."
+    }
+  ],
+  "practice_keys": [
+    {
+      "id": "pauta-ayudantia-transicion-bienes",
+      "file": "notas/pautas/pauta-ayudantia-transicion-bienes.pdf",
+      "title": "Pauta · Ayudantía de transición · mercado de bienes",
+      "kind": "pauta-practica",
+      "class_id": 4,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "b5bfb62eee7b0a7a25d2e059b7044c1ef96c1d30b499b3dca71a2e1611e1d0d0"
+    },
+    {
+      "id": "pauta-clase4-dinero-bonos-tasa",
+      "file": "notas/pautas/pauta-clase4-dinero-bonos-tasa.pdf",
+      "title": "Pauta · Clase 4 · Dinero, bonos y tasa",
+      "kind": "pauta-practica",
+      "class_id": 4,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "20286f19e22e0ea10f0e86d2dfbfca34ec407017f380af7dbb0f46112ce0330a"
+    },
+    {
+      "id": "pauta-clase5-inversion-is",
+      "file": "notas/pautas/pauta-clase5-inversion-is.pdf",
+      "title": "Pauta · Clase 5 · Inversión y curva IS",
+      "kind": "pauta-practica",
+      "class_id": 5,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "404d25500ad4c59660529da2df805b4759c0cfa814af7ed08854080410072e3c"
+    },
+    {
+      "id": "pauta-clase6-islm",
+      "file": "notas/pautas/pauta-clase6-islm.pdf",
+      "title": "Pauta · Clase 6 · IS-LM en economía cerrada",
+      "kind": "pauta-practica",
+      "class_id": 6,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "e9917ccb1a7c8224627d8d5f23769bb9f6933ab071ac9d005d8fc64746034431"
+    },
+    {
+      "id": "pauta-clase7-desequilibrios",
+      "file": "notas/pautas/pauta-clase7-desequilibrios.pdf",
+      "title": "Pauta · Clase 7 · Desequilibrios, desplazamiento y acelerador",
+      "kind": "pauta-practica",
+      "class_id": 7,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "8860eb0ac7767d3f7f81de1ab5f22d0b269a05b032f6f5ab2a61831eee91bfb6"
+    },
+    {
+      "id": "pauta-consolidacion-islm-72744",
+      "file": "notas/pautas/pauta-consolidacion-islm-72744.pdf",
+      "title": "Pauta · Ayudantía de consolidación IS-LM (sección 72744)",
+      "kind": "pauta-practica",
+      "class_id": null,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "6850cd32917873b2f92a502be848a0f0af40708f7f61fd32c1b4a49df8bef524"
+    },
+    {
+      "id": "pauta-refuerzo-simulacro-72745",
+      "file": "notas/pautas/pauta-refuerzo-simulacro-72745.pdf",
+      "title": "Pauta · Sesión de refuerzo gráfico y simulacro (sección 72745)",
+      "kind": "pauta-practica",
+      "class_id": null,
+      "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
+      "sha256": "a0a3bb1c7197bd878ecdcf4be2a2bcdf29b9c55bcc8797fae9b49ed01aee0b42"
     }
   ]
 }
