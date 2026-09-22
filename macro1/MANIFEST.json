@@ -191,8 +191,8 @@
       "source_version": "Legibilidad v2 (22-09-2026), sobre Fase III-C · GATE 4",
       "published": true,
       "pdf": "notas/Nota6_inversion_IS_alumno.pdf",
-      "source_sha256": "e65a3dec9567c48219e09c1c60f6a191fc1b80a49e84f9bf705b91b667052400",
-      "integrated_sha256": "e65a3dec9567c48219e09c1c60f6a191fc1b80a49e84f9bf705b91b667052400",
+      "source_sha256": "a5678b5e6b6b88c27e4e774904e5c610168a565ff3e2a0948f54281299cb5325",
+      "integrated_sha256": "a5678b5e6b6b88c27e4e774904e5c610168a565ff3e2a0948f54281299cb5325",
       "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0"
     },
     {
@@ -206,8 +206,8 @@
       "source_version": "Legibilidad v2 (22-09-2026), sobre Fase III-C · GATE 4",
       "published": true,
       "pdf": "notas/Nota7_ISLM_alumno.pdf",
-      "source_sha256": "176e46e40d843b67f048f5a7cb7219980bfbed5c0c3b9c7229424c768d766281",
-      "integrated_sha256": "176e46e40d843b67f048f5a7cb7219980bfbed5c0c3b9c7229424c768d766281",
+      "source_sha256": "d2a91a384109bfaba72aece3af1a01b015098fb997f666177667f6c4511c543e",
+      "integrated_sha256": "d2a91a384109bfaba72aece3af1a01b015098fb997f666177667f6c4511c543e",
       "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0"
     },
     {
@@ -221,8 +221,8 @@
       "source_version": "Legibilidad v2 (22-09-2026), sobre Fase III-C · GATE 4",
       "published": true,
       "pdf": "notas/Nota8_desequilibrios_alumno.pdf",
-      "source_sha256": "bb5ca00825d785059fcd4a0df34094aa4c17dbaa0fdf37a7ebf7498f08a35bea",
-      "integrated_sha256": "bb5ca00825d785059fcd4a0df34094aa4c17dbaa0fdf37a7ebf7498f08a35bea",
+      "source_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
+      "integrated_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
       "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0"
     }
   ],
