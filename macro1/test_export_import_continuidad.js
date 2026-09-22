@@ -55,7 +55,7 @@ function sessionPayload(classId){
   const file=new wEntry.File([JSON.stringify(c1.payload)],"MacroLab_Clase1_continuidad.json",{type:"application/json"});
   Object.defineProperty(input,"files",{value:[file],configurable:true});input.dispatchEvent(new wEntry.Event("change",{bubbles:true}));await tick(20);
   ok(/Clase recuperada/.test(wEntry.document.querySelector("#routeEntry").textContent),"la interfaz muestra la clase recuperada");
-  ok(/Estado de cierre/.test(wEntry.document.querySelector("#routeEntry").textContent),"la interfaz muestra el cierre");
+  ok(/Estado de la sesión/.test(wEntry.document.querySelector("#routeEntry").textContent),"la interfaz muestra el estado de la sesión");
   ok(/Continuar en la Clase 2/.test(wEntry.document.querySelector("#entryContinue").textContent),"la interfaz ofrece el destino correcto");
   eq(JSON.stringify(E.classState()),before,"importar una sesión no restaura campos ni desbloqueos");
   wEntry.document.querySelector("#entryContinue").click();eq(E.activeClass(),"2","la continuidad abre Clase 2 desde su estado limpio");eq(E.classState()["2"].unlocked,0,"Clase 2 comienza en el paso 1");
