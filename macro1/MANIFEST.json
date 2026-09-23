@@ -313,7 +313,7 @@
       "kind": "pauta-practica",
       "class_id": 6,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "e9917ccb1a7c8224627d8d5f23769bb9f6933ab071ac9d005d8fc64746034431"
+      "sha256": "9762027f5e8ff2b53c129de071d0945acae70f4aedcd19827e2d9f4d8f921af5"
     },
     {
       "id": "pauta-clase7-desequilibrios",
@@ -382,7 +382,7 @@
       "class_id": 6,
       "pauta": "pauta-clase6-islm",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "d223ca0ba114cfcd7269c77402b64cf7db7982d7bbcb637339a0668eab0b88e3"
+      "sha256": "cb4718711229a1f7a1616f79c35e8dafe52fbec33198a84e3be5f5787185b6d7"
     },
     {
       "id": "ayudantia-clase7-desequilibrios",
