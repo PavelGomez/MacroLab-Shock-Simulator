@@ -304,7 +304,7 @@
       "kind": "pauta-practica",
       "class_id": 5,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "404d25500ad4c59660529da2df805b4759c0cfa814af7ed08854080410072e3c"
+      "sha256": "8645a44ce8eff309f407a567a189478a03eccc821f3a58a1c9ff11bc5268a228"
     },
     {
       "id": "pauta-clase6-islm",
@@ -372,7 +372,7 @@
       "class_id": 5,
       "pauta": "pauta-clase5-inversion-is",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "4284080e9cdd95f062326897836d8d4ad8a03213054d21063cbb2fbf1e69616e"
+      "sha256": "ca4899d6d9e734a1a669591e1fdf62459351b0325111ab3d02a9db097bebed8e"
     },
     {
       "id": "ayudantia-clase6-islm",
