@@ -126,6 +126,14 @@ function run() {
     state.fields = { ...wrong };
     ok(lab.MacroLabLoop.scoreClassTest().checks.filter(x => x.numeric).every(x => !x.ok), `Clase ${c} · scoreClassTest rechaza respuestas equivocadas`);
   });
+  // Vocabulario de la Nota 8 (GATE R, 23-09-2026): nombrar «el efecto de la tasa» también cuenta como nombrar el efecto que domina.
+  const c7effect = ROUTES["7"].test.verbalChecks.find(v => v.id === "c7-effect").pattern;
+  ["Domina el efecto de la tasa: b₂·Δi = 11,11 supera a b₁·ΔY = 8,89.", "Domina el acelerador.", "Hay efecto desplazamiento."].forEach(t =>
+    ok(c7effect.test(t), `Clase 7 · c7-effect reconoce «${t}»`));
+  ok(!c7effect.test("La inversión baja 2,22."), "Clase 7 · c7-effect no se cumple si no se nombra ningún efecto");
+  const labSrc = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+  ok((labSrc.match(/\(acelerador\|desplazamiento\|crowding\|efecto de la tasa\)/g) || []).length === 3 && !/\(acelerador\|desplazamiento\|crowding\)\//.test(labSrc),
+    "Lab · los tres patrones de C7 (ruta, diagnóstico y criterio) aceptan «efecto de la tasa»");
   ok(ROUTES["4"].lab === "din" && ROUTES["5"].lab === "cruz", "Clases 4 y 5 · abren los laboratorios de dinero y de bienes");
   ["5", "6", "7"].forEach(c => ok(ROUTES[c].externalLab && ROUTES[c].externalLab.url === "../?tab=islm", `Clase ${c} · externalLab apunta a ../?tab=islm`));
   const scriptSrc = fs.readFileSync(path.join(__dirname, "..", "script.js"), "utf8");
