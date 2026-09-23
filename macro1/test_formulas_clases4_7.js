@@ -11,7 +11,7 @@
  *   · el laboratorio macro1/index.html en jsdom (moneyInterest, crossSolve, CLASS_ROUTES,
  *     GUIDED_DIAGNOSTICS, GUIDED_DRILLS, scoreClassTest);
  *   · la capa superior (index.html + script.js) en jsdom, con Chart.js simulado, para usar
- *     calcISLM, isCurve, lmCurve e ISLM_SHOCKS y leer la línea «Acelerador / Crowding-out»
+ *     calcISLM, isCurve, lmCurve e ISLM_SHOCKS y leer la línea «Efecto acelerador / Efecto de la tasa»
  *     que pinta renderISLM.
  *
  * Cubre:
@@ -126,6 +126,14 @@ function run() {
     state.fields = { ...wrong };
     ok(lab.MacroLabLoop.scoreClassTest().checks.filter(x => x.numeric).every(x => !x.ok), `Clase ${c} · scoreClassTest rechaza respuestas equivocadas`);
   });
+  // Vocabulario de la Nota 8 (GATE R, 23-09-2026): nombrar «el efecto de la tasa» también cuenta como nombrar el efecto que domina.
+  const c7effect = ROUTES["7"].test.verbalChecks.find(v => v.id === "c7-effect").pattern;
+  ["Domina el efecto de la tasa: b₂·Δi = 11,11 supera a b₁·ΔY = 8,89.", "Domina el acelerador.", "Hay efecto desplazamiento."].forEach(t =>
+    ok(c7effect.test(t), `Clase 7 · c7-effect reconoce «${t}»`));
+  ok(!c7effect.test("La inversión baja 2,22."), "Clase 7 · c7-effect no se cumple si no se nombra ningún efecto");
+  const labSrc = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
+  ok((labSrc.match(/\(acelerador\|desplazamiento\|crowding\|efecto de la tasa\)/g) || []).length === 3 && !/\(acelerador\|desplazamiento\|crowding\)\//.test(labSrc),
+    "Lab · los tres patrones de C7 (ruta, diagnóstico y criterio) aceptan «efecto de la tasa»");
   ok(ROUTES["4"].lab === "din" && ROUTES["5"].lab === "cruz", "Clases 4 y 5 · abren los laboratorios de dinero y de bienes");
   ["5", "6", "7"].forEach(c => ok(ROUTES[c].externalLab && ROUTES[c].externalLab.url === "../?tab=islm", `Clase ${c} · externalLab apunta a ../?tab=islm`));
   const scriptSrc = fs.readFileSync(path.join(__dirname, "..", "script.js"), "utf8");
@@ -166,7 +174,7 @@ function run() {
 
   const expectScreen = (label, got, want) => {
     ["y0", "i0", "inv0", "y1", "i1", "inv1"].forEach(k => { if (want[k] !== undefined) ok(got[k] === want[k], `${label} · ${k}: la pantalla muestra «${got[k]}», se esperaba «${want[k]}»`); });
-    ok(got.crowd.startsWith(`Acelerador: b₁·ΔY = ${want.acc}. Desplazamiento (crowding-out): b₂·Δi = ${want.crowd}.`), `${label} · línea del acelerador: «${got.crowd}»`);
+    ok(got.crowd.startsWith(`Efecto acelerador: b₁·ΔY = ${want.acc}. Efecto de la tasa: b₂·Δi = ${want.crowd}.`), `${label} · línea del acelerador: «${got.crowd}»`);
   };
   ok(SHOCKS.fiscalExpand.delta.G === 30 && SHOCKS.monetaryExpand.delta.MP === 55, "ISLM_SHOCKS · expansión fiscal +30 y monetaria +55");
   const run6 = calcISLM(COURSE, "upward");
@@ -176,7 +184,13 @@ function run() {
   expectScreen("Guía 6 · corrida 3 (LM horizontal)", screen(COURSE, { regime: "horizontal", shock: "fiscalExpand" }), { y1: "3.700,00", i1: "4,00", inv1: "655,00", acc: "45,00", crowd: "0,00" });
   near(moneyRate(3700, 1650, 0.5, 50), 4, "Guía 6 · corrida 3 · M/P = 1.650 sostiene i = 4 % con Y = 3.700");
   expectScreen("Guía 6 · corrida 4 (T = t·Y, M/P = 600)", screen({ ...COURSE, MP: 600 }, { taxMode: "proportional", shock: "fiscalExpand" }), { y0: "1.600,00", i0: "4,00", inv0: "340,00", y1: "1.675,00", i1: "4,75", inv1: "340,00", acc: "11,25", crowd: "11,25" });
-  expectScreen("Guía 6 · opcional (expansión monetaria)", screen(COURSE, { shock: "monetaryExpand" }), { y1: "3.466,00", i1: "3,56", inv1: "626,50", acc: "9,90", crowd: "0,00" });
+  expectScreen("Guía 6 · opcional (expansión monetaria)", screen(COURSE, { shock: "monetaryExpand" }), { y1: "3.466,00", i1: "3,56", inv1: "626,50", acc: "9,90", crowd: "−6,60" });
+  // H-R1 (23-09-2026): los dos términos llevan signo; un shock contractivo ya no muestra 0,00 y 0,00.
+  expectScreen("H-R1 · contracción monetaria", screen(COURSE, { shock: "monetaryContract" }), { inv1: "593,50", acc: "−9,90", crowd: "6,60" });
+  expectScreen("H-R1 · contracción fiscal", screen(COURSE, { shock: "fiscalContract" }), { inv1: "610,00", acc: "−18,00", crowd: "−18,00" });
+  ok(/b₀ baja 25,00/.test(screen(COURSE, { shock: "worseExpectations" }).crowd), "H-R1 · con expectativas peores la línea nombra el cambio de b₀");
+  ok(!/desplazamiento/.test(screen({ ...COURSE, b2: 5 }, { shock: "fiscalExpand" }).crowd), "GATE R · si la inversión sube, la línea no habla de efecto desplazamiento");
+  ok(/efecto desplazamiento/.test(screen({ ...COURSE, b2: 25 }, { shock: "fiscalExpand" }).crowd), "GATE R · si sube G y la inversión baja, la línea nombra el efecto desplazamiento");
 
   const runs7 = [
     { b2: 25, regime: "upward", y0: "3.285,71", i0: "2,86", inv0: "581,43", y1: "3.371,43", i1: "3,71", inv1: "572,86", acc: "12,86", crowd: "21,43", dI: -8.57 },

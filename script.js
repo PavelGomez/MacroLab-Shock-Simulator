@@ -331,7 +331,7 @@ function buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI){
   if(shockKey==='none')return'El gráfico muestra el equilibrio base; el diagnóstico empieza cuando introduces un shock. Usa esta línea de partida para comparar después qué curva se mueve, qué variable ajusta y qué dato chileno conviene mirar.';
   const regimeNote=regime==='horizontal'
     ?'Con LM horizontal, la tasa opera como ancla exógena; por eso el ajuste se lee principalmente en actividad e inversión.'
-    :'Con LM de pendiente positiva, actividad y tasa se determinan juntas; por eso conviene mirar crowding-out y acelerador al mismo tiempo.';
+    :'Con LM de pendiente positiva, actividad y tasa se determinan juntas; por eso conviene mirar el efecto de la tasa y el efecto acelerador al mismo tiempo.';
   return`El gráfico muestra el equilibrio; el diagnóstico exige el mecanismo. ${shock.label}: ${shock.changedText} En esta simulación, Y ${directionClause(dY,'aumenta','disminuye')}, i ${directionClause(di,'sube','baja')} y la inversión ${directionClause(dI,'aumenta','cae')}. ${regimeNote} ${shock.reality}`;
 }
 
@@ -409,7 +409,7 @@ function scenarioActiveSummary(modelKey,shock,context){
 function scenarioNextStep(modelKey,baseScenario,meta,context,shock){
   if(baseScenario)return meta.starter;
   const watch=scenarioWatchCopy(modelKey,context,shock);
-  if(modelKey==='islm')return `Mira primero Y, i e inversión. Después pregunta si domina el acelerador, el crowding-out o el canal monetario. ${watch}`;
+  if(modelKey==='islm')return `Mira primero Y, i e inversión. Después pregunta si domina el efecto acelerador, el efecto de la tasa o el canal monetario. ${watch}`;
   if(modelKey==='islmbp')return `Mira primero E, NX y Y. Después pregunta si el ajuste externo amplifica o amortigua el shock. ${watch}`;
   return `Mira primero P, Y y brecha vs Yₙ. Después pregunta si el shock será transitorio, persistente o de segunda vuelta. ${watch}`;
 }
@@ -817,9 +817,16 @@ function renderISLM(){
   setText('islm-equilibrium',`Equilibrio inicial: (Y = ${roundCL(initial.Y)}; i = ${roundCL(initial.i)} %). Final: (Y = ${roundCL(final_.Y)}; i = ${roundCL(final_.i)} %).`);
   const dY=final_.Y-initial.Y;const di=final_.i-initial.i;const dI=final_.investment-initial.investment;
   setText('islm-explanation',buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI));
-  const crowding=Math.max(0,fin.b2*Math.max(0,di));const accelerator=Math.max(0,fin.b1*Math.max(0,dY));
-  let dom='';if(regime==='horizontal'){dom='Con LM horizontal no aparece crowding-out vía tasa; el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='No aparece crowding-out relevante; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El acelerador prima.':'Hay crowding-out parcial.'}else if(dI<0){dom=crowding>accelerator?'Prima el crowding-out.':'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
-  setText('islm-crowd',`Acelerador: b₁·ΔY = ${roundCL(accelerator)}. Desplazamiento (crowding-out): b₂·Δi = ${roundCL(crowding)}. ${dom}`);
+  // Términos con signo (H-R1, 23-09-2026): antes se recortaban a cero y los shocks contractivos mostraban 0,00 y 0,00.
+  const accelerator=fin.b1*dY;const crowding=fin.b2*di;const db0=fin.b0-base.b0;const net=accelerator-crowding;const tiny=v=>Math.abs(v)<0.005;
+  let dom='';
+  if(regime==='horizontal'){dom='Con LM horizontal la tasa no cambia: el efecto de la tasa es cero y la inversión solo se mueve con la actividad (efecto acelerador).'}
+  else if(tiny(net)){dom='Balance casi neutro: el efecto acelerador y el efecto de la tasa se compensan.'}
+  else if(Math.abs(accelerator)>=Math.abs(crowding)){dom=accelerator>=0?'El efecto acelerador prima.':'El efecto acelerador prima: cae la actividad y la inversión baja.'}
+  else if(crowding>0){dom='Prima el efecto de la tasa: la tasa sube y la inversión baja.'+(fin.G>base.G?' Es el efecto desplazamiento (crowding-out).':'')}
+  else{dom='Prima el efecto de la tasa: la tasa baja y la inversión sube.'}
+  if(!tiny(db0)){dom+=` Además cambian las expectativas: b₀ ${db0>0?'sube':'baja'} ${roundCL(Math.abs(db0))} y eso mueve la inversión directamente.`}
+  setText('islm-crowd',`Efecto acelerador: b₁·ΔY = ${roundCL(accelerator)}. Efecto de la tasa: b₂·Δi = ${roundCL(crowding)}. ${dom}`);
   setHTML('islm-watch',watchPanelCopy('islm',shockKey,shock.watch));
   scenarioState.islm={modelKey:'islm',shockKey,regime,params:{...base},initial,final:final_};
   updateScenarioCard('islm',scenarioState.islm);
