@@ -11,7 +11,7 @@
  *   · el laboratorio macro1/index.html en jsdom (moneyInterest, crossSolve, CLASS_ROUTES,
  *     GUIDED_DIAGNOSTICS, GUIDED_DRILLS, scoreClassTest);
  *   · la capa superior (index.html + script.js) en jsdom, con Chart.js simulado, para usar
- *     calcISLM, isCurve, lmCurve e ISLM_SHOCKS y leer la línea «Acelerador / Crowding-out»
+ *     calcISLM, isCurve, lmCurve e ISLM_SHOCKS y leer la línea «Efecto acelerador / Efecto de la tasa»
  *     que pinta renderISLM.
  *
  * Cubre:
@@ -166,7 +166,7 @@ function run() {
 
   const expectScreen = (label, got, want) => {
     ["y0", "i0", "inv0", "y1", "i1", "inv1"].forEach(k => { if (want[k] !== undefined) ok(got[k] === want[k], `${label} · ${k}: la pantalla muestra «${got[k]}», se esperaba «${want[k]}»`); });
-    ok(got.crowd.startsWith(`Acelerador: b₁·ΔY = ${want.acc}. Desplazamiento (crowding-out): b₂·Δi = ${want.crowd}.`), `${label} · línea del acelerador: «${got.crowd}»`);
+    ok(got.crowd.startsWith(`Efecto acelerador: b₁·ΔY = ${want.acc}. Efecto de la tasa: b₂·Δi = ${want.crowd}.`), `${label} · línea del acelerador: «${got.crowd}»`);
   };
   ok(SHOCKS.fiscalExpand.delta.G === 30 && SHOCKS.monetaryExpand.delta.MP === 55, "ISLM_SHOCKS · expansión fiscal +30 y monetaria +55");
   const run6 = calcISLM(COURSE, "upward");
