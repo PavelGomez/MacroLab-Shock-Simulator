@@ -184,7 +184,13 @@ function run() {
   expectScreen("Guía 6 · corrida 3 (LM horizontal)", screen(COURSE, { regime: "horizontal", shock: "fiscalExpand" }), { y1: "3.700,00", i1: "4,00", inv1: "655,00", acc: "45,00", crowd: "0,00" });
   near(moneyRate(3700, 1650, 0.5, 50), 4, "Guía 6 · corrida 3 · M/P = 1.650 sostiene i = 4 % con Y = 3.700");
   expectScreen("Guía 6 · corrida 4 (T = t·Y, M/P = 600)", screen({ ...COURSE, MP: 600 }, { taxMode: "proportional", shock: "fiscalExpand" }), { y0: "1.600,00", i0: "4,00", inv0: "340,00", y1: "1.675,00", i1: "4,75", inv1: "340,00", acc: "11,25", crowd: "11,25" });
-  expectScreen("Guía 6 · opcional (expansión monetaria)", screen(COURSE, { shock: "monetaryExpand" }), { y1: "3.466,00", i1: "3,56", inv1: "626,50", acc: "9,90", crowd: "0,00" });
+  expectScreen("Guía 6 · opcional (expansión monetaria)", screen(COURSE, { shock: "monetaryExpand" }), { y1: "3.466,00", i1: "3,56", inv1: "626,50", acc: "9,90", crowd: "−6,60" });
+  // H-R1 (23-09-2026): los dos términos llevan signo; un shock contractivo ya no muestra 0,00 y 0,00.
+  expectScreen("H-R1 · contracción monetaria", screen(COURSE, { shock: "monetaryContract" }), { inv1: "593,50", acc: "−9,90", crowd: "6,60" });
+  expectScreen("H-R1 · contracción fiscal", screen(COURSE, { shock: "fiscalContract" }), { inv1: "610,00", acc: "−18,00", crowd: "−18,00" });
+  ok(/b₀ baja 25,00/.test(screen(COURSE, { shock: "worseExpectations" }).crowd), "H-R1 · con expectativas peores la línea nombra el cambio de b₀");
+  ok(!/desplazamiento/.test(screen({ ...COURSE, b2: 5 }, { shock: "fiscalExpand" }).crowd), "GATE R · si la inversión sube, la línea no habla de efecto desplazamiento");
+  ok(/efecto desplazamiento/.test(screen({ ...COURSE, b2: 25 }, { shock: "fiscalExpand" }).crowd), "GATE R · si sube G y la inversión baja, la línea nombra el efecto desplazamiento");
 
   const runs7 = [
     { b2: 25, regime: "upward", y0: "3.285,71", i0: "2,86", inv0: "581,43", y1: "3.371,43", i1: "3,71", inv1: "572,86", acc: "12,86", crowd: "21,43", dI: -8.57 },

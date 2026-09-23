@@ -817,8 +817,15 @@ function renderISLM(){
   setText('islm-equilibrium',`Equilibrio inicial: (Y = ${roundCL(initial.Y)}; i = ${roundCL(initial.i)} %). Final: (Y = ${roundCL(final_.Y)}; i = ${roundCL(final_.i)} %).`);
   const dY=final_.Y-initial.Y;const di=final_.i-initial.i;const dI=final_.investment-initial.investment;
   setText('islm-explanation',buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI));
-  const crowding=Math.max(0,fin.b2*Math.max(0,di));const accelerator=Math.max(0,fin.b1*Math.max(0,dY));
-  let dom='';if(regime==='horizontal'){dom='Con LM horizontal la tasa no sube: el efecto de la tasa es cero y el acelerador domina si la actividad sube.'}else if(di<=0&&dY>0){dom='La tasa no sube: no hay efecto de la tasa que frene la inversión; domina el aumento de actividad.'}else if(dI>0){dom=accelerator>=crowding?'El efecto acelerador prima.':'El efecto de la tasa pesa más que el acelerador, pero la inversión igual sube.'}else if(dI<0){dom=crowding>accelerator?(fin.G>base.G?'Prima el efecto de la tasa: la inversión baja. Es el efecto desplazamiento (crowding-out).':'Prima el efecto de la tasa: la inversión baja.'):'La inversión cae por menor actividad y/o tasas más altas.'}else{dom='Balance casi neutro.'}
+  // Términos con signo (H-R1, 23-09-2026): antes se recortaban a cero y los shocks contractivos mostraban 0,00 y 0,00.
+  const accelerator=fin.b1*dY;const crowding=fin.b2*di;const db0=fin.b0-base.b0;const net=accelerator-crowding;const tiny=v=>Math.abs(v)<0.005;
+  let dom='';
+  if(regime==='horizontal'){dom='Con LM horizontal la tasa no cambia: el efecto de la tasa es cero y la inversión solo se mueve con la actividad (efecto acelerador).'}
+  else if(tiny(net)){dom='Balance casi neutro: el efecto acelerador y el efecto de la tasa se compensan.'}
+  else if(Math.abs(accelerator)>=Math.abs(crowding)){dom=accelerator>=0?'El efecto acelerador prima.':'El efecto acelerador prima: cae la actividad y la inversión baja.'}
+  else if(crowding>0){dom='Prima el efecto de la tasa: la tasa sube y la inversión baja.'+(fin.G>base.G?' Es el efecto desplazamiento (crowding-out).':'')}
+  else{dom='Prima el efecto de la tasa: la tasa baja y la inversión sube.'}
+  if(!tiny(db0)){dom+=` Además cambian las expectativas: b₀ ${db0>0?'sube':'baja'} ${roundCL(Math.abs(db0))} y eso mueve la inversión directamente.`}
   setText('islm-crowd',`Efecto acelerador: b₁·ΔY = ${roundCL(accelerator)}. Efecto de la tasa: b₂·Δi = ${roundCL(crowding)}. ${dom}`);
   setHTML('islm-watch',watchPanelCopy('islm',shockKey,shock.watch));
   scenarioState.islm={modelKey:'islm',shockKey,regime,params:{...base},initial,final:final_};
