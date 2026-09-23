@@ -295,7 +295,7 @@
       "kind": "pauta-practica",
       "class_id": 4,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "20286f19e22e0ea10f0e86d2dfbfca34ec407017f380af7dbb0f46112ce0330a"
+      "sha256": "e1b223359cef1b5f9fe61e3799afdf5783fd9a0e681885e6f0b18bde3fa33eeb"
     },
     {
       "id": "pauta-clase5-inversion-is",
@@ -362,7 +362,7 @@
       "class_id": 4,
       "pauta": "pauta-clase4-dinero-bonos-tasa",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "bb7d605996aa53d4cf91382a761c06d48502b8221269de6b3339079b97d375f8"
+      "sha256": "f20766050818b6ece47ad217d007fb9ba543cedc0f288d14e7b5dd2682fb21af"
     },
     {
       "id": "ayudantia-clase5-inversion-is",
