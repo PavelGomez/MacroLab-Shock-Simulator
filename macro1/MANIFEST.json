@@ -221,9 +221,9 @@
       "source_version": "Legibilidad v2 (22-09-2026), sobre Fase III-C · GATE 4",
       "published": true,
       "pdf": "notas/Nota8_desequilibrios_alumno.pdf",
-      "source_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
-      "integrated_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
-      "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0"
+      "source_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
+      "integrated_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
+      "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0. 23-09-2026: vocabulario del rótulo del simulador (GATE R) y de la guía rápida IS-LM, regenerado con publicar_nota.py; las imágenes conservan la codificación publicada (píxeles idénticos)"
     }
   ],
   "images": [
@@ -295,7 +295,7 @@
       "kind": "pauta-practica",
       "class_id": 4,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "20286f19e22e0ea10f0e86d2dfbfca34ec407017f380af7dbb0f46112ce0330a"
+      "sha256": "e1b223359cef1b5f9fe61e3799afdf5783fd9a0e681885e6f0b18bde3fa33eeb"
     },
     {
       "id": "pauta-clase5-inversion-is",
@@ -304,7 +304,7 @@
       "kind": "pauta-practica",
       "class_id": 5,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "404d25500ad4c59660529da2df805b4759c0cfa814af7ed08854080410072e3c"
+      "sha256": "8645a44ce8eff309f407a567a189478a03eccc821f3a58a1c9ff11bc5268a228"
     },
     {
       "id": "pauta-clase6-islm",
@@ -313,7 +313,7 @@
       "kind": "pauta-practica",
       "class_id": 6,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "e9917ccb1a7c8224627d8d5f23769bb9f6933ab071ac9d005d8fc64746034431"
+      "sha256": "9762027f5e8ff2b53c129de071d0945acae70f4aedcd19827e2d9f4d8f921af5"
     },
     {
       "id": "pauta-clase7-desequilibrios",
@@ -322,7 +322,7 @@
       "kind": "pauta-practica",
       "class_id": 7,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "8860eb0ac7767d3f7f81de1ab5f22d0b269a05b032f6f5ab2a61831eee91bfb6"
+      "sha256": "8928be935405ca6b72332e63b993685a1e1d13fd080808be29bd5a1bd7fdf96e"
     },
     {
       "id": "pauta-consolidacion-islm-72744",
@@ -331,7 +331,7 @@
       "kind": "pauta-practica",
       "class_id": null,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "6850cd32917873b2f92a502be848a0f0af40708f7f61fd32c1b4a49df8bef524"
+      "sha256": "1ecec21aadbcfbf8aa69b74d9ea0d5bcc0d49aad3b07b1145fc292a87ba41ce7"
     },
     {
       "id": "pauta-refuerzo-simulacro-72745",
@@ -340,7 +340,7 @@
       "kind": "pauta-practica",
       "class_id": null,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "a0a3bb1c7197bd878ecdcf4be2a2bcdf29b9c55bcc8797fae9b49ed01aee0b42"
+      "sha256": "f24ad882fae02411746112912c352604b69872b4c6e8deedc3fd1f207c8116dd"
     }
   ],
   "practice_statements": [
@@ -362,7 +362,7 @@
       "class_id": 4,
       "pauta": "pauta-clase4-dinero-bonos-tasa",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "bb7d605996aa53d4cf91382a761c06d48502b8221269de6b3339079b97d375f8"
+      "sha256": "f20766050818b6ece47ad217d007fb9ba543cedc0f288d14e7b5dd2682fb21af"
     },
     {
       "id": "ayudantia-clase5-inversion-is",
@@ -372,7 +372,7 @@
       "class_id": 5,
       "pauta": "pauta-clase5-inversion-is",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "4284080e9cdd95f062326897836d8d4ad8a03213054d21063cbb2fbf1e69616e"
+      "sha256": "ca4899d6d9e734a1a669591e1fdf62459351b0325111ab3d02a9db097bebed8e"
     },
     {
       "id": "ayudantia-clase6-islm",
@@ -382,7 +382,7 @@
       "class_id": 6,
       "pauta": "pauta-clase6-islm",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "d223ca0ba114cfcd7269c77402b64cf7db7982d7bbcb637339a0668eab0b88e3"
+      "sha256": "cb4718711229a1f7a1616f79c35e8dafe52fbec33198a84e3be5f5787185b6d7"
     },
     {
       "id": "ayudantia-clase7-desequilibrios",
@@ -392,7 +392,7 @@
       "class_id": 7,
       "pauta": "pauta-clase7-desequilibrios",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "bcff5f1219187847bbab900b6b52ee1750af8e280b684de7fffd254faa5e94e9"
+      "sha256": "5a44475a4f4157f225b8014b16c4d3c547d6ebd7116b1b3f663941fdea04b2fb"
     },
     {
       "id": "ayudantia-consolidacion-islm-72744",
@@ -402,7 +402,7 @@
       "class_id": null,
       "pauta": "pauta-consolidacion-islm-72744",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "c6edcaf6d2bde377998615679481b5c851c087ae732954ad9d6f578e2b80d1b1"
+      "sha256": "c54da511ee201e04c0cfb2c0e364f098de30a940344be44d4b66272567dd4a43"
     },
     {
       "id": "ayudantia-refuerzo-simulacro-72745",
@@ -412,7 +412,7 @@
       "class_id": null,
       "pauta": "pauta-refuerzo-simulacro-72745",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "2c9536bd710b9c224b5efe8f7b6cba0af423b37b6ecc8f514553343d209a6e9e"
+      "sha256": "36d3f9c94361bc6033b86e55bd40cad2ac3f38bcaf6c6b9a3348c44aa1193bcb"
     }
   ]
 }
