@@ -221,9 +221,9 @@
       "source_version": "Legibilidad v2 (22-09-2026), sobre Fase III-C · GATE 4",
       "published": true,
       "pdf": "notas/Nota8_desequilibrios_alumno.pdf",
-      "source_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
-      "integrated_sha256": "6b178f2dd96679a33ac5838aca80fddcbf88d122776a670498f46cc9c9974a99",
-      "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0"
+      "source_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
+      "integrated_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
+      "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0. 23-09-2026: vocabulario del rótulo del simulador (GATE R) y de la guía rápida IS-LM, regenerado con publicar_nota.py; las imágenes conservan la codificación publicada (píxeles idénticos)"
     }
   ],
   "images": [
@@ -322,7 +322,7 @@
       "kind": "pauta-practica",
       "class_id": 7,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
-      "sha256": "8860eb0ac7767d3f7f81de1ab5f22d0b269a05b032f6f5ab2a61831eee91bfb6"
+      "sha256": "8928be935405ca6b72332e63b993685a1e1d13fd080808be29bd5a1bd7fdf96e"
     },
     {
       "id": "pauta-consolidacion-islm-72744",
@@ -392,7 +392,7 @@
       "class_id": 7,
       "pauta": "pauta-clase7-desequilibrios",
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
-      "sha256": "bcff5f1219187847bbab900b6b52ee1750af8e280b684de7fffd254faa5e94e9"
+      "sha256": "5a44475a4f4157f225b8014b16c4d3c547d6ebd7116b1b3f663941fdea04b2fb"
     },
     {
       "id": "ayudantia-consolidacion-islm-72744",
