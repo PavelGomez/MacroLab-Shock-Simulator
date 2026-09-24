@@ -162,11 +162,12 @@ async function main() {
   /* --- 0 · carga limpia y estructura invariante ---------------------------- */
   eq(consoleErrors.length, 0, "la carga en jsdom no produce errores de consola");
   ok(typeof L === "object", "la superficie de inspección MacroLabLoop está expuesta");
-  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 6, "siguen siendo seis pestañas");
+  // v0.8.0: se agrega «Lab · Relación LM» (declarado); la Ruta y los labs anteriores no cambian de lugar.
+  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 7, "siete pestañas desde la v0.8.0");
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
-  eq(L.LEARNING_LAB_VERSION, "0.7.0", "la versión del contexto de aprendizaje coincide con el manifiesto");
+  eq(L.LEARNING_LAB_VERSION, JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "MANIFEST.json"), "utf8")).lab_version, "la versión del contexto de aprendizaje coincide con el manifiesto");
   eq(L.LEARNING_CONTENT_VERSION, "macro1-notas-2026-08-cumulative-revision", "la versión de contenido exportada coincide con el manifiesto");
 
   /* --- 0.1 · UX transversal: guía, umbrales visibles y autocompletado ------- */
