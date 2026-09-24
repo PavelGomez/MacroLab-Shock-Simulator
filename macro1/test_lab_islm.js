@@ -85,6 +85,13 @@ L.islmApply(Object.assign({}, CURSO, { mode: "efectos", b2: 25 }));
 ok(/Hay efecto desplazamiento/.test(doc.getElementById("islmVerdict").textContent) && doc.getElementById("islmCoinc").hidden, "con b₂ = 25: hay efecto desplazamiento y no hay aviso de coincidencia");
 L.islmApply(Object.assign({}, CURSO, { mode: "efectos", regime: "horizontal" }));
 ok(/no hay efecto desplazamiento/.test(doc.getElementById("islmVerdict").textContent), "con tasa fija: no hay efecto desplazamiento");
+// Las cajas de los efectos solo se ven en su modo. jsdom no aplica la cascada de CSS: se revisa el atributo y la regla
+// que hace que [hidden] gane sobre .grid (24-09-2026: las cajas aparecían vacías en «Equilibrio y políticas»).
+const efGrid = doc.querySelector('.grid[data-islm-mode="efectos"]');
+ok(!efGrid.hidden, "modo efectos: se ven la cascada y la curva de ΔI según b₂");
+L.islmApply(Object.assign({}, CURSO, { mode: "equilibrio", dG: 20 })); ok(efGrid.hidden, "modo equilibrio: las cajas de los efectos se ocultan");
+L.islmApply(Object.assign({}, CURSO, { mode: "deseq" })); ok(efGrid.hidden, "modo desequilibrios: las cajas de los efectos se ocultan");
+ok(/\[hidden\]\{display:none!important\}/.test(fs.readFileSync(LAB, "utf8")), "CSS: [hidden] gana sobre display:grid");
 
 /* ===== 5 · Actividades y gráficos ===== */
 const ACT = w.eval("ACTIVITIES").islm;

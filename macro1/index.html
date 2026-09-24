@@ -107,6 +107,8 @@
   .orient{background:#f8fbfd;border:1px solid var(--line);border-radius:14px;padding:13px}
   .orient strong{display:block;color:var(--navy);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em}
   .orient span{font-size:.9rem;color:var(--muted)}
+  /* el atributo hidden gana siempre, también sobre .grid o .slider */
+  [hidden]{display:none!important}
   .panel[hidden]{display:none}.panel{animation:enter .18s ease}
   @keyframes enter{from{opacity:.15;transform:translateY(3px)}to{opacity:1;transform:none}}
   h2{font-size:clamp(1.65rem,4vw,2rem);line-height:1.15;color:var(--navy);margin:.2em 0 .3em}
@@ -3897,7 +3899,7 @@ function islmEffects(p,r){
     x:{min:0,max:bMax,ticks:niceScale(0,bMax,5,true).ticks,digits:niceScale(0,bMax,5,true).digits,label:"b₂: cuánto baja la inversión por punto de tasa"},
     y:{min:vs.min,max:vs.max,ticks:vs.ticks,digits:vs.digits,label:"ΔI (unidades de producto)"},
     series:[{pts:[[0,0],[bMax,0]],estado:"neutral",name:"ΔI = 0",labelAt:.92},{pts,estado:"ini",name:hz?"ΔI con tasa fija":"ΔI",labelAt:.2}],
-    points:[{x:p.b2,y:cur,name:`b₂ = ${fmtT(p.b2)}`,estado:"fin",xText:fmtT(p.b2),yText:fmtT(cur)}].concat(!hz&&dG&&bStar<=bMax?[{x:bStar,y:0,name:"ΔI = 0",estado:"neutral",proj:false}]:[])});
+    points:[{x:p.b2,y:cur,name:`b₂ = ${fmtT(p.b2)}`,estado:"fin",xText:fmtT(p.b2),yText:fmtT(cur)}].concat(!hz&&dG&&bStar<=bMax&&Math.abs(p.b2-bStar)>bMax*.04?[{x:bStar,y:0,name:`b₂ = ${fmtT(bStar,2)}`,estado:"neutral",proj:false}]:[])});
   document.getElementById("islmB2Note").textContent=hz?"Con la tasa fija, ΔI no depende de b₂: la tasa no se mueve.":`La curva no es una recta: un b₂ más alto resta más por cada punto que sube la tasa, pero también hace que la producción suba menos (y con ella la tasa). ΔI = 0 cuando b₂ = b₁·d₂/d₁ = ${fmtT(bStar,2)}.`;
 }
 // Cascada: inversión inicial → efectos → inversión final.

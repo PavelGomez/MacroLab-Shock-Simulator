@@ -25,6 +25,11 @@
 
 ## Pruebas
 
-- Nueva: `macro1/test_lab_islm.js` (281 aserciones), agregada a CI.
+- Nueva: `macro1/test_lab_islm.js` (285 aserciones), agregada a CI.
 - Ajuste declarado: `test_loop_clase3.js` espera nueve pestañas.
 - Ninguna cifra sellada cambió.
+
+## Corrección posterior (24-09-2026)
+
+- Las cajas «La inversión, paso a paso» y «¿Y si la inversión respondiera más o menos a la tasa?» aparecían vacías en los modos Equilibrio y Desequilibrios, porque la regla `.grid{display:grid}` le ganaba al atributo `hidden`. Se agregó `[hidden]{display:none!important}`. La misma regla oculta ahora, como correspondía, el deslizador de t proporcional de Lab · Mercado de bienes cuando los impuestos son fijos.
+- En la curva de ΔI según b₂, el punto donde ΔI = 0 se rotula con su b₂ y se omite si coincide con el punto actual: antes decía «ΔI = 0» dos veces.
