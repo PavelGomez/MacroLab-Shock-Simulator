@@ -1,0 +1,1581 @@
+{
+ "version": "v1",
+ "fecha": "24-09-2026",
+ "terminos": {
+  "dato_observado_proyectado": {
+   "termino": "Dato observado y proyección",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un dato observado ya ocurrió y fue medido. Una proyección es lo que se espera que ocurra, con los supuestos de quien la hace. Una proyección no demuestra que algo pasó, ni qué lo causó.",
+   "ejemplo": "«El PIB crecerá 2 % en 2026» es una proyección; «el IPC subió 0,1 % en julio de 2026» es un dato observado (INE).",
+   "aviso": "Toda cifra se cita con fuente, fecha, período, unidad y si es observada o proyectada.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "cifra efectiva",
+    "pronóstico",
+    "estimación",
+    "escenario central"
+   ],
+   "donde": [
+    "Clase 1",
+    "Lab · Índices"
+   ]
+  },
+  "pib_nominal": {
+   "termino": "PIB nominal",
+   "simbolo": "Σ pₜ·qₜ",
+   "unidad": "pesos del año corriente",
+   "definicion": "El valor de todo lo que se produjo en el año, con los precios de ese mismo año. Puede subir porque se produjo más o porque los precios subieron.",
+   "ejemplo": "Economía de dos bienes del laboratorio: el PIB nominal pasa de 140 en 2019 a 214 en 2020.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PIB a precios corrientes"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "pib_real": {
+   "termino": "PIB real",
+   "simbolo": "Σ p_base·qₜ",
+   "unidad": "pesos del año base",
+   "definicion": "El valor de lo que se produjo en el año, con los precios de un año fijo (el año base). Como los precios no cambian, solo sube si se produjo más.",
+   "ejemplo": "Con base 2019, el PIB real pasa de 140 en 2019 a 180 en 2020: la producción creció 28,57 %.",
+   "aviso": "Crecimiento económico es crecimiento del PIB real, no del nominal.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PIB a precios constantes",
+    "volumen"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "crecimiento_real": {
+   "termino": "Crecimiento real",
+   "simbolo": "(PIB realₜ / PIB realₜ₋₁ − 1) × 100",
+   "unidad": "% anual",
+   "definicion": "Cuánto aumentó la producción de un año a otro, en porcentaje, usando el PIB real.",
+   "ejemplo": "(180/140 − 1) × 100 = 28,57 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "crecimiento económico",
+    "variación del PIB real"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "deflactor": {
+   "termino": "Deflactor del PIB",
+   "simbolo": "PIB nominal / PIB real × 100",
+   "unidad": "índice (año base = 100)",
+   "definicion": "Un índice de los precios de todo lo que se produce en el país. Compara el valor de la producción a precios de hoy con su valor a precios del año base.",
+   "ejemplo": "En 2020: 214/180 × 100 = 118,89.",
+   "aviso": "El deflactor y el IPC pueden diferir sin que ninguno esté mal: miden canastas distintas.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "deflactor implícito"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "ipc": {
+   "termino": "Índice de Precios al Consumidor (IPC)",
+   "simbolo": "costo de la canasta hoy / costo en la base × 100",
+   "unidad": "índice (base = 100)",
+   "definicion": "Un índice de lo que cuesta una canasta fija de bienes y servicios que compran los hogares. En Chile lo publica el INE cada mes.",
+   "ejemplo": "Canasta del laboratorio (30 panes y 8 servicios): costaba 140 en 2019 y 167 en 2020, así que el IPC de 2020 es 119,29.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "IPC",
+    "índice de precios de consumo"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "inflacion": {
+   "termino": "Inflación",
+   "simbolo": "(IPCₜ / IPCₜ₋₁ − 1) × 100",
+   "unidad": "% (mensual, acumulada en el año o a doce meses)",
+   "definicion": "Cuánto subieron los precios en un período, en porcentaje. Es un cambio del IPC, no su nivel.",
+   "ejemplo": "IPC de 100 a 119,29: la inflación del año es 19,29 %. En julio de 2026 el IPC varió 0,1 % en el mes y 3,5 % a doce meses (INE).",
+   "aviso": "Un IPC de 119,29 no es una inflación de 119,29 %: el nivel dice cuánto subieron los precios desde la base; la inflación, cuánto subieron en el período.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "variación del IPC",
+    "alza de precios"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "bien_intermedio": {
+   "termino": "Bien intermedio",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un bien que se usa para producir otro. Su valor ya está dentro del precio del producto final, así que no se suma aparte al PIB.",
+   "ejemplo": "La harina que compra la panadería: se cuenta dentro del precio del pan, no por separado.",
+   "aviso": "Sumar la harina y además el pan es contar dos veces lo mismo.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "insumo"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "que_no_entra_pib": {
+   "termino": "Lo que no entra al PIB",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "El PIB suma producción nueva de este período. No entran las transferencias (nadie produce nada a cambio), las reventas de cosas usadas (se produjeron antes) ni la compra de activos financieros como acciones (es un cambio de papeles).",
+   "ejemplo": "Una transferencia del Estado a las familias (como el IFE), la venta de un auto usado y la compra de acciones de un banco no suman al PIB.",
+   "aviso": "Pueden afectar el PIB por otra vía: si una transferencia se gasta, el consumo sube. Pero no entran directamente.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "identidad_gasto": {
+   "termino": "PIB por el lado del gasto",
+   "simbolo": "Y = C + I + G + X − M",
+   "unidad": "unidades de producto o pesos",
+   "definicion": "Todo lo que se produce en el país lo compra alguien: los hogares (C), las empresas (I), el Estado (G) o el extranjero (X). Las importaciones (M) se restan porque se produjeron afuera.",
+   "ejemplo": "Un hogar compra un teléfono importado: suma en C y resta en M. Su aporte directo al PIB de Chile es casi cero.",
+   "aviso": "Es una identidad contable: se cumple siempre. No dice por qué cambia el gasto; eso lo dice el modelo del mercado de bienes.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "identidad del gasto",
+    "enfoque del gasto"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "pnb": {
+   "termino": "PNB y pago neto a factores",
+   "simbolo": "PNB = PIB + PNF",
+   "unidad": "unidades de producto o pesos",
+   "definicion": "El PIB mide lo producido dentro del país; el PNB, lo que ganan quienes viven en el país. La diferencia es el pago neto a factores (PNF): lo que los residentes reciben del exterior menos lo que se paga a quienes viven afuera.",
+   "ejemplo": "PIB real 204 y PNF −12: PNB real = 192.",
+   "aviso": "El PNF es un flujo del año, no el total de la inversión extranjera acumulada.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "producto nacional bruto",
+    "PNF",
+    "ingreso neto de factores"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "ingreso_disponible": {
+   "termino": "Ingreso disponible",
+   "simbolo": "Yd = Y − T",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que les queda a los hogares después de pagar impuestos. Los hogares consumen según este ingreso, no según Y.",
+   "ejemplo": "Con Y = 950 y T = 150: Yd = 800 y C = 100 + 0,5 × 800 = 500.",
+   "aviso": "El consumo depende de Yd. Escribir C = c₀ + c₁·Y cuando hay impuestos es un error frecuente.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "Yd"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "equilibrio_bienes": {
+   "termino": "Equilibrio del mercado de bienes",
+   "simbolo": "Y = Z",
+   "unidad": "unidades de producto",
+   "definicion": "La producción con la que se vende exactamente lo que se produce. Las bodegas no se llenan ni se vacían sin que nadie lo haya planeado.",
+   "ejemplo": "Con Z = 475 + 0,5·Y, el equilibrio es Y* = 950: el multiplicador 2 por el gasto autónomo 475.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "producción de equilibrio",
+    "Y*"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "ahorro_inversion": {
+   "termino": "Ahorro igual a inversión",
+   "simbolo": "I = S + (T − G)",
+   "unidad": "unidades de producto",
+   "definicion": "En equilibrio, la inversión planeada es igual al ahorro de los hogares más el ahorro del Estado (lo que recauda menos lo que gasta). Es otra forma de comprobar el equilibrio.",
+   "ejemplo": "Con I = 700, ahorro privado 700 y T = G: 700 = 700 + 0 ✓.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "condición ahorro-inversión"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "identidad_conducta": {
+   "termino": "Identidad, conducta y equilibrio",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Una identidad se cumple siempre, por definición (Y = C + I + G). Una conducta dice cómo decide alguien (C = c₀ + c₁·Yd). Una condición de equilibrio dice cuándo nadie tiene razones para cambiar (Y = Z).",
+   "ejemplo": "«Y = C + I + G» se cumple aunque la economía esté fuera de equilibrio, porque la inversión incluye los inventarios no planeados.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "ecuación de comportamiento",
+    "condición de equilibrio"
+   ],
+   "donde": [
+    "Nota 4",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "pet": {
+   "termino": "Población en edad de trabajar (PET)",
+   "simbolo": "PET = PA + inactivos",
+   "unidad": "personas (15 años o más)",
+   "definicion": "Todas las personas de 15 años o más. Se dividen en quienes trabajan o buscan trabajo (la fuerza de trabajo) y quienes no (los inactivos).",
+   "ejemplo": "ENE febrero-abril de 2024: 10.209.535 en la fuerza de trabajo + 6.135.006 inactivos = 16.344.541.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PET"
+   ],
+   "donde": [
+    "Clase de mercado laboral",
+    "Lab · Mercado laboral"
+   ]
+  },
+  "fuerza_trabajo": {
+   "termino": "Fuerza de trabajo (PA)",
+   "simbolo": "PA = ocupados + desocupados",
+   "unidad": "personas",
+   "definicion": "Las personas que trabajan (ocupadas) más las que no trabajan pero buscan trabajo (desocupadas).",
+   "ejemplo": "9.339.296 ocupadas + 870.239 desocupadas = 10.209.535 (el INE publica 10.209.534 por redondeo).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "población activa",
+    "PA"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "inactivos": {
+   "termino": "Inactivos",
+   "simbolo": "PET − PA",
+   "unidad": "personas",
+   "definicion": "Personas en edad de trabajar que no trabajan ni buscan trabajo: por ejemplo, quienes estudian o cuidan a alguien a tiempo completo.",
+   "ejemplo": "En febrero-abril de 2024 había 6.135.006 personas inactivas (INE).",
+   "aviso": "Un inactivo no es un desocupado: no busca trabajo, así que no cuenta en la tasa de desempleo.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "fuera de la fuerza de trabajo"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_desempleo": {
+   "termino": "Tasa de desempleo",
+   "simbolo": "desocupados / PA × 100",
+   "unidad": "%",
+   "definicion": "De cada 100 personas en la fuerza de trabajo, cuántas buscan trabajo y no lo encuentran.",
+   "ejemplo": "870.239 / 10.209.535 × 100 = 8,52 % (el INE la publica redondeada a 8,5 %).",
+   "aviso": "Se divide por la fuerza de trabajo (PA), no por la PET.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa de desocupación",
+    "u"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_participacion": {
+   "termino": "Tasa de participación y tasa de ocupación",
+   "simbolo": "PA / PET × 100; ocupados / PET × 100",
+   "unidad": "%",
+   "definicion": "La participación dice qué parte de la población en edad de trabajar está en la fuerza de trabajo. La ocupación, qué parte trabaja. Las dos se dividen por la PET.",
+   "ejemplo": "Participación: 10.209.535 / 16.344.541 = 62,46 %. Ocupación: 9.339.296 / 16.344.541 = 57,14 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa de actividad"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "ws_ps": {
+   "termino": "Relaciones WS y PS",
+   "simbolo": "WS: W/P = F(u, z); PS: W/P = 1/(1 + m)",
+   "unidad": "salario real",
+   "definicion": "WS dice qué salario real consiguen los trabajadores: más bajo cuando hay más desempleo. PS dice qué salario real queda después de que las empresas fijan su margen sobre los costos.",
+   "ejemplo": "Con F(u, z) = 1 − u y un margen m = 0,1: PS da un salario real de 1/1,1 = 0,909.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "fijación de salarios",
+    "fijación de precios"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_natural": {
+   "termino": "Tasa natural de desempleo",
+   "simbolo": "uₙ = m/(1 + m) (con F = 1 − u)",
+   "unidad": "%",
+   "definicion": "El desempleo con el que el salario que piden los trabajadores (WS) coincide con el que dejan las empresas (PS). Es un equilibrio de mediano plazo, no el dato de un trimestre.",
+   "ejemplo": "Con m = 0,1: uₙ = 0,1/1,1 = 9,09 %. Si el margen sube, el salario real de PS baja y uₙ sube.",
+   "aviso": "Comparar el desempleo observado con uₙ dice si hay holgura; no dice por qué.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "desempleo estructural",
+    "desempleo de equilibrio"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "bono": {
+   "termino": "Bono",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un papel en que el emisor promete pagar una suma en una fecha. Quien compra un bono le presta plata al emisor. A diferencia del dinero, paga interés, pero no sirve para pagar.",
+   "ejemplo": "El Fisco vende hoy un bono que promete pagar $100 dentro de un año. Quien lo compra a $96,154 le presta $96,154 al Fisco y gana $3,846.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "título de deuda",
+    "papel",
+    "instrumento de renta fija",
+    "pagaré"
+   ],
+   "donde": [
+    "Nota 5 A§2-3",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Ayudantía Clase 4"
+   ]
+  },
+  "emisor": {
+   "termino": "Emisor (de un bono)",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Quien vende el bono y se compromete a pagarlo al vencimiento. Es quien pide prestado.",
+   "ejemplo": "El Fisco de Chile (bonos de la Tesorería) o el Banco Central (bonos del Banco Central).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "deudor",
+    "quien vende el bono"
+   ],
+   "donde": [
+    "Nota 5 A§2",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "comprador_bono": {
+   "termino": "Comprador (tenedor) del bono",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Quien paga hoy el precio del bono y recibe el valor nominal al vencimiento. Es quien presta.",
+   "ejemplo": "Rosa compra hoy un bono a $95,238 y recibe $100 dentro de un año: ganó $4,762, un 5,0 % de lo que pagó.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "inversionista",
+    "tenedor",
+    "acreedor",
+    "prestamista"
+   ],
+   "donde": [
+    "Nota 5 A§2-3",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "valor_nominal": {
+   "termino": "Valor nominal (valor facial)",
+   "simbolo": "100 (en los ejercicios del curso)",
+   "unidad": "$ (pesos) por bono",
+   "definicion": "La suma que el emisor promete pagar al vencimiento. Está escrita en el bono y no cambia. Lo que cambia es el precio que se paga hoy por esa promesa.",
+   "ejemplo": "En «un bono que paga 100 en un año», 100 es el valor nominal: lo que recibe el comprador dentro de un año.",
+   "aviso": "Valor nominal y precio no son lo mismo: el valor nominal es lo que se recibe al final; el precio, lo que se paga hoy.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "valor facial",
+    "valor par",
+    "valor al vencimiento",
+    "principal",
+    "el pago de 100"
+   ],
+   "donde": [
+    "Nota 5 A§3",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "vencimiento": {
+   "termino": "Vencimiento",
+   "simbolo": "n (plazo, en años)",
+   "unidad": "años",
+   "definicion": "La fecha en que el emisor paga el valor nominal. El plazo es el tiempo que falta para esa fecha.",
+   "ejemplo": "Si la tasa sube de 2,5 % a 5,5 %, un bono con vencimiento a 1 año baja 2,8 %; uno a 10 años baja 25,1 % (Nota 5, Figura 1).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "plazo",
+    "fecha de pago",
+    "madurez (calco del inglés maturity)"
+   ],
+   "donde": [
+    "Nota 5 A§3 (Figura 1)"
+   ]
+  },
+  "bono_un_anio": {
+   "termino": "Bono a un año",
+   "simbolo": "P_B, i",
+   "unidad": "$ y % anual",
+   "definicion": "Un bono que no paga nada entre medio y paga todo su valor nominal en una sola vez, dentro de un año. Por eso su tasa sale de una sola cuenta.",
+   "ejemplo": "Paga $100 dentro de un año y hoy cuesta $95,238: tasa de 5,0 % al año.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "bono cupón cero a un año",
+    "bono de descuento"
+   ],
+   "donde": [
+    "Nota 5 A§3",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "precio_bono": {
+   "termino": "Precio del bono",
+   "simbolo": "P_B (en MacroLab, Pᴮ)",
+   "unidad": "$ por cada $100 de valor nominal",
+   "definicion": "Lo que se paga hoy por la promesa del bono. Si sube el precio, el comprador gana menos: la tasa baja.",
+   "ejemplo": "Tabla 1 de la Nota 5: P_B = 99,010 → i = 1,00 %; P_B = 93,458 → i = 7,00 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "cotización",
+    "valor de mercado del bono"
+   ],
+   "donde": [
+    "Nota 5 A§3",
+    "Lab · Dinero / tasa",
+    "Ayudantía Clase 4"
+   ]
+  },
+  "tasa_interes": {
+   "termino": "Tasa de interés",
+   "simbolo": "i",
+   "unidad": "% anual (i = 4 quiere decir 4 %, no 0,04)",
+   "definicion": "Lo que se gana al prestar plata, o lo que se paga al pedirla prestada, como porcentaje al año. En el modelo hay una sola tasa: la de los bonos.",
+   "ejemplo": "Con P_B = 96,154, i = (100/96,154 − 1) × 100 = 4,0 % anual.",
+   "aviso": "En el curso la tasa va en %: i = 4 quiere decir 4 %. Es distinta del porcentaje de impuesto t.",
+   "mas_lejos": "«Tipo de interés» (Blanchard) y «tasa de interés» (curso y DFS) son lo mismo. El libro escribe la tasa como fracción (0,04); el curso, en porcentaje (4). Si se reemplaza 0,04 en una fórmula del curso, el resultado sale mal.",
+   "sinonimos": [
+    "tipo de interés",
+    "rendimiento",
+    "rentabilidad",
+    "costo del crédito"
+   ],
+   "donde": [
+    "Nota 5 A§1-3",
+    "Notas 6-8",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "relacion_inversa": {
+   "termino": "Relación inversa entre precio y tasa",
+   "simbolo": "i = (100/P_B − 1) × 100",
+   "unidad": "% anual",
+   "definicion": "Como el valor nominal está fijo, pagar más hoy deja menos ganancia. Precio y tasa se mueven siempre en sentidos contrarios.",
+   "ejemplo": "Si el precio sube de 95,238 a 96,154, la tasa baja de 5,0 % a 4,0 %.",
+   "aviso": "La tasa no es «100 menos el precio»: esa resta es la ganancia en pesos. Hay que dividirla por lo que se pagó.",
+   "mas_lejos": "Blanchard escribe i = (100 − P_B)/P_B y MacroLab, i = (100/P_B − 1) × 100. Son la misma fórmula: (100 − P_B)/P_B = 100/P_B − P_B/P_B = 100/P_B − 1. Blanchard la deja como fracción; el curso la multiplica por 100 para dar %. Con P_B = 95,238: (100 − 95,238)/95,238 = 0,050, es decir, 5,0 %.",
+   "sinonimos": [
+    "cuando el precio del bono sube, su tasa baja"
+   ],
+   "donde": [
+    "Nota 5 A§3 y errores frecuentes 1-2",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "dinero": {
+   "termino": "Dinero",
+   "simbolo": "M (en pesos); M/P (en términos reales)",
+   "unidad": "$ o unidades de producto",
+   "definicion": "Lo que sirve para pagar: billetes, monedas y la plata en la cuenta corriente o la CuentaRUT. No paga interés.",
+   "ejemplo": "$500.000 en la cuenta corriente son dinero. Si con ellos se compra un bono al 4 %, se ganarían $20.000 en un año: eso cuesta tener dinero a mano.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "liquidez",
+    "medios de pago",
+    "M1 (definición estadística)"
+   ],
+   "donde": [
+    "Nota 5 A§2 y A§4",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "riqueza": {
+   "termino": "Dinero frente a riqueza",
+   "simbolo": "—",
+   "unidad": "$",
+   "definicion": "La riqueza es todo lo que una persona tiene. El dinero es solo la parte lista para pagar. En el mercado de dinero no se decide cuánto se tiene, sino en qué forma se guarda.",
+   "ejemplo": "Rosa tiene $2.000.000. Compra un bono de $1.500.000: su riqueza sigue siendo $2.000.000, pero su dinero baja a $500.000.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "patrimonio",
+    "ahorro acumulado",
+    "cartera"
+   ],
+   "donde": [
+    "Nota 5 A§2 y error frecuente 3",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "demanda_dinero_nominal": {
+   "termino": "Demanda de dinero (nominal)",
+   "simbolo": "Mᵈ",
+   "unidad": "$",
+   "definicion": "Cuántos pesos quiere tener la gente a mano. Sube con el ingreso en pesos y baja con la tasa. El curso trabaja con la versión real: la demanda de dinero real.",
+   "ejemplo": "En Blanchard, si el ingreso nominal se duplica, la demanda de pesos se duplica con la misma tasa.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "preferencia por la liquidez (L)"
+   ],
+   "donde": [
+    "Nota 5, «Para ir más lejos» final (equivalencia con $Y·L(i))"
+   ]
+  },
+  "demanda_dinero_real": {
+   "termino": "Demanda de dinero (real)",
+   "simbolo": "Mᵈ/P = d₁·Y − d₂·i",
+   "unidad": "unidades de producto",
+   "definicion": "Cuánto dinero real quiere tener la gente: sube cuando sube la producción, porque hay más compras que hacer, y baja cuando sube la tasa, porque tener dinero cuesta más.",
+   "ejemplo": "Con d₁ = 0,5, d₂ = 50 e Y = 3.400: Mᵈ = 1.700 − 50·i. Con i = 4 %, se quiere 1.500.",
+   "aviso": "",
+   "mas_lejos": "En DFS se escribe L = kY − hi: d₁ es k y d₂ es h, sin diferencia. En Blanchard, M/P = Y·L(i). Si L(i) = a − b·i, queda a·Y − b·Y·i: d₁ = a y d₂ = b·Y. Ese d₂ cambia con Y, así que las dos formas coinciden solo cerca de un nivel de producción dado.",
+   "sinonimos": [
+    "demanda de saldos reales",
+    "función de preferencia por la liquidez"
+   ],
+   "donde": [
+    "Nota 5 A§4",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Ayudantía Clase 4"
+   ]
+  },
+  "d1": {
+   "termino": "Sensibilidad de la demanda de dinero al ingreso",
+   "simbolo": "d₁",
+   "unidad": "unidades de dinero real por unidad de producto",
+   "definicion": "Cuánto dinero real más quiere la gente por cada unidad más de producción.",
+   "ejemplo": "Con d₁ = 0,5, si Y sube 100, la demanda de dinero sube 50: la recta se desplaza 50 a la derecha.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "k (DFS)"
+   ],
+   "donde": [
+    "Nota 5 A§4 y A§6",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "d2": {
+   "termino": "Sensibilidad de la demanda de dinero a la tasa",
+   "simbolo": "d₂",
+   "unidad": "unidades de dinero real por punto porcentual",
+   "definicion": "Cuánto dinero real menos quiere la gente por cada punto más de tasa. No es la pendiente del gráfico: con la tasa en el eje vertical, la pendiente es −1/d₂.",
+   "ejemplo": "Con d₂ = 50, un punto más de tasa hace querer 50 menos de dinero. En el gráfico (i vertical), la recta baja 1 punto por cada 50 hacia la derecha.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "h (DFS)",
+    "sensibilidad-interés de la demanda de dinero"
+   ],
+   "donde": [
+    "Nota 5 A§4 («Cuidado: d₂ no es la pendiente del gráfico»)",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "saldos_reales": {
+   "termino": "Dinero real (saldos reales)",
+   "simbolo": "M/P",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que el dinero alcanza a comprar. Si los precios suben y M no cambia, M/P baja.",
+   "ejemplo": "M = 3.000 y P = 2 → M/P = 1.500. Si P sube a 2,4, M/P = 1.250 y la tasa sube de 4 % a 9 %.",
+   "aviso": "Error frecuente: usar M donde va M/P («los precios subieron, pero M no cambió, así que la tasa tampoco»).",
+   "mas_lejos": "",
+   "sinonimos": [
+    "saldos reales",
+    "saldos monetarios reales",
+    "oferta monetaria real"
+   ],
+   "donde": [
+    "Nota 5 B§4",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "oferta_real_dinero": {
+   "termino": "Oferta real de dinero",
+   "simbolo": "M/P",
+   "unidad": "unidades de producto",
+   "definicion": "Cuánto dinero real hay en la economía. En el enfoque de dinero fijo la decide el Banco Central y se dibuja como una recta vertical.",
+   "ejemplo": "Con M/P = 1.500, la oferta es vertical en 1.500 cualquiera sea la tasa.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "oferta monetaria real",
+    "cantidad de dinero"
+   ],
+   "donde": [
+    "Nota 5 A§5",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "exceso_oferta_dinero": {
+   "termino": "Exceso de oferta de dinero",
+   "simbolo": "M/P − Mᵈ > 0",
+   "unidad": "unidades de producto",
+   "definicion": "La gente tiene más dinero del que quiere. Con lo que sobra compra bonos: el precio de los bonos sube y la tasa baja hasta el equilibrio.",
+   "ejemplo": "Con Y = 3.400, M/P = 1.500 e i = 6 %: se quiere 1.400 y hay 1.500. Sobran 100 y la tasa baja hasta 4 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "sobra dinero",
+    "exceso de liquidez",
+    "exceso de demanda de bonos"
+   ],
+   "donde": [
+    "Nota 5 A§5",
+    "Nota 8 A§2",
+    "Lab · Dinero / tasa",
+    "Lab · IS-LM"
+   ]
+  },
+  "exceso_demanda_dinero": {
+   "termino": "Exceso de demanda de dinero",
+   "simbolo": "M/P − Mᵈ < 0",
+   "unidad": "unidades de producto",
+   "definicion": "La gente tiene menos dinero del que quiere. Vende bonos para conseguirlo: el precio de los bonos baja y la tasa sube hasta el equilibrio.",
+   "ejemplo": "Con i = 2 % se quiere 1.600 y hay 1.500: faltan 100 y la tasa sube hasta 4 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "falta dinero",
+    "falta liquidez",
+    "exceso de oferta de bonos"
+   ],
+   "donde": [
+    "Nota 5 A§5",
+    "Nota 8 A§2",
+    "Lab · Dinero / tasa",
+    "Lab · IS-LM"
+   ]
+  },
+  "oma_expansiva": {
+   "termino": "Operación de mercado abierto expansiva",
+   "simbolo": "Δ(M/P) > 0",
+   "unidad": "unidades de producto",
+   "definicion": "El Banco Central compra bonos y los paga con dinero nuevo. Hay más dinero; hay más demanda de bonos, su precio sube y la tasa baja.",
+   "ejemplo": "Cadena: el Banco Central compra bonos → sube la cantidad de dinero → sube la demanda de bonos → sube P_B → baja i. En el Lab Dinero / tasa, «BC compra bonos» suma 40 a M/P: de 1.500 a 1.540, y la tasa baja de 5 % a 4,2 % (con Y = 3.500).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "compra de bonos por el Banco Central",
+    "inyección de liquidez",
+    "OMA expansiva"
+   ],
+   "donde": [
+    "Nota 5 B§1",
+    "Nota 7 B§2",
+    "Lab · Dinero / tasa"
+   ]
+  },
+  "oma_contractiva": {
+   "termino": "Operación de mercado abierto contractiva",
+   "simbolo": "Δ(M/P) < 0",
+   "unidad": "unidades de producto",
+   "definicion": "El Banco Central vende bonos y recibe dinero a cambio. Hay menos dinero; hay más oferta de bonos, su precio baja y la tasa sube.",
+   "ejemplo": "En el Lab Dinero / tasa, «BC vende bonos» resta 40 a M/P.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "venta de bonos por el Banco Central",
+    "retiro de liquidez",
+    "OMA contractiva"
+   ],
+   "donde": [
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "tpm": {
+   "termino": "Tasa de Política Monetaria (TPM)",
+   "simbolo": "TPM (en el modelo, i fija)",
+   "unidad": "% anual",
+   "definicion": "La tasa que el Banco Central de Chile busca para los préstamos entre bancos de un día para otro. La decide su Consejo en ocho reuniones al año; a partir de ella se mueven las demás tasas.",
+   "ejemplo": "En la Reunión de julio de 2026 el Consejo mantuvo la TPM en 4,50 % por unanimidad (Minuta de la RPM N° 323, 27 y 28 de julio de 2026).",
+   "aviso": "No es la tasa del crédito de una persona: esa incluye además el riesgo, el plazo y lo que le cuesta al banco conseguir la plata.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa rectora",
+    "tasa de referencia",
+    "tasa del Banco Central"
+   ],
+   "donde": [
+    "Nota 5 B§2",
+    "Nota 7 B§4",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM"
+   ]
+  },
+  "enfoque_dinero_fijo": {
+   "termino": "Enfoque de dinero fijo",
+   "simbolo": "M/P dado; i se ajusta",
+   "unidad": "—",
+   "definicion": "El Banco Central fija la cantidad de dinero real y la tasa se ajusta sola. Si sube la producción, la gente vende bonos y la tasa sube.",
+   "ejemplo": "Con M/P = 1.500, si Y sube de 3.400 a 3.500, la tasa sube de 4 % a 5 %.",
+   "aviso": "En este enfoque la tasa la mueve la gente, al comprar o vender bonos. El Banco Central no la sube.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "«LM con pendiente positiva» (MacroLab público)",
+    "cierre A (nombre anterior en el curso)",
+    "control de la cantidad de dinero"
+   ],
+   "donde": [
+    "Nota 5 B§1",
+    "Nota 7 A§2",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · IS-LM",
+    "Ayudantía Clase 4",
+    "Consolidación IS-LM"
+   ]
+  },
+  "enfoque_tasa_fija": {
+   "termino": "Enfoque de tasa fija",
+   "simbolo": "i dada; M/P se ajusta",
+   "unidad": "—",
+   "definicion": "El Banco Central fija la tasa y entrega todo el dinero que la gente quiera tener a esa tasa. La cantidad de dinero es la que cambia. Es lo que hace Chile con la TPM.",
+   "ejemplo": "Si Y sube de 3.400 a 3.500 y la tasa debe seguir en 4 %, el Banco Central compra bonos y lleva M/P de 1.500 a 1.550.",
+   "aviso": "El Banco Central no puede fijar a la vez la tasa y la cantidad de dinero: elige una y la otra se ajusta.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "«LM horizontal (i exógena)» (MacroLab público)",
+    "cierre B (nombre anterior en el curso)",
+    "meta de tasa"
+   ],
+   "donde": [
+    "Nota 5 B§1-2",
+    "Nota 7 B§4",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · IS-LM",
+    "Ayudantía Clase 4"
+   ]
+  },
+  "punto_porcentual": {
+   "termino": "Punto porcentual y punto base",
+   "simbolo": "pp; pb",
+   "unidad": "1 pp = 100 pb",
+   "definicion": "Un punto porcentual es la diferencia entre dos tasas: de 4 % a 5 % hay un punto. Un punto base es una centésima de punto porcentual.",
+   "ejemplo": "Entre julio de 2023 y diciembre de 2024 la TPM bajó 625 puntos base (6,25 puntos porcentuales): de 11,25 % a 5,00 % (IPoM, diciembre de 2024).",
+   "aviso": "«La tasa subió 1 %» es ambiguo; se dice «subió un punto porcentual».",
+   "mas_lejos": "",
+   "sinonimos": [
+    "puntos básicos",
+    "pb",
+    "bps (inglés)"
+   ],
+   "donde": [
+    "Nota 5, «Palabras» y B§5"
+   ]
+  },
+  "gasto_planeado": {
+   "termino": "Gasto planeado (demanda de bienes)",
+   "simbolo": "Z = C + I + G",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que hogares, empresas y Estado quieren comprar. Si la producción es mayor que Z, sobran bienes; si es menor, faltan.",
+   "ejemplo": "En la economía del curso: Z = (400 − 15·i) + 0,9·Y. Con i = 4 %: Z = 340 + 0,9·Y.",
+   "aviso": "«Demanda agregada» también nombra la curva DA del modelo OA-DA, que es otra cosa. En este tramo se prefiere «gasto planeado Z».",
+   "mas_lejos": "",
+   "sinonimos": [
+    "demanda agregada",
+    "demanda de bienes",
+    "gasto agregado planeado"
+   ],
+   "donde": [
+    "Nota 6 A§3",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "c0": {
+   "termino": "Consumo autónomo",
+   "simbolo": "c₀",
+   "unidad": "unidades de producto",
+   "definicion": "La parte del consumo que no depende del ingreso. Sube si los hogares tienen más confianza en el futuro.",
+   "ejemplo": "En la economía del curso, c₀ = 100. Si sube, la IS se desplaza a la derecha.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "consumo autónomo",
+    "C̄ (DFS)"
+   ],
+   "donde": [
+    "Nota 6 A§3 y B§1",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "c1": {
+   "termino": "Propensión marginal a consumir",
+   "simbolo": "c₁",
+   "unidad": "fracción entre 0 y 1",
+   "definicion": "Cuánto sube el consumo por cada peso más de ingreso disponible.",
+   "ejemplo": "Con c₁ = 0,75, un hogar que recibe $20.000 más gasta $15.000 y ahorra $5.000.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PMgC",
+    "c (DFS)",
+    "propensión a consumir"
+   ],
+   "donde": [
+    "Nota 6 A§3 y B§2",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "impuestos_fijos": {
+   "termino": "Impuestos fijos",
+   "simbolo": "T",
+   "unidad": "unidades de producto",
+   "definicion": "Un monto de impuestos que no cambia cuando cambia la producción.",
+   "ejemplo": "Con T = 80: C = 100 + 0,75·(Y − 80). Si T baja 20 (una transferencia), la IS se desplaza 150, no 200.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "impuestos de suma fija",
+    "impuestos netos",
+    "T fija (MacroLab)"
+   ],
+   "donde": [
+    "Nota 6 A§3 y B§2-3",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM («T fija»)"
+   ]
+  },
+  "impuesto_proporcional": {
+   "termino": "Impuestos proporcionales (porcentaje de impuesto)",
+   "simbolo": "t (con T = t·Y)",
+   "unidad": "fracción entre 0 y 1",
+   "definicion": "Impuestos que son un porcentaje del ingreso: si la economía produce más, el Estado recauda más sin cambiar ninguna ley. Achica el multiplicador y hace más empinada la IS.",
+   "ejemplo": "Con t = 0,2, la IS del curso pasa a Y = 1.840 − 60·i y el multiplicador baja de 10 a 4.",
+   "aviso": "En la Nota 6, t se llama «porcentaje de impuesto» para no confundirlo con la tasa de interés i. t va como fracción (0,2); i, en % (4).",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa de impuesto",
+    "tasa impositiva",
+    "T = t·Y (MacroLab)"
+   ],
+   "donde": [
+    "Nota 6 B§3",
+    "Lab · Mercado de bienes («Usar T = t·Y»)",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "estabilizador_automatico": {
+   "termino": "Estabilizador automático",
+   "simbolo": "t",
+   "unidad": "—",
+   "definicion": "Algo que, sin que nadie tome una decisión, amortigua los aumentos y las caídas del gasto. El impuesto proporcional lo es: en cada vuelta del gasto, una parte vuelve al Estado.",
+   "ejemplo": "En la economía del curso con impuesto proporcional, subir t de 0,2 a 0,4 baja el multiplicador de 4 a 2,5: un aumento de 20 en el gasto corre la IS 50 en vez de 80.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "estabilizador fiscal automático"
+   ],
+   "donde": [
+    "Nota 6 B§3",
+    "MacroLab público, pestaña IS-LM (selector de régimen tributario)"
+   ]
+  },
+  "inversion_planeada": {
+   "termino": "Inversión planeada",
+   "simbolo": "I = b₀ + b₁·Y − b₂·i",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que las empresas quieren gastar en máquinas, locales y equipos. Sube con las ventas (Y) y baja con la tasa (i).",
+   "ejemplo": "Economía del curso: I = 160 + 0,15·Y − 15·i. Con Y = 3.000 e i = 4 %: I = 550.",
+   "aviso": "La tasa entra restando. Escribir + b₂·i diría que con una tasa más alta se invierte más.",
+   "mas_lejos": "En DFS la inversión no depende de Y (I = Ī − b·i): no hay efecto acelerador. Por eso los multiplicadores difieren. En el curso, m = 1/(1 − c₁ − b₁), que da 10 en la economía del curso; en DFS, α = 1/(1 − c(1 − t)), sin b₁. El multiplicador fiscal en IS-LM sí tiene la misma forma en los dos textos: m/(1 + m·b₂·d₁/d₂) en el curso y α_G/(1 + α_G·b·k/h) en DFS.",
+   "sinonimos": [
+    "función de inversión",
+    "gasto de inversión"
+   ],
+   "donde": [
+    "Nota 6 A§2",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "b0": {
+   "termino": "Inversión autónoma",
+   "simbolo": "b₀",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que se invertiría aunque la producción y la tasa no cambiaran. Depende de la confianza de las empresas y de si las reglas están claras.",
+   "ejemplo": "Si se postergan proyectos (baja b₀), la IS se desplaza a la izquierda con la tasa quieta. Ejemplo real: Minuta de la RPM N° 323 (julio de 2026), con la TPM en 4,50 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "Ī (DFS)",
+    "confianza empresarial",
+    "expectativas"
+   ],
+   "donde": [
+    "Nota 6 A§2 y B§1",
+    "Nota 8 §5",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "efecto_acelerador": {
+   "termino": "Efecto acelerador",
+   "simbolo": "b₁ (cambio de la inversión: b₁·ΔY)",
+   "unidad": "b₁: unidades de inversión por unidad de producto",
+   "definicion": "La inversión sube porque las empresas venden más: «invierto porque me está yendo bien». En el curso responde al nivel de la producción.",
+   "ejemplo": "Con b₁ = 0,15, si la producción sube 400 (de 3.000 a 3.400), la inversión sube 0,15 × 400 = 60.",
+   "aviso": "No es cuánto baja la inversión cuando sube la tasa: eso es el efecto de la tasa.",
+   "mas_lejos": "En otros textos, el «principio del acelerador» es la respuesta de la inversión al cambio de la producción (ΔY), no a su nivel. En el curso, como en Blanchard, el efecto acelerador responde al nivel: b₁·Y. Si un texto lo usa con el otro sentido, es otro modelo, no un error del curso.",
+   "sinonimos": [
+    "sensibilidad de la inversión a la producción"
+   ],
+   "donde": [
+    "Nota 6 A§2",
+    "Nota 8 B§1",
+    "Lab · Curva IS",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM («Efecto acelerador: b₁·ΔY»)",
+    "Ayudantía Clase 7"
+   ]
+  },
+  "efecto_tasa": {
+   "termino": "Efecto de la tasa",
+   "simbolo": "b₂ (cambio de la inversión: −b₂·Δi)",
+   "unidad": "b₂: unidades de inversión por punto porcentual",
+   "definicion": "La inversión baja porque el crédito está más caro: «no invierto porque el crédito subió». Su tamaño es b₂ por el cambio de la tasa.",
+   "ejemplo": "Con b₂ = 15, si la tasa sube de 4 % a 8 %, la inversión baja 15 × 4 = 60.",
+   "aviso": "No es otro nombre del efecto desplazamiento. El efecto de la tasa es un componente (b₂·Δi); el efecto desplazamiento es un resultado (ver esa entrada).",
+   "mas_lejos": "",
+   "sinonimos": [
+    "sensibilidad de la inversión a la tasa",
+    "b (DFS)",
+    "costo del crédito"
+   ],
+   "donde": [
+    "Nota 6 A§2",
+    "Nota 8 B§1",
+    "Lab · Curva IS",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM («Efecto de la tasa: b₂·Δi»)"
+   ]
+  },
+  "efecto_desplazamiento": {
+   "termino": "Efecto desplazamiento (crowding out)",
+   "simbolo": "ΔI < 0 ante ΔG > 0; ocurre si b₂·d₁/d₂ > b₁",
+   "unidad": "unidades de producto",
+   "definicion": "En el curso es un resultado, no un coeficiente: el caso en que un aumento del gasto público reduce la inversión, porque el efecto de la tasa pesa más que el efecto acelerador. A lo largo de la LM, eso ocurre si b₂·d₁/d₂ > b₁. Con la LM horizontal no hay efecto desplazamiento.",
+   "ejemplo": "Economía del curso, G + 20: efecto acelerador 0,15 × 80 = 12, efecto de la tasa 15 × 0,8 = 12, ΔI = 0: no hay efecto desplazamiento. Con b₂ = 25, ΔI = −5,71: hay efecto desplazamiento. Con b₂ = 5, ΔI = +13,33.",
+   "aviso": "No es otro nombre de b₂, y no quiere decir que una curva se desplace. Es un resultado: la inversión terminó bajando.",
+   "mas_lejos": "En los libros, crowding out (o «efecto expulsión») suele nombrar la caída de la inversión que causa el alza de la tasa: lo que el curso llama efecto de la tasa. En esos modelos la inversión no depende de Y, así que si la tasa sube la inversión siempre baja, y el nombre sirve para las dos cosas. En el curso la inversión también sube con las ventas; por eso el nombre se reserva para el caso en que la inversión termina bajando. No se contradicen: miran cosas distintas.",
+   "sinonimos": [
+    "crowding out",
+    "efecto expulsión",
+    "efecto exclusión",
+    "«Crowding-out» (MacroLab público)"
+   ],
+   "donde": [
+    "Nota 6 A§2 (recuadro)",
+    "Nota 8 B§1-4",
+    "Lab · IS-LM",
+    "Ayudantía Clase 7"
+   ]
+  },
+  "multiplicador": {
+   "termino": "Multiplicador",
+   "simbolo": "m = 1/(1 − c₁ − b₁); con T = t·Y: m = 1/(1 − c₁(1 − t) − b₁)",
+   "unidad": "número (veces)",
+   "definicion": "Cuántas veces cambia la producción de equilibrio del mercado de bienes cuando cambia el gasto autónomo, con la tasa fija.",
+   "ejemplo": "Economía del curso: m = 1/(1 − 0,75 − 0,15) = 10. Si G sube 20, la IS se desplaza 200.",
+   "aviso": "No es 1/(1 − c₁): la inversión también sube con la producción, y eso agranda cada vuelta del gasto.",
+   "mas_lejos": "Una coincidencia que hay que declarar (Nota 6 B§3). El resultado: con t = 0,2, la cuenta equivocada 1/(1 − c₁) = 4 da justo el multiplicador correcto. Por qué ocurre: los números se eligieron para que c₁·t = b₁ (0,75 × 0,2 = 0,15). Cuándo falla: con cualquier otro t o b₁; con t = 0,4 el multiplicador correcto es 2,5. Y si c₁ + b₁ es 1 o más, el multiplicador no está definido: cada vuelta del gasto sería igual o más grande que la anterior.",
+   "sinonimos": [
+    "multiplicador keynesiano",
+    "multiplicador del gasto autónomo",
+    "α_G (DFS)"
+   ],
+   "donde": [
+    "Nota 6 A§3-4 y B§3",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "cruz_keynesiana": {
+   "termino": "Cruz keynesiana",
+   "simbolo": "Z vs. Y, con la recta de 45°",
+   "unidad": "unidades de producto en ambos ejes",
+   "definicion": "El gráfico con el gasto planeado Z en el eje vertical y la producción Y en el horizontal. El equilibrio está donde Z corta la recta de 45° (Z = Y).",
+   "ejemplo": "Con i = 4 %: Z = 340 + 0,9·Y corta la recta de 45° en Y = 3.400. Con i = 8 %, en Y = 2.800.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "diagrama de 45°",
+    "cruz de Keynes"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6 A§3",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS"
+   ]
+  },
+  "curva_is": {
+   "termino": "Curva IS (relación IS)",
+   "simbolo": "Y = m·(c₀ − c₁T + b₀ + G) − m·b₂·i",
+   "unidad": "Y en unidades de producto; i en % anual",
+   "definicion": "Todas las combinaciones de producción y tasa con las que se vende todo lo que se produce. Baja de izquierda a derecha: más tasa, menos inversión, menos producción.",
+   "ejemplo": "Economía del curso: Y = 4.000 − 150·i. Con i = 4 %, Y = 3.400. Cada punto de tasa cambia la producción en 150 (= 10 × 15).",
+   "aviso": "Si cambia la tasa, la economía se mueve sobre la IS. Si cambia G, T, c₀ o b₀, la IS se desplaza.",
+   "mas_lejos": "Con la tasa en el eje vertical, la pendiente de la IS es −1/(m·b₂). La IS es más plana si la inversión es muy sensible a la tasa (b₂ alto) o si el multiplicador es grande, porque entonces un punto de tasa cambia mucho la producción.",
+   "sinonimos": [
+    "relación IS",
+    "curva de equilibrio del mercado de bienes"
+   ],
+   "donde": [
+    "Nota 6 A§4 y Parte B",
+    "Nota 7",
+    "Lab · Curva IS",
+    "Lab · IS-LM",
+    "Ayudantía Clase 5"
+   ]
+  },
+  "exceso_oferta_bienes": {
+   "termino": "Exceso de oferta de bienes",
+   "simbolo": "Z − Y < 0",
+   "unidad": "unidades de producto",
+   "definicion": "Se produce más de lo que se quiere comprar. Las bodegas se llenan sin que nadie lo haya planeado y las empresas producen menos.",
+   "ejemplo": "Con i = 8 % y Y = 3.400: Z = 3.340; sobran 60 y la producción baja hasta 2.800.",
+   "aviso": "Un Z − Y negativo quiere decir que sobran bienes: la bodega se llena.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "sobran bienes",
+    "acumulación no deseada de existencias"
+   ],
+   "donde": [
+    "Nota 6 A§3",
+    "Nota 8 A§2",
+    "Lab · Mercado de bienes",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "exceso_demanda_bienes": {
+   "termino": "Exceso de demanda de bienes",
+   "simbolo": "Z − Y > 0",
+   "unidad": "unidades de producto",
+   "definicion": "Se quiere comprar más de lo que se produce. Las bodegas se vacían y las empresas producen más.",
+   "ejemplo": "El día del anuncio de G + 20, en (3.400; 4 %): Z − Y = 20. Faltan 20 de bienes.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "faltan bienes"
+   ],
+   "donde": [
+    "Nota 8 A§1-2",
+    "Lab · Mercado de bienes",
+    "Lab · IS-LM"
+   ]
+  },
+  "inventarios": {
+   "termino": "Inventarios (variación no planeada)",
+   "simbolo": "Y − Z",
+   "unidad": "unidades de producto",
+   "definicion": "Los productos guardados en bodega sin vender. Cuando se acumulan o se vacían sin que nadie lo haya planeado, avisan a las empresas que deben cambiar su producción.",
+   "ejemplo": "Si se producen 3.400 y se compran 3.340, se acumulan 60 en bodega.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "existencias",
+    "stock",
+    "bodega"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6 «Palabras» y A§3",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "transferencia": {
+   "termino": "Transferencia",
+   "simbolo": "−ΔT",
+   "unidad": "unidades de producto",
+   "definicion": "Plata que el Estado entrega a los hogares sin recibir nada a cambio. Entra al gasto solo en la parte que los hogares consumen (c₁ por la transferencia).",
+   "ejemplo": "Una transferencia de 20 desplaza la IS 10 × 0,75 × 20 = 150; un gasto público de 20 la desplaza 200.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "subsidio",
+    "aporte fiscal a los hogares (en Chile a veces se le llama «bono»)",
+    "impuesto negativo"
+   ],
+   "donde": [
+    "Nota 6 B§2"
+   ]
+  },
+  "curva_lm": {
+   "termino": "Curva LM (relación LM)",
+   "simbolo": "i = (d₁/d₂)·Y − (1/d₂)·(M/P)",
+   "unidad": "i en % anual; Y en unidades de producto",
+   "definicion": "Todas las combinaciones de producción y tasa con las que la gente tiene justo el dinero que quiere tener. Con dinero fijo sube de izquierda a derecha; con tasa fija es horizontal a la altura de la TPM.",
+   "ejemplo": "Economía del curso: i = 0,01·Y − 30, o Y = 3.000 + 100·i. Pendiente d₁/d₂ = 0,5/50 = 0,01: por cada 100 más de producción, la tasa sube un punto.",
+   "aviso": "Si sube Y, la economía se mueve a lo largo de la LM: la LM no se desplaza.",
+   "mas_lejos": "Qué muestra cada texto: Blanchard 7.ª ed. la dibuja horizontal (el banco central fija la tasa); DFS y las ediciones anteriores de Blanchard, con pendiente (el banco central fija la cantidad de dinero). En el curso son dos enfoques del mismo modelo. Interceptos: en el eje i, −(M/P)/d₂ = −30 %; en el eje Y, (M/P)/d₁ = 3.000. El intercepto negativo es una propiedad del modelo lineal, no una predicción: la tasa no puede bajar mucho de cero.",
+   "sinonimos": [
+    "relación LM",
+    "curva de equilibrio del mercado de dinero"
+   ],
+   "donde": [
+    "Nota 5 B§6",
+    "Nota 7 A§2 y B§4",
+    "Lab · Relación LM",
+    "Lab · IS-LM",
+    "Ayudantía Clase 6"
+   ]
+  },
+  "equilibrio_islm": {
+   "termino": "Equilibrio IS-LM (equilibrio conjunto)",
+   "simbolo": "(Y*, i*)",
+   "unidad": "unidades de producto; % anual",
+   "definicion": "El punto donde se cruzan la IS y la LM: la única combinación de producción y tasa con la que los dos mercados están en equilibrio a la vez.",
+   "ejemplo": "4.000 − 150·i = 3.000 + 100·i → i = 4 %, Y = 3.400.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "equilibrio general de corto plazo",
+    "cruce IS-LM",
+    "equilibrio simultáneo"
+   ],
+   "donde": [
+    "Nota 7 A§3",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM"
+   ]
+  },
+  "politica_fiscal": {
+   "termino": "Política fiscal (expansiva y contractiva)",
+   "simbolo": "G, T, t",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que decide el Gobierno sobre su gasto (G) y los impuestos (T). Es expansiva si gasta más o cobra menos; contractiva, al revés. Desplaza la IS.",
+   "ejemplo": "G de 200 a 220: la IS se desplaza 200 a la derecha, pero con LM creciente Y sube solo 80 (de 3.400 a 3.480) e i sube 0,8 puntos (a 4,8 %).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "impulso fiscal",
+    "consolidación fiscal (contractiva)"
+   ],
+   "donde": [
+    "Nota 6 B§1",
+    "Nota 7 B§1",
+    "Lab · Curva IS",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM"
+   ]
+  },
+  "politica_monetaria": {
+   "termino": "Política monetaria (expansiva y contractiva)",
+   "simbolo": "M/P o i (TPM)",
+   "unidad": "unidades de producto; % anual",
+   "definicion": "Lo que decide el Banco Central sobre la cantidad de dinero o la tasa. Es expansiva si agrega dinero o baja la tasa; contractiva, al revés. Desplaza la LM.",
+   "ejemplo": "M/P de 1.500 a 1.600: la LM se desplaza 200 a la derecha; la tasa baja 0,8 puntos (a 3,2 %) y la producción sube 120 (a 3.520).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "impulso monetario",
+    "relajamiento / endurecimiento monetario"
+   ],
+   "donde": [
+    "Nota 7 B§2",
+    "Lab · Relación LM",
+    "Lab · IS-LM",
+    "MacroLab público, pestaña IS-LM"
+   ]
+  },
+  "mezcla_politicas": {
+   "termino": "Mezcla de políticas",
+   "simbolo": "ΔG y Δ(M/P) (o Δi) a la vez",
+   "unidad": "—",
+   "definicion": "Cuando la política fiscal y la monetaria actúan al mismo tiempo. El resultado sobre Y y sobre i depende de cuánto se desplaza cada curva.",
+   "ejemplo": "Ver los casos resueltos de la Nota 7 B§3 (Figura 4).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "combinación de políticas",
+    "policy mix",
+    "coordinación de políticas"
+   ],
+   "donde": [
+    "Nota 7 B§3",
+    "Lab · IS-LM"
+   ]
+  },
+  "multiplicador_islm": {
+   "termino": "Multiplicador en IS-LM",
+   "simbolo": "m/(1 + m·b₂·d₁/d₂)",
+   "unidad": "número (veces)",
+   "definicion": "Cuánto sube la producción de equilibrio por cada peso más de gasto público, cuando se toma en cuenta que la tasa también se mueve. Es menor que el multiplicador del mercado de bienes si la LM tiene pendiente.",
+   "ejemplo": "Economía del curso: 10/(1 + 10 × 15 × 0,01) = 4. Un ΔG = 20 sube Y en 80. Con LM horizontal vale el multiplicador completo: Y sube 200.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "multiplicador fiscal en IS-LM",
+    "γ (DFS)"
+   ],
+   "donde": [
+    "Nota 7 B§1",
+    "Lab · IS-LM"
+   ]
+  },
+  "desequilibrio": {
+   "termino": "Desequilibrio",
+   "simbolo": "Z − Y ≠ 0 o M/P − Mᵈ ≠ 0",
+   "unidad": "unidades de producto",
+   "definicion": "Una situación en que en algún mercado sobra o falta algo: bienes o dinero. Un punto fuera de la IS o de la LM.",
+   "ejemplo": "A = (3.600; 7 %): sobran 65 de bienes (Z − Y = −65) y sobran 50 de dinero (M/P − Mᵈ = 50).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "fuera del equilibrio"
+   ],
+   "donde": [
+    "Nota 8 Parte A",
+    "Lab · IS-LM"
+   ]
+  },
+  "tasa_que_pide": {
+   "termino": "Tasa que pide cada curva",
+   "simbolo": "i_IS(Y), i_LM(Y)",
+   "unidad": "% anual",
+   "definicion": "Con la producción de un punto, la tasa con la que cada mercado estaría en equilibrio. Comparar la tasa del punto con esas dos dice qué sobra y qué falta.",
+   "ejemplo": "En A = (3.600; 7 %): la IS pide (4.000 − 3.600)/150 = 2,67 % y la LM pide (3.600 − 3.000)/100 = 6 %. 7 % está por encima de las dos.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Nota 8 A§2",
+    "Lab · IS-LM"
+   ]
+  },
+  "cuadrantes": {
+   "termino": "Por encima / por debajo de una curva (cuadrantes)",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un punto está por encima de una curva si su tasa es más alta que la que pide la curva con esa producción. Por encima de la IS sobran bienes; por debajo, faltan. Por encima de la LM sobra dinero; por debajo, falta.",
+   "ejemplo": "A = (3.600; 7 %) está por encima de la IS y por encima de la LM: sobran bienes y sobra dinero.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "regiones de desequilibrio",
+    "zonas del gráfico IS-LM"
+   ],
+   "donde": [
+    "Nota 8 A§2",
+    "Lab · IS-LM"
+   ]
+  },
+  "dos_velocidades": {
+   "termino": "Las dos velocidades de ajuste",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Lo que sobra o falta de dinero se corrige en horas, comprando o vendiendo bonos. Lo que sobra o falta de bienes se corrige en semanas, cambiando la producción. Por eso la tasa se ajusta antes que la producción.",
+   "ejemplo": "El día de una decisión de TPM, las tasas de los bonos reaccionan en horas; el Imacec muestra el efecto meses después.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "ajuste rápido de la tasa, lento de la producción"
+   ],
+   "donde": [
+    "Nota 5 A§5 («El límite»)",
+    "Nota 8 A§3",
+    "Lab · IS-LM"
+   ]
+  },
+  "tramo_vertical": {
+   "termino": "Tramo vertical hasta la LM",
+   "simbolo": "Y fijo; i cambia",
+   "unidad": "—",
+   "definicion": "El primer tramo del camino de vuelta al equilibrio: la producción todavía no cambia y la tasa sube o baja hasta la LM, porque el mercado de dinero se ajusta primero.",
+   "ejemplo": "Desde C = (3.200; 3 %) sobra dinero: la tasa baja de 3 % a 2 %, que es la que pide la LM con 3.200.",
+   "aviso": "Si el punto de partida ya está en la LM (como el día del anuncio de un cambio de G), no hay tramo vertical.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "primer paso del ajuste"
+   ],
+   "donde": [
+    "Nota 8 A§3",
+    "Lab · IS-LM"
+   ]
+  },
+  "a_lo_largo_lm": {
+   "termino": "Deslizamiento a lo largo de la LM",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "El segundo tramo: la producción cambia de a poco por los inventarios, y la tasa la acompaña para que el dinero siga en equilibrio. La economía avanza sobre la LM hasta el cruce con la IS.",
+   "ejemplo": "Desde (3.200; 2 %) faltan 50 de bienes: la producción sube y la economía avanza por la LM hasta (3.400; 4 %).",
+   "aviso": "La «escalera» (escalones horizontales y verticales) es una aproximación: con escalones muy pequeños queda pegada a la LM. No vale un tramo horizontal largo que se aleje de la LM.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "avance sobre la LM",
+    "segundo paso del ajuste"
+   ],
+   "donde": [
+    "Nota 8 A§3",
+    "Lab · IS-LM"
+   ]
+  },
+  "dia_anuncio": {
+   "termino": "Día del anuncio",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "El momento justo después de un shock: la economía sigue en el punto viejo, que ya no es un equilibrio. Hay que decir qué mercado quedó en desequilibrio y por qué camino se llega al nuevo equilibrio.",
+   "ejemplo": "G sube de 200 a 220: en (3.400; 4 %) faltan 20 de bienes y el dinero está en equilibrio. No hay tramo vertical; la economía avanza por la LM hasta (3.480; 4,8 %).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "impacto inicial de un shock"
+   ],
+   "donde": [
+    "Nota 8 A§1 y A§3",
+    "Lab · IS-LM"
+   ]
+  },
+  "regimen_lm": {
+   "termino": "Régimen de la LM (MacroLab público)",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Así llama la pestaña IS-LM del MacroLab público al enfoque del Banco Central. Es la misma idea con otro nombre.",
+   "ejemplo": "Elegir «LM horizontal (i exógena)» es suponer el enfoque de tasa fija: con G + 20, Y sube 200.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "«LM con pendiente positiva» = enfoque de dinero fijo",
+    "«LM horizontal (i exógena)» = enfoque de tasa fija"
+   ],
+   "donde": [
+    "Nota 7 B§5",
+    "Guías del simulador Clases 6-7",
+    "MacroLab público, pestaña IS-LM"
+   ]
+  },
+  "movimiento_a_lo_largo": {
+   "termino": "Movimiento a lo largo de una curva",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Cuando cambia una variable que está en uno de los ejes del gráfico, la economía se mueve sobre la misma curva. La curva no cambia de lugar.",
+   "ejemplo": "Si la tasa sube de 4 % a 6 %, la economía se mueve sobre la IS de 3.400 a 3.100. Si sube Y, la economía se mueve sobre la LM.",
+   "aviso": "Regla: si cambia una variable que está en un eje, es movimiento a lo largo; si cambia algo que no está en los ejes, la curva se desplaza.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "moverse sobre la curva",
+    "cambio en la cantidad"
+   ],
+   "donde": [
+    "Nota 5 A§6 y B§6",
+    "Nota 6 B§1",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "desplazamiento_curva": {
+   "termino": "Desplazamiento de una curva",
+   "simbolo": "—",
+   "unidad": "unidades del eje horizontal",
+   "definicion": "Cuando cambia algo que no está en los ejes, la curva entera se corre a otra posición. Se dice hacia dónde y cuánto.",
+   "ejemplo": "Si G sube 20, la IS se corre 200 a la derecha. Si Y sube 100 con d₁ = 0,5, la demanda de dinero se corre 50.",
+   "aviso": "No es el «efecto desplazamiento». «La IS se desplaza» habla de una curva; «efecto desplazamiento (crowding out)» habla de la inversión. Para evitar la confusión se puede decir «la IS se corre».",
+   "mas_lejos": "",
+   "sinonimos": [
+    "la curva se corre",
+    "la curva se mueve completa"
+   ],
+   "donde": [
+    "Nota 5 A§6",
+    "Nota 6 B§1",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "pendiente": {
+   "termino": "Pendiente",
+   "simbolo": "Δ(vertical)/Δ(horizontal)",
+   "unidad": "unidades del eje vertical por unidad del horizontal",
+   "definicion": "Cuánto cambia la variable del eje vertical cuando la del eje horizontal cambia en una unidad. Depende de qué variable va en cada eje.",
+   "ejemplo": "LM del curso: pendiente 0,01 (un punto de tasa por cada 100 de producción). IS del curso: −1/150.",
+   "aviso": "Un coeficiente no siempre es la pendiente del gráfico: d₂ = 50 da una pendiente de −1/50 cuando la tasa va en el eje vertical.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "inclinación"
+   ],
+   "donde": [
+    "Nota 5 A§4 y B§6",
+    "Nota 6",
+    "Lab · Relación LM",
+    "Lab · Curva IS"
+   ]
+  },
+  "intercepto": {
+   "termino": "Intercepto",
+   "simbolo": "—",
+   "unidad": "la del eje",
+   "definicion": "Donde la recta toca un eje: el valor de una variable cuando la otra vale cero. Dice dónde está la recta; no siempre es un dato posible del país.",
+   "ejemplo": "La IS del curso toca el eje horizontal en 4.000; la LM, en 3.000. La LM toca el eje vertical en −30 %: es una propiedad del modelo lineal, no una predicción.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "ordenada en el origen",
+    "punto de corte"
+   ],
+   "donde": [
+    "Nota 5 A§4",
+    "Nota 6",
+    "Nota 7 A§3",
+    "Lab · Relación LM",
+    "Lab · Curva IS"
+   ]
+  },
+  "respuesta_completa": {
+   "termino": "Respuesta completa",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Todo resultado numérico se entrega con tres partes: la unidad, una frase que dice qué significa y una cuenta que lo comprueba por otro camino. En los controles cada parte tiene puntaje.",
+   "ejemplo": "Unidad: % al año. Qué significa: «con una tasa de 4 %, la gente quiere tener justo los 1.500 de dinero real que hay». Cómo lo compruebo: 0,5 × 3.400 − 50 × 4 = 1.500 ✓.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "cierre de tres piezas (nombre anterior en el curso)"
+   ],
+   "donde": [
+    "Notas 5-8, sección inicial",
+    "Ayudantías Clases 5-7",
+    "Ayudantía de transición",
+    "Lab · Dinero / tasa",
+    "Lab · Relación LM",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "primer_paso": {
+   "termino": "Primer paso",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "El paso con que empieza cada ejercicio (escribir la ecuación de equilibrio, poner nombre a los ejes). Suma puntaje aunque no se termine.",
+   "ejemplo": "Escribir i = (100/P_B − 1)·100 antes de calcular la tasa de un bono.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Notas 5-8",
+    "Ayudantías Clases 4-7"
+   ]
+  },
+  "coincidencia_regla": {
+   "termino": "Coincidencia frente a regla",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Cuando un resultado se cumple por los números elegidos y no por la estructura del modelo, se declara en tres partes: el resultado, la condición que lo produce y cuándo deja de cumplirse.",
+   "ejemplo": "ΔI = 0 ante G + 20 en la economía del curso. Condición: b₁ = b₂·d₁/d₂ (0,15 = 15 × 0,01). Deja de cumplirse con otro b₂: con b₂ = 25, ΔI = −5,71.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Nota 6 B§3",
+    "Nota 8 B§2",
+    "Lab · Curva IS",
+    "Lab · IS-LM"
+   ]
+  },
+  "transicion_cierres": {
+   "termino": "Nombres anteriores: «cierre A», «cierre B», «cierre de tres piezas»",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "En material anterior aparecen «cierre A», «cierre B» o «cierre de tres piezas»: son los mismos conceptos con su nombre antiguo.",
+   "ejemplo": "«Declare el cierre» quiere decir ahora: decir primero qué fija el Banco Central (la cantidad de dinero o la tasa) y qué se ajusta.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "cierre A = enfoque de dinero fijo",
+    "cierre B = enfoque de tasa fija",
+    "cierre de tres piezas = respuesta completa",
+    "cierre docente = enfoque de dinero fijo"
+   ],
+   "donde": [
+    "Nota 5 (líneas de transición)",
+    "Material 2025",
+    "Clase 4"
+   ]
+  }
+ }
+}

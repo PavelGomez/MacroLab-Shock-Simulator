@@ -25,10 +25,12 @@ jobs:
         run: node test_pautas_biblioteca.js
       - name: Integridad del MANIFEST y visibilidad de las notas
         run: node scripts/check-manifest.js
+      - name: Glosario embebido al día
+        run: node scripts/embed-glosario.js --check
       - name: Suites del sub-app macro1
         working-directory: macro1
         run: |
           set -e
-          for t in test_paquete.js test_loop_clase3.js test_formulas_selladas.js test_retroalimentacion_pedagogica.js test_auditoria_transversal.js; do
+          for t in test_paquete.js test_loop_clase3.js test_formulas_selladas.js test_retroalimentacion_pedagogica.js test_auditoria_transversal.js test_enunciados_glosario.js test_lab_lm.js; do
             if [ -f "$t" ]; then echo "── $t"; node "$t"; fi
           done
