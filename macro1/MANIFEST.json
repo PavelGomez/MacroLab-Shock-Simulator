@@ -1,6 +1,6 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.10.0",
+  "lab_version": "0.10.1",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
@@ -213,7 +213,7 @@
     {
       "id": "nota-b4c-desequilibrios-alumno",
       "file": "notas/nota-b4c-desequilibrios-alumno.html",
-      "title": "Nota de estudio 8 · Desequilibrios, desplazamiento y acelerador",
+      "title": "Nota de estudio 8 · Desequilibrios, efecto desplazamiento y efecto acelerador",
       "linked_from_class": 7,
       "kind": "bloque",
       "audience": "estudiantes",
@@ -288,6 +288,10 @@
     {
       "note": "MANIFEST",
       "reason": "lab_version sube de 0.9.0 a 0.10.0 (24-09-2026): nueva ventana «Lab · IS-LM» con tres modos (equilibrio y políticas; desequilibrios con camino de ajuste de dos velocidades y escalera; efecto acelerador, efecto de la tasa y efecto desplazamiento con cascada y curva de ΔI según b₂). Mismas ecuaciones que calcISLM del MacroLab público. La suite test_lab_islm.js corre en CI."
+    },
+    {
+      "note": "MANIFEST",
+      "reason": "lab_version sube de 0.10.0 a 0.10.1 (24-09-2026): alineación de la fase 6b. La demanda de dinero se escribe Md (real) en enunciados, rótulos y Desequilibrios (M/P − Md); título de la Nota 8 «Desequilibrios, efecto desplazamiento y efecto acelerador»; espacio antes de % en los diagnósticos de las Clases 1-2; Notas 5 a 8 regeneradas. Sin cambios en los solvers."
     }
   ],
   "practice_keys": [
@@ -330,7 +334,7 @@
     {
       "id": "pauta-clase7-desequilibrios",
       "file": "notas/pautas/pauta-clase7-desequilibrios.pdf",
-      "title": "Pauta · Clase 7 · Desequilibrios, desplazamiento y acelerador",
+      "title": "Pauta · Clase 7 · Desequilibrios, efecto desplazamiento y efecto acelerador",
       "kind": "pauta-practica",
       "class_id": 7,
       "authorization": "D-G4.1 (GATE 4, 21-09-2026)",
@@ -399,7 +403,7 @@
     {
       "id": "ayudantia-clase7-desequilibrios",
       "file": "notas/ayudantias/ayudantia-clase7-desequilibrios.pdf",
-      "title": "Ayudantía · Clase 7 · Desequilibrios, desplazamiento y acelerador",
+      "title": "Ayudantía · Clase 7 · Desequilibrios, efecto desplazamiento y efecto acelerador",
       "kind": "enunciado-practica",
       "class_id": 7,
       "pauta": "pauta-clase7-desequilibrios",
