@@ -123,6 +123,16 @@ ok(dv, "hay una tarjeta de las dos velocidades con la RPM de julio de 2023");
 ["10,50 %", "10,25 %", "6,20 % → 6,11 %", "6,11 % → 5,91 %", "0,4 · 0,9 · 2,4 · 2,3 · 0,5 · 3,7 %", "−2,7 · −3,3 · −4,7 · −4,1 %", "unanimidad", "Lo que no permite decir"]
   .forEach(t => ok(dv && dv.textContent.includes(t), `tarjeta de julio de 2023 · dice «${t}»`));
 ok(dv && !/50 o 75/.test(dv.textContent), "la tarjeta cita el recorte esperado por la EOF (75 pb), no «50 o 75»");
+// Ejemplos verificados por el profesor (24-09-2026): expansión fiscal 2020 y acelerador 2024.
+const card = t => [...doc.querySelectorAll("#islm .data-card")].find(c => c.querySelector("h3").textContent.includes(t));
+const fis = card("tasa en su piso"), acc = card("acelerador llega con rezago");
+["0,50 %", "11,0 % real", "14,6 %", "24,1 %", "8,9 %"].forEach(t => ok(fis && fis.textContent.includes(t), `tarjeta fiscal 2020 · dice «${t}»`));
+ok(fis && /Que el 11,0 % sea el ΔG del modelo/.test(fis.textContent), "tarjeta fiscal 2020 · advierte que el 11,0 % no es ΔG");
+["−1,7", "−7,8", "0,8", "−13,6", "0,3", "−9,5", "1,1", "0,5", "2,1", "8,5", "con rezago"].forEach(t => ok(acc && acc.textContent.includes(t), `tarjeta acelerador 2024 · dice «${t}»`));
+ok(acc && /no permite decir.*consumo causó/.test(acc.textContent.replace(/\s+/g, " ")), "tarjeta acelerador · no atribuye causalidad");
+const din = doc.getElementById("din").textContent, lm = doc.getElementById("lm").textContent;
+ok(/8 de septiembre de 2026/.test(din) && /N° 324/.test(din), "Dinero / tasa · cita la RPM del 8 de septiembre de 2026 (Minuta N° 324)");
+ok(/8 de septiembre de 2026/.test(lm) && /sep\. 2026 · 4,50 %/.test(doc.getElementById("tpmStory").textContent), "Relación LM · tarjeta y minigráfico con la RPM de septiembre");
 console.log(`test_lab_islm.js — ${n} aserciones · RESULTADO: ${failures.length ? "FALLA" : "OK"}`);
 failures.forEach(f => console.log("  ✘ " + f));
 process.exit(failures.length ? 1 : 0);
