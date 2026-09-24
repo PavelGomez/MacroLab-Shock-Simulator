@@ -16,5 +16,6 @@ command -v node >/dev/null 2>&1 || { echo "  ⚠ node no encontrado: se omite la
 node --check script.js
 node test_pautas_biblioteca.js
 node scripts/check-manifest.js
+node scripts/embed-glosario.js --check
 
 echo "✔ Auditoría OK — commit permitido."
