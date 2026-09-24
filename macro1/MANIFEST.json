@@ -1,6 +1,6 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.9.0",
+  "lab_version": "0.10.0",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
@@ -284,6 +284,10 @@
     {
       "note": "MANIFEST",
       "reason": "lab_version sube de 0.8.0 a 0.9.0 (24-09-2026): nueva ventana «Lab · Curva IS» (cruz keynesiana y plano (Y, i) alineados, efecto acelerador y efecto de la tasa, desplazamientos por G, T, t, c₀ y b₀, coincidencia c₁·t = b₁ declarada), con el motor gráfico común. La suite test_lab_is.js corre en CI."
+    },
+    {
+      "note": "MANIFEST",
+      "reason": "lab_version sube de 0.9.0 a 0.10.0 (24-09-2026): nueva ventana «Lab · IS-LM» con tres modos (equilibrio y políticas; desequilibrios con camino de ajuste de dos velocidades y escalera; efecto acelerador, efecto de la tasa y efecto desplazamiento con cascada y curva de ΔI según b₂). Mismas ecuaciones que calcISLM del MacroLab público. La suite test_lab_islm.js corre en CI."
     }
   ],
   "practice_keys": [
