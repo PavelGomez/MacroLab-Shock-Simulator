@@ -117,6 +117,12 @@ const panel = doc.getElementById("islm").textContent;
 ok(!/cierre docente|cierre [AB]\b|tres piezas|crowding-out|domina el desplazamiento/i.test(panel), "la ventana no usa terminología antigua");
 ok(/efecto desplazamiento/.test(panel) && /no es efecto desplazamiento/.test(panel), "la ventana separa el efecto de la tasa por decisión monetaria del efecto desplazamiento");
 
+// Ejemplo real verificado por el profesor (24-09-2026): RPM de julio de 2023, las dos velocidades.
+const dv = [...doc.querySelectorAll("#islm .data-card")].find(c => /dos velocidades/.test(c.textContent));
+ok(dv, "hay una tarjeta de las dos velocidades con la RPM de julio de 2023");
+["10,50 %", "10,25 %", "6,20 % → 6,11 %", "6,11 % → 5,91 %", "0,4 · 0,9 · 2,4 · 2,3 · 0,5 · 3,7 %", "−2,7 · −3,3 · −4,7 · −4,1 %", "unanimidad", "Lo que no permite decir"]
+  .forEach(t => ok(dv && dv.textContent.includes(t), `tarjeta de julio de 2023 · dice «${t}»`));
+ok(dv && !/50 o 75/.test(dv.textContent), "la tarjeta cita el recorte esperado por la EOF (75 pb), no «50 o 75»");
 console.log(`test_lab_islm.js — ${n} aserciones · RESULTADO: ${failures.length ? "FALLA" : "OK"}`);
 failures.forEach(f => console.log("  ✘ " + f));
 process.exit(failures.length ? 1 : 0);

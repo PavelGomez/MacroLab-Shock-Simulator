@@ -165,6 +165,7 @@
   .plot-stack{display:grid;grid-template-columns:1fr;gap:0;max-width:760px;margin:0 auto 8px}
   .inv-table{width:100%;border-collapse:collapse;font-size:.92rem}.inv-table caption{text-align:left;font-weight:700;color:var(--navy);padding-bottom:6px}
   .inv-table th,.inv-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.inv-table td:nth-child(2){font-weight:800;white-space:nowrap}
+  .wide-data{grid-column:1/-1}
   .islm-modes{margin:0 0 16px;background:#fff}.islm-modes .inline-label{margin-right:14px}
   .lm-modo{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:10px 0 0}.lm-modo legend{font-weight:700;color:var(--navy);padding:0 4px}
   .code-tag{display:inline-block;margin-left:6px;color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.02em;vertical-align:middle}
@@ -961,6 +962,21 @@
         <label>b₂ (mueve y mira la curva)<input id="islmB2b" type="range" min="0" max="40" step="0.5" value="15"></label>
         <svg id="islmB2Chart" class="plot" role="img" aria-label="Cambio de la inversión según b₂"></svg>
         <p class="field-note" id="islmB2Note"></p>
+      </article>
+    </div>
+    <div class="grid">
+      <article class="card data-card wide-data">
+        <h3>Dato a mirar · las dos velocidades: la RPM de julio de 2023</h3>
+        <p><strong>El ancla.</strong> Antes de la Reunión del 27 y 28 de julio de 2023, los operadores financieros esperaban que la TPM bajara de 11,25 % a 10,50 %: un recorte de 75 puntos base (Encuesta de Operadores Financieros, Pre-RPM de julio de 2023). El Consejo la bajó 100 puntos base, a <strong>10,25 %</strong>, por unanimidad (comunicado de la RPM, publicado a las 18:00 del viernes 28 de julio). La sorpresa fue de 25 puntos base más de recorte.</p>
+        <div class="table-wrap"><table class="inv-table"><caption>Tres momentos · tasas en % anual; variaciones respecto del mismo período del año anterior</caption><tbody>
+          <tr><th scope="row">1 · Antes de la decisión</th><td>6,20 % → 6,11 %</td><td>Bono en pesos a 2 años (BCP, BTP), mercado secundario: cierre del 27 y del 28 de julio. Baja 9 puntos base, en línea con un recorte esperado.</td></tr>
+          <tr><th scope="row">2 · Horas o días después</th><td>6,11 % → 5,91 %</td><td>Primera rueda completa después del anuncio (lunes 31 de julio): baja otros 20 puntos base.</td></tr>
+          <tr><th scope="row">3 · Meses después: Imacec</th><td>0,4 · 0,9 · 2,4 · 2,3 · 0,5 · 3,7 %</td><td>Agosto de 2023 a enero de 2024. Serie revisada disponible hoy en la BDE (la primera estimación de agosto fue −0,9 %).</td></tr>
+          <tr><th scope="row">3 · Trimestres después: FBCF</th><td>−2,7 · −3,3 · −4,7 · −4,1 %</td><td>Tercer trimestre de 2023 a segundo trimestre de 2024. La inversión siguió cayendo.</td></tr>
+        </tbody></table></div>
+        <p><strong>Lo que el modelo permite decir.</strong> Es consistente con las dos velocidades: las tasas de mercado incorporan la sorpresa en un día, porque comprar o vender bonos toma minutos; la producción y la inversión cambian después, con rezagos.</p>
+        <p><strong>Lo que no permite decir.</strong> Que los 20 puntos base se deban solo a la RPM, porque ese día hubo otras noticias. Tampoco que la trayectoria del Imacec o de la FBCF la haya causado esa Reunión: la inversión depende además de la demanda esperada, la capacidad usada, la incertidumbre y las expectativas. El modelo tiene dos mercados y un solo activo además del dinero.</p>
+        <p class="source">Fuentes: Banco Central de Chile, comunicado de la RPM de julio de 2023; Encuesta de Operadores Financieros, Pre-RPM de julio de 2023; Base de Datos Estadísticos: «Bonos en pesos a 2 años (BCP, BTP)», «Imacec, volumen a precios del año anterior encadenado, series empalmadas (promedio 2018 = 100)» y «Formación bruta de capital fijo» (gasto del PIB, referencia 2018). Datos verificados por el profesor el 24-09-2026.</p>
       </article>
     </div>
     <div class="grid">
