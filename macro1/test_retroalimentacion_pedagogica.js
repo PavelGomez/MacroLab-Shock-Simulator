@@ -101,7 +101,8 @@ ok(metadataPractice.missing.includes("IPoM")&&/institución/.test(metadataPracti
 const studentReport=L.guidedStudentReport(reportState,"sesion_con_practica_pendiente");
 ok(/Práctica para completar tu respuesta/.test(studentReport)&&/Parcialmente logrado/.test(studentReport),"Clase 1 · la sección 7 comunica el estado parcial con lenguaje directo");
 ok(/«Banco Central para el año 2026»/.test(studentReport),"Clase 1 · la sección 7 cita únicamente el fragmento escrito por el estudiante");
-ok(/El IPoM del Banco Central proyecta que el PIB de Chile crecerá 2% durante 2026/.test(studentReport),"Clase 1 · entrega una mejora concreta y breve");
+// v0.8.0: el ejemplo muestra la forma de citar sin atribuir al IPoM una cifra no verificada (declarado).
+ok(/El IPoM de \[mes y año\] del Banco Central proyecta que el PIB de Chile crecerá \[cifra\] %/.test(studentReport),"Clase 1 · entrega una mejora concreta y breve");
 ok(!/identidad del dato|completar sus metadatos|respuesta acumulada incluye|afirmación defendible/i.test(studentReport),"Clase 1 · el reporte evita etiquetas internas o abstractas no explicadas");
 ok(/desactiva «Encabezados y pies de página»/.test(studentReport),"reporte · explica cómo evitar la dirección local al imprimir");
 const causalInitial=reportState.explanatoryFeedback.criteria.find(x=>x.criterion_id==="C1-EVIDENCE-CAUSALITY");

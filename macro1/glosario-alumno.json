@@ -1,7 +1,370 @@
 {
  "version": "v1",
- "fecha": "23-09-2026",
+ "fecha": "24-09-2026",
  "terminos": {
+  "dato_observado_proyectado": {
+   "termino": "Dato observado y proyección",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un dato observado ya ocurrió y fue medido. Una proyección es lo que se espera que ocurra, con los supuestos de quien la hace. Una proyección no demuestra que algo pasó, ni qué lo causó.",
+   "ejemplo": "«El PIB crecerá 2 % en 2026» es una proyección; «el IPC subió 0,1 % en julio de 2026» es un dato observado (INE).",
+   "aviso": "Toda cifra se cita con fuente, fecha, período, unidad y si es observada o proyectada.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "cifra efectiva",
+    "pronóstico",
+    "estimación",
+    "escenario central"
+   ],
+   "donde": [
+    "Clase 1",
+    "Lab · Índices"
+   ]
+  },
+  "pib_nominal": {
+   "termino": "PIB nominal",
+   "simbolo": "Σ pₜ·qₜ",
+   "unidad": "pesos del año corriente",
+   "definicion": "El valor de todo lo que se produjo en el año, con los precios de ese mismo año. Puede subir porque se produjo más o porque los precios subieron.",
+   "ejemplo": "Economía de dos bienes del laboratorio: el PIB nominal pasa de 140 en 2019 a 214 en 2020.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PIB a precios corrientes"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "pib_real": {
+   "termino": "PIB real",
+   "simbolo": "Σ p_base·qₜ",
+   "unidad": "pesos del año base",
+   "definicion": "El valor de lo que se produjo en el año, con los precios de un año fijo (el año base). Como los precios no cambian, solo sube si se produjo más.",
+   "ejemplo": "Con base 2019, el PIB real pasa de 140 en 2019 a 180 en 2020: la producción creció 28,57 %.",
+   "aviso": "Crecimiento económico es crecimiento del PIB real, no del nominal.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PIB a precios constantes",
+    "volumen"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "crecimiento_real": {
+   "termino": "Crecimiento real",
+   "simbolo": "(PIB realₜ / PIB realₜ₋₁ − 1) × 100",
+   "unidad": "% anual",
+   "definicion": "Cuánto aumentó la producción de un año a otro, en porcentaje, usando el PIB real.",
+   "ejemplo": "(180/140 − 1) × 100 = 28,57 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "crecimiento económico",
+    "variación del PIB real"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "deflactor": {
+   "termino": "Deflactor del PIB",
+   "simbolo": "PIB nominal / PIB real × 100",
+   "unidad": "índice (año base = 100)",
+   "definicion": "Un índice de los precios de todo lo que se produce en el país. Compara el valor de la producción a precios de hoy con su valor a precios del año base.",
+   "ejemplo": "En 2020: 214/180 × 100 = 118,89.",
+   "aviso": "El deflactor y el IPC pueden diferir sin que ninguno esté mal: miden canastas distintas.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "deflactor implícito"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "ipc": {
+   "termino": "Índice de Precios al Consumidor (IPC)",
+   "simbolo": "costo de la canasta hoy / costo en la base × 100",
+   "unidad": "índice (base = 100)",
+   "definicion": "Un índice de lo que cuesta una canasta fija de bienes y servicios que compran los hogares. En Chile lo publica el INE cada mes.",
+   "ejemplo": "Canasta del laboratorio (30 panes y 8 servicios): costaba 140 en 2019 y 167 en 2020, así que el IPC de 2020 es 119,29.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "IPC",
+    "índice de precios de consumo"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "inflacion": {
+   "termino": "Inflación",
+   "simbolo": "(IPCₜ / IPCₜ₋₁ − 1) × 100",
+   "unidad": "% (mensual, acumulada en el año o a doce meses)",
+   "definicion": "Cuánto subieron los precios en un período, en porcentaje. Es un cambio del IPC, no su nivel.",
+   "ejemplo": "IPC de 100 a 119,29: la inflación del año es 19,29 %. En julio de 2026 el IPC varió 0,1 % en el mes y 3,5 % a doce meses (INE).",
+   "aviso": "Un IPC de 119,29 no es una inflación de 119,29 %: el nivel dice cuánto subieron los precios desde la base; la inflación, cuánto subieron en el período.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "variación del IPC",
+    "alza de precios"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · Índices"
+   ]
+  },
+  "bien_intermedio": {
+   "termino": "Bien intermedio",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Un bien que se usa para producir otro. Su valor ya está dentro del precio del producto final, así que no se suma aparte al PIB.",
+   "ejemplo": "La harina que compra la panadería: se cuenta dentro del precio del pan, no por separado.",
+   "aviso": "Sumar la harina y además el pan es contar dos veces lo mismo.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "insumo"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "que_no_entra_pib": {
+   "termino": "Lo que no entra al PIB",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "El PIB suma producción nueva de este período. No entran las transferencias (nadie produce nada a cambio), las reventas de cosas usadas (se produjeron antes) ni la compra de activos financieros como acciones (es un cambio de papeles).",
+   "ejemplo": "Una transferencia del Estado a las familias (como el IFE), la venta de un auto usado y la compra de acciones de un banco no suman al PIB.",
+   "aviso": "Pueden afectar el PIB por otra vía: si una transferencia se gasta, el consumo sube. Pero no entran directamente.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "identidad_gasto": {
+   "termino": "PIB por el lado del gasto",
+   "simbolo": "Y = C + I + G + X − M",
+   "unidad": "unidades de producto o pesos",
+   "definicion": "Todo lo que se produce en el país lo compra alguien: los hogares (C), las empresas (I), el Estado (G) o el extranjero (X). Las importaciones (M) se restan porque se produjeron afuera.",
+   "ejemplo": "Un hogar compra un teléfono importado: suma en C y resta en M. Su aporte directo al PIB de Chile es casi cero.",
+   "aviso": "Es una identidad contable: se cumple siempre. No dice por qué cambia el gasto; eso lo dice el modelo del mercado de bienes.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "identidad del gasto",
+    "enfoque del gasto"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "pnb": {
+   "termino": "PNB y pago neto a factores",
+   "simbolo": "PNB = PIB + PNF",
+   "unidad": "unidades de producto o pesos",
+   "definicion": "El PIB mide lo producido dentro del país; el PNB, lo que ganan quienes viven en el país. La diferencia es el pago neto a factores (PNF): lo que los residentes reciben del exterior menos lo que se paga a quienes viven afuera.",
+   "ejemplo": "PIB real 204 y PNF −12: PNB real = 192.",
+   "aviso": "El PNF es un flujo del año, no el total de la inversión extranjera acumulada.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "producto nacional bruto",
+    "PNF",
+    "ingreso neto de factores"
+   ],
+   "donde": [
+    "Clase 2",
+    "Lab · PIB por gasto"
+   ]
+  },
+  "ingreso_disponible": {
+   "termino": "Ingreso disponible",
+   "simbolo": "Yd = Y − T",
+   "unidad": "unidades de producto",
+   "definicion": "Lo que les queda a los hogares después de pagar impuestos. Los hogares consumen según este ingreso, no según Y.",
+   "ejemplo": "Con Y = 950 y T = 150: Yd = 800 y C = 100 + 0,5 × 800 = 500.",
+   "aviso": "El consumo depende de Yd. Escribir C = c₀ + c₁·Y cuando hay impuestos es un error frecuente.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "Yd"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "equilibrio_bienes": {
+   "termino": "Equilibrio del mercado de bienes",
+   "simbolo": "Y = Z",
+   "unidad": "unidades de producto",
+   "definicion": "La producción con la que se vende exactamente lo que se produce. Las bodegas no se llenan ni se vacían sin que nadie lo haya planeado.",
+   "ejemplo": "Con Z = 475 + 0,5·Y, el equilibrio es Y* = 950: el multiplicador 2 por el gasto autónomo 475.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "producción de equilibrio",
+    "Y*"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "ahorro_inversion": {
+   "termino": "Ahorro igual a inversión",
+   "simbolo": "I = S + (T − G)",
+   "unidad": "unidades de producto",
+   "definicion": "En equilibrio, la inversión planeada es igual al ahorro de los hogares más el ahorro del Estado (lo que recauda menos lo que gasta). Es otra forma de comprobar el equilibrio.",
+   "ejemplo": "Con I = 700, ahorro privado 700 y T = G: 700 = 700 + 0 ✓.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "condición ahorro-inversión"
+   ],
+   "donde": [
+    "Nota 4",
+    "Nota 6",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "identidad_conducta": {
+   "termino": "Identidad, conducta y equilibrio",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Una identidad se cumple siempre, por definición (Y = C + I + G). Una conducta dice cómo decide alguien (C = c₀ + c₁·Yd). Una condición de equilibrio dice cuándo nadie tiene razones para cambiar (Y = Z).",
+   "ejemplo": "«Y = C + I + G» se cumple aunque la economía esté fuera de equilibrio, porque la inversión incluye los inventarios no planeados.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "ecuación de comportamiento",
+    "condición de equilibrio"
+   ],
+   "donde": [
+    "Nota 4",
+    "Lab · Mercado de bienes"
+   ]
+  },
+  "pet": {
+   "termino": "Población en edad de trabajar (PET)",
+   "simbolo": "PET = PA + inactivos",
+   "unidad": "personas (15 años o más)",
+   "definicion": "Todas las personas de 15 años o más. Se dividen en quienes trabajan o buscan trabajo (la fuerza de trabajo) y quienes no (los inactivos).",
+   "ejemplo": "ENE febrero-abril de 2024: 10.209.535 en la fuerza de trabajo + 6.135.006 inactivos = 16.344.541.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "PET"
+   ],
+   "donde": [
+    "Clase de mercado laboral",
+    "Lab · Mercado laboral"
+   ]
+  },
+  "fuerza_trabajo": {
+   "termino": "Fuerza de trabajo (PA)",
+   "simbolo": "PA = ocupados + desocupados",
+   "unidad": "personas",
+   "definicion": "Las personas que trabajan (ocupadas) más las que no trabajan pero buscan trabajo (desocupadas).",
+   "ejemplo": "9.339.296 ocupadas + 870.239 desocupadas = 10.209.535 (el INE publica 10.209.534 por redondeo).",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "población activa",
+    "PA"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "inactivos": {
+   "termino": "Inactivos",
+   "simbolo": "PET − PA",
+   "unidad": "personas",
+   "definicion": "Personas en edad de trabajar que no trabajan ni buscan trabajo: por ejemplo, quienes estudian o cuidan a alguien a tiempo completo.",
+   "ejemplo": "En febrero-abril de 2024 había 6.135.006 personas inactivas (INE).",
+   "aviso": "Un inactivo no es un desocupado: no busca trabajo, así que no cuenta en la tasa de desempleo.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "fuera de la fuerza de trabajo"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_desempleo": {
+   "termino": "Tasa de desempleo",
+   "simbolo": "desocupados / PA × 100",
+   "unidad": "%",
+   "definicion": "De cada 100 personas en la fuerza de trabajo, cuántas buscan trabajo y no lo encuentran.",
+   "ejemplo": "870.239 / 10.209.535 × 100 = 8,52 % (el INE la publica redondeada a 8,5 %).",
+   "aviso": "Se divide por la fuerza de trabajo (PA), no por la PET.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa de desocupación",
+    "u"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_participacion": {
+   "termino": "Tasa de participación y tasa de ocupación",
+   "simbolo": "PA / PET × 100; ocupados / PET × 100",
+   "unidad": "%",
+   "definicion": "La participación dice qué parte de la población en edad de trabajar está en la fuerza de trabajo. La ocupación, qué parte trabaja. Las dos se dividen por la PET.",
+   "ejemplo": "Participación: 10.209.535 / 16.344.541 = 62,46 %. Ocupación: 9.339.296 / 16.344.541 = 57,14 %.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "tasa de actividad"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "ws_ps": {
+   "termino": "Relaciones WS y PS",
+   "simbolo": "WS: W/P = F(u, z); PS: W/P = 1/(1 + m)",
+   "unidad": "salario real",
+   "definicion": "WS dice qué salario real consiguen los trabajadores: más bajo cuando hay más desempleo. PS dice qué salario real queda después de que las empresas fijan su margen sobre los costos.",
+   "ejemplo": "Con F(u, z) = 1 − u y un margen m = 0,1: PS da un salario real de 1/1,1 = 0,909.",
+   "aviso": "",
+   "mas_lejos": "",
+   "sinonimos": [
+    "fijación de salarios",
+    "fijación de precios"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
+  "tasa_natural": {
+   "termino": "Tasa natural de desempleo",
+   "simbolo": "uₙ = m/(1 + m) (con F = 1 − u)",
+   "unidad": "%",
+   "definicion": "El desempleo con el que el salario que piden los trabajadores (WS) coincide con el que dejan las empresas (PS). Es un equilibrio de mediano plazo, no el dato de un trimestre.",
+   "ejemplo": "Con m = 0,1: uₙ = 0,1/1,1 = 9,09 %. Si el margen sube, el salario real de PS baja y uₙ sube.",
+   "aviso": "Comparar el desempleo observado con uₙ dice si hay holgura; no dice por qué.",
+   "mas_lejos": "",
+   "sinonimos": [
+    "desempleo estructural",
+    "desempleo de equilibrio"
+   ],
+   "donde": [
+    "Lab · Mercado laboral"
+   ]
+  },
   "bono": {
    "termino": "Bono",
    "simbolo": "—",
@@ -812,7 +1175,7 @@
    "mas_lejos": "",
    "sinonimos": [
     "subsidio",
-    "bono del Estado",
+    "aporte fiscal a los hogares (en Chile a veces se le llama «bono»)",
     "impuesto negativo"
    ],
    "donde": [

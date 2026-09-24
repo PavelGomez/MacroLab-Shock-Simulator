@@ -129,6 +129,51 @@ function main() {
   ok(/fracción/.test(check(0.05, 0.04)), "bono · detecta la tasa escrita como fracción");
   ok(/revisa el signo/.test(check(4, 5)), "bono · detecta la tasa que sube con el precio");
 
+  /* ===== 6 · Pautas de los otros labs contra el laboratorio ===== */
+  const loadIn = (win, id) => { const h = doc.querySelector(`.activity[data-window="${win}"]`), sl = h.querySelector("select");
+    sl.value = String(ACT[win].findIndex(a => a.id === id)); sl.dispatchEvent(new w.Event("change")); return h; };
+  ok(Object.keys(ACT).every(win => ACT[win].every(a => a.enunciado)), "todas las actividades de todos los labs siguen el protocolo");
+  loadIn("med", "MED-EX-02"); L.calcMeasurement();
+  let m = L.measurement();
+  near(m[1].def, 118.89, 0.005, "MED-EX-02 · deflactor 2020"); near(m[1].ipc, 119.29, 0.005, "MED-EX-02 · IPC 2020");
+  near(m[1].growth, 28.57, 0.005, "MED-EX-02 · crecimiento real 2020"); near(m[2].infl, 26.95, 0.005, "MED-EX-02 · inflación 2021");
+  near((214 / 140 - 1) * 100, 52.86, 0.005, "MED-EX-02 · el síntoma del error nominal es 52,86 %");
+  loadIn("med", "MED-MAT-AYU2"); L.calcMeasurement(); m = L.measurement();
+  near(m[1].ipc, 118.57, 0.005, "MED-MAT-AYU2 · IPC 2020"); near(m[1].def, 118.89, 0.005, "MED-MAT-AYU2 · deflactor 2020");
+  near(m[2].infl, 31.33, 0.005, "MED-MAT-AYU2 · inflación IPC 2021");
+  const cross = (id, Y, mult) => { loadIn("cruz", id); const c = L.cross(); near(c.Yeq, Y, 0.01, `${id} · Y* = ${Y}`); near(c.multiplier, mult, 0.001, `${id} · multiplicador ${mult}`); return c; };
+  const c2 = cross("BIE-EX-02", 5050, 5); near(c2.consumption, 3450, 0.01, "BIE-EX-02 · C = 3.450"); near(c2.privateSaving, 700, 0.01, "BIE-EX-02 · S = 700");
+  cross("BIE-EX-Solemne1", 950, 2); const cp = cross("BIE-EX-prop", 880, 1.6); near(cp.consumption, 430, 0.01, "BIE-EX-prop · comprobación C = 430");
+  cross("BIE-EX-Solemne1-v2", 1100, 2.5); cross("BIE-MAT-AYU5", 1150, 2.5);
+  loadIn("lab", "LAB-EX-01"); const r1l = L.results("lab");
+  near(r1l.unemployment, 8.52, 0.005, "LAB-EX-01 · desempleo"); near(r1l.participation, 62.46, 0.005, "LAB-EX-01 · participación"); near(r1l.occupation, 57.14, 0.005, "LAB-EX-01 · ocupación");
+  loadIn("lab", "LAB-MAT-TABLA"); const r2l = L.results("lab");
+  near(r2l.unemployment, 4.67, 0.005, "LAB-MAT-TABLA · desempleo"); near(r2l.participation, 60.48, 0.005, "LAB-MAT-TABLA · participación");
+  loadIn("lab", "LAB-EX-02"); near(L.results("lab").naturalRate, 9.09, 0.005, "LAB-EX-02 · uₙ = 9,09 %");
+
+  /* ===== 7 · Ruta por clases ===== */
+  const ROUTES = w.eval("CLASS_ROUTES");
+  [1, 2, 3, 4, 5, 6, 7].forEach(c => {
+    const t = ROUTES[c].test, e = t.enunciado;
+    ok(e && e.situacion && e.datos.length && e.pide.length && e.comprobacion && e.proposito, `Clase ${c} · la pregunta tipo prueba sigue el protocolo`);
+    (e?.pistas || []).forEach(p => ok(G.terminos[p], `Clase ${c} · la pista «${p}» existe en el glosario`));
+    ok(t.prompt.startsWith(e.situacion), `Clase ${c} · el texto plano se deriva del enunciado`);
+    const vis = [e.situacion, ...e.datos, ...e.pide, e.primerPaso, e.comprobacion, e.proposito].join(" ");
+    ok(!INTERNO.test(vis) && !ANTIGUO.test(vis) && !USTED.test(vis), `Clase ${c} · sin códigos, sin terminología antigua y de tú`);
+    const nPide = e.pide.length, nNum = Object.keys(t.expected || {}).length;
+    ok(nPide >= nNum, `Clase ${c} · hay una parte pedida por cada respuesta numérica`);
+  });
+  ok(!/domina el desplazamiento/i.test(html), "ya no se dice «domina el desplazamiento»: pesa más el efecto de la tasa y hay efecto desplazamiento");
+  ok(!/crecerá 2% durante 2026/.test(html), "Clase 1 · la cifra del titular ya no se atribuye al IPoM sin fuente");
+  ok(/Pesa más el efecto de la tasa \(11,11\)/.test(ROUTES[7].test.model), "Clase 7 · la pauta usa la convención de las Notas 6 y 8");
+
+  /* ===== Texto visible de las ventanas ===== */
+  ["med", "cta", "cruz", "lab"].forEach(id => {
+    const t = doc.getElementById(id).textContent.replace(/\s+/g, " ");
+    ok(!/\d%/.test(t), `${id} · espacio antes de % en la ventana`);
+    ok(!/(Material_clases|bloque sellado|no sellada|unidades docentes)/.test(t), `${id} · sin rótulos internos en la ventana`);
+  });
+
   /* ===== Texto visible de la ventana ===== */
   const panel = doc.getElementById("din").textContent;
   ok(!ANTIGUO.test(panel), "Dinero / tasa · sin terminología antigua en la ventana");
