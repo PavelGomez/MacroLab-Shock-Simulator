@@ -162,6 +162,9 @@
   .g-arrlab{font-size:11px;font-weight:800}.g-leg{font-size:11px;fill:#334155}.g-txt{font-size:11px;fill:#334155}
   .g-guide{stroke-width:1.2;stroke-dasharray:3 3;opacity:.85}.g-projline{fill:none;stroke-width:1.2;stroke-dasharray:4 3;opacity:.8}
   #lm select{width:100%;max-width:100%;min-width:0}
+  .plot-stack{display:grid;grid-template-columns:1fr;gap:0;max-width:760px;margin:0 auto 8px}
+  .inv-table{width:100%;border-collapse:collapse;font-size:.92rem}.inv-table caption{text-align:left;font-weight:700;color:var(--navy);padding-bottom:6px}
+  .inv-table th,.inv-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}.inv-table td:nth-child(2){font-weight:800;white-space:nowrap}
   .lm-modo{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:10px 0 0}.lm-modo legend{font-weight:700;color:var(--navy);padding:0 4px}
   .code-tag{display:inline-block;margin-left:6px;color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:.02em;vertical-align:middle}
   .enun h4{margin:12px 0 4px;font-size:.92rem;color:var(--navy)}
@@ -445,6 +448,7 @@
     <button id="tab-cruz" role="tab" aria-selected="false" aria-controls="cruz" tabindex="-1" data-tab="cruz">Lab · Mercado de bienes</button>
     <button id="tab-din" role="tab" aria-selected="false" aria-controls="din" tabindex="-1" data-tab="din">Lab · Dinero / tasa</button>
     <button id="tab-lm" role="tab" aria-selected="false" aria-controls="lm" tabindex="-1" data-tab="lm">Lab · Relación LM</button>
+    <button id="tab-is" role="tab" aria-selected="false" aria-controls="is" tabindex="-1" data-tab="is">Lab · Curva IS</button>
     <button id="tab-lab" role="tab" aria-selected="false" aria-controls="lab" tabindex="-1" data-tab="lab">Lab · Mercado laboral</button>
   </nav>
 </div>
@@ -771,6 +775,96 @@
     </div>
   </section>
 
+  <section class="panel" id="is" role="tabpanel" aria-labelledby="tab-is" hidden>
+    <h2>Curva IS: de dos cruces keynesianas a una recta</h2>
+    <p class="lead">Si sube la tasa de interés, ¿cuánto se produce? Aquí resuelves el mercado de bienes con dos tasas, o antes y después de un cambio del gasto, y ves los dos equilibrios en dos gráficos alineados: arriba la cruz keynesiana y abajo el plano de producción y tasa, donde la unión de los puntos es la IS.</p>
+    <details class="guide" open>
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Te dan cómo gastan los hogares, las empresas y el Estado, y un cambio: sube o baja la tasa, cambia el gasto público, cambian los impuestos o cambia la confianza de hogares o empresas. Tienes que decir si la economía se mueve a lo largo de la IS o si la IS se desplaza, hacia dónde y cuánto.</dd>
+        <dt>Cómo se razona</dt><dd>Con una tasa dada, la cruz keynesiana da la producción con la que se vende todo lo que se produce. Guarda de cada cruz solo dos números: esa producción y la tasa. Con dos tasas tienes dos puntos; la recta que los une es la IS, que baja porque una tasa más alta quita inversión, y con menos inversión se produce menos. Después mira qué cambió: si cambió la tasa, que está en un eje, la economía <strong>se mueve a lo largo</strong> de la IS. Si cambió el gasto público, los impuestos, c₀ o b₀, <strong>la IS se desplaza</strong>: el multiplicador por el cambio del gasto autónomo.</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: muestra de dónde sale cada punto de la IS, separa los dos efectos sobre la inversión (el acelerador y el de la tasa) y deja ver cómo el impuesto proporcional cambia la inclinación de la IS. Pierde: la tasa la eliges tú, porque todavía no hay mercado de dinero (llega con la IS-LM); los precios están dados y no hay comercio exterior.</dd>
+        <dt>Qué mirar en Chile</dt><dd>Cuando las empresas postergan proyectos con la TPM quieta, la tasa no cambió pero la IS sí se corrió: bajó la inversión autónoma. Una ley de presupuestos con más gasto corre la IS a la derecha; cuánto sube la producción depende de lo que haga la tasa.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: usar 1/(1 − c₁) como multiplicador cuando la inversión depende de Y<span class="code-tag">IS-ERR-01</span>, escribir la tasa sumando en la inversión<span class="code-tag">IS-ERR-02</span>, decir que la IS se desplaza cuando cambió la tasa<span class="code-tag">IS-ERR-03</span>, llamar acelerador al efecto de la tasa<span class="code-tag">IS-ERR-04</span> y tratar una transferencia como gasto público<span class="code-tag">IS-ERR-05</span>.</p>
+    </details>
+    <div class="activity" data-window="is"></div>
+    <div class="grid">
+      <article class="card">
+        <h3>La economía</h3>
+        <label>Punto de partida<select id="isPreset"></select></label>
+        <div class="mini-grid">
+          <label>Consumo autónomo, c₀<input id="isC0" type="number" step="10"></label>
+          <label>Propensión a consumir, c₁<input id="isC1" type="number" min="0" max="0.99" step="0.05"></label>
+          <label>Inversión autónoma, b₀<input id="isB0" type="number" step="10"></label>
+          <label>Efecto acelerador, b₁<input id="isB1" type="number" min="0" step="0.05"></label>
+          <label>Efecto de la tasa, b₂<input id="isB2" type="number" min="0" step="1"></label>
+          <label>Gasto público, G<input id="isG" type="number" step="10"></label>
+        </div>
+        <fieldset class="lm-modo"><legend>Impuestos</legend>
+          <label class="inline-label"><input type="radio" name="isTax" value="fixed" checked> Fijos: T</label>
+          <label class="inline-label"><input type="radio" name="isTax" value="proportional"> Proporcionales: T = t·Y</label>
+          <div class="mini-grid"><label>Impuestos fijos, T<input id="isT" type="number" step="10"></label><label>Porcentaje de impuesto, t<input id="isTt" type="number" min="0" max="0.9" step="0.05"></label></div>
+        </fieldset>
+      </article>
+      <article class="card">
+        <h3>La tasa y el cambio</h3>
+        <label>Tasa de interés inicial, i₀ (% anual)<input id="isI0" type="number" step="0.5"></label>
+        <label>¿Qué cambia?<select id="isKind">
+          <option value="i">La tasa (movimiento a lo largo de la IS)</option>
+          <option value="G">El gasto público, G</option>
+          <option value="T">Los impuestos fijos, T (o una transferencia)</option>
+          <option value="t">El porcentaje de impuesto, t</option>
+          <option value="c0">La confianza de los hogares, c₀</option>
+          <option value="b0">La confianza de las empresas, b₀</option>
+        </select></label>
+        <label id="isValLabel">Nueva tasa, i₁ (% anual)<input id="isVal" type="number" step="0.5"></label>
+        <p class="field-note">Cambia un solo número por vez. Si la IS se desplaza, la tasa se queda en i₀: así se ve cuánto se corre la curva.</p>
+      </article>
+    </div>
+    <article class="card">
+      <div class="plot-stack">
+        <svg id="isCross" class="plot" role="img" aria-label="Cruz keynesiana con dos rectas de gasto planeado" aria-describedby="isAlt"></svg>
+        <svg id="isChart" class="plot" role="img" aria-label="Curva IS en el plano de producción y tasa" aria-describedby="isAlt"></svg>
+      </div>
+      <p class="field-note">Los dos gráficos comparten la producción: las líneas punteadas bajan cada equilibrio de la cruz a su punto en el plano de producción y tasa. Inicial: línea continua. Final: línea discontinua.</p>
+      <details class="alt"><summary>Ver descripción accesible del gráfico</summary><p id="isAlt"></p></details>
+      <div id="isFeedback" class="notice ok status" aria-live="polite"></div>
+      <div class="formula" id="isEq"></div>
+      <div class="notice warn" id="isCoinc" hidden></div>
+      <p id="isRead"></p>
+    </article>
+    <div class="grid">
+      <article class="card">
+        <h3>La inversión y sus dos efectos</h3>
+        <div class="table-wrap" id="isInv"></div>
+      </article>
+      <article class="card soft">
+        <h3>Leer la ecuación de la IS</h3>
+        <p class="formula">Y = m·(c₀ − c₁·T + b₀ + G) − m·b₂·i, con m = 1/(1 − c₁ − b₁)</p>
+        <p class="field-note">Con T = t·Y: m = 1/(1 − c₁·(1 − t) − b₁), y el término − c₁·T desaparece.</p>
+        <p><strong>La pendiente en el gráfico, −1/(m·b₂).</strong> Cuántos puntos tiene que bajar la tasa para que la producción de equilibrio suba una unidad. La IS es más plana si la inversión responde mucho a la tasa (b₂ grande) o si el multiplicador es grande: un punto de tasa cambia mucho la producción.</p>
+        <p><strong>Los interceptos.</strong> Con el eje Y (i = 0): m por el gasto autónomo. Con el eje i: el gasto autónomo dividido por b₂. Dicen dónde está la curva; no son datos de un país.</p>
+        <p><strong>Si c₁ + b₁ es 1 o más</strong>, el multiplicador no está definido: el gasto crecería tan rápido como la producción, o más, y la economía no llegaría a un equilibrio.</p>
+      </article>
+    </div>
+    <div class="grid">
+      <article class="card data-card">
+        <h3>Dato a mirar · una IS que se corre con la tasa quieta</h3>
+        <p><strong>El ancla.</strong> En la Reunión de julio de 2026, el Banco Central describió una inversión materializada por debajo de lo proyectado, con una posible postergación de proyectos a la espera de una ley, y mantuvo la TPM en <strong>4,50 %</strong> (Minuta de la Reunión de Política Monetaria N° 323, 27 y 28 de julio de 2026). Es una descripción cualitativa: la minuta no da una cifra para la postergación.</p>
+        <p><strong>Lo que el modelo permite decir.</strong> Es consistente con una caída de la inversión autónoma b₀: con la misma tasa, la IS se corre a la izquierda. La tasa no cambió, pero la curva sí.</p>
+        <p><strong>Lo que no permite decir.</strong> Cuánto se postergó ni cuánto bajará la producción. Tampoco que la ley sea la única causa: la minuta dice «posible».</p>
+      </article>
+      <article class="card data-card">
+        <h3>Dato a mirar · una ley de presupuestos</h3>
+        <p><strong>El ancla.</strong> «El Presupuesto 2026 totalizará $86,2 billones, lo que equivale a un crecimiento de 1,7% respecto de la Ley aprobada para 2025» (DIPRES, comunicado del 26 de noviembre de 2025, al despacharse la ley).</p>
+        <p><strong>Lo que el modelo permite decir.</strong> Un presupuesto con más gasto, si se ejecuta, empuja la IS a la derecha: la parte que son compras del Estado entra como G; la parte que son transferencias entra como una baja de T y corre menos la IS, porque los hogares ahorran una parte.</p>
+        <p><strong>Lo que no permite decir.</strong> Cuánto se corre la IS ni cuánto sube la producción. El 1,7 % compara dos leyes, no el gasto efectivo; mezcla compras y transferencias; y el efecto final depende de lo que pase con la tasa.</p>
+        <p class="source">Fuente: <a href="https://www.dipres.gob.cl/598/w3-article-393844.html" target="_blank" rel="noopener">DIPRES, «Congreso despacha a ley el Presupuesto 2026» ↗</a></p>
+      </article>
+    </div>
+  </section>
+
   <section class="panel" id="lab" role="tabpanel" aria-labelledby="tab-lab" hidden>
     <h2>Mercado laboral: indicadores y tasa natural</h2>
     <p class="lead">¿Cuántas personas trabajan, cuántas buscan trabajo y cuánto desempleo es «normal»? Primero calculas los indicadores de la Encuesta Nacional de Empleo del INE. Después comparas el desempleo observado con la tasa natural de un modelo simple de salarios y precios (WS-PS).</p>
@@ -835,7 +929,7 @@
 <footer>
   <div class="inner">
     <p class="who">Macroeconomía · Profesor Pável Gómez · Universidad Finis Terrae · 2026</p>
-    <p>MacroLab · Macro 1 — extensión docente, versión 0.8.0. Extensión autocontenida; no modifica el MacroLab público. Las rutas de clase no almacenan nombres ni identificadores. Cifras reales etiquetadas con fuente y período. Convención para economía abierta: E = CLP/USD; E↑ = depreciación. Cadena Macro 1: evento → variable → relación, identidad o curva → equilibrio → mecanismo de ajuste → resultado → dato de contraste.</p>
+    <p>MacroLab · Macro 1 — extensión docente, versión 0.9.0. Extensión autocontenida; no modifica el MacroLab público. Las rutas de clase no almacenan nombres ni identificadores. Cifras reales etiquetadas con fuente y período. Convención para economía abierta: E = CLP/USD; E↑ = depreciación. Cadena Macro 1: evento → variable → relación, identidad o curva → equilibrio → mecanismo de ajuste → resultado → dato de contraste.</p>
     <p class="disclaimer"><strong>Simulación pedagógica, no pronóstico. Herramienta de aprendizaje, no de predicción.</strong></p>
   </div>
 </footer>
@@ -1109,7 +1203,8 @@ const CLASS_ROUTES={
         {label:"Pauta · Ayudantía de transición (mercado de bienes)",href:"pautas/pauta-ayudantia-transicion-bienes.pdf",location:"práctica asignada · PDF",newTab:true},
         {label:"Ayudantía · Clase 5 (inversión e IS)",href:"ayudantias/ayudantia-clase5-inversion-is.pdf",location:"práctica asignada · enunciado · PDF",newTab:true},
         {label:"Pauta de práctica · Clase 5",href:"pautas/pauta-clase5-inversion-is.pdf",location:"después de intentarla · PDF",newTab:true},
-        {label:"Laboratorio de mercado de bienes",href:"#cruz",location:"laboratorio"}
+        {label:"Laboratorio de mercado de bienes",href:"#cruz",location:"laboratorio"},
+        {label:"Laboratorio de la curva IS",href:"#is",location:"laboratorio · Nota 6"}
       ]},
       {order:"Consulta",title:"Profundización",purpose:"Solo si necesitas más práctica.",required:false,items:[
         {label:"Blanchard · capítulo 5 (bienes e IS)"}
@@ -2697,6 +2792,14 @@ const ACTIVITIES={
     {"id": "LM-EX-05", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "aumento_Y", "regime": "tasa_fija", "title": "Enfoque de tasa fija: la LM horizontal", "preset": {"Y0": 2200, "M": 1200, "P": 1, "d1": 0.6, "d2": 30, "shock": "Y", "val": 2300, "modo": "tasa", "iFix": 4}, "enunciado": {"situacion": "El Banco Central decide mantener la tasa en 4 %, como hace Chile con la TPM. La producción sube de 2.200 a 2.300. Hay que ver qué forma tiene la LM y qué tiene que hacer el Banco Central.", "datos": ["Demanda de dinero real: Mᵈ = 0,6·Y − 30·i, con i en % anual.", "Tasa que fija el Banco Central: 4 %.", "Producción: sube de 2.200 a 2.300 unidades de producto.", "Dinero real al comienzo: 1.200."], "pide": ["Explica en dos frases qué forma tiene la LM en este enfoque y por qué.", "Calcula el dinero real que tiene que haber con Y = 2.300 para que la tasa siga en 4 %.", "Di si el Banco Central compra o vende bonos, y cuánto cambia el dinero real.", "Explica en una frase en qué caso la tasa podría subir en este enfoque."], "primerPaso": "Di primero qué fija el Banco Central y qué se ajusta.", "pistas": ["enfoque_tasa_fija", "curva_lm", "tpm", "oma_expansiva"], "comprobacion": "Con tu M/P de (b) e Y = 2.300, la ecuación del mercado de dinero tiene que dar 4 %.", "proposito": "Ver que con tasa fija la LM es horizontal y que el Banco Central ajusta la cantidad de dinero.", "enLab": "Los datos ya están cargados con el enfoque de tasa fija. Cambia al enfoque de dinero fijo: ¿cuánto subiría la tasa?", "errores": [{"codigo": "LM-ERR-05", "sintoma": "«La tasa sigue en 4 % y el dinero real sigue en 1.200».", "correccion": "Con más producción la gente quiere más dinero. Para que la tasa no suba, el Banco Central tiene que entregarlo: no puede fijar las dos cosas."}, {"codigo": "LM-ERR-01", "sintoma": "«Sube la producción, entonces se desplaza la LM».", "correccion": "Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve a lo largo de la LM. Lo que se desplaza es la demanda de dinero, en el otro gráfico."}]}, "rubric": "a) Horizontal, a la altura de 4 %: el Banco Central mantiene esa tasa con cualquier nivel de producción y entrega el dinero que se pida. b) M/P = 0,6 × 2.300 − 30 × 4 = 1.380 − 120 = 1.260. c) Compra bonos: el dinero real sube 60, de 1.200 a 1.260. d) Si el Consejo decide subir la tasa, por ejemplo porque la mayor producción empuja la inflación: entonces la LM horizontal sube a otra altura. Con dinero fijo, en cambio, la tasa habría subido sola hasta 6 %.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
     {"id": "LM-EX-06", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "aumento_Y", "regime": "dinero_fijo", "title": "Continuidad con Dinero / tasa: de dos equilibrios a la LM", "preset": {"Y0": 1000, "M": 760, "P": 1, "d1": 0.8, "d2": 20, "shock": "Y", "val": 1010, "modo": "dinero", "iFix": 2}, "enunciado": {"situacion": "En la ventana Dinero / tasa resolviste el mercado de dinero con Y = 1.000 y con Y = 1.010, con el dinero real fijo en 760. Aquí esos dos resultados se vuelven dos puntos de la LM.", "datos": ["Demanda de dinero real: Mᵈ = 0,8·Y − 20·i, con i en % anual.", "Dinero real, fijo: M/P = 760.", "Producción: de 1.000 a 1.010 unidades de producto."], "pide": ["Ubica los puntos A (Y = 1.000) y B (Y = 1.010) en el plano (Y, i).", "Escribe la LM de dos formas: i = … e Y = ….", "Explica en una frase por qué subir Y es un movimiento a lo largo de la LM y no un desplazamiento."], "primerPaso": "Recupera las dos tasas que calculaste en Dinero / tasa, o calcúlalas con M/P = 0,8·Y − 20·i.", "pistas": ["curva_lm", "movimiento_a_lo_largo", "demanda_dinero_real"], "comprobacion": "La pendiente de la LM tiene que ser d₁/d₂ = 0,04: 10 más de producción suben la tasa 0,4 puntos.", "proposito": "Unir lo que se hizo en el mercado de dinero con la LM.", "enLab": "Los datos ya están cargados. Mira las líneas punteadas: cada equilibrio del gráfico de la izquierda es un punto de la LM a la derecha.", "errores": [{"codigo": "LM-ERR-01", "sintoma": "«Sube la producción, entonces se desplaza la LM».", "correccion": "Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve a lo largo de la LM. Lo que se desplaza es la demanda de dinero, en el otro gráfico."}]}, "rubric": "a) A = (1.000; 2 %) y B = (1.010; 2,4 %). b) i = 0,04·Y − 38, o bien Y = 950 + 25·i. c) Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve sobre la LM. En el gráfico del mercado de dinero, en cambio, lo que se desplaza es la demanda de dinero.", "library": "0.8-macro1", "source": "Lab · Relación LM"}
   ],
+  is:[
+    {"id": "IS-EX-01", "modelKey": "curva_is", "shockKey": "cambio_tasa", "regime": "T_fijo", "title": "De dos cruces a una curva: la IS", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 10, "G": 150, "taxMode": "fixed", "T": 50, "t": 0.125, "i0": 2, "kind": "i", "val": 6}, "enunciado": {"situacion": "Una economía cerrada: los hogares consumen una parte de su ingreso después de impuestos, las empresas invierten más cuando venden más y menos cuando la tasa sube, y el Estado gasta 150. Hay que ver cuánto se produce con dos tasas distintas y unir esos puntos.", "datos": ["Consumo: C = 50 + 0,8·(Y − T), con impuestos fijos T = 50.", "Inversión: I = 100 + 0,1·Y − 10·i, con la tasa i en % anual.", "Gasto público: G = 150. Todo en unidades de producto."], "pide": ["Escribe el gasto planeado Z con i = 2 % y con i = 6 %, y di cuál recta está más arriba.", "Calcula la producción de equilibrio con cada tasa.", "Escribe la IS.", "Explica en cinco líneas por qué una tasa más alta baja la producción, pasando por los inventarios.", "Escribe la respuesta completa de la producción con i = 2 %."], "primerPaso": "Escribe Z = C + I + G y junta por un lado los términos con Y y por otro los que no la tienen.", "pistas": ["gasto_planeado", "cruz_keynesiana", "curva_is", "multiplicador", "inventarios"], "comprobacion": "Reemplaza i = 4 %, que no usaste, en tu IS y en la cruz: las dos tienen que dar la misma producción.", "proposito": "Construir la IS a partir de dos cruces keynesianas.", "enLab": "Los datos ya están cargados con i₀ = 2 % e i₁ = 6 %. Mira cómo cada equilibrio de la cruz baja a su punto en la IS.", "errores": [{"codigo": "IS-ERR-01", "sintoma": "Usar 1/(1 − 0,8) = 5 como multiplicador.", "correccion": "La inversión también sube con la producción: el multiplicador es 1/(1 − c₁ − b₁) = 1/(1 − 0,8 − 0,1) = 10."}, {"codigo": "IS-ERR-02", "sintoma": "Escribir I = 100 + 0,1·Y + 10·i.", "correccion": "La tasa entra restando: con el crédito más caro se invierte menos."}, {"codigo": "IS-ERR-03", "sintoma": "«Sube la tasa, entonces la IS se desplaza a la izquierda».", "correccion": "La tasa está en uno de los ejes: si cambia, la economía se mueve a lo largo de la IS. La IS se desplaza cuando cambia G, T, t, c₀ o b₀."}]}, "rubric": "a) Z = 50 − 40 + 100 + 150 − 10·i + 0,9·Y = (260 − 10·i) + 0,9·Y. Con 2 %: Z = 240 + 0,9·Y; con 6 %: Z = 200 + 0,9·Y. Está más arriba la de 2 %. b) 240/0,1 = 2.400 y 200/0,1 = 2.000. c) 0,1·Y = 260 − 10·i → Y = 2.600 − 100·i. d) Con una tasa más alta las empresas invierten menos; con la producción de antes sobran bienes y las bodegas se llenan; las empresas producen menos, baja el ingreso y el consumo, y la producción baja hasta el nuevo equilibrio. e) Unidad: unidades de producto. Qué significa: con una tasa de 2 %, se produce 2.400 y se vende exactamente eso. Cómo lo compruebo: C = 50 + 0,8 × 2.350 = 1.930; I = 100 + 240 − 20 = 320; 1.930 + 320 + 150 = 2.400 ✓. Y por el ahorro: S = 2.400 − 50 − 1.930 = 420; S + (T − G) = 420 − 100 = 320 = I ✓.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"},
+    {"id": "IS-EX-02", "modelKey": "curva_is", "shockKey": "cambio_tasa", "regime": "T_fijo", "title": "La inversión y sus dos efectos", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 10, "G": 150, "taxMode": "fixed", "T": 50, "t": 0.125, "i0": 2, "kind": "i", "val": 6}, "enunciado": {"situacion": "En la misma economía, la tasa sube de 2 % a 6 % y la producción de equilibrio baja de 2.400 a 2.000. La inversión cambia por dos razones a la vez: cambió la tasa y cambiaron las ventas. Hay que separar cuánto aporta cada una.", "datos": ["Consumo: C = 50 + 0,8·(Y − T), con impuestos fijos T = 50.", "Inversión: I = 100 + 0,1·Y − 10·i, con la tasa i en % anual.", "Gasto público: G = 150. Todo en unidades de producto.", "Equilibrios: A = (2.400; 2 %) y B = (2.000; 6 %)."], "pide": ["Calcula la inversión en A y en B.", "Calcula el efecto acelerador, b₁·ΔY, y el efecto de la tasa, −b₂·Δi.", "Escribe una frase para cada efecto: qué cambió y por qué la inversión se movió.", "Comprueba que los dos efectos suman el cambio total de la inversión."], "primerPaso": "Escribe I = 100 + 0,1·Y − 10·i y marca qué cambió entre A y B: Y e i.", "pistas": ["inversion_planeada", "efecto_acelerador", "efecto_tasa", "efecto_desplazamiento"], "comprobacion": "El efecto acelerador más el efecto de la tasa tiene que ser igual a la inversión en B menos la inversión en A.", "proposito": "Separar los dos efectos sobre la inversión y no confundirlos.", "enLab": "La tabla «La inversión y sus dos efectos» hace la cuenta. Hazla tú primero.", "errores": [{"codigo": "IS-ERR-04", "sintoma": "«El acelerador es cuánto baja la inversión cuando sube la tasa».", "correccion": "Pregúntate qué variable cambió. Si cambió Y, actúa b₁ (efecto acelerador). Si cambió i, actúa b₂ (efecto de la tasa)."}, {"codigo": "IS-ERR-06", "sintoma": "Llamar «efecto desplazamiento» a −b₂·Δi.", "correccion": "Ese es el efecto de la tasa. El efecto desplazamiento es otra cosa: el caso en que un aumento del gasto público termina bajando la inversión (Nota 8)."}]}, "rubric": "a) En A: 100 + 240 − 20 = 320. En B: 100 + 200 − 60 = 240. b) Efecto acelerador: 0,1 × (2.000 − 2.400) = −40. Efecto de la tasa: −10 × (6 − 2) = −40. c) «La tasa subió 4 puntos y el crédito se encareció: la inversión baja 40 por el efecto de la tasa.» «La producción bajó 400 y las empresas venden menos: la inversión baja otros 40 por el efecto acelerador.» Aquí el acelerador resta, porque las ventas bajaron. d) −40 − 40 = −80 = 240 − 320 ✓.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"},
+    {"id": "IS-EX-03", "modelKey": "curva_is", "shockKey": "cambio_b2", "regime": "T_fijo", "title": "Pendiente e interceptos: cuándo la IS es más plana", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 20, "G": 150, "taxMode": "fixed", "T": 50, "t": 0.125, "i0": 2, "kind": "i", "val": 6}, "enunciado": {"situacion": "Dos economías son iguales salvo en una cosa: en la segunda, la inversión responde el doble a la tasa. Hay que comparar sus IS.", "datos": ["Las dos: C = 50 + 0,8·(Y − T), T = 50, G = 150; b₀ = 100 y b₁ = 0,1.", "Economía 1: b₂ = 10. Economía 2: b₂ = 20. La tasa va en % anual."], "pide": ["Escribe la IS de cada economía.", "Calcula la pendiente de cada IS en el gráfico, con la tasa en el eje vertical.", "Calcula los interceptos de cada IS con el eje Y y con el eje i.", "Explica en dos frases por qué la IS de la economía 2 es más plana."], "primerPaso": "Escribe la IS general: Y = m·(A − b₂·i), con m = 1/(1 − c₁ − b₁).", "pistas": ["curva_is", "pendiente", "intercepto", "efecto_tasa", "multiplicador"], "comprobacion": "El intercepto con el eje Y no depende de b₂: en las dos economías es el multiplicador por el gasto autónomo, 10 × 260.", "proposito": "Leer la pendiente y los interceptos de la IS, y ver qué los cambia.", "enLab": "Los datos ya están cargados con b₂ = 20. Cambia b₂ a 10 y compara.", "errores": [{"codigo": "IS-ERR-07", "sintoma": "«La pendiente de la IS es −150 (o −100)».", "correccion": "Ese número dice cuánta producción se pierde por punto de tasa. Con la tasa en el eje vertical, la pendiente del dibujo es su inverso: −1/100."}, {"codigo": "IS-ERR-01", "sintoma": "Usar 1/(1 − 0,8) = 5 como multiplicador.", "correccion": "La inversión también sube con la producción: el multiplicador es 1/(1 − c₁ − b₁) = 1/(1 − 0,8 − 0,1) = 10."}]}, "rubric": "a) Economía 1: Y = 2.600 − 100·i. Economía 2: Y = 10 × (260 − 20·i) = 2.600 − 200·i. b) −1/100 y −1/200. c) Eje Y: 2.600 en las dos. Eje i: 260/10 = 26 % y 260/20 = 13 %. d) En la economía 2, un punto de tasa quita 20 de inversión, y el multiplicador lo convierte en 200 de producción: basta un cambio pequeño de la tasa para mover mucho la producción. Por eso la recta se ve más plana.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"},
+    {"id": "IS-EX-04", "modelKey": "curva_is", "shockKey": "aumento_G", "regime": "T_fijo", "title": "Más gasto público o una transferencia: la IS se corre", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 10, "G": 150, "taxMode": "fixed", "T": 50, "t": 0.125, "i0": 4, "kind": "G", "val": 170}, "enunciado": {"situacion": "En la misma economía, el Gobierno evalúa dos opciones del mismo monto: gastar 20 más en obras públicas o entregar una transferencia de 20 a los hogares. La tasa está en 4 %. Hay que ver cuánto corre la IS cada una.", "datos": ["Consumo: C = 50 + 0,8·(Y − T), con impuestos fijos T = 50.", "Inversión: I = 100 + 0,1·Y − 10·i, con la tasa i en % anual.", "Gasto público: G = 150. Todo en unidades de producto.", "Opción 1: G sube de 150 a 170.", "Opción 2: transferencia de 20 (T baja de 50 a 30).", "Tasa: i = 4 %."], "pide": ["Calcula cuánto se desplaza la IS con la opción 1 y escribe la nueva IS.", "Calcula cuánto se desplaza la IS con la opción 2.", "Explica en una frase, con la cuenta, por qué no corren la IS lo mismo.", "Escribe la respuesta completa de (a).", "Di si el desplazamiento de (a) es lo que va a subir la producción de la economía, y por qué."], "primerPaso": "Escribe cómo entra cada una al gasto autónomo: G entra completo; T entra multiplicado por −c₁.", "pistas": ["politica_fiscal", "transferencia", "desplazamiento_curva", "multiplicador"], "comprobacion": "Con i = 4 %, calcula la producción con la IS nueva y compruébala con la cruz: C + I + G tiene que dar lo mismo.", "proposito": "Ver que el gasto público y una transferencia del mismo monto no mueven lo mismo la IS.", "enLab": "Los datos ya están cargados con la opción 1. Para la opción 2, elige «Los impuestos fijos, T» y escribe 30.", "errores": [{"codigo": "IS-ERR-05", "sintoma": "Tratar la transferencia como gasto público: «las dos corren la IS 200».", "correccion": "Los hogares gastan solo c₁ = 0,8 de cada peso que reciben: la transferencia corre la IS 10 × 0,8 × 20 = 160."}, {"codigo": "IS-ERR-08", "sintoma": "«La IS se corre 200, entonces la producción sube 200».", "correccion": "Eso ocurre solo si la tasa no cambia. Cuánto sube la producción lo decide también el mercado de dinero (Nota 7)."}]}, "rubric": "a) 10 × 20 = 200 a la derecha: Y = 2.800 − 100·i. b) 10 × 0,8 × 20 = 160 a la derecha. c) «El gasto de 20 entra completo al gasto; de la transferencia de 20, los hogares gastan 16 y ahorran 4: 10 × 16 = 160.» d) Unidad: unidades de producto. Qué significa: a cualquier tasa, el mercado de bienes queda en equilibrio con 200 más de producción. Cómo lo compruebo: con i = 4 %, la IS nueva da 2.800 − 400 = 2.400; en la cruz, Z = 280 − 40 + 0,9·Y = 240 + 0,9·Y → Y = 2.400 ✓. e) No necesariamente: los 200 suponen que la tasa no cambia. Si la tasa sube, la producción sube menos; eso se ve con la IS y la LM juntas.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"},
+    {"id": "IS-EX-05", "modelKey": "curva_is", "shockKey": "cambio_t", "regime": "T_proporcional", "title": "Impuesto proporcional: la IS cambia de inclinación", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 10, "G": 150, "taxMode": "proportional", "T": 50, "t": 0.125, "i0": 4, "kind": "t", "val": 0.375}, "enunciado": {"situacion": "En esta economía los impuestos son un porcentaje del ingreso. El Gobierno sube ese porcentaje de 12,5 % a 37,5 %. Hay que ver qué le pasa al multiplicador y a la IS, y revisar una cuenta que da bien por casualidad.", "datos": ["Consumo: C = 50 + 0,8·(Y − T), con T = t·Y.", "Porcentaje de impuesto: t = 0,125 antes y t = 0,375 después.", "Inversión: I = 100 + 0,1·Y − 10·i, con i en % anual.", "Gasto público: G = 150."], "pide": ["Calcula el multiplicador y escribe la IS con t = 0,125.", "Calcula el multiplicador y escribe la IS con t = 0,375.", "Con t = 0,125, ¿da 1/(1 − c₁) el multiplicador correcto? Explica por qué, en tres partes: el resultado, la condición que lo produce y cuándo deja de cumplirse.", "Explica en dos frases por qué la IS con t = 0,375 es más empinada."], "primerPaso": "Escribe el consumo en función de Y: C = 50 + 0,8·(1 − t)·Y.", "pistas": ["impuesto_proporcional", "estabilizador_automatico", "multiplicador", "coincidencia_regla"], "comprobacion": "Con t = 0,375, reemplaza i = 4 % en tu IS y compruébalo con la cruz: C + I + G tiene que dar lo mismo.", "proposito": "Ver que el porcentaje de impuesto cambia el multiplicador y la inclinación de la IS, y declarar una coincidencia.", "enLab": "Los datos ya están cargados. Mira el aviso de coincidencia y compara la inclinación de las dos IS.", "errores": [{"codigo": "IS-ERR-01", "sintoma": "Usar 1/(1 − c₁) porque «con t = 0,125 da bien».", "correccion": "Da bien por coincidencia: c₁·t = 0,8 × 0,125 = 0,1 = b₁. Con t = 0,375 la misma cuenta sigue dando 5 y el multiplicador correcto es 2,5."}, {"codigo": "IS-ERR-09", "sintoma": "«Al subir t, la IS solo se corre a la izquierda».", "correccion": "Con impuesto proporcional, t cambia la pendiente del gasto planeado y el multiplicador: la IS se corre y además cambia su inclinación."}]}, "rubric": "a) c₁·(1 − t) = 0,7; m = 1/(1 − 0,7 − 0,1) = 5; Y = 5 × (300 − 10·i) = 1.500 − 50·i. b) c₁·(1 − t) = 0,5; m = 1/(1 − 0,5 − 0,1) = 2,5; Y = 750 − 25·i. c) Sí da 5, pero por coincidencia. El resultado: 1/(1 − 0,8) = 5 = m. La condición: c₁·t = 0,8 × 0,125 = 0,1, justo igual a b₁ = 0,1. Deja de cumplirse con cualquier otro t o b₁: con t = 0,375, la cuenta equivocada sigue dando 5 y el multiplicador correcto es 2,5. d) Con más impuesto, cada vuelta del gasto es más chica y el multiplicador baja: un punto de tasa cambia menos la producción (25 en vez de 50), así que hace falta mover más la tasa para mover la misma producción. Cómo lo compruebo (b): con i = 4 %, Y = 650; T = 243,75; C = 50 + 0,8 × 406,25 = 375; I = 100 + 65 − 40 = 125; 375 + 125 + 150 = 650 ✓.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"},
+    {"id": "IS-EX-06", "modelKey": "curva_is", "shockKey": "caida_b0", "regime": "T_fijo", "title": "Las empresas postergan proyectos: cae la inversión autónoma", "preset": {"c0": 50, "c1": 0.8, "b0": 100, "b1": 0.1, "b2": 10, "G": 150, "taxMode": "fixed", "T": 50, "t": 0.125, "i0": 4, "kind": "b0", "val": 80}, "enunciado": {"situacion": "En la misma economía, las empresas pierden confianza y postergan proyectos: la inversión autónoma baja de 100 a 80. El Banco Central mantiene la tasa en 4 %. Hay que ver qué le pasa a la IS, a la producción y a la inversión.", "datos": ["Consumo: C = 50 + 0,8·(Y − T), con impuestos fijos T = 50.", "Inversión: I = 100 + 0,1·Y − 10·i, con la tasa i en % anual.", "Gasto público: G = 150. Todo en unidades de producto.", "Cambio: b₀ baja de 100 a 80.", "Tasa: se mantiene en 4 %."], "pide": ["Calcula cuánto y hacia dónde se desplaza la IS.", "Calcula la producción de equilibrio con i = 4 %, antes y después.", "Descompón el cambio de la inversión en tres partes: el cambio autónomo, el efecto acelerador y el efecto de la tasa.", "Di si esto es un movimiento a lo largo de la IS o un desplazamiento, y por qué."], "primerPaso": "Escribe el gasto autónomo antes y después: solo cambia b₀.", "pistas": ["b0", "curva_is", "efecto_acelerador", "desplazamiento_curva"], "comprobacion": "El cambio autónomo más el efecto acelerador más el efecto de la tasa tiene que dar la inversión después menos la inversión antes.", "proposito": "Ver que un cambio de expectativas corre la IS aunque la tasa no se mueva.", "enLab": "Los datos ya están cargados. Mira la tabla de la inversión: tiene una fila para el cambio autónomo.", "errores": [{"codigo": "IS-ERR-03", "sintoma": "«Sube la tasa, entonces la IS se desplaza a la izquierda».", "correccion": "La tasa está en uno de los ejes: si cambia, la economía se mueve a lo largo de la IS. La IS se desplaza cuando cambia G, T, t, c₀ o b₀."}, {"codigo": "IS-ERR-04", "sintoma": "«La tasa no cambió, entonces la inversión baja solo 20».", "correccion": "Baja 20 por la confianza y además 20 por el efecto acelerador: la producción cayó 200 y las empresas venden menos."}]}, "rubric": "a) 10 × (−20) = 200 a la izquierda: Y = 2.400 − 100·i. b) Antes: 2.600 − 400 = 2.200. Después: 2.400 − 400 = 2.000. c) Antes: I = 100 + 220 − 40 = 280. Después: I = 80 + 200 − 40 = 240. ΔI = −40 = −20 (cambio autónomo) − 20 (efecto acelerador: 0,1 × (−200)) + 0 (efecto de la tasa: la tasa no cambió) ✓. d) Es un desplazamiento: cambió b₀, que no está en los ejes. La tasa no cambió, pero la curva sí se corrió.", "circuit": "IS-CIR-01", "library": "0.9-macro1", "source": "Lab · Curva IS"}
+  ],
   lab:[
     {id:"LAB-EX-01",circuit:"LAB-CIR-01",modelKey:"mercado_laboral",shockKey:"calculo_indicadores",regime:"ENE_feb_abr_2024",library:"0.3-codex",title:"Indicadores del mercado laboral · febrero-abril de 2024",source:"bloque sellado",preset:{employed:9339296,unemployed:870239,inactive:6135006},
       enunciado:{"situacion": "Cada mes, el INE publica cuántas personas trabajan, cuántas buscan trabajo y cuántas no hacen ninguna de las dos cosas, en un trimestre móvil. Con esos tres números se construyen los indicadores del mercado laboral.", "datos": ["Ocupadas: 9.339.296 personas.", "Desocupadas: 870.239 personas.", "Inactivas (15 años o más): 6.135.006 personas.", "Período: trimestre móvil febrero-abril de 2024 (INE, boletín n.º 307)."], "pide": ["Calcula la fuerza de trabajo (PA) y la población en edad de trabajar (PET).", "Calcula la tasa de participación, la de ocupación y la de desempleo, en %, con dos decimales.", "Di por qué número se divide cada tasa."], "primerPaso": "PA = ocupadas + desocupadas; PET = PA + inactivas.", "pistas": ["fuerza_trabajo", "pet", "inactivos", "tasa_desempleo", "tasa_participacion"], "comprobacion": "Tu tasa de desempleo tiene que redondear a 8,5 %, la cifra que publicó el INE. Y la participación tiene que ser la ocupación más desocupadas / PET.", "proposito": "Construir los indicadores del mercado laboral y elegir bien el denominador de cada uno.", "enLab": "Los datos ya están en «Indicadores ENE». Compara tus tasas con las del laboratorio.", "errores": [{"codigo": "LAB-ERR-01", "sintoma": "Calcular el desempleo como desocupadas / PET.", "correccion": "El desempleo se divide por la fuerza de trabajo (PA): de los que trabajan o buscan, cuántos buscan."}, {"codigo": "LAB-ERR-02", "sintoma": "Sumar las inactivas a las desocupadas.", "correccion": "Una persona inactiva no busca trabajo: no está desocupada."}]},rubric:"PA calculada = 10.209.535; PET = 16.344.541; participación = 62,46 %; ocupación = 57,14 %; desempleo = 8,52 %. Participación y ocupación se dividen por la PET; el desempleo, por la PA. El boletín publica PA = 10.209.534 por redondeo de las estimaciones."},
@@ -2798,6 +2901,7 @@ function applyPreset(win,a){
   if(win==="med"){setMeasurementPreset(a.preset)}
   if(win==="cruz"){Object.entries(a.preset).forEach(([k,v])=>k==="propTax"?document.getElementById(k).checked=v:setValue(k,v));toggleTax();calcCross()}
   if(win==="lm")lmApply(a.preset);
+  if(win==="is")isApply(a.preset);
   if(win==="din"){setValue("moneyY",a.preset.Y);setValue("moneyMs",a.preset.Ms);setValue("moneyD1",a.preset.d1);setValue("moneyD2",a.preset.d2);moneyStep=a.preset.step;drawMoney()}
   if(win==="lab"){Object.entries(a.preset).forEach(([k,v])=>setValue(k,v));calcLabor();calcWsPs()}
 }
@@ -2815,6 +2919,7 @@ function getCurrentParams(win){
   if(win==="cruz")return {c0:num("c0"),c1:num("c1"),I:num("inv"),G:num("gov"),taxMode:document.getElementById("propTax").checked?"proportional":"fixed",T:num("tax"),t:num("taxRate")};
   if(win==="din")return {Y:num("moneyY"),MsReal:num("moneyMs"),d1:num("moneyD1"),d2:num("moneyD2"),interestRate:moneyInterest()};
   if(win==="lm")return lmRead();
+  if(win==="is")return isRead();
   if(win==="lab")return {employed:num("employed"),unemployed:num("unemployed"),inactive:num("inactive"),markup:num("markup")};
   return {};
 }
@@ -2823,6 +2928,7 @@ function getCurrentResults(win){
   if(win==="cta")return {answered:Object.keys(ctaDone).map(Number),score:Object.keys(ctaDone).length,mistakes:ctaAttempts.filter(x=>!x.correct).map(x=>({...x}))};
   if(win==="cruz")return lastCross?{...lastCross}:null;
   if(win==="din"){const i=moneyInterest();return {interestRate:i,bondPrice:100/(1+i/100)}}
+  if(win==="is"){const r=isSolve(isRead());return {Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,multiplier0:r.s0.m,multiplier1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,accelerator:r.acc,rateEffect:r.rate,autonomous:r.auto}}
   if(win==="lm"){const r=lmSolve(lmRead());return {i0:r.i0,i1:r.i1,slope:r.slope,shiftY:r.shiftY,interceptY:r.interceptY0,interceptI:r.interceptI0,mpReq0:r.mpReq0??null,mpReq1:r.mpReq1??null}}
   if(win==="lab"){
     const O=num("employed"),D=num("unemployed"),Inact=num("inactive"),PA=O+D,PET=PA+Inact,m=num("markup");
@@ -3061,7 +3167,8 @@ function niceScale(lo,hi,target,fromZero){
   if(!(hi>lo))hi=lo+1;
   const step=niceStep(hi-lo,target||5),min=Math.floor(lo/step+1e-9)*step,max=Math.ceil(hi/step-1e-9)*step,ticks=[];
   for(let v=min;v<=max+step*1e-6;v+=step)ticks.push(Math.round(v/step)*step);
-  return {min,max,step,ticks,digits:step<1?(step<.1?2:1):0};
+  // decimales del paso mismo: 2,5 → 1; 0,25 → 2; 500 → 0 (nunca «3» por 2,5)
+  return {min,max,step,ticks,digits:(String(+step.toFixed(6)).split(".")[1]||"").length};
 }
 // Recorte de un segmento al rectángulo [x0,x1]×[y0,y1] (Liang–Barsky).
 function clipSegment(a,b,box){
@@ -3107,18 +3214,24 @@ function plotSvg(spec){
     while(xLab.some(q=>q.row===row&&Math.abs(q.x-x)<(q.wd+wd)/2+2))row++;xLab.push({x,row,wd});
     const y=h-m.b+16+row*14;boxes.push({x:x-wd/2,y:y-11,w:wd,h:14});
     out.push(`<rect x="${x-wd/2}" y="${y-11}" width="${wd}" height="14" class="g-labbg"/>`,text(x,y,p.t,{anchor:"middle",cls:"g-proj",fill:G_COLOR[p.estado]}))});
-  Y.ticks.forEach(v=>{const y=py(v)+4,t=fmtG(v,Y.digits||0),wd=textWidth(t,11);const b={x:m.l-8-wd,y:y-11,w:wd,h:14};
+  Y.ticks.forEach(v=>{const y=py(v)+4,t=fmtT(v,Y.digits||0),wd=textWidth(t,11);const b={x:m.l-8-wd,y:y-11,w:wd,h:14};
     if(projY.some(q=>q.t===t||q.t===t+" %")||boxes.some(o=>boxesOverlap(b,o,0)))return;boxes.push(b);out.push(text(m.l-8,y,t,{anchor:"end",cls:"g-tick"}))});
-  X.ticks.forEach(v=>{const x=px(v),t=fmtG(v,X.digits||0),wd=textWidth(t,11);const b={x:x-wd/2,y:h-m.b+5,w:wd,h:14};
+  X.ticks.forEach(v=>{const x=px(v),t=fmtT(v,X.digits||0),wd=textWidth(t,11);const b={x:x-wd/2,y:h-m.b+5,w:wd,h:14};
     if(projX.some(q=>q.t===t)||b.x+b.w>w-2||boxes.some(o=>boxesOverlap(b,o,0)))return;boxes.push(b);out.push(text(x,h-m.b+16,t,{anchor:"middle",cls:"g-tick"}))});
   // ejes, con marca de corte si el eje no parte en cero
   out.push(`<line x1="${m.l}" y1="${h-m.b}" x2="${w-m.r}" y2="${h-m.b}" class="g-axis"/>`,`<line x1="${m.l}" y1="${m.t}" x2="${m.l}" y2="${h-m.b}" class="g-axis"/>`);
   if(X.axisBreak){const x=m.l+12,y=h-m.b;out.push(`<path d="M${x-5} ${y+6} L${x-1} ${y-6} M${x+1} ${y+6} L${x+5} ${y-6}" class="g-break"/>`)}
+  if(Y.axisBreak){const x=m.l,y=h-m.b-12;out.push(`<path d="M${x-6} ${y+5} L${x+6} ${y+1} M${x-6} ${y-1} L${x+6} ${y-5}" class="g-break"/>`)}
   out.push(text((m.l+w-m.r)/2,h-8,X.label,{anchor:"middle",cls:"g-axlab"}));boxes.push({x:(m.l+w-m.r)/2-textWidth(X.label,12)/2,y:h-21,w:textWidth(X.label,12),h:15});
   out.push(`<text x="15" y="${(m.t+h-m.b)/2}" transform="rotate(-90 15 ${(m.t+h-m.b)/2})" text-anchor="middle" class="g-axlab">${escapeText(Y.label)}</text>`);
   out.push(`<clipPath id="${spec.id}-clip"><rect x="${m.l}" y="${m.t}" width="${w-m.l-m.r}" height="${h-m.t-m.b}"/></clipPath><g clip-path="url(#${spec.id}-clip)">`);
   // guías punteadas hacia el borde (alinean paneles vecinos)
-  (spec.guides||[]).forEach(g=>{if(g.y<Y.min||g.y>Y.max)return;const y=py(g.y),x1=g.from==="edge"?0:px(g.from),x2=g.to==="edge"?w:px(g.to);
+  // horizontales (paneles lado a lado, alineados en el eje vertical) o verticales (paneles
+  // apilados, alineados en el eje horizontal): «edge» lleva la guía hasta el borde del panel.
+  (spec.guides||[]).forEach(g=>{
+    if(g.x!==undefined){if(g.x<X.min||g.x>X.max)return;const x=px(g.x),y1=g.from==="edge"?0:py(g.from),y2=g.to==="edge"?h:py(g.to);
+      out.push(`<line x1="${x}" y1="${y1}" x2="${x}" y2="${y2}" class="g-guide" stroke="${G_COLOR[g.estado]}"/>`);return}
+    if(g.y<Y.min||g.y>Y.max)return;const y=py(g.y),x1=g.from==="edge"?0:px(g.from),x2=g.to==="edge"?w:px(g.to);
     out.push(`<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" class="g-guide" stroke="${G_COLOR[g.estado]}"/>`)});
   // proyecciones
   (spec.points||[]).forEach(p=>{if(p.proj===false||!(p.x>=X.min&&p.x<=X.max&&p.y>=Y.min&&p.y<=Y.max))return;const x=px(p.x),y=py(p.y);
@@ -3143,16 +3256,19 @@ function plotSvg(spec){
     out.push(`<circle cx="${x}" cy="${y}" r="5.5" class="g-dot" fill="${G_COLOR[p.estado]}"/>`);
     if(!p.name)return;const wd=textWidth(p.name,13)+2,c=place([[x+8,y-8],[x-8-wd,y-8],[x+8,y+18],[x-8-wd,y+18],[x+10,y+4],[x-12-wd,y+4]],wd,15);
     if(c)out.push(text(c[0],c[1],p.name,{cls:"g-pt",fill:G_COLOR[p.estado]}))});
-  // rótulos de curvas y de flechas, sin solapes
+  // rótulos: primero los de las flechas (dicen cuánto cambió), después los de las curvas; sin solapes
+  (spec.arrows||[]).forEach(a=>{if(!a.text)return;const mx=px((a.from[0]+a.to[0])/2),my=py((a.from[1]+a.to[1])/2),wd=textWidth(a.text,11)+2;
+    // del lado de arriba de la flecha: arriba a la derecha si baja hacia la derecha; arriba a la izquierda si sube
+    const down=(py(a.to[1])-py(a.from[1]))*(px(a.to[0])-px(a.from[0]))>0;
+    const first=down?[[mx+12,my-10],[mx-wd-12,my+16]]:[[mx-wd-12,my-10],[mx+12,my+16]];
+    const at=place(first.concat([[mx-wd/2,my-18],[mx-wd/2,my+26],[mx+10,my+4],[mx-10-wd,my+4]]),wd,14);
+    if(at)out.push(`<rect x="${at[0]-2}" y="${at[1]-11}" width="${wd+2}" height="14" class="g-labbg"/>`,text(at[0],at[1],a.text,{cls:"g-arrlab",fill:G_COLOR[a.estado||"neutral"]}))});
   curveLabels.forEach(({s,c})=>{const wd=textWidth(s.name,12)+2,fr=[s.labelAt??.15,.3,.5,.7,.85,.08,.95];
     // el inicial prueba primero a la izquierda de su curva y el final a la derecha, para no caer sobre la otra
     const cands=[];fr.forEach(f=>{const xx=px(c[0][0]+(c[1][0]-c[0][0])*f),yy=py(c[0][1]+(c[1][1]-c[0][1])*f);
       const L=[[xx-8-wd,yy-6],[xx-8-wd,yy+14]],R=[[xx+8,yy-6],[xx+8,yy+14]];cands.push(...(s.estado==="fin"?R.concat(L):L.concat(R)))});
     const at=place(cands.filter(q=>q[0]>m.l&&q[0]+wd<w-m.r&&q[1]>m.t+12&&q[1]<h-m.b-2),wd,15);
     if(at)out.push(text(at[0],at[1],s.name,{cls:"g-clab",fill:G_COLOR[s.estado]}))});
-  (spec.arrows||[]).forEach(a=>{if(!a.text)return;const mx=px((a.from[0]+a.to[0])/2),my=py((a.from[1]+a.to[1])/2),wd=textWidth(a.text,11)+2;
-    const at=place([[mx-wd-12,my-10],[mx+12,my+16],[mx-wd/2,my-18],[mx-wd/2,my+26],[mx+10,my+4],[mx-10-wd,my+4]],wd,14);
-    if(at)out.push(`<rect x="${at[0]-2}" y="${at[1]-11}" width="${wd+2}" height="14" class="g-labbg"/>`,text(at[0],at[1],a.text,{cls:"g-arrlab",fill:G_COLOR[a.estado||"neutral"]}))});
   // leyenda
   if(spec.legend&&spec.legend.length){let lx=w-m.r;const items=[];
     spec.legend.slice().reverse().forEach(it=>{const wd=textWidth(it.text,11)+30;lx-=wd;items.push({it,x:lx,wd})});
@@ -3187,7 +3303,7 @@ const LM_SHOCKS={
   a:{label:"Cambio autónomo de la demanda de dinero: Δ",unit:"unidades de dinero real, a cualquier Y e i",step:10}
 };
 // Número recortado: 4 → «4»; 2,4 → «2,4»; 10,666… → «10,67».
-function fmtT(v,d){const r=Number(v).toFixed(d??2).replace(/\.?0+$/,"");return fmtG(Number(r),(r.split(".")[1]||"").length)}
+function fmtT(v,d){const f=Number(v).toFixed(d??2),r=f.includes(".")?f.replace(/0+$/,"").replace(/\.$/,""):f;return fmtG(Number(r),(r.split(".")[1]||"").length)}
 function lmRead(){
   const g=id=>num(id);
   return {Y0:g("lmY0"),M:g("lmM"),P:g("lmP"),d1:g("lmD1"),d2:g("lmD2"),shock:document.getElementById("lmShock").value,val:g("lmVal"),
@@ -3311,6 +3427,137 @@ function drawTpmStory(){
     series:pts.map(([n,v,e],k)=>({pts:[[0,v],[10,v]],estado:e,name:n,labelAt:[.05,.05,.55,.05][k]}))});
 }
 
+/* ========== LAB · CURVA IS (v0.9.0) ==========
+   Mercado de bienes con inversión I = b₀ + b₁·Y − b₂·i.
+   T fijo:        Z = (c₀ − c₁·T + b₀ + G − b₂·i) + (c₁ + b₁)·Y
+   T = t·Y:       Z = (c₀ + b₀ + G − b₂·i) + (c₁·(1 − t) + b₁)·Y
+   IS: Y = m·(A − b₂·i), con m = 1/(1 − pendiente de Z). Arriba, la cruz keynesiana;
+   abajo, el plano (Y, i); los dos paneles comparten la escala de la producción. */
+const IS_PRESETS={
+  curso:{title:"Economía del curso, T fijo (Notas 6 y 7)",c0:100,c1:.75,b0:160,b1:.15,b2:15,G:200,taxMode:"fixed",T:80,t:.2,i0:4,kind:"i",val:8},
+  cursoT:{title:"Economía del curso, T = 0,2·Y (Nota 6 B§3)",c0:100,c1:.75,b0:160,b1:.15,b2:15,G:200,taxMode:"proportional",T:80,t:.2,i0:4,kind:"i",val:8},
+  nota6b31:{title:"Nota 6 · ejercicio B3.1 (T = 0,25·Y)",c0:60,c1:.8,b0:100,b1:.15,b2:10,G:260,taxMode:"proportional",T:0,t:.25,i0:2,kind:"i",val:6},
+  nota6a32:{title:"Nota 6 · ejercicio A3.2",c0:70,c1:.8,b0:110,b1:.1,b2:20,G:140,taxMode:"fixed",T:100,t:.2,i0:3,kind:"i",val:6}
+};
+const IS_KINDS={
+  i:{label:"Nueva tasa, i₁ (% anual)",step:.5,what:"cambia la tasa"},
+  G:{label:"Nuevo gasto público, G₁",step:10,what:"cambia el gasto público"},
+  T:{label:"Nuevos impuestos fijos, T₁ (una baja es una transferencia)",step:10,what:"cambian los impuestos fijos"},
+  t:{label:"Nuevo porcentaje de impuesto, t₁ (fracción)",step:.05,what:"cambia el porcentaje de impuesto"},
+  c0:{label:"Nuevo consumo autónomo, c₀₁",step:10,what:"cambia la confianza de los hogares"},
+  b0:{label:"Nueva inversión autónoma, b₀₁",step:10,what:"cambia la confianza de las empresas"}
+};
+function isRead(){
+  const g=id=>num(id);
+  return {c0:g("isC0"),c1:g("isC1"),b0:g("isB0"),b1:g("isB1"),b2:g("isB2"),G:g("isG"),T:g("isT"),t:g("isTt"),
+    taxMode:document.querySelector('input[name="isTax"]:checked')?.value||"fixed",i0:g("isI0"),kind:document.getElementById("isKind").value,val:g("isVal")};
+}
+// Un estado del mercado de bienes: pendiente de Z, multiplicador y gasto autónomo sin la tasa.
+function isState(p){
+  const prop=p.taxMode==="proportional",slope=prop?p.c1*(1-p.t)+p.b1:p.c1+p.b1,A=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;
+  return {slope,m:1/(1-slope),A,ok:slope<1,prop,Y:i=>(A-p.b2*i)/(1-slope),Z:(Y,i)=>A-p.b2*i+slope*Y,
+    I:(Y,i)=>p.b0+p.b1*Y-p.b2*i,C:Y=>prop?p.c0+p.c1*(1-p.t)*Y:p.c0+p.c1*(Y-p.T),tax:Y=>prop?p.t*Y:p.T};
+}
+function isSolve(p){
+  // Un cambio de T se estudia con impuestos fijos y uno de t con impuestos proporcionales, en los dos estados.
+  p=Object.assign({},p);if(p.kind==="T")p.taxMode="fixed";if(p.kind==="t")p.taxMode="proportional";
+  const p1=Object.assign({},p),move=p.kind==="i";
+  if(!move)p1[{G:"G",T:"T",t:"t",c0:"c0",b0:"b0"}[p.kind]]=p.val;
+  const s0=isState(p),s1=isState(p1),i1=move?p.val:p.i0,Y0=s0.Y(p.i0),Y1=s1.Y(i1);
+  const I0=s0.I(Y0,p.i0),I1=s1.I(Y1,i1),acc=p.b1*(Y1-Y0),rate=-p.b2*(i1-p.i0),auto=p1.b0-p.b0;
+  return {p0:p,p1,s0,s1,move,i0:p.i0,i1,Y0,Y1,dY:Y1-Y0,shift:move?0:s1.Y(p.i0)-s0.Y(p.i0),I0,I1,dI:I1-I0,acc,rate,auto,
+    ok:s0.ok&&s1.ok,coinc:s0.prop&&Math.abs(p.c1*p.t-p.b1)<1e-9,
+    gap:(s1.A-p1.b2*i1)-(s0.A-p.b2*p.i0)};
+}
+let lastIs=null;
+function drawIs(){
+  const p=isRead(),msg=document.getElementById("isFeedback");
+  const bad=[p.c0,p.c1,p.b0,p.b1,p.b2,p.G,p.T,p.t,p.i0,p.val].some(v=>!Number.isFinite(v))||p.c1<=0||p.c1>=1||p.b1<0||p.b2<=0||p.t<0||p.t>=1;
+  if(bad){msg.className="notice error";msg.textContent="Revisa los datos: c₁ y t van entre 0 y 1, b₂ tiene que ser mayor que cero y todos deben ser números.";return}
+  const r=isSolve(p);
+  if(!r.ok){msg.className="notice error";msg.textContent=`La pendiente del gasto planeado es ${fmtT(r.s0.ok?r.s1.slope:r.s0.slope,3)}: con c₁ + b₁ igual o mayor que 1, el gasto crece tan rápido como la producción o más, la economía no llega a un equilibrio y el multiplicador no está definido. Baja c₁ o b₁.`;
+    ["isCross","isChart"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=""});return}
+  lastIs={Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,m0:r.s0.m,m1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,dI:r.dI,acc:r.acc,rate:r.rate,auto:r.auto};
+  const lbl=r.move?["con i₀","con i₁"]:["inicial","final"];
+  // Escala común de la producción (arriba y abajo).
+  const lo=Math.min(r.Y0,r.Y1),hi=Math.max(r.Y0,r.Y1),pad=Math.max((hi-lo)*.35,Math.abs(hi)*.06,1);
+  const xs=niceScale(Math.max(0,lo-pad),hi+pad,5,lo-pad<(hi+pad)*.2);
+  const X={min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,axisBreak:xs.min>0};
+  // Arriba: cruz keynesiana, con la misma escala en los dos ejes (así la recta de 45° es de 45°).
+  const Zof=(s,pp,i,Y)=>s.Z(Y,i);
+  const cross={x:Object.assign({},X,{label:"Producción, Y (unidades de producto)"}),y:Object.assign({},X,{label:"Gasto planeado, Z",axisBreak:xs.min>0}),title:"Cruz keynesiana",
+    series:[{pts:[[xs.min,xs.min],[xs.max,xs.max]],estado:"neutral",name:"Z = Y (45°)",labelAt:.9},
+      {pts:[[xs.min,Zof(r.s0,r.p0,r.i0,xs.min)],[xs.max,Zof(r.s0,r.p0,r.i0,xs.max)]],estado:"ini",name:`Z ${lbl[0]}`,labelAt:.12},
+      {pts:[[xs.min,Zof(r.s1,r.p1,r.i1,xs.min)],[xs.max,Zof(r.s1,r.p1,r.i1,xs.max)]],estado:"fin",name:`Z ${lbl[1]}`,labelAt:.3}],
+    points:[{x:r.Y0,y:r.Y0,name:"E₀",estado:"ini",xText:fmtT(r.Y0,1),yText:fmtT(r.Y0,1)},{x:r.Y1,y:r.Y1,name:"E₁",estado:"fin",xText:fmtT(r.Y1,1),yText:fmtT(r.Y1,1)}],
+    guides:[{x:r.Y0,from:r.Y0,to:"edge",estado:"ini"},{x:r.Y1,from:r.Y1,to:"edge",estado:"fin"}],
+    arrows:[],legend:[{estado:"ini",text:r.move?"Tasa i₀":"Inicial"},{estado:"fin",text:r.move?"Tasa i₁":"Final"}]};
+  const ax=xs.min+(xs.max-xs.min)*.62;
+  if(Math.abs(r.gap)>1e-9)cross.arrows.push({from:[ax,Zof(r.s0,r.p0,r.i0,ax)],to:[ax,Zof(r.s1,r.p1,r.i1,ax)],estado:"neutral",
+    text:r.move?`la tasa ${r.i1>r.i0?"quita":"agrega"} ${fmtT(Math.abs(r.gap),1)} de gasto`:`el gasto autónomo ${r.gap>0?"sube":"baja"} ${fmtT(Math.abs(r.gap),1)}`});
+  // Abajo: plano (Y, i)
+  const is=niceScale(0,Math.max(r.i0,r.i1,1)*1.6,6,true);
+  const iAt=(s,pp,Y)=>(s.A-Y/s.m)/pp.b2;
+  const chart={x:Object.assign({},X,{label:"Producción, Y (unidades de producto)"}),y:{min:0,max:is.max,ticks:is.ticks,digits:is.digits,label:"Tasa de interés, i (% anual)"},title:"Curva IS",
+    series:[{pts:[[xs.min,iAt(r.s0,r.p0,xs.min)],[xs.max,iAt(r.s0,r.p0,xs.max)]],estado:"ini",name:r.move?"IS":"IS inicial",labelAt:.85}],
+    points:[{x:r.Y0,y:r.i0,name:"A",estado:"ini",xText:fmtT(r.Y0,1),yText:fmtT(r.i0)+" %"},{x:r.Y1,y:r.i1,name:"B",estado:"fin",xText:fmtT(r.Y1,1),yText:fmtT(r.i1)+" %"}],
+    guides:[{x:r.Y0,from:"edge",to:r.i0,estado:"ini"},{x:r.Y1,from:"edge",to:r.i1,estado:"fin"}],arrows:[],
+    legend:r.move?[]:[{estado:"ini",text:"Inicial"},{estado:"fin",text:"Final"}]};
+  if(!r.move){chart.series.push({pts:[[xs.min,iAt(r.s1,r.p1,xs.min)],[xs.max,iAt(r.s1,r.p1,xs.max)]],estado:"fin",name:"IS final",labelAt:.6});
+    chart.arrows.push({from:[r.Y0,r.i0],to:[r.Y1,r.i1],estado:"fin",text:`la IS se corre ${fmtT(Math.abs(r.shift),1)} a la ${r.shift>0?"derecha":"izquierda"}`})}
+  else chart.arrows.push({from:[r.Y0,r.i0],to:[r.Y1,r.i1],estado:"neutral",text:"movimiento a lo largo de la IS"});
+  renderPlot("isCross",cross);renderPlot("isChart",chart);
+  // Textos
+  const eq=(s,pp)=>`Y = ${fmtT(s.m*s.A,1)} − ${fmtT(s.m*pp.b2,2)}·i`;
+  msg.className="notice ok";
+  msg.innerHTML=`Multiplicador <strong>${fmtT(r.s0.m,3)}</strong>${r.s1.m!==r.s0.m?` → <strong>${fmtT(r.s1.m,3)}</strong>`:""} · producción de equilibrio <strong>${fmtT(r.Y0,1)}</strong> → <strong>${fmtT(r.Y1,1)}</strong>${r.move?" (movimiento a lo largo de la IS)":` · la IS se corre <strong>${fmtT(Math.abs(r.shift),1)}</strong> a la ${r.shift>0?"derecha":"izquierda"}${p.kind==="t"?" y cambia su inclinación":""}`}.`;
+  document.getElementById("isEq").innerHTML=`IS${r.move?"":" inicial"}: <strong>${eq(r.s0,r.p0)}</strong> &nbsp;·&nbsp; pendiente en el gráfico: <strong>−1/${fmtT(r.s0.m*r.p0.b2,2)}</strong> &nbsp;·&nbsp; corta el eje Y en <strong>${fmtT(r.s0.m*r.s0.A,1)}</strong> y el eje i en <strong>${fmtT(r.s0.A/r.p0.b2)} %</strong>`+
+    (r.move?"":`<br>IS final: <strong>${eq(r.s1,r.p1)}</strong> &nbsp;·&nbsp; pendiente: <strong>−1/${fmtT(r.s1.m*r.p1.b2,2)}</strong>`)+
+    `<br>Multiplicador: m = 1/(1 − ${r.s0.prop?"c₁·(1 − t)":"c₁"} − b₁) = 1/(1 − ${fmtT(r.s0.slope,4)}) = <strong>${fmtT(r.s0.m,3)}</strong>`;
+  const row=(n,v,e)=>`<tr><th scope="row">${n}</th><td>${v}</td><td>${e}</td></tr>`;
+  document.getElementById("isInv").innerHTML=`<table class="inv-table"><caption>La inversión en los dos equilibrios</caption><tbody>
+    ${row("Inversión en A",fmtT(r.I0,2),`b₀ + b₁·Y₀ − b₂·i₀ = ${fmtT(r.p0.b0)} + ${fmtT(r.p0.b1)} × ${fmtT(r.Y0,1)} − ${fmtT(r.p0.b2)} × ${fmtT(r.i0)}`)}
+    ${row("Inversión en B",fmtT(r.I1,2),`${fmtT(r.p1.b0)} + ${fmtT(r.p1.b1)} × ${fmtT(r.Y1,1)} − ${fmtT(r.p1.b2)} × ${fmtT(r.i1)}`)}
+    ${r.auto?row("Cambio autónomo (b₀)",fmtT(r.auto,2),"cambió la confianza de las empresas"):""}
+    ${row("Efecto acelerador, b₁·ΔY",fmtT(r.acc,2),`${fmtT(r.p0.b1)} × ${fmtT(r.dY,1)}: ${r.acc>0?"suma, porque las ventas subieron":r.acc<0?"resta, porque las ventas bajaron":"no actúa: la producción no cambió"}`)}
+    ${row("Efecto de la tasa, −b₂·Δi",fmtT(r.rate,2),`−${fmtT(r.p0.b2)} × ${fmtT(r.i1-r.i0)}: ${r.rate<0?"resta, porque el crédito se encareció":r.rate>0?"suma, porque el crédito se abarató":"no actúa: la tasa no cambió"}`)}
+    ${row("Cambio de la inversión, ΔI",fmtT(r.dI,2),`comprobación: ${fmtT(r.I1,2)} − ${fmtT(r.I0,2)} = ${fmtT(r.dI,2)} ✓`)}
+    </tbody></table><p class="field-note">«Efecto desplazamiento» no es otro nombre de b₂: es el caso en que un aumento del gasto público termina bajando la inversión. Se estudia con la IS y la LM juntas (Nota 8).</p>`;
+  document.getElementById("isRead").innerHTML=isExplain(p,r);
+  document.getElementById("isCoinc").hidden=!r.coinc;
+  document.getElementById("isCoinc").innerHTML=r.coinc?`<strong>Una coincidencia que hay que declarar.</strong> (1) El resultado: la cuenta equivocada 1/(1 − c₁) = ${fmtT(1/(1-p.c1),3)} da justo el multiplicador correcto, ${fmtT(r.s0.m,3)}. (2) Por qué ocurre: con estos números, c₁·t = ${fmtT(p.c1*p.t,4)} es igual a b₁ = ${fmtT(p.b1,4)}: lo que el impuesto le quita a cada vuelta del gasto es lo mismo que le agrega el efecto acelerador. (3) Cuándo falla: con cualquier otro t o b₁. Un multiplicador bien calculado vale; uno obtenido con 1/(1 − c₁) no, aunque coincida.`:"";
+  document.getElementById("isAlt").textContent=`Dos gráficos con la misma escala de producción. Arriba, la cruz keynesiana: el gasto planeado Z en el eje vertical, la producción en el horizontal y la recta de 45 grados. La recta de gasto ${lbl[0]} corta la de 45 grados en ${fmtT(r.Y0,1)}; la ${lbl[1]}, en ${fmtT(r.Y1,1)}. Abajo, la tasa de interés en % anual en el eje vertical: el punto A es (${fmtT(r.Y0,1)}; ${fmtT(r.i0)} %) y el punto B, (${fmtT(r.Y1,1)}; ${fmtT(r.i1)} %). ${r.move?`Los dos están sobre la misma IS, que baja de izquierda a derecha: ${eq(r.s0,r.p0)}.`:`La IS se corre ${fmtT(Math.abs(r.shift),1)} a la ${r.shift>0?"derecha":"izquierda"}.`}`;
+}
+function isExplain(p,r){
+  if(r.move)return `<strong>Qué pasó.</strong> La tasa ${r.i1>r.i0?"sube":"baja"} de ${fmtT(r.i0)} % a ${fmtT(r.i1)} %. Con ${r.i1>r.i0?"el crédito más caro, las empresas planean invertir menos":"el crédito más barato, las empresas planean invertir más"}: la recta de gasto planeado ${r.i1>r.i0?"baja":"sube"} ${fmtT(Math.abs(r.gap),1)}. Con la producción de antes, ${r.i1>r.i0?"sobran bienes y las bodegas se llenan: las empresas producen menos":"faltan bienes y las bodegas se vacían: las empresas producen más"}; el ingreso y el consumo cambian en la misma dirección, vuelta tras vuelta, hasta ${fmtT(r.Y1,1)}. En el plano de abajo, la economía <strong>se mueve a lo largo de la IS</strong>, de A a B: la tasa está en un eje, así que la IS no se desplaza.`;
+  const qu=IS_KINDS[p.kind].what;
+  return `<strong>Qué pasó.</strong> ${qu.charAt(0).toUpperCase()+qu.slice(1)} y la tasa se queda en ${fmtT(r.i0)} %. ${p.kind==="T"?`Un cambio de impuestos entra al gasto multiplicado por c₁: los hogares ${p.val<p.T?"gastan":"dejan de gastar"} solo una parte.`:p.kind==="t"?"Un cambio del porcentaje de impuesto cambia la pendiente del gasto planeado y el multiplicador: la IS se corre y cambia su inclinación.":""} Con cualquier tasa, el mercado de bienes queda en equilibrio con ${fmtT(Math.abs(r.shift),1)} ${r.shift>0?"más":"menos"} de producción: <strong>la IS se desplaza</strong>${p.kind==="t"?` (medido con i = ${fmtT(r.i0)} %)`:` (el multiplicador por el cambio del gasto autónomo)`}. Ojo: ese desplazamiento todavía no es lo que cambia la producción de la economía, porque la tasa también puede moverse; eso lo decide el mercado de dinero (Nota 7).`;
+}
+function isSetKind(){
+  const k=document.getElementById("isKind").value;document.getElementById("isValLabel").firstChild.textContent=IS_KINDS[k].label;document.getElementById("isVal").step=IS_KINDS[k].step;
+}
+function isKindDefault(){
+  const p=isRead(),v={i:p.i0+2,G:p.G+20,T:Math.max(0,p.T-20),t:+(Math.min(.9,p.t+.1)).toFixed(2),c0:p.c0+20,b0:Math.max(0,p.b0-20)}[p.kind];
+  setValue("isVal",v);
+  if(p.kind==="T"||p.kind==="t")document.querySelectorAll('input[name="isTax"]').forEach(x=>x.checked=x.value===(p.kind==="T"?"fixed":"proportional"));
+  isSetKind();drawIs();
+}
+function isApply(p){
+  ["C0","C1","B0","B1","B2","G","T"].forEach(k=>setValue("is"+k,p[{C0:"c0",C1:"c1",B0:"b0",B1:"b1",B2:"b2",G:"G",T:"T"}[k]]));
+  setValue("isTt",p.t);setValue("isI0",p.i0);document.getElementById("isKind").value=p.kind;setValue("isVal",p.val);
+  document.querySelectorAll('input[name="isTax"]').forEach(x=>x.checked=x.value===p.taxMode);isSetKind();drawIs();
+}
+function initIs(){
+  const sel=document.getElementById("isPreset");
+  sel.innerHTML=Object.entries(IS_PRESETS).map(([k,p])=>`<option value="${k}">${escapeText(p.title)}</option>`).join("");
+  sel.addEventListener("change",()=>isApply(IS_PRESETS[sel.value]));
+  ["isC0","isC1","isB0","isB1","isB2","isG","isT","isTt","isI0","isVal"].forEach(id=>document.getElementById(id).addEventListener("input",drawIs));
+  document.getElementById("isKind").addEventListener("change",isKindDefault);
+  document.querySelectorAll('input[name="isTax"]').forEach(x=>x.addEventListener("change",drawIs));
+  isApply(IS_PRESETS.curso);
+  let t=null;window.addEventListener("resize",()=>{clearTimeout(t);t=setTimeout(()=>{if(!document.getElementById("is").hidden)drawIs()},150)});
+}
+
 function calcLabor(){
   const inputs=["employed","unemployed","inactive"].map(id=>document.getElementById(id));
   const status=document.getElementById("laborStatus");
@@ -3374,7 +3621,7 @@ function activateTab(id,{focus=true}={}){
   }
   const tab=document.getElementById("tab-"+id);if(focus)tab?.focus();
   tab?.scrollIntoView({block:"nearest",inline:"nearest"});
-  if(id==="cruz")calcCross();if(id==="din")drawMoney();if(id==="lm"){drawLm();drawTpmStory()}if(id==="lab"){calcLabor();calcWsPs()}
+  if(id==="cruz")calcCross();if(id==="din")drawMoney();if(id==="lm"){drawLm();drawTpmStory()}if(id==="is")drawIs();if(id==="lab"){calcLabor();calcWsPs()}
   history.replaceState(null,"","#"+id);
 }
 function initTabs(){
@@ -3405,7 +3652,7 @@ function initTabs(){
 
 const LEARNING_SCHEMA="macrolab-learning-context/0.2";
 const LEARNING_CONTENT_VERSION="macro1-notas-2026-08-cumulative-revision";
-const LEARNING_LAB_VERSION="0.8.0";
+const LEARNING_LAB_VERSION="0.9.0";
 const LOOP_CLASS="3";
 const LOOP_OBJECTIVE="BIE-OBJ-MECANISMO";
 const LOOP_ACTIVITY="BIE-EX-Solemne1";
@@ -4565,7 +4812,7 @@ function handleLoopAction(action){
 
 
 function init(){
-  buildActivities();initGuides();initTabs();renderGlobalEditorialMap();initClassRoute();renderRouteEntry();setMeasurementPreset("sealed");renderCta();calcCross();drawMoney();initLm();calcLabor();calcWsPs();
+  buildActivities();initGuides();initTabs();renderGlobalEditorialMap();initClassRoute();renderRouteEntry();setMeasurementPreset("sealed");renderCta();calcCross();drawMoney();initLm();initIs();calcLabor();calcWsPs();
   document.getElementById("calcMedBtn").addEventListener("click",calcMeasurement);
   document.getElementById("checkUy").addEventListener("click",()=>{
     const growth=num("uyGrowth"),infl=num("uyInfl"),ok=Math.abs(growth-.37)<.02&&Math.abs(infl-8.67)<.03,el=document.getElementById("uyFeedback");
@@ -4594,13 +4841,13 @@ function init(){
     const O=num("inverseEmployed"),u=num("inverseUnemployment"),ok=Math.abs(O-7149840)<=1&&Math.abs(u-4.67)<.02,el=document.getElementById("inverseFeedback");
     el.className=ok?"notice ok":"notice warn";el.textContent=ok?"Correcto: 7.149.840 personas ocupadas y un desempleo de 4,67 %.":inverseMessage(O,u);
   });
-  const requested=location.hash.slice(1);if(["route","med","cta","cruz","din","lm","lab"].includes(requested))activateTab(requested,{focus:false});else activateTab("route",{focus:false});
+  const requested=location.hash.slice(1);if(["route","med","cta","cruz","din","lm","is","lab"].includes(requested))activateTab(requested,{focus:false});else activateTab("route",{focus:false});
 }
 // Superficie mínima de inspección para las pruebas automáticas del loop. Sólo expone
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
 window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,parseStudentNumber,evaluateNumericAnswer,class2RevisionSummary,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,parseImportedLearningFile,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
-  lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
+  lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,drawIs,isSolve,isRead,isApply,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();
 </script>
 </body>

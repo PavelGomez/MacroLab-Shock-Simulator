@@ -65,6 +65,10 @@ const round = v => { const e = Math.pow(10, Math.floor(Math.log10(Math.abs(v) ||
   ok(s.ticks.every(t => Math.abs(t / s.step - Math.round(t / s.step)) < 1e-9) && [1, 2, 2.5, 5].includes(+(s.step / Math.pow(10, Math.floor(Math.log10(s.step)))).toFixed(6)), `niceScale(${a}, ${b}) da un paso redondo (${s.step})`);
   ok(s.min <= a && s.max >= b, `niceScale(${a}, ${b}) contiene el rango`);
 });
+ok(L.niceScale(0, 12.8, 6, true).digits === 1 && L.niceScale(0, .6, 5, true).digits >= 1 && L.niceScale(0, 2000, 4, true).digits === 0, "niceScale · los decimales salen del paso (2,5 no se escribe «3»)");
+const fT = w.eval("fmtT");
+[[3000, 0, "3.000"], [250, 0, "250"], [2.5, 1, "2,5"], [4, 2, "4"], [10.6667, 2, "10,67"], [-30, 2, "−30"], [1500, 1, "1.500"], [0.01, 4, "0,01"]]
+  .forEach(([v, d, t]) => ok(fT(v, d) === t, `fmtT(${v}, ${d}) = «${t}» (obtenido «${fT(v, d)}»)`));
 const labels = id => (L.plotLayouts[id] || []).filter(b => !b.line);
 const noOverlap = (id, ctx) => { const B = labels(id); let bad = 0;
   for (let i = 0; i < B.length; i++) for (let j = i + 1; j < B.length; j++) { const a = B[i], b = B[j]; if (a.x < b.x + b.w - .5 && b.x < a.x + a.w - .5 && a.y < b.y + b.h - .5 && b.y < a.y + a.h - .5) bad++; }
@@ -99,6 +103,10 @@ ok(yt.includes("0") && !yt.some(t => t.startsWith("−")), "Dinero / tasa · el 
 ok(!/9,8|20,5|31,3|42,0|257|513|770|1\.026/.test(yt.join(" ")), "Dinero / tasa · ya no aparecen las marcas 9,8 / 20,5 / 31,3 / 257 / 513");
 ok(doc.getElementById("moneyChart").querySelectorAll(".g-leg").length === 2, "Dinero / tasa · compara el estado de partida con el actual");
 
+L.lmApply(w.eval("LM_PRESETS").curso);
+const tk = id => [...doc.getElementById(id).querySelectorAll("text.g-tick")].map(t => t.textContent);
+ok(["0", "500", "1.000", "2.000"].every(t => tk("lmMoneyChart").includes(t)), "marcas de M/P con sus valores reales (" + tk("lmMoneyChart").join(" ") + ")");
+ok(["3.000", "4.000"].every(t => tk("lmChart").includes(t)) && tk("lmChart").includes("2"), "marcas de Y y de i con sus valores reales (" + tk("lmChart").join(" ") + ")");
 /* ===== pestañas ===== */
 const tabs = [...doc.querySelectorAll('#tabs [role="tab"]')].map(t => t.textContent.trim());
 ok(tabs.indexOf("Lab · Relación LM") === tabs.indexOf("Lab · Dinero / tasa") + 1, "la pestaña Relación LM va después de Dinero / tasa");

@@ -1,6 +1,6 @@
 {
   "package": "macrolab-macro1",
-  "lab_version": "0.8.0",
+  "lab_version": "0.9.0",
   "lab_file": "index.html",
   "publish_path": "macro1/",
   "artifact": "macro1/index.html",
@@ -280,6 +280,10 @@
     {
       "note": "MANIFEST",
       "reason": "lab_version sube de 0.7.0 a 0.8.0 (24-09-2026): enunciados de todas las actividades y de la Ruta con el protocolo de enunciados v1, glosario para alumnos embebido, motor gráfico común (SVG, dos estados, marcas redondas), ejes corregidos en Dinero / tasa y nueva ventana «Lab · Relación LM». La suite test_enunciados_glosario.js corre en CI; no se declara aquí porque este manifiesto describe exactamente cinco suites."
+    },
+    {
+      "note": "MANIFEST",
+      "reason": "lab_version sube de 0.8.0 a 0.9.0 (24-09-2026): nueva ventana «Lab · Curva IS» (cruz keynesiana y plano (Y, i) alineados, efecto acelerador y efecto de la tasa, desplazamientos por G, T, t, c₀ y b₀, coincidencia c₁·t = b₁ declarada), con el motor gráfico común. La suite test_lab_is.js corre en CI."
     }
   ],
   "practice_keys": [
