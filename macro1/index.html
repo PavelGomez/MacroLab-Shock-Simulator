@@ -177,10 +177,10 @@
   .enun ol{padding-left:1.4em}
   .enun ol li::marker{font-weight:700}
   .enun .purpose{color:var(--muted);font-size:.9rem}
-  .enun details.pistas{margin:10px 0;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;background:#fafcfe}
-  .enun details.pistas summary{cursor:pointer;font-weight:700;color:var(--navy)}
-  .enun dl.glosa dt{font-weight:700;margin-top:6px}
-  .enun dl.glosa dd{margin:0 0 4px}
+  .enun details.pistas,.prep-board details.pistas{margin:10px 0;border:1px dashed var(--line);border-radius:8px;padding:8px 10px;background:#fafcfe}
+  .enun details.pistas summary,.prep-board details.pistas summary{cursor:pointer;font-weight:700;color:var(--navy)}
+  .enun dl.glosa dt,.prep-board dl.glosa dt{font-weight:700;margin-top:6px}
+  .enun dl.glosa dd,.prep-board dl.glosa dd{margin:0 0 4px}
   .errores-lista{margin:8px 0 0;padding-left:1.1em}
   .errores-lista li{margin-bottom:6px}
   .class-source{display:inline-flex;align-items:center;gap:5px;background:#f1eafe;color:#5b21b6;border-radius:999px;padding:3px 8px;font-size:.72rem;font-weight:800}
@@ -1280,6 +1280,7 @@ const CLASS_ROUTES={
   ,
   4:{
     title:"Mercado de dinero, tasa de interés y política monetaria",
+    terms:["bono","precio_bono","valor_nominal","relacion_inversa","demanda_dinero_real","oferta_real_dinero","enfoque_dinero_fijo","enfoque_tasa_fija","oma_expansiva","oma_contractiva","tpm","punto_porcentual","curva_lm","movimiento_a_lo_largo","desplazamiento_curva"],
     time:"60–75 min",
     objectives:["Dibujar el mercado de dinero y leer la tasa antes de calcularla.","Calcular la tasa de un bono y explicar, con frase y cuenta, por qué precio y tasa se mueven en sentidos opuestos.","Resolver la tasa con dinero fijo y la M/P con tasa fija, declarando qué fija el Banco Central.","Distinguir un desplazamiento de la demanda de dinero de un desplazamiento de la LM."],
     preparation:[
@@ -1342,6 +1343,7 @@ const CLASS_ROUTES={
   },
   5:{
     title:"Inversión y curva IS",
+    terms:["inversion_planeada","b0","efecto_acelerador","efecto_tasa","multiplicador","impuesto_proporcional","estabilizador_automatico","curva_is","transferencia","pendiente","intercepto"],
     time:"60–75 min",
     objectives:["Leer b₀, b₁ y b₂ en palabras y con una cuenta, y explicar por qué la inversión lleva −b₂i.","Derivar la IS gráficamente, desde dos cruces keynesianas con tasas distintas, y después algebraicamente, con T fijo y con T = t·Y.","Leer el intercepto y la pendiente de la IS, y explicar por qué el impuesto proporcional la hace más inclinada.","Distinguir un movimiento sobre la IS de un desplazamiento, y calcular cuánto se desplaza con ΔG, con una transferencia y con t."],
     preparation:[
@@ -1401,6 +1403,7 @@ const CLASS_ROUTES={
   },
   6:{
     title:"IS-LM en economía cerrada",
+    terms:["curva_lm","equilibrio_islm","politica_fiscal","politica_monetaria","mezcla_politicas","multiplicador_islm","regimen_lm","tpm","coincidencia_regla"],
     time:"60–75 min",
     objectives:["Derivar la LM desde el mercado de dinero y leer su pendiente (d₁/d₂) y su intercepto (−(M/P)/d₂), distinguiendo un movimiento sobre la LM de un desplazamiento.","Encontrar (Y*, i*) dibujando IS y LM antes de igualarlas, con T fijo y con T = t·Y, sin redondear intermedios, y cerrar con S + (T − G) = I.","Analizar una política fiscal, una monetaria, una mezcla coordinada y una en conflicto, y explicar por qué el multiplicador fiscal en IS-LM es menor que el keynesiano.","Distinguir la LM con pendiente de la LM horizontal y decir cuál describe mejor a Chile entre Reuniones de política monetaria."],
     preparation:[
@@ -1459,6 +1462,7 @@ const CLASS_ROUTES={
   },
   7:{
     title:"Desequilibrios, desplazamiento y acelerador",
+    terms:["desequilibrio","tasa_que_pide","cuadrantes","exceso_oferta_bienes","exceso_demanda_bienes","exceso_oferta_dinero","exceso_demanda_dinero","dos_velocidades","tramo_vertical","a_lo_largo_lm","dia_anuncio","efecto_acelerador","efecto_tasa","efecto_desplazamiento"],
     time:"60–75 min",
     objectives:["Ubicar un punto (Y, i) respecto de la IS y de la LM comparando su tasa con la tasa de cada curva, y nombrar el exceso en cada mercado.","Trazar el retorno al equilibrio: primero la tasa, por bonos, hasta la LM; después la producción, por inventarios, a lo largo de la LM.","Descomponer ΔI = b₁·ΔY − b₂·Δi y explicar por qué con LM horizontal no hay efecto desplazamiento (crowding out).","Leer un episodio chileno de inversión sin atribuirle una causa que los datos no permiten."],
     preparation:[
@@ -2549,7 +2553,7 @@ function renderGlobalEditorialMap(){
 }
 function renderClassOverview(){
   const route=CLASS_ROUTES[activeClass];
-  document.getElementById("classOverview").innerHTML=`${renderCourseHorizon()}<div class="class-intro"><div><span class="badge">CLASE ${activeClass}</span><h3>${escapeText(route.title)}</h3><strong>Al cerrar esta clase podrás:</strong><ul class="chain">${route.objectives.map(x=>`<li>${escapeText(x)}</li>`).join("")}</ul></div><aside class="card soft"><strong>Cómo recorrerla</strong><p>Engánchate con la crónica, construye la teoría en la nota y usa después la guía o actividad. El desafío comprueba esa secuencia.</p><span class="class-source">Tiempo de ruta · ${escapeText(route.time)}</span></aside></div><section class="prep-board"><h4>Preparación ordenada</h4><p class="field-note"><strong>Imprescindible</strong> significa “antes del desafío”. <strong>Consulta</strong> significa “sólo si necesitas reglas o más práctica”.</p><div class="prep-sequence">${(route.preparation||[]).map(renderPreparationGroup).join("")}</div></section>`;
+  document.getElementById("classOverview").innerHTML=`${renderCourseHorizon()}<div class="class-intro"><div><span class="badge">CLASE ${activeClass}</span><h3>${escapeText(route.title)}</h3><strong>Al cerrar esta clase podrás:</strong><ul class="chain">${route.objectives.map(x=>`<li>${escapeText(x)}</li>`).join("")}</ul></div><aside class="card soft"><strong>Cómo recorrerla</strong><p>Engánchate con la crónica, construye la teoría en la nota y usa después la guía o actividad. El desafío comprueba esa secuencia.</p><span class="class-source">Tiempo de ruta · ${escapeText(route.time)}</span></aside></div><section class="prep-board"><h4>Preparación ordenada</h4><p class="field-note"><strong>Imprescindible</strong> significa “antes del desafío”. <strong>Consulta</strong> significa “sólo si necesitas reglas o más práctica”.</p><div class="prep-sequence">${(route.preparation||[]).map(renderPreparationGroup).join("")}</div>${route.terms?renderPistas(route.terms,"Términos de esta clase, con su definición del glosario"):""}</section>`;
 }
 function renderClassProgress(){
   const state=classState[activeClass],enabled=Math.min(6,state.unlocked+1),pct=state.completed?100:enabled/6*100;
@@ -3015,10 +3019,10 @@ function enunciadoTexto(e){
   const LETRAS="abcdefghij";
   return [e.situacion,"Datos: "+e.datos.join(" "),"Se pide: "+e.pide.map((p,k)=>`${LETRAS[k]}) ${p}`).join(" "),e.primerPaso?"Primer paso: "+e.primerPaso:"",e.comprobacion?"Cómo saber si está bien: "+e.comprobacion:""].filter(Boolean).join("\n");
 }
-function renderPistas(ids){
+function renderPistas(ids,titulo){
   const items=(ids||[]).map(id=>GLOSARIO_ALUMNO.terminos[id]).filter(Boolean);
   if(!items.length)return "";
-  return `<details class="pistas"><summary>Términos de este ejercicio (${items.length})</summary><dl class="glosa">${items.map(t=>`<dt>${rich(t.termino)}</dt><dd>${rich(t.definicion)}${t.aviso?` <em>Ojo:</em> ${rich(t.aviso)}`:""}</dd>`).join("")}</dl></details>`;
+  return `<details class="pistas"><summary>${titulo||"Términos de este ejercicio"} (${items.length})</summary><dl class="glosa">${items.map(t=>`<dt>${rich(t.termino)}</dt><dd>${rich(t.definicion)}${t.aviso?` <em>Ojo:</em> ${rich(t.aviso)}`:""}</dd>`).join("")}</dl></details>`;
 }
 function renderEnunciado(a){
   return `<div class="enun"><strong>${rich(a.title)}</strong><span class="code-tag">${rich(a.id)}</span>${renderEnunciadoCuerpo(a.enunciado,true)}</div>`;

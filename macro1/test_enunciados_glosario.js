@@ -163,6 +163,14 @@ function main() {
     const nPide = e.pide.length, nNum = Object.keys(t.expected || {}).length;
     ok(nPide >= nNum, `Clase ${c} · hay una parte pedida por cada respuesta numérica`);
   });
+  // Fase 6: cada clase del tramo 4-7 enlaza a sus términos del glosario
+  [4, 5, 6, 7].forEach(c => {
+    const terms = ROUTES[c].terms || [];
+    ok(terms.length >= 8, `Clase ${c} · la ruta lista los términos de la clase (${terms.length})`);
+    terms.forEach(id => ok(G.terminos[id], `Clase ${c} · el término «${id}» existe en el glosario del alumno`));
+  });
+  ok(["efecto_desplazamiento", "efecto_acelerador", "dos_velocidades", "desequilibrio"].every(id => ROUTES[7].terms.includes(id)), "Clase 7 · incluye desequilibrios, efecto desplazamiento y efecto acelerador");
+  ok(ROUTES[4].terms.includes("curva_lm") && ROUTES[5].terms.includes("curva_is") && ROUTES[6].terms.includes("equilibrio_islm"), "Clases 4-6 · LM, IS e IS-LM, según el calendario del tramo");
   ok(!/domina el desplazamiento/i.test(html), "ya no se dice «domina el desplazamiento»: pesa más el efecto de la tasa y hay efecto desplazamiento");
   ok(!/crecerá 2% durante 2026/.test(html), "Clase 1 · la cifra del titular ya no se atribuye al IPoM sin fuente");
   ok(/Pesa más el efecto de la tasa \(11,11\)/.test(ROUTES[7].test.model), "Clase 7 · la pauta usa la convención de las Notas 6 y 8");
