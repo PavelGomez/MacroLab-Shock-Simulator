@@ -399,7 +399,7 @@
     "quien vende el bono"
    ],
    "donde": [
-    "Nota 5 A§2",
+    "Nota 5 A§3",
     "Lab · Dinero / tasa"
    ]
   },
@@ -439,7 +439,8 @@
    ],
    "donde": [
     "Nota 5 A§3",
-    "Lab · Dinero / tasa"
+    "Lab · Dinero / tasa",
+    "Ayudantía Clase 4"
    ]
   },
   "vencimiento": {
@@ -456,7 +457,7 @@
     "madurez (calco del inglés maturity)"
    ],
    "donde": [
-    "Nota 5 A§3 (Figura 1)"
+    "Nota 5 A§3 y Figura 1"
    ]
   },
   "bono_un_anio": {
@@ -571,13 +572,14 @@
   },
   "demanda_dinero_nominal": {
    "termino": "Demanda de dinero (nominal)",
-   "simbolo": "Mᵈ",
+   "simbolo": "P·Md",
    "unidad": "$",
-   "definicion": "Cuántos pesos quiere tener la gente a mano. Sube con el ingreso en pesos y baja con la tasa. El curso trabaja con la versión real: la demanda de dinero real.",
-   "ejemplo": "En Blanchard, si el ingreso nominal se duplica, la demanda de pesos se duplica con la misma tasa.",
-   "aviso": "",
+   "definicion": "Cuántos pesos quiere tener la gente a mano. Sube con el ingreso en pesos y baja con la tasa. El curso trabaja con la demanda real, Md; la nominal se escribe P·Md y solo se usa cuando hace falta.",
+   "ejemplo": "Si la gente quiere tener el equivalente de 1.500 unidades de producto y P = 2, quiere tener P·Md = 3.000 pesos. Si los precios se duplican, quiere el doble de pesos para comprar lo mismo.",
+   "aviso": "En Blanchard, Md = $Y·L(i) es la demanda nominal. En el curso, Md es la real: se demanda el equivalente en dinero de una cantidad de bienes, no dinero por sí mismo.",
    "mas_lejos": "",
    "sinonimos": [
+    "demanda de pesos",
     "preferencia por la liquidez (L)"
    ],
    "donde": [
@@ -586,11 +588,11 @@
   },
   "demanda_dinero_real": {
    "termino": "Demanda de dinero (real)",
-   "simbolo": "Mᵈ/P = d₁·Y − d₂·i",
+   "simbolo": "Md = d₁·Y − d₂·i",
    "unidad": "unidades de producto",
-   "definicion": "Cuánto dinero real quiere tener la gente: sube cuando sube la producción, porque hay más compras que hacer, y baja cuando sube la tasa, porque tener dinero cuesta más.",
-   "ejemplo": "Con d₁ = 0,5, d₂ = 50 e Y = 3.400: Mᵈ = 1.700 − 50·i. Con i = 4 %, se quiere 1.500.",
-   "aviso": "",
+   "definicion": "Cuánto dinero real quiere tener la gente: sube cuando sube la producción, porque hay más compras que hacer, y baja cuando sube la tasa, porque tener dinero cuesta más. El mercado de dinero está en equilibrio cuando M/P = Md.",
+   "ejemplo": "Con d₁ = 0,5, d₂ = 50 e Y = 3.400: Md = 1.700 − 50·i. Con i = 4 %, se quiere 1.500.",
+   "aviso": "En Blanchard, Md = $Y·L(i) es la demanda nominal. En el curso, Md es la real: se demanda el equivalente en dinero de una cantidad de bienes, no dinero por sí mismo.",
    "mas_lejos": "En DFS se escribe L = kY − hi: d₁ es k y d₂ es h, sin diferencia. En Blanchard, M/P = Y·L(i). Si L(i) = a − b·i, queda a·Y − b·Y·i: d₁ = a y d₂ = b·Y. Ese d₂ cambia con Y, así que las dos formas coinciden solo cerca de un nivel de producción dado.",
    "sinonimos": [
     "demanda de saldos reales",
@@ -659,13 +661,14 @@
   },
   "oferta_real_dinero": {
    "termino": "Oferta real de dinero",
-   "simbolo": "M/P",
+   "simbolo": "M/P (también Ms/P)",
    "unidad": "unidades de producto",
    "definicion": "Cuánto dinero real hay en la economía. En el enfoque de dinero fijo la decide el Banco Central y se dibuja como una recta vertical.",
-   "ejemplo": "Con M/P = 1.500, la oferta es vertical en 1.500 cualquiera sea la tasa.",
+   "ejemplo": "Con M/P = 1.500, la oferta es vertical en 1.500 cualquiera sea la tasa. El equilibrio es M/P = Md: 1.500 = 1.700 − 50·i da i = 4 % (con Y = 3.400).",
    "aviso": "",
    "mas_lejos": "",
    "sinonimos": [
+    "Ms/P",
     "oferta monetaria real",
     "cantidad de dinero"
    ],
@@ -677,7 +680,7 @@
   },
   "exceso_oferta_dinero": {
    "termino": "Exceso de oferta de dinero",
-   "simbolo": "M/P − Mᵈ > 0",
+   "simbolo": "M/P − Md > 0",
    "unidad": "unidades de producto",
    "definicion": "La gente tiene más dinero del que quiere. Con lo que sobra compra bonos: el precio de los bonos sube y la tasa baja hasta el equilibrio.",
    "ejemplo": "Con Y = 3.400, M/P = 1.500 e i = 6 %: se quiere 1.400 y hay 1.500. Sobran 100 y la tasa baja hasta 4 %.",
@@ -697,7 +700,7 @@
   },
   "exceso_demanda_dinero": {
    "termino": "Exceso de demanda de dinero",
-   "simbolo": "M/P − Mᵈ < 0",
+   "simbolo": "M/P − Md < 0",
    "unidad": "unidades de producto",
    "definicion": "La gente tiene menos dinero del que quiere. Vende bonos para conseguirlo: el precio de los bonos baja y la tasa sube hasta el equilibrio.",
    "ejemplo": "Con i = 2 % se quiere 1.600 y hay 1.500: faltan 100 y la tasa sube hasta 4 %.",
@@ -731,7 +734,8 @@
    "donde": [
     "Nota 5 B§1",
     "Nota 7 B§2",
-    "Lab · Dinero / tasa"
+    "Lab · Dinero / tasa",
+    "Ayudantía Clase 4"
    ]
   },
   "oma_contractiva": {
@@ -1297,10 +1301,10 @@
   },
   "desequilibrio": {
    "termino": "Desequilibrio",
-   "simbolo": "Z − Y ≠ 0 o M/P − Mᵈ ≠ 0",
+   "simbolo": "Z − Y ≠ 0 o M/P − Md ≠ 0",
    "unidad": "unidades de producto",
    "definicion": "Una situación en que en algún mercado sobra o falta algo: bienes o dinero. Un punto fuera de la IS o de la LM.",
-   "ejemplo": "A = (3.600; 7 %): sobran 65 de bienes (Z − Y = −65) y sobran 50 de dinero (M/P − Mᵈ = 50).",
+   "ejemplo": "A = (3.600; 7 %): sobran 65 de bienes (Z − Y = −65) y sobran 50 de dinero (M/P − Md = 50).",
    "aviso": "",
    "mas_lejos": "",
    "sinonimos": [
@@ -1339,7 +1343,9 @@
    ],
    "donde": [
     "Nota 8 A§2",
-    "Lab · IS-LM"
+    "Lab · IS-LM",
+    "Ayudantía Clase 7",
+    "Sesión de refuerzo 72745"
    ]
   },
   "dos_velocidades": {

@@ -50,7 +50,7 @@ const A = pt(3600, 7), B = pt(3600, 5), C = pt(3200, 3), D = pt(3200, 1);
 near(A.iIS, 2.6667, 1e-3, "Nota 8 · A: la IS pide 2,67 %"); near(A.iLM, 6, 1e-9, "Nota 8 · A: la LM pide 6 %");
 [[A, -65, 50, true, true], [B, -35, -50, true, false], [C, 35, 50, false, true], [D, 65, -50, false, false]].forEach(([P, zy, mm, aIS, aLM], k) => {
   const nm = "ABCD"[k];
-  near(P.ZY, zy, 1e-9, `Nota 8 · ${nm}: Z − Y = ${zy}`); near(P.MM, mm, 1e-9, `Nota 8 · ${nm}: M/P − Mᵈ = ${mm}`);
+  near(P.ZY, zy, 1e-9, `Nota 8 · ${nm}: Z − Y = ${zy}`); near(P.MM, mm, 1e-9, `Nota 8 · ${nm}: M/P − Md = ${mm}`);
   ok(P.aboveIS === aIS && P.belowIS === !aIS && P.aboveLM === aLM && P.belowLM === !aLM, `Nota 8 · ${nm}: posición respecto de cada curva`); });
 near(C.stage1[1][1], 2, 1e-9, "Nota 8 · desde C la tasa baja de 3 % a 2 % (tramo vertical)"); near(C.eq[0], 3400, 1e-9, "Nota 8 · y la producción llega a 3.400 por la LM");
 const st = L.islmSolve ? w.eval("islmStairs")(base, 3200, 4) : [];
@@ -103,7 +103,7 @@ r = load("ISLM-EX-13"); near(r.s1.Y, 2700, 1e-9, "ISLM-EX-13 · Y = 2.700"); nea
 r = load("ISLM-EX-14"); near(r.shiftLM, 150, 1e-9, "ISLM-EX-14 · la LM se corre 150"); near(r.s1.Y, 2600, 1e-9, "ISLM-EX-14 · Y = 2.600"); near(r.s1.i, 3, 1e-9, "ISLM-EX-14 · i = 3 %");
 near(L.islmSolve({ ...L.islmRead(), dMP: 150 }).s1.i, 2, 1e-9, "ISLM-EX-14 · con Δ(M/P) = 150 la tasa queda en 2 %");
 r = load("ISLM-EX-15"); const Q = L.islmPoint(r, 2500, 3);
-near(Q.iIS, 1, 1e-9, "ISLM-EX-15 · la IS pide 1 %"); near(Q.iLM, 4, 1e-9, "ISLM-EX-15 · la LM pide 4 %"); near(Q.ZY, -20, 1e-9, "ISLM-EX-15 · Z − Y = −20"); near(Q.MM, -25, 1e-9, "ISLM-EX-15 · M/P − Mᵈ = −25");
+near(Q.iIS, 1, 1e-9, "ISLM-EX-15 · la IS pide 1 %"); near(Q.iLM, 4, 1e-9, "ISLM-EX-15 · la LM pide 4 %"); near(Q.ZY, -20, 1e-9, "ISLM-EX-15 · Z − Y = −20"); near(Q.MM, -25, 1e-9, "ISLM-EX-15 · M/P − Md = −25");
 const QA = L.islmPoint(L.islmSolve({ ...L.islmRead(), dG: 30 }), 2400, 2); near(QA.ZY, 30, 1e-9, "ISLM-EX-15 · anuncio: faltan 30 de bienes"); ok(QA.onLM, "ISLM-EX-15 · anuncio: no hay tramo vertical"); near(QA.eq[1], 4, 1e-9, "ISLM-EX-15 · anuncio: llega a 4 %");
 ok(/1 %/.test(doc.getElementById("islmPoint").textContent) && /4 %/.test(doc.getElementById("islmPoint").textContent), "ISLM-EX-15 · la ventana escribe la tasa que pide cada curva");
 r = load("ISLM-EX-16"); near(r.acc, 10, 1e-9, "ISLM-EX-16 · efecto acelerador 10"); near(r.rate, -20, 1e-9, "ISLM-EX-16 · efecto de la tasa −20"); near(r.dI, -10, 1e-9, "ISLM-EX-16 · ΔI = −10"); ok(r.crowd, "ISLM-EX-16 · hay efecto desplazamiento");

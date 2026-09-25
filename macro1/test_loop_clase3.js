@@ -675,7 +675,7 @@ async function main() {
   clickClass(w3, "test");
   ok(q(w3, ".numeric-first") !== null, "v0.6.4 · la clase 1 muestra las dos decisiones conceptuales verificables");
   ok(q(w3, ".answer-box.student") && q(w3, ".answer-box.reference"), "v0.6 · la clase 1 también compara respuesta y pauta");
-  ok(/Reconociste que el 2% pertenece a una proyección/.test(q(w3, ".diagnostic-observations").textContent), "v0.6.4 · se reconoce la lectura correcta del estado de la cifra");
+  ok(/Reconociste que el 2 % pertenece a una proyección/.test(q(w3, ".diagnostic-observations").textContent), "v0.6.4 · se reconoce la lectura correcta del estado de la cifra");
   setField(w3, "revisionFocus", "scope");clickClass(w3, "feedback");
   setField(w3, "diagnosticProbe", "__none__");clickClass(w3, "error");
   ok(/Sin diagnóstico forzado/.test(q(w3, "#classWorkbench").textContent), "v0.6 · «ninguna» no obliga a elegir una categoría falsa");

@@ -33,7 +33,7 @@ ok(state.feedback.checks.find(item=>item.key==="answerA").ok,"la evaluación bas
 const practice=L.guidedPracticeResult(state);
 ok(practice.checks.find(item=>/crecimiento, deflactor y PNB/.test(item.label)).ok,"la revisión puede confirmar respuestas equivalentes sin copiarlas");
 const report=L.guidedStudentReport(state,"sesion_con_practica_pendiente");
-ok(/Crecimiento real \(%\): 0\.02 \(equivale a 2,00%\) · confirmada/.test(report),"el reporte conserva valor, unidad, interpretación y decisión");
+ok(/Crecimiento real \(%\): 0\.02 \(equivale a 2,00 %\) · confirmada/.test(report),"el reporte conserva valor, unidad, interpretación y decisión");
 ok(/Deflactor del PIB \(índice base 2018=100\)/.test(report)&&/PNB de 2019 \(precios de 2018\)/.test(report),"el reporte usa etiquetas semánticas y unidades");
 ok(!/Resultados revisados: \(a\)/.test(report),"el reporte elimina la lista opaca a/b/c");
 

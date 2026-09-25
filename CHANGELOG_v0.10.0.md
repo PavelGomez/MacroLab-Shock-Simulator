@@ -33,3 +33,9 @@
 
 - Las cajas «La inversión, paso a paso» y «¿Y si la inversión respondiera más o menos a la tasa?» aparecían vacías en los modos Equilibrio y Desequilibrios, porque la regla `.grid{display:grid}` le ganaba al atributo `hidden`. Se agregó `[hidden]{display:none!important}`. La misma regla oculta ahora, como correspondía, el deslizador de t proporcional de Lab · Mercado de bienes cuando los impuestos son fijos.
 - En la curva de ΔI según b₂, el punto donde ΔI = 0 se rotula con su b₂ y se omite si coincide con el punto actual: antes decía «ΔI = 0» dos veces.
+
+## Fase 6 · Ruta por clases (24-09-2026)
+
+- Cada clase del tramo 4-7 lista, en la Ruta, los términos del glosario de su bloque (15, 11, 9 y 14), con su definición, en un desplegable al final de la preparación ordenada. Los enlaces a los laboratorios ya estaban (Clase 4 → Dinero / tasa y Relación LM; Clase 5 → Mercado de bienes y Curva IS; Clases 6 y 7 → Lab · IS-LM).
+- `test_enunciados_glosario.js`: 55 aserciones nuevas (753).
+- Los cambios propuestos para notas, ayudantías y guías están en `Alineacion_notas_ayudantias_v1.md` y no se aplicaron.
