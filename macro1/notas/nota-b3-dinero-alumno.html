@@ -69,6 +69,15 @@ hr{border:none;border-top:1px solid var(--line);margin:2.2rem 0}
 .pie{margin:2.5rem auto 0;max-width:52rem;padding:0 clamp(1rem,4vw,2rem);
 color:var(--muted);font-size:.82rem;text-align:center}
 .pie .descarga{margin-bottom:1.2rem}
+.videos{margin:.4rem 0 1.6rem;padding:1rem 1.1rem 1.1rem;background:var(--accent-soft);
+border-radius:12px;border-left:4px solid var(--accent)}
+.videos h2{margin:0 0 .7rem;font-size:1.05rem;color:var(--navy)}
+.videos .grilla{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.videos figure{margin:0}
+.videos .marco{position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden}
+.videos iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.videos figcaption{font-size:.86rem;color:var(--muted);margin-top:.35rem}
+@media print{.videos .marco{display:none}}
 @media print{.topbar,.skip,.pie .descarga{display:none}main{padding-top:1rem}
 .card{box-shadow:none;border:none}.pagebreak{display:block;page-break-after:always}}
 </style>
@@ -92,6 +101,13 @@ estudio 5 · Dinero, bonos y tasa de interés</h1>
 I · Ingeniería Comercial · Universidad Finis Terrae</p>
 <p class="meta-line">¿Quién decide la tasa de
 interés?</p>
+<section class="videos" aria-labelledby="videos-de-esta-nota">
+<h2 id="videos-de-esta-nota">Videos de esta nota</h2>
+<div class="grilla">
+<figure><div class="marco"><iframe src="https://www.youtube-nocookie.com/embed/SGeNUsRHLjA" title="Video · Dinero, bonos y tasa" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><figcaption>Video · Dinero, bonos y tasa · 4:43 · <a href="https://youtu.be/SGeNUsRHLjA">abrir en YouTube</a></figcaption></figure>
+</div>
+</section>
+
 <p>En la Nota 4 estudiamos el mercado de bienes. Para hacerlo más
 simple, supusimos dos cosas: que la tasa de interés <strong>no
 cambiaba</strong> y que la inversión de las empresas era un
