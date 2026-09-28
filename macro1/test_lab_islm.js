@@ -115,6 +115,19 @@ const noOverlap = (id, ctx) => { const Bx = (L.plotLayouts[id] || []).filter(b =
   for (let i = 0; i < Bx.length; i++) for (let j = i + 1; j < Bx.length; j++) { const a = Bx[i], b = Bx[j]; if (a.x < b.x + b.w - .5 && b.x < a.x + a.w - .5 && a.y < b.y + b.h - .5 && b.y < a.y + a.h - .5) bad++; }
   return ok(Bx.length > 3 && bad === 0, `${ctx} · ${id}: ningún rótulo encima de otro (${bad} solapes)`); };
 ACT.forEach(a => { load(a.id); L.drawIslm(); noOverlap("islmChart", a.id); ok(!/NaN|undefined|Infinity/.test(doc.getElementById("islmChart").innerHTML), `${a.id} · gráfico sin valores inválidos`); });
+// Interceptos reales: los ejes parten en 0, sin corte, y la IS completa cabe entre (0; K/b₂) y (K/A; 0).
+w.eval("window.__specs={};const __rp=renderPlot;renderPlot=function(id,s){window.__specs[id]=s;return __rp(id,s)}");
+ACT.concat(Object.keys(w.eval("ISLM_PRESETS")).map(k => ({ preset: k }))).forEach(a => ["equilibrio", "deseq"].forEach(m => {
+  if (a.id) load(a.id); else L.islmApply(w.eval("ISLM_PRESETS")[a.preset]);
+  L.islmApply({ ...L.islmRead(), mode: m }); const r = L.islmSolve(L.islmRead()), s = w.__specs.islmChart, ctx = `${a.id || a.preset} · ${m}`;
+  [r.s0, r.s1].forEach(st => { ok(s.x.min === 0 && !s.x.axisBreak && s.x.max >= st.Yint - 1e-9, `${ctx} · el eje Y va de 0 al intercepto ${st.Yint.toFixed(1)} (${s.x.min}–${s.x.max})`);
+    ok(s.y.min === 0 && s.y.max >= st.iint - 1e-9, `${ctx} · el eje i llega al intercepto ${st.iint.toFixed(2)} (máximo ${s.y.max})`); });
+  const [p0] = s.series[0].pts; near(p0[1], 0, 1e-9, `${ctx} · la IS toca el eje Y`); near(p0[0], r.s0.Yint, 1e-6, `${ctx} · …en K/A`);
+  if (!r.s0.hz) near(r.s0.Ylm(0), r.s0.YintLM, 1e-9, `${ctx} · la LM corta el eje Y en (M/P)/d₁`); }));
+load("ISLM-EX-12"); L.islmApply({ ...L.islmRead(), mode: "equilibrio" }); const r12 = L.islmSolve(L.islmRead());
+near(r12.s0.iint, r12.s0.K / r12.p0.b2, 1e-12, "ISLM-EX-12 · i(Y = 0) = K/b₂");
+ok(doc.getElementById("islmEq").textContent.includes(`corta el eje Y en ${w.eval("fmtT")(r12.s0.Yint, 1)} y el eje i en ${w.eval("fmtT")(r12.s0.iint)} %`), "ISLM-EX-12 · la cuenta escribe los interceptos de la IS");
+ok(doc.getElementById("islmEq").textContent.includes(`corta el eje Y en ${w.eval("fmtT")(r12.s0.YintLM, 1)}`), "ISLM-EX-12 · la cuenta escribe el intercepto de la LM");
 Object.keys(w.eval("ISLM_PRESETS")).forEach(k => ["equilibrio", "deseq", "efectos"].forEach(m => { L.islmApply(Object.assign({}, w.eval("ISLM_PRESETS")[k], { mode: m })); noOverlap("islmChart", `${k} · ${m}`); }));
 load("ISLM-EX-12"); L.drawIslm(); ok(/la IS se corre 300/.test(doc.getElementById("islmChart").textContent), "la flecha dice cuánto se corre la IS");
 load("ISLM-EX-15"); L.drawIslm(); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "el camino de ajuste rotula las dos velocidades");
