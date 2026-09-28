@@ -3640,7 +3640,8 @@ function isRead(){
 // Un estado del mercado de bienes: pendiente de Z, multiplicador y gasto autónomo sin la tasa.
 function isState(p){
   const prop=p.taxMode==="proportional",slope=prop?p.c1*(1-p.t)+p.b1:p.c1+p.b1,A=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;
-  return {slope,m:1/(1-slope),A,ok:slope<1,prop,Y:i=>(A-p.b2*i)/(1-slope),Z:(Y,i)=>A-p.b2*i+slope*Y,
+  // Interceptos de la IS, siempre desde los parámetros: Y(i = 0) = m·A e i(Y = 0) = A/b₂.
+  return {slope,m:1/(1-slope),A,ok:slope<1,prop,Yint:A/(1-slope),iint:A/p.b2,Y:i=>(A-p.b2*i)/(1-slope),Z:(Y,i)=>A-p.b2*i+slope*Y,
     I:(Y,i)=>p.b0+p.b1*Y-p.b2*i,C:Y=>prop?p.c0+p.c1*(1-p.t)*Y:p.c0+p.c1*(Y-p.T),tax:Y=>prop?p.t*Y:p.T};
 }
 function isSolve(p){
@@ -3664,9 +3665,11 @@ function drawIs(){
     ["isCross","isChart"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=""});return}
   lastIs={Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,m0:r.s0.m,m1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,dI:r.dI,acc:r.acc,rate:r.rate,auto:r.auto};
   const lbl=r.move?["con i₀","con i₁"]:["inicial","final"];
-  // Escala común de la producción (arriba y abajo).
-  const lo=Math.min(r.Y0,r.Y1),hi=Math.max(r.Y0,r.Y1),pad=Math.max((hi-lo)*.35,Math.abs(hi)*.06,1);
-  const xs=niceScale(Math.max(0,lo-pad),hi+pad,5,lo-pad<(hi+pad)*.2);
+  // Escala común de la producción (arriba y abajo). Parte en 0 y llega al menos al intercepto de cada IS,
+  // para que la curva se vea completa entre sus dos interceptos (sin eje cortado que simule otro corte).
+  const ints=[r.s0,r.s1].filter(s=>s.A>0),Yint=Math.max(0,...ints.map(s=>s.Yint)),iint=Math.max(0,...ints.map(s=>s.iint));
+  const hi=Math.max(r.Y0,r.Y1),pad=Math.max(Math.abs(hi)*.06,1);
+  const xs=niceScale(0,Math.max(hi+pad,Yint),5,true);
   const X={min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,axisBreak:xs.min>0};
   // Arriba: cruz keynesiana, con la misma escala en los dos ejes (así la recta de 45° es de 45°).
   const Zof=(s,pp,i,Y)=>s.Z(Y,i);
@@ -3681,7 +3684,7 @@ function drawIs(){
   if(Math.abs(r.gap)>1e-9)cross.arrows.push({from:[ax,Zof(r.s0,r.p0,r.i0,ax)],to:[ax,Zof(r.s1,r.p1,r.i1,ax)],estado:"neutral",
     text:r.move?`la tasa ${r.i1>r.i0?"quita":"agrega"} ${fmtT(Math.abs(r.gap),1)} de gasto`:`el gasto autónomo ${r.gap>0?"sube":"baja"} ${fmtT(Math.abs(r.gap),1)}`});
   // Abajo: plano (Y, i)
-  const is=niceScale(0,Math.max(r.i0,r.i1,1)*1.6,6,true);
+  const is=niceScale(0,Math.max(Math.max(r.i0,r.i1,1)*1.6,iint*1.05),6,true);
   const iAt=(s,pp,Y)=>(s.A-Y/s.m)/pp.b2;
   const chart={x:Object.assign({},X,{label:"Producción, Y (unidades de producto)"}),y:{min:0,max:is.max,ticks:is.ticks,digits:is.digits,label:"Tasa de interés, i (% anual)"},title:"Curva IS",
     series:[{pts:[[xs.min,iAt(r.s0,r.p0,xs.min)],[xs.max,iAt(r.s0,r.p0,xs.max)]],estado:"ini",name:r.move?"IS":"IS inicial",labelAt:.85}],

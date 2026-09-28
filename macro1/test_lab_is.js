@@ -78,6 +78,18 @@ ACT.forEach(a => { load(a.id); L.drawIs(); ["isCross", "isChart"].forEach(id => 
   const r0 = L.isSolve(L.isRead()), t0 = w.eval("fmtT")(r0.Y0, 1);
   ok(xOf("isCross", t0) !== undefined && xOf("isCross", t0) === xOf("isChart", t0), `${a.id} · los dos paneles quedan alineados en la producción`); });
 Object.keys(w.eval("IS_PRESETS")).forEach(k => { L.isApply(w.eval("IS_PRESETS")[k]); noOverlap("isCross", "punto de partida " + k); noOverlap("isChart", "punto de partida " + k); });
+// Interceptos: la curva se dibuja completa entre (0; A/b₂) y (m·A; 0), sin valores fijos ni eje cortado.
+w.eval("window.__specs={};const __rp=renderPlot;renderPlot=function(id,s){window.__specs[id]=s;return __rp(id,s)}");
+const interceptos = (p, Yint, iint, tabla, ctx) => {
+  L.isApply(p); const r = L.isSolve(L.isRead()), s = w.__specs.isChart, iAt = Y => (r.s0.A - Y / r.s0.m) / r.p0.b2;
+  near(r.s0.Yint, Yint, 1e-9, `${ctx} · Y(i = 0) = ${Yint}`); near(r.s0.iint, iint, .01, `${ctx} · i(Y = 0) ≈ ${iint}`);
+  tabla.forEach(([Y, i]) => near(iAt(Y), i, .01, `${ctx} · Y = ${Y} → i = ${i}`));
+  ok(s.x.min === 0 && !s.x.axisBreak && s.x.max >= Yint, `${ctx} · el eje de la producción va de 0 a por lo menos ${Yint} (${s.x.min}–${s.x.max})`);
+  ok(s.y.max >= iint, `${ctx} · el eje de la tasa llega al intercepto ${iint} (máximo ${s.y.max})`);
+  const [a] = s.series[0].pts; near(a[0], 0, 1e-9, `${ctx} · la IS parte en Y = 0`); near(a[1], iint, .01, `${ctx} · la IS parte en i = ${iint}`);
+  noOverlap("isChart", ctx); };
+interceptos(CURSO, 4000, 26.6667, [[0, 26.67], [1000, 20], [2000, 13.33], [3000, 6.67], [4000, 0]], "IS Y = 4.000 − 150·i");
+interceptos({ ...CURSO, b0: 60, b2: 10 }, 3000, 30, [[0, 30], [1500, 15], [3000, 0]], "IS Y = 3.000 − 100·i");
 load("IS-EX-04"); L.drawIs(); ok(/la IS se corre 200 a la derecha/.test(doc.getElementById("isChart").textContent), "la flecha escribe cuánto se corre la IS");
 load("IS-EX-01"); L.drawIs(); ok(/la tasa quita 40 de gasto/.test(doc.getElementById("isCross").textContent), "la cruz muestra cuánto gasto quita la tasa");
 ok(/movimiento a lo largo de la IS/.test(doc.getElementById("isChart").textContent), "si cambia la tasa: movimiento a lo largo de la IS");
