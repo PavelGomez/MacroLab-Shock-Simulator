@@ -136,6 +136,16 @@ ACT.forEach(a => ["equilibrio", "deseq"].forEach(m => { load(a.id); L.islmApply(
   ok(s.x.min > 0 && s.x.axisBreak, `${ctx} · el eje de la producción se corta (${s.x.min}–${s.x.max})`);
   ok(s.x.min <= Math.min(r.s0.Y, r.s1.Y) && s.x.max >= Math.max(r.s0.Y, r.s1.Y) && s.y.max >= Math.max(r.s0.i, r.s1.i), `${ctx} · los equilibrios quedan dentro`);
   noOverlap("islmChart", ctx); }));
+// Acercado, la LM no puede parecer nacer en el origen ni cortar el eje de la tasa: el eje de la producción
+// empieza a la izquierda de (M/P)/d₁ y ese corte se marca y se escribe sobre el eje.
+ACT.map(a => [a.id, () => load(a.id)]).concat(Object.entries(w.eval("ISLM_PRESETS")).map(([k, p]) => [k, () => L.islmApply(p)])).forEach(([k, f]) => { f();
+  L.islmApply({ ...L.islmRead(), mode: "equilibrio" }); const r = L.islmSolve(L.islmRead()), s = w.__specs.islmChart;
+  [r.s0, r.s1].filter(st => !st.hz).forEach(st => { const t = w.eval("fmtT")(st.YintLM, 1);
+    ok(s.x.min < st.YintLM - 1e-9 && st.YintLM <= s.x.max, `${k} · acercado · el eje de la producción empieza antes del corte de la LM en ${t} (${s.x.min}–${s.x.max})`);
+    ok(s.points.some(q => q.y === 0 && Math.abs(q.x - st.YintLM) < 1e-9 && q.xText === t), `${k} · acercado · se marca el corte de la LM en (${t}; 0)`);
+    ok([...doc.querySelectorAll("#islmChart text.g-proj")].some(x => x.textContent === t), `${k} · acercado · el eje escribe ${t}`); }); });
+L.islmApply({ ...w.eval("ISLM_PRESETS").curso, mode: "equilibrio" });
+ok(/corta la LM \(Y = 3\.000 con i = 0\)/.test(zoomNote.textContent), "curso · acercado · el aviso dice que la LM corta el eje en 3.000");
 ok(zoomBtn.getAttribute("aria-pressed") === "true" && !zoomNote.hidden && /acercado al equilibrio/.test(doc.getElementById("islmAlt").textContent), "acercado: el botón queda marcado, aparece el aviso y la descripción accesible lo dice");
 load("ISLM-EX-15"); L.islmApply({ ...L.islmRead(), mode: "deseq" }); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "acercado · el camino de ajuste rotula las dos velocidades");
 fullBtn.click(); load("ISLM-EX-12"); L.drawIslm(); { const s = w.__specs.islmChart, r = L.islmSolve(L.islmRead());
