@@ -3823,7 +3823,10 @@ function drawIslm(){
   // escalas. Vista completa (por defecto): los dos ejes parten en 0 y llegan a los interceptos de cada IS
   // (Y = K/A con i = 0; i = K/b₂ con Y = 0); la LM corta el eje de la producción en (M/P)/d₁, que queda dentro.
   // Vista acercada: tasa desde 0 y producción alrededor de los equilibrios (y del punto), con el eje cortado.
-  const ints=[r.s0,r.s1].filter(s=>s.K>0),Ys=[r.s0.Y,r.s1.Y].concat(pt?[pt.Y]:[]),Is=[r.s0.i,r.s1.i].concat(pt?[pt.i,pt.iIS,pt.iLM]:[]);
+  // En las dos vistas entra el corte de la LM con el eje de la producción, (M/P)/d₁: si el eje empezara justo ahí
+  // (o a su derecha), la LM parecería nacer en el origen o cortar el eje de la tasa.
+  const lmCuts=[r.s0,r.s1].filter(s=>!s.hz&&s.YintLM>0).map(s=>s.YintLM).filter((v,k,a)=>a.findIndex(u=>Math.abs(u-v)<1e-9)===k);
+  const ints=[r.s0,r.s1].filter(s=>s.K>0),Ys=[r.s0.Y,r.s1.Y].concat(pt?[pt.Y]:[],lmCuts),Is=[r.s0.i,r.s1.i].concat(pt?[pt.i,pt.iIS,pt.iLM]:[]);
   const iMax=Math.max(...Is.filter(Number.isFinite),1);
   let xs,ys;
   if(islmZoom){ys=niceScale(0,Math.min(iMax*1.45,Math.max(r.s0.i,r.s1.i,1)*3),6,true);
@@ -3831,7 +3834,8 @@ function drawIslm(){
   else{const iInt=Math.max(0,...ints.map(s=>s.iint)),hi=Math.max(...Ys),Yint=Math.max(0,...ints.map(s=>s.Yint));
     ys=niceScale(0,Math.max(iMax*1.45,iInt),6,true);xs=niceScale(0,Math.max(hi+Math.max(Math.abs(hi)*.08,1),Yint),5,true)}
   document.getElementById("islmViewFull").setAttribute("aria-pressed",String(!islmZoom));document.getElementById("islmViewZoom").setAttribute("aria-pressed",String(islmZoom));
-  document.getElementById("islmZoomNote").hidden=!islmZoom;
+  const zn=document.getElementById("islmZoomNote");zn.hidden=!islmZoom;
+  zn.textContent=`Vista acercada: el eje de la producción está cortado y no parte en 0.${lmCuts.length?` El punto sobre ese eje marca dónde lo corta la LM (Y = ${lmCuts.map(v=>fmtT(v,1)).join(" y ")} con i = 0).`:""} La IS no alcanza a llegar a los ejes: para ver dónde los corta, vuelve a «Curvas completas».`;
   const X={min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,axisBreak:xs.min>0,label:"Producción, Y (unidades de producto)"};
   const Yax={min:0,max:ys.max,ticks:ys.ticks,digits:ys.digits,label:"Tasa de interés, i (% anual)"};
   const seg=(st,kind)=>kind==="IS"?[[st.Yis(ys.min),ys.min],[st.Yis(ys.max),ys.max]]:st.hz?[[xs.min,st.iLM(0)],[xs.max,st.iLM(0)]]:[[st.Ylm(ys.min),ys.min],[st.Ylm(ys.max),ys.max]];
@@ -3840,6 +3844,7 @@ function drawIslm(){
     points:[],guides:[],arrows:[],legend:changed?[{estado:"ini",text:"Inicial"},{estado:"fin",text:"Final"}]:[]};
   if(Math.abs(r.shiftIS)>1e-9)spec.series.push({pts:seg(r.s1,"IS"),estado:"fin",name:"IS final",labelAt:.3});
   if(Math.abs(r.shiftLM)>1e-9||(r.s0.hz&&r.p1.iFix!==p.iFix))spec.series.push({pts:seg(r.s1,"LM"),estado:"fin",name:"LM final",labelAt:.7});
+  lmCuts.forEach(v=>spec.points.push({x:v,y:0,name:"",estado:Math.abs(v-r.s0.YintLM)<1e-9||r.s0.hz?"ini":"fin",xText:fmtT(v,1)}));
   spec.points.push({x:r.s0.Y,y:r.s0.i,name:"E₀",estado:"ini",xText:fmtT(r.s0.Y,1),yText:fmtT(r.s0.i)+" %"});
   if(changed)spec.points.push({x:r.s1.Y,y:r.s1.i,name:"E₁",estado:"fin",xText:fmtT(r.s1.Y,1),yText:fmtT(r.s1.i)+" %"});
   if(p.mode!=="deseq"&&Math.abs(r.shiftIS)>1e-9){const ia=r.s0.i;spec.arrows.push({from:[r.s0.Yis(ia),ia],to:[r.s1.Yis(ia),ia],estado:"fin",text:`la IS se corre ${fmtT(Math.abs(r.shiftIS),1)}`})}
@@ -3861,7 +3866,7 @@ function drawIslm(){
   document.getElementById("islmRead").innerHTML=islmExplain(p,r);
   if(pt)islmPointText(r,pt);
   if(p.mode==="efectos"){setValue("islmB2b",p.b2);islmEffects(p,r)}
-  document.getElementById("islmAlt").textContent=`Gráfico de producción y tasa${islmZoom?", acercado al equilibrio con el eje de la producción cortado":`, con las curvas completas: la IS corta el eje de la producción en ${fmtT(r.s0.Yint,1)} y el de la tasa en ${fmtT(r.s0.iint)} %`}. La producción Y va en el eje horizontal y la tasa de interés, en % anual, en el vertical. La IS baja de izquierda a derecha y la LM ${r.s0.hz?"es horizontal":"sube"}. Se cruzan en E₀ = (${fmtT(r.s0.Y,1)}; ${fmtT(r.s0.i)} %).${changed?` Después del cambio, el equilibrio es E₁ = (${fmtT(r.s1.Y,1)}; ${fmtT(r.s1.i)} %).`:""}${pt?` El punto P = (${fmtT(pt.Y,1)}; ${fmtT(pt.i)} %) está ${pt.aboveIS?"por encima":pt.belowIS?"por debajo":"sobre"} de la IS y ${pt.aboveLM?"por encima":pt.belowLM?"por debajo":"sobre"} de la LM.`:""}`;
+  document.getElementById("islmAlt").textContent=`Gráfico de producción y tasa${islmZoom?`, acercado al equilibrio con el eje de la producción cortado${lmCuts.length?`; la LM corta ese eje en ${lmCuts.map(v=>fmtT(v,1)).join(" y ")}`:""}`:`, con las curvas completas: la IS corta el eje de la producción en ${fmtT(r.s0.Yint,1)} y el de la tasa en ${fmtT(r.s0.iint)} %`}. La producción Y va en el eje horizontal y la tasa de interés, en % anual, en el vertical. La IS baja de izquierda a derecha y la LM ${r.s0.hz?"es horizontal":"sube"}. Se cruzan en E₀ = (${fmtT(r.s0.Y,1)}; ${fmtT(r.s0.i)} %).${changed?` Después del cambio, el equilibrio es E₁ = (${fmtT(r.s1.Y,1)}; ${fmtT(r.s1.i)} %).`:""}${pt?` El punto P = (${fmtT(pt.Y,1)}; ${fmtT(pt.i)} %) está ${pt.aboveIS?"por encima":pt.belowIS?"por debajo":"sobre"} de la IS y ${pt.aboveLM?"por encima":pt.belowLM?"por debajo":"sobre"} de la LM.`:""}`;
 }
 function islmEqText(r){
   const p=r.p0,s=r.s0,f=(v,d)=>fmtT(v,d);
