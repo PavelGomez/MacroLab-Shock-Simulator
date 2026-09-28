@@ -128,6 +128,18 @@ load("ISLM-EX-12"); L.islmApply({ ...L.islmRead(), mode: "equilibrio" }); const 
 near(r12.s0.iint, r12.s0.K / r12.p0.b2, 1e-12, "ISLM-EX-12 · i(Y = 0) = K/b₂");
 ok(doc.getElementById("islmEq").textContent.includes(`corta el eje Y en ${w.eval("fmtT")(r12.s0.Yint, 1)} y el eje i en ${w.eval("fmtT")(r12.s0.iint)} %`), "ISLM-EX-12 · la cuenta escribe los interceptos de la IS");
 ok(doc.getElementById("islmEq").textContent.includes(`corta el eje Y en ${w.eval("fmtT")(r12.s0.YintLM, 1)}`), "ISLM-EX-12 · la cuenta escribe el intercepto de la LM");
+// Botón «Acercar al equilibrio»: vista alrededor de los equilibrios con eje cortado; «Curvas completas» vuelve a los interceptos.
+const zoomBtn = doc.getElementById("islmViewZoom"), fullBtn = doc.getElementById("islmViewFull"), zoomNote = doc.getElementById("islmZoomNote");
+ok(fullBtn.getAttribute("aria-pressed") === "true" && zoomBtn.getAttribute("aria-pressed") === "false" && zoomNote.hidden, "la vista por defecto es la de curvas completas");
+zoomBtn.click();
+ACT.forEach(a => ["equilibrio", "deseq"].forEach(m => { load(a.id); L.islmApply({ ...L.islmRead(), mode: m }); const r = L.islmSolve(L.islmRead()), s = w.__specs.islmChart, ctx = `${a.id} · ${m} · acercado`;
+  ok(s.x.min > 0 && s.x.axisBreak, `${ctx} · el eje de la producción se corta (${s.x.min}–${s.x.max})`);
+  ok(s.x.min <= Math.min(r.s0.Y, r.s1.Y) && s.x.max >= Math.max(r.s0.Y, r.s1.Y) && s.y.max >= Math.max(r.s0.i, r.s1.i), `${ctx} · los equilibrios quedan dentro`);
+  noOverlap("islmChart", ctx); }));
+ok(zoomBtn.getAttribute("aria-pressed") === "true" && !zoomNote.hidden && /acercado al equilibrio/.test(doc.getElementById("islmAlt").textContent), "acercado: el botón queda marcado, aparece el aviso y la descripción accesible lo dice");
+load("ISLM-EX-15"); L.islmApply({ ...L.islmRead(), mode: "deseq" }); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "acercado · el camino de ajuste rotula las dos velocidades");
+fullBtn.click(); load("ISLM-EX-12"); L.drawIslm(); { const s = w.__specs.islmChart, r = L.islmSolve(L.islmRead());
+  ok(s.x.min === 0 && !s.x.axisBreak && s.x.max >= r.s1.Yint && s.y.max >= r.s1.iint && zoomNote.hidden, "«Curvas completas» vuelve a mostrar los interceptos"); }
 Object.keys(w.eval("ISLM_PRESETS")).forEach(k => ["equilibrio", "deseq", "efectos"].forEach(m => { L.islmApply(Object.assign({}, w.eval("ISLM_PRESETS")[k], { mode: m })); noOverlap("islmChart", `${k} · ${m}`); }));
 load("ISLM-EX-12"); L.drawIslm(); ok(/la IS se corre 300/.test(doc.getElementById("islmChart").textContent), "la flecha dice cuánto se corre la IS");
 load("ISLM-EX-15"); L.drawIslm(); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "el camino de ajuste rotula las dos velocidades");
