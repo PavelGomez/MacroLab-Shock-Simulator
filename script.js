@@ -790,6 +790,10 @@ function restoreScenarioFromUrl(){
 /* ========== IS-LM ========== */
 function calcISLM(p,regime,taxMode='fixed'){const prop=taxMode==='proportional';const mpc=prop?p.c1*(1-p.t):p.c1;const A=1-mpc-p.b1;const K=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;let Y,i;if(regime==='horizontal'){i=p.iFixed;Y=safeDiv(K-p.b2*i,A)}else{Y=safeDiv(p.d2*K+p.b2*p.MP,p.d2*A+p.b2*p.d1);i=safeDiv(p.d1*Y-p.MP,p.d2)}const investment=p.b0+p.b1*Y-p.b2*i;const taxes=prop?p.t*Y:p.T;const mult=A!==0?1/A:NaN;return{A,K,Y,i,investment,mpc,mult,taxes,taxMode}}
 function isCurve(p,taxMode='fixed'){const prop=taxMode==='proportional';const mpc=prop?p.c1*(1-p.t):p.c1;const A=1-mpc-p.b1;const K=prop?p.c0+p.b0+p.G:p.c0-p.c1*p.T+p.b0+p.G;return Y=>safeDiv(K-A*Y,p.b2)}
+// Interceptos de la IS desde los parámetros: i(Y = 0) = K/b₂ e Y(i = 0) = K/A (la IS es lineal).
+function isIntercepts(p,taxMode='fixed'){const f=isCurve(p,taxMode);const i0=f(0);return{i:i0,Y:safeDiv(i0,f(0)-f(1))}}
+// Máximo "limpio" de un eje: 1.252 → 1.500; 14,2 → 15.
+function niceCeil(v){if(!(v>0))return 1;const p=Math.pow(10,Math.floor(Math.log10(v)));return Math.ceil(v/(p/2)-1e-9)*(p/2)}
 function lmCurve(p,regime){if(regime==='horizontal')return()=>p.iFixed;return Y=>safeDiv(p.d1*Y-p.MP,p.d2)}
 function renderISLM(){
   const regime=document.getElementById('islm-regime').value;
@@ -801,8 +805,11 @@ function renderISLM(){
   const fin=applyDelta(base,shock.delta);
   const initial=calcISLM(base,regime,taxMode);
   const final_=calcISLM(fin,regime,taxMode);
-  const xr=centeredRange([initial.Y,final_.Y],320,0);
-  const yr=centeredRange([initial.i,final_.i,base.iFixed,fin.iFixed],4.5,0);
+  // Ejes desde 0, hasta los interceptos reales de cada IS, para que la curva se vea completa.
+  const ints=[isIntercepts(base,taxMode),isIntercepts(fin,taxMode)].filter(v=>v.i>0&&v.Y>0);
+  const iLevels=[initial.i,final_.i].concat(regime==='horizontal'?[base.iFixed,fin.iFixed]:[]);
+  const xr={min:0,max:niceCeil(Math.max(initial.Y*1.1,final_.Y*1.1,...ints.map(v=>v.Y)))};
+  const yr={min:0,max:niceCeil(Math.max(...iLevels.map(v=>v*1.3),...ints.map(v=>v.i)))};
   drawChart('islm','islm-chart',{type:'scatter',data:{datasets:[
     {type:'line',label:'IS inicial',data:buildLine(isCurve(base,taxMode),xr.min,xr.max),borderColor:'#2d6ea3',borderWidth:2.4,pointRadius:0},
     {type:'line',label:'IS final',data:buildLine(isCurve(fin,taxMode),xr.min,xr.max),borderColor:'#7cb4df',borderWidth:2.4,borderDash:[6,6],pointRadius:0},
@@ -814,7 +821,8 @@ function renderISLM(){
   setText('islm-y0',roundCL(initial.Y));setText('islm-y1',roundCL(final_.Y));
   setText('islm-i0',roundCL(initial.i));setText('islm-i1',roundCL(final_.i));
   setText('islm-inv0',roundCL(initial.investment));setText('islm-inv1',roundCL(final_.investment));
-  setText('islm-equilibrium',`Equilibrio inicial: (Y = ${roundCL(initial.Y)}; i = ${roundCL(initial.i)} %). Final: (Y = ${roundCL(final_.Y)}; i = ${roundCL(final_.i)} %).`);
+  const cut=isIntercepts(base,taxMode);
+  setText('islm-equilibrium',`Equilibrio inicial: (Y = ${roundCL(initial.Y)}; i = ${roundCL(initial.i)} %). Final: (Y = ${roundCL(final_.Y)}; i = ${roundCL(final_.i)} %). La IS inicial corta el eje Y en ${roundCL(cut.Y,1)} y el eje i en ${roundCL(cut.i)} %${regime==='horizontal'?'':`; la LM corta el eje Y en ${roundCL(safeDiv(base.MP,base.d1),1)}`}.`);
   const dY=final_.Y-initial.Y;const di=final_.i-initial.i;const dI=final_.investment-initial.investment;
   setText('islm-explanation',buildISLMMicrocopy(shockKey,shock,regime,dY,di,dI));
   // Términos con signo (H-R1, 23-09-2026): antes se recortaban a cero y los shocks contractivos mostraban 0,00 y 0,00.
