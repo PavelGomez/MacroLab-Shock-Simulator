@@ -159,6 +159,11 @@
   .export{display:none;background:var(--navy-deep);color:#d9ebf7;border-radius:10px;padding:12px;margin-top:10px;white-space:pre-wrap;overflow:auto;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
   /* ========== MOTOR GRÁFICO ========== */
   .plot{display:block;width:100%;height:auto;max-width:100%}
+  #moneyBondChart{max-width:620px;margin:12px auto}
+  #money-bond-vf{display:block;width:100%;max-width:240px}
+  #money-final-fields{margin-top:24px}
+  #money-final-fields h3{margin:0 0 8px}
+  #money-final-fields .mini-grid label{margin-top:0}
   .plot-pair{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:8px}
   @media(max-width:760px){.plot-pair{grid-template-columns:1fr}}
   .g-bg{fill:#fff}.g-grid{stroke:#e7edf5;stroke-width:1}.g-axis{stroke:#64748b;stroke-width:2}.g-break{stroke:#64748b;stroke-width:2;fill:none}
@@ -727,14 +732,25 @@
     <div class="grid">
       <article class="card">
         <h3>Configura y experimenta</h3>
+        <label>¿Qué quieres observar?<select id="money-view"><option value="single">Observar un equilibrio</option><option value="compare">Comparar dos equilibrios (inicial y final)</option></select></label>
+        <p id="money-view-note" class="field-note" aria-live="polite"></p>
         <label>¿Qué fija la política monetaria?<select id="money-regime"><option value="quantity">Oferta de dinero fijada</option><option value="target">Tasa de interés objetivo</option></select></label>
         <p id="money-regime-note" class="field-note" aria-live="polite"></p>
         <div class="mini-grid">
-          <label>Producción o ingreso real Y<input id="moneyY" type="number" min="0" step="any" value="1000" aria-describedby="money-y-help"></label>
-          <label>Oferta real M/P<input id="moneyMs" type="number" min="0" step="any" value="760" aria-describedby="money-mp-help"></label>
+          <label>Producción o ingreso inicial Y₁<input id="moneyY" type="number" min="0" step="any" value="1000" aria-describedby="money-y-help"></label>
+          <label>Oferta real inicial (M/P)₁<input id="moneyMs" type="number" min="0" step="any" value="760" aria-describedby="money-mp-help"></label>
           <label>d₁ (saldos reales / unidad de Y)<input id="moneyD1" type="number" min="0" step="any" value=".8" aria-describedby="money-d1-help"></label>
           <label>d₂ (saldos reales / punto porcentual)<input id="moneyD2" type="number" min="0" step="any" value="20" aria-describedby="money-d2-help"></label>
           <label id="money-target-field" hidden>Tasa objetivo i (%)<input id="money-target" type="number" step="any" value="2"></label>
+        </div>
+        <div id="money-final-fields" hidden>
+          <h3>Estado final</h3>
+          <div class="mini-grid">
+            <label>Producción o ingreso final Y₂<input id="moneyY2" type="number" min="0" step="any" value="1010" aria-describedby="money-y-help"></label>
+            <label>Oferta real final (M/P)₂<input id="moneyMs2" type="number" min="0" step="any" value="760" aria-describedby="money-mp-help"></label>
+          </div>
+          <div class="actions"><button class="btn secondary" type="button" id="money-copy">Copiar estado inicial al final</button></div>
+          <p class="field-note">Y₁ y Y₂ se editan independientemente. Con cantidad fijada, cambia solo Y₂ para observar un desplazamiento de demanda, o solo (M/P)₂ para observar una intervención. d₁ y d₂ son comunes, salvo la restricción de la actividad de solo efectivo. Con tasa objetivo, la meta es común y ambas ofertas se calculan.</p>
         </div>
         <p id="money-y-help" class="field-note"><strong>Y:</strong> producción o ingreso real, dado; no se calcula aquí.</p>
         <p id="money-mp-help" class="field-note"><strong>M/P:</strong> oferta de saldos monetarios reales. M es dinero nominal y P el nivel de precios: una variación nominal ΔM corresponde a Δ(M/P) = ΔM/P si P permanece fijo.</p>
@@ -751,12 +767,26 @@
         <h3>Resultado y gráfico</h3>
         <div class="formula">L(i,Y) = Mᵈ/P = d₁Y − d₂i · Mˢ/P = M/P<br>i* = [d₁Y − M/P]/d₂<br>(M/P)_requerido = d₁Y − d₂i_objetivo</div>
         <div id="moneyFeedback" class="notice ok status" aria-live="polite"></div>
+        <div id="money-comparison" aria-live="polite"></div>
         <div class="actions"><button class="btn secondary" type="button" id="money-full" aria-pressed="true">Vista completa</button><button class="btn secondary" type="button" id="money-zoom" aria-pressed="false">Acercar al equilibrio</button><button class="btn secondary" type="button" id="money-scale-reset">Restaurar escala</button></div>
         <svg id="moneyChart" class="plot" role="img" aria-label="Mercado de dinero con demanda, oferta y tasa de equilibrio" aria-describedby="moneyAlt"></svg>
         <p id="money-intercepts" class="field-note"></p>
         <details class="alt"><summary>Ver descripción accesible del gráfico</summary><p id="moneyAlt"></p></details>
       </article>
     </div>
+    <article class="card">
+      <h3>Interpretación y mecanismo de ajuste</h3>
+      <p id="money-adjustment" class="notice" aria-live="polite"></p>
+      <p id="money-adjustment-note" class="field-note">En modo comparación, el gráfico compara equilibrios; la explicación describe la presión de ajuste desde la tasa inicial, no una trayectoria temporal simulada. Un cambio de Y desplaza la demanda aquí; con M/P fijo es un movimiento sobre la LM.</p>
+    </article>
+    <article class="card">
+      <h3>El vínculo con el mercado de bonos</h3>
+      <label>Valor facial del bono de referencia VF (u.m.)<input id="money-bond-vf" type="number" min="0" step="any" value="100"></label>
+      <p id="money-bond-result" class="notice" aria-live="polite"></p>
+      <svg id="moneyBondChart" class="plot" role="img" aria-label="Esquema del ajuste del mercado de bonos" aria-describedby="money-bond-alt"></svg>
+      <p id="money-bond-alt" class="field-note"></p>
+      <p class="field-note"><strong>Alcance:</strong> P_B = VF/(1 + i/100), para un bono sin cupones, un año restante, pago completo, sin comisiones ni impuestos. Se supone que su rendimiento coincide con la tasa del único activo remunerado de este modelo; no se identifica con el rendimiento de cualquier bono real ni con la TPM. Q_B es la cantidad de bonos: este laboratorio no calcula cantidades negociadas. Las curvas y las posiciones Q₀ y Q₁ son un esquema sin calibración, no predicciones cuantitativas. Cambiar VF no cambia el equilibrio monetario. <a href="#bonos">Explora las calculadoras de bonos</a>.</p>
+    </article>
     <p><strong>Interpretación.</strong> La demanda es el saldo de dinero que se desea mantener: no es gasto, ingreso ni riqueza total. i es el costo de oportunidad de mantener dinero frente al activo remunerado del modelo.</p>
     <details class="guide"><summary>Política monetaria, ajuste y límites del modelo</summary>
       <p>La política monetaria es el conjunto de decisiones con que la autoridad monetaria influye en las condiciones monetarias y financieras. Aquí se simplifica a fijar una cantidad real o una tasa: la otra variable se calcula.</p>
@@ -3195,7 +3225,7 @@ function applyPreset(win,a){
   if(win==="lm")lmApply(a.preset);
   if(win==="is")isApply(a.preset);
   if(win==="islm")islmApply(a.preset);
-  if(win==="din"){setValue("moneyY",a.preset.Y);setValue("moneyMs",a.preset.Ms);setValue("moneyD1",a.preset.d1);setValue("moneyD2",a.preset.d2);moneyStep=a.preset.step;setValue("money-step",moneyStep);setValue("money-regime","quantity");moneyZoom=false;drawMoney()}
+  if(win==="din"){setValue("moneyY",a.preset.Y);setValue("moneyMs",a.preset.Ms);setValue("moneyD1",a.preset.d1);setValue("moneyD2",a.preset.d2);moneyStep=a.preset.step;setValue("money-step",moneyStep);setValue("money-regime","quantity");moneyZoom=false;setValue("money-view","single");setValue("moneyY2",a.preset.Y);setValue("moneyMs2",a.preset.Ms);drawMoney()}
   if(win==="lab"){Object.entries(a.preset).forEach(([k,v])=>setValue(k,v));calcLabor();calcWsPs()}
 }
 function revealRubric(win){
@@ -3210,7 +3240,7 @@ function getCurrentParams(win){
   if(win==="med")return {baseYear:2000+Number(document.getElementById("med-base").value),goods:measurementGoods.map(g=>({...g})),basket:{...measurementBasket}};
   if(win==="cta")return {selectedCategory:ctaCategory,answered:Object.keys(ctaDone).map(Number),total:CTA_ITEMS.length,attempts:ctaAttempts.map(x=>({...x}))};
   if(win==="cruz")return {c0:num("c0"),c1:num("c1"),I:num("inv"),G:num("gov"),taxMode:document.getElementById("propTax").checked?"proportional":"fixed",T:num("tax"),t:num("taxRate")};
-  if(win==="din")return {...moneyRead(),MsReal:num("moneyMs"),interestRate:moneyInterest()};
+  if(win==="din")return {...moneyRead(),MsReal:num(moneyMode()==="compare"?"moneyMs2":"moneyMs"),interestRate:moneyInterest(),viewMode:moneyMode(),initialParams:moneyRead("initial"),finalParams:moneyMode()==="compare"?moneyRead("final"):null};
   if(win==="lm")return lmRead();
   if(win==="is")return isRead();
   if(win==="islm")return islmRead();
@@ -3221,7 +3251,7 @@ function getCurrentResults(win){
   if(win==="med")return {rows:lastMeasurement.map(r=>({...r}))};
   if(win==="cta")return {answered:Object.keys(ctaDone).map(Number),score:Object.keys(ctaDone).length,mistakes:ctaAttempts.filter(x=>!x.correct).map(x=>({...x}))};
   if(win==="cruz")return lastCross?{...lastCross}:null;
-  if(win==="din"){const r=moneySolve(moneyRead());return r.ok?{interestRate:r.interest,MsReal:r.quantity,bondPrice:bondPrice(100,r.interest),bondAssumptions:"Referencia: VF = 100, sin cupones, un año, pago completo, sin impuestos ni comisiones",regime:moneyRead().regime}:{valid:false,reason:r.message}}
+  if(win==="din"){const s=moneyStates(),r=s.compare?s.b:s.a;return s.ok?{interestRate:r.interest,MsReal:r.quantity,bondPrice:bondPrice(100,r.interest),bondAssumptions:"Referencia: VF = 100, sin cupones, un año, pago completo, sin impuestos ni comisiones",regime:s.initial.regime,viewMode:moneyMode(),comparison:s.compare?moneyComparison(s.initial,s.final):null}:{valid:false,reason:s.message}}
   if(win==="islm"){const r=islmSolve(islmRead());return {Y0:r.s0.Y,i0:r.s0.i,Y1:r.s1.Y,i1:r.s1.i,dY:r.dY,di:r.di,I0:r.s0.I0,I1:r.s1.I0,accelerator:r.acc,rateEffect:r.rate,autonomous:r.auto,crowdingOut:r.crowd,MPrequired0:r.s0.MPreq,MPrequired1:r.s1.MPreq}}
   if(win==="is"){const r=isSolve(isRead());return {Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,multiplier0:r.s0.m,multiplier1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,accelerator:r.acc,rateEffect:r.rate,autonomous:r.auto}}
   if(win==="lm"){const r=lmSolve(lmRead());return {i0:r.i0,i1:r.i1,slope:r.slope,shiftY:r.shiftY,interceptY:r.interceptY0,interceptI:r.interceptI0,mpReq0:r.mpReq0??null,mpReq1:r.mpReq1??null}}
@@ -3404,66 +3434,128 @@ function moneySolve(p){
   return {ok:true,quantity,interest,horizontal,vertical,slope:-1/d2};
 }
 let moneyStep=40,moneyBase={Y:1000,Ms:760,d1:.8,d2:20,step:40},moneyZoom=false,lastMoney=null;
-function moneyRead(){return {Y:num("moneyY"),Ms:num("moneyMs"),d1:num("moneyD1"),d2:num("moneyD2"),target:num("money-target"),regime:document.getElementById("money-regime").value}}
-function moneyInterest(){const r=moneySolve(moneyRead());return r.ok?r.interest:NaN}
+function moneyMode(){return document.getElementById("money-view").value}
+function moneyRead(which){
+  const final=which==="final"||(which!=="initial"&&moneyMode()==="compare");
+  const p={Y:num(final?"moneyY2":"moneyY"),Ms:num(final?"moneyMs2":"moneyMs"),d1:num("moneyD1"),d2:num("moneyD2"),target:num("money-target"),regime:document.getElementById("money-regime").value};
+  if(final&&currentActivity.din?.regime==="solo_efectivo"&&Math.abs(num("moneyD2")-num("moneyY")/100)<1e-8)p.d2=p.Y/100;
+  return p;
+}
+function moneyStates(){
+  const initial=moneyRead("initial"),a=moneySolve(initial),compare=moneyMode()==="compare";
+  const final=compare?moneyRead("final"):null,b=compare?moneySolve(final):null;
+  return {compare,initial,final,a,b,ok:a.ok&&(!compare||b.ok),message:!a.ok?"Estado inicial: "+a.message:compare&&!b.ok?"Estado final: "+b.message:""};
+}
+function moneyInterest(){const s=moneyStates();return s.ok?(s.compare?s.b.interest:s.a.interest):NaN}
+function moneyComparison(initial,current){
+  const a=moneySolve(initial),b=moneySolve(current);
+  if(!a.ok||!b.ok)return null;
+  return {initial:{params:{...initial},...a},final:{params:{...current},...b},dY:current.Y-initial.Y,dMs:b.quantity-a.quantity,di:b.interest-a.interest,demandAtInitialRate:current.d1*current.Y-current.d2*a.interest,gap:current.d1*current.Y-current.d2*a.interest-b.quantity};
+}
+function copyMoneyInitial(){
+  setValue("moneyY2",document.getElementById("moneyY").value);setValue("moneyMs2",document.getElementById("moneyMs").value);drawMoney();
+}
+function drawMoneyComparison(c){
+  const a=c.initial,b=c.final,p=b.params,eps=1e-9;
+  document.getElementById("money-comparison").innerHTML='<table><caption>Equilibrio inicial y final</caption><thead><tr><th scope="col">Variable</th><th scope="col">Inicial E₀</th><th scope="col">Final E₁</th><th scope="col">Cambio</th></tr></thead><tbody>'+[["Y (u. reales)",a.params.Y,p.Y,c.dY],["M/P (u. reales)",a.quantity,b.quantity,c.dMs],["i (%); cambio en puntos porcentuales",a.interest,b.interest,c.di]].map(row=>'<tr><th scope="row">'+row[0]+'</th>'+row.slice(1).map(v=>'<td>'+fmtT(v,6)+'</td>').join('')+'</tr>').join('')+'</tbody></table>';
+  let mechanism="";
+  if(Math.abs(c.dY)>eps)mechanism=`Y ${c.dY>0?"aumenta":"disminuye"} en ${fmtT(Math.abs(c.dY))}. Manteniendo d₁ y d₂, la demanda de dinero se desplaza ${c.dY>0?"a la derecha":"a la izquierda"}: a cada tasa se desean ${c.dY>0?"más":"menos"} saldos. `;
+  if(p.d1!==a.params.d1||p.d2!==a.params.d2)mechanism+="También cambiaste los coeficientes de demanda; el resultado no se atribuye solo a Y o M/P. ";
+  mechanism+=`A la tasa inicial de ${fmtT(a.interest)} %, la demanda final sería ${fmtT(c.demandAtInitialRate)} y la oferta final es ${fmtT(b.quantity)} unidades reales. `;
+  if(p.regime==="target"){
+    if(Math.abs(c.di)<eps)mechanism+=`Para mantener la meta de ${fmtT(b.interest)} %, el banco central ${Math.abs(c.dMs)<eps?"no necesita cambiar la oferta":c.dMs>0?"debe proveer "+fmtT(c.dMs)+" unidades reales adicionales":"debe retirar "+fmtT(-c.dMs)+" unidades reales"}. ${c.dMs>eps?"La provisión de dinero contrarresta el deseo de vender bonos y la presión al alza de la tasa.":c.dMs< -eps?"El retiro contrarresta el deseo de comprar bonos y la presión a la baja de la tasa.":"La tasa y la cantidad requerida coinciden con las iniciales."} El precio del bono de referencia se mantiene.`;
+    else mechanism+=`También cambió la meta: de ${fmtT(a.interest)} % a ${fmtT(b.interest)} %. M/P se ajusta a ${fmtT(b.quantity)}; esta comparación combina el cambio de demanda con la nueva decisión de tasa.`;
+  }else if(c.gap>eps)mechanism+=`Hay exceso de demanda de dinero de ${fmtT(c.gap)} unidades reales a la tasa inicial. Los agentes desean vender bonos para obtener dinero: presión a la baja sobre P_B y al alza sobre i, hasta ${fmtT(b.interest)} %. Las ventas entre particulares redistribuyen el dinero existente; no crean oferta agregada.`;
+  else if(c.gap< -eps)mechanism+=`Hay exceso de oferta de dinero de ${fmtT(-c.gap)} unidades reales a la tasa inicial. Los agentes desean comprar bonos: presión al alza sobre P_B y a la baja sobre i, hasta ${fmtT(b.interest)} %. Las compras entre particulares redistribuyen el dinero existente; no crean oferta agregada.`;
+  else mechanism+="No hay exceso de demanda ni de oferta a la tasa inicial; la tasa de equilibrio se mantiene. Los cambios de demanda y oferta, si los hay, se compensan.";
+  if(p.regime==="quantity"&&Math.abs(c.dMs)>eps)mechanism+=` La oferta monetaria se desplaza ${c.dMs>0?"a la derecha":"a la izquierda"}. Si el cambio de M/P representa una intervención del banco central con P fijo, ${c.dMs>0?"una compra":"una venta"} de bonos es el mecanismo simplificado de ${c.dMs>0?"provisión":"retiro"} de dinero.`;
+  document.getElementById("money-adjustment").textContent=mechanism;
+  drawMoneyBonds(c);
+}
+function drawMoneyBonds(c,compare=true){
+  const vf=num("money-bond-vf"),p0=bondPrice(vf,c.initial.interest),p1=bondPrice(vf,c.final.interest),svg=document.getElementById("moneyBondChart"),out=document.getElementById("money-bond-result"),alt=document.getElementById("money-bond-alt");
+  document.getElementById("money-bond-vf").setAttribute("aria-invalid",String(p0===null||p1===null));
+  if(p0===null||p1===null){out.className="notice error";out.textContent="No se calcula un precio de referencia: VF debe ser positivo y finito, y las tasas representadas mayores que −100 %. La escala de entradas y resultados admite hasta 10¹². El equilibrio monetario se conserva, pero fuera de estos límites la fórmula de este bono no es aplicable.";svg.innerHTML="";alt.textContent="Esquema de bonos no disponible con estos valores.";return}
+  out.className="notice ok";out.textContent=`Con VF = ${fmtT(vf)} u.m.: P_B₀ = ${fmtT(vf)}/(1 + ${fmtT(c.initial.interest)}/100) = ${fmtT(p0,6)} u.m.; P_B₁ = ${fmtT(vf)}/(1 + ${fmtT(c.final.interest)}/100) = ${fmtT(p1,6)} u.m. Cambio: ${fmtT(p1-p0,6)} u.m. ${Math.abs(c.di)<1e-9?"La tasa y el precio se mantienen.":c.di>0?"La tasa sube y el precio baja.":"La tasa baja y el precio sube."}`;
+  if(!compare)out.textContent=`Con VF = ${fmtT(vf)} u.m.: P_B₀ = ${fmtT(vf)}/(1 + ${fmtT(c.initial.interest)}/100) = ${fmtT(p0,6)} u.m. Es el precio de referencia del único equilibrio mostrado.`;
+  const up=compare&&c.di< -1e-9,down=compare&&c.di>1e-9,changed=up||down,x0=280,y0=140,x1=370,y1=up?104:176;
+  // Geometría ilustrativa: no es un segundo solver ni una calibración de Q_B.
+  svg.setAttribute("viewBox","0 0 600 320");
+  svg.innerHTML='<title>Esquema cualitativo del mercado de bonos</title><path d="M60 35 V235 H555" fill="none" stroke="#435369" stroke-width="2"/><text x="65" y="23" font-size="13">P_B (precio, u.m.)</text><text x="300" y="300" text-anchor="middle" font-size="13">Q_B (cantidad; sin escala numérica)</text><path d="M90 216 L480 60" fill="none" stroke="#64748b" stroke-width="2"/><path d="M90 64 L480 220" fill="none" stroke="#64748b" stroke-width="2"/><text x="485" y="64" font-size="13">S_B₀</text><text x="485" y="222" font-size="13">D_B₀</text>'+ (changed?up?'<path d="M200 36 L520 164" fill="none" stroke="#b45309" stroke-width="2"/><text x="525" y="178" font-size="13">D_B₁</text>':'<path d="M270 216 L580 92" fill="none" stroke="#b45309" stroke-width="2"/><text x="450" y="130" font-size="13">S_B₁</text>':'')+[[x0,y0,"0","#64748b"],...(changed?[[x1,y1,"1","#b45309"]]:[])].map(([x,y,label,color])=>`<path d="M60 ${y} H${x} V235" fill="none" stroke="${color}" stroke-dasharray="4 4"/><circle cx="${x}" cy="${y}" r="4" fill="${color}"/><text x="${x-10}" y="${y-12}" font-size="13" fill="${color}">E${label==="0"?"₀":"₁"}</text><text x="${x}" y="253" text-anchor="middle" font-size="13">Q${label==="0"?"₀":"₁"}</text><text x="51" y="${y+4}" text-anchor="end" font-size="13">P${label==="0"?"₀":"₁"}</text>`).join('');
+  const width=Math.max(300,Math.min(620,svg.getBoundingClientRect().width||620));
+  svg.innerHTML=svg.innerHTML.replace(/font-size="13"/g,`font-size="${Math.max(13,13*600/width)}"`);
+  if(!compare){alt.textContent="Esquema de un mercado de bonos de referencia, con un único equilibrio E₀. Q_B es ilustrativo; solo el precio de referencia se calcula. No se utilizan valores del estado final.";return}
+  alt.textContent=`Esquema ilustrativo con eje horizontal Q_B y vertical P_B. ${up?"El deseo de comprar bonos se ilustra con demanda a la derecha y mayor precio.":down?"El deseo de vender bonos se ilustra con oferta a la derecha y menor precio.":"No hay cambio neto de precio; bajo una meta constante el ajuste de dinero contrarresta la presión inicial."} Las curvas no tienen escala numérica; Q₀ y Q₁ no son cantidades calculadas. Solo los precios de referencia indicados arriba se calculan a partir de las tasas.`;
+}
 function drawMoney(){
   document.getElementById("money-origin").textContent=(currentActivity.din?"Actividad "+currentActivity.din.id+" cargada; puedes modificar sus valores.":"Valores iniciales de referencia disponibles; ninguna actividad seleccionada.")+" Y y M/P en unidades reales de práctica; i en % anual (2 significa 2 %). Resultados con coma decimal y punto de miles.";
-  const p=moneyRead(),r=moneySolve(p),tasa=p.regime==="target",feedback=document.getElementById("moneyFeedback");
+  const states=moneyStates(),compare=states.compare,base=states.initial,br=states.a,p=compare?states.final:base,r=compare?states.b:br,tasa=p.regime==="target",feedback=document.getElementById("moneyFeedback");
+  document.getElementById("money-final-fields").hidden=!compare;
+  document.getElementById("money-view-note").textContent=compare?"Compara directamente el estado inicial (Y₁, M/P₁) con el final (Y₂, M/P₂); no hace falta guardar un punto de partida.":"Solo se calcula y representa el estado inicial. Los valores finales se conservan para una comparación posterior, pero no influyen en esta vista.";
   document.getElementById("moneyMs").disabled=tasa;
+  document.getElementById("moneyMs2").disabled=tasa;
   document.getElementById("money-target-field").hidden=!tasa;
   document.getElementById("money-operations").hidden=tasa;
-  document.getElementById("money-regime-note").textContent=tasa?"La tasa es el dato elegido; M/P es el resultado. Al pasar desde cantidad fijada se conserva la tasa de equilibrio válida. Con la tasa constante, cada unidad adicional de Y requiere d₁ unidades más de dinero real.":"M/P es el dato elegido; la tasa es el resultado. Al volver desde tasa objetivo se conserva la oferta requerida válida como nueva cantidad fijada.";
+  document.getElementById("money-regime-note").textContent=tasa?"La meta es común. Cada Y determina su oferta requerida. Al pasar a este régimen se conserva como meta la tasa inicial válida; las ofertas pasan a calcularse.":"Cada oferta real elegida determina su tasa. Al volver desde tasa objetivo se conservan las cantidades requeridas válidas como ofertas fijadas.";
+  document.getElementById("money-operations").querySelector(".field-note").textContent=(compare?"La intervención modifica solo (M/P)₂; el inicial no cambia. ":"La intervención modifica (M/P)₁. ")+"La compra suma esta cantidad de dinero real; la venta la resta. Es un mecanismo pedagógico simplificado con P fijo, no el valor nominal de la operación. Una compraventa entre particulares no aumenta por sí sola la oferta agregada de dinero.";
   document.getElementById("money-full").setAttribute("aria-pressed",String(!moneyZoom));
   document.getElementById("money-zoom").setAttribute("aria-pressed",String(moneyZoom));
-  const fields=["moneyY","moneyD1","moneyD2",tasa?"money-target":"moneyMs"];
-  fields.forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(!r.ok)));
-  if(!r.ok){lastMoney=null;feedback.className="notice error";feedback.textContent=r.message;document.getElementById("moneyChart").innerHTML="";delete plotLayouts.moneyChart;document.getElementById("moneyAlt").textContent="No se representa un equilibrio: "+r.message;document.getElementById("money-intercepts").textContent="";if(tasa)setValue("moneyMs","");return}
-  if(tasa)setValue("moneyMs",r.quantity);
-  lastMoney={...r,params:{...p,Ms:r.quantity}};
-  feedback.className=r.interest<0?"notice warn":"notice ok";
-  feedback.textContent=(tasa?`(M/P)_requerido = ${fmtT(p.d1)} × ${fmtT(p.Y)} − ${fmtT(p.d2)} × ${fmtT(p.target)} = ${fmtT(r.quantity,6)} unidades reales. i_objetivo = ${fmtT(r.interest,6)} %.`:`i* = (${fmtT(p.d1)} × ${fmtT(p.Y)} − ${fmtT(r.quantity)})/${fmtT(p.d2)} = ${fmtT(r.interest,6)} %. M/P = ${fmtT(r.quantity)} unidades reales.`)+` Con Y + 10, ${tasa?`se requieren ${fmtT(r.quantity+p.d1*10)} unidades reales para la misma tasa`:`la tasa sería ${fmtT(r.interest+p.d1*10/p.d2)} % con la misma oferta`}.`+(r.interest<0?" El resultado algebraico es negativo; se conserva sin sustituirlo por cero. La demanda lineal y el único activo remunerado limitan su interpretación.":"");
-  if(currentActivity.din?.regime==="solo_efectivo"){feedback.textContent+=" En esta práctica d₂ = Y/100: al editar Y se actualiza d₂. Si cambias d₂ directamente, exploras otra demanda.";if(Math.abs(p.d2-p.Y/100)>1e-8){feedback.className="notice warn";feedback.textContent+=` La demanda editada ya no cumple la restricción de solo efectivo: d₂ sería ${fmtT(p.Y/100)}.`}}
-  const base=currentActivity.din?.preset||moneyBase,br=moneySolve({...base,regime:"quantity"});
-  const changed=br.ok&&["Y","Ms","d1","d2"].some(k=>Math.abs(base[k]-{...p,Ms:r.quantity}[k])>1e-9);
+  ["moneyY","moneyMs","moneyD1","moneyD2","money-target"].forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(!br.ok)));
+  ["moneyY2","moneyMs2"].forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(compare&&!r.ok)));
+  if(tasa){setValue("moneyMs",br.ok?br.quantity:"");if(compare)setValue("moneyMs2",r.ok?r.quantity:"")}
+  if(!states.ok){lastMoney=null;feedback.className="notice error";feedback.textContent=states.message;document.getElementById("moneyChart").innerHTML="";delete plotLayouts.moneyChart;document.getElementById("moneyAlt").textContent="No se representa un equilibrio: "+states.message;document.getElementById("money-intercepts").textContent="";["money-comparison","moneyBondChart"].forEach(id=>document.getElementById(id).innerHTML="");["money-adjustment","money-bond-result","money-bond-alt"].forEach(id=>document.getElementById(id).textContent="Corrige las entradas del estado indicado para calcular resultados válidos.");return}
+  lastMoney={...r,params:{...p,Ms:r.quantity},initial:{...br,params:{...base,Ms:br.quantity}},final:compare?{...r,params:{...p,Ms:r.quantity}}:null};
+  feedback.className=r.interest<0||br.interest<0?"notice warn":"notice ok";
+  const equation=(q,result,label)=>(compare?label+": ":"")+(tasa?`(M/P)_requerido = ${fmtT(q.d1)} × ${fmtT(q.Y)} − ${fmtT(q.d2)} × ${fmtT(q.target)} = ${fmtT(result.quantity,6)} unidades reales. i_objetivo = ${fmtT(result.interest,6)} %.`:`i* = (${fmtT(q.d1)} × ${fmtT(q.Y)} − ${fmtT(result.quantity)})/${fmtT(q.d2)} = ${fmtT(result.interest,6)} %. M/P = ${fmtT(result.quantity)} unidades reales.`);
+  feedback.textContent=equation(base,br,"Inicial E₀")+(compare?" "+equation(p,r,"Final E₁"):"")+(r.interest<0||br.interest<0?" El resultado algebraico negativo se conserva sin sustituirlo por cero. La demanda lineal y el único activo remunerado limitan su interpretación.":"");
+  if(currentActivity.din?.regime==="solo_efectivo"){feedback.textContent+=" En esta práctica d₂ = Y/100 para cada estado. Al editar Y₁ se actualiza el control d₂. Si cambias d₂ directamente, exploras otra demanda.";if(Math.abs(base.d2-base.Y/100)>1e-8){feedback.className="notice warn";feedback.textContent+=" La demanda editada ya no cumple la restricción de solo efectivo."}}
+  const c=compare?moneyComparison(base,p):moneyComparison(base,base);
+  if(compare)drawMoneyComparison(c);
+  else{
+    document.getElementById("money-comparison").innerHTML="";
+    document.getElementById("money-adjustment").textContent=`Con Y₁ = ${fmtT(base.Y)} y M/P = ${fmtT(br.quantity)}, a i = ${fmtT(br.interest)} % los saldos que se desea mantener coinciden con la oferta. Para observar el ajuste frente a un cambio, elige «Comparar dos equilibrios» y edita Y₂ o (M/P)₂.`;
+    drawMoneyBonds(c,false);
+  }
+  const changed=compare&&(Math.abs(base.Y-p.Y)>1e-9||Math.abs(base.d2-p.d2)>1e-9||Math.abs(br.quantity-r.quantity)>1e-9||Math.abs(br.interest-r.interest)>1e-9);
   let xs,ys;
   if(moneyZoom){
     const dx=Math.max(Math.abs(r.quantity)*.08,Math.abs(r.horizontal-r.quantity)*.6,1),dy=Math.max(Math.abs(r.interest)*.5,1);
-    xs=niceScale(Math.max(0,r.quantity-dx),r.quantity+dx,4,false);ys=niceScale(r.interest-dy,r.interest+dy,5,false);
+    xs=niceScale(Math.max(0,Math.min(r.quantity,br.quantity)-dx),Math.max(r.quantity,br.quantity)+dx,4,false);ys=niceScale(Math.min(r.interest,br.interest)-dy,Math.max(r.interest,br.interest)+dy,5,false);
   }else{
     xs=niceScale(0,Math.max(r.quantity,r.horizontal,changed?Math.max(base.Ms,br.horizontal):0,1)*1.12,4,true);
     ys=niceScale(Math.min(0,r.interest,changed?br.interest:0),Math.max(r.vertical,changed?br.vertical:0,r.interest,1)*1.12,5,false);
   }
-  const spec={w:Math.max(320,Math.min(620,document.getElementById("moneyChart").getBoundingClientRect().width||520)),h:400,x:{min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,label:"Saldos monetarios reales (u. reales)",axisBreak:xs.min>0},y:{min:ys.min,max:ys.max,ticks:ys.ticks,digits:ys.digits,label:"Tasa de interés, i (% anual)",axisBreak:ys.min>0},title:"Mercado de dinero",series:[],points:[],legend:changed?[{estado:"ini",text:"De partida"},{estado:"fin",text:"Actual"}]:[]};
+  const spec={w:Math.max(320,Math.min(620,document.getElementById("moneyChart").getBoundingClientRect().width||520)),h:400,x:{min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,label:"Saldos monetarios reales (u. reales)",axisBreak:xs.min>0},y:{min:ys.min,max:ys.max,ticks:ys.ticks,digits:ys.digits,label:"Tasa de interés, i (% anual)",axisBreak:ys.min>0},title:"Mercado de dinero",series:[],points:[],legend:compare?[{estado:"ini",text:"Inicial"},{estado:"fin",text:"Final"}]:[]};
   const addDemand=(q,estado,name)=>spec.series.push({pts:[[Math.max(0,xs.min),(q.horizontal-Math.max(0,xs.min))/q.params.d2],[xs.max,(q.horizontal-xs.max)/q.params.d2]],estado,name,labelAt:.4});
   const addSupply=(q,estado,name)=>spec.series.push({pts:[[q.quantity,ys.min],[q.quantity,ys.max]],estado,name,labelAt:.82});
   const actual={...r,params:p};
-  if(changed){const b={...br,params:base};if(base.Y!==p.Y||base.d1!==p.d1||base.d2!==p.d2)addDemand(b,"ini","Mᵈ/P inicial");if(base.Ms!==r.quantity)addSupply(b,"ini","Mˢ/P inicial");spec.points.push({x:br.quantity,y:br.interest,name:"E₀",estado:"ini",xText:fmtT(br.quantity),yText:fmtT(br.interest)+" %"})}
-  addDemand(actual,changed?"fin":"ini","Mᵈ/P");addSupply(actual,changed?"fin":"ini",tasa?"M/P requerido":"Mˢ/P");
-  spec.points.push({x:r.quantity,y:r.interest,name:tasa?"E · objetivo":"E",estado:changed?"fin":"ini",xText:"M/P = "+fmtT(r.quantity),yText:"i = "+fmtT(r.interest)+" %"});
+  if(changed){const b={...br,params:base};if(base.Y!==p.Y||base.d1!==p.d1||base.d2!==p.d2)addDemand(b,"ini","Mᵈ/P inicial");if(base.Ms!==r.quantity)addSupply(b,"ini","Mˢ/P inicial");spec.points.push({x:br.quantity,y:br.interest,name:"E₀",estado:"ini",xText:Math.abs(br.quantity-r.quantity)>1e-9?fmtT(br.quantity):null,yText:Math.abs(br.interest-r.interest)>1e-9?fmtT(br.interest)+" %":null})}
+  addDemand(actual,changed?"fin":"ini",compare&&base.Y===p.Y&&base.d2===p.d2?"Mᵈ/P común":"Mᵈ/P");addSupply(actual,changed?"fin":"ini",compare&&Math.abs(br.quantity-r.quantity)<1e-9?"Mˢ/P común":tasa?"M/P requerido":"Mˢ/P");
+  spec.points.push({x:r.quantity,y:r.interest,name:compare?(changed?(tasa?"E₁ · objetivo":"E₁"):"E₀ = E₁"):(tasa?"E₀ · objetivo":"E₀"),estado:changed?"fin":"ini",xText:"M/P = "+fmtT(r.quantity),yText:"i = "+fmtT(r.interest)+" %"});
   // Interceptos con proyección explícita y etiquetas que usan el motor antisolapamiento.
   spec.points.push({x:r.horizontal,y:0,name:"d₁Y = "+fmtT(r.horizontal),estado:"neutral",xText:fmtT(r.horizontal),proj:false},{x:0,y:r.vertical,name:"d₁Y/d₂ = "+fmtT(r.vertical)+" %",estado:"neutral",yText:fmtT(r.vertical)+" %",proj:false});
   if(tasa)spec.guides=[{y:r.interest,from:xs.min,to:xs.max,estado:"neutral"}];
   renderPlot("moneyChart",spec);
   const outside=r.horizontal<xs.min||r.horizontal>xs.max||0<ys.min||0>ys.max||0<xs.min||0>xs.max||r.vertical<ys.min||r.vertical>ys.max;
-  document.getElementById("money-intercepts").textContent=`Intercepto horizontal d₁Y = ${fmtT(r.horizontal)}; vertical d₁Y/d₂ = ${fmtT(r.vertical)} %. Pendiente = −1/d₂ = ${fmtT(r.slope,6)}. E = (${fmtT(r.quantity)}; ${fmtT(r.interest)} %).`+(outside?" Hay interceptos fuera del encuadre; sus valores se conservan aquí. Vista completa los muestra.":"");
+  document.getElementById("money-intercepts").textContent=`Intercepto horizontal d₁Y = ${fmtT(r.horizontal)}; vertical d₁Y/d₂ = ${fmtT(r.vertical)} %. Pendiente = −1/d₂ = ${fmtT(r.slope,6)}. ${compare?"E₁":"E₀"} = (${fmtT(r.quantity)}; ${fmtT(r.interest)} %).`+(changed?` E₀ = (${fmtT(br.quantity)}; ${fmtT(br.interest)} %). Para comparar cambios pequeños, usa «Acercar al equilibrio».`:compare?" Inicial y final coinciden.":"")+(outside?" Hay interceptos fuera del encuadre; sus valores se conservan aquí. Vista completa los muestra.":"");
   document.getElementById("moneyAlt").textContent=`Eje horizontal: saldos monetarios reales; eje vertical: i en % anual. Demanda decreciente Mᵈ/P = ${fmtT(p.d1)}Y − ${fmtT(p.d2)}i, pendiente ${fmtT(r.slope,6)}. Interceptos: (${fmtT(r.horizontal)}; 0 %) y (0; ${fmtT(r.vertical)} %). Oferta vertical en ${fmtT(r.quantity)}, ${tasa?"resultado del ajuste para la tasa objetivo":"cantidad fijada"}. Equilibrio E = (${fmtT(r.quantity)}; ${fmtT(r.interest)} %), con proyecciones hacia ambos ejes.`+(changed?` Respecto de la partida: ΔY = ${fmtT(p.Y-base.Y)}, Δ(M/P) = ${fmtT(r.quantity-base.Ms)}, Δi = ${fmtT(r.interest-br.interest)} puntos porcentuales.`:"")+(outside?" Algunos interceptos están fuera del encuadre acercado.":"");
 }
 function setMoneyRegime(){
   const next=document.getElementById("money-regime").value;
-  if(lastMoney){if(next==="target")setValue("money-target",lastMoney.interest);else setValue("moneyMs",lastMoney.quantity)}
+  if(lastMoney){if(next==="target")setValue("money-target",lastMoney.initial.interest);else{setValue("moneyMs",lastMoney.initial.quantity);if(lastMoney.final)setValue("moneyMs2",lastMoney.final.quantity)}}
   moneyZoom=false;drawMoney();
 }
 function resetMoney(){
   setValue("money-regime","quantity");Object.entries(moneyBase).forEach(([k,v])=>{if(k!=="step")setValue({Y:"moneyY",Ms:"moneyMs",d1:"moneyD1",d2:"moneyD2"}[k],v)});
-  moneyStep=40;setValue("money-step",40);setValue("money-target",2);moneyZoom=false;clearLabActivity("din");drawMoney();
+  moneyStep=40;setValue("money-step",40);setValue("money-target",2);moneyZoom=false;setValue("money-view","single");setValue("moneyY2",1010);setValue("moneyMs2",760);setValue("money-bond-vf",100);clearLabActivity("din");drawMoney();
 }
 function changeMoney(direction){
-  const r=moneySolve(moneyRead()),step=num("money-step"),feedback=document.getElementById("moneyFeedback");
+  const states=moneyStates(),r=states.compare?states.b:states.a,step=num("money-step"),feedback=document.getElementById("moneyFeedback");
   if(document.getElementById("money-regime").value!=="quantity")return;
-  if(!r.ok||!supportedNumbers([step])||step<0){feedback.className="notice error";feedback.textContent="Corrige los parámetros y el tamaño de intervención: un número finito no negativo, hasta 10¹² unidades reales.";return}
+  if(!states.ok||!supportedNumbers([step])||step<0){feedback.className="notice error";feedback.textContent="Corrige los parámetros y el tamaño de intervención: un número finito no negativo, hasta 10¹² unidades reales.";return}
   if(direction<0&&step>r.quantity){feedback.className="notice error";feedback.textContent=`Venta rechazada: el máximo es ${fmtT(r.quantity)} unidades reales. La oferta no cambió; reduce el tamaño de la intervención.`;return}
   if(!supportedNumbers([r.quantity+direction*step])){feedback.className="notice error";feedback.textContent="La intervención excede la escala numérica (10¹²); la oferta no cambió.";return}
-  moneyStep=step;setValue("moneyMs",r.quantity+direction*step);drawMoney();
+  moneyStep=step;setValue(moneyMode()==="compare"?"moneyMs2":"moneyMs",r.quantity+direction*step);drawMoney();
 }
 
 // Revisa las dos tasas del bono y, si no calzan, dice cuál es el error probable (DIN-ERR-10).
@@ -3555,6 +3647,9 @@ function plotSvg(spec){
   const text=(x,y,t,o)=>`<text x="${x.toFixed(1)}" y="${y.toFixed(1)}"${o&&o.anchor?` text-anchor="${o.anchor}"`:""} class="${o&&o.cls||"g-txt"}"${o&&o.fill?` fill="${o.fill}"`:""}>${escapeText(t)}</text>`;
   out.push(`<rect x="0" y="0" width="${w}" height="${h}" class="g-bg"/>`);
   if(spec.title){out.push(text(m.l,18,spec.title,{cls:"g-title"}));boxes.push({x:m.l,y:4,w:textWidth(spec.title,13),h:18})}
+  // Reservar la leyenda antes de ubicar equilibrios e interceptos, también en zoom.
+  const legendItems=[];let legendX=w-m.r;
+  (spec.legend||[]).slice().reverse().forEach(it=>{const wd=textWidth(it.text,11)+30;legendX-=wd;legendItems.push({it,x:legendX,wd});boxes.push({x:legendX,y:legendY-10,w:wd,h:16})});
   // Rótulos de las proyecciones: se reservan primero, para que las marcas cedan su lugar.
   const projY=[],projX=[];
   (spec.points||[]).forEach(p=>{
@@ -3620,7 +3715,7 @@ function plotSvg(spec){
   // puntos y sus rótulos
   (spec.points||[]).forEach(p=>{if(!(p.x>=X.min&&p.x<=X.max&&p.y>=Y.min&&p.y<=Y.max))return;const x=px(p.x),y=py(p.y);
     out.push(`<circle cx="${x}" cy="${y}" r="5.5" class="g-dot" fill="${G_COLOR[p.estado]}"/>`);
-    if(!p.name)return;const wd=textWidth(p.name,13)+2,c=place([[x+8,y-8],[x-8-wd,y-8],[x+8,y+18],[x-8-wd,y+18],[x+10,y+4],[x-12-wd,y+4]],wd,15);
+    if(!p.name)return;const wd=textWidth(p.name,13)+2,c=place([[x+8,y-8],[x-8-wd,y-8],[x+8,y+18],[x-8-wd,y+18],[x+10,y+4],[x-12-wd,y+4],...[34,50].flatMap(d=>[[x+8,y-d],[x-8-wd,y-d],[x+8,y+d],[x-8-wd,y+d]])],wd,15);
     if(c)out.push(text(c[0],c[1],p.name,{cls:"g-pt",fill:G_COLOR[p.estado]}))});
   // rótulos: primero los de las flechas (dicen cuánto cambió), después los de las curvas; sin solapes
   (spec.arrows||[]).forEach(a=>{if(!a.text)return;const mx=px((a.from[0]+a.to[0])/2),my=py((a.from[1]+a.to[1])/2),wd=textWidth(a.text,11)+2;
@@ -3639,9 +3734,7 @@ function plotSvg(spec){
     const at=place(cands.filter(q=>q[0]>m.l&&q[0]+wd<w-m.r&&q[1]>m.t+12&&q[1]<h-m.b-2),wd,15);
     if(at)out.push(text(at[0],at[1],s.name,{cls:"g-clab",fill:G_COLOR[s.estado]}))});
   // leyenda
-  if(spec.legend&&spec.legend.length){let lx=w-m.r;const items=[];
-    spec.legend.slice().reverse().forEach(it=>{const wd=textWidth(it.text,11)+30;lx-=wd;items.push({it,x:lx,wd})});
-    items.forEach(({it,x,wd})=>{boxes.push({x,y:legendY-10,w:wd,h:16});out.push(`<line x1="${x}" y1="${legendY}" x2="${x+22}" y2="${legendY}" class="g-curve" stroke="${G_COLOR[it.estado]}"${G_DASH[it.estado]?` stroke-dasharray="${G_DASH[it.estado]}"`:""}/>`,text(x+26,legendY+4,it.text,{cls:"g-leg"}))})}
+  legendItems.forEach(({it,x})=>{out.push(`<line x1="${x}" y1="${legendY}" x2="${x+22}" y2="${legendY}" class="g-curve" stroke="${G_COLOR[it.estado]}"${G_DASH[it.estado]?` stroke-dasharray="${G_DASH[it.estado]}"`:""}/>`,text(x+26,legendY+4,it.text,{cls:"g-leg"}))});
   return {svg:out.join(""),boxes,w,h,m};
 }
 function renderPlot(id,spec){
@@ -5500,6 +5593,10 @@ function init(){
   }));
   document.getElementById("omoBuy").addEventListener("click",()=>changeMoney(1));document.getElementById("omoSell").addEventListener("click",()=>changeMoney(-1));
   document.getElementById("moneyReset").addEventListener("click",resetMoney);
+  document.getElementById("money-view").addEventListener("change",()=>{moneyZoom=false;drawMoney()});
+  document.getElementById("money-copy").addEventListener("click",copyMoneyInitial);
+  ["moneyY2","moneyMs2"].forEach(id=>document.getElementById(id).addEventListener("input",drawMoney));
+  document.getElementById("money-bond-vf").addEventListener("input",drawMoney);
   document.getElementById("money-regime").addEventListener("change",setMoneyRegime);
   document.getElementById("money-target").addEventListener("input",drawMoney);
   ["money-full","money-scale-reset","money-zoom"].forEach(id=>document.getElementById(id).addEventListener("click",()=>{moneyZoom=id==="money-zoom";drawMoney()}));
@@ -5525,7 +5622,7 @@ function init(){
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
 window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,parseStudentNumber,evaluateNumericAnswer,class2RevisionSummary,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,parseImportedLearningFile,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
-  lab:{bondYield,bondPrice,moneySolve,moneyRead,drawBonds,resetMoney,setMoneyRegime,loadActivity,applyPreset,setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,drawIs,isSolve,isRead,isApply,drawIslm,islmSolve,islmRead,islmApply,islmPoint,islmState,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
+  lab:{bondYield,bondPrice,moneySolve,moneyRead,moneyComparison,moneyStates,moneyMode,copyMoneyInitial,drawBonds,resetMoney,setMoneyRegime,loadActivity,applyPreset,setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,drawIs,isSolve,isRead,isApply,drawIslm,islmSolve,islmRead,islmApply,islmPoint,islmState,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();
 </script>
 </body>
