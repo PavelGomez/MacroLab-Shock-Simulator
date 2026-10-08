@@ -1,0 +1,177 @@
+[
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Inicio · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Inicio",
+        "id": "inicio"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Instrucciones · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Instrucciones de uso",
+        "id": "instrucciones"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · IS-LM · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "IS-LM · economía cerrada",
+        "id": "islm"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · IS-LM-BP · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "IS-LM-BP · economía abierta con flotación",
+        "id": "islmbp"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · OA-DA · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "OA-DA · producción, precios y expectativas",
+        "id": "oada"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Shocks y transmisión · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Shocks y transmisión",
+        "id": "shocks"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Marco institucional · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Marco institucional · Chile 2026",
+        "id": "institucional"
+      }
+    ]
+  },
+  {
+    "links": [
+      {
+        "href": "atlas-lentes-institucionales.html",
+        "text": "Abrir atlas →"
+      },
+      {
+        "href": "cronicas/index.html",
+        "text": "📑 Crónicas institucionales (policy briefs)"
+      }
+    ],
+    "title": "MacroLab Shock Simulator · Lentes institucionales · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Lentes institucionales",
+        "id": "lentes"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Comparador Phillips · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Comparador de trayectorias Phillips",
+        "id": "comparador"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Crónicas históricas · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "id": "atlas-lentes"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Atlas de shocks · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Atlas de shocks 2009–2026",
+        "id": "atlas"
+      }
+    ]
+  },
+  {
+    "links": [
+      {
+        "href": "data/source-manifest.json",
+        "text": "source-manifest.json"
+      },
+      {
+        "href": "data/series-anuales.csv",
+        "text": "series-anuales.csv"
+      },
+      {
+        "href": "data/series-anuales-l2.csv",
+        "text": "series-anuales-l2.csv"
+      }
+    ],
+    "title": "MacroLab Shock Simulator · Tablero macro · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Tablero macro del curso",
+        "id": "tablero"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Lectura de datos · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Lectura de datos · del número a la pregunta",
+        "id": "lectura"
+      }
+    ]
+  },
+  {
+    "links": [],
+    "title": "MacroLab Shock Simulator · Glosario · v1.7",
+    "url": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/",
+    "visible": [
+      {
+        "heading": "Glosario ampliado",
+        "id": "glosario"
+      }
+    ]
+  }
+]

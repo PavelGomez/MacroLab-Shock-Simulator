@@ -1,0 +1,52 @@
+[
+  {
+    "file": "macro1/notas/cronica-clase3.pdf",
+    "sha256": "6692c28ad145cee8ec52307e9d02fbb25cf825180a3b3303751cdc47f9ac7fdb",
+    "bytes": 27939,
+    "pages": 3,
+    "chars": 4608,
+    "has_title": true,
+    "has_footer": true,
+    "has_formula": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase4.pdf",
+    "sha256": "3e9a18be228ec8a7928e459768c331e8df50b74ecda919cf205c01f1cf2378a3",
+    "bytes": 40770,
+    "pages": 4,
+    "chars": 9408,
+    "has_title": true,
+    "has_footer": true,
+    "has_formula": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase5.pdf",
+    "sha256": "443c6fa66820bfb67d42faa8f0efce25526c75a4ac326dc238686f5168adabe2",
+    "bytes": 139788,
+    "pages": 3,
+    "chars": 5875,
+    "has_title": true,
+    "has_footer": true,
+    "has_formula": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase6.pdf",
+    "sha256": "31f51748762e0efee0d7ce90c8343e2759be7d35f8c4f543be6dc9eac46cf9e7",
+    "bytes": 44868,
+    "pages": 3,
+    "chars": 5896,
+    "has_title": true,
+    "has_footer": true,
+    "has_formula": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase7.pdf",
+    "sha256": "9840c95bf281e1ba792ff28268b9d65637bd3abc1929bff3b79a93fa9c81a8f9",
+    "bytes": 82174,
+    "pages": 3,
+    "chars": 6675,
+    "has_title": true,
+    "has_footer": true,
+    "has_formula": true
+  }
+]

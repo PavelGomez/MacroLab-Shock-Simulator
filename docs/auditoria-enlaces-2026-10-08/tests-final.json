@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-08",
+  "command_prefix": "NODE_PATH=/Users/pgomez/Documents/Claude/Projects/Macroeconomia1/repo_macrolab/node_modules node",
+  "passed": 15,
+  "failed": 0,
+  "tests": [
+    "test_pautas_biblioteca.js",
+    "scripts/check-manifest.js",
+    "scripts/embed-glosario.js --check",
+    "macro1/test_lab_lm.js",
+    "macro1/test_enunciados_glosario.js",
+    "macro1/test_loop_clase3.js",
+    "macro1/test_navigation.js",
+    "macro1/test_formulas_clases4_7.js",
+    "macro1/test_lab_islm.js",
+    "macro1/test_auditoria_transversal.js",
+    "macro1/test_retroalimentacion_pedagogica.js",
+    "macro1/test_export_import_continuidad.js",
+    "macro1/test_paquete.js",
+    "macro1/test_formulas_selladas.js",
+    "macro1/test_lab_is.js"
+  ],
+  "assertions": {
+    "test_navigation.js": 27,
+    "test_formulas_clases4_7.js": 284,
+    "test_formulas_selladas.js": 435,
+    "test_lab_lm.js": 174,
+    "test_lab_islm.js": 513,
+    "test_lab_is.js": 156,
+    "test_loop_clase3.js": 260,
+    "test_enunciados_glosario.js": 753,
+    "test_retroalimentacion_pedagogica.js": 948,
+    "test_export_import_continuidad.js": 36,
+    "test_auditoria_transversal.js": 18,
+    "test_paquete.js": 1048,
+    "test_pautas_biblioteca.js": 35
+  }
+}

@@ -1,0 +1,77 @@
+[
+  {
+    "test": "test_pautas_biblioteca.js",
+    "code": 0,
+    "output": "\n── ISLM-EX-01 · T fija (Ayudantía 8)\n  ✔ Y* = 5564.64\n  ✔ i* = 3.73\n\n── ISLM-EX-02 · T = t·Y proporcional (NATIVO desde v0.6)\n  ✔ pendiente c1(1−t) = 0.6\n  ✔ multiplicador = 2.5\n  ✔ Y* = 1800\n  ✔ i* = 2\n  ✔ Y* con G=460 = 1900\n  ✔ i* con G=460 = 2.5\n  ✔ estabilizador: t 0,20→0,40 baja el multiplicador de 2.5 a 1.82\n  ✔ mismo ΔG=+60: ΔY cae de 100 (t=0,20) a 80 (t=0,40)\n\n── ISLM-EX-03 · acelerador vs crowding-out  [origen del hallazgo]\n  ✔ Y inicial = 933.33\n  ✔ i inicial = 13.33\n  ✔ I inicial = 36.67\n  ✔ Y final = 1022.22\n  ✔ i final = 15.56\n  ✔ ΔI = -2.22\n  ✔ acelerador b1·ΔY = 8.89\n  ✔ desplazamiento b2·Δi = 11.11\n\n── ISLM-EX-04 · cuadrante de desequilibrio\n  ✔ i que pide la IS en Y=600 = 20\n  ✔ i que pide la LM en Y=600 = 5\n  ✔ punto (600; 6 %) en cuadrante C: exceso de demanda de bienes y de oferta de dinero\n  ✔ converge a Y* = 933.33\n\n── ISLM-EX-05 · LM horizontal (régimen de tasa objetivo)\n  ✔ Y inicial = 1200\n  ✔ Y final = 1400\n  ✔ ΔY (multiplicador completo) = 200\n  ✔ ΔI (acelerador puro) = 20\n  ✔ Δi = 0: sin crowding-out, como exige la pauta\n\n── ABR-EX-01 a EX-03 · flotación con movilidad perfecta\n  ✔ EX-01 · Y* = 1682.4\n  ✔ EX-01 · i* = 6\n  ✔ EX-01 · E* = 459.93\n  ✔ EX-02 · Y (invariante) = 1682.4\n  ✔ EX-02 · E (apreciación) = 326.6\n  ✔ E baja: apreciación, coherente con E = CLP/USD (GOB-CONV-TC)\n  ✔ EX-03 · Y = 2082.4\n  ✔ EX-03 · E (depreciación) = 726.6\n\n────────────────────────────────────────────────────────────────\n✔ 35 comprobaciones OK · biblioteca y simulador coinciden.\n"
+  },
+  {
+    "test": "scripts/check-manifest.js",
+    "code": 0,
+    "output": "── Archivos declarados en el MANIFEST\n  ✔ notas/guia-del-curso-2026-2.html\n  ✔ notas/kit-clase0-estudiante.html\n  ✔ notas/cronica-clase1-chile-2026.html\n  ✔ notas/cronica-clase2-chile-2026.html\n  ✔ notas/cronica-clase3-chile-2026.html\n  ✔ notas/cronica-clase4-chile-2026.html\n  ✔ notas/cronica-clase5-chile-2026.html\n  ✔ notas/cronica-clase6-chile-2026.html\n  ✔ notas/cronica-clase7-chile-2026.html\n  ✔ notas/ficha-escucha-cpc-clase1.html\n  ✔ notas/nota-01-introduccion.html\n  ✔ notas/nota-02-fuentes-datos.html\n  ✔ notas/nota-03-medicion-pib.html\n  ✔ notas/nota-04-medicion-inflacion.html\n  ✔ notas/nota-05-demanda-agregada.html\n  ✔ notas/nota-06-mercado-dinero.html\n  ✔ notas/nota-b1-medicion.html\n  ✔ notas/nota-b2-mercado-bienes.html\n  ✔ notas/nota-b3-dinero-alumno.html\n  ✔ notas/nota-b4a-inversion-is-alumno.html\n  ✔ notas/nota-b4b-islm-alumno.html\n  ✔ notas/nota-b4c-desequilibrios-alumno.html\n  ✔ test test_paquete.js\n  ✔ test test_loop_clase3.js\n  ✔ test test_formulas_selladas.js\n  ✔ test test_retroalimentacion_pedagogica.js\n  ✔ test test_auditoria_transversal.js\n\n── Visibilidad de las notas de bloque\n  ✔ notas/index.html existe\n  ✔ nota-b1-medicion enlazado desde el índice\n  ✔ nota-b2-mercado-bienes enlazado desde el índice\n  ✔ nota-b3-dinero-alumno enlazado desde el índice\n  ✔ nota-b4a-inversion-is-alumno enlazado desde el índice\n  ✔ nota-b4b-islm-alumno enlazado desde el índice\n  ✔ nota-b4c-desequilibrios-alumno enlazado desde el índice\n\n── Conformidad editorial de las notas\n  ✔ 23 de 23 documentos cumplen las tres reglas editoriales\n\n────────────────────────────────────────────────────────────\n✔ MANIFEST íntegro, notas visibles y editorialmente conformes.\n"
+  },
+  {
+    "test": "scripts/embed-glosario.js --check",
+    "code": 0,
+    "output": "✔ Glosario embebido al día.\n"
+  },
+  {
+    "test": "macro1/test_lab_lm.js",
+    "code": 0,
+    "output": "test_lab_lm.js — 174 aserciones · RESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_enunciados_glosario.js",
+    "code": 0,
+    "output": "test_enunciados_glosario.js — 753 aserciones · RESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_loop_clase3.js",
+    "code": 0,
+    "output": "────────────────────────────────────────────────────────────────────────\ntest_loop_clase3.js — recorrido del loop cerrado de la Clase 3 (jsdom)\n────────────────────────────────────────────────────────────────────────\n\nAserciones: 260 · fallos: 0\nRESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_navigation.js",
+    "code": 0,
+    "output": "27 navigation assertions passed\n"
+  },
+  {
+    "test": "macro1/test_formulas_clases4_7.js",
+    "code": 1,
+    "output": "test_formulas_clases4_7.js — cifras del tramo 4-7 con las funciones reales\n\nFallos (1):\n  x la capa superior abre la pestaña con ?tab=islm (el ancla #islm no la activa)\n\nAserciones: 284 · fallos: 1\nRESULTADO: FALLA\n"
+  },
+  {
+    "test": "macro1/test_lab_islm.js",
+    "code": 0,
+    "output": "test_lab_islm.js — 513 aserciones · RESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_auditoria_transversal.js",
+    "code": 0,
+    "output": "Aserciones: 18 · fallos: 0\nRESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_retroalimentacion_pedagogica.js",
+    "code": 0,
+    "output": "────────────────────────────────────────────────────────────────────────\ntest_retroalimentacion_pedagogica.js — capa explicativa Clases 1–3\n────────────────────────────────────────────────────────────────────────\n\nAserciones: 948 · fallos: 0\nRESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_export_import_continuidad.js",
+    "code": 0,
+    "output": "test_export_import_continuidad.js — 36 aserciones · RESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_paquete.js",
+    "code": 0,
+    "output": "────────────────────────────────────────────────────────────────────────\nPrueba de integridad del paquete publicable MacroLab Macro 1\nManifiesto: macrolab-macro1 · laboratorio 0.10.1 · contenido macro1-notas-2026-08-cumulative-revision\nNotas revisadas: 23\n────────────────────────────────────────────────────────────────────────\n\nComprobaciones: 1048 · fallos: 0 · advertencias: 0\nRESULTADO: OK\n"
+  },
+  {
+    "test": "macro1/test_formulas_selladas.js",
+    "code": 1,
+    "output": "────────────────────────────────────────────────────────────────────────\ntest_formulas_selladas.js — recálculo en vivo de las cifras selladas\n────────────────────────────────────────────────────────────────────────\n\nFallos (1):\n  x [tramo 4-7] la capa superior abre la pestaña con ?tab=islm (el ancla #islm no la activa)\n\nAserciones: 435 · fallos: 1\nRESULTADO: FALLA\n"
+  },
+  {
+    "test": "macro1/test_lab_is.js",
+    "code": 0,
+    "output": "test_lab_is.js — 156 aserciones · RESULTADO: OK\n"
+  }
+]

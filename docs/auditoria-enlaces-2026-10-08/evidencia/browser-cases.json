@@ -1,0 +1,27 @@
+[
+  {
+    "case": "Clase4-din-click",
+    "url": "http://127.0.0.1:8765/macro1/#din",
+    "selected": "true",
+    "visible": true
+  },
+  {
+    "case": "din-back",
+    "url": "http://127.0.0.1:8765/macro1/#route",
+    "checked": true,
+    "class": "true"
+  },
+  {
+    "case": "Clase4-lm-keyboard",
+    "url": "http://127.0.0.1:8765/macro1/#lm",
+    "selected": "true"
+  },
+  {
+    "case": "lm-back",
+    "checked": true
+  },
+  {
+    "case": "lm-forward",
+    "selected": "true"
+  }
+]

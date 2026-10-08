@@ -137,8 +137,8 @@ function run() {
   ok(ROUTES["4"].lab === "din" && ROUTES["5"].lab === "cruz", "Clases 4 y 5 · abren los laboratorios de dinero y de bienes");
   ["5", "6", "7"].forEach(c => ok(ROUTES[c].externalLab && ROUTES[c].externalLab.url === "../?tab=islm", `Clase ${c} · externalLab apunta a ../?tab=islm`));
   const scriptSrc = fs.readFileSync(path.join(__dirname, "..", "script.js"), "utf8");
-  ok(/searchParams\.get\('tab'\)/.test(scriptSrc) && /TAB_TITLES\[tab\]\)activateTab\(tab\)/.test(scriptSrc) && /islm\s*:/.test(scriptSrc.slice(scriptSrc.indexOf("const TAB_TITLES"), scriptSrc.indexOf("const TAB_TITLES") + 600)),
-    "la capa superior abre la pestaña con ?tab=islm (el ancla #islm no la activa)");
+  ok(/searchParams\.get\('tab'\)/.test(scriptSrc) && /TAB_TITLES\[tab\][\s\S]{0,80}activateTab\(tab,\{historyMode:'none'\}\)/.test(scriptSrc) && /islm\s*:/.test(scriptSrc.slice(scriptSrc.indexOf("const TAB_TITLES"), scriptSrc.indexOf("const TAB_TITLES") + 600)),
+    "la capa superior conserva el acceso con ?tab=islm");
 
   /* ===== 2 · Aplicaciones isomorfas de los diseños integrales ============== */
   near(moneyRate(2000, 900, 0.5, 25), 4, "Clase 4 isomorfa · i = 4 %");

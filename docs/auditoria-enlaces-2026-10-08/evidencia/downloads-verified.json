@@ -1,0 +1,254 @@
+[
+  {
+    "file": "macro1/notas/Bloque1_alumno.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Bloque1_alumno-3.pdf",
+    "sha256": "b80c57eaa0ca4cf3d7503ea0a307c13aab7eb53c9a8c4465a311cb5facedadac",
+    "pages": 31,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/Nota_estudio4_mercado_bienes.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Nota_estudio4_mercado_bienes (1).pdf",
+    "sha256": "754723bee2c2836f933e968bc244043b50c40c166685367841e97cd88066661e",
+    "pages": 21,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/Nota5_dinero_alumno.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Nota5_dinero_alumno (6).pdf",
+    "sha256": "214f735bb310392e09a725bbdadfa7fedd2a3c861b6722241ffdb289c95fa275",
+    "pages": 25,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/Nota6_inversion_IS_alumno.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Nota6_inversion_IS_alumno (1).pdf",
+    "sha256": "6ec39df1ee8d2cb1365df030f65efb43b905b900ae8b79a44a8db3a51a71e230",
+    "pages": 27,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/Nota7_ISLM_alumno.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Nota7_ISLM_alumno (1).pdf",
+    "sha256": "ae7d35c827be30f1cb75fb1b221492d85a59f81436eb77ad62b5df3770f42e6e",
+    "pages": 24,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/Nota8_desequilibrios_alumno.pdf",
+    "downloaded": "/Users/pgomez/Downloads/Nota8_desequilibrios_alumno.pdf",
+    "sha256": "8380aee21ed2e81c788c2eaad9042d9ddfdead958d37446e41507d07b9322e33",
+    "pages": 26,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/guia-del-curso-2026-2.pdf",
+    "downloaded": "/Users/pgomez/Downloads/guia-del-curso-2026-2 (1).pdf",
+    "sha256": "599996e0eb6a7968fb8eaf87d80e2161834cb8491379c9864caf45063af8b8ef",
+    "pages": 5,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/kit-clase0-estudiante.pdf",
+    "downloaded": "/Users/pgomez/Downloads/kit-clase0-estudiante (1).pdf",
+    "sha256": "309efebbaa74f044d3d58389749db716d6822ef0fbabe7206b91e17f3a15512d",
+    "pages": 4,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase1.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase1 (1).pdf",
+    "sha256": "4f309b9faba32f040e08c350331f4162127cd59273dff14c253cea43a6d29a16",
+    "pages": 11,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase2.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase2 (1).pdf",
+    "sha256": "e9d9e1727060118cba7e8eabca0a13425e87736810b096f226962c5e3f9fdd3c",
+    "pages": 6,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase3.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase3.pdf",
+    "sha256": "21199e76ffed3e36abdaa2da886ec8cb51f8e06a701ac2739bf78202ab488f39",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase4.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase4 (1).pdf",
+    "sha256": "3e9a18be228ec8a7928e459768c331e8df50b74ecda919cf205c01f1cf2378a3",
+    "pages": 4,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase5.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase5.pdf",
+    "sha256": "e31b3833340d182dc0f8388ce60ea22e87050dd2cd7dd3fd09f0a6e7309fe8b4",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase6.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase6.pdf",
+    "sha256": "31f51748762e0efee0d7ce90c8343e2759be7d35f8c4f543be6dc9eac46cf9e7",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/cronica-clase7.pdf",
+    "downloaded": "/Users/pgomez/Downloads/cronica-clase7.pdf",
+    "sha256": "9840c95bf281e1ba792ff28268b9d65637bd3abc1929bff3b79a93fa9c81a8f9",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ficha-escucha-cpc.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ficha-escucha-cpc (1).pdf",
+    "sha256": "189c3a4248a39c855797356bb74b4f988c34a00447d06d811599f67921f3e470",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-01-introduccion.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-01-introduccion (3).pdf",
+    "sha256": "8183a480e7ab86c474280789286114d45ef12f565439763627185442605173d2",
+    "pages": 9,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-02-fuentes-datos.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-02-fuentes-datos-2.pdf",
+    "sha256": "005f925c7c627043026d3a855a623eddfa8b03e0775502bd8a412f235836fe63",
+    "pages": 12,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-ayudantia-transicion-bienes.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-ayudantia-transicion-bienes.pdf",
+    "sha256": "b5bfb62eee7b0a7a25d2e059b7044c1ef96c1d30b499b3dca71a2e1611e1d0d0",
+    "pages": 1,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-transicion-bienes.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-transicion-bienes.pdf",
+    "sha256": "1bbf2d6cd396be49cd02ade6ac066f426800905a2d0253edab02b4ef48e56e36",
+    "pages": 2,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-clase4-dinero-bonos-tasa.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-clase4-dinero-bonos-tasa.pdf",
+    "sha256": "bdb04978dbe49e4e8d836b0f2726884b0b2050a8c963e0bd5d63a047aeb5e3b8",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-clase4-dinero-bonos-tasa.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-clase4-dinero-bonos-tasa (1).pdf",
+    "sha256": "532261038baf76fcce0ab0ad776951181897c0fe8438930966a80b93816ea911",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-clase5-inversion-is.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-clase5-inversion-is.pdf",
+    "sha256": "8311d84ddb5c0a086b605e9ca28f2b1898fb20ca42eb2cc6e9f5d0297d770514",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-clase5-inversion-is.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-clase5-inversion-is.pdf",
+    "sha256": "eaa55422bd15ea15810730f1b9f13bcc6fe8b9425d8300aac5afa5409e91cba3",
+    "pages": 4,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-clase6-islm.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-clase6-islm.pdf",
+    "sha256": "d1c2350a6176ae58d21801813cd114f46d62c47ee6fbfc5b70562d765137261a",
+    "pages": 2,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-clase6-islm.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-clase6-islm.pdf",
+    "sha256": "3081609a16627ba8e4af310ab483d0a90a68b0d297eaa7776bcd1e765da15ca5",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-clase7-desequilibrios.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-clase7-desequilibrios.pdf",
+    "sha256": "1e69943140a1efa49fa559958a56bfd4b3c6c5363867256c17906f83e507d718",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-clase7-desequilibrios.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-clase7-desequilibrios.pdf",
+    "sha256": "66dac800cfe418cff08a8ab8869357570efd2aa13ddc2bb974d5a743b8985372",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-consolidacion-islm-72744.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-consolidacion-islm-72744.pdf",
+    "sha256": "b8e6f6a23ba5adb4349565b58fe3b5de54d9fcfee43e319bbeb12b3c92e6c640",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-consolidacion-islm-72744.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-consolidacion-islm-72744.pdf",
+    "sha256": "f1d83ccb20ae36b185045022805f3359b6f6d60b12f3720c6290c8a11487ffe3",
+    "pages": 3,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/pautas/pauta-refuerzo-simulacro-72745.pdf",
+    "downloaded": "/Users/pgomez/Downloads/pauta-refuerzo-simulacro-72745.pdf",
+    "sha256": "558eb61e025b9d2b81c0b42bc5a50a3753078629a42cc6f37243e8d31d1bebe5",
+    "pages": 4,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/ayudantias/ayudantia-refuerzo-simulacro-72745.pdf",
+    "downloaded": "/Users/pgomez/Downloads/ayudantia-refuerzo-simulacro-72745.pdf",
+    "sha256": "5c01a0bc94cb0fc319d3d6c4f186e84651496f717136de5a3a7be780d1391de5",
+    "pages": 5,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-05-demanda-agregada.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-05-demanda-agregada.pdf",
+    "sha256": "59ffe091c70a5a6ba491dc4721b521c73b5e51ba2f94069657ccbc6354e60a15",
+    "pages": 14,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-06-mercado-dinero.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-06-mercado-dinero.pdf",
+    "sha256": "fb6c88f6c25793600fd78ec9ae1309ccabd2f056304a7c608ae323cd39ddf1f6",
+    "pages": 19,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-03-medicion-pib.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-03-medicion-pib (1).pdf",
+    "sha256": "194989a8ed1b4c070ad945c45631fb6061b79ccb2844a514be7db8c7c8651b45",
+    "pages": 9,
+    "opens": true
+  },
+  {
+    "file": "macro1/notas/nota-04-medicion-inflacion.pdf",
+    "downloaded": "/Users/pgomez/Downloads/nota-04-medicion-inflacion.pdf",
+    "sha256": "de63efa1808b1d82e9c5cc85d5f5d3771720fa0e1e8e34896800ce1677517208",
+    "pages": 8,
+    "opens": true
+  }
+]

@@ -1,0 +1,2481 @@
+[
+  {
+    "page": "atlas-lentes-institucionales.html",
+    "context": "Matriz régimen × BC",
+    "snapshot": "- banner:\n  - paragraph: Macroeconomía II · Profesor Pável Gómez · 2026\n  - heading \"Atlas shock × configuración institucional · Lentes institucionales · MacroLab\" [level=1]\n  - link \"← Volver al simulador\":\n    - /url: index.html\n  - button \"Tarjetas\"\n  - button \"Matriz régimen × BC\" [active]\n  - button \"Matriz MacroLab (4×8)\"\n  - button \"Cobertura\"\n- complementary:\n  - heading \"Tipo de shock\" [level=2]\n  - checkbox \"Sobreestímulo de demanda agregada\"\n  - text: Sobreestímulo de demanda agregada\n  - checkbox \"Sudden stop / fuga de capitales\"\n  - text: Sudden stop / fuga de capitales\n  - checkbox \"Crisis financiera global\"\n  - text: Crisis financiera global\n  - checkbox \"Shock de términos de intercambio\"\n  - text: Shock de términos de intercambio\n  - checkbox \"Shock de pandemia (covid-19)\"\n  - text: Shock de pandemia (covid-19)\n  - checkbox \"Default o reestructuración soberana\"\n  - text: Default o reestructuración soberana\n  - checkbox \"Crisis bancaria sistémica\"\n  - text: Crisis bancaria sistémica\n  - heading \"Régimen cambiario\" [level=2]\n  - checkbox \"Flotación cambiaria\"\n  - text: Flotación cambiaria\n  - checkbox \"Flotación administrada\"\n  - text: Flotación administrada\n  - checkbox \"Ancla cambiaria rígida (hard peg)\"\n  - text: Ancla cambiaria rígida (hard peg)\n  - checkbox \"Unión monetaria\"\n  - text: Unión monetaria\n  - checkbox \"Régimen mixto\"\n  - text: Régimen mixto\n  - heading \"Banco central\" [level=2]\n  - checkbox \"BC autónomo con meta de inflación\"\n  - text: BC autónomo con meta de inflación\n  - checkbox \"BC con meta en consolidación\"\n  - text: BC con meta en consolidación\n  - checkbox \"BC con autonomía erosionada\"\n  - text: BC con autonomía erosionada\n  - checkbox \"BC con ancla nominal delegada\"\n  - text: BC con ancla nominal delegada\n  - checkbox \"Régimen monetario por ancla cambiaria\"\n  - text: Régimen monetario por ancla cambiaria\n  - heading \"Regla fiscal\" [level=2]\n  - checkbox \"Regla fiscal estructural\"\n  - text: Regla fiscal estructural\n  - checkbox \"Regla fiscal con cláusulas de escape\"\n  - text: Regla fiscal con cláusulas de escape\n  - checkbox \"Programa de condicionalidad externa\"\n  - text: Programa de condicionalidad externa\n  - checkbox \"Sin marco fiscal vinculante\"\n  - text: Sin marco fiscal vinculante\n  - heading \"Buffer fiscal\" [level=2]\n  - checkbox \"Espacio fiscal amplio\"\n  - text: Espacio fiscal amplio\n  - checkbox \"Espacio fiscal moderado\"\n  - text: Espacio fiscal moderado\n  - checkbox \"Espacio fiscal estrecho\"\n  - text: Espacio fiscal estrecho\n  - checkbox \"Sin espacio fiscal (default declarado o inminente)\"\n  - text: Sin espacio fiscal (default declarado o inminente)\n  - heading \"Resultado credibilidad\" [level=2]\n  - checkbox \"Expectativas ancladas\"\n  - text: Expectativas ancladas\n  - checkbox \"Desanclaje transitorio\"\n  - text: Desanclaje transitorio\n  - checkbox \"Desanclaje persistente\"\n  - text: Desanclaje persistente\n- main:\n  - text: \"Crónicas mostradas:\"\n  - strong: \"8\"\n  - text: /\n  - strong: \"8\"\n  - button \"Limpiar filtros\"\n  - paragraph:\n    - text: Matriz\n    - strong: régimen cambiario × banco central\n    - text: . Borde de celda codifica el resultado de credibilidad (verde = anclaje, amarillo = transitorio, rojo = persistente).\n  - table:\n    - rowgroup:\n      - row \"BC autónomo con meta de inflación BC con meta en consolidación BC con autonomía erosionada BC con ancla nominal delegada Régimen monetario por ancla cambiaria\":\n        - columnheader\n        - columnheader \"BC autónomo con meta de inflación\"\n        - columnheader \"BC con meta en consolidación\"\n        - columnheader \"BC con autonomía erosionada\"\n        - columnheader \"BC con ancla nominal delegada\"\n        - columnheader \"Régimen monetario por ancla cambiaria\"\n    - rowgroup:\n      - row \"Flotación cambiaria Chile, 2021-2024 Chile, 2008-2009 Noruega, 2020 Suecia, 1994-1998 — — —\":\n        - rowheader \"Flotación cambiaria\"\n        - cell \"Chile, 2021-2024 Chile, 2008-2009 Noruega, 2020\":\n          - link \"Chile, 2021-2024\":\n            - /url: \"#\"\n          - link \"Chile, 2008-2009\":\n            - /url: \"#\"\n          - link \"Noruega, 2020\":\n            - /url: \"#\"\n        - cell \"Suecia, 1994-1998\":\n          - link \"Suecia, 1994-1998\":\n            - /url: \"#\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n      - row \"Flotación administrada — — Turquía, 2018-2023 Argentina, 2020 — —\":\n        - rowheader \"Flotación administrada\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"Turquía, 2018-2023 Argentina, 2020\":\n          - link \"Turquía, 2018-2023\":\n            - /url: \"#\"\n          - link \"Argentina, 2020\":\n            - /url: \"#\"\n        - cell \"—\"\n        - cell \"—\"\n      - row \"Ancla cambiaria rígida (hard peg) — — — — Argentina, convertibilidad 1991-2002\":\n        - rowheader \"Ancla cambiaria rígida (hard peg)\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"Argentina, convertibilidad 1991-2002\":\n          - link \"Argentina, convertibilidad 1991-2002\":\n            - /url: \"#\"\n      - row \"Unión monetaria — — — Grecia, 2010-2015 —\":\n        - rowheader \"Unión monetaria\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"Grecia, 2010-2015\":\n          - link \"Grecia, 2010-2015\":\n            - /url: \"#\"\n        - cell \"—\"\n      - row \"Régimen mixto — — — — —\":\n        - rowheader \"Régimen mixto\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n- contentinfo: Atlas v0.2 · 12 rutas editoriales registradas (37 % de cobertura) · Pável Gómez Valera, 2026.\n- button \"Ayuda y navegación — MacroLab Q4 de 4\":\n  - generic: \"?\"\n  - generic: Ayuda\n  - generic: Q4 / 4\n- dialog:\n  - heading [level=2]: Brújula Pedagógica\n  - paragraph: Centro de Navegación Institucional\n  - button: ✕\n  - tablist:\n    - tab [selected]: 📋 Mapa\n    - tab: 💬 Glosario\n    - tab: 🚀 Rutas\n    - tab: 💾 Exportar\n    - tab: 🗂 Estructura"
+  },
+  {
+    "page": "atlas-lentes-institucionales.html",
+    "context": "Matriz MacroLab (4×8)",
+    "snapshot": "- banner:\n  - paragraph: Macroeconomía II · Profesor Pável Gómez · 2026\n  - heading \"Atlas shock × configuración institucional · Lentes institucionales · MacroLab\" [level=1]\n  - link \"← Volver al simulador\":\n    - /url: index.html\n  - button \"Tarjetas\"\n  - button \"Matriz régimen × BC\"\n  - button \"Matriz MacroLab (4×8)\" [active]\n  - button \"Cobertura\"\n- complementary:\n  - heading \"Tipo de shock\" [level=2]\n  - checkbox \"Sobreestímulo de demanda agregada\"\n  - text: Sobreestímulo de demanda agregada\n  - checkbox \"Sudden stop / fuga de capitales\"\n  - text: Sudden stop / fuga de capitales\n  - checkbox \"Crisis financiera global\"\n  - text: Crisis financiera global\n  - checkbox \"Shock de términos de intercambio\"\n  - text: Shock de términos de intercambio\n  - checkbox \"Shock de pandemia (covid-19)\"\n  - text: Shock de pandemia (covid-19)\n  - checkbox \"Default o reestructuración soberana\"\n  - text: Default o reestructuración soberana\n  - checkbox \"Crisis bancaria sistémica\"\n  - text: Crisis bancaria sistémica\n  - heading \"Régimen cambiario\" [level=2]\n  - checkbox \"Flotación cambiaria\"\n  - text: Flotación cambiaria\n  - checkbox \"Flotación administrada\"\n  - text: Flotación administrada\n  - checkbox \"Ancla cambiaria rígida (hard peg)\"\n  - text: Ancla cambiaria rígida (hard peg)\n  - checkbox \"Unión monetaria\"\n  - text: Unión monetaria\n  - checkbox \"Régimen mixto\"\n  - text: Régimen mixto\n  - heading \"Banco central\" [level=2]\n  - checkbox \"BC autónomo con meta de inflación\"\n  - text: BC autónomo con meta de inflación\n  - checkbox \"BC con meta en consolidación\"\n  - text: BC con meta en consolidación\n  - checkbox \"BC con autonomía erosionada\"\n  - text: BC con autonomía erosionada\n  - checkbox \"BC con ancla nominal delegada\"\n  - text: BC con ancla nominal delegada\n  - checkbox \"Régimen monetario por ancla cambiaria\"\n  - text: Régimen monetario por ancla cambiaria\n  - heading \"Regla fiscal\" [level=2]\n  - checkbox \"Regla fiscal estructural\"\n  - text: Regla fiscal estructural\n  - checkbox \"Regla fiscal con cláusulas de escape\"\n  - text: Regla fiscal con cláusulas de escape\n  - checkbox \"Programa de condicionalidad externa\"\n  - text: Programa de condicionalidad externa\n  - checkbox \"Sin marco fiscal vinculante\"\n  - text: Sin marco fiscal vinculante\n  - heading \"Buffer fiscal\" [level=2]\n  - checkbox \"Espacio fiscal amplio\"\n  - text: Espacio fiscal amplio\n  - checkbox \"Espacio fiscal moderado\"\n  - text: Espacio fiscal moderado\n  - checkbox \"Espacio fiscal estrecho\"\n  - text: Espacio fiscal estrecho\n  - checkbox \"Sin espacio fiscal (default declarado o inminente)\"\n  - text: Sin espacio fiscal (default declarado o inminente)\n  - heading \"Resultado credibilidad\" [level=2]\n  - checkbox \"Expectativas ancladas\"\n  - text: Expectativas ancladas\n  - checkbox \"Desanclaje transitorio\"\n  - text: Desanclaje transitorio\n  - checkbox \"Desanclaje persistente\"\n  - text: Desanclaje persistente\n- main:\n  - text: \"Crónicas mostradas:\"\n  - strong: \"8\"\n  - text: /\n  - strong: \"8\"\n  - button \"Limpiar filtros\"\n  - paragraph:\n    - text: \"Matriz operativa real del simulador:\"\n    - strong: 4 configuraciones × 8 lentes = 32 combinaciones\n    - text: . Rutas registradas en\n    - code: MacroLabRouteRegistryES\n    - text: \":\"\n    - strong: \"12\"\n    - text: \"(38%). Borradores listos para mergear:\"\n    - strong: \"0\"\n    - text: . Tras el merge la cobertura pasa a\n    - strong: 12/32\n    - text: (38%).\n  - generic: Ruta editorial registrada\n  - text: Borrador listo (en\n  - code: 04_rutas_editoriales/\n  - text: )\n  - generic: Combinación sin caso histórico fuerte (fallback genérico)\n  - paragraph: \"Los filtros laterales se aplican: si filtras por una crónica, las demás se atenúan en la matriz.\"\n  - table:\n    - rowgroup:\n      - row \"CHL Chile 2026 · Credibilidad macro FRG Anclaje frágil RIG Rigidez cambiaria CRD Alta credibilidad con buffer\":\n        - columnheader\n        - columnheader \"CHL Chile 2026 · Credibilidad macro\":\n          - text: CHL\n          - text: Chile 2026 · Credibilidad macro\n        - columnheader \"FRG Anclaje frágil\":\n          - text: FRG\n          - text: Anclaje frágil\n        - columnheader \"RIG Rigidez cambiaria\":\n          - text: RIG\n          - text: Rigidez cambiaria\n        - columnheader \"CRD Alta credibilidad con buffer\":\n          - text: CRD\n          - text: Alta credibilidad con buffer\n    - rowgroup:\n      - row \"Alza del petróleo / energía petroleo · OADA Ruta ✓ Chile, 2021-2024 Ruta ✓ Turquía, 2018-2023 Ruta ✓ Argentina, convertibilidad 1991-2002 —\":\n        - rowheader \"Alza del petróleo / energía petroleo · OADA\":\n          - text: Alza del petróleo / energía\n          - text: petroleo · OADA\n        - cell \"Ruta ✓ Chile, 2021-2024\":\n          - generic: Ruta ✓\n          - link \"Chile, 2021-2024\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Turquía, 2018-2023\":\n          - generic: Ruta ✓\n          - link \"Turquía, 2018-2023\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Argentina, convertibilidad 1991-2002\":\n          - generic: Ruta ✓\n          - link \"Argentina, convertibilidad 1991-2002\":\n            - /url: \"#\"\n        - cell \"—\"\n      - row \"Caída del cobre cobre · ISLMBP Ruta ✓ Chile, 2008-2009 — — —\":\n        - rowheader \"Caída del cobre cobre · ISLMBP\":\n          - text: Caída del cobre\n          - text: cobre · ISLMBP\n        - cell \"Ruta ✓ Chile, 2008-2009\":\n          - generic: Ruta ✓\n          - link \"Chile, 2008-2009\":\n            - /url: \"#\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n      - row \"Pandemia pandemia · OADA Ruta ✓ Chile, 2021-2024 Ruta ✓ Argentina, 2020 — Ruta ✓ Noruega, 2020\":\n        - rowheader \"Pandemia pandemia · OADA\":\n          - text: Pandemia\n          - text: pandemia · OADA\n        - cell \"Ruta ✓ Chile, 2021-2024\":\n          - generic: Ruta ✓\n          - link \"Chile, 2021-2024\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Argentina, 2020\":\n          - generic: Ruta ✓\n          - link \"Argentina, 2020\":\n            - /url: \"#\"\n        - cell \"—\"\n        - cell \"Ruta ✓ Noruega, 2020\":\n          - generic: Ruta ✓\n          - link \"Noruega, 2020\":\n            - /url: \"#\"\n      - row \"Expansión fiscal fiscalExpand · ISLM — — — —\":\n        - rowheader \"Expansión fiscal fiscalExpand · ISLM\":\n          - text: Expansión fiscal\n          - text: fiscalExpand · ISLM\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n      - row \"Contracción fiscal fiscalContract · ISLM Ruta ✓ Chile, 2008-2009 Ruta ✓ Grecia, 2010-2015 Ruta ✓ Argentina, convertibilidad 1991-2002 Ruta ✓ Suecia, 1994-1998\":\n        - rowheader \"Contracción fiscal fiscalContract · ISLM\":\n          - text: Contracción fiscal\n          - text: fiscalContract · ISLM\n        - cell \"Ruta ✓ Chile, 2008-2009\":\n          - generic: Ruta ✓\n          - link \"Chile, 2008-2009\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Grecia, 2010-2015\":\n          - generic: Ruta ✓\n          - link \"Grecia, 2010-2015\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Argentina, convertibilidad 1991-2002\":\n          - generic: Ruta ✓\n          - link \"Argentina, convertibilidad 1991-2002\":\n            - /url: \"#\"\n        - cell \"Ruta ✓ Suecia, 1994-1998\":\n          - generic: Ruta ✓\n          - link \"Suecia, 1994-1998\":\n            - /url: \"#\"\n      - row \"Contracción monetaria monetaryContract · ISLM — — — —\":\n        - rowheader \"Contracción monetaria monetaryContract · ISLM\":\n          - text: Contracción monetaria\n          - text: monetaryContract · ISLM\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n      - row \"Recesión global globalRecession · ISLMBP — — Ruta ✓ Argentina, convertibilidad 1991-2002 —\":\n        - rowheader \"Recesión global globalRecession · ISLMBP\":\n          - text: Recesión global\n          - text: globalRecession · ISLMBP\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"Ruta ✓ Argentina, convertibilidad 1991-2002\":\n          - generic: Ruta ✓\n          - link \"Argentina, convertibilidad 1991-2002\":\n            - /url: \"#\"\n        - cell \"—\"\n      - row \"Guerra / shock mixto guerra · OADA — — — —\":\n        - rowheader \"Guerra / shock mixto guerra · OADA\":\n          - text: Guerra / shock mixto\n          - text: guerra · OADA\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n        - cell \"—\"\n  - paragraph:\n    - text: \"Detalle del mapeo crónica → ruta y de las tensiones de catalogación: ver\"\n    - code: 00_indice/MAPEO_MACROLAB.md\n    - text: .\n- contentinfo: Atlas v0.2 · 12 rutas editoriales registradas (37 % de cobertura) · Pável Gómez Valera, 2026.\n- button \"Ayuda y navegación — MacroLab Q4 de 4\":\n  - generic: \"?\"\n  - generic: Ayuda\n  - generic: Q4 / 4\n- dialog:\n  - heading [level=2]: Brújula Pedagógica\n  - paragraph: Centro de Navegación Institucional\n  - button: ✕\n  - tablist:\n    - tab [selected]: 📋 Mapa\n    - tab: 💬 Glosario\n    - tab: 🚀 Rutas\n    - tab: 💾 Exportar\n    - tab: 🗂 Estructura"
+  },
+  {
+    "page": "atlas-lentes-institucionales.html",
+    "context": "Cobertura",
+    "snapshot": "- banner:\n  - paragraph: Macroeconomía II · Profesor Pável Gómez · 2026\n  - heading \"Atlas shock × configuración institucional · Lentes institucionales · MacroLab\" [level=1]\n  - link \"← Volver al simulador\":\n    - /url: index.html\n  - button \"Tarjetas\"\n  - button \"Matriz régimen × BC\"\n  - button \"Matriz MacroLab (4×8)\"\n  - button \"Cobertura\" [active]\n- complementary:\n  - heading \"Tipo de shock\" [level=2]\n  - checkbox \"Sobreestímulo de demanda agregada\"\n  - text: Sobreestímulo de demanda agregada\n  - checkbox \"Sudden stop / fuga de capitales\"\n  - text: Sudden stop / fuga de capitales\n  - checkbox \"Crisis financiera global\"\n  - text: Crisis financiera global\n  - checkbox \"Shock de términos de intercambio\"\n  - text: Shock de términos de intercambio\n  - checkbox \"Shock de pandemia (covid-19)\"\n  - text: Shock de pandemia (covid-19)\n  - checkbox \"Default o reestructuración soberana\"\n  - text: Default o reestructuración soberana\n  - checkbox \"Crisis bancaria sistémica\"\n  - text: Crisis bancaria sistémica\n  - heading \"Régimen cambiario\" [level=2]\n  - checkbox \"Flotación cambiaria\"\n  - text: Flotación cambiaria\n  - checkbox \"Flotación administrada\"\n  - text: Flotación administrada\n  - checkbox \"Ancla cambiaria rígida (hard peg)\"\n  - text: Ancla cambiaria rígida (hard peg)\n  - checkbox \"Unión monetaria\"\n  - text: Unión monetaria\n  - checkbox \"Régimen mixto\"\n  - text: Régimen mixto\n  - heading \"Banco central\" [level=2]\n  - checkbox \"BC autónomo con meta de inflación\"\n  - text: BC autónomo con meta de inflación\n  - checkbox \"BC con meta en consolidación\"\n  - text: BC con meta en consolidación\n  - checkbox \"BC con autonomía erosionada\"\n  - text: BC con autonomía erosionada\n  - checkbox \"BC con ancla nominal delegada\"\n  - text: BC con ancla nominal delegada\n  - checkbox \"Régimen monetario por ancla cambiaria\"\n  - text: Régimen monetario por ancla cambiaria\n  - heading \"Regla fiscal\" [level=2]\n  - checkbox \"Regla fiscal estructural\"\n  - text: Regla fiscal estructural\n  - checkbox \"Regla fiscal con cláusulas de escape\"\n  - text: Regla fiscal con cláusulas de escape\n  - checkbox \"Programa de condicionalidad externa\"\n  - text: Programa de condicionalidad externa\n  - checkbox \"Sin marco fiscal vinculante\"\n  - text: Sin marco fiscal vinculante\n  - heading \"Buffer fiscal\" [level=2]\n  - checkbox \"Espacio fiscal amplio\"\n  - text: Espacio fiscal amplio\n  - checkbox \"Espacio fiscal moderado\"\n  - text: Espacio fiscal moderado\n  - checkbox \"Espacio fiscal estrecho\"\n  - text: Espacio fiscal estrecho\n  - checkbox \"Sin espacio fiscal (default declarado o inminente)\"\n  - text: Sin espacio fiscal (default declarado o inminente)\n  - heading \"Resultado credibilidad\" [level=2]\n  - checkbox \"Expectativas ancladas\"\n  - text: Expectativas ancladas\n  - checkbox \"Desanclaje transitorio\"\n  - text: Desanclaje transitorio\n  - checkbox \"Desanclaje persistente\"\n  - text: Desanclaje persistente\n- main:\n  - text: \"Crónicas mostradas:\"\n  - strong: \"8\"\n  - text: /\n  - strong: \"8\"\n  - button \"Limpiar filtros\"\n  - heading \"Cobertura del banco de crónicas (8 casos)\" [level=2]\n  - generic: Tipo de shock\n  - generic: 7 / 7 categorías cubiertas (100%)\n  - generic: Régimen cambiario\n  - generic: 4 / 5 categorías cubiertas (80%)\n  - strong: \"Huecos:\"\n  - text: Régimen mixto\n  - generic: Banco central\n  - generic: 5 / 5 categorías cubiertas (100%)\n  - generic: Regla fiscal\n  - generic: 4 / 4 categorías cubiertas (100%)\n  - generic: Buffer fiscal\n  - generic: 4 / 4 categorías cubiertas (100%)\n  - generic: Resultado credibilidad\n  - generic: 3 / 3 categorías cubiertas (100%)\n  - paragraph:\n    - text: Los huecos son\n    - strong: oportunidades pedagógicas\n    - text: \": configuraciones institucionales o tipos de shock para los que conviene incorporar una crónica adicional. La ausencia, en sí misma, es información útil para Macro II.\"\n- contentinfo: Atlas v0.2 · 12 rutas editoriales registradas (37 % de cobertura) · Pável Gómez Valera, 2026.\n- button \"Ayuda y navegación — MacroLab Q4 de 4\":\n  - generic: \"?\"\n  - generic: Ayuda\n  - generic: Q4 / 4\n- dialog:\n  - heading [level=2]: Brújula Pedagógica\n  - paragraph: Centro de Navegación Institucional\n  - button: ✕\n  - tablist:\n    - tab [selected]: 📋 Mapa\n    - tab: 💬 Glosario\n    - tab: 🚀 Rutas\n    - tab: 💾 Exportar\n    - tab: 🗂 Estructura"
+  },
+  {
+    "brokenImages": [],
+    "h1": "🌍 Comparador Visual + Shocks v2",
+    "links": [],
+    "title": "Comparador Visual + Shocks | Lentes Institucionales v2",
+    "page": "comparador_visual_shocks_v2.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Chile, 2008–2009: la tozudez respaldada.Un buffer fiscal frente a un shock externo",
+    "links": [],
+    "title": "Crónica institucional Nº 1 · Chile 2008–2009 — MacroLab",
+    "page": "cronicas/brief-chile-2008-2009.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Chile, 2021–2024: el flanco descubierto.Ancla preservada, colchón erosionado",
+    "links": [],
+    "title": "Crónica institucional Nº 2 · Chile 2021–2024 — MacroLab",
+    "page": "cronicas/brief-chile-2021-2024.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Crónicas institucionales",
+    "links": [
+      {
+        "href": "../index.html",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "brief-chile-2008-2009.html",
+        "text": "Abrir policy brief"
+      },
+      {
+        "href": "brief-chile-2021-2024.html",
+        "text": "Abrir policy brief"
+      }
+    ],
+    "title": "Crónicas institucionales — MacroLab",
+    "page": "cronicas/index.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "🌍 Comparador Visual + Shocks v2",
+    "links": [],
+    "title": "Comparador Visual + Shocks | Lentes Institucionales v2",
+    "page": "comparador_visual_shocks_v2.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Chile, 2008–2009: la tozudez respaldada.Un buffer fiscal frente a un shock externo",
+    "links": [],
+    "title": "Crónica institucional Nº 1 · Chile 2008–2009 — MacroLab",
+    "page": "cronicas/brief-chile-2008-2009.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Chile, 2021–2024: el flanco descubierto.Ancla preservada, colchón erosionado",
+    "links": [],
+    "title": "Crónica institucional Nº 2 · Chile 2021–2024 — MacroLab",
+    "page": "cronicas/brief-chile-2021-2024.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Crónicas institucionales",
+    "links": [
+      {
+        "href": "../index.html",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "brief-chile-2008-2009.html",
+        "text": "Abrir policy brief"
+      },
+      {
+        "href": "brief-chile-2021-2024.html",
+        "text": "Abrir policy brief"
+      }
+    ],
+    "title": "Crónicas institucionales — MacroLab",
+    "page": "cronicas/index.html",
+    "anchors": [],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "El barco que no pasó por Ormuz",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "cronica-clase1.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#s1",
+        "text": "Tres escenas de un martes cualquiera"
+      },
+      {
+        "href": "#s2",
+        "text": "El titular: «la economía chilena cayó»"
+      },
+      {
+        "href": "#s3",
+        "text": "Abrir la caja: qué hay dentro de un −0,9%"
+      },
+      {
+        "href": "#s4",
+        "text": "Un mes no es una tendencia"
+      },
+      {
+        "href": "#s5",
+        "text": "El origen: un estrecho que se cierra"
+      },
+      {
+        "href": "#s6",
+        "text": "La cadena: del estrecho a tu bolsillo"
+      },
+      {
+        "href": "#s7",
+        "text": "Por qué no todos pueden subir los precios"
+      },
+      {
+        "href": "#s8",
+        "text": "La hipótesis incómoda: ¿fue el shock o fue el susto?"
+      },
+      {
+        "href": "#s9",
+        "text": "La otra pregunta: ¿y si creciéramos 4 o 5%?"
+      },
+      {
+        "href": "#s10",
+        "text": "Tus cuatro fichas de datos"
+      },
+      {
+        "href": "#s11",
+        "text": "Lo que haremos en la clase 1"
+      },
+      {
+        "href": "https://www.t13.cl/noticia/politica/exministro-marcel-por-caida-del-imacec-deterioro-se-produjo-shock-combustibles-2-7-2026",
+        "text": "Ver nota"
+      },
+      {
+        "href": "https://growthlab.hks.harvard.edu/publication/hausmann-hidalgo-economic-complexity/",
+        "text": "Ver publicación"
+      }
+    ],
+    "title": "Crónica de apertura · El barco que no pasó por Ormuz — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase1-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      },
+      {
+        "fragment": "#s6",
+        "visible": true
+      },
+      {
+        "fragment": "#s7",
+        "visible": true
+      },
+      {
+        "fragment": "#s8",
+        "visible": true
+      },
+      {
+        "fragment": "#s9",
+        "visible": true
+      },
+      {
+        "fragment": "#s10",
+        "visible": true
+      },
+      {
+        "fragment": "#s11",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Quién paga la cuenta",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "cronica-clase2.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#s1",
+        "text": "Dónde quedamos"
+      },
+      {
+        "href": "#s2",
+        "text": "Dos personas honestas midiendo la misma economía"
+      },
+      {
+        "href": "#s3",
+        "text": "Cómo se construye un índice (y por qué importa la canasta)"
+      },
+      {
+        "href": "#s4",
+        "text": "Deflactor e IPC: los dos correctos que no coinciden"
+      },
+      {
+        "href": "#s5",
+        "text": "La contabilidad del reparto: quién absorbió el shock"
+      },
+      {
+        "href": "#s6",
+        "text": "Anunciar, ejecutar, crecer: tres cosas distintas"
+      },
+      {
+        "href": "#s7",
+        "text": "La aritmética incómoda del 4-5%"
+      },
+      {
+        "href": "#s8",
+        "text": "Qué sabe hacer Chile"
+      },
+      {
+        "href": "#s9",
+        "text": "Lo que haremos en la clase 2"
+      },
+      {
+        "href": "https://growthlab.hks.harvard.edu/publication/hausmann-hidalgo-economic-complexity/",
+        "text": "Ver publicación"
+      }
+    ],
+    "title": "Crónica · Quién paga la cuenta — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase2-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      },
+      {
+        "fragment": "#s6",
+        "visible": true
+      },
+      {
+        "fragment": "#s7",
+        "visible": true
+      },
+      {
+        "fragment": "#s8",
+        "visible": true
+      },
+      {
+        "fragment": "#s9",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "La bodega que habló antes que el gerente",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "cronica-clase3.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "#s1",
+        "text": "La alarma silenciosa"
+      },
+      {
+        "href": "#s2",
+        "text": "Planeado no significa realizado"
+      },
+      {
+        "href": "#s3",
+        "text": "El eco del primer pedido"
+      },
+      {
+        "href": "#s4",
+        "text": "Identidad, conducta y equilibrio"
+      },
+      {
+        "href": "#s5",
+        "text": "Lo que llevarás a MacroLab"
+      }
+    ],
+    "title": "Crónica · La bodega que habló antes que el gerente — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase3-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "La tasa que Rosa no eligió",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "cronica-clase4.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "#s1",
+        "text": "La pregunta que no tenía mala intención"
+      },
+      {
+        "href": "#s2",
+        "text": "Dinero que no paga y bonos que sí"
+      },
+      {
+        "href": "#s3",
+        "text": "Quién pone el precio y quién pone la cantidad"
+      },
+      {
+        "href": "#s4",
+        "text": "Cómo se mueve la tasa en la práctica: Chile, 2019-2026"
+      },
+      {
+        "href": "#s5",
+        "text": "La respuesta que Rosa no esperaba"
+      },
+      {
+        "href": "#s6",
+        "text": "Lo que llevarás a MacroLab, paso a paso"
+      }
+    ],
+    "title": "Crónica · La tasa que Rosa no eligió — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase4-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      },
+      {
+        "fragment": "#s6",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "El horno que Rosa no habría comprado en 2022",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "cronica-clase5.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "#s1",
+        "text": "Dos años, una misma decisión"
+      },
+      {
+        "href": "#s2",
+        "text": "Dos razones para invertir"
+      },
+      {
+        "href": "#s3",
+        "text": "Cuando el shock no es de tasa"
+      },
+      {
+        "href": "#s4",
+        "text": "De la cruz a una curva"
+      },
+      {
+        "href": "#s5",
+        "text": "Lo que llevarás a MacroLab, paso a paso"
+      }
+    ],
+    "title": "Crónica · El horno que Rosa no habría comprado en 2022 — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase5-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Más caro el crédito y menos ventas: un solo problema",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "cronica-clase6.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "#s1",
+        "text": "Dos frases, un solo problema"
+      },
+      {
+        "href": "#s2",
+        "text": "Un cruce, no dos mercados aparte"
+      },
+      {
+        "href": "#s3",
+        "text": "Seis años, tres mezclas distintas"
+      },
+      {
+        "href": "#s4",
+        "text": "Lo que la tabla no puede decir"
+      },
+      {
+        "href": "#s5",
+        "text": "Lo que llevarás a MacroLab, paso a paso"
+      }
+    ],
+    "title": "Crónica · Más caro el crédito y menos ventas: un solo problema — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase6-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "La bodega y el banco: quién se entera primero",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "cronica-clase7.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a MacroLab"
+      },
+      {
+        "href": "#s1",
+        "text": "Dos velocidades, un solo ajuste"
+      },
+      {
+        "href": "#s2",
+        "text": "Fuera del cruce: dónde está el punto"
+      },
+      {
+        "href": "#s3",
+        "text": "La ruta: primero la tasa, después la producción"
+      },
+      {
+        "href": "#s4",
+        "text": "Descomponer la inversión que cambió"
+      },
+      {
+        "href": "#s5",
+        "text": "Lo que llevarás a MacroLab, paso a paso"
+      }
+    ],
+    "title": "Crónica · La bodega y el banco: quién se entera primero — Macroeconomía I",
+    "page": "macro1/notas/cronica-clase7-chile-2026.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Guía de escucha · Diálogos para el Desarrollo",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "ficha-escucha-cpc.pdf",
+        "text": "Descargar PDF"
+      }
+    ],
+    "title": "Guía de escucha · Diálogos para el Desarrollo — Macroeconomía I",
+    "page": "macro1/notas/ficha-escucha-cpc-clase1.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Guía del curso",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "guia-del-curso-2026-2.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#s1",
+        "text": "Por qué este curso funciona distinto"
+      },
+      {
+        "href": "#s2",
+        "text": "Cómo funciona una clase"
+      },
+      {
+        "href": "#s3",
+        "text": "Glosario: las palabras que voy a usar"
+      },
+      {
+        "href": "#s4",
+        "text": "MacroLab: qué es y qué no es"
+      },
+      {
+        "href": "#s5",
+        "text": "Cómo se evalúa el curso"
+      },
+      {
+        "href": "#s6",
+        "text": "Controles de preparación"
+      },
+      {
+        "href": "#s7",
+        "text": "Brief macroeconómico aplicado"
+      },
+      {
+        "href": "#s8",
+        "text": "Inasistencias y eximición"
+      },
+      {
+        "href": "#s9",
+        "text": "Bibliografía"
+      },
+      {
+        "href": "https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/#route",
+        "text": "pavelgomez.github.io/MacroLab-Shock-Simulator/macro1"
+      }
+    ],
+    "title": "Guía del curso · Macroeconomía I 2026-2",
+    "page": "macro1/notas/guia-del-curso-2026-2.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#s1",
+        "visible": true
+      },
+      {
+        "fragment": "#s2",
+        "visible": true
+      },
+      {
+        "fragment": "#s3",
+        "visible": true
+      },
+      {
+        "fragment": "#s4",
+        "visible": true
+      },
+      {
+        "fragment": "#s5",
+        "visible": true
+      },
+      {
+        "fragment": "#s6",
+        "visible": true
+      },
+      {
+        "fragment": "#s7",
+        "visible": true
+      },
+      {
+        "fragment": "#s8",
+        "visible": true
+      },
+      {
+        "fragment": "#s9",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Notas de Estudio",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html",
+        "text": "← Volver a MacroLab · Macroeconomía I"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Nota de estudio 3 · Medición de la actividad económica"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Bloque1_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b2-mercado-bienes.html",
+        "text": "Nota de estudio 4 · El mercado de bienes"
+      },
+      {
+        "href": "nota-b2-mercado-bienes.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota_estudio4_mercado_bienes.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b3-dinero-alumno.html",
+        "text": "Nota de estudio 5 · Dinero, bonos y tasa de interés"
+      },
+      {
+        "href": "nota-b3-dinero-alumno.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota5_dinero_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b4a-inversion-is-alumno.html",
+        "text": "Nota de estudio 6 · Inversión y curva IS"
+      },
+      {
+        "href": "nota-b4a-inversion-is-alumno.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota6_inversion_IS_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b4b-islm-alumno.html",
+        "text": "Nota de estudio 7 · IS-LM en economía cerrada"
+      },
+      {
+        "href": "nota-b4b-islm-alumno.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota7_ISLM_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b4c-desequilibrios-alumno.html",
+        "text": "Nota de estudio 8 · Desequilibrios, efecto desplazamiento y efecto acelerador"
+      },
+      {
+        "href": "nota-b4c-desequilibrios-alumno.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota8_desequilibrios_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "guia-del-curso-2026-2.html",
+        "text": "Guía del curso — Macroeconomía I 2026-2"
+      },
+      {
+        "href": "guia-del-curso-2026-2.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "guia-del-curso-2026-2.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "kit-clase0-estudiante.html",
+        "text": "Hoja de trabajo — Clase 0"
+      },
+      {
+        "href": "kit-clase0-estudiante.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "kit-clase0-estudiante.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase1-chile-2026.html",
+        "text": "Crónica de apertura — El barco que no pasó por Ormuz: Chile, primer semestre de 2026"
+      },
+      {
+        "href": "cronica-clase1-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase1.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase2-chile-2026.html",
+        "text": "Crónica — Quién paga la cuenta: medición, propagación del shock y la aritmética del crecimiento"
+      },
+      {
+        "href": "cronica-clase2-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase2.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase3-chile-2026.html",
+        "text": "Crónica — La bodega que habló antes que el gerente"
+      },
+      {
+        "href": "cronica-clase3-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase3.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase4-chile-2026.html",
+        "text": "Crónica — La tasa que Rosa no eligió"
+      },
+      {
+        "href": "cronica-clase4-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase4.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase5-chile-2026.html",
+        "text": "Crónica — El horno que Rosa no habría comprado en 2022"
+      },
+      {
+        "href": "cronica-clase5-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase5.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase6-chile-2026.html",
+        "text": "Crónica — Más caro el crédito y menos ventas: un solo problema"
+      },
+      {
+        "href": "cronica-clase6-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase6.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "cronica-clase7-chile-2026.html",
+        "text": "Crónica — La bodega y el banco: quién se entera primero"
+      },
+      {
+        "href": "cronica-clase7-chile-2026.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "cronica-clase7.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ficha-escucha-cpc-clase1.html",
+        "text": "Guía de escucha — Diálogos para el Desarrollo (charla CPC, bloque 2 de la Clase 1)"
+      },
+      {
+        "href": "ficha-escucha-cpc-clase1.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "ficha-escucha-cpc.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-01-introduccion.html",
+        "text": "Nota de estudio 1 · Introducción a la macroeconomía"
+      },
+      {
+        "href": "nota-01-introduccion.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-01-introduccion.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-02-fuentes-datos.html",
+        "text": "Nota de estudio 2 · Fuentes de datos macroeconómicos"
+      },
+      {
+        "href": "nota-02-fuentes-datos.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-02-fuentes-datos.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-ayudantia-transicion-bienes.pdf",
+        "text": "Pauta · Ayudantía de transición · mercado de bienes"
+      },
+      {
+        "href": "pautas/pauta-ayudantia-transicion-bienes.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-transicion-bienes.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-transicion-bienes.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-clase4-dinero-bonos-tasa.pdf",
+        "text": "Pauta · Clase 4 · Dinero, bonos y tasa"
+      },
+      {
+        "href": "pautas/pauta-clase4-dinero-bonos-tasa.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase4-dinero-bonos-tasa.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase4-dinero-bonos-tasa.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-clase5-inversion-is.pdf",
+        "text": "Pauta · Clase 5 · Inversión y curva IS"
+      },
+      {
+        "href": "pautas/pauta-clase5-inversion-is.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase5-inversion-is.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase5-inversion-is.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-clase6-islm.pdf",
+        "text": "Pauta · Clase 6 · IS-LM en economía cerrada"
+      },
+      {
+        "href": "pautas/pauta-clase6-islm.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase6-islm.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase6-islm.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-clase7-desequilibrios.pdf",
+        "text": "Pauta · Clase 7 · Desequilibrios, efecto desplazamiento y efecto acelerador"
+      },
+      {
+        "href": "pautas/pauta-clase7-desequilibrios.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase7-desequilibrios.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-clase7-desequilibrios.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-consolidacion-islm-72744.pdf",
+        "text": "Pauta · Ayudantía de consolidación IS-LM (sección 72744)"
+      },
+      {
+        "href": "pautas/pauta-consolidacion-islm-72744.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-consolidacion-islm-72744.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-consolidacion-islm-72744.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "pautas/pauta-refuerzo-simulacro-72745.pdf",
+        "text": "Pauta · Sesión de refuerzo gráfico y simulacro (sección 72745)"
+      },
+      {
+        "href": "pautas/pauta-refuerzo-simulacro-72745.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "ayudantias/ayudantia-refuerzo-simulacro-72745.pdf",
+        "text": "Enunciado"
+      },
+      {
+        "href": "ayudantias/ayudantia-refuerzo-simulacro-72745.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-05-demanda-agregada.html",
+        "text": "Material histórico 2025 · Demanda agregada y equilibrio"
+      },
+      {
+        "href": "nota-05-demanda-agregada.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-05-demanda-agregada.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b2-mercado-bienes.html",
+        "text": "Nota de estudio 4 · El mercado de bienes"
+      },
+      {
+        "href": "nota-b2-mercado-bienes.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota_estudio4_mercado_bienes.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-06-mercado-dinero.html",
+        "text": "Material histórico 2025 · Dinero, bonos, demanda y oferta de dinero"
+      },
+      {
+        "href": "nota-06-mercado-dinero.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-06-mercado-dinero.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b3-dinero-alumno.html",
+        "text": "Nota de estudio 5 · Dinero, bonos y tasa de interés"
+      },
+      {
+        "href": "nota-b3-dinero-alumno.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Nota5_dinero_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-03-medicion-pib.html",
+        "text": "Versión anterior · Medición del PIB"
+      },
+      {
+        "href": "nota-03-medicion-pib.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-03-medicion-pib.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Nota de estudio 3 · Medición de la actividad económica"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Bloque1_alumno.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-04-medicion-inflacion.html",
+        "text": "Versión anterior · Medición de la inflación"
+      },
+      {
+        "href": "nota-04-medicion-inflacion.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "nota-04-medicion-inflacion.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Nota de estudio 3 · Medición de la actividad económica"
+      },
+      {
+        "href": "nota-b1-medicion.html",
+        "text": "Leer en línea"
+      },
+      {
+        "href": "Bloque1_alumno.pdf",
+        "text": "Descargar PDF"
+      }
+    ],
+    "title": "Notas de Estudio · Macroeconomía I",
+    "page": "macro1/notas/index.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Hoja de trabajo · Clase 0",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "kit-clase0-estudiante.pdf",
+        "text": "Descargar PDF"
+      }
+    ],
+    "title": "Hoja de trabajo · Clase 0 — Macroeconomía I",
+    "page": "macro1/notas/kit-clase0-estudiante.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de estudio 1 · Introducción a la macroeconomía",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-01-introduccion.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#1-introduccion-crisis-y-recuperacion-en-la-vida-de-los-herma",
+        "text": "1. Introducción: Crisis y Recuperación en la Vida de los Hermanos González"
+      },
+      {
+        "href": "#2-que-estudia-la-macroeconomia",
+        "text": "2. ¿Qué Estudia la Macroeconomía?"
+      },
+      {
+        "href": "#2-1-como-leer-una-cifra",
+        "text": "2.1. Cómo leer una cifra antes de explicarla"
+      },
+      {
+        "href": "#2-1-1-pasaporte-dato",
+        "text": "El pasaporte del dato"
+      },
+      {
+        "href": "#2-1-2-flujo-stock",
+        "text": "Flujo y stock: período o fecha"
+      },
+      {
+        "href": "#3-variables-clave-en-macroeconomia",
+        "text": "3. Variables Clave en Macroeconomía"
+      },
+      {
+        "href": "#31-producto-interno-bruto-pib",
+        "text": "3.1. Producto Interno Bruto (PIB)"
+      },
+      {
+        "href": "#32-inflacion",
+        "text": "3.2. Inflación"
+      },
+      {
+        "href": "#33-desempleo",
+        "text": "3.3. Desempleo"
+      },
+      {
+        "href": "#34-el-saldo-en-cuenta-corriente-superavits-y-deficits",
+        "text": "3.4. El saldo en cuenta corriente: superávits y déficits"
+      },
+      {
+        "href": "#35-los-aranceles-de-estados-unidos-de-2025-y-sus-efectos-sob",
+        "text": "3.5. Los aranceles de Estados Unidos de 2025 y sus efectos sobre Chile"
+      },
+      {
+        "href": "#4-politicas-macroeconomicas-respuestas-a-la-crisis-del-estal",
+        "text": "4. Políticas Macroeconómicas: Respuestas a la Crisis del estallido + COVID-19"
+      },
+      {
+        "href": "#41-politica-fiscal",
+        "text": "4.1. Política Fiscal"
+      },
+      {
+        "href": "#42-politica-monetaria",
+        "text": "4.2. Política Monetaria"
+      },
+      {
+        "href": "#5-reflexion-final",
+        "text": "5. Reflexión Final"
+      }
+    ],
+    "title": "Nota de estudio 1 · Introducción a la macroeconomía",
+    "page": "macro1/notas/nota-01-introduccion.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#1-introduccion-crisis-y-recuperacion-en-la-vida-de-los-herma",
+        "visible": true
+      },
+      {
+        "fragment": "#2-que-estudia-la-macroeconomia",
+        "visible": true
+      },
+      {
+        "fragment": "#2-1-como-leer-una-cifra",
+        "visible": true
+      },
+      {
+        "fragment": "#2-1-1-pasaporte-dato",
+        "visible": true
+      },
+      {
+        "fragment": "#2-1-2-flujo-stock",
+        "visible": true
+      },
+      {
+        "fragment": "#3-variables-clave-en-macroeconomia",
+        "visible": true
+      },
+      {
+        "fragment": "#31-producto-interno-bruto-pib",
+        "visible": true
+      },
+      {
+        "fragment": "#32-inflacion",
+        "visible": true
+      },
+      {
+        "fragment": "#33-desempleo",
+        "visible": true
+      },
+      {
+        "fragment": "#34-el-saldo-en-cuenta-corriente-superavits-y-deficits",
+        "visible": true
+      },
+      {
+        "fragment": "#35-los-aranceles-de-estados-unidos-de-2025-y-sus-efectos-sob",
+        "visible": true
+      },
+      {
+        "fragment": "#4-politicas-macroeconomicas-respuestas-a-la-crisis-del-estal",
+        "visible": true
+      },
+      {
+        "fragment": "#41-politica-fiscal",
+        "visible": true
+      },
+      {
+        "fragment": "#42-politica-monetaria",
+        "visible": true
+      },
+      {
+        "fragment": "#5-reflexion-final",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de estudio 2 · Fuentes de datos macroeconómicos",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-02-fuentes-datos.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#importancia-de-la-medicion-macroeconomica",
+        "text": "Importancia de la Medición Macroeconómica"
+      },
+      {
+        "href": "#principales-variables-macroeconomicas-y-su-medicion",
+        "text": "Principales variables macroeconómicas y su medición"
+      },
+      {
+        "href": "#fuentes-de-datos-macroeconomicos",
+        "text": "Fuentes de datos macroeconómicos"
+      },
+      {
+        "href": "#i-el-banco-central-de-chile-y-su-plataforma-de-informacion-e",
+        "text": "I. El Banco Central de Chile y su Plataforma de Información Económica"
+      },
+      {
+        "href": "#1-introduccion",
+        "text": "1. Introducción"
+      },
+      {
+        "href": "#2-navegacion-en-la-pagina-web-del-banco-central-de-chile",
+        "text": "2. Navegación en la Página Web del Banco Central de Chile"
+      },
+      {
+        "href": "#3-base-de-datos-estadisticos-del-banco-central-de-chile",
+        "text": "3. Base de Datos Estadísticos del Banco Central de Chile"
+      },
+      {
+        "href": "#4-como-descargar-datos-en-formato-excel",
+        "text": "4. Cómo Descargar Datos en Formato Excel"
+      },
+      {
+        "href": "#ii-plataforma-del-instituto-nacional-de-estadisticas-de-chil",
+        "text": "II. Plataforma del Instituto Nacional de Estadísticas de Chile (INE)"
+      },
+      {
+        "href": "#1-introduccion-al-ine-y-su-rol-en-la-economia-chilena",
+        "text": "1. Introducción al INE y su Rol en la Economía Chilena"
+      },
+      {
+        "href": "#2-guia-de-navegacion-en-la-pagina-web-del-ine",
+        "text": "2. Guía de Navegación en la Página Web del INE"
+      },
+      {
+        "href": "#3-publicaciones-periodicas-clave-del-ine",
+        "text": "3. Publicaciones Periódicas Clave del INE"
+      },
+      {
+        "href": "#4-acceso-a-datos-en-la-pestana-estadisticas",
+        "text": "4. Acceso a Datos en la Pestaña \"Estadísticas\""
+      },
+      {
+        "href": "#5-como-descargar-datos-en-formato-excel",
+        "text": "5. Cómo Descargar Datos en Formato Excel"
+      },
+      {
+        "href": "#6-como-organizar-los-datos-en-excel",
+        "text": "6. Cómo Organizar los Datos en Excel"
+      },
+      {
+        "href": "#iii-la-base-de-datos-del-banco-mundial",
+        "text": "III. La Base de Datos del Banco Mundial"
+      },
+      {
+        "href": "#1-que-tipo-de-informacion-se-encuentra-en-world-bank-data",
+        "text": "1. ¿Qué tipo de información se encuentra en World Bank Data?"
+      },
+      {
+        "href": "#2-organizacion-de-los-datos-en-world-bank-data",
+        "text": "2. Organización de los Datos en World Bank Data"
+      },
+      {
+        "href": "#3-comparabilidad-de-los-datos-y-consideraciones-importantes",
+        "text": "3. Comparabilidad de los Datos y Consideraciones Importantes"
+      },
+      {
+        "href": "#4-como-descargar-datos-en-formato-excel-desde-world-bank-dat",
+        "text": "4. Cómo Descargar Datos en Formato Excel desde World Bank Data"
+      },
+      {
+        "href": "#5-organizacion-de-los-datos-en-excel",
+        "text": "5. Organización de los Datos en Excel"
+      },
+      {
+        "href": "https://data.worldbank.org",
+        "text": "https://data.worldbank.org"
+      },
+      {
+        "href": "https://www.bcentral.cl",
+        "text": "www.bcentral.cl"
+      },
+      {
+        "href": "https://si3.bcentral.cl/siete",
+        "text": "Acceder a la Base de Datos Estadísticos"
+      },
+      {
+        "href": "https://si3.bcentral.cl/",
+        "text": "https://si3.bcentral.cl/"
+      },
+      {
+        "href": "https://www.ine.cl",
+        "text": "https://www.ine.cl"
+      },
+      {
+        "href": "https://www.ine.cl",
+        "text": "https://www.ine.cl"
+      },
+      {
+        "href": "https://data.worldbank.org",
+        "text": "https://data.worldbank.org"
+      },
+      {
+        "href": "https://data.worldbank.org/country/chile",
+        "text": "https://data.worldbank.org/country/chile"
+      },
+      {
+        "href": "https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD",
+        "text": "https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD"
+      },
+      {
+        "href": "https://data.worldbank.org/topic/economy-and-growth",
+        "text": "https://data.worldbank.org/topic/economy-and-growth"
+      },
+      {
+        "href": "https://data.worldbank.org",
+        "text": "https://data.worldbank.org"
+      },
+      {
+        "href": "https://data.worldbank.org/indicator",
+        "text": "https://data.worldbank.org/indicator"
+      }
+    ],
+    "title": "Nota de estudio 2 · Fuentes de datos macroeconómicos",
+    "page": "macro1/notas/nota-02-fuentes-datos.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#importancia-de-la-medicion-macroeconomica",
+        "visible": true
+      },
+      {
+        "fragment": "#principales-variables-macroeconomicas-y-su-medicion",
+        "visible": true
+      },
+      {
+        "fragment": "#fuentes-de-datos-macroeconomicos",
+        "visible": true
+      },
+      {
+        "fragment": "#i-el-banco-central-de-chile-y-su-plataforma-de-informacion-e",
+        "visible": true
+      },
+      {
+        "fragment": "#1-introduccion",
+        "visible": true
+      },
+      {
+        "fragment": "#2-navegacion-en-la-pagina-web-del-banco-central-de-chile",
+        "visible": true
+      },
+      {
+        "fragment": "#3-base-de-datos-estadisticos-del-banco-central-de-chile",
+        "visible": true
+      },
+      {
+        "fragment": "#4-como-descargar-datos-en-formato-excel",
+        "visible": true
+      },
+      {
+        "fragment": "#ii-plataforma-del-instituto-nacional-de-estadisticas-de-chil",
+        "visible": true
+      },
+      {
+        "fragment": "#1-introduccion-al-ine-y-su-rol-en-la-economia-chilena",
+        "visible": true
+      },
+      {
+        "fragment": "#2-guia-de-navegacion-en-la-pagina-web-del-ine",
+        "visible": true
+      },
+      {
+        "fragment": "#3-publicaciones-periodicas-clave-del-ine",
+        "visible": true
+      },
+      {
+        "fragment": "#4-acceso-a-datos-en-la-pestana-estadisticas",
+        "visible": true
+      },
+      {
+        "fragment": "#5-como-descargar-datos-en-formato-excel",
+        "visible": true
+      },
+      {
+        "fragment": "#6-como-organizar-los-datos-en-excel",
+        "visible": true
+      },
+      {
+        "fragment": "#iii-la-base-de-datos-del-banco-mundial",
+        "visible": true
+      },
+      {
+        "fragment": "#1-que-tipo-de-informacion-se-encuentra-en-world-bank-data",
+        "visible": true
+      },
+      {
+        "fragment": "#2-organizacion-de-los-datos-en-world-bank-data",
+        "visible": true
+      },
+      {
+        "fragment": "#3-comparabilidad-de-los-datos-y-consideraciones-importantes",
+        "visible": true
+      },
+      {
+        "fragment": "#4-como-descargar-datos-en-formato-excel-desde-world-bank-dat",
+        "visible": true
+      },
+      {
+        "fragment": "#5-organizacion-de-los-datos-en-excel",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "La Medición de las Variables Macroeconómicas — Análisis del PIB",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-03-medicion-pib.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#1-definicion-y-componentes-del-pib",
+        "text": "1. Definición y Componentes del PIB"
+      },
+      {
+        "href": "#1-1-el-pib-nominal-vs-el-pib-real",
+        "text": "1.1. El PIB Nominal vs. el PIB Real"
+      },
+      {
+        "href": "#1-2-el-pib-como-suma-de-gastos-pib-c-i-g-x-m",
+        "text": "1.2. El PIB como suma de gastos: (PIB = C + I + G + X - M)"
+      },
+      {
+        "href": "#1-3-el-pib-como-suma-de-valores-agregados",
+        "text": "1.3. El PIB como suma de valores agregados"
+      },
+      {
+        "href": "#1-4-el-pib-como-suma-de-los-ingresos-metodo-del-ingreso",
+        "text": "1.4. El PIB como suma de los ingresos (método del ingreso)"
+      },
+      {
+        "href": "#2-del-pib-al-producto-nacional-bruto-pnb",
+        "text": "2. Del PIB al Producto Nacional Bruto (PNB)"
+      },
+      {
+        "href": "#3-el-pib-como-indicador-de-bienestar",
+        "text": "3. El PIB como Indicador de Bienestar"
+      },
+      {
+        "href": "#4-variacion-interanual-del-pib-real-o-crecimiento-concep",
+        "text": "4. Variación Interanual del PIB Real (o “Crecimiento”): Concepto y Ejemplos con Datos de Chile"
+      },
+      {
+        "href": "#4-1-que-es-la-variacion-interanual-del-pib-real",
+        "text": "4.1. ¿Qué es la variación interanual del PIB real?"
+      },
+      {
+        "href": "#4-2-ventajas-de-medir-la-variacion-interanual",
+        "text": "4.2. Ventajas de medir la variación interanual"
+      },
+      {
+        "href": "#4-3-aplicacion-practica-en-chile",
+        "text": "4.3. Aplicación Práctica en Chile"
+      },
+      {
+        "href": "https://si3.bcentral.cl/estadisticas/Principal1/enlaces/informes/BOLETIN/pdf/BE20260407.pdf",
+        "text": "Banco Central de Chile, Boletín Estadístico del 7 de abril de 2026, cuadro 2.28"
+      },
+      {
+        "href": "https://www.worldhappiness.report/ed/2025/",
+        "text": "World Happiness Report 2025"
+      },
+      {
+        "href": "https://data.worldhappiness.report/map",
+        "text": "panel de datos descargable"
+      },
+      {
+        "href": "https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD",
+        "text": "Banco Mundial"
+      }
+    ],
+    "title": "Nota de Estudio 3 · La Medición de las Variables Macroeconómicas — Análisis del PIB",
+    "page": "macro1/notas/nota-03-medicion-pib.html",
+    "anchors": [
+      {
+        "fragment": "",
+        "visible": false
+      },
+      {
+        "fragment": "#1-definicion-y-componentes-del-pib",
+        "visible": true
+      },
+      {
+        "fragment": "#1-1-el-pib-nominal-vs-el-pib-real",
+        "visible": true
+      },
+      {
+        "fragment": "#1-2-el-pib-como-suma-de-gastos-pib-c-i-g-x-m",
+        "visible": true
+      },
+      {
+        "fragment": "#1-3-el-pib-como-suma-de-valores-agregados",
+        "visible": true
+      },
+      {
+        "fragment": "#1-4-el-pib-como-suma-de-los-ingresos-metodo-del-ingreso",
+        "visible": true
+      },
+      {
+        "fragment": "#2-del-pib-al-producto-nacional-bruto-pnb",
+        "visible": true
+      },
+      {
+        "fragment": "#3-el-pib-como-indicador-de-bienestar",
+        "visible": true
+      },
+      {
+        "fragment": "#3-el-pib-como-indicador-de-bienestar",
+        "visible": true
+      },
+      {
+        "fragment": "#4-1-que-es-la-variacion-interanual-del-pib-real",
+        "visible": true
+      },
+      {
+        "fragment": "#4-2-ventajas-de-medir-la-variacion-interanual",
+        "visible": true
+      },
+      {
+        "fragment": "#4-3-aplicacion-practica-en-chile",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "La Medición de las Variables Macroeconómicas — La Inflación",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-04-medicion-inflacion.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "#1-importancia-de-medir-el-nivel-de-precios-en-la-economi",
+        "text": "1. Importancia de Medir el Nivel de Precios en la Economía"
+      },
+      {
+        "href": "#2-medicion-del-nivel-de-precios-canasta-e-ipc",
+        "text": "2. Medición del Nivel de Precios: Canasta e IPC"
+      },
+      {
+        "href": "#la-canasta-del-ipc",
+        "text": "La Canasta del IPC"
+      },
+      {
+        "href": "#divisiones-del-ipc",
+        "text": "Divisiones del IPC"
+      },
+      {
+        "href": "#3-calculo-de-la-inflacion-a-partir-del-ipc",
+        "text": "3. Cálculo de la Inflación a partir del IPC"
+      },
+      {
+        "href": "#4-otra-medida-de-inflacion-basada-en-el-deflactor-del-pi",
+        "text": "4. Otra medida de Inflación: Basada en el Deflactor del PIB"
+      },
+      {
+        "href": "#5-ejemplo-ilustrativo-de-medicion-de-inflacion",
+        "text": "5. Ejemplo Ilustrativo de Medición de Inflación."
+      },
+      {
+        "href": "#paso-1-valor-de-la-canasta-en-cada-ano",
+        "text": "Paso 1: Valor de la canasta en cada año"
+      },
+      {
+        "href": "#paso-2-calculo-del-ipc",
+        "text": "Paso 2: Cálculo del IPC"
+      },
+      {
+        "href": "#paso-3-inflacion",
+        "text": "Paso 3: Inflación"
+      },
+      {
+        "href": "#conclusion",
+        "text": "Conclusión"
+      }
+    ],
+    "title": "Nota de Estudio 4 · La Medición de las Variables Macroeconómicas — La Inflación",
+    "page": "macro1/notas/nota-04-medicion-inflacion.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      },
+      {
+        "expected": "#1-importancia-de-medir-el-nivel-de-precios-en-la-economi",
+        "fragment": "#1-importancia-de-medir-el-nivel-de-precios-en-la-economi",
+        "visible": true
+      },
+      {
+        "expected": "#2-medicion-del-nivel-de-precios-canasta-e-ipc",
+        "fragment": "#2-medicion-del-nivel-de-precios-canasta-e-ipc",
+        "visible": true
+      },
+      {
+        "expected": "#la-canasta-del-ipc",
+        "fragment": "#la-canasta-del-ipc",
+        "visible": true
+      },
+      {
+        "expected": "#divisiones-del-ipc",
+        "fragment": "#divisiones-del-ipc",
+        "visible": true
+      },
+      {
+        "expected": "#3-calculo-de-la-inflacion-a-partir-del-ipc",
+        "fragment": "#3-calculo-de-la-inflacion-a-partir-del-ipc",
+        "visible": true
+      },
+      {
+        "expected": "#4-otra-medida-de-inflacion-basada-en-el-deflactor-del-pi",
+        "fragment": "#4-otra-medida-de-inflacion-basada-en-el-deflactor-del-pi",
+        "visible": true
+      },
+      {
+        "expected": "#5-ejemplo-ilustrativo-de-medicion-de-inflacion",
+        "fragment": "#5-ejemplo-ilustrativo-de-medicion-de-inflacion",
+        "visible": true
+      },
+      {
+        "expected": "#paso-1-valor-de-la-canasta-en-cada-ano",
+        "fragment": "#paso-1-valor-de-la-canasta-en-cada-ano",
+        "visible": true
+      },
+      {
+        "expected": "#paso-2-calculo-del-ipc",
+        "fragment": "#paso-2-calculo-del-ipc",
+        "visible": true
+      },
+      {
+        "expected": "#paso-3-inflacion",
+        "fragment": "#paso-3-inflacion",
+        "visible": true
+      },
+      {
+        "expected": "#conclusion",
+        "fragment": "#conclusion",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-05-demanda-agregada.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b2-mercado-bienes.html",
+        "text": "Nota de estudio 4 · El mercado de bienes"
+      },
+      {
+        "href": "#1-demanda-agregada-componentes-y-descripcion-detallada",
+        "text": "1. Demanda Agregada: Componentes y Descripción Detallada"
+      },
+      {
+        "href": "#a-consumo-c",
+        "text": "a. Consumo (C)"
+      },
+      {
+        "href": "#b-inversion-i",
+        "text": "b. Inversión (I)"
+      },
+      {
+        "href": "#c-gasto-publico-g",
+        "text": "c. Gasto Público (G)"
+      },
+      {
+        "href": "#d-exportaciones-netas-x-m",
+        "text": "d. Exportaciones Netas (X - M)"
+      },
+      {
+        "href": "#economia-cerrada-simplificacion-del-analisis",
+        "text": "Economía Cerrada: Simplificación del Análisis"
+      },
+      {
+        "href": "#2-ecuacion-de-conducta-de-los-consumidores",
+        "text": "2. Ecuación de Conducta de los Consumidores"
+      },
+      {
+        "href": "#3-interpretacion-de-cambios-en-c0-y-c1",
+        "text": "3. Interpretación de Cambios en c0 y c1"
+      },
+      {
+        "href": "#4-grafica-de-la-funcion-de-consumo",
+        "text": "4. Gráfica de la Función de Consumo"
+      },
+      {
+        "href": "#caso1-c0-aumenta-a-200",
+        "text": "Caso1: c0 aumenta a 200"
+      },
+      {
+        "href": "#caso2-c1-baja-a-0-6",
+        "text": "Caso2: c1 baja a 0,6"
+      },
+      {
+        "href": "#5-la-demanda-agregada-y-su-representacion-grafica",
+        "text": "5. La Demanda Agregada y su Representación Gráfica"
+      },
+      {
+        "href": "#6-equilibrio-en-el-mercado-de-bienes",
+        "text": "6. Equilibrio en el Mercado de Bienes"
+      },
+      {
+        "href": "#7-representacion-grafica-del-equilibrio-en-el-mercado-de",
+        "text": "7. Representación Gráfica del Equilibrio en el Mercado de Bienes"
+      },
+      {
+        "href": "#ejercicio",
+        "text": "Ejercicio:"
+      }
+    ],
+    "title": "Nota de Estudio 5 · Demanda Agregada, Ecuación de Conducta de los Consumidores y Equilibrio en el Mercado de Bienes en una Economía Cerrada",
+    "page": "macro1/notas/nota-05-demanda-agregada.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      },
+      {
+        "expected": "#1-demanda-agregada-componentes-y-descripcion-detallada",
+        "fragment": "#1-demanda-agregada-componentes-y-descripcion-detallada",
+        "visible": true
+      },
+      {
+        "expected": "#a-consumo-c",
+        "fragment": "#a-consumo-c",
+        "visible": true
+      },
+      {
+        "expected": "#b-inversion-i",
+        "fragment": "#b-inversion-i",
+        "visible": true
+      },
+      {
+        "expected": "#c-gasto-publico-g",
+        "fragment": "#c-gasto-publico-g",
+        "visible": true
+      },
+      {
+        "expected": "#d-exportaciones-netas-x-m",
+        "fragment": "#d-exportaciones-netas-x-m",
+        "visible": true
+      },
+      {
+        "expected": "#economia-cerrada-simplificacion-del-analisis",
+        "fragment": "#economia-cerrada-simplificacion-del-analisis",
+        "visible": true
+      },
+      {
+        "expected": "#2-ecuacion-de-conducta-de-los-consumidores",
+        "fragment": "#2-ecuacion-de-conducta-de-los-consumidores",
+        "visible": true
+      },
+      {
+        "expected": "#3-interpretacion-de-cambios-en-c0-y-c1",
+        "fragment": "#3-interpretacion-de-cambios-en-c0-y-c1",
+        "visible": true
+      },
+      {
+        "expected": "#4-grafica-de-la-funcion-de-consumo",
+        "fragment": "#4-grafica-de-la-funcion-de-consumo",
+        "visible": true
+      },
+      {
+        "expected": "#caso1-c0-aumenta-a-200",
+        "fragment": "#caso1-c0-aumenta-a-200",
+        "visible": true
+      },
+      {
+        "expected": "#caso2-c1-baja-a-0-6",
+        "fragment": "#caso2-c1-baja-a-0-6",
+        "visible": true
+      },
+      {
+        "expected": "#5-la-demanda-agregada-y-su-representacion-grafica",
+        "fragment": "#5-la-demanda-agregada-y-su-representacion-grafica",
+        "visible": true
+      },
+      {
+        "expected": "#6-equilibrio-en-el-mercado-de-bienes",
+        "fragment": "#6-equilibrio-en-el-mercado-de-bienes",
+        "visible": true
+      },
+      {
+        "expected": "#7-representacion-grafica-del-equilibrio-en-el-mercado-de",
+        "fragment": "#7-representacion-grafica-del-equilibrio-en-el-mercado-de",
+        "visible": true
+      },
+      {
+        "expected": "#ejercicio",
+        "fragment": "#ejercicio",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver al laboratorio"
+      },
+      {
+        "href": "nota-06-mercado-dinero.pdf",
+        "text": "Descargar PDF"
+      },
+      {
+        "href": "nota-b3-dinero-alumno.html",
+        "text": "Nota de estudio 5 · Dinero, bonos y tasa de interés"
+      },
+      {
+        "href": "#1-definiciones-clave",
+        "text": "1. Definiciones Clave"
+      },
+      {
+        "href": "#2-la-demanda-de-dinero",
+        "text": "2. La Demanda de Dinero"
+      },
+      {
+        "href": "#2-1-ecuacion-de-la-demanda-de-dinero",
+        "text": "2.1. Ecuación de la Demanda de Dinero:"
+      },
+      {
+        "href": "#ejemplo-de-la-relacion-entre-la-demanda-de-dinero-tipo-d",
+        "text": "Ejemplo de la relación entre la demanda de dinero, tipo de interés y renta nominal:"
+      },
+      {
+        "href": "#3-idea-central-del-analisis",
+        "text": "3. Idea Central del Análisis:"
+      },
+      {
+        "href": "#3-1-la-determinacion-del-tipo-de-interes-caso-i",
+        "text": "3.1. La Determinación del Tipo de Interés: Caso I"
+      },
+      {
+        "href": "#3-2-la-determinacion-del-tipo-de-interes-cuando-tenemos",
+        "text": "3.2. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero solo en forma de depósitos a la vista: Caso II"
+      },
+      {
+        "href": "#3-3-la-determinacion-del-tipo-de-interes-cuando-tenemos",
+        "text": "3.3. La Determinación del Tipo de Interés cuando tenemos bancos comerciales y el público desea tener su dinero en una mezcla de efectivo y depósitos a la vista: Caso III"
+      },
+      {
+        "href": "#4-impacto-de-las-politicas-del-banco-central-de-chile",
+        "text": "4. Impacto de las políticas del Banco Central de Chile:"
+      },
+      {
+        "href": "#5-la-trampa-de-la-liquidez",
+        "text": "5. La Trampa de la Liquidez"
+      },
+      {
+        "href": "#ejemplo-de-la-trampa-de-la-liquidez",
+        "text": "Ejemplo de la Trampa de la Liquidez:"
+      },
+      {
+        "href": "#implicaciones-de-la-trampa-de-liquidez",
+        "text": "Implicaciones de la trampa de liquidez"
+      },
+      {
+        "href": "#6-importancia-para-un-egresado-de-ingenieria-comercial",
+        "text": "6. Importancia para un egresado de Ingeniería Comercial"
+      },
+      {
+        "href": "#7-conclusion",
+        "text": "7. Conclusión"
+      }
+    ],
+    "title": "Nota de Estudio 6 · Dinero, Bonos, Demanda y Oferta de Dinero en los Mercados Financieros",
+    "page": "macro1/notas/nota-06-mercado-dinero.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      },
+      {
+        "expected": "#1-definiciones-clave",
+        "fragment": "#1-definiciones-clave",
+        "visible": true
+      },
+      {
+        "expected": "#2-la-demanda-de-dinero",
+        "fragment": "#2-la-demanda-de-dinero",
+        "visible": true
+      },
+      {
+        "expected": "#2-1-ecuacion-de-la-demanda-de-dinero",
+        "fragment": "#2-1-ecuacion-de-la-demanda-de-dinero",
+        "visible": true
+      },
+      {
+        "expected": "#ejemplo-de-la-relacion-entre-la-demanda-de-dinero-tipo-d",
+        "fragment": "#ejemplo-de-la-relacion-entre-la-demanda-de-dinero-tipo-d",
+        "visible": true
+      },
+      {
+        "expected": "#3-idea-central-del-analisis",
+        "fragment": "#3-idea-central-del-analisis",
+        "visible": true
+      },
+      {
+        "expected": "#3-1-la-determinacion-del-tipo-de-interes-caso-i",
+        "fragment": "#3-1-la-determinacion-del-tipo-de-interes-caso-i",
+        "visible": true
+      },
+      {
+        "expected": "#3-2-la-determinacion-del-tipo-de-interes-cuando-tenemos",
+        "fragment": "#3-1-la-determinacion-del-tipo-de-interes-caso-i",
+        "visible": true
+      },
+      {
+        "expected": "#3-3-la-determinacion-del-tipo-de-interes-cuando-tenemos",
+        "fragment": "#3-1-la-determinacion-del-tipo-de-interes-caso-i",
+        "visible": true
+      },
+      {
+        "expected": "#4-impacto-de-las-politicas-del-banco-central-de-chile",
+        "fragment": "#4-impacto-de-las-politicas-del-banco-central-de-chile",
+        "visible": true
+      },
+      {
+        "expected": "#5-la-trampa-de-la-liquidez",
+        "fragment": "#5-la-trampa-de-la-liquidez",
+        "visible": true
+      },
+      {
+        "expected": "#ejemplo-de-la-trampa-de-la-liquidez",
+        "fragment": "#ejemplo-de-la-trampa-de-la-liquidez",
+        "visible": true
+      },
+      {
+        "expected": "#implicaciones-de-la-trampa-de-liquidez",
+        "fragment": "#implicaciones-de-la-trampa-de-liquidez",
+        "visible": true
+      },
+      {
+        "expected": "#6-importancia-para-un-egresado-de-ingenieria-comercial",
+        "fragment": "#6-importancia-para-un-egresado-de-ingenieria-comercial",
+        "visible": true
+      },
+      {
+        "expected": "#7-conclusion",
+        "fragment": "#7-conclusion",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de\nestudio 3 · Medición de la actividad económica",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Bloque1_alumno.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "Bloque1_alumno.pdf",
+        "text": "Descargar esta nota en PDF (1.6 MB)"
+      }
+    ],
+    "title": "Nota de estudio 3 · Medición de la actividad económica",
+    "page": "macro1/notas/nota-b1-medicion.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de estudio 4 · El\nmercado de bienes",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Nota_estudio4_mercado_bienes.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "Nota_estudio4_mercado_bienes.pdf",
+        "text": "Descargar esta nota en PDF (0,7 MB)"
+      }
+    ],
+    "title": "Nota de estudio 4 · El mercado de bienes",
+    "page": "macro1/notas/nota-b2-mercado-bienes.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de\nestudio 5 · Dinero, bonos y tasa de interés",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Nota5_dinero_alumno.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "https://youtu.be/SGeNUsRHLjA",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "Nota5_dinero_alumno.pdf",
+        "text": "Descargar esta nota en PDF (1,3 MB)"
+      }
+    ],
+    "title": "Nota de estudio 5 · Dinero, bonos y tasa de interés",
+    "page": "macro1/notas/nota-b3-dinero-alumno.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de estudio 6 ·\nInversión y curva IS",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Nota6_inversion_IS_alumno.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "https://youtu.be/c3YxmeOxUCs",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "https://youtu.be/hPC0gs_uT40",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "Nota6_inversion_IS_alumno.pdf",
+        "text": "Descargar esta nota en PDF (1,3 MB)"
+      }
+    ],
+    "title": "Nota de estudio 6 · Inversión y curva IS",
+    "page": "macro1/notas/nota-b4a-inversion-is-alumno.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota de estudio 7\n· IS-LM en economía cerrada",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Nota7_ISLM_alumno.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "https://youtu.be/vhwXMFaYm2c",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "https://youtu.be/095Y6tk4L2E",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "Nota7_ISLM_alumno.pdf",
+        "text": "Descargar esta nota en PDF (1,3 MB)"
+      }
+    ],
+    "title": "Nota de estudio 7 · IS-LM en economía cerrada",
+    "page": "macro1/notas/nota-b4b-islm-alumno.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  },
+  {
+    "brokenImages": [],
+    "h1": "Nota\nde estudio 8 · Desequilibrios, efecto desplazamiento y efecto\nacelerador",
+    "links": [
+      {
+        "href": "#contenido",
+        "text": "Saltar al contenido"
+      },
+      {
+        "href": "../index.html#route",
+        "text": "← Volver a la ruta del curso"
+      },
+      {
+        "href": "Nota8_desequilibrios_alumno.pdf",
+        "text": "Descargar en PDF"
+      },
+      {
+        "href": "https://youtu.be/WUEnDFlqpQ4",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "https://youtu.be/ruJjs5YvPUI",
+        "text": "abrir en YouTube"
+      },
+      {
+        "href": "Nota8_desequilibrios_alumno.pdf",
+        "text": "Descargar esta nota en PDF (1,3 MB)"
+      }
+    ],
+    "title": "Nota de estudio 8 · Desequilibrios, efecto desplazamiento y efecto acelerador",
+    "page": "macro1/notas/nota-b4c-desequilibrios-alumno.html",
+    "anchors": [
+      {
+        "expected": "#contenido",
+        "fragment": "#contenido",
+        "visible": true
+      }
+    ],
+    "errors": []
+  }
+]

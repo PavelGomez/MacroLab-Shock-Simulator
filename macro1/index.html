@@ -2488,6 +2488,30 @@ function validateClassFields(names){
 }
 // Sólo se publica un enlace cuando el recurso existe dentro del artefacto.
 // Las notas se abren en otra pestaña para conservar el avance de la clase.
+const PUBLIC_NOTE_PDFS={
+  "cronica-clase1-chile-2026.html": "cronica-clase1.pdf",
+  "cronica-clase2-chile-2026.html": "cronica-clase2.pdf",
+  "cronica-clase3-chile-2026.html": "cronica-clase3.pdf",
+  "cronica-clase4-chile-2026.html": "cronica-clase4.pdf",
+  "cronica-clase5-chile-2026.html": "cronica-clase5.pdf",
+  "cronica-clase6-chile-2026.html": "cronica-clase6.pdf",
+  "cronica-clase7-chile-2026.html": "cronica-clase7.pdf",
+  "ficha-escucha-cpc-clase1.html": "ficha-escucha-cpc.pdf",
+  "guia-del-curso-2026-2.html": "guia-del-curso-2026-2.pdf",
+  "kit-clase0-estudiante.html": "kit-clase0-estudiante.pdf",
+  "nota-01-introduccion.html": "nota-01-introduccion.pdf",
+  "nota-02-fuentes-datos.html": "nota-02-fuentes-datos.pdf",
+  "nota-03-medicion-pib.html": "nota-03-medicion-pib.pdf",
+  "nota-04-medicion-inflacion.html": "nota-04-medicion-inflacion.pdf",
+  "nota-05-demanda-agregada.html": "nota-05-demanda-agregada.pdf",
+  "nota-06-mercado-dinero.html": "nota-06-mercado-dinero.pdf",
+  "nota-b1-medicion.html": "Bloque1_alumno.pdf",
+  "nota-b2-mercado-bienes.html": "Nota_estudio4_mercado_bienes.pdf",
+  "nota-b3-dinero-alumno.html": "Nota5_dinero_alumno.pdf",
+  "nota-b4a-inversion-is-alumno.html": "Nota6_inversion_IS_alumno.pdf",
+  "nota-b4b-islm-alumno.html": "Nota7_ISLM_alumno.pdf",
+  "nota-b4c-desequilibrios-alumno.html": "Nota8_desequilibrios_alumno.pdf"
+};
 function renderClassSource(source){
   const item=typeof source==="string"?{label:source}:(source||{});
   const label=escapeText(item.label??"");
@@ -2497,7 +2521,9 @@ function renderClassSource(source){
   const url=/^(?:[a-z]+:|\/|\.\.?\/|#)/i.test(item.href)?item.href:NOTES_BASE+item.href;
   const target=item.newTab?' target="_blank" rel="noopener"':"";
   const newTabHint=item.newTab?` <span class="sr-only">(abre en una pestaña nueva)</span>`:"";
-  return `<li><a href="${escapeText(url)}"${target}>${label}${newTabHint}</a>${location}</li>`;
+  const pdf=item.href.endsWith(".pdf")?url:PUBLIC_NOTE_PDFS[item.href]?NOTES_BASE+PUBLIC_NOTE_PDFS[item.href]:null;
+  const actions=pdf?` <span class="resource-actions">· <a href="${escapeText(url)}"${target}>${item.href.endsWith(".pdf")?"Abrir PDF":"Leer en línea"}${newTabHint}</a> · <a href="${escapeText(pdf)}" download aria-label="Descargar PDF: ${label}">Descargar PDF</a></span>`:"";
+  return `<li><a href="${escapeText(url)}"${target}>${label}${newTabHint}</a>${location}${actions}</li>`;
 }
 const COURSE_SEGMENTS=[
   {label:"tramo inicial",range:"Clases 1–3",stops:[
@@ -2652,7 +2678,6 @@ function renderClassWorkbench(moveFocus=false){
     if(host.querySelector(LOOP_GATE_SELECTOR.v2Pred))syncLaunchGate("v2Pred");
     if(host.querySelector("#diagEvidence"))syncDiagnosisEvidence();
   }
-  host.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener("click",event=>{event.preventDefault();activateTab(link.getAttribute("href").slice(1),{focus:false})}));
   host.querySelectorAll("[data-class-action]").forEach(btn=>btn.addEventListener("click",event=>handleClassAction(event.currentTarget.dataset.classAction)));
   host.querySelectorAll("[data-loop-action]").forEach(btn=>btn.addEventListener("click",event=>handleLoopAction(event.currentTarget.dataset.loopAction)));
   host.querySelector("[data-open-lab]")?.addEventListener("click",event=>activateTab(event.currentTarget.dataset.openLab,{focus:false}));
@@ -4033,7 +4058,9 @@ function initGuides(){
     });
   });
 }
-function activateTab(id,{focus=true}={}){
+function activateTab(id,{focus=true,historyMode="push"}={}){
+  // Unknown fragments (e.g. the skip link) must never hide every panel.
+  if(!document.getElementById("tab-"+id)?.matches("#tabs [role=tab]"))return;
   document.querySelectorAll('#tabs [role="tab"]').forEach(tab=>{const selected=tab.dataset.tab===id;tab.setAttribute("aria-selected",selected);tab.tabIndex=selected?0:-1});
   document.querySelectorAll('main > .panel[role="tabpanel"]').forEach(panel=>panel.hidden=panel.id!==id);
   const orientation=document.querySelector(".orientation");
@@ -4046,9 +4073,31 @@ function activateTab(id,{focus=true}={}){
   const tab=document.getElementById("tab-"+id);if(focus)tab?.focus();
   tab?.scrollIntoView({block:"nearest",inline:"nearest"});
   if(id==="cruz")calcCross();if(id==="din")drawMoney();if(id==="lm"){drawLm();drawTpmStory()}if(id==="is")drawIs();if(id==="islm")drawIslm();if(id==="lab"){calcLabor();calcWsPs()}
-  history.replaceState(null,"","#"+id);
+  if(historyMode!=="none"&&location.hash!=="#"+id){
+    history[historyMode==="replace"?"replaceState":"pushState"](null,"","#"+id);
+  }
 }
 function initTabs(){
+  // Delegation also covers preparation links regenerated on each class change.
+  document.addEventListener("click",event=>{
+    const link=event.target.closest?.('a[href]');
+    if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.hasAttribute("download")||(link.target&&link.target!=="_self"))return;
+    const url=new URL(link.href,location.href);
+    if(url.origin!==location.origin||url.pathname!==location.pathname||url.search!==location.search)return;
+    let id;try{id=decodeURIComponent(url.hash.slice(1))}catch{return}
+    const panel=document.getElementById(id)?.closest('main > .panel[role="tabpanel"]');
+    if(!panel)return;
+    event.preventDefault();
+    activateTab(panel.id,{focus:false});
+    const destination=document.getElementById(id);
+    if(id!==panel.id)history.replaceState(null,"",url.hash);
+    destination.setAttribute("tabindex","-1");destination.focus({preventScroll:true});destination.scrollIntoView({block:"start"});
+  });
+  window.addEventListener("hashchange",()=>{
+    let id;try{id=decodeURIComponent(location.hash.slice(1))}catch{return}
+    const panel=document.getElementById(id)?.closest('main > .panel[role="tabpanel"]');
+    if(panel)activateTab(panel.id,{focus:false,historyMode:"none"});
+  });
   const tabs=[...document.querySelectorAll('#tabs [role="tab"]')];
   tabs.forEach((tab,index)=>{
     tab.addEventListener("click",()=>activateTab(tab.dataset.tab,{focus:false}));
@@ -5265,7 +5314,8 @@ function init(){
     const O=num("inverseEmployed"),u=num("inverseUnemployment"),ok=Math.abs(O-7149840)<=1&&Math.abs(u-4.67)<.02,el=document.getElementById("inverseFeedback");
     el.className=ok?"notice ok":"notice warn";el.textContent=ok?"Correcto: 7.149.840 personas ocupadas y un desempleo de 4,67 %.":inverseMessage(O,u);
   });
-  const requested=location.hash.slice(1);if(["route","med","cta","cruz","din","lm","is","islm","lab"].includes(requested))activateTab(requested,{focus:false});else activateTab("route",{focus:false});
+  const requested=location.hash.slice(1),requestedPanel=document.getElementById(requested)?.closest('main > .panel[role="tabpanel"]');
+  activateTab(requestedPanel?.id||"route",{focus:false,historyMode:location.hash?"none":"replace"});
 }
 // Superficie mínima de inspección para las pruebas automáticas del loop. Sólo expone
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.

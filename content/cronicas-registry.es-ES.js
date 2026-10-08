@@ -23,7 +23,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "BCCh (2022). IPoM diciembre 2022.", url: "https://www.bcentral.cl/contenido/-/detalle/ipom-diciembre-2022" },
       { texto: "INE Chile. IPC — series y notas técnicas.", url: "https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor" },
-      { texto: "FMI (2024). Chile: 2023 Article IV Consultation. CR 24/29.", url: "https://www.imf.org/en/Publications/CR/Issues/2024/02/06/Chile-2023-Article-IV-Consultation-Press-Release-Staff-Report-545020" },
+      { texto: "FMI (2024). Chile: 2023 Article IV Consultation. CR 24/41.", url: "https://www.imf.org/en/publications/cr/issues/2024/02/06/chile-2023-article-iv-consultation-press-release-staff-report-and-statement-by-the-544437" },
       { texto: "Albagli, Grigoli & Luttini (2024). Inflation Expectations and the Supply Chain.", url: "https://www.imf.org/-/media/files/conferences/2024/global-challenges-and-channels-for-fiscal-and-monetary-policy/inflation-expectations-and-the-supply-chain-albagli-grigoli-and-luttini.pdf" },
       { texto: "Coibion, Gorodnichenko, Kumar & Pedemonte (2020). Inflation expectations as a policy tool? Journal of International Economics 124.", url: "https://doi.org/10.1016/j.jinteco.2020.103297" }
     ],
@@ -52,8 +52,8 @@ window.MacroLabCronicasRegistryES = Object.freeze({
     fuentes: [
       { texto: "TÜİK (2022). CPI Turquía — boletín octubre 2022 (peak 85,51%).", url: "https://data.tuik.gov.tr/Bulten/Index?p=Tuketici-Fiyat-Endeksi-Ekim-2022-45798" },
       { texto: "BIS (2023). Navigating the disinflation journey. AER 2023.", url: "https://www.bis.org/publ/arpdf/ar2023e1.htm" },
-      { texto: "Demiralp & Demiralp (2019). Erosion of central bank independence in Turkey. EER 9.", url: "https://doi.org/10.1007/s40822-018-0118-0" },
-      { texto: "Garriga & Rodriguez (2020). CBI and inflation in developing countries. JIMF 104.", url: "https://doi.org/10.1016/j.jimonfin.2020.102166" },
+      { texto: "Demiralp & Demiralp (2019). Erosion of central bank independence in Turkey. Turkish Studies 20(1).", url: "https://doi.org/10.1080/14683849.2018.1505512" },
+      { texto: "Garriga & Rodriguez (2020). More effective than we thought: CBI and inflation in developing countries. Economic Modelling 85.", url: "https://doi.org/10.1016/j.econmod.2019.05.009" },
       { texto: "Focus Economics, Turkey CPI.", url: "https://www.focus-economics.com/country-indicator/turkey/inflation/" }
     ],
     institutionalLayer: {
@@ -143,7 +143,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "van den Bremer & van der Ploeg (2013). Managing and Harnessing Volatile Oil Windfalls. IMF Economic Review 61(1).", url: "https://doi.org/10.1057/imfer.2013.4" },
       { texto: "Norges Bank (2020). Monetary Policy Report 1/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-12020/" },
       { texto: "Norges Bank (2020). Monetary Policy Report 2/2020.", url: "https://www.norges-bank.no/en/news-events/news-publications/Reports/Monetary-Policy-Report-with-financial-stability-assessment/2020/mpr-22020/" },
-      { texto: "FMI (2021). Norway: 2021 Article IV Consultation. CR 21/197.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/09/13/Norway-2021-Article-IV-Consultation-Press-Release-Staff-Report-466009" },
+      { texto: "FMI (2021). Norway: 2021 Article IV Consultation. CR 21/104.", url: "https://www.imf.org/en/publications/cr/issues/2021/06/08/norway-2021-article-iv-consultation-press-release-staff-report-and-staff-statement-50199" },
       { texto: "OECD (2022). OECD Economic Surveys: Norway 2022. DOI 10.1787/df7b87ab-en.", url: "https://doi.org/10.1787/df7b87ab-en" },
       { texto: "Norwegian Ministry of Finance (2022). Sound economic governance — fiscal budget and Government Pension Fund key figures.", url: "https://www.regjeringen.no/en/aktuelt/sound-economic-governance/id2912392/" }
     ],
@@ -174,7 +174,7 @@ window.MacroLabCronicasRegistryES = Object.freeze({
       { texto: "Mosquera & Sturzenegger (2021). Cepo para principiantes. Desarrollo Económico 61(234).", url: "https://revistas.ides.org.ar/desarrollo-economico/article/view/165" },
       { texto: "Sturzenegger (2020). ¿Necesitamos repensar la política de deuda en Latinoamérica? UNDP LAC C19 PDS No. 23.", url: "https://www.undp.org/sites/g/files/zskgke326/files/2023-01/CD19-PDS-Number23%20Deuda%20ES.pdf" },
       { texto: "FMI (2021). Argentina: Ex Post Evaluation 2018 SBA. CR 21/279.", url: "https://www.imf.org/en/Publications/CR/Issues/2021/12/22/Argentina-Ex-Post-Evaluation-of-Exceptional-Access-Under-the-2018-Stand-By-Arrangement-511289" },
-      { texto: "CEPAL (2021). Estudio Económico de América Latina y el Caribe 2021.", url: "https://www.cepal.org/es/publicaciones/47192-estudio-economico-america-latina-caribe-2021" },
+      { texto: "CEPAL (2021). Estudio Económico de América Latina y el Caribe 2021.", url: "https://www.cepal.org/es/publicaciones/47192-estudio-economico-america-latina-caribe-2021-dinamica-laboral-politicas-empleo" },
       { texto: "BCRA. Relevamiento de Expectativas de Mercado (REM) 2020-2022.", url: "https://www.bcra.gob.ar/PublicacionesEstadisticas/relevamiento_expectativas_de_mercado.asp" }
    ],
     institutionalLayer: {

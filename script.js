@@ -305,7 +305,8 @@ function populateSelect(id,optionsMap){const s=document.getElementById(id);s.inn
 function bindInputs(prefix,defaults,cb){Object.keys(defaults).forEach(k=>{const el=document.getElementById(`${prefix}-${k}`);if(el)el.addEventListener('input',cb)})}
 function setText(id,v){const el=document.getElementById(id);if(el)el.textContent=v}
 function setHTML(id,v){const el=document.getElementById(id);if(el)el.innerHTML=v}
-function activateTab(target){
+function activateTab(target,{historyMode='push'}={}){
+  if(!document.getElementById(target)?.classList.contains('tab-panel'))return;
   document.querySelectorAll('.tab-button').forEach(b=>{
     const active=b.dataset.tab===target;
     b.classList.toggle('active',active);
@@ -313,6 +314,7 @@ function activateTab(target){
   });
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.toggle('active',p.id===target));
   document.title=`MacroLab Shock Simulator · ${TAB_TITLES[target]||'Inicio'} · v1.7`;
+  if(historyMode!=='none'&&location.hash!=='#'+target)history[historyMode==='replace'?'replaceState':'pushState'](null,'','#'+target);
 }
 function initTabs(){document.querySelectorAll('.tab-button[data-tab]').forEach(btn=>btn.addEventListener('click',()=>activateTab(btn.dataset.tab)));document.querySelectorAll('.back-to-inicio').forEach(a=>a.addEventListener('click',()=>{activateTab('inicio');window.scrollTo({top:0,behavior:'smooth'})}));document.querySelectorAll('.route-btn[data-tab]').forEach(btn=>{if(!btn.classList.contains('quickstart-button'))btn.addEventListener('click',()=>{activateTab(btn.dataset.tab);window.scrollTo({top:0,behavior:'smooth'})})})}
 function buildLine(fn,xMin,xMax,n=50){const pts=[];const step=(xMax-xMin)/n;for(let i=0;i<=n;i++){const x=xMin+i*step;pts.push({x,y:fn(x)})}return pts}
@@ -714,6 +716,7 @@ function buildScenarioUrl(modelKey){
   const encoded=encodeScenarioState(modelKey);
   const url=new URL(window.location.href);
   url.searchParams.set('tab',modelKey);
+  url.hash=modelKey;
   if(encoded)url.searchParams.set('scenario',encoded);
   return url.toString();
 }
@@ -775,14 +778,14 @@ function restoreScenarioFromUrl(){
         if(state.modelKey==='islm')renderISLM();
         if(state.modelKey==='islmbp')renderISLMBP();
         if(state.modelKey==='oada')renderOADA();
-        activateTab(tab||state.modelKey);
+        activateTab(tab||state.modelKey,{historyMode:'none'});
         restored=true;
       }
     }catch(error){
       restored=false;
     }
   }
-  if(!restored&&tab&&TAB_TITLES[tab])activateTab(tab);
+  if(!restored&&tab&&TAB_TITLES[tab])activateTab(tab,{historyMode:'none'});
   const lShock=url.searchParams.get('shock');const lConfig=url.searchParams.get('config');
   if(lShock||lConfig){const ss=document.getElementById('lentes-shock');const cs=document.getElementById('lentes-config');if(ss&&lShock&&ss.querySelector('option[value="'+lShock+'"]'))ss.value=lShock;if(cs&&lConfig&&cs.querySelector('option[value="'+lConfig+'"]'))cs.value=lConfig;if(typeof renderLentesResult==='function')renderLentesResult();}
 }
@@ -1191,8 +1194,16 @@ function init(){
   renderQuiz('islm');renderQuiz('islmbp');renderQuiz('oada');
   renderISLM();renderISLMBP();renderOADA();renderDashboard('full');
   initShareButtons();
-  activateTab('inicio');
+  activateTab('inicio',{historyMode:'none'});
   restoreScenarioFromUrl();
+  const syncFragment=()=>{
+    let id;try{id=decodeURIComponent(location.hash.slice(1))}catch{return}
+    const panel=document.getElementById(id)?.closest('.tab-panel');
+    if(panel)activateTab(panel.id,{historyMode:'none'});
+  };
+  syncFragment();
+  window.addEventListener('hashchange',syncFragment);
+  if(!location.hash)history.replaceState(null,'','#'+document.querySelector('.tab-panel.active').id);
 }
 /* ========== LENTES INSTITUCIONALES ========== */
 const INST_CONFIGS = {

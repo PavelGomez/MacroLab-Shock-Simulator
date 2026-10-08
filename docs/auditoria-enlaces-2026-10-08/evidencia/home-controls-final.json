@@ -1,0 +1,499 @@
+[
+  {
+    "context": "nav",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "nav",
+    "target": "instrucciones",
+    "active": "instrucciones",
+    "url": "http://127.0.0.1:8765/#instrucciones"
+  },
+  {
+    "context": "nav",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "nav",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "nav",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "nav",
+    "target": "shocks",
+    "active": "shocks",
+    "url": "http://127.0.0.1:8765/#shocks"
+  },
+  {
+    "context": "nav",
+    "target": "institucional",
+    "active": "institucional",
+    "url": "http://127.0.0.1:8765/#institucional"
+  },
+  {
+    "context": "nav",
+    "target": "lentes",
+    "active": "lentes",
+    "url": "http://127.0.0.1:8765/#lentes"
+  },
+  {
+    "context": "nav",
+    "target": "comparador",
+    "active": "comparador",
+    "url": "http://127.0.0.1:8765/#comparador"
+  },
+  {
+    "context": "nav",
+    "target": "atlas-lentes",
+    "active": "atlas-lentes",
+    "url": "http://127.0.0.1:8765/#atlas-lentes"
+  },
+  {
+    "context": "nav",
+    "target": "atlas",
+    "active": "atlas",
+    "url": "http://127.0.0.1:8765/#atlas"
+  },
+  {
+    "context": "nav",
+    "target": "tablero",
+    "active": "tablero",
+    "url": "http://127.0.0.1:8765/#tablero"
+  },
+  {
+    "context": "nav",
+    "target": "lectura",
+    "active": "lectura",
+    "url": "http://127.0.0.1:8765/#lectura"
+  },
+  {
+    "context": "nav",
+    "target": "glosario",
+    "active": "glosario",
+    "url": "http://127.0.0.1:8765/#glosario"
+  },
+  {
+    "context": "banner",
+    "text": "Ver guía de uso",
+    "target": "instrucciones",
+    "active": "instrucciones",
+    "url": "http://127.0.0.1:8765/#instrucciones"
+  },
+  {
+    "context": "inicio",
+    "text": "leer instrucciones",
+    "target": "instrucciones",
+    "active": "instrucciones",
+    "url": "http://127.0.0.1:8765/#instrucciones"
+  },
+  {
+    "context": "inicio",
+    "text": "ir a OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "inicio",
+    "text": "ver modelo →",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "inicio",
+    "text": "ver modelo →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "inicio",
+    "text": "ver modelo →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "inicio",
+    "text": "ver atlas →",
+    "target": "atlas",
+    "active": "atlas",
+    "url": "http://127.0.0.1:8765/#atlas"
+  },
+  {
+    "context": "inicio",
+    "text": "ver marco →",
+    "target": "institucional",
+    "active": "institucional",
+    "url": "http://127.0.0.1:8765/#institucional"
+  },
+  {
+    "context": "inicio",
+    "text": "ver lentes →",
+    "target": "lentes",
+    "active": "lentes",
+    "url": "http://127.0.0.1:8765/#lentes"
+  },
+  {
+    "context": "inicio",
+    "text": "ver crónicas →",
+    "target": "atlas-lentes",
+    "active": "atlas-lentes",
+    "url": "http://127.0.0.1:8765/#atlas-lentes"
+  },
+  {
+    "context": "instrucciones",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "instrucciones",
+    "text": "ir a Q1 →",
+    "target": "institucional",
+    "active": "institucional",
+    "url": "http://127.0.0.1:8765/#institucional"
+  },
+  {
+    "context": "instrucciones",
+    "text": "ir a Q2 →",
+    "target": "lentes",
+    "active": "lentes",
+    "url": "http://127.0.0.1:8765/#lentes"
+  },
+  {
+    "context": "instrucciones",
+    "text": "ir a Q3 →",
+    "target": "comparador",
+    "active": "comparador",
+    "url": "http://127.0.0.1:8765/#comparador"
+  },
+  {
+    "context": "instrucciones",
+    "text": "ir a Q4 →",
+    "target": "atlas-lentes",
+    "active": "atlas-lentes",
+    "url": "http://127.0.0.1:8765/#atlas-lentes"
+  },
+  {
+    "context": "instrucciones",
+    "text": "probar en OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "instrucciones",
+    "text": "probar en IS-LM →",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "instrucciones",
+    "text": "probar en IS-LM-BP →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "instrucciones",
+    "text": "2020: OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "instrucciones",
+    "text": "2021: OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "islm",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "islmbp",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "oada",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "shocks",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en IS-LM-BP →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en IS-LM →",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en OA-DA →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en IS-LM-BP →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "simular en IS-LM-BP →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "simular mejora →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "simular caída →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM-BP",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM-BP",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM-BP",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "shocks",
+    "text": "OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "shocks",
+    "text": "IS-LM-BP",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "atlas",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "institucional",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "lentes",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "lentes",
+    "text": "→ equilibrio formal en OA-DA",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "lentes",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "retest": "Enter, verificado tras activar Lentes con teclado"
+  },
+  {
+    "context": "tablero",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "lectura",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "lectura",
+    "text": "simular →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "lectura",
+    "text": "simular →",
+    "target": "islmbp",
+    "active": "islmbp",
+    "url": "http://127.0.0.1:8765/#islmbp"
+  },
+  {
+    "context": "lectura",
+    "text": "simular →",
+    "target": "oada",
+    "active": "oada",
+    "url": "http://127.0.0.1:8765/#oada"
+  },
+  {
+    "context": "lectura",
+    "text": "simular →",
+    "target": "islm",
+    "active": "islm",
+    "url": "http://127.0.0.1:8765/#islm"
+  },
+  {
+    "context": "comparador",
+    "text": "← Volver al Inicio",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "atlas-lentes",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  },
+  {
+    "context": "glosario",
+    "text": "← Volver al Inicio / elegir otra ruta",
+    "target": "inicio",
+    "active": "inicio",
+    "url": "http://127.0.0.1:8765/#inicio"
+  }
+]
