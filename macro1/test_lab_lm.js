@@ -97,7 +97,11 @@ ok(doc.getElementById("lmAlt").textContent.length > 200, "la descripción accesi
 const D = w.eval("ACTIVITIES").din, loadD = id => { const h = doc.querySelector('.activity[data-window="din"]'), s = h.querySelector("select"); s.value = String(D.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); };
 D.forEach(a => { loadD(a.id); L.drawMoney(); noOverlap("moneyChart", a.id); svgCheck("moneyChart", a.id);
   ok(!doc.getElementById("moneyCanvas") && doc.getElementById("moneyChart").tagName.toLowerCase() === "svg", `${a.id} · Dinero / tasa dibuja con el motor común`); });
-loadD("DIN-EX-01"); doc.getElementById("omoBuy").click();
+loadD("DIN-EX-01");
+// La comparación es ahora una elección explícita; la compra modifica el estado final.
+doc.getElementById("money-view").value="compare";
+doc.getElementById("money-view").dispatchEvent(new w.Event("change"));
+doc.getElementById("omoBuy").click();
 const yt = [...doc.getElementById("moneyChart").querySelectorAll("text.g-tick")].map(t => t.textContent);
 ok(yt.includes("0") && !yt.some(t => t.startsWith("−")), "Dinero / tasa · el eje de la tasa parte en 0 y no muestra tasas negativas");
 ok(!/9,8|20,5|31,3|42,0|257|513|770|1\.026/.test(yt.join(" ")), "Dinero / tasa · ya no aparecen las marcas 9,8 / 20,5 / 31,3 / 257 / 513");
