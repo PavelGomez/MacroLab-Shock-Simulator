@@ -96,7 +96,7 @@ ok(/\[hidden\]\{display:none!important\}/.test(fs.readFileSync(LAB, "utf8")), "C
 /* ===== 5 · Actividades y gráficos ===== */
 const ACT = w.eval("ACTIVITIES").islm;
 ok(ACT.length === 6 && ACT.every(a => a.enunciado) && ACT.every(a => !/ISLM-EX-0[1-5]/.test(a.id)), "seis actividades IS-LM con el protocolo, sin chocar con los códigos sellados ISLM-EX-01 a 05");
-const load = id => { const h = doc.querySelector('.activity[data-window="islm"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); return L.islmSolve(L.islmRead()); };
+const load = id => { const h = doc.querySelector('.activity[data-window="islm"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); return L.islmSolve(L.islmRead()); };
 r = load("ISLM-EX-11"); near(r.s0.Y, 2400, 1e-9, "ISLM-EX-11 · Y* = 2.400"); near(r.s0.i, 2, 1e-9, "ISLM-EX-11 · i* = 2 %");
 r = load("ISLM-EX-12"); near(r.shiftIS, 300, 1e-9, "ISLM-EX-12 · la IS se corre 300"); near(r.s1.Y, 2500, 1e-9, "ISLM-EX-12 · Y = 2.500"); near(r.s1.i, 4, 1e-9, "ISLM-EX-12 · i = 4 %"); near(r.multISLM, 10 / 3, 1e-9, "ISLM-EX-12 · multiplicador 3,33");
 r = load("ISLM-EX-13"); near(r.s1.Y, 2700, 1e-9, "ISLM-EX-13 · Y = 2.700"); near(r.s1.MPreq, 1300, 1e-9, "ISLM-EX-13 · M/P = 1.300");
@@ -154,7 +154,7 @@ Object.keys(w.eval("ISLM_PRESETS")).forEach(k => ["equilibrio", "deseq", "efecto
 load("ISLM-EX-12"); L.drawIslm(); ok(/la IS se corre 300/.test(doc.getElementById("islmChart").textContent), "la flecha dice cuánto se corre la IS");
 load("ISLM-EX-15"); L.drawIslm(); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "el camino de ajuste rotula las dos velocidades");
 const tabs = [...doc.querySelectorAll('#tabs [role="tab"]')].map(t => t.textContent.trim());
-ok(tabs.join("|") === "Ruta por clases|Lab · Índices|Lab · PIB por gasto|Lab · Mercado de bienes|Lab · Dinero / tasa|Lab · Relación LM|Lab · Curva IS|Lab · IS-LM|Lab · Mercado laboral", "las nueve pestañas en el orden de las notas");
+ok(tabs.join("|") === "Ruta por clases|Lab · Índices|Lab · PIB por gasto|Lab · Mercado de bienes|Lab · Bonos|Lab · Mercado de dinero|Lab · Relación LM|Lab · Curva IS|Lab · IS-LM|Lab · Mercado laboral", "las diez pestañas en el orden de las notas");
 const panel = doc.getElementById("islm").textContent;
 ok(!/cierre docente|cierre [AB]\b|tres piezas|crowding-out|domina el desplazamiento/i.test(panel), "la ventana no usa terminología antigua");
 ok(/efecto desplazamiento/.test(panel) && /no es efecto desplazamiento/.test(panel), "la ventana separa el efecto de la tasa por decisión monetaria del efecto desplazamiento");

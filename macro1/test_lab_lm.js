@@ -43,7 +43,7 @@ r = S({ shock: "a", val: 50 }); near(r.shiftY, -100, 1e-9, "más demanda de dine
 /* ===== 2 · Actividades ===== */
 const ACT = w.eval("ACTIVITIES").lm;
 ok(ACT.length === 6 && ACT.every(a => a.enunciado), "seis actividades LM, todas con el protocolo");
-const load = id => { const h = doc.querySelector('.activity[data-window="lm"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); return L.lmSolve(L.lmRead()); };
+const load = id => { const h = doc.querySelector('.activity[data-window="lm"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); return L.lmSolve(L.lmRead()); };
 r = load("LM-EX-01"); near(r.i0, 2, 1e-9, "LM-EX-01 · Y = 2.100 → 2 %"); near(r.i1, 4, 1e-9, "LM-EX-01 · Y = 2.200 → 4 %");
 near(L.lmSolve({ ...L.lmRead(), val: 2300 }).i1, 6, 1e-9, "LM-EX-01 · Y = 2.300 → 6 %"); near(r.interceptI0, -40, 1e-9, "LM-EX-01 · i = 0,02·Y − 40"); near(r.interceptY0, 2000, 1e-9, "LM-EX-01 · Y = 2.000 + 50·i");
 r = load("LM-EX-02"); near(r.slope, .01, 1e-12, "LM-EX-02 · d₂ = 60 → pendiente 0,01"); near(r.interceptI0, -20, 1e-9, "LM-EX-02 · eje i en −20 %");
@@ -94,7 +94,7 @@ ok(/bajo cero/.test(doc.getElementById("lmFeedback").textContent), "si la tasa q
 ok(doc.getElementById("lmAlt").textContent.length > 200, "la descripción accesible se actualiza con los valores");
 
 /* ===== 4 · Dinero / tasa con el motor ===== */
-const D = w.eval("ACTIVITIES").din, loadD = id => { const h = doc.querySelector('.activity[data-window="din"]'), s = h.querySelector("select"); s.value = String(D.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); };
+const D = w.eval("ACTIVITIES").din, loadD = id => { const h = doc.querySelector('.activity[data-window="din"]'), s = h.querySelector("select"); s.value = String(D.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); };
 D.forEach(a => { loadD(a.id); L.drawMoney(); noOverlap("moneyChart", a.id); svgCheck("moneyChart", a.id);
   ok(!doc.getElementById("moneyCanvas") && doc.getElementById("moneyChart").tagName.toLowerCase() === "svg", `${a.id} · Dinero / tasa dibuja con el motor común`); });
 loadD("DIN-EX-01"); doc.getElementById("omoBuy").click();
@@ -109,7 +109,7 @@ ok(["0", "500", "1.000", "2.000"].every(t => tk("lmMoneyChart").includes(t)), "m
 ok(["3.000", "4.000"].every(t => tk("lmChart").includes(t)) && tk("lmChart").includes("2"), "marcas de Y y de i con sus valores reales (" + tk("lmChart").join(" ") + ")");
 /* ===== pestañas ===== */
 const tabs = [...doc.querySelectorAll('#tabs [role="tab"]')].map(t => t.textContent.trim());
-ok(tabs.indexOf("Lab · Relación LM") === tabs.indexOf("Lab · Dinero / tasa") + 1, "la pestaña Relación LM va después de Dinero / tasa");
+ok(tabs.indexOf("Lab · Relación LM") === tabs.indexOf("Lab · Mercado de dinero") + 1, "la pestaña Relación LM va después de Dinero / tasa");
 
 console.log(`test_lab_lm.js — ${n} aserciones · RESULTADO: ${failures.length ? "FALLA" : "OK"}`);
 failures.forEach(f => console.log("  ✘ " + f));

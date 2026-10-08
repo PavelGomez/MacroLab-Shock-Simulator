@@ -115,7 +115,7 @@
   h3{font-size:1.08rem;color:var(--navy);margin:0 0 10px}
   .lead{max-width:78ch;color:var(--muted);margin:.2em 0 20px}
   .lead,.guide dd,.class-step p,.prompt{max-width:78ch}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
   .grid.wide-left{grid-template-columns:1.25fr .75fr}
   .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px;min-width:0}
   .card.soft{background:#f8fbfd;box-shadow:none}
@@ -143,6 +143,10 @@
   canvas{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
   details.alt{margin-top:8px;color:var(--muted);font-size:.83rem}
   details.alt summary{cursor:pointer;color:var(--accent);font-weight:700}
+  .practice{margin:22px 0;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--bg)}
+  .practice > summary{cursor:pointer;font-weight:650}
+  .practice .activity{margin-bottom:0}
+  input[aria-invalid="true"]{border:2px solid var(--red)}
   .activity{background:var(--accent-soft);border:1px solid #c9deef;border-radius:var(--radius);padding:16px;margin:18px 0}
   .activity-head{display:grid;grid-template-columns:auto minmax(240px,1fr);gap:10px;align-items:center}
   .badge{display:inline-block;border-radius:6px;background:var(--accent);color:#fff;font-size:.7rem;font-weight:850;letter-spacing:.05em;padding:3px 7px}
@@ -191,6 +195,9 @@
   .item{border:1px solid var(--line);border-radius:10px;padding:11px;background:#fff;cursor:pointer;text-align:left;color:var(--text)}
   .item:hover{border-color:var(--accent)}.item.done{background:#f1f8f4;border-color:#b8ddc7}.item.done::before{content:"✓ ";color:var(--green);font-weight:900}
   .formula{background:#f5f8fb;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:Georgia,serif}
+  #med .grid{grid-template-columns:1fr}
+  #lab .card > label,#bonos .card > label{display:block;margin:12px 0 6px}
+  #lab .card > label input,#bonos .card > label input{display:block;width:100%;margin-top:6px}
   .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(120px,1fr));gap:10px}
   .mini-grid input{width:100%}
   .callout{border-left:4px solid var(--orange);background:#fff9e9;border-radius:8px;padding:11px 13px}
@@ -450,7 +457,8 @@
     <button id="tab-med" role="tab" aria-selected="false" aria-controls="med" tabindex="-1" data-tab="med">Lab · Índices</button>
     <button id="tab-cta" role="tab" aria-selected="false" aria-controls="cta" tabindex="-1" data-tab="cta">Lab · PIB por gasto</button>
     <button id="tab-cruz" role="tab" aria-selected="false" aria-controls="cruz" tabindex="-1" data-tab="cruz">Lab · Mercado de bienes</button>
-    <button id="tab-din" role="tab" aria-selected="false" aria-controls="din" tabindex="-1" data-tab="din">Lab · Dinero / tasa</button>
+    <button id="tab-bonos" role="tab" aria-selected="false" aria-controls="bonos" tabindex="-1" data-tab="bonos">Lab · Bonos</button>
+    <button id="tab-din" role="tab" aria-selected="false" aria-controls="din" tabindex="-1" data-tab="din">Lab · Mercado de dinero</button>
     <button id="tab-lm" role="tab" aria-selected="false" aria-controls="lm" tabindex="-1" data-tab="lm">Lab · Relación LM</button>
     <button id="tab-is" role="tab" aria-selected="false" aria-controls="is" tabindex="-1" data-tab="is">Lab · Curva IS</button>
     <button id="tab-islm" role="tab" aria-selected="false" aria-controls="islm" tabindex="-1" data-tab="islm">Lab · IS-LM</button>
@@ -518,8 +526,35 @@
 
   <section class="panel" id="med" role="tabpanel" aria-labelledby="tab-med" hidden>
     <h2>Constructor de índices: PIB, deflactor e IPC</h2>
-    <p class="lead">Si el valor de lo que produce un país sube, ¿es porque produjo más o porque todo está más caro? Aquí escribes precios y cantidades de tres años y el laboratorio calcula el PIB nominal y real, el deflactor, el IPC, el crecimiento y la inflación. La base es 2019 y los precios son de práctica, no datos de Chile.</p>
-    <details class="guide" open>
+    <p class="lead">Si el valor de lo que produce un país sube, ¿es porque produjo más o porque todo está más caro? Aquí escribes precios y cantidades de tres años y el laboratorio calcula el PIB nominal y real, el deflactor, el IPC, el crecimiento y la inflación. Puedes elegir el año base y los precios son de práctica, no datos de Chile.</p>
+
+
+    <div class="grid wide-left">
+      <article class="card">
+        <label>Año base<select id="med-base"><option value="19">2019</option><option value="20">2020</option><option value="21">2021</option></select></label>
+        <p class="field-note">Precios en u.m.; cantidades y canasta en unidades de cada bien. La base cambia los precios usados en el PIB real y la referencia del IPC.</p>
+        <h3 id="medTableTitle">Economía de dos bienes</h3>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Precios y cantidades: tabla desplazable"><table id="medInputs" aria-describedby="medHelp"></table></div>
+        <p class="source" id="medHelp">Edita precios, cantidades y canasta. No se aceptan valores negativos.</p>
+        <div class="actions"><button class="btn secondary" type="button" id="calcMedBtn">Recalcular</button></div>
+      </article>
+      <article class="card">
+        <h3>Resultados</h3>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Resultados de índices: tabla desplazable"><table id="medResults"></table></div>
+        <div id="medExplain" class="notice ok status" aria-live="polite"></div>
+      </article>
+    </div>
+    <div class="grid">
+
+      <article class="card data-card">
+        <h3>Dato a mirar · IPC oficial</h3>
+        <p><strong>El ancla.</strong> En julio de 2026 el IPC varió <strong>0,1 % en el mes</strong>, acumuló 2,9 % en el año y llegó a <strong>3,5 % a doce meses</strong>.</p>
+        <p><strong>Lo que permite decir.</strong> Cuánto subieron los precios de la canasta en cada período. Las tres cifras son ciertas a la vez: cambia el período que miran.</p>
+        <p><strong>Lo que no permite decir.</strong> Por qué subieron, ni que todos los precios subieron lo mismo.</p>
+        <p class="source">Dato observado · julio de 2026 · INE, boletín n.º 333, publicado el 7 de agosto de 2026 · <a href="https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/08/07/%C3%ADndice-de-precios-al-consumidor-%28ipc%29-de-julio-present%C3%B3-una-variaci%C3%B3n-mensual-de-0-1" target="_blank" rel="noopener">INE ↗</a>. Entre esta medición y la anterior el índice cambió de base (2018 = 100 → 2023 = 100): las variaciones se pueden comparar; los niveles, no.</p>
+      </article>
+    </div>
+    <details class="guide">
       <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
       <dl>
         <dt>Dónde estás entrando</dt><dd>Te dan una tabla de precios y cantidades de varios años, y el valor total sube. Tienes que separar <strong>cuánto de ese aumento es precio y cuánto es cantidad</strong>, y decidir qué índice responde a cada pregunta.</dd>
@@ -529,21 +564,7 @@
       </dl>
       <p class="errs">Errores que esta ventana busca prevenir: tratar el crecimiento nominal como si fuera real<span class="code-tag">MED-ERR-02</span> y confundir el nivel del IPC con la inflación<span class="code-tag">MED-ERR-03</span>.</p>
     </details>
-    <div class="activity" data-window="med"></div>
-    <div class="grid wide-left">
-      <article class="card">
-        <h3 id="medTableTitle">Economía de dos bienes</h3>
-        <div class="table-wrap"><table id="medInputs" aria-describedby="medHelp"></table></div>
-        <p class="source" id="medHelp">Edita precios, cantidades y canasta. No se aceptan valores negativos.</p>
-        <div class="actions"><button class="btn secondary" type="button" id="calcMedBtn">Recalcular</button></div>
-      </article>
-      <article class="card">
-        <h3>Resultados</h3>
-        <div class="table-wrap"><table id="medResults"></table></div>
-        <div id="medExplain" class="notice ok status" aria-live="polite"></div>
-      </article>
-    </div>
-    <div class="grid">
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
       <article class="card soft">
         <h3>Crecimiento e inflación desde una tabla</h3>
         <p><strong>Situación.</strong> Tienes el PIB real y el IPC de dos años seguidos y quieres saber cuánto creció la economía y cuánto subieron los precios en el segundo año.</p>
@@ -556,30 +577,15 @@
         <button class="btn secondary" type="button" id="checkUy">Comprobar</button>
         <div id="uyFeedback" class="status" aria-live="polite"></div>
       </article>
-      <article class="card data-card">
-        <h3>Dato a mirar · IPC oficial</h3>
-        <p><strong>El ancla.</strong> En julio de 2026 el IPC varió <strong>0,1 % en el mes</strong>, acumuló 2,9 % en el año y llegó a <strong>3,5 % a doce meses</strong>.</p>
-        <p><strong>Lo que permite decir.</strong> Cuánto subieron los precios de la canasta en cada período. Las tres cifras son ciertas a la vez: cambia el período que miran.</p>
-        <p><strong>Lo que no permite decir.</strong> Por qué subieron, ni que todos los precios subieron lo mismo.</p>
-        <p class="source">Dato observado · julio de 2026 · INE, boletín n.º 333, publicado el 7 de agosto de 2026 · <a href="https://www.ine.gob.cl/sala-de-prensa/prensa/general/noticia/2026/08/07/%C3%ADndice-de-precios-al-consumidor-%28ipc%29-de-julio-present%C3%B3-una-variaci%C3%B3n-mensual-de-0-1" target="_blank" rel="noopener">INE ↗</a>. Entre esta medición y la anterior el índice cambió de base (2018 = 100 → 2023 = 100): las variaciones se pueden comparar; los niveles, no.</p>
-      </article>
-    </div>
+    <div class="activity" data-window="med"></div>
+    </details>
   </section>
 
   <section class="panel" id="cta" role="tabpanel" aria-labelledby="tab-cta" hidden>
     <h2>PIB por el enfoque del gasto: ¿dónde se registra?</h2>
     <p class="lead">Todo lo que se produce en el país lo compra alguien: hogares, empresas, el Estado o el extranjero. Por eso <strong>Y = C + I + G + X − M</strong>. Aquí clasificas transacciones: si suman al PIB de este año y en qué parte del gasto. Es una identidad contable: se cumple siempre, y no explica por qué cambia el gasto.</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan una lista de transacciones y tienes que decidir, una por una, si suman al PIB de Chile <strong>de este período</strong> y en qué parte del gasto se registran.</dd>
-        <dt>Cómo se razona</dt><dd>Hazte cuatro preguntas, en orden: ¿hay <strong>producción nueva</strong>? ¿Es <strong>de este período</strong>? ¿Se produjo <strong>en Chile</strong>? ¿Quién la compra? Solo al final eliges la parte del gasto y el signo. Un bien intermedio, una reventa, una transferencia y una compra de acciones fallan en preguntas distintas: clasificar bien es saber <em>cuál</em> falló.</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: fija el criterio de producción nueva del período y el doble registro de lo importado. Pierde: clasifica, pero no mide. No calcula el valor agregado de cada etapa, no distingue el PIB del PNB y deja fuera las otras dos formas de medir el PIB: por el ingreso y por la producción.</dd>
-        <dt>Qué mirar en Chile</dt><dd>En el debate público se mezclan estas categorías. «El IFE reactivó el PIB» trata una transferencia como si fuera gasto público. «El retiro del 10 % impulsó el crecimiento» trata un movimiento de ahorros como si fuera producción. Ninguno entra directamente al PIB, pero los dos pueden moverlo por otra vía: si la plata se gasta, sube el consumo. Esa vía es lo que se te pide explicar.</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: contar dos veces un bien intermedio<span class="code-tag">MED-ERR-01</span> y sumar cosas usadas, transferencias o compras de acciones<span class="code-tag">MED-ERR-04</span>.</p>
-    </details>
-    <div class="activity" data-window="cta"></div>
+
+
     <article class="card">
       <div class="choice-toolbar" id="ctaCats" aria-label="Categoría elegida"></div>
       <div class="kpis">
@@ -593,6 +599,20 @@
     <div class="callout">
       <strong>Importado no quiere decir «solo M».</strong> Si un hogar compra un teléfono importado, la compra se registra en C y también en M. Al restar M, su aporte directo al PIB de Chile es casi cero.
     </div>
+    <details class="guide">
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Te dan una lista de transacciones y tienes que decidir, una por una, si suman al PIB de Chile <strong>de este período</strong> y en qué parte del gasto se registran.</dd>
+        <dt>Cómo se razona</dt><dd>Hazte cuatro preguntas, en orden: ¿hay <strong>producción nueva</strong>? ¿Es <strong>de este período</strong>? ¿Se produjo <strong>en Chile</strong>? ¿Quién la compra? Solo al final eliges la parte del gasto y el signo. Un bien intermedio, una reventa, una transferencia y una compra de acciones fallan en preguntas distintas: clasificar bien es saber <em>cuál</em> falló.</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: fija el criterio de producción nueva del período y el doble registro de lo importado. Pierde: clasifica, pero no mide. No calcula el valor agregado de cada etapa, no distingue el PIB del PNB y deja fuera las otras dos formas de medir el PIB: por el ingreso y por la producción.</dd>
+        <dt>Qué mirar en Chile</dt><dd>En el debate público se mezclan estas categorías. «El IFE reactivó el PIB» trata una transferencia como si fuera gasto público. «El retiro del 10 % impulsó el crecimiento» trata un movimiento de ahorros como si fuera producción. Ninguno entra directamente al PIB, pero los dos pueden moverlo por otra vía: si la plata se gasta, sube el consumo. Esa vía es lo que se te pide explicar.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: contar dos veces un bien intermedio<span class="code-tag">MED-ERR-01</span> y sumar cosas usadas, transferencias o compras de acciones<span class="code-tag">MED-ERR-04</span>.</p>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+
+    <div class="activity" data-window="cta"></div>
+    </details>
   </section>
 
   <section class="panel" id="cruz" role="tabpanel" aria-labelledby="tab-cruz" hidden>
@@ -601,17 +621,8 @@
          muestra cuando la ruta abre el laboratorio con una actividad cargada. -->
     <section class="context-card" id="cruzContextCard" aria-labelledby="cruzContextTitle" hidden></section>
     <p class="lead">¿Cuánto produce una economía si las empresas producen lo que se les compra? Aquí eliges el consumo, la inversión, el gasto público y los impuestos, y el laboratorio calcula la producción de equilibrio: donde el gasto planeado Z es igual a la producción Y (el cruce con la recta de 45°).</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan cómo deciden hogares, empresas y Estado, y un cambio (por ejemplo, sube el gasto público). Tienes que encontrar el nuevo equilibrio <strong>y contar cómo se llega a él</strong>. El número solo vale con el camino.</dd>
-        <dt>Cómo se razona</dt><dd>Di qué es cada ecuación: una identidad, una conducta o la condición de equilibrio. Calcula el ingreso disponible, Yd = Y − T. Arma Z = C + I + G e iguálalo a Y. Saca el multiplicador. Después <strong>cuenta el ajuste por inventarios</strong>: si se quiere comprar más de lo que se produce, las bodegas se vacían, las empresas producen más, sube el ingreso y con él el consumo. Termina comprobando que I = S privado + (T − G).</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: el multiplicador, el papel del ingreso disponible, el ajuste por inventarios y la comprobación por el ahorro. Pierde: los precios no cambian, la tasa de interés está dada, no hay comercio exterior y las empresas pueden producir todo lo que se les pida. Por eso sirve para el corto plazo, no para describir toda la economía.</dd>
-        <dt>Qué mirar en Chile</dt><dd>Al evaluar un paquete fiscal, $200 de gasto público y $200 de transferencia a los hogares no mueven lo mismo la producción. El gasto público entra completo al gasto y se multiplica por 1/(1 − c₁). La transferencia pasa primero por los hogares, que ahorran una parte: se multiplica por c₁/(1 − c₁).</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: confundir una identidad con una conducta<span class="code-tag">BIE-ERR-01</span>, contar una transferencia como gasto público<span class="code-tag">BIE-ERR-02</span>, saltar del cambio al resultado sin contar el camino<span class="code-tag">BIE-ERR-04</span> y usar Y donde va el ingreso disponible<span class="code-tag">BIE-ERR-05</span>.</p>
-    </details>
-    <div class="activity" data-window="cruz"></div>
+
+
     <div class="grid">
       <article class="card">
         <div class="slider"><span id="lbl-c0">c₀</span><input type="range" id="c0" aria-labelledby="lbl-c0" min="0" max="1200" value="100" step="10"><output id="c0Out" for="c0">100</output></div>
@@ -630,6 +641,7 @@
         </div>
       </article>
       <article class="card">
+        <p id="cross-interpretation" class="notice ok" aria-live="polite"></p>
         <canvas id="crossCanvas" width="620" height="420" role="img" aria-label="Mercado de bienes con gasto planeado, recta de 45 grados y equilibrio" aria-describedby="crossAlt"></canvas>
         <details class="alt"><summary>Ver descripción accesible del gráfico</summary><p id="crossAlt"></p></details>
       </article>
@@ -642,53 +654,61 @@
         <li>Orden para contar un episodio: qué pasó → qué dato del modelo cambia → cómo se mueve la recta Z → nuevo equilibrio → cómo se ajusta la economía → resultado → dato real para contrastar.</li>
       </ul>
     </article>
-  </section>
-
-  <section class="panel" id="din" role="tabpanel" aria-labelledby="tab-din" hidden>
-    <h2>Mercado de dinero, tasa y operaciones de mercado abierto</h2>
-    <p class="lead">¿Con qué tasa de interés la gente quiere tener justo el dinero que hay? Aquí escribes la producción, el dinero real y los dos números de la demanda de dinero, y el laboratorio calcula esa tasa y el precio de un bono que paga $100 en un año. Los botones hacen de Banco Central: compran o venden bonos.</p>
-    <details class="guide" open>
+    <details class="guide">
       <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
       <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan la demanda de dinero (cuánto dinero quiere tener la gente), el dinero que hay y un cambio: sube la producción, o el Banco Central compra o vende bonos. Tienes que decir qué pasa con la tasa de interés y con el precio de los bonos, y qué tendría que hacer el Banco Central.</dd>
-        <dt>Cómo se razona</dt><dd>Primero di qué fija el Banco Central: la cantidad de dinero (<strong>enfoque de dinero fijo</strong>) o la tasa (<strong>enfoque de tasa fija</strong>). Nunca las dos. Después compara el dinero que la gente quiere con el que hay. Si sobra dinero, la gente compra bonos: el precio de los bonos sube y <strong>la tasa baja</strong>. Si falta, vende bonos: el precio baja y la tasa sube. Ojo: si sube la producción, se desplaza la <strong>demanda de dinero</strong>. La LM no se desplaza: es otro gráfico (Nota 5, Parte B).</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: te obliga a decir qué fija el Banco Central y a seguir el ajuste hasta el precio del bono. Pierde: hay un solo activo además del dinero (el bono), los precios están dados y la producción la eliges tú; el laboratorio no la calcula. Tampoco dibuja la LM: la dibujas tú, como en la Figura 6 de la Nota 5, o la ves en el Lab · Relación LM.</dd>
-        <dt>Qué mirar en Chile</dt><dd>Cuando el Banco Central de Chile anuncia que «la TPM se mantiene en 4,50 %», está usando el enfoque de tasa fija: decide la tasa y la cantidad de dinero se ajusta a lo que haga falta. El comunicado nunca dice cuánto dinero habrá.</dd>
+        <dt>Dónde estás entrando</dt><dd>Te dan cómo deciden hogares, empresas y Estado, y un cambio (por ejemplo, sube el gasto público). Tienes que encontrar el nuevo equilibrio <strong>y contar cómo se llega a él</strong>. El número solo vale con el camino.</dd>
+        <dt>Cómo se razona</dt><dd>Di qué es cada ecuación: una identidad, una conducta o la condición de equilibrio. Calcula el ingreso disponible, Yd = Y − T. Arma Z = C + I + G e iguálalo a Y. Saca el multiplicador. Después <strong>cuenta el ajuste por inventarios</strong>: si se quiere comprar más de lo que se produce, las bodegas se vacían, las empresas producen más, sube el ingreso y con él el consumo. Termina comprobando que I = S privado + (T − G).</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: el multiplicador, el papel del ingreso disponible, el ajuste por inventarios y la comprobación por el ahorro. Pierde: los precios no cambian, la tasa de interés está dada, no hay comercio exterior y las empresas pueden producir todo lo que se les pida. Por eso sirve para el corto plazo, no para describir toda la economía.</dd>
+        <dt>Qué mirar en Chile</dt><dd>Al evaluar un paquete fiscal, $200 de gasto público y $200 de transferencia a los hogares no mueven lo mismo la producción. El gasto público entra completo al gasto y se multiplica por 1/(1 − c₁). La transferencia pasa primero por los hogares, que ahorran una parte: se multiplica por c₁/(1 − c₁).</dd>
       </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: decir que se desplaza la LM cuando lo que se desplazó es la demanda de dinero<span class="code-tag">DIN-ERR-09</span>; mover el precio del bono y la tasa en el mismo sentido<span class="code-tag">DIN-ERR-10</span>; fijar a la vez la cantidad de dinero y la tasa<span class="code-tag">DIN-ERR-11</span>; y confundir dinero con riqueza<span class="code-tag">DIN-ERR-12</span>.</p>
+      <p class="errs">Errores que esta ventana busca prevenir: confundir una identidad con una conducta<span class="code-tag">BIE-ERR-01</span>, contar una transferencia como gasto público<span class="code-tag">BIE-ERR-02</span>, saltar del cambio al resultado sin contar el camino<span class="code-tag">BIE-ERR-04</span> y usar Y donde va el ingreso disponible<span class="code-tag">BIE-ERR-05</span>.</p>
     </details>
-    <div class="activity" data-window="din"></div>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+
+    <div class="activity" data-window="cruz"></div>
+    </details>
+  </section>
+
+  <section class="panel" id="bonos" role="tabpanel" aria-labelledby="tab-bonos" hidden>
+    <h2>Bonos: precios y tasa de interés</h2>
+    <p class="lead">Calcula cuánto rinde un bono a partir de su precio, o cuánto pagar por él a una tasa elegida. Cada panel funciona de manera independiente.</p>
+    <p class="field-note">Valores iniciales del laboratorio; ninguna actividad seleccionada. Importes en unidades monetarias (u.m.). Ingresa decimales según tu navegador (por ejemplo 95,5 o 95.5); los resultados usan coma decimal y punto de miles.</p>
     <div class="grid">
-      <article class="card">
-        <h3>Parámetros del escenario</h3>
-        <div class="mini-grid">
-          <label>Ingreso Y<input id="moneyY" type="number" min="0" step="10" value="1000"></label>
-          <label>Oferta M/P<input id="moneyMs" type="number" min="0" step="1" value="760"></label>
-          <label>d₁<input id="moneyD1" type="number" min="0" step=".01" value=".8"></label>
-          <label>d₂<input id="moneyD2" type="number" min=".01" step=".01" value="20"></label>
-        </div>
-        <div class="actions">
-          <button class="btn success" type="button" id="omoBuy">BC compra bonos</button>
-          <button class="btn danger" type="button" id="omoSell">BC vende bonos</button>
-          <button class="btn secondary" type="button" id="moneyReset">Base</button>
-        </div>
-        <div id="moneyFeedback" class="notice ok status" aria-live="polite"></div>
+      <article class="card" id="bond-panel-a">
+        <h3>A · Rendimiento implícito</h3>
+        <label>Valor facial VF (u.m.)<input id="bond-vf-rate" type="number" step="any" value="100" aria-describedby="bond-vf-help"></label>
+        <p id="bond-vf-help" class="field-note"><strong>Valor facial (VF):</strong> monto que el emisor se compromete a pagar al vencimiento del bono considerado.</p>
+        <label>Precio P_B (u.m.)<input id="bond-price" type="number" step="any" value="95" aria-describedby="bond-price-help"></label>
+        <p id="bond-price-help" class="field-note"><strong>Precio del bono (P_B):</strong> monto pagado por adquirirlo antes del vencimiento; puede corresponder a la colocación del emisor o a una compra-venta en el mercado secundario.</p>
+        <div class="formula">r = VF/P_B − 1 · i = 100 × (VF/P_B − 1)</div>
+        <div id="bond-rate-result" class="notice status" aria-live="polite"></div>
+        <p class="field-note"><strong>Rendimiento implícito:</strong> ganancia relativa al precio pagado, suponiendo que se compra al precio indicado y se mantiene el bono hasta el vencimiento.</p>
       </article>
-      <article class="card">
-        <svg id="moneyChart" class="plot" role="img" aria-label="Mercado de dinero con demanda, oferta y tasa de equilibrio" aria-describedby="moneyAlt"></svg>
-        <details class="alt"><summary>Ver descripción accesible del gráfico</summary><p id="moneyAlt"></p></details>
+      <article class="card" id="bond-panel-b">
+        <h3>B · Precio implícito</h3>
+        <label>Valor facial VF (u.m.)<input id="bond-vf-price" type="number" step="any" value="100"></label>
+        <p class="field-note">VF es el pago comprometido al vencimiento, en las mismas u.m. que el precio.</p>
+        <label>Tasa del período i (%)<input id="bond-interest" type="number" step="any" value="5" aria-describedby="bond-interest-help"></label>
+        <p id="bond-interest-help" class="field-note">i = 5 significa 5 %; su tasa decimal es r = i/100 = 0,05. Se requiere i &gt; −100 %.</p>
+        <div class="formula">P_B = VF/(1 + i/100)</div>
+        <div id="bond-price-result" class="notice status" aria-live="polite"></div>
       </article>
     </div>
-    <div class="grid">
-      <article class="card soft">
-        <h3>Dos enfoques del Banco Central, dos preguntas</h3>
-        <p><strong>Enfoque de dinero fijo.</strong> El Banco Central fija la cantidad de dinero real y la tasa se ajusta. Pregunta: si sube la producción, ¿cuánto sube la tasa? Con los datos de partida, si Y sube de 1.000 a 1.010, la tasa sube de 2,0 % a 2,4 %.</p>
-        <p><strong>Enfoque de tasa fija.</strong> El Banco Central fija la tasa y la cantidad de dinero se ajusta. Pregunta: si sube la producción, ¿cuánto dinero tiene que entregar para que la tasa no suba? En el mismo caso, de 760 a 768: compra bonos por 8.</p>
-        <p>El laboratorio calcula con dinero fijo. Para el enfoque de tasa fija, haz tú de Banco Central: mueve M/P hasta que la tasa vuelva a su valor.</p>
-      </article>
+    <button class="btn secondary" type="button" id="bond-reset">Restablecer valores iniciales del laboratorio</button>
+    <p id="bond-practice-state" class="field-note" aria-live="polite">Los valores iniciales no corresponden a una actividad seleccionada.</p>
+    <p>Manteniendo VF y plazo constantes, un precio mayor implica un rendimiento menor. Si P_B = VF, el rendimiento es 0 %; si P_B &gt; VF, es negativo y sigue siendo un resultado válido.</p>
+    <details class="guide"><summary>Conceptos, supuestos y límites</summary>
+      <p>Consideramos un <strong>bono sin cupones, un año restante hasta el vencimiento</strong>, pago completo de VF y ausencia de comisiones e impuestos. El período de estas tasas es ese año. Bonos con cupones o varios períodos requieren fórmulas ajustadas.</p>
+      <p>El rendimiento hasta el vencimiento compara el pago final con el precio de compra. Una reventa anterior genera otra ganancia o pérdida: depende del precio de reventa y del tiempo transcurrido.</p>
+      <p>El precio del bono no es su valor facial. La tasa de este bono tampoco representa automáticamente la tasa de política monetaria ni la de todos los activos.</p>
+      <a href="#din">Explorar cómo el mercado de dinero determina la tasa del modelo</a>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+      <div class="actions"><button class="btn secondary" type="button" id="bond-case-a">Cargar caso A de DIN-EX-01 en panel A</button><button class="btn secondary" type="button" id="bond-case-b">Cargar caso B de DIN-EX-01 en panel A</button></div>
       <article class="card soft">
         <h3>Del precio del bono a su tasa<span class="code-tag">DIN-EX-01</span></h3>
-        <p>Un bono paga $100 dentro de un año: ese es su <strong>valor nominal</strong>. Si hoy cuesta P<sub>B</sub>, quien lo compra gana 100 − P<sub>B</sub> pesos. La tasa compara esa ganancia con lo que pagó: <strong>i = (100 − P<sub>B</sub>)/P<sub>B</sub></strong>, y en % se multiplica por 100.</p>
+        <p>Un bono paga $100 dentro de un año: ese es su <strong>valor facial</strong>. Si hoy cuesta P<sub>B</sub>, quien lo compra gana 100 − P<sub>B</sub> pesos. La tasa compara esa ganancia con lo que pagó: <strong>i = 100 × (100/P<sub>B</sub> − 1)</strong>, en porcentaje.</p>
         <div class="mini-grid">
           <label>Caso A: P<sub>B</sub> = $95,238 → tasa i (%)<input id="bondRateA" type="number" step="0.001"></label>
           <label>Caso B: P<sub>B</sub> = $96,154 → tasa i (%)<input id="bondRateB" type="number" step="0.001"></label>
@@ -696,30 +716,70 @@
         <button class="btn secondary" type="button" id="checkBondRates">Comprobar</button>
         <div id="bondRateFeedback" class="status" aria-live="polite"></div>
       </article>
-      <article class="card data-card">
-        <h3>Dato a mirar · la TPM</h3>
-        <p><strong>El ancla.</strong> En la Reunión del 8 de septiembre de 2026, el Consejo del Banco Central mantuvo la TPM en <strong>4,50 %</strong>, por unanimidad (comunicado de la RPM y Minuta de la sesión N° 324). La próxima Reunión es el 26 y 27 de octubre de 2026. Entre 2020 y 2022 la TPM pasó de su mínimo técnico de <strong>0,50 %</strong> (IPoM, diciembre de 2020) a <strong>11,25 %</strong> (IPoM, diciembre de 2022).</p>
-        <p><strong>Lo que el modelo permite decir.</strong> Es consistente con el enfoque de tasa fija: el Banco Central anuncia una tasa y deja que la cantidad de dinero se ajuste.</p>
-        <p><strong>Lo que no permite decir.</strong> Por qué el Consejo movió la tasa ni cuánto cambió la cantidad de dinero. Y no mezcles el nivel a fin de un período, el promedio de un año y una proyección.</p>
-        <p class="source">Serie diaria oficial de la TPM: <a href="https://si3.bcentral.cl/siete/ES/Siete/Cuadro/CAP_EST_OMA/MN_EST_OMA/EM_OMA_30?idSerie=F022.TPM.TIN.D001.NO.Z.D" target="_blank" rel="noopener">Base de Datos Estadísticos del Banco Central de Chile ↗</a></p>
+      <p>Usa el panel A con VF = 100 y los precios A y B del ejercicio DIN-EX-01. El panel B permite comprobar la cuenta al revés. La parte sobre operaciones monetarias sigue disponible en <a href="#din">Mercado de dinero</a>, con su pauta y exportación originales.</p>
+    </details>
+  </section>
+
+  <section class="panel" id="din" role="tabpanel" aria-labelledby="tab-din" hidden>
+    <h2>Mercado de dinero: cantidad y tasa de interés</h2>
+    <p class="lead">Elige los parámetros y observa qué tasa equilibra los saldos monetarios, o cuánto dinero requiere una tasa objetivo. Y está dado en este laboratorio.</p>
+    <p id="money-origin" class="field-note">Valores iniciales del laboratorio; ninguna actividad seleccionada. Y y M/P en unidades reales de práctica; i en % anual (i = 2 significa 2 %). Resultados con coma decimal y punto de miles.</p>
+    <div class="grid">
+      <article class="card">
+        <h3>Configura y experimenta</h3>
+        <label>¿Qué fija la política monetaria?<select id="money-regime"><option value="quantity">Oferta de dinero fijada</option><option value="target">Tasa de interés objetivo</option></select></label>
+        <p id="money-regime-note" class="field-note" aria-live="polite"></p>
+        <div class="mini-grid">
+          <label>Producción o ingreso real Y<input id="moneyY" type="number" min="0" step="any" value="1000" aria-describedby="money-y-help"></label>
+          <label>Oferta real M/P<input id="moneyMs" type="number" min="0" step="any" value="760" aria-describedby="money-mp-help"></label>
+          <label>d₁ (saldos reales / unidad de Y)<input id="moneyD1" type="number" min="0" step="any" value=".8" aria-describedby="money-d1-help"></label>
+          <label>d₂ (saldos reales / punto porcentual)<input id="moneyD2" type="number" min="0" step="any" value="20" aria-describedby="money-d2-help"></label>
+          <label id="money-target-field" hidden>Tasa objetivo i (%)<input id="money-target" type="number" step="any" value="2"></label>
+        </div>
+        <p id="money-y-help" class="field-note"><strong>Y:</strong> producción o ingreso real, dado; no se calcula aquí.</p>
+        <p id="money-mp-help" class="field-note"><strong>M/P:</strong> oferta de saldos monetarios reales. M es dinero nominal y P el nivel de precios: una variación nominal ΔM corresponde a Δ(M/P) = ΔM/P si P permanece fijo.</p>
+        <p id="money-d1-help" class="field-note"><strong>d₁:</strong> aumento de la demanda real de dinero ante una unidad adicional de Y, manteniendo i constante.</p>
+        <p id="money-d2-help" class="field-note"><strong>d₂:</strong> reducción de la demanda real de dinero ante un punto porcentual adicional de i, manteniendo Y constante; debe ser mayor que cero.</p>
+        <div id="money-operations">
+          <label>Tamaño de intervención Δ(M/P) (unidades reales)<input id="money-step" type="number" min="0" step="any" value="40"></label>
+          <div class="actions"><button class="btn success" type="button" id="omoBuy">BC compra bonos</button><button class="btn danger" type="button" id="omoSell">BC vende bonos</button></div>
+          <p class="field-note">La compra suma esta cantidad de dinero real; la venta la resta. Es un mecanismo pedagógico simplificado con P fijo, no el valor nominal de la operación. Una compraventa entre particulares no aumenta por sí sola la oferta agregada de dinero.</p>
+        </div>
+        <button class="btn secondary" type="button" id="moneyReset">Restablecer valores iniciales del laboratorio</button>
+      </article>
+      <article class="card">
+        <h3>Resultado y gráfico</h3>
+        <div class="formula">L(i,Y) = Mᵈ/P = d₁Y − d₂i · Mˢ/P = M/P<br>i* = [d₁Y − M/P]/d₂<br>(M/P)_requerido = d₁Y − d₂i_objetivo</div>
+        <div id="moneyFeedback" class="notice ok status" aria-live="polite"></div>
+        <div class="actions"><button class="btn secondary" type="button" id="money-full" aria-pressed="true">Vista completa</button><button class="btn secondary" type="button" id="money-zoom" aria-pressed="false">Acercar al equilibrio</button><button class="btn secondary" type="button" id="money-scale-reset">Restaurar escala</button></div>
+        <svg id="moneyChart" class="plot" role="img" aria-label="Mercado de dinero con demanda, oferta y tasa de equilibrio" aria-describedby="moneyAlt"></svg>
+        <p id="money-intercepts" class="field-note"></p>
+        <details class="alt"><summary>Ver descripción accesible del gráfico</summary><p id="moneyAlt"></p></details>
       </article>
     </div>
+    <p><strong>Interpretación.</strong> La demanda es el saldo de dinero que se desea mantener: no es gasto, ingreso ni riqueza total. i es el costo de oportunidad de mantener dinero frente al activo remunerado del modelo.</p>
+    <details class="guide"><summary>Política monetaria, ajuste y límites del modelo</summary>
+      <p>La política monetaria es el conjunto de decisiones con que la autoridad monetaria influye en las condiciones monetarias y financieras. Aquí se simplifica a fijar una cantidad real o una tasa: la otra variable se calcula.</p>
+      <p><strong>Cantidad fijada:</strong> una compra de bonos aumenta M/P, desplaza la oferta a la derecha y reduce i; una venta hace lo contrario, manteniendo los demás parámetros.</p>
+      <p><strong>Tasa objetivo:</strong> al cambiar Y, se ajusta M/P para mantener i. La oferta vertical dibujada es el resultado del ajuste, no otra variable fijada independientemente.</p>
+      <p>Con exceso de oferta de dinero se desea comprar bonos: su precio recibe presión al alza y la tasa baja. Con exceso de demanda se desea vender bonos: su precio recibe presión a la baja y la tasa sube. <a href="#bonos">Comprueba la relación precio–rendimiento en Bonos</a>.</p>
+      <p>Un cambio de Y desplaza la demanda en este gráfico; con M/P constante es un movimiento sobre la <a href="#lm">LM en el gráfico (Y,i)</a>. La pendiente de la demanda aquí es −1/d₂, distinta del coeficiente −d₂ de L(i,Y).</p>
+      <p>La demanda lineal y un solo activo remunerado simplifican el ajuste. Una tasa algebraica negativa se conserva: no demuestra que todas las tasas negativas sean imposibles ni que esta recta describa bien cualquier valor extremo. No se admite oferta real negativa.</p>
+    </details>
+    <article class="card data-card">
+      <h3>Dato a mirar · la TPM en Chile</h3>
+      <p>El 8 de septiembre de 2026 el Banco Central mantuvo la TPM en 4,50 %, por unanimidad (Minuta de la sesión N° 324). Es un dato observado, no un parámetro cargado en el laboratorio.</p>
+      <p>El Banco Central gestiona liquidez para que la tasa interbancaria a un día se ubique en torno a la TPM. El régimen de tasa objetivo de este laboratorio es una representación simplificada: no reproduce todos los instrumentos ni implica control mecánico de todos los agregados monetarios. La TPM no es el rendimiento de cualquier bono.</p>
+      <p class="source">Fuente: <a href="https://www.bcentral.cl/c/document_library/get_file?groupId=33528&amp;uuid=3cec1aa3-00d3-8486-98d6-1eeddb7d997e" target="_blank" rel="noopener">Comunicado RPM, 8 de septiembre de 2026</a>; <a href="https://www.bcentral.cl/c/document_library/get_file?groupId=33528&amp;uuid=d7da02ea-3316-9573-a768-a52fe296df46" target="_blank" rel="noopener">Minuta, publicada el 16 de septiembre de 2026</a>; <a href="https://www.bcentral.cl/web/banco-central/areas/politica-monetaria" target="_blank" rel="noopener">marco operacional del BCCh</a> (consulta: 8 de octubre de 2026).</p>
+    </article>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary><div class="activity" data-window="din"></div></details>
   </section>
 
   <section class="panel" id="lm" role="tabpanel" aria-labelledby="tab-lm" hidden>
     <h2>Relación LM: de los equilibrios del mercado de dinero a una recta</h2>
     <p class="lead">Si la producción sube, ¿qué tasa hace que la gente siga queriendo justo el dinero que hay? Aquí resuelves el mercado de dinero para dos niveles de producción, o antes y después de un cambio, y ves los dos equilibrios en dos gráficos alineados: el del mercado de dinero y el de producción y tasa, donde la unión de los puntos es la LM.</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan la demanda de dinero, el dinero que hay y un cambio: sube la producción, el Banco Central compra o vende bonos, cambian los precios o la gente quiere más o menos dinero por otra razón. Tienes que decir si la economía se mueve a lo largo de la LM o si la LM se desplaza, hacia dónde y cuánto.</dd>
-        <dt>Cómo se razona</dt><dd>Primero di qué fija el Banco Central: la cantidad de dinero (<strong>enfoque de dinero fijo</strong>) o la tasa (<strong>enfoque de tasa fija</strong>). Con dinero fijo, cada nivel de producción da una tasa de equilibrio; esos pares (Y, i) forman la LM, que sube con pendiente d₁/d₂. Después mira qué cambió: si cambió Y, que está en un eje, la economía <strong>se mueve a lo largo</strong> de la LM. Si cambió algo que no está en los ejes (M, P o la demanda de dinero por otra razón), <strong>la LM se desplaza</strong>. Con tasa fija, la LM es horizontal a la altura de la tasa que fijó el Banco Central.</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: muestra de dónde sale cada punto de la LM y separa moverse de desplazarse. Pierde: la producción la eliges tú (todavía no hay mercado de bienes, que llega con la IS), hay un solo activo además del dinero y la recta es lineal: bajo i = 0 sigue, pero ya no describe nada posible, por eso el gráfico se corta en 0.</dd>
-        <dt>Qué mirar en Chile</dt><dd>Chile usa el enfoque de tasa fija: entre dos Reuniones de Política Monetaria, la LM es horizontal a la altura de la TPM. Cuando el Consejo cambia la TPM, la LM horizontal sube o baja a otra altura.</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: decir que la LM se desplaza cuando solo subió la producción<span class="code-tag">LM-ERR-01</span>, escribir la pendiente al revés<span class="code-tag">LM-ERR-02</span>, correr la LM hacia el lado equivocado con una compra de bonos<span class="code-tag">LM-ERR-03</span>, usar M donde va M/P<span class="code-tag">LM-ERR-04</span> y fijar a la vez la tasa y la cantidad de dinero<span class="code-tag">LM-ERR-05</span>.</p>
-    </details>
-    <div class="activity" data-window="lm"></div>
+
+
     <div class="grid">
       <article class="card">
         <h3>Estado inicial</h3>
@@ -766,7 +826,7 @@
         <h3>Leer la ecuación de la LM</h3>
         <p class="formula">i = (d₁/d₂)·Y − (1/d₂)·(M/P)</p>
         <p><strong>La pendiente, d₁/d₂.</strong> Cuánto tiene que subir la tasa para que el mercado de dinero siga en equilibrio si la producción sube una unidad. Es mayor si la demanda de dinero responde poco a la tasa (d₂ chico): entonces hace falta un alza grande de la tasa para que la gente vuelva a querer el dinero que hay.</p>
-        <p><strong>Los interceptos.</strong> Con el eje i, −(M/P)/d₂; con el eje Y, (M/P)/d₁. El intercepto negativo es una propiedad de la recta, no una predicción: la tasa no puede bajar mucho de cero.</p>
+        <p><strong>Los interceptos.</strong> Con el eje i, −(M/P)/d₂; con el eje Y, (M/P)/d₁. El intercepto negativo es una propiedad de la recta, no una predicción: extrapolar una demanda lineal a tasas muy negativas requiere cautela.</p>
         <p><strong>Qué la desplaza.</strong> Más dinero real (el Banco Central compra bonos, o bajan los precios): a la derecha. Menos dinero real (vende bonos, o suben los precios): a la izquierda. Más demanda de dinero por otra razón: a la izquierda. Un cambio de Y o de i no la desplaza: mueve la economía a lo largo de ella.</p>
       </article>
       <article class="card data-card">
@@ -778,22 +838,27 @@
         <p class="source">Serie diaria oficial de la TPM: <a href="https://si3.bcentral.cl/siete/ES/Siete/Cuadro/CAP_EST_OMA/MN_EST_OMA/EM_OMA_30?idSerie=F022.TPM.TIN.D001.NO.Z.D" target="_blank" rel="noopener">Base de Datos Estadísticos del Banco Central de Chile ↗</a></p>
       </article>
     </div>
+    <details class="guide">
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Te dan la demanda de dinero, el dinero que hay y un cambio: sube la producción, el Banco Central compra o vende bonos, cambian los precios o la gente quiere más o menos dinero por otra razón. Tienes que decir si la economía se mueve a lo largo de la LM o si la LM se desplaza, hacia dónde y cuánto.</dd>
+        <dt>Cómo se razona</dt><dd>Primero di qué fija el Banco Central: la cantidad de dinero (<strong>enfoque de dinero fijo</strong>) o la tasa (<strong>enfoque de tasa fija</strong>). Con dinero fijo, cada nivel de producción da una tasa de equilibrio; esos pares (Y, i) forman la LM, que sube con pendiente d₁/d₂. Después mira qué cambió: si cambió Y, que está en un eje, la economía <strong>se mueve a lo largo</strong> de la LM. Si cambió algo que no está en los ejes (M, P o la demanda de dinero por otra razón), <strong>la LM se desplaza</strong>. Con tasa fija, la LM es horizontal a la altura de la tasa que fijó el Banco Central.</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: muestra de dónde sale cada punto de la LM y separa moverse de desplazarse. Pierde: la producción la eliges tú (todavía no hay mercado de bienes, que llega con la IS), hay un solo activo además del dinero y la recta es lineal: bajo i = 0 sigue, su interpretación requiere cautela: esta vista recorta la parte bajo cero y conserva el resultado algebraico en el resumen.</dd>
+        <dt>Qué mirar en Chile</dt><dd>Chile usa el enfoque de tasa fija: entre dos Reuniones de Política Monetaria, la LM es horizontal a la altura de la TPM. Cuando el Consejo cambia la TPM, la LM horizontal sube o baja a otra altura.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: decir que la LM se desplaza cuando solo subió la producción<span class="code-tag">LM-ERR-01</span>, escribir la pendiente al revés<span class="code-tag">LM-ERR-02</span>, correr la LM hacia el lado equivocado con una compra de bonos<span class="code-tag">LM-ERR-03</span>, usar M donde va M/P<span class="code-tag">LM-ERR-04</span> y fijar a la vez la tasa y la cantidad de dinero<span class="code-tag">LM-ERR-05</span>.</p>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+
+    <div class="activity" data-window="lm"></div>
+    </details>
   </section>
 
   <section class="panel" id="is" role="tabpanel" aria-labelledby="tab-is" hidden>
     <h2>Curva IS: de dos cruces keynesianas a una recta</h2>
     <p class="lead">Si sube la tasa de interés, ¿cuánto se produce? Aquí resuelves el mercado de bienes con dos tasas, o antes y después de un cambio del gasto, y ves los dos equilibrios en dos gráficos alineados: arriba la cruz keynesiana y abajo el plano de producción y tasa, donde la unión de los puntos es la IS.</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan cómo gastan los hogares, las empresas y el Estado, y un cambio: sube o baja la tasa, cambia el gasto público, cambian los impuestos o cambia la confianza de hogares o empresas. Tienes que decir si la economía se mueve a lo largo de la IS o si la IS se desplaza, hacia dónde y cuánto.</dd>
-        <dt>Cómo se razona</dt><dd>Con una tasa dada, la cruz keynesiana da la producción con la que se vende todo lo que se produce. Guarda de cada cruz solo dos números: esa producción y la tasa. Con dos tasas tienes dos puntos; la recta que los une es la IS, que baja porque una tasa más alta quita inversión, y con menos inversión se produce menos. Después mira qué cambió: si cambió la tasa, que está en un eje, la economía <strong>se mueve a lo largo</strong> de la IS. Si cambió el gasto público, los impuestos, c₀ o b₀, <strong>la IS se desplaza</strong>: el multiplicador por el cambio del gasto autónomo.</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: muestra de dónde sale cada punto de la IS, separa los dos efectos sobre la inversión (el acelerador y el de la tasa) y deja ver cómo el impuesto proporcional cambia la inclinación de la IS. Pierde: la tasa la eliges tú, porque todavía no hay mercado de dinero (llega con la IS-LM); los precios están dados y no hay comercio exterior.</dd>
-        <dt>Qué mirar en Chile</dt><dd>Cuando las empresas postergan proyectos con la TPM quieta, la tasa no cambió pero la IS sí se corrió: bajó la inversión autónoma. Una ley de presupuestos con más gasto corre la IS a la derecha; cuánto sube la producción depende de lo que haga la tasa.</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: usar 1/(1 − c₁) como multiplicador cuando la inversión depende de Y<span class="code-tag">IS-ERR-01</span>, escribir la tasa sumando en la inversión<span class="code-tag">IS-ERR-02</span>, decir que la IS se desplaza cuando cambió la tasa<span class="code-tag">IS-ERR-03</span>, llamar acelerador al efecto de la tasa<span class="code-tag">IS-ERR-04</span> y tratar una transferencia como gasto público<span class="code-tag">IS-ERR-05</span>.</p>
-    </details>
-    <div class="activity" data-window="is"></div>
+
+
     <div class="grid">
       <article class="card">
         <h3>La economía</h3>
@@ -868,22 +933,27 @@
         <p class="source">Fuente: <a href="https://www.dipres.gob.cl/598/w3-article-393844.html" target="_blank" rel="noopener">DIPRES, «Congreso despacha a ley el Presupuesto 2026» ↗</a></p>
       </article>
     </div>
+    <details class="guide">
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Te dan cómo gastan los hogares, las empresas y el Estado, y un cambio: sube o baja la tasa, cambia el gasto público, cambian los impuestos o cambia la confianza de hogares o empresas. Tienes que decir si la economía se mueve a lo largo de la IS o si la IS se desplaza, hacia dónde y cuánto.</dd>
+        <dt>Cómo se razona</dt><dd>Con una tasa dada, la cruz keynesiana da la producción con la que se vende todo lo que se produce. Guarda de cada cruz solo dos números: esa producción y la tasa. Con dos tasas tienes dos puntos; la recta que los une es la IS, que baja porque una tasa más alta quita inversión, y con menos inversión se produce menos. Después mira qué cambió: si cambió la tasa, que está en un eje, la economía <strong>se mueve a lo largo</strong> de la IS. Si cambió el gasto público, los impuestos, c₀ o b₀, <strong>la IS se desplaza</strong>: el multiplicador por el cambio del gasto autónomo.</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: muestra de dónde sale cada punto de la IS, separa los dos efectos sobre la inversión (el acelerador y el de la tasa) y deja ver cómo el impuesto proporcional cambia la inclinación de la IS. Pierde: la tasa la eliges tú, porque todavía no hay mercado de dinero (llega con la IS-LM); los precios están dados y no hay comercio exterior.</dd>
+        <dt>Qué mirar en Chile</dt><dd>Cuando las empresas postergan proyectos con la TPM quieta, la tasa no cambió pero la IS sí se corrió: bajó la inversión autónoma. Una ley de presupuestos con más gasto corre la IS a la derecha; cuánto sube la producción depende de lo que haga la tasa.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: usar 1/(1 − c₁) como multiplicador cuando la inversión depende de Y<span class="code-tag">IS-ERR-01</span>, escribir la tasa sumando en la inversión<span class="code-tag">IS-ERR-02</span>, decir que la IS se desplaza cuando cambió la tasa<span class="code-tag">IS-ERR-03</span>, llamar acelerador al efecto de la tasa<span class="code-tag">IS-ERR-04</span> y tratar una transferencia como gasto público<span class="code-tag">IS-ERR-05</span>.</p>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+
+    <div class="activity" data-window="is"></div>
+    </details>
   </section>
 
   <section class="panel" id="islm" role="tabpanel" aria-labelledby="tab-islm" hidden>
     <h2>IS-LM: producción y tasa a la vez</h2>
     <p class="lead">¿Qué pasa con la producción y la tasa cuando el Gobierno gasta más o el Banco Central cambia el dinero? ¿Por qué camino llega la economía al nuevo equilibrio? ¿Y qué le pasa a la inversión? Un solo gráfico, siempre con la IS y la LM iniciales y finales, y tres maneras de mirarlo.</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Te dan la economía (consumo, inversión, gasto, impuestos y mercado de dinero), qué fija el Banco Central y un cambio. Tienes que decir dónde queda el equilibrio, por qué camino se llega a él y qué le pasa a la inversión.</dd>
-        <dt>Cómo se razona</dt><dd>Primero di qué fija el Banco Central: la cantidad de dinero (LM con pendiente) o la tasa (LM horizontal). Lee el cruce en el gráfico y después compruébalo con la cuenta. Si cambia G o T, se corre la IS; si cambia M/P, la LM. Fuera del equilibrio, la tasa se ajusta primero (en horas, por los bonos) y la producción después (en semanas, por los inventarios). Para la inversión, separa el efecto acelerador (b₁·ΔY) del efecto de la tasa (b₂·Δi).</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: junta los dos mercados y separa lo que cambia rápido de lo que cambia lento. Pierde: los precios están dados, no hay comercio exterior, hay un solo activo además del dinero y un solo tipo de interés. Es un modelo de corto plazo.</dd>
-        <dt>Qué mirar en Chile</dt><dd>El Banco Central fija la TPM: entre dos Reuniones, la LM es horizontal. Por eso, en Chile, un aumento del gasto sube la tasa solo si el Consejo decide subirla; y el efecto desplazamiento depende de esa decisión, no del gasto en sí.</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: mover la curva equivocada<span class="code-tag">ISLM-ERR-01</span>, decir que hay efecto desplazamiento por definición<span class="code-tag">ISLM-ERR-02</span>, no decir qué fija el Banco Central<span class="code-tag">ISLM-ERR-04</span>, confundir cuánto se corre la IS con cuánto sube la producción<span class="code-tag">ISLM-ERR-05</span>, invertir el exceso al ubicar un punto<span class="code-tag">ISLM-ERR-11CUAD</span> y hacer ajustar primero la producción<span class="code-tag">ISLM-ERR-12VEL</span>.</p>
-    </details>
-    <div class="activity" data-window="islm"></div>
+
+
     <fieldset class="lm-modo islm-modes"><legend>¿Cómo quieres mirarlo?</legend>
       <label class="inline-label"><input type="radio" name="islmMode" value="equilibrio" checked> Equilibrio y políticas</label>
       <label class="inline-label"><input type="radio" name="islmMode" value="deseq"> Desequilibrios</label>
@@ -1021,22 +1091,27 @@
         <p><strong>Lo que no permite decir.</strong> Cuánto de la desaceleración se debió a la tasa y cuánto a las menores ventas, ni qué tipo de inversión se frenó más.</p>
       </article>
     </div>
+    <details class="guide">
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Te dan la economía (consumo, inversión, gasto, impuestos y mercado de dinero), qué fija el Banco Central y un cambio. Tienes que decir dónde queda el equilibrio, por qué camino se llega a él y qué le pasa a la inversión.</dd>
+        <dt>Cómo se razona</dt><dd>Primero di qué fija el Banco Central: la cantidad de dinero (LM con pendiente) o la tasa (LM horizontal). Lee el cruce en el gráfico y después compruébalo con la cuenta. Si cambia G o T, se corre la IS; si cambia M/P, la LM. Fuera del equilibrio, la tasa se ajusta primero (en horas, por los bonos) y la producción después (en semanas, por los inventarios). Para la inversión, separa el efecto acelerador (b₁·ΔY) del efecto de la tasa (b₂·Δi).</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: junta los dos mercados y separa lo que cambia rápido de lo que cambia lento. Pierde: los precios están dados, no hay comercio exterior, hay un solo activo además del dinero y un solo tipo de interés. Es un modelo de corto plazo.</dd>
+        <dt>Qué mirar en Chile</dt><dd>El Banco Central fija la TPM: entre dos Reuniones, la LM es horizontal. Por eso, en Chile, un aumento del gasto sube la tasa solo si el Consejo decide subirla; y el efecto desplazamiento depende de esa decisión, no del gasto en sí.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: mover la curva equivocada<span class="code-tag">ISLM-ERR-01</span>, decir que hay efecto desplazamiento por definición<span class="code-tag">ISLM-ERR-02</span>, no decir qué fija el Banco Central<span class="code-tag">ISLM-ERR-04</span>, confundir cuánto se corre la IS con cuánto sube la producción<span class="code-tag">ISLM-ERR-05</span>, invertir el exceso al ubicar un punto<span class="code-tag">ISLM-ERR-11CUAD</span> y hacer ajustar primero la producción<span class="code-tag">ISLM-ERR-12VEL</span>.</p>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
+
+    <div class="activity" data-window="islm"></div>
+    </details>
   </section>
 
   <section class="panel" id="lab" role="tabpanel" aria-labelledby="tab-lab" hidden>
     <h2>Mercado laboral: indicadores y tasa natural</h2>
     <p class="lead">¿Cuántas personas trabajan, cuántas buscan trabajo y cuánto desempleo es «normal»? Primero calculas los indicadores de la Encuesta Nacional de Empleo del INE. Después comparas el desempleo observado con la tasa natural de un modelo simple de salarios y precios (WS-PS).</p>
-    <details class="guide" open>
-      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
-      <dl>
-        <dt>Dónde estás entrando</dt><dd>Dos tareas seguidas. Primero, reconstruir poblaciones y tasas cuando solo te dan algunas. Después, decidir si el desempleo que observas está por encima o por debajo del de equilibrio.</dd>
-        <dt>Cómo se razona</dt><dd>La fuerza de trabajo (PA) es ocupados más desocupados. La población en edad de trabajar (PET) es la PA más los inactivos. Después <strong>elige bien por qué número divides</strong>: la participación y la ocupación se dividen por la PET; el desempleo, por la PA. Para la tasa natural, iguala el salario que piden los trabajadores (WS) con el que dejan las empresas (PS).</dd>
-        <dt>Qué gana y qué pierde</dt><dd>Gana: separa el dato de un trimestre de la tasa de equilibrio y obliga a elegir el denominador. Pierde: el modelo WS-PS es muy simple (F(u, z) = 1 − u y precios esperados iguales a los efectivos), sin entradas y salidas del empleo ni cambios de expectativas.</dd>
-        <dt>Qué mirar en Chile</dt><dd>Cuando el INE publica un desempleo de 8,5 %, la pregunta útil no es «¿es alto?», sino si está por encima de la tasa natural. Si lo está por falta de demanda, la política macroeconómica puede ayudar. Si la tasa natural misma es alta, hacen falta otras medidas.</dd>
-      </dl>
-      <p class="errs">Errores que esta ventana busca prevenir: dividir por la PET cuando va la PA<span class="code-tag">LAB-ERR-01</span>, contar a los inactivos como desocupados<span class="code-tag">LAB-ERR-02</span>, confundir el salario en pesos con el salario real<span class="code-tag">LAB-ERR-03</span> y tomar el desempleo de un trimestre como tasa natural<span class="code-tag">LAB-ERR-04</span>.</p>
-    </details>
-    <div class="activity" data-window="lab"></div>
+
+
     <div class="grid">
       <article class="card">
         <h3>Indicadores ENE</h3>
@@ -1061,6 +1136,26 @@
       </article>
     </div>
     <div class="grid">
+
+      <article class="card data-card">
+        <h3>Dato a mirar · ENE febrero–abril 2024</h3>
+        <p><strong>El ancla.</strong> Fuerza de trabajo: <strong>10.209.534</strong>; ocupadas: <strong>9.339.296</strong>; desocupadas: <strong>870.239</strong>; inactivas: <strong>6.135.006</strong>. El INE publica la tasa de desempleo redondeada: 8,5 %.</p>
+        <p><strong>Lo que permite decir.</strong> Qué parte de la fuerza de trabajo buscaba empleo en ese trimestre.</p>
+        <p><strong>Lo que no permite decir.</strong> Si ese desempleo es alto o bajo respecto de la tasa natural, ni por qué cambió.</p>
+        <p class="source">Dato observado · trimestre móvil febrero-abril de 2024 · <a href="https://www.ine.gob.cl/docs/default-source/ocupacion-y-desocupacion/boletines/2024/nacional/ene-nacional-307.pdf" target="_blank" rel="noopener">INE, boletín n.º 307 ↗</a>. Por el redondeo de las estimaciones, la fuerza de trabajo publicada difiere en una persona de la suma.</p>
+      </article>
+    </div>
+    <details class="guide">
+      <summary><span><strong>Para qué sirve esta ventana</strong> <span class="guide-hint">qué problema resuelve, cómo se razona y dónde aparece</span></span><span class="guide-chevron" aria-hidden="true">▾</span></summary>
+      <dl>
+        <dt>Dónde estás entrando</dt><dd>Dos tareas seguidas. Primero, reconstruir poblaciones y tasas cuando solo te dan algunas. Después, decidir si el desempleo que observas está por encima o por debajo del de equilibrio.</dd>
+        <dt>Cómo se razona</dt><dd>La fuerza de trabajo (PA) es ocupados más desocupados. La población en edad de trabajar (PET) es la PA más los inactivos. Después <strong>elige bien por qué número divides</strong>: la participación y la ocupación se dividen por la PET; el desempleo, por la PA. Para la tasa natural, iguala el salario que piden los trabajadores (WS) con el que dejan las empresas (PS).</dd>
+        <dt>Qué gana y qué pierde</dt><dd>Gana: separa el dato de un trimestre de la tasa de equilibrio y obliga a elegir el denominador. Pierde: el modelo WS-PS es muy simple (F(u, z) = 1 − u y precios esperados iguales a los efectivos), sin entradas y salidas del empleo ni cambios de expectativas.</dd>
+        <dt>Qué mirar en Chile</dt><dd>Cuando el INE publica un desempleo de 8,5 %, la pregunta útil no es «¿es alto?», sino si está por encima de la tasa natural. Si lo está por falta de demanda, la política macroeconómica puede ayudar. Si la tasa natural misma es alta, hacen falta otras medidas.</dd>
+      </dl>
+      <p class="errs">Errores que esta ventana busca prevenir: dividir por la PET cuando va la PA<span class="code-tag">LAB-ERR-01</span>, contar a los inactivos como desocupados<span class="code-tag">LAB-ERR-02</span>, confundir el salario en pesos con el salario real<span class="code-tag">LAB-ERR-03</span> y tomar el desempleo de un trimestre como tasa natural<span class="code-tag">LAB-ERR-04</span>.</p>
+    </details>
+    <details class="practice"><summary>Actividades opcionales para practicar</summary>
       <article class="card soft">
         <h3>De las tasas a las personas</h3>
         <p><strong>Situación.</strong> Se conocen la población en edad de trabajar, la fuerza de trabajo y la tasa de ocupación. Hay que recuperar cuántas personas trabajan y el desempleo.</p>
@@ -1073,14 +1168,8 @@
         <button class="btn secondary" type="button" id="checkInverse">Comprobar</button>
         <div id="inverseFeedback" class="status" aria-live="polite"></div>
       </article>
-      <article class="card data-card">
-        <h3>Dato a mirar · ENE febrero–abril 2024</h3>
-        <p><strong>El ancla.</strong> Fuerza de trabajo: <strong>10.209.534</strong>; ocupadas: <strong>9.339.296</strong>; desocupadas: <strong>870.239</strong>; inactivas: <strong>6.135.006</strong>. El INE publica la tasa de desempleo redondeada: 8,5 %.</p>
-        <p><strong>Lo que permite decir.</strong> Qué parte de la fuerza de trabajo buscaba empleo en ese trimestre.</p>
-        <p><strong>Lo que no permite decir.</strong> Si ese desempleo es alto o bajo respecto de la tasa natural, ni por qué cambió.</p>
-        <p class="source">Dato observado · trimestre móvil febrero-abril de 2024 · <a href="https://www.ine.gob.cl/docs/default-source/ocupacion-y-desocupacion/boletines/2024/nacional/ene-nacional-307.pdf" target="_blank" rel="noopener">INE, boletín n.º 307 ↗</a>. Por el redondeo de las estimaciones, la fuerza de trabajo publicada difiere en una persona de la suma.</p>
-      </article>
-    </div>
+    <div class="activity" data-window="lab"></div>
+    </details>
   </section>
 </main>
 
@@ -1099,7 +1188,7 @@
 const NOTES_BASE="notas/";
 const PUBLIC_NOTES_BASE="https://pavelgomez.github.io/MacroLab-Shock-Simulator/macro1/notas/";
 
-const fmt=(n,d=2)=>Number(n).toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d});
+const fmt=(n,d=2)=>Number.isFinite(Number(n))?Number(n).toLocaleString("es-CL",{minimumFractionDigits:d,maximumFractionDigits:d}):"—";
 function parseStudentNumber(raw){
   const text=String(raw??"").trim().replace(/\s/g,"").replace(/%$/,"");
   if(!text)return NaN;
@@ -1114,9 +1203,9 @@ function evaluateNumericAnswer(raw,expected,spec={}){
   const best=candidates.sort((a,b)=>Math.abs(a.canonical-expected)-Math.abs(b.canonical-expected))[0];
   return {...best,value,ok:Math.abs(best.canonical-expected)<tolerance};
 }
-const num=id=>Number(document.getElementById(id).value);
+const num=id=>{const raw=document.getElementById(id).value;return raw.trim()===""||Math.abs(Number(raw))>1e12?NaN:Number(raw)};
 const setValue=(id,value)=>{const el=document.getElementById(id);if(el)el.value=value;};
-const validNumbers=elements=>elements.every(el=>el.checkValidity()&&Number.isFinite(Number(el.value)));
+const validNumbers=elements=>elements.every(el=>el.value.trim()!==""&&el.checkValidity()&&Number.isFinite(Number(el.value))&&Math.abs(Number(el.value))<=1e12);
 const escapeText=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[ch]));
 
 // Regla única de «hay predicción». La usa el laboratorio para revelar la pauta y la
@@ -2945,11 +3034,11 @@ const ACTIVITIES={
       enunciado:{
         situacion:"El Fisco vende un bono a un año. Quien lo compra hoy paga un precio P_B y, dentro de un año, recibe $100: el valor nominal (o valor facial) del bono. No hay otros pagos entre medio. Lo que gana el comprador es la diferencia entre lo que recibe y lo que pagó.",
         datos:["Valor nominal: $100, que se pagan en un año.","Precio hoy, caso A: P_B = $95,238.","Precio hoy, caso B: P_B = $96,154."],
-        pide:["Calcula la tasa de interés anual del bono en cada caso con i = (100 − P_B)/P_B. Exprésala en %, con un decimal.","Cuando el precio del bono sube de A a B, ¿qué pasa con la tasa? Explícalo en una frase.","El Banco Central compra bonos (operación de mercado abierto expansiva). Ordena la cadena y di si cada eslabón sube o baja: cantidad de dinero → demanda de bonos → P_B → i."],
-        primerPaso:"Escribe i = (100 − P_B)/P_B y reemplaza el precio del caso A.",
+        pide:["Calcula la tasa de interés anual del bono en cada caso con i = 100 × (100/P_B − 1). Exprésala en %, con un decimal.","Cuando el precio del bono sube de A a B, ¿qué pasa con la tasa? Explícalo en una frase.","El Banco Central compra bonos (operación de mercado abierto expansiva). Ordena la cadena y di si cada eslabón sube o baja: cantidad de dinero → demanda de bonos → P_B → i."],
+        primerPaso:"Escribe i = 100 × (100/P_B − 1) y reemplaza el precio del caso A.",
         pistas:["valor_nominal","precio_bono","relacion_inversa","oma_expansiva"],
         comprobacion:"Deberías obtener 5,0 % y 4,0 %. Compruébalo al revés: 95,238 × 1,05 = 100. Si tu tasa subió cuando subió el precio, revisa el signo.",
-        enLab:"La tarjeta «Del precio del bono a su tasa», más abajo, revisa tus dos tasas.",
+        enLab:"El panel A de «Bonos» calcula el rendimiento. Su práctica final revisa las dos tasas; vuelve aquí para la operación monetaria.",
         proposito:"Que el precio de un bono y su tasa se mueven en sentidos contrarios, y por qué una compra de bonos del Banco Central baja la tasa.",
         errores:[
           {codigo:"DIN-ERR-10",sintoma:"«El bono subió de precio, así que ahora rinde más».",correccion:"El valor nominal es fijo. Si hoy pagas más por él, ganas menos al cobrarlo: la tasa baja. Escribe siempre la cuenta al lado de la frase."},
@@ -2975,7 +3064,7 @@ const ACTIVITIES={
   ],
   lm:[
     {"id": "LM-EX-01", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "aumento_Y", "regime": "dinero_fijo", "title": "De tres equilibrios a una recta: la LM", "preset": {"Y0": 2100, "M": 1200, "P": 1, "d1": 0.6, "d2": 30, "shock": "Y", "val": 2200, "modo": "dinero", "iFix": 4}, "enunciado": {"situacion": "En una economía, la gente quiere tener más dinero cuando se produce más y menos cuando la tasa sube. El Banco Central deja fija la cantidad de dinero real. Hay que ver qué tasa corresponde a cada nivel de producción y unir esos puntos.", "datos": ["Demanda de dinero real: Md = 0,6·Y − 30·i, con la tasa i en % anual.", "Dinero real, fijo: M/P = 1.200 unidades de producto.", "Tres niveles de producción: Y = 2.100, 2.200 y 2.300 unidades de producto."], "pide": ["Calcula la tasa de equilibrio del mercado de dinero para cada nivel de producción, en %.", "Escribe la LM de dos formas: i = … e Y = ….", "Explica en una frase qué dice la pendiente."], "primerPaso": "Escribe la ecuación de equilibrio, M/P = 0,6·Y − 30·i, y despeja i.", "pistas": ["curva_lm", "demanda_dinero_real", "enfoque_dinero_fijo", "pendiente"], "comprobacion": "Los tres puntos tienen que quedar sobre una misma recta: la tasa sube lo mismo por cada 100 de producción.", "proposito": "Construir la LM a partir de equilibrios del mercado de dinero.", "enLab": "Los datos ya están cargados con Y₀ = 2.100 e Y₁ = 2.200. Cambia Y₁ a 2.300 y mira cómo el punto B se mueve sobre la LM.", "errores": [{"codigo": "LM-ERR-01", "sintoma": "«Sube la producción, entonces se desplaza la LM».", "correccion": "Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve a lo largo de la LM. Lo que se desplaza es la demanda de dinero, en el otro gráfico."}, {"codigo": "LM-ERR-02", "sintoma": "Escribir la pendiente como d₂/d₁.", "correccion": "En el plano (Y, i) la pendiente es d₁/d₂: cuánto sube la tasa por cada unidad más de producción."}]}, "rubric": "a) Y = 2.100: (1.260 − 1.200)/30 = 2 %. Y = 2.200: (1.320 − 1.200)/30 = 4 %. Y = 2.300: (1.380 − 1.200)/30 = 6 %. b) i = 0,02·Y − 40, o bien Y = 2.000 + 50·i. c) Por cada 100 más de producción, la tasa sube 2 puntos para que la gente siga queriendo justo el dinero que hay. Respuesta completa con Y = 2.300. Unidad: % anual. Qué significa: con 2.300 de producción, la tasa con la que la gente quiere justo 1.200 de dinero real es 6 %. Cómo lo compruebo: 0,6 × 2.300 − 30 × 6 = 1.380 − 180 = 1.200 ✓.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
-    {"id": "LM-EX-02", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "cambio_d2", "regime": "dinero_fijo", "title": "Pendiente e interceptos: cuando el dinero responde mucho a la tasa", "preset": {"Y0": 2200, "M": 1200, "P": 1, "d1": 0.6, "d2": 60, "shock": "Y", "val": 2300, "modo": "dinero", "iFix": 4}, "enunciado": {"situacion": "Dos economías son iguales salvo en una cosa: en la segunda, la gente cambia mucho cuánto dinero quiere tener cuando cambia la tasa. Hay que comparar sus LM.", "datos": ["Economía 1: Md = 0,6·Y − 30·i.", "Economía 2: Md = 0,6·Y − 60·i.", "En las dos, el dinero real es fijo: M/P = 1.200. La tasa i va en % anual."], "pide": ["Calcula la pendiente de la LM de cada economía.", "Calcula los dos interceptos de cada LM: con el eje i (Y = 0) y con el eje Y (i = 0).", "Explica en dos frases por qué la LM de la economía 2 es más plana.", "Explica en una frase qué significa el intercepto negativo con el eje i."], "primerPaso": "Escribe la LM general: i = (d₁/d₂)·Y − (M/P)/d₂.", "pistas": ["pendiente", "intercepto", "d2", "curva_lm"], "comprobacion": "El intercepto con el eje Y no depende de d₂: en las dos economías es 1.200/0,6 = 2.000. Si te dan distintos, revisa.", "proposito": "Leer la pendiente y los interceptos de la LM, y ver qué los cambia.", "enLab": "Los datos ya están cargados con d₂ = 60. Cambia d₂ a 30 y compara la pendiente y los interceptos.", "errores": [{"codigo": "LM-ERR-02", "sintoma": "Escribir la pendiente como d₂/d₁.", "correccion": "En el plano (Y, i) la pendiente es d₁/d₂: cuánto sube la tasa por cada unidad más de producción."}, {"codigo": "LM-ERR-06", "sintoma": "Leer el intercepto −40 % como una tasa posible.", "correccion": "Es una propiedad de la recta, no una predicción: la tasa no puede bajar mucho de cero. El intercepto dice dónde está la recta."}]}, "rubric": "a) Economía 1: 0,6/30 = 0,02. Economía 2: 0,6/60 = 0,01. b) Economía 1: eje i en −1.200/30 = −40 %; eje Y en 1.200/0,6 = 2.000. Economía 2: eje i en −1.200/60 = −20 %; eje Y en 2.000. c) En la economía 2, un cambio pequeño de la tasa cambia mucho el dinero que se quiere tener. Por eso, cuando sube la producción, basta un alza pequeña de la tasa para que la gente vuelva a querer el dinero que hay: la tasa sube menos por cada unidad de Y. d) Es una propiedad de la recta, no una predicción: la tasa no puede bajar mucho de cero.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
+    {"id": "LM-EX-02", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "cambio_d2", "regime": "dinero_fijo", "title": "Pendiente e interceptos: cuando el dinero responde mucho a la tasa", "preset": {"Y0": 2200, "M": 1200, "P": 1, "d1": 0.6, "d2": 60, "shock": "Y", "val": 2300, "modo": "dinero", "iFix": 4}, "enunciado": {"situacion": "Dos economías son iguales salvo en una cosa: en la segunda, la gente cambia mucho cuánto dinero quiere tener cuando cambia la tasa. Hay que comparar sus LM.", "datos": ["Economía 1: Md = 0,6·Y − 30·i.", "Economía 2: Md = 0,6·Y − 60·i.", "En las dos, el dinero real es fijo: M/P = 1.200. La tasa i va en % anual."], "pide": ["Calcula la pendiente de la LM de cada economía.", "Calcula los dos interceptos de cada LM: con el eje i (Y = 0) y con el eje Y (i = 0).", "Explica en dos frases por qué la LM de la economía 2 es más plana.", "Explica en una frase qué significa el intercepto negativo con el eje i."], "primerPaso": "Escribe la LM general: i = (d₁/d₂)·Y − (M/P)/d₂.", "pistas": ["pendiente", "intercepto", "d2", "curva_lm"], "comprobacion": "El intercepto con el eje Y no depende de d₂: en las dos economías es 1.200/0,6 = 2.000. Si te dan distintos, revisa.", "proposito": "Leer la pendiente y los interceptos de la LM, y ver qué los cambia.", "enLab": "Los datos ya están cargados con d₂ = 60. Cambia d₂ a 30 y compara la pendiente y los interceptos.", "errores": [{"codigo": "LM-ERR-02", "sintoma": "Escribir la pendiente como d₂/d₁.", "correccion": "En el plano (Y, i) la pendiente es d₁/d₂: cuánto sube la tasa por cada unidad más de producción."}, {"codigo": "LM-ERR-06", "sintoma": "Leer el intercepto −40 % como una tasa posible.", "correccion": "Es una propiedad de la recta, no una predicción: la extrapolación lineal a tasas muy negativas requiere cautela. El intercepto dice dónde está la recta."}]}, "rubric": "a) Economía 1: 0,6/30 = 0,02. Economía 2: 0,6/60 = 0,01. b) Economía 1: eje i en −1.200/30 = −40 %; eje Y en 1.200/0,6 = 2.000. Economía 2: eje i en −1.200/60 = −20 %; eje Y en 2.000. c) En la economía 2, un cambio pequeño de la tasa cambia mucho el dinero que se quiere tener. Por eso, cuando sube la producción, basta un alza pequeña de la tasa para que la gente vuelva a querer el dinero que hay: la tasa sube menos por cada unidad de Y. d) Es una propiedad de la recta, no una predicción: extrapolar una demanda lineal a tasas muy negativas requiere cautela.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
     {"id": "LM-EX-03", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "compra_bonos", "regime": "dinero_fijo", "title": "El Banco Central compra bonos: la LM se desplaza", "preset": {"Y0": 2200, "M": 1200, "P": 1, "d1": 0.6, "d2": 30, "shock": "M", "val": 1260, "modo": "dinero", "iFix": 4}, "enunciado": {"situacion": "La economía produce 2.200. El Banco Central compra bonos y los paga con dinero nuevo: el dinero real sube de 1.200 a 1.260, con los precios quietos. Hay que ver qué le pasa a la LM y a la tasa.", "datos": ["Demanda de dinero real: Md = 0,6·Y − 30·i, con i en % anual.", "Dinero real: 1.200 antes y 1.260 después. Los precios no cambian (P = 1).", "Producción: Y = 2.200 unidades de producto."], "pide": ["Calcula la tasa antes y después, con Y = 2.200, en %.", "Calcula cuánto y hacia dónde se desplaza la LM.", "Explica la cadena en cuatro pasos: qué pasa con el dinero, con los bonos, con su precio y con la tasa.", "Escribe la respuesta completa de (b)."], "primerPaso": "Escribe la LM antes y después, con M/P = 1.200 y con M/P = 1.260.", "pistas": ["oma_expansiva", "curva_lm", "desplazamiento_curva", "relacion_inversa"], "comprobacion": "El desplazamiento horizontal es el cambio de M/P dividido por d₁. Compruébalo también así: con Y = 2.200 y la tasa nueva, la gente tiene que querer justo 1.260.", "proposito": "Ver que un cambio de la cantidad de dinero desplaza la LM, y hacia qué lado.", "enLab": "Los datos ya están cargados. Mira la flecha entre la LM inicial y la final, y el valor escrito sobre ella.", "errores": [{"codigo": "LM-ERR-03", "sintoma": "«El Banco Central compra bonos, entonces la LM se corre a la izquierda».", "correccion": "Comprar bonos agrega dinero: con cada nivel de producción basta una tasa más baja. La LM se corre a la derecha (o hacia abajo)."}, {"codigo": "LM-ERR-01", "sintoma": "«Sube la producción, entonces se desplaza la LM».", "correccion": "Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve a lo largo de la LM. Lo que se desplaza es la demanda de dinero, en el otro gráfico."}]}, "rubric": "a) Antes: (1.320 − 1.200)/30 = 4 %. Después: (1.320 − 1.260)/30 = 2 %. b) La LM se desplaza 60/0,6 = 100 a la derecha: pasa de Y = 2.000 + 50·i a Y = 2.100 + 50·i. c) El Banco Central compra bonos → sube la cantidad de dinero → sube la demanda de bonos y su precio → baja la tasa. d) Unidad: unidades de producto. Qué significa: con cualquier tasa, el mercado de dinero ahora está en equilibrio con 100 más de producción. Cómo lo compruebo: con i = 4 %, la LM nueva da Y = 2.100 + 200 = 2.300, y 0,6 × 2.300 − 30 × 4 = 1.260 ✓.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
     {"id": "LM-EX-04", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "alza_precios", "regime": "dinero_fijo", "title": "Suben los precios: M no es lo mismo que M/P", "preset": {"Y0": 2200, "M": 2400, "P": 2, "d1": 0.6, "d2": 30, "shock": "P", "val": 2.4, "modo": "dinero", "iFix": 4}, "enunciado": {"situacion": "La economía produce 2.200. El Banco Central no cambia la cantidad de pesos, pero los precios suben 20 %. Hay que ver qué pasa con el dinero real, con la LM y con la tasa.", "datos": ["Cantidad de dinero: M = 2.400 pesos, sin cambio.", "Nivel de precios: P sube de 2 a 2,4.", "Demanda de dinero real: Md = 0,6·Y − 30·i, con i en % anual.", "Producción: Y = 2.200 unidades de producto."], "pide": ["Calcula el dinero real M/P antes y después.", "Calcula la tasa antes y después, en %, con dos decimales.", "Di hacia dónde y cuánto se desplaza la LM."], "primerPaso": "Calcula primero el dinero real: M/P.", "pistas": ["saldos_reales", "curva_lm", "desplazamiento_curva"], "comprobacion": "Con la tasa nueva y Y = 2.200, la gente tiene que querer justo el dinero real nuevo.", "proposito": "Ver que lo que mueve la LM es el dinero real: si los precios suben con los mismos pesos, la LM se corre a la izquierda.", "enLab": "Los datos ya están cargados. Prueba también con P₁ = 1,6: ¿hacia dónde se corre la LM?", "errores": [{"codigo": "LM-ERR-04", "sintoma": "«M no cambió, así que la tasa tampoco».", "correccion": "Lo que importa es lo que el dinero alcanza a comprar: si P sube, M/P baja y la tasa sube."}]}, "rubric": "a) Antes: 2.400/2 = 1.200. Después: 2.400/2,4 = 1.000. b) Antes: (1.320 − 1.200)/30 = 4 %. Después: (1.320 − 1.000)/30 = 10,67 %. c) La LM se desplaza 200/0,6 = 333,33 a la izquierda. Cómo lo compruebo: 0,6 × 2.200 − 30 × 10,667 = 1.320 − 320 = 1.000 ✓.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
     {"id": "LM-EX-05", "circuit": "LM-CIR-01", "modelKey": "relacion_lm", "shockKey": "aumento_Y", "regime": "tasa_fija", "title": "Enfoque de tasa fija: la LM horizontal", "preset": {"Y0": 2200, "M": 1200, "P": 1, "d1": 0.6, "d2": 30, "shock": "Y", "val": 2300, "modo": "tasa", "iFix": 4}, "enunciado": {"situacion": "El Banco Central decide mantener la tasa en 4 %, como hace Chile con la TPM. La producción sube de 2.200 a 2.300. Hay que ver qué forma tiene la LM y qué tiene que hacer el Banco Central.", "datos": ["Demanda de dinero real: Md = 0,6·Y − 30·i, con i en % anual.", "Tasa que fija el Banco Central: 4 %.", "Producción: sube de 2.200 a 2.300 unidades de producto.", "Dinero real al comienzo: 1.200."], "pide": ["Explica en dos frases qué forma tiene la LM en este enfoque y por qué.", "Calcula el dinero real que tiene que haber con Y = 2.300 para que la tasa siga en 4 %.", "Di si el Banco Central compra o vende bonos, y cuánto cambia el dinero real.", "Explica en una frase en qué caso la tasa podría subir en este enfoque."], "primerPaso": "Di primero qué fija el Banco Central y qué se ajusta.", "pistas": ["enfoque_tasa_fija", "curva_lm", "tpm", "oma_expansiva"], "comprobacion": "Con tu M/P de (b) e Y = 2.300, la ecuación del mercado de dinero tiene que dar 4 %.", "proposito": "Ver que con tasa fija la LM es horizontal y que el Banco Central ajusta la cantidad de dinero.", "enLab": "Los datos ya están cargados con el enfoque de tasa fija. Cambia al enfoque de dinero fijo: ¿cuánto subiría la tasa?", "errores": [{"codigo": "LM-ERR-05", "sintoma": "«La tasa sigue en 4 % y el dinero real sigue en 1.200».", "correccion": "Con más producción la gente quiere más dinero. Para que la tasa no suba, el Banco Central tiene que entregarlo: no puede fijar las dos cosas."}, {"codigo": "LM-ERR-01", "sintoma": "«Sube la producción, entonces se desplaza la LM».", "correccion": "Y está en uno de los ejes del plano (Y, i): si cambia, la economía se mueve a lo largo de la LM. Lo que se desplaza es la demanda de dinero, en el otro gráfico."}]}, "rubric": "a) Horizontal, a la altura de 4 %: el Banco Central mantiene esa tasa con cualquier nivel de producción y entrega el dinero que se pida. b) M/P = 0,6 × 2.300 − 30 × 4 = 1.380 − 120 = 1.260. c) Compra bonos: el dinero real sube 60, de 1.200 a 1.260. d) Si el Consejo decide subir la tasa, por ejemplo porque la mayor producción empuja la inflación: entonces la LM horizontal sube a otra altura. Con dinero fijo, en cambio, la tasa habría subido sola hasta 6 %.", "library": "0.8-macro1", "source": "Lab · Relación LM"},
@@ -3015,7 +3104,7 @@ function buildActivities(){
     const win=host.dataset.window;
     ACTIVITIES[win].forEach(a=>{if(a.enunciado&&!a.prompt)a.prompt=enunciadoTexto(a.enunciado)});
     const options=ACTIVITIES[win].map((a,i)=>`<option value="${i}">${escapeText(a.title)} (${a.id})</option>`).join("");
-    host.innerHTML=`<div class="activity-head"><span class="badge">ACTIVIDAD</span><select aria-label="Actividad de ${win}"><option value="">— Elige una actividad —</option>${options}</select></div>
+    host.innerHTML=`<div class="activity-head"><span class="badge">PRÁCTICA OPCIONAL</span><select aria-label="Actividad de ${win}"><option value="">— Elige una actividad —</option>${options}</select></div><div class="actions"><button class="btn secondary load-activity" type="button">Cargar actividad seleccionada</button><button class="btn secondary reset-activity" type="button">Volver a los valores de la actividad</button></div><p class="activity-loaded field-note" aria-live="polite">No has cargado una actividad. Puedes explorar libremente.</p>
       <div class="act-body" hidden>
         <div class="prompt"></div>
         <label>Tu predicción, antes de revelar la pauta<textarea class="prediction" placeholder="Escribe al menos una hipótesis breve: qué ocurrirá y por qué."></textarea></label>
@@ -3030,8 +3119,11 @@ function buildActivities(){
         <label>Tu revisión: ¿qué dato cambiaría tu conclusión?<textarea class="revision" placeholder="Registra la condición de revisión."></textarea></label>
         <pre class="export"></pre>
       </div>`;
+    if(win==="cta")host.querySelector(".activity-loaded").textContent="Las transacciones están disponibles desde el inicio; aquí puedes cargar una consigna de práctica.";
     const select=host.querySelector("select");
-    select.addEventListener("change",()=>loadActivity(win,select.value));
+    host.querySelector(".load-activity").addEventListener("click",()=>{if(select.value!=="")loadActivity(win,select.value)});
+    host.querySelector(".reset-activity").hidden=win==="cta";
+    host.querySelector(".reset-activity").addEventListener("click",()=>{if(currentActivity[win])applyPreset(win,currentActivity[win])});
     host.querySelector(".reveal").addEventListener("click",()=>revealRubric(win));
     host.querySelector(".exportBtn").addEventListener("click",()=>renderExport(win));
     host.querySelector(".copyBtn").addEventListener("click",()=>copyExport(win));
@@ -3085,6 +3177,9 @@ function loadActivity(win,index){
   const host=activityHost(win),body=host.querySelector(".act-body");
   if(index===""){currentActivity[win]=null;body.hidden=true;return}
   const a=ACTIVITIES[win][Number(index)];currentActivity[win]=a;body.hidden=false;
+  const note=document.querySelector("#"+win+" .experiment-note");if(note)note.textContent="Actividad "+a.id+" cargada; los parámetros siguen siendo editables.";
+  const disclosure=host.closest("details.practice");if(disclosure)disclosure.open=true;
+  host.querySelector(".activity-loaded").textContent=`Actividad ${a.id} cargada. Parámetros: ${typeof a.preset==="object"?Object.entries(a.preset).map(([k,v])=>k+" = "+v).join("; "):a.preset}. Puedes seguir modificándolos.`;
   const saved=activityState[a.id]||{};
   host.querySelector(".prompt").innerHTML=a.enunciado?renderEnunciado(a):`<strong>${escapeText(a.title)}</strong><span class="code-tag">${escapeText(a.id)}</span><br>${escapeText(a.prompt)}`;
   host.querySelector(".prediction").value=saved.prediction||"";
@@ -3100,7 +3195,7 @@ function applyPreset(win,a){
   if(win==="lm")lmApply(a.preset);
   if(win==="is")isApply(a.preset);
   if(win==="islm")islmApply(a.preset);
-  if(win==="din"){setValue("moneyY",a.preset.Y);setValue("moneyMs",a.preset.Ms);setValue("moneyD1",a.preset.d1);setValue("moneyD2",a.preset.d2);moneyStep=a.preset.step;drawMoney()}
+  if(win==="din"){setValue("moneyY",a.preset.Y);setValue("moneyMs",a.preset.Ms);setValue("moneyD1",a.preset.d1);setValue("moneyD2",a.preset.d2);moneyStep=a.preset.step;setValue("money-step",moneyStep);setValue("money-regime","quantity");moneyZoom=false;drawMoney()}
   if(win==="lab"){Object.entries(a.preset).forEach(([k,v])=>setValue(k,v));calcLabor();calcWsPs()}
 }
 function revealRubric(win){
@@ -3112,10 +3207,10 @@ function revealRubric(win){
   host.querySelector(".rubric").style.display="block";status.className="activityStatus notice ok";status.textContent="Pauta revelada. Contrasta tu mecanismo y registra una condición de revisión.";
 }
 function getCurrentParams(win){
-  if(win==="med")return {baseYear:2019,goods:measurementGoods.map(g=>({...g})),basket:{...measurementBasket}};
+  if(win==="med")return {baseYear:2000+Number(document.getElementById("med-base").value),goods:measurementGoods.map(g=>({...g})),basket:{...measurementBasket}};
   if(win==="cta")return {selectedCategory:ctaCategory,answered:Object.keys(ctaDone).map(Number),total:CTA_ITEMS.length,attempts:ctaAttempts.map(x=>({...x}))};
   if(win==="cruz")return {c0:num("c0"),c1:num("c1"),I:num("inv"),G:num("gov"),taxMode:document.getElementById("propTax").checked?"proportional":"fixed",T:num("tax"),t:num("taxRate")};
-  if(win==="din")return {Y:num("moneyY"),MsReal:num("moneyMs"),d1:num("moneyD1"),d2:num("moneyD2"),interestRate:moneyInterest()};
+  if(win==="din")return {...moneyRead(),MsReal:num("moneyMs"),interestRate:moneyInterest()};
   if(win==="lm")return lmRead();
   if(win==="is")return isRead();
   if(win==="islm")return islmRead();
@@ -3126,13 +3221,13 @@ function getCurrentResults(win){
   if(win==="med")return {rows:lastMeasurement.map(r=>({...r}))};
   if(win==="cta")return {answered:Object.keys(ctaDone).map(Number),score:Object.keys(ctaDone).length,mistakes:ctaAttempts.filter(x=>!x.correct).map(x=>({...x}))};
   if(win==="cruz")return lastCross?{...lastCross}:null;
-  if(win==="din"){const i=moneyInterest();return {interestRate:i,bondPrice:100/(1+i/100)}}
+  if(win==="din"){const r=moneySolve(moneyRead());return r.ok?{interestRate:r.interest,MsReal:r.quantity,bondPrice:bondPrice(100,r.interest),bondAssumptions:"Referencia: VF = 100, sin cupones, un año, pago completo, sin impuestos ni comisiones",regime:moneyRead().regime}:{valid:false,reason:r.message}}
   if(win==="islm"){const r=islmSolve(islmRead());return {Y0:r.s0.Y,i0:r.s0.i,Y1:r.s1.Y,i1:r.s1.i,dY:r.dY,di:r.di,I0:r.s0.I0,I1:r.s1.I0,accelerator:r.acc,rateEffect:r.rate,autonomous:r.auto,crowdingOut:r.crowd,MPrequired0:r.s0.MPreq,MPrequired1:r.s1.MPreq}}
   if(win==="is"){const r=isSolve(isRead());return {Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,multiplier0:r.s0.m,multiplier1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,accelerator:r.acc,rateEffect:r.rate,autonomous:r.auto}}
   if(win==="lm"){const r=lmSolve(lmRead());return {i0:r.i0,i1:r.i1,slope:r.slope,shiftY:r.shiftY,interceptY:r.interceptY0,interceptI:r.interceptI0,mpReq0:r.mpReq0??null,mpReq1:r.mpReq1??null}}
   if(win==="lab"){
     const O=num("employed"),D=num("unemployed"),Inact=num("inactive"),PA=O+D,PET=PA+Inact,m=num("markup");
-    return {PA,PET,participation:PET?PA/PET*100:0,occupation:PET?O/PET*100:0,unemployment:PA?D/PA*100:0,naturalRate:m/(1+m)*100};
+    return {PA,PET,participation:PET?PA/PET*100:null,occupation:PET?O/PET*100:null,unemployment:PA?D/PA*100:null,naturalRate:m/(1+m)*100};
   }
   return {};
 }
@@ -3172,7 +3267,7 @@ const MED_PRESETS={
 };
 let measurementGoods=[],measurementBasket={},lastMeasurement=[],lastCross=null;
 function setMeasurementPreset(key="sealed"){
-  const preset=MED_PRESETS[key];measurementGoods=preset.goods.map(g=>({...g}));measurementBasket={...preset.basket};
+  setValue("med-base",19);const preset=MED_PRESETS[key];measurementGoods=preset.goods.map(g=>({...g}));measurementBasket={...preset.basket};
   document.getElementById("medTableTitle").textContent=preset.title;renderMeasurementInputs();calcMeasurement();
 }
 function renderMeasurementInputs(){
@@ -3187,14 +3282,14 @@ function syncMeasurementInputs(){
 }
 function calcMeasurement(){
   const inputs=[...document.querySelectorAll("#medInputs input")];
-  if(!validNumbers(inputs)){document.getElementById("medExplain").className="notice error";document.getElementById("medExplain").textContent="Hay casillas vacías, negativas o con texto. Corrígelas para calcular.";return}
+  if(!validNumbers(inputs)){lastMeasurement=[];document.getElementById("medResults").innerHTML="";document.getElementById("medExplain").className="notice error";document.getElementById("medExplain").textContent="Hay casillas vacías, negativas o con texto. Corrígelas para calcular.";return}
   syncMeasurementInputs();
-  const years=[19,20,21],nom=y=>measurementGoods.reduce((s,g)=>s+g["p"+y]*g["q"+y],0),real=y=>measurementGoods.reduce((s,g)=>s+g.p19*g["q"+y],0),basket=y=>measurementGoods.reduce((s,g)=>s+g["p"+y]*measurementBasket[g.name],0);
-  const baseBasket=basket(19),rows=[];let previousReal=null,previousIpc=null;
+  const base=Number(document.getElementById("med-base").value),years=[19,20,21],nom=y=>measurementGoods.reduce((s,g)=>s+g["p"+y]*g["q"+y],0),real=y=>measurementGoods.reduce((s,g)=>s+g["p"+base]*g["q"+y],0),basket=y=>measurementGoods.reduce((s,g)=>s+g["p"+y]*measurementBasket[g.name],0);
+  const baseBasket=basket(base),rows=[];let previousReal=null,previousIpc=null;
   years.forEach(y=>{const n=nom(y),r=real(y),def=r?n/r*100:NaN,ipc=baseBasket?basket(y)/baseBasket*100:NaN,growth=previousReal===null?null:(r/previousReal-1)*100,infl=previousIpc===null?null:(ipc/previousIpc-1)*100;rows.push({year:2000+y,n,r,def,growth,ipc,infl});previousReal=r;previousIpc=ipc});
   lastMeasurement=rows.map(r=>({...r}));
   document.getElementById("medResults").innerHTML="<thead><tr><th>Año</th><th>PIB nom.</th><th>PIB real</th><th>Deflactor</th><th>Crec.</th><th>IPC</th><th>Inflación</th></tr></thead><tbody>"+rows.map(r=>`<tr><td>${r.year}</td><td>${fmt(r.n,1)}</td><td>${fmt(r.r,1)}</td><td>${fmt(r.def)}</td><td>${r.growth===null?"—":fmt(r.growth)+" %"}</td><td>${fmt(r.ipc)}</td><td>${r.infl===null?"—":fmt(r.infl)+" %"}</td></tr>`).join("")+"</tbody>";
-  document.getElementById("medExplain").className="notice ok";document.getElementById("medExplain").innerHTML=`En 2020: deflactor <strong>${fmt(rows[1].def)}</strong> e IPC <strong>${fmt(rows[1].ipc)}</strong>. Difieren porque el deflactor pesa los precios con lo que se produjo cada año, y el IPC con una canasta que no cambia.`;
+  document.getElementById("medExplain").className="notice ok";document.getElementById("medExplain").innerHTML=`En 2020: deflactor <strong>${fmt(rows[1].def)}</strong> e IPC <strong>${fmt(rows[1].ipc)}</strong>. ${!baseBasket||rows.some(r=>!r.r)?"Hay índices no definidos (—): su denominador es cero; introduce precios y cantidades que den una base positiva. ":""}${Math.abs(rows[1].def-rows[1].ipc)<1e-9?(base===20?"Coinciden en 100 porque 2020 es el año base de ambos índices; pueden diferir en los demás años.":"Coinciden en esta tabla, pero esa coincidencia no garantiza que sean iguales en todos los años."):"Difieren porque el deflactor pesa los precios con lo que se produjo cada año, y el IPC con una canasta que no cambia."}`;
 }
 
 const CTA_LABELS={C:"C · Consumo",I:"I · Inversión",G:"G · Gobierno",X:"X · Exportación",M:"M · Importación","C+M":"C y M",NO:"No entra"};
@@ -3258,6 +3353,7 @@ function calcCross(){
   document.getElementById("c0Out").textContent=fmt(c0,0);document.getElementById("c1Out").textContent=fmt(c1);document.getElementById("invOut").textContent=fmt(I,0);document.getElementById("govOut").textContent=fmt(G,0);document.getElementById("taxOut").textContent=fmt(T,0);document.getElementById("taxRateOut").textContent=fmt(t);
   document.getElementById("multiplier").textContent=fmt(mult);document.getElementById("incomeEq").textContent=fmt(Y,0);
   document.getElementById("crossConsumption").textContent=fmt(consumption,0);document.getElementById("crossSaving").textContent=fmt(privateSaving,0);document.getElementById("crossClosure").textContent=`${fmt(closure,0)}${Math.abs(closure-I)<.02?" ✓":""}`;
+  document.getElementById("cross-interpretation").textContent=`Y* = ${fmt(Y,2)} unidades reales: Z = Y y los inventarios no obligan a cambiar la producción. El multiplicador ${fmt(mult)} indica cuánto cambia Y ante una unidad adicional de gasto autónomo, manteniendo el régimen tributario y los demás parámetros.`;
   drawCross(A,slope,Y);
   loopNoteRecalc();
 }
@@ -3277,38 +3373,99 @@ function drawCross(A,slope,Yeq){
   document.getElementById("crossAlt").textContent=`Gráfico de la cruz keynesiana. La producción Y va en el eje horizontal y el gasto planeado Z en el vertical, los dos en unidades de producto. La recta de gasto parte en ${fmt(A,0)} y sube ${fmt(slope)} por cada unidad de producción. Corta la recta de 45 grados en Y = ${fmt(Yeq,0)}: con esa producción se vende todo lo que se produce.`;
 }
 
-let moneyStep=40,moneyBase={Y:1000,Ms:760,d1:.8,d2:20,step:40};
-function moneyInterest(){const d2=num("moneyD2");return d2>0?(num("moneyD1")*num("moneyY")-num("moneyMs"))/d2:NaN}
-function drawMoney(){
-  const inputs=["moneyY","moneyMs","moneyD1","moneyD2"].map(id=>document.getElementById(id)),feedback=document.getElementById("moneyFeedback");
-  if(!validNumbers(inputs)){feedback.className="notice error";feedback.textContent="Corrige los parámetros: deben ser números no negativos y d₂ debe ser mayor que cero.";return}
-  const Yv=num("moneyY"),Ms=num("moneyMs"),d1=num("moneyD1"),d2=num("moneyD2"),ie=moneyInterest(),pb=100/(1+ie/100);
-  feedback.className=ie<0?"notice warn":"notice ok";feedback.innerHTML=`Dinero real M/P = <strong>${fmt(Ms,0)}</strong> · tasa de equilibrio i = <strong>${fmt(ie,2)} %</strong> · precio hoy de un bono con valor nominal de $100 a un año = <strong>$${fmt(pb,2)}</strong>.${ie<0?" Con estos números la tasa queda bajo cero. No es una predicción: la recta del modelo sigue bajando, pero en la realidad la tasa no puede bajar mucho de cero (Nota 5, Parte B, sección 3).":""}`;
-  if(currentActivity.din?.regime==="solo_efectivo"&&Math.abs(num("moneyD2")-num("moneyY")/100)>0.5){
-    feedback.className="notice warn";
-    feedback.innerHTML=escapeText("Ojo: en el caso de solo efectivo, d₂ depende de Y (d₂ = Y/100). Si cambias Y, cambia d₂: con este Y debería ser "+fmt(num("moneyY")/100,0)+".")+"<br>"+feedback.innerHTML;
-  }
-  // Gráfico con el motor común: marcas redondas, eje de la tasa desde 0 y dos estados
-  // (el de partida de la actividad o de «Base», y el actual) cuando son distintos.
-  const base=currentActivity.din?.preset||moneyBase,iBase=(base.d1*base.Y-base.Ms)/base.d2;
-  const changed=["Y","Ms","d1","d2"].some(k=>Math.abs(base[k]-{Y:Yv,Ms,d1,d2}[k])>1e-9);
-  const Ys=niceScale(0,Math.max(ie,changed?iBase:0,1)*1.8,5,true);
-  const demB=base.d1*base.Y,dem=d1*Yv,xs=niceScale(0,Math.max(Ms,dem,changed?Math.max(base.Ms,demB):0)*1.1,4,true);
-  const spec={x:{min:0,max:xs.max,ticks:xs.ticks,digits:xs.digits,label:"Dinero real, M/P (unidades de producto)"},
-    y:{min:0,max:Ys.max,ticks:Ys.ticks,digits:Ys.digits,label:"Tasa de interés, i (% anual)"},title:"Mercado de dinero",
-    series:[],points:[],legend:changed?[{estado:"ini",text:"De partida"},{estado:"fin",text:"Actual"}]:[]};
-  // Solo se dibuja «final» lo que cambió: si solo se movió la oferta, la demanda es una sola.
-  const demChanged=changed&&(base.Y!==Yv||base.d1!==d1||base.d2!==d2),supChanged=changed&&base.Ms!==Ms;
-  if(changed){
-    spec.series.push({pts:[[0,demB/base.d2],[demB,0]],estado:"ini",name:demChanged?"Md de partida":"Md",labelAt:.2},{pts:[[base.Ms,0],[base.Ms,Ys.max]],estado:"ini",name:supChanged?"M/P de partida":"M/P",labelAt:.92});
-    spec.points.push({x:base.Ms,y:iBase,name:"E₀",estado:"ini",xText:fmtT(base.Ms,1),yText:fmtT(iBase)+" %"});
-  }
-  if(!changed||demChanged)spec.series.push({pts:[[0,dem/d2],[dem,0]],estado:changed?"fin":"ini",name:changed?"Md actual":"Md",labelAt:.45});
-  if(!changed||supChanged)spec.series.push({pts:[[Ms,0],[Ms,Ys.max]],estado:changed?"fin":"ini",name:changed?"M/P actual":"M/P",labelAt:.75});
-  spec.points.push({x:Ms,y:ie,name:changed?"E₁":"E",estado:changed?"fin":"ini",xText:fmtT(Ms,1),yText:fmtT(ie)+" %"});
-  renderPlot("moneyChart",spec);
-  document.getElementById("moneyAlt").textContent=`Gráfico del mercado de dinero. La tasa de interés, en % al año, va en el eje vertical desde 0; el dinero real M/P, en el horizontal. La oferta es una recta vertical en ${fmt(Ms,0)}. La demanda de dinero baja hacia la derecha. Se cruzan en una tasa de ${fmt(ie,2)} %: con esa tasa la gente quiere justo el dinero que hay. Un bono que paga $100 en un año cuesta hoy $${fmt(pb,2)}.`;
+/* ========== BONOS Y MERCADO DE DINERO: CÁLCULO PURO ========== */
+const LAB_NUMERIC_LIMIT=1e12;
+function supportedNumbers(values){return values.every(v=>Number.isFinite(v)&&Math.abs(v)<=LAB_NUMERIC_LIMIT)}
+function bondYield(VF,price){
+  if(!supportedNumbers([VF,price])||VF<=0||price<=0)return null;
+  const rate=100*(VF/price-1);return supportedNumbers([rate])?rate:null;
 }
+function bondPrice(VF,rate){
+  if(!supportedNumbers([VF,rate])||VF<=0||rate<=-100)return null;
+  const price=VF/(1+rate/100);return supportedNumbers([price])&&price>0?price:null;
+}
+function drawBonds(){
+  const VF=num("bond-vf-rate"),P=num("bond-price"),VF2=num("bond-vf-price"),i=num("bond-interest"),rate=bondYield(VF,P),price=bondPrice(VF2,i);
+  const a=document.getElementById("bond-rate-result"),b=document.getElementById("bond-price-result");
+  a.className="notice "+(rate===null?"error":rate<0?"warn":"ok");
+  a.textContent=rate===null?"Escribe VF > 0 y P_B > 0, finitos. Entradas y resultados deben estar dentro de ±10¹²; reduce los valores extremos.":`i = 100 × (${fmtT(VF,6)}/${fmtT(P,6)} − 1) = ${fmtT(rate,7)} %. Al pagar ${fmtT(P,6)} u.m. y recibir ${fmtT(VF,6)} u.m. en un año, ${rate<0?"pierdes":"ganas"} ${fmtT(Math.abs(VF-P),6)} u.m. (${fmtT(rate,7)} % del precio pagado).`;
+  b.className="notice "+(price===null?"error":"ok");
+  b.textContent=price===null?"Escribe VF > 0 e i > −100 %, finitos. Entradas y resultados deben estar dentro de ±10¹²; reduce los valores extremos.":`P_B = ${fmtT(VF2,6)}/(1 + ${fmtT(i,6)}/100) = ${fmtT(price,7)} u.m. Ese precio da un rendimiento hasta el vencimiento de ${fmtT(i,6)} % si recibes VF completo en un año.`;
+  ["bond-vf-rate","bond-price"].forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(rate===null)));
+  ["bond-vf-price","bond-interest"].forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(price===null)));
+}
+function moneySolve(p){
+  const {Y,Ms,d1,d2,target,regime}=p;
+  const inputs=regime==="target"?[Y,d1,d2,target]:[Y,d1,d2,Ms];
+  if(!supportedNumbers(inputs)||Y<0||d1<0||d2<=0||(regime!=="target"&&Ms<0))return {ok:false,message:"Completa los campos con números finitos: Y ≥ 0, d₁ ≥ 0, d₂ > 0 y M/P ≥ 0. La escala numérica admite entradas y resultados de hasta 10¹² en valor absoluto."};
+  const horizontal=d1*Y,vertical=horizontal/d2,quantity=regime==="target"?horizontal-d2*target:Ms,interest=regime==="target"?target:(horizontal-Ms)/d2;
+  if(!supportedNumbers([horizontal,vertical,quantity,interest,1/d2]))return {ok:false,message:"Estos valores exceden la escala numérica del laboratorio (10¹²). Reduce los importes o evita un d₂ excesivamente pequeño."};
+  if(quantity<0)return {ok:false,message:`Objetivo no factible: requiere M/P = ${fmtT(quantity,6)}, pero se adoptó M/P ≥ 0. Reduce la tasa objetivo o revisa la demanda.`,required:quantity};
+  return {ok:true,quantity,interest,horizontal,vertical,slope:-1/d2};
+}
+let moneyStep=40,moneyBase={Y:1000,Ms:760,d1:.8,d2:20,step:40},moneyZoom=false,lastMoney=null;
+function moneyRead(){return {Y:num("moneyY"),Ms:num("moneyMs"),d1:num("moneyD1"),d2:num("moneyD2"),target:num("money-target"),regime:document.getElementById("money-regime").value}}
+function moneyInterest(){const r=moneySolve(moneyRead());return r.ok?r.interest:NaN}
+function drawMoney(){
+  document.getElementById("money-origin").textContent=(currentActivity.din?"Actividad "+currentActivity.din.id+" cargada; puedes modificar sus valores.":"Valores iniciales de referencia disponibles; ninguna actividad seleccionada.")+" Y y M/P en unidades reales de práctica; i en % anual (2 significa 2 %). Resultados con coma decimal y punto de miles.";
+  const p=moneyRead(),r=moneySolve(p),tasa=p.regime==="target",feedback=document.getElementById("moneyFeedback");
+  document.getElementById("moneyMs").disabled=tasa;
+  document.getElementById("money-target-field").hidden=!tasa;
+  document.getElementById("money-operations").hidden=tasa;
+  document.getElementById("money-regime-note").textContent=tasa?"La tasa es el dato elegido; M/P es el resultado. Al pasar desde cantidad fijada se conserva la tasa de equilibrio válida. Con la tasa constante, cada unidad adicional de Y requiere d₁ unidades más de dinero real.":"M/P es el dato elegido; la tasa es el resultado. Al volver desde tasa objetivo se conserva la oferta requerida válida como nueva cantidad fijada.";
+  document.getElementById("money-full").setAttribute("aria-pressed",String(!moneyZoom));
+  document.getElementById("money-zoom").setAttribute("aria-pressed",String(moneyZoom));
+  const fields=["moneyY","moneyD1","moneyD2",tasa?"money-target":"moneyMs"];
+  fields.forEach(id=>document.getElementById(id).setAttribute("aria-invalid",String(!r.ok)));
+  if(!r.ok){lastMoney=null;feedback.className="notice error";feedback.textContent=r.message;document.getElementById("moneyChart").innerHTML="";delete plotLayouts.moneyChart;document.getElementById("moneyAlt").textContent="No se representa un equilibrio: "+r.message;document.getElementById("money-intercepts").textContent="";if(tasa)setValue("moneyMs","");return}
+  if(tasa)setValue("moneyMs",r.quantity);
+  lastMoney={...r,params:{...p,Ms:r.quantity}};
+  feedback.className=r.interest<0?"notice warn":"notice ok";
+  feedback.textContent=(tasa?`(M/P)_requerido = ${fmtT(p.d1)} × ${fmtT(p.Y)} − ${fmtT(p.d2)} × ${fmtT(p.target)} = ${fmtT(r.quantity,6)} unidades reales. i_objetivo = ${fmtT(r.interest,6)} %.`:`i* = (${fmtT(p.d1)} × ${fmtT(p.Y)} − ${fmtT(r.quantity)})/${fmtT(p.d2)} = ${fmtT(r.interest,6)} %. M/P = ${fmtT(r.quantity)} unidades reales.`)+` Con Y + 10, ${tasa?`se requieren ${fmtT(r.quantity+p.d1*10)} unidades reales para la misma tasa`:`la tasa sería ${fmtT(r.interest+p.d1*10/p.d2)} % con la misma oferta`}.`+(r.interest<0?" El resultado algebraico es negativo; se conserva sin sustituirlo por cero. La demanda lineal y el único activo remunerado limitan su interpretación.":"");
+  if(currentActivity.din?.regime==="solo_efectivo"){feedback.textContent+=" En esta práctica d₂ = Y/100: al editar Y se actualiza d₂. Si cambias d₂ directamente, exploras otra demanda.";if(Math.abs(p.d2-p.Y/100)>1e-8){feedback.className="notice warn";feedback.textContent+=` La demanda editada ya no cumple la restricción de solo efectivo: d₂ sería ${fmtT(p.Y/100)}.`}}
+  const base=currentActivity.din?.preset||moneyBase,br=moneySolve({...base,regime:"quantity"});
+  const changed=br.ok&&["Y","Ms","d1","d2"].some(k=>Math.abs(base[k]-{...p,Ms:r.quantity}[k])>1e-9);
+  let xs,ys;
+  if(moneyZoom){
+    const dx=Math.max(Math.abs(r.quantity)*.08,Math.abs(r.horizontal-r.quantity)*.6,1),dy=Math.max(Math.abs(r.interest)*.5,1);
+    xs=niceScale(Math.max(0,r.quantity-dx),r.quantity+dx,4,false);ys=niceScale(r.interest-dy,r.interest+dy,5,false);
+  }else{
+    xs=niceScale(0,Math.max(r.quantity,r.horizontal,changed?Math.max(base.Ms,br.horizontal):0,1)*1.12,4,true);
+    ys=niceScale(Math.min(0,r.interest,changed?br.interest:0),Math.max(r.vertical,changed?br.vertical:0,r.interest,1)*1.12,5,false);
+  }
+  const spec={w:Math.max(320,Math.min(620,document.getElementById("moneyChart").getBoundingClientRect().width||520)),h:400,x:{min:xs.min,max:xs.max,ticks:xs.ticks,digits:xs.digits,label:"Saldos monetarios reales (u. reales)",axisBreak:xs.min>0},y:{min:ys.min,max:ys.max,ticks:ys.ticks,digits:ys.digits,label:"Tasa de interés, i (% anual)",axisBreak:ys.min>0},title:"Mercado de dinero",series:[],points:[],legend:changed?[{estado:"ini",text:"De partida"},{estado:"fin",text:"Actual"}]:[]};
+  const addDemand=(q,estado,name)=>spec.series.push({pts:[[Math.max(0,xs.min),(q.horizontal-Math.max(0,xs.min))/q.params.d2],[xs.max,(q.horizontal-xs.max)/q.params.d2]],estado,name,labelAt:.4});
+  const addSupply=(q,estado,name)=>spec.series.push({pts:[[q.quantity,ys.min],[q.quantity,ys.max]],estado,name,labelAt:.82});
+  const actual={...r,params:p};
+  if(changed){const b={...br,params:base};if(base.Y!==p.Y||base.d1!==p.d1||base.d2!==p.d2)addDemand(b,"ini","Mᵈ/P inicial");if(base.Ms!==r.quantity)addSupply(b,"ini","Mˢ/P inicial");spec.points.push({x:br.quantity,y:br.interest,name:"E₀",estado:"ini",xText:fmtT(br.quantity),yText:fmtT(br.interest)+" %"})}
+  addDemand(actual,changed?"fin":"ini","Mᵈ/P");addSupply(actual,changed?"fin":"ini",tasa?"M/P requerido":"Mˢ/P");
+  spec.points.push({x:r.quantity,y:r.interest,name:tasa?"E · objetivo":"E",estado:changed?"fin":"ini",xText:"M/P = "+fmtT(r.quantity),yText:"i = "+fmtT(r.interest)+" %"});
+  // Interceptos con proyección explícita y etiquetas que usan el motor antisolapamiento.
+  spec.points.push({x:r.horizontal,y:0,name:"d₁Y = "+fmtT(r.horizontal),estado:"neutral",xText:fmtT(r.horizontal),proj:false},{x:0,y:r.vertical,name:"d₁Y/d₂ = "+fmtT(r.vertical)+" %",estado:"neutral",yText:fmtT(r.vertical)+" %",proj:false});
+  if(tasa)spec.guides=[{y:r.interest,from:xs.min,to:xs.max,estado:"neutral"}];
+  renderPlot("moneyChart",spec);
+  const outside=r.horizontal<xs.min||r.horizontal>xs.max||0<ys.min||0>ys.max||0<xs.min||0>xs.max||r.vertical<ys.min||r.vertical>ys.max;
+  document.getElementById("money-intercepts").textContent=`Intercepto horizontal d₁Y = ${fmtT(r.horizontal)}; vertical d₁Y/d₂ = ${fmtT(r.vertical)} %. Pendiente = −1/d₂ = ${fmtT(r.slope,6)}. E = (${fmtT(r.quantity)}; ${fmtT(r.interest)} %).`+(outside?" Hay interceptos fuera del encuadre; sus valores se conservan aquí. Vista completa los muestra.":"");
+  document.getElementById("moneyAlt").textContent=`Eje horizontal: saldos monetarios reales; eje vertical: i en % anual. Demanda decreciente Mᵈ/P = ${fmtT(p.d1)}Y − ${fmtT(p.d2)}i, pendiente ${fmtT(r.slope,6)}. Interceptos: (${fmtT(r.horizontal)}; 0 %) y (0; ${fmtT(r.vertical)} %). Oferta vertical en ${fmtT(r.quantity)}, ${tasa?"resultado del ajuste para la tasa objetivo":"cantidad fijada"}. Equilibrio E = (${fmtT(r.quantity)}; ${fmtT(r.interest)} %), con proyecciones hacia ambos ejes.`+(changed?` Respecto de la partida: ΔY = ${fmtT(p.Y-base.Y)}, Δ(M/P) = ${fmtT(r.quantity-base.Ms)}, Δi = ${fmtT(r.interest-br.interest)} puntos porcentuales.`:"")+(outside?" Algunos interceptos están fuera del encuadre acercado.":"");
+}
+function setMoneyRegime(){
+  const next=document.getElementById("money-regime").value;
+  if(lastMoney){if(next==="target")setValue("money-target",lastMoney.interest);else setValue("moneyMs",lastMoney.quantity)}
+  moneyZoom=false;drawMoney();
+}
+function resetMoney(){
+  setValue("money-regime","quantity");Object.entries(moneyBase).forEach(([k,v])=>{if(k!=="step")setValue({Y:"moneyY",Ms:"moneyMs",d1:"moneyD1",d2:"moneyD2"}[k],v)});
+  moneyStep=40;setValue("money-step",40);setValue("money-target",2);moneyZoom=false;clearLabActivity("din");drawMoney();
+}
+function changeMoney(direction){
+  const r=moneySolve(moneyRead()),step=num("money-step"),feedback=document.getElementById("moneyFeedback");
+  if(document.getElementById("money-regime").value!=="quantity")return;
+  if(!r.ok||!supportedNumbers([step])||step<0){feedback.className="notice error";feedback.textContent="Corrige los parámetros y el tamaño de intervención: un número finito no negativo, hasta 10¹² unidades reales.";return}
+  if(direction<0&&step>r.quantity){feedback.className="notice error";feedback.textContent=`Venta rechazada: el máximo es ${fmtT(r.quantity)} unidades reales. La oferta no cambió; reduce el tamaño de la intervención.`;return}
+  if(!supportedNumbers([r.quantity+direction*step])){feedback.className="notice error";feedback.textContent="La intervención excede la escala numérica (10¹²); la oferta no cambió.";return}
+  moneyStep=step;setValue("moneyMs",r.quantity+direction*step);drawMoney();
+}
+
 // Revisa las dos tasas del bono y, si no calzan, dice cuál es el error probable (DIN-ERR-10).
 function bondRateMessage(a,b,ok){
   if(ok)return "Correcto: 5,0 % y 4,0 %. El precio subió y la tasa bajó un punto: el valor nominal no cambia, así que pagar más hoy deja menos ganancia.";
@@ -3339,7 +3496,7 @@ function ctaHint(item,chosen){
   if(chosen==="NO")return "Aún no: esta sí es producción nueva de este año. Pregúntate quién la compra.";
   return "Aún no: sí suma al PIB, pero en otra parte del gasto. Pregúntate quién compra y dónde se produjo.";
 }
-function changeMoney(direction){setValue("moneyMs",Math.max(0,num("moneyMs")+direction*moneyStep));drawMoney()}
+
 
 /* ========== MOTOR GRÁFICO (v0.8.0) ==========
    Un solo componente para todos los gráficos de dos estados (Relación LM, y después
@@ -3387,6 +3544,9 @@ function textWidth(t,size){return String(t).length*(size||11)*.56}
    legend:[{estado,text}]}. Devuelve {svg, boxes}. */
 function plotSvg(spec){
   const w=spec.w||520,h=spec.h||380,m=Object.assign({l:66,r:18,t:40,b:58},spec.m||{});
+  const legendWidth=(spec.legend||[]).reduce((total,it)=>total+textWidth(it.text,11)+30,0);
+  const separateLegend=legendWidth>0&&m.l+textWidth(spec.title||"",13)+legendWidth+12>w-m.r;
+  const legendY=separateLegend?38:18;if(separateLegend)m.t=Math.max(m.t,60);
   const X=spec.x,Y=spec.y,px=v=>m.l+(v-X.min)/(X.max-X.min)*(w-m.l-m.r),py=v=>h-m.b-(v-Y.min)/(Y.max-Y.min)*(h-m.t-m.b);
   const box={x0:X.min,x1:X.max,y0:Y.min,y1:Y.max},boxes=[],out=[];
   // Primero evita rótulos y líneas; si no hay lugar, al menos evita otros rótulos (el rótulo nunca se pierde).
@@ -3481,8 +3641,8 @@ function plotSvg(spec){
   // leyenda
   if(spec.legend&&spec.legend.length){let lx=w-m.r;const items=[];
     spec.legend.slice().reverse().forEach(it=>{const wd=textWidth(it.text,11)+30;lx-=wd;items.push({it,x:lx,wd})});
-    items.forEach(({it,x,wd})=>{boxes.push({x,y:8,w:wd,h:16});out.push(`<line x1="${x}" y1="18" x2="${x+22}" y2="18" class="g-curve" stroke="${G_COLOR[it.estado]}"${G_DASH[it.estado]?` stroke-dasharray="${G_DASH[it.estado]}"`:""}/>`,text(x+26,22,it.text,{cls:"g-leg"}))})}
-  return {svg:out.join(""),boxes,w,h};
+    items.forEach(({it,x,wd})=>{boxes.push({x,y:legendY-10,w:wd,h:16});out.push(`<line x1="${x}" y1="${legendY}" x2="${x+22}" y2="${legendY}" class="g-curve" stroke="${G_COLOR[it.estado]}"${G_DASH[it.estado]?` stroke-dasharray="${G_DASH[it.estado]}"`:""}/>`,text(x+26,legendY+4,it.text,{cls:"g-leg"}))})}
+  return {svg:out.join(""),boxes,w,h,m};
 }
 function renderPlot(id,spec){
   const el=document.getElementById(id);if(!el)return null;
@@ -3491,7 +3651,7 @@ function renderPlot(id,spec){
   const w=cw>0?Math.max(300,Math.min(640,Math.round(cw))):w0,h=Math.round(Math.max(Math.min(h0,320),w*h0/w0));
   const r=plotSvg(Object.assign({id},spec,{w,h}));
   el.setAttribute("viewBox",`0 0 ${r.w} ${r.h}`);el.innerHTML=r.svg;
-  plotLayouts[id]=r.boxes;plotScales[id]={x:spec.x,y:spec.y,m:Object.assign({l:66,r:18,t:40,b:58},spec.m||{}),w:r.w,h:r.h};return r;
+  plotLayouts[id]=r.boxes;plotScales[id]={x:spec.x,y:spec.y,m:r.m,w:r.w,h:r.h};return r;
 }
 const plotLayouts={},plotScales={};
 // Convierte un clic sobre un gráfico del motor en (x, y) del modelo. null si cae fuera del área.
@@ -3522,6 +3682,14 @@ const LM_SHOCKS={
 };
 // Número recortado: 4 → «4»; 2,4 → «2,4»; 10,666… → «10,67».
 function fmtT(v,d){const f=Number(v).toFixed(d??2),r=f.includes(".")?f.replace(/0+$/,"").replace(/\.$/,""):f;return fmtG(Number(r),(r.split(".")[1]||"").length)}
+function clearInvalidLab(win,message){
+  const panel=document.getElementById(win);
+  panel.querySelectorAll("svg.plot").forEach(el=>{el.innerHTML="";delete plotLayouts[el.id]});
+  panel.querySelectorAll(".alt p").forEach(el=>el.textContent="No se representa un resultado válido: "+message);
+  const extras={lm:["lmEq","lmRead","lmCuts"],is:["isEq","isRead","isMult","isCoinc"],islm:["islmEq","islmRead","islmPoint","islmVerdict","islmB2Note","islmCoinc"]};
+  (extras[win]||[]).forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=""});
+}
+
 function lmRead(){
   const g=id=>num(id);
   return {Y0:g("lmY0"),M:g("lmM"),P:g("lmP"),d1:g("lmD1"),d2:g("lmD2"),shock:document.getElementById("lmShock").value,val:g("lmVal"),
@@ -3548,8 +3716,10 @@ function lmValid(s){return [s.Y0,s.M,s.P,s.d1,s.d2,s.val,s.iFix].every(Number.is
 let lastLm=null;
 function drawLm(){
   const s=lmRead(),msg=document.getElementById("lmFeedback");
-  if(!lmValid(s)){msg.className="notice error";msg.textContent="Revisa los datos: Y, M, P, d₁ y d₂ tienen que ser números mayores que cero.";return}
-  const r=lmSolve(s);lastLm={...r,lmY:undefined,params:s};
+  if(!lmValid(s)){lastLm=null;["lmMoneyChart","lmChart"].forEach(id=>document.getElementById(id).innerHTML="");msg.className="notice error";msg.textContent="Revisa los datos: Y, M, P, d₁ y d₂ tienen que ser números mayores que cero, completos y de hasta 10¹².";clearInvalidLab("lm",msg.textContent);return}
+  const r=lmSolve(s);
+  if(!supportedNumbers([r.i0,r.i1,r.mp0,r.mp1,r.slope,r.interceptI0,r.interceptI1,r.interceptY0,r.interceptY1])||(s.modo==="tasa"&&(!supportedNumbers([r.mpReq0,r.mpReq1])||r.mpReq0<0||r.mpReq1<0))){lastLm=null;msg.className="notice error";msg.textContent="Escenario no factible o fuera de escala: la oferta requerida debe ser no negativa y los resultados estar dentro de ±10¹². Revisa la tasa objetivo y los parámetros.";clearInvalidLab("lm",msg.textContent);return}
+  lastLm={...r,lmY:undefined,params:s};
   const tasa=s.modo==="tasa",changed=r.Y1!==r.Y0||r.mp1!==r.mp0||r.a1!==r.a0;
   // Escala común de la tasa: parte en 0 y deja aire sobre el mayor equilibrio.
   const iMax=Math.max(r.i0,r.i1,tasa?s.iFix:0,1),Ys=niceScale(0,iMax*1.6,5,true);
@@ -3590,7 +3760,7 @@ function drawLm(){
   msg.className=low?"notice warn":"notice ok";
   msg.innerHTML=tasa
     ?`Enfoque de tasa fija: la tasa queda en <strong>${fmtT(s.iFix)} %</strong>. Para eso, el dinero real pasa de <strong>${fmtT(r.mpReq0,1)}</strong> a <strong>${fmtT(r.mpReq1,1)}</strong>${r.dMoney>0?`: el Banco Central compra bonos por ${fmtT(r.dMoney,1)}`:r.dMoney<0?`: el Banco Central vende bonos por ${fmtT(-r.dMoney,1)}`:""}.${s.shock==="M"?" Ojo: con tasa fija, el Banco Central no elige M; entrega el dinero que se pida a esa tasa. Cambia al enfoque de dinero fijo para ver una compra de bonos.":""}`
-    :`Tasa inicial <strong>${fmtT(r.i0)} %</strong>${changed?` · tasa final <strong>${fmtT(r.i1)} %</strong>`:""} · pendiente de la LM d₁/d₂ = <strong>${fmtT(r.slope,4)}</strong>${r.shiftY?` · la LM se corre <strong>${fmtT(Math.abs(r.shiftY),1)}</strong> a la ${r.shiftY>0?"derecha":"izquierda"}`:""}.${low?" Con estos números la tasa queda bajo cero: el gráfico se corta en 0, porque la tasa no puede bajar mucho de cero. La recta del modelo sigue, pero ya no describe nada posible.":""}`;
+    :`Tasa inicial <strong>${fmtT(r.i0)} %</strong>${changed?` · tasa final <strong>${fmtT(r.i1)} %</strong>`:""} · pendiente de la LM d₁/d₂ = <strong>${fmtT(r.slope,4)}</strong>${r.shiftY?` · la LM se corre <strong>${fmtT(Math.abs(r.shiftY),1)}</strong> a la ${r.shiftY>0?"derecha":"izquierda"}`:""}.${low?" Con estos números la tasa queda bajo cero: el gráfico se corta en 0, esta vista recorta la parte bajo cero. El resultado algebraico sigue siendo negativo: los límites de la demanda lineal requieren cautela, no una prohibición universal de tasas negativas.":""}`;
   document.getElementById("lmEq").innerHTML=tasa
     ?`LM horizontal: <strong>i = ${fmtT(s.iFix)}</strong>, con cualquier nivel de producción.`
     :`LM${r.shiftY?" inicial":""}: <strong>i = ${fmtT(r.slope,4)}·Y ${r.interceptI0<0?"−":"+"} ${fmtT(Math.abs(r.interceptI0))}</strong> &nbsp;·&nbsp; o bien <strong>Y = ${fmtT(r.interceptY0,1)} + ${fmtT(s.d2/s.d1,2)}·i</strong>`+
@@ -3692,10 +3862,11 @@ let lastIs=null;
 function drawIs(){
   const p=isRead(),msg=document.getElementById("isFeedback");
   const bad=[p.c0,p.c1,p.b0,p.b1,p.b2,p.G,p.T,p.t,p.i0,p.val].some(v=>!Number.isFinite(v))||p.c1<=0||p.c1>=1||p.b1<0||p.b2<=0||p.t<0||p.t>=1;
-  if(bad){msg.className="notice error";msg.textContent="Revisa los datos: c₁ y t van entre 0 y 1, b₂ tiene que ser mayor que cero y todos deben ser números.";return}
+  if(bad){lastIs=null;["isCross","isChart"].forEach(id=>document.getElementById(id).innerHTML="");msg.className="notice error";msg.textContent="Revisa los datos: c₁ y t van entre 0 y 1, b₂ tiene que ser mayor que cero y todos deben ser números completos, hasta 10¹².";clearInvalidLab("is",msg.textContent);return}
   const r=isSolve(p);
-  if(!r.ok){msg.className="notice error";msg.textContent=`La pendiente del gasto planeado es ${fmtT(r.s0.ok?r.s1.slope:r.s0.slope,3)}: con c₁ + b₁ igual o mayor que 1, el gasto crece tan rápido como la producción o más, la economía no llega a un equilibrio y el multiplicador no está definido. Baja c₁ o b₁.`;
+  if(!r.ok){lastIs=null;msg.className="notice error";msg.textContent=`La pendiente del gasto planeado es ${fmtT(r.s0.ok?r.s1.slope:r.s0.slope,3)}: con c₁ + b₁ igual o mayor que 1, el gasto crece tan rápido como la producción o más, la economía no llega a un equilibrio y el multiplicador no está definido. Baja c₁ o b₁.`;
     ["isCross","isChart"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=""});return}
+  if(!supportedNumbers([r.Y0,r.Y1,r.s0.Yint,r.s1.Yint,r.s0.iint,r.s1.iint,r.s0.m,r.s1.m])){lastIs=null;msg.className="notice error";msg.textContent="Resultados fuera de la escala numérica (±10¹²). Revisa los parámetros.";clearInvalidLab("is",msg.textContent);return}
   lastIs={Y0:r.Y0,Y1:r.Y1,i0:r.i0,i1:r.i1,m0:r.s0.m,m1:r.s1.m,shift:r.shift,I0:r.I0,I1:r.I1,dI:r.dI,acc:r.acc,rate:r.rate,auto:r.auto};
   const lbl=r.move?["con i₀","con i₁"]:["inicial","final"];
   // Escala común de la producción (arriba y abajo). Parte en 0 y llega al menos al intercepto de cada IS,
@@ -3838,9 +4009,10 @@ let islmStage=2,lastIslm=null,islmZoom=false;
 function drawIslm(){
   const p=islmRead(),msg=document.getElementById("islmFeedback");
   const bad=ISLM_FIELDS.some(k=>!Number.isFinite(p[k]))||p.c1<=0||p.c1>=1||p.b2<=0||p.d1<=0||p.d2<=0||p.t<0||p.t>=1;
-  if(bad){msg.className="notice error";msg.textContent="Revisa los datos: c₁ y t van entre 0 y 1; b₂, d₁ y d₂ tienen que ser mayores que cero.";return}
+  if(bad){lastIslm=null;["islmChart","islmCross","islmEffectsChart"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=""});msg.className="notice error";msg.textContent="Revisa los datos: c₁ y t van entre 0 y 1; b₂, d₁ y d₂ tienen que ser mayores que cero y todos los campos deben estar completos.";clearInvalidLab("islm",msg.textContent);return}
   const r=islmSolve(p);
-  if(!r.ok){msg.className="notice error";msg.textContent="Con c₁ + b₁ igual o mayor que 1 el multiplicador no está definido y no hay equilibrio. Baja c₁ o b₁.";return}
+  if(!r.ok){lastIslm=null;document.getElementById("islmChart").innerHTML="";msg.className="notice error";msg.textContent="Con c₁ + b₁ igual o mayor que 1 el multiplicador no está definido y no hay equilibrio. Baja c₁ o b₁.";return}
+  if(!supportedNumbers([r.s0.Y,r.s1.Y,r.s0.i,r.s1.i,...(p.regime==="horizontal"?[]:[r.s0.YintLM,r.s1.YintLM])])||(p.regime==="horizontal"&&(r.s0.MPreq<0||r.s1.MPreq<0))){lastIslm=null;msg.className="notice error";msg.textContent="Escenario fuera de escala (±10¹²) o tasa objetivo no factible con M/P ≥ 0. Revisa los parámetros.";clearInvalidLab("islm",msg.textContent);return}
   lastIslm={Y0:r.s0.Y,i0:r.s0.i,Y1:r.s1.Y,i1:r.s1.i,dY:r.dY,di:r.di,I0:r.s0.I0,I1:r.s1.I0,dI:r.dI,acc:r.acc,rate:r.rate,auto:r.auto,shiftIS:r.shiftIS,shiftLM:r.shiftLM,multISLM:r.multISLM,MPreq0:r.s0.MPreq,MPreq1:r.s1.MPreq};
   const changed=Math.abs(r.dY)>1e-9||Math.abs(r.di)>1e-9||Math.abs(r.shiftIS)>1e-9||Math.abs(r.shiftLM)>1e-9;
   // punto del modo desequilibrios
@@ -4011,9 +4183,9 @@ function calcLabor(){
   const inputs=["employed","unemployed","inactive"].map(id=>document.getElementById(id));
   const status=document.getElementById("laborStatus");
   if(!validNumbers(inputs)){document.getElementById("laborKpis").innerHTML="";status.className="notice error status";status.textContent="Revisa las poblaciones: no pueden estar vacías ni ser negativas.";return}
-  const O=num("employed"),D=num("unemployed"),I=num("inactive"),PA=O+D,PET=PA+I,participation=PET?PA/PET*100:0,occupation=PET?O/PET*100:0,unemployment=PA?D/PA*100:0;
+  const O=num("employed"),D=num("unemployed"),I=num("inactive"),PA=O+D,PET=PA+I,participation=PET?PA/PET*100:NaN,occupation=PET?O/PET*100:NaN,unemployment=PA?D/PA*100:NaN;
   document.getElementById("laborKpis").innerHTML=`<div class="kpi"><span class="num">${fmt(PA,0)}</span><span class="lab">PA calculada</span></div><div class="kpi"><span class="num">${fmt(PET,0)}</span><span class="lab">PET</span></div><div class="kpi"><span class="num">${fmt(participation)} %</span><span class="lab">Participación</span></div><div class="kpi"><span class="num">${fmt(occupation)} %</span><span class="lab">Ocupación</span></div><div class="kpi"><span class="num">${fmt(unemployment)} %</span><span class="lab">Desempleo</span></div>`;
-  status.className="status";status.textContent=`Indicadores actualizados · desempleo ${fmt(unemployment)} %.`;
+  status.className="status";status.textContent=`Indicadores actualizados · desempleo ${fmt(unemployment)} %.${!PET||!PA?" Una tasa con denominador cero no está definida (—); no equivale a 0 %.":""}`;
 }
 function calcWsPs(){
   const m=num("markup"),un=m/(1+m),w=1/(1+m);
@@ -4072,7 +4244,7 @@ function activateTab(id,{focus=true,historyMode="push"}={}){
   }
   const tab=document.getElementById("tab-"+id);if(focus)tab?.focus();
   tab?.scrollIntoView({block:"nearest",inline:"nearest"});
-  if(id==="cruz")calcCross();if(id==="din")drawMoney();if(id==="lm"){drawLm();drawTpmStory()}if(id==="is")drawIs();if(id==="islm")drawIslm();if(id==="lab"){calcLabor();calcWsPs()}
+  if(id==="bonos")drawBonds();if(id==="cruz")calcCross();if(id==="din")drawMoney();if(id==="lm"){drawLm();drawTpmStory()}if(id==="is")drawIs();if(id==="islm")drawIslm();if(id==="lab"){calcLabor();calcWsPs()}
   if(historyMode!=="none"&&location.hash!=="#"+id){
     history[historyMode==="replace"?"replaceState":"pushState"](null,"","#"+id);
   }
@@ -5284,6 +5456,34 @@ function handleLoopAction(action){
 }
 
 
+/* ========== RECORRIDO COMÚN: EXPLORACIÓN ANTES DE LA PRÁCTICA ========== */
+function clearLabActivity(win){
+  const host=activityHost(win);if(!host)return;
+  if(win==="cruz"&&loopSession){host.querySelector(".activity-loaded").textContent="Valores iniciales del laboratorio restaurados. El contexto y el regreso a Clase 3 siguen activos para este intento.";return}
+  delete currentActivity[win];
+  host.querySelector("select").value="";host.querySelector(".act-body").hidden=true;
+  host.querySelector(".activity-loaded").textContent="Valores iniciales del laboratorio restaurados; ninguna actividad activa. Las respuestas de práctica se conservan en esta sesión.";
+}
+function initExperimentArchitecture(){
+  const notes={med:"Precios en u.m.; cantidades en unidades de cada bien. El año base fija los precios del PIB real y la referencia del IPC.",cta:"Clasifica transacciones del período: estas son la materia central del laboratorio, no una actividad auxiliar. La identidad Y = C + I + G + X − M es contable.",cruz:"Gastos, impuestos e ingreso en unidades reales de práctica; c₁ y t como fracciones (0,5 = 50 %). Cambia un parámetro y compara Y* y el multiplicador.",lm:"M es nominal; M/P son saldos reales. Y en unidades de producto; i en % anual. Conserva la comparación de mercados para construir la LM.",is:"Gastos e ingreso en unidades reales de práctica; tasas i en % anual; c₁ y t como fracciones. Cambiar i mueve el equilibrio sobre la IS; cambiar gasto autónomo desplaza la IS.",islm:"Ingreso y saldos monetarios en unidades reales de práctica; tasas en % anual. Elige el cierre monetario antes de comparar los equilibrios.",lab:"Indicadores: poblaciones en personas. WS–PS: salario real normalizado; m y u son fracciones (0,1 = 10 %). Son dos preguntas distintas: indicadores observados y equilibrio teórico."};
+  Object.entries(notes).forEach(([win,text])=>{
+    const panel=document.getElementById(win),lead=panel.querySelector(".lead"),note=document.createElement("p");
+    note.className="field-note experiment-note";note.textContent="Valores iniciales del laboratorio; no has cargado una actividad. "+text;lead.after(note);
+    if(win==="cta")return; // el reinicio de clasificación ya forma parte de su operación
+    const defaults=[...panel.querySelectorAll("input[id],select[id]")].filter(el=>!el.closest(".practice")).map(el=>({id:el.id,value:el.value,checked:el.checked}));
+    const reset=document.createElement("button");reset.type="button";reset.className="btn secondary";reset.textContent="Restablecer valores iniciales del laboratorio";
+    reset.addEventListener("click",()=>{
+      clearLabActivity(win);
+      if(win==="med")setMeasurementPreset("sealed");
+      defaults.forEach(v=>{const el=document.getElementById(v.id);el.value=v.value;if(el.type==="radio"||el.type==="checkbox")el.checked=v.checked});
+      if(win==="med")calcMeasurement();if(win==="cruz"){toggleTax();calcCross()}
+      if(win==="lm")drawLm();if(win==="is"){isSetKind();drawIs()}if(win==="islm"){islmZoom=false;drawIslm()}if(win==="lab"){calcLabor();calcWsPs()}
+      note.textContent=(win==="cruz"&&loopSession?"Valores iniciales del laboratorio restaurados; el intento de Clase 3 sigue activo. ":"Valores iniciales del laboratorio restaurados; ninguna actividad activa. ")+text;
+    });
+    note.after(reset);
+  });
+}
+
 function init(){
   buildActivities();initGuides();initTabs();renderGlobalEditorialMap();initClassRoute();renderRouteEntry();setMeasurementPreset("sealed");renderCta();calcCross();drawMoney();initLm();initIs();initIslm();calcLabor();calcWsPs();
   document.getElementById("calcMedBtn").addEventListener("click",calcMeasurement);
@@ -5299,11 +5499,15 @@ function init(){
     drawMoney();
   }));
   document.getElementById("omoBuy").addEventListener("click",()=>changeMoney(1));document.getElementById("omoSell").addEventListener("click",()=>changeMoney(-1));
-  document.getElementById("moneyReset").addEventListener("click",()=>{
-    const preset=currentActivity.din?.preset||moneyBase;
-    Object.entries(preset).forEach(([k,v])=>{if(k!=="step")setValue({Y:"moneyY",Ms:"moneyMs",d1:"moneyD1",d2:"moneyD2"}[k],v)});
-    moneyStep=preset.step;drawMoney();
-  });
+  document.getElementById("moneyReset").addEventListener("click",resetMoney);
+  document.getElementById("money-regime").addEventListener("change",setMoneyRegime);
+  document.getElementById("money-target").addEventListener("input",drawMoney);
+  ["money-full","money-scale-reset","money-zoom"].forEach(id=>document.getElementById(id).addEventListener("click",()=>{moneyZoom=id==="money-zoom";drawMoney()}));
+  ["bond-vf-rate","bond-price","bond-vf-price","bond-interest"].forEach(id=>document.getElementById(id).addEventListener("input",drawBonds));
+  document.getElementById("bond-reset").addEventListener("click",()=>{setValue("bond-vf-rate",100);setValue("bond-price",95);setValue("bond-vf-price",100);setValue("bond-interest",5);drawBonds();document.getElementById("bond-practice-state").textContent="Valores iniciales restaurados; ninguna actividad activa."});
+  ["bond-case-a","bond-case-b"].forEach(id=>document.getElementById(id).addEventListener("click",()=>{setValue("bond-vf-rate",100);setValue("bond-price",id==="bond-case-a"?95.238:96.154);drawBonds();document.getElementById("bond-practice-state").textContent="Caso "+(id==="bond-case-a"?"A":"B")+" de DIN-EX-01 cargado en panel A: VF = 100; P_B = "+fmtT(num("bond-price"),3)+" u.m. Puedes seguir modificando ambos parámetros."}));
+  document.getElementById("med-base").addEventListener("change",calcMeasurement);
+  initExperimentArchitecture();drawBonds();
   document.getElementById("calcLabor").addEventListener("click",calcLabor);["employed","unemployed","inactive"].forEach(id=>document.getElementById(id).addEventListener("input",calcLabor));
   document.getElementById("markup").addEventListener("input",calcWsPs);
   document.getElementById("checkBondRates").addEventListener("click",()=>{
@@ -5321,7 +5525,7 @@ function init(){
 // lecturas del módulo que ya existe; no guarda estado propio ni altera la interfaz.
 window.MacroLabLoop={Learning,crossSolve,computeDiscrepancy,proposeDiagnosis,drillCheck,BIE_DRILLS,CODE_DRILL,LOOP_META,LEARNING_SCHEMA,LEARNING_CONTENT_VERSION,LEARNING_LAB_VERSION,LOOP_ARTIFACT,LOOP_ACTIVITY,LOOP_VARIANT,GUIDED_DIAGNOSTICS,GUIDED_DRILLS,PEDAGOGICAL_FEEDBACK_SCHEMA,PEDAGOGICAL_CRITERIA,parseStudentNumber,evaluateNumericAnswer,class2RevisionSummary,buildPedagogicalFeedback,renderPedagogicalFeedback,class1Stance,guidedAnalysis,guidedPracticeResult,guidedPayload,guidedStudentReport,loopStudentReport,parseImportedLearningFile,importLearningRecordText,session:()=>loopSession,attemptScore,attemptDimensions,evaluateTransfer,loopStatus,scoreClassTest,splitChecks,syncLaunchGate,syncDiagnosisEvidence,loopPredictionReady,handleLoopAction,handleClassAction,loopLaunch,loopReturn,loopCheckClosure,selectClass,unlockClassStep,classState:()=>classState,activeClass:()=>activeClass,fieldsFor:id=>attemptFields[id]||null,machineState:()=>loopMachineState,stateTrail:()=>[...loopStateTrail],LOOP_INTERNAL_STATES,
   // Superficie de laboratorio para el recálculo en vivo de las cifras selladas.
-  lab:{setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,drawIs,isSolve,isRead,isApply,drawIslm,islmSolve,islmRead,islmApply,islmPoint,islmState,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
+  lab:{bondYield,bondPrice,moneySolve,moneyRead,drawBonds,resetMoney,setMoneyRegime,loadActivity,applyPreset,setValue,num,calcCross,calcMeasurement,setMeasurementPreset,drawMoney,drawLm,lmSolve,lmRead,lmApply,drawIs,isSolve,isRead,isApply,drawIslm,islmSolve,islmRead,islmApply,islmPoint,islmState,plotSvg,niceScale,plotLayouts,calcLabor,calcWsPs,moneyInterest,results:win=>getCurrentResults(win),params:win=>getCurrentParams(win),measurement:()=>lastMeasurement.map(r=>({...r})),cross:()=>lastCross?{...lastCross}:null}};
 init();
 </script>
 </body>
