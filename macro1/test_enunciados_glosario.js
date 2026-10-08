@@ -85,7 +85,7 @@ function main() {
   /* ===== Render: DIN-EX-01 muestra las partes y sus pistas ===== */
   const host = doc.querySelector('.activity[data-window="din"]');
   const sel = host.querySelector("select");
-  const load = id => { sel.value = String(ACT.din.findIndex(a => a.id === id)); sel.dispatchEvent(new w.Event("change")); };
+  const load = id => { sel.value = String(ACT.din.findIndex(a => a.id === id)); sel.dispatchEvent(new w.Event("change")); sel.closest(".activity").querySelector(".load-activity").click(); };
   load("DIN-EX-01");
   const prompt = host.querySelector(".prompt");
   ["Situación", "Datos", "Se pide", "Cómo saber si está bien", "valor nominal"].forEach(txt =>
@@ -131,7 +131,7 @@ function main() {
 
   /* ===== 6 · Pautas de los otros labs contra el laboratorio ===== */
   const loadIn = (win, id) => { const h = doc.querySelector(`.activity[data-window="${win}"]`), sl = h.querySelector("select");
-    sl.value = String(ACT[win].findIndex(a => a.id === id)); sl.dispatchEvent(new w.Event("change")); return h; };
+    sl.value = String(ACT[win].findIndex(a => a.id === id)); sl.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); return h; };
   ok(Object.keys(ACT).every(win => ACT[win].every(a => a.enunciado)), "todas las actividades de todos los labs siguen el protocolo");
   loadIn("med", "MED-EX-02"); L.calcMeasurement();
   let m = L.measurement();

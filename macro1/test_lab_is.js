@@ -44,7 +44,7 @@ near(r.Y0, 1800, 1e-9, "Nota 6 A3.2 · 1.800"); near(r.Y1, 1200, 1e-9, "Nota 6 A
 /* ===== 2 · Actividades ===== */
 const ACT = w.eval("ACTIVITIES").is;
 ok(ACT.length === 6 && ACT.every(a => a.enunciado), "seis actividades IS, todas con el protocolo");
-const load = id => { const h = doc.querySelector('.activity[data-window="is"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); return L.isSolve(L.isRead()); };
+const load = id => { const h = doc.querySelector('.activity[data-window="is"]'), s = h.querySelector("select"); s.value = String(ACT.findIndex(a => a.id === id)); s.dispatchEvent(new w.Event("change")); h.querySelector(".load-activity").click(); return L.isSolve(L.isRead()); };
 r = load("IS-EX-01"); near(r.Y0, 2400, 1e-9, "IS-EX-01 · 2.400"); near(r.Y1, 2000, 1e-9, "IS-EX-01 · 2.000"); near(r.s0.Y(0), 2600, 1e-9, "IS-EX-01 · Y = 2.600 − 100·i"); near(r.s0.Y(4), 2200, 1e-9, "IS-EX-01 · comprobación con 4 %");
 r = load("IS-EX-02"); near(r.I0, 320, 1e-9, "IS-EX-02 · I en A = 320"); near(r.I1, 240, 1e-9, "IS-EX-02 · I en B = 240"); near(r.acc, -40, 1e-9, "IS-EX-02 · efecto acelerador −40"); near(r.rate, -40, 1e-9, "IS-EX-02 · efecto de la tasa −40");
 r = load("IS-EX-03"); near(r.s0.Y(0), 2600, 1e-9, "IS-EX-03 · intercepto 2.600"); near(r.s0.m * 20, 200, 1e-9, "IS-EX-03 · 200 por punto con b₂ = 20"); near(r.s0.A / 20, 13, 1e-9, "IS-EX-03 · eje i en 13 %");

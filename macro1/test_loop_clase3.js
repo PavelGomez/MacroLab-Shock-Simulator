@@ -163,7 +163,7 @@ async function main() {
   eq(consoleErrors.length, 0, "la carga en jsdom no produce errores de consola");
   ok(typeof L === "object", "la superficie de inspección MacroLabLoop está expuesta");
   // v0.8.0: se agrega «Lab · Relación LM» (declarado); la Ruta y los labs anteriores no cambian de lugar.
-  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 9, "nueve pestañas desde la v0.10.0");
+  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 10, "diez pestañas al separar Bonos y Mercado de dinero");
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
@@ -283,6 +283,15 @@ async function main() {
   const card = q(w, "#cruzContextCard");
   ok(card && !card.hidden, "la tarjeta de contexto del laboratorio está visible");
   ok(/no editable aquí/.test(card.textContent), "la predicción queda fija, no editable en el laboratorio");
+  // El reinicio del laboratorio no cancela el intento guiado ni su regreso.
+  const sessionBeforeReset = L.session();
+  q(w, '#cruz > button.btn.secondary').click();
+  eq(L.session().entryId, sessionBeforeReset.entryId, "reinicio conserva el intento de Clase 3");
+  ok(!card.hidden, "reinicio conserva la tarjeta de contexto");
+  ok(/Clase 3 sigue activo/.test(q(w, '#cruz .experiment-note').textContent), "reinicio explica que el intento guiado sigue activo");
+  eq(w.eval('currentActivity.cruz.id'), "BIE-EX-Solemne1", "reinicio conserva el identificador para fichas del intento guiado");
+  L.lab.applyPreset('cruz', w.eval('ACTIVITIES.cruz.find(a=>a.id==="BIE-EX-Solemne1")'));
+
   ok(card.textContent.includes("sube"), "la dirección predicha aparece en la tarjeta de contexto");
   ok(card.textContent.includes("inventarios"), "la frase de mecanismo aparece en la tarjeta de contexto");
   ok(/media/.test(card.textContent), "la confianza declarada aparece en la tarjeta de contexto");

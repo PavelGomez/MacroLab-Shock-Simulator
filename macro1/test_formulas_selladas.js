@@ -211,8 +211,8 @@ function main() {
   lab.drawMoney();
   near(lab.moneyInterest(), 2, 0.0005, "Dinero · i = 2% con Y = 1.000 y M/P = 760");
   // v0.8.0: formato chileno con espacio antes de % (GOB-CONV-ED); la cifra sellada no cambia.
-  ok(/i = <strong>2,00 %/.test(doc.getElementById("moneyFeedback").innerHTML),
-    "Dinero · el laboratorio escribe i = 2,00 % en pantalla");
+  ok(/= 2 %/.test(doc.getElementById("moneyFeedback").textContent),
+    "Dinero · el laboratorio escribe el resultado de 2 % en pantalla (sustitución explícita)");
   lab.setValue("moneyY", 1010);
   lab.drawMoney();
   near(lab.moneyInterest(), 2.4, 0.0005, "Dinero · i = 2,4% con Y = 1.010 y M/P fijo en 760");
