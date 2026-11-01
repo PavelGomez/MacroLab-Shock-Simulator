@@ -1582,6 +1582,158 @@
     "Material 2025",
     "Clase 4"
    ]
+  },
+  "exportaciones": {
+   "termino": "Exportaciones",
+   "simbolo": "X",
+   "unidad": "u. reales comparables",
+   "definicion": "Ventas de bienes y servicios de residentes a no residentes. Incluyen servicios que no cruzan físicamente una frontera.",
+   "ejemplo": "Un hotel residente en Chile atiende a un turista no residente.",
+   "aviso": "No incluyen la compra o venta de activos financieros.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "importaciones": {
+   "termino": "Importaciones",
+   "simbolo": "IM",
+   "unidad": "u. reales comparables",
+   "definicion": "Compras de bienes y servicios de residentes a no residentes. Aquí usamos IM porque M significa cantidad de dinero.",
+   "ejemplo": "Una empresa residente compra maquinaria extranjera.",
+   "aviso": "Se restan para no atribuir producción extranjera al producto nacional.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "exportaciones_netas": {
+   "termino": "Exportaciones netas",
+   "simbolo": "XN = X − IM",
+   "unidad": "u. reales comparables",
+   "definicion": "Saldo entre exportaciones e importaciones de bienes y servicios del mismo período y con igual valoración.",
+   "ejemplo": "X = 300 e IM = 310 dan XN = −10.",
+   "aviso": "No equivalen a toda la cuenta corriente ni a la balanza de bienes sola.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "flotacion": {
+   "termino": "Flotación cambiaria",
+   "simbolo": "E endógeno",
+   "unidad": "E en CLP/USD",
+   "definicion": "Régimen en que el tipo de cambio puede ajustar. En el caso básico del laboratorio, M/P está dado.",
+   "ejemplo": "Con G +20: E pasa de 900 a 800.",
+   "aviso": "El banco chileno opera con TPM; el cierre de dinero dado es una comparación teórica.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "cambio_fijo": {
+   "termino": "Tipo de cambio fijo",
+   "simbolo": "E dado",
+   "unidad": "CLP/USD",
+   "definicion": "El banco central defiende una paridad. Con movilidad perfecta, el dinero se acomoda a esa defensa.",
+   "ejemplo": "Fiscal +20 con E = 900 requiere M/P = 1.500.",
+   "aviso": "Se suponen paridad creíble, reservas suficientes y defensa no esterilizada.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "bp_paridad": {
+   "termino": "BP y paridad",
+   "simbolo": "i = i*",
+   "unidad": "porcentaje anual",
+   "definicion": "Condición externa simplificada con movilidad perfecta, prima nula y depreciación esperada nula.",
+   "ejemplo": "En la base i = i* = 4 % mientras XN = −10.",
+   "aviso": "BP horizontal no implica XN = 0. Una prima exógena constante desplaza la horizontal.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "movilidad_perfecta": {
+   "termino": "Movilidad perfecta de capitales",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Supuesto de arbitraje sin fricciones entre activos comparables, con expectativas y riesgo especificados.",
+   "ejemplo": "En el caso básico mantiene la tasa local en la tasa externa.",
+   "aviso": "Alta movilidad observada no significa movilidad perfecta ni riesgo nulo.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "prima_riesgo": {
+   "termino": "Prima por riesgo",
+   "simbolo": "ρ",
+   "unidad": "puntos porcentuales",
+   "definicion": "Compensación adicional exigida para mantener el activo local en la condición simplificada de rendimientos.",
+   "ejemplo": "Con i* = 4 % y ρ = 1 pp, i = 5 %.",
+   "aviso": "Una prima constante no vuelve inclinada a la BP por sí sola.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "trilema": {
+   "termino": "Trilema de política",
+   "simbolo": "—",
+   "unidad": "—",
+   "definicion": "Con movilidad perfecta no se pueden sostener a la vez cambio fijo y política monetaria independiente.",
+   "ejemplo": "Defender E revierte un intento autónomo de expansión monetaria.",
+   "aviso": "Dinero, tasa y tipo de cambio no pueden elegirse libremente a la vez bajo ese cierre.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8",
+    "Lab · Economía abierta"
+   ]
+  },
+  "tipo_cambio_nominal": {
+   "termino": "Tipo de cambio nominal",
+   "simbolo": "E = CLP/USD",
+   "unidad": "CLP/USD",
+   "definicion": "Número de pesos por dólar. E mayor es depreciación del peso; E menor es apreciación. Bajo paridad oficial, subir E es devaluación y bajarlo es revaluación.",
+   "ejemplo": "Con precios internos y externos dados, q se mueve proporcionalmente con E.",
+   "aviso": "E nominal no equivale numéricamente a q por mantener precios constantes.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8"
+   ]
+  },
+  "tipo_cambio_real": {
+   "termino": "Tipo de cambio real",
+   "simbolo": "q = E·P_ext/P",
+   "unidad": "precio relativo; base declarada",
+   "definicion": "Precio relativo de bienes externos e internos. P_ext y P son precios comparables; con índices debe declararse la normalización.",
+   "ejemplo": "Con precios internos y externos dados, q se mueve proporcionalmente con E.",
+   "aviso": "E nominal no equivale numéricamente a q por mantener precios constantes.",
+   "mas_lejos": "",
+   "sinonimos": [],
+   "donde": [
+    "Clase 8"
+   ]
   }
  }
 }

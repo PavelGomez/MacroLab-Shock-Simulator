@@ -224,6 +224,66 @@
       "source_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
       "integrated_sha256": "10ba9cae0e71eec9da5b634dd47d7127328c2e592375d45cf92188c68643d9bb",
       "integration_changes": "HTML generado con publicar_nota.py desde la v2 de legibilidad, sin edición posterior (source_sha256 = integrated_sha256); versión 0.7.0. 23-09-2026: vocabulario del rótulo del simulador (GATE R) y de la guía rápida IS-LM, regenerado con publicar_nota.py; las imágenes conservan la codificación publicada (píxeles idénticos)"
+    },
+    {
+      "id": "nota-b5-mundell-fleming-alumno",
+      "file": "notas/nota-b5-mundell-fleming-alumno.html",
+      "pdf": "notas/Nota9_Mundell_Fleming_alumno.pdf",
+      "title": "Nota de estudio 9 · Mundell-Fleming",
+      "kind": "bloque",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "cronica-clase8",
+      "file": "notas/cronica-clase8-chile-2026.html",
+      "pdf": "notas/cronica-clase8.pdf",
+      "title": "El horno que se paga en dólares",
+      "kind": "cronica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "clase8-ayudantia",
+      "file": "notas/ayudantias/ayudantia-clase8-mundell-fleming.html",
+      "pdf": "notas/ayudantias/ayudantia-clase8-mundell-fleming.pdf",
+      "title": "Ayudantía · Clase 8 · Mundell-Fleming",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "clase8-pauta",
+      "file": "notas/pautas/pauta-clase8-mundell-fleming.html",
+      "pdf": "notas/pautas/pauta-clase8-mundell-fleming.pdf",
+      "title": "Pauta de práctica · Clase 8",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "clase8-ficha",
+      "file": "notas/ficha-indicadores-clase8.html",
+      "pdf": "notas/ficha-indicadores-clase8.pdf",
+      "title": "Ficha de indicadores · Economía abierta",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "clase8-cuaderno",
+      "file": "notas/cuaderno-clase8.html",
+      "pdf": "notas/cuaderno-clase8.pdf",
+      "title": "Cuaderno de trabajo · Clase 8",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
     }
   ],
   "images": [
@@ -238,7 +298,13 @@
     "notas/img/n06-demanda-dinero-renta.png",
     "notas/img/n06-demanda-dinero.png",
     "notas/img/n06-equilibrio-dinero.png",
-    "notas/img/n06-equilibrio-nueva-oferta.png"
+    "notas/img/n06-equilibrio-nueva-oferta.png",
+    "notas/img/clase8/xn.svg",
+    "notas/img/clase8/float-none.svg",
+    "notas/img/clase8/float-fiscal.svg",
+    "notas/img/clase8/float-money.svg",
+    "notas/img/clase8/fixed-fiscal.svg",
+    "notas/img/clase8/fixed-money.svg"
   ],
   "open_marks": [
     {
@@ -292,6 +358,10 @@
     {
       "note": "MANIFEST",
       "reason": "lab_version sube de 0.10.0 a 0.10.1 (24-09-2026): alineación de la fase 6b. La demanda de dinero se escribe Md (real) en enunciados, rótulos y Desequilibrios (M/P − Md); título de la Nota 8 «Desequilibrios, efecto desplazamiento y efecto acelerador»; espacio antes de % en los diagnósticos de las Clases 1-2; Notas 5 a 8 regeneradas. Sin cambios en los solvers."
+    },
+    {
+      "note": "Clase 8",
+      "reason": "La versión web del módulo IS-LM-BP principal aplica fxShock después del equilibrio y muestra 100+eRaw como índice. La Clase 8 usa el módulo aditivo macro1/mundell-fleming.html: dos regímenes, prima exógena constante y residuos de tres ecuaciones. El motor principal se conserva."
     }
   ],
   "practice_keys": [
@@ -430,5 +500,19 @@
       "authorization": "Enunciado de la pauta pública; decisión del profesor 21-09-2026 (Manifiesto GATE 4)",
       "sha256": "36d3f9c94361bc6033b86e55bd40cad2ac3f38bcaf6c6b9a3348c44aa1193bcb"
     }
-  ]
+  ],
+  "class8": {
+    "class_number": 8,
+    "note_number": 9,
+    "lab": "mundell-fleming.html",
+    "model": "mf-model.js",
+    "schema": "macrolab-mundell-fleming/1.0",
+    "generated_at": "2026-11-01",
+    "calibration": "unidades docentes; E=CLP/USD; i en porcentaje anual",
+    "tests": [
+      "test_clase8_mundell_fleming.js"
+    ],
+    "version_policy": "Extensión aditiva con versión de contenido propia; conserva versiones y esquema de continuidad de las clases anteriores.",
+    "content_version": "clase8-mundell-fleming-2026-11-01"
+  }
 }

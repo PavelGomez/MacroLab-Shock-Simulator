@@ -6,6 +6,7 @@
     "last_editorial_review": "2026-05-07",
     "license": "CC BY-NC-SA 4.0"
   },
+  "course_modules": {"macro1_class8": {"sources": "../docs/clase8/fuentes.json", "consulted_at": "2026-11-01", "window": "histórica fija; no datos vigentes"}},
   "series": {
     "gdp":          { "label": "PIB · variación anual",          "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "Banco Central de Chile",  "source_url": "https://www.bcentral.cl",     "notes": "Variación porcentual anual." },
     "inflation":    { "label": "IPC · variación anual",          "unit": "%",       "frequency": "annual", "coverage": "2010-2025", "source": "INE",                     "source_url": "https://www.ine.gob.cl",      "notes": "IPC general." },
