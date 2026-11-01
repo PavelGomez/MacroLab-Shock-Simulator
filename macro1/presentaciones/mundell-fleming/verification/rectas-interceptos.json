@@ -1,0 +1,210 @@
+[
+  {
+    "kind": "solveLM",
+    "curves": [
+      {
+        "type": "LM",
+        "label": "LM · M/P = 1.450",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      }
+    ]
+  },
+  {
+    "kind": "base",
+    "curves": [
+      {
+        "type": "IS",
+        "label": "IS · E = 900",
+        "G": 200,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3600,
+          "slope": -75,
+          "iIntercept": 48
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM · M/P = 1.450",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      }
+    ]
+  },
+  {
+    "kind": "floatFiscal",
+    "curves": [
+      {
+        "type": "IS",
+        "label": "IS inicial = final",
+        "G": 200,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3600,
+          "slope": -75,
+          "iIntercept": 48
+        }
+      },
+      {
+        "type": "IS",
+        "label": "IS parcial · G = 220; E = 900",
+        "G": 220,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3700,
+          "slope": -75,
+          "iIntercept": 49.333333333333336
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM sin cambios",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      }
+    ]
+  },
+  {
+    "kind": "floatMoney",
+    "curves": [
+      {
+        "type": "IS",
+        "label": "IS inicial",
+        "G": 200,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3600,
+          "slope": -75,
+          "iIntercept": 48
+        }
+      },
+      {
+        "type": "IS",
+        "label": "IS final · E = 1.100",
+        "G": 200,
+        "E": 1100,
+        "relation": {
+          "yIntercept": 3800,
+          "slope": -75,
+          "iIntercept": 50.666666666666664
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM inicial · M/P = 1.450",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM final · M/P = 1.550",
+        "m": 1550,
+        "relation": {
+          "yIntercept": 3100,
+          "slope": 100,
+          "iIntercept": -31
+        }
+      }
+    ]
+  },
+  {
+    "kind": "fixedFiscal",
+    "curves": [
+      {
+        "type": "IS",
+        "label": "IS inicial",
+        "G": 200,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3600,
+          "slope": -75,
+          "iIntercept": 48
+        }
+      },
+      {
+        "type": "IS",
+        "label": "IS final · G = 220",
+        "G": 220,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3700,
+          "slope": -75,
+          "iIntercept": 49.333333333333336
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM inicial · M/P = 1.450",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM requerida · M/P = 1.500",
+        "m": 1500,
+        "relation": {
+          "yIntercept": 3000,
+          "slope": 100,
+          "iIntercept": -30
+        }
+      }
+    ]
+  },
+  {
+    "kind": "fixedMoney",
+    "curves": [
+      {
+        "type": "IS",
+        "label": "IS sin cambios",
+        "G": 200,
+        "E": 900,
+        "relation": {
+          "yIntercept": 3600,
+          "slope": -75,
+          "iIntercept": 48
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM inicial = final · M/P = 1.450",
+        "m": 1450,
+        "relation": {
+          "yIntercept": 2900,
+          "slope": 100,
+          "iIntercept": -29
+        }
+      },
+      {
+        "type": "LM",
+        "label": "LM del intento · M/P = 1.550",
+        "m": 1550,
+        "relation": {
+          "yIntercept": 3100,
+          "slope": 100,
+          "iIntercept": -31
+        }
+      }
+    ]
+  }
+]

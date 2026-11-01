@@ -1,0 +1,15 @@
+# Criterios de continuidad y sincronización
+
+La revisión 2 incorpora las observaciones docentes sobre las diapositivas 4, 6, 10, 11 y 13 y aplica el mismo control al recorrido completo.
+
+1. **Notación del curso:** A es gasto autónomo; a = 1 − c₁ − b₁ + x₁ es el coeficiente de Y; α = 1/a es el multiplicador de bienes con i y E dados. No reasignar esos símbolos para abreviar un desarrollo.
+2. **Párrafo y apoyo visible:** cada bloque de locución tiene un paso en study_steps.py. Las sustituciones, resultados intermedios y operaciones en ambos lados deben aparecer. El gráfico final no sustituye el desarrollo.
+3. **Referencias de la voz:** si se mencionan flechas, movimientos o desplazamientos, deben estar efectivamente dibujados. Distinguir presión inicial, comparación parcial y equilibrio final. Las flechas del modelo estático no asignan velocidades de ajuste.
+4. **Predicción:** las respuestas posteriores al silencio permanecen bloqueadas hasta el momento correspondiente del audio o una revelación explícita que pausa la voz.
+5. **Reloj:** los pasos usan los eventos del MP3 producido. Cambiar velocidad o buscar no inicia un reloj paralelo. La navegación debe tolerar el redondeo de currentTime en los navegadores.
+6. **Revisión antes de reconstruir el contrato:** editorial-contract.json fija los 72 pares revisados de locución y pantalla. Si cambia uno de los textos o pasos, leer ambos, verificar su correspondencia y recién entonces actualizar sus hashes. No regenerar el contrato para omitir una revisión fallida.
+7. **Controles necesarios:** verify.js comprueba ecuaciones y escenarios, presencia de operaciones, sincronización de pasos, predicciones, posición guardada y todos los saltos de diapositiva y párrafo con precisiones de 0,001 y 0,1 segundos. La simulación no reemplaza una prueba en navegador.
+8. **Inspección visual:** revisar computador, tableta y teléfono, incluidos los estados del panel correspondientes a cálculos largos. Distribuir pasos o permitir consulta completa antes de reducir el tamaño de letra.
+9. **Producción:** mantener la voz aprobada. Si cambia el guion, regenerar solo el contenido necesario mediante la caché, medir otra vez los tiempos y reconstruir documentos y paquete. Conservar sources/ y los antecedentes sin cambios.
+
+10. **Rectas e interceptos:** cuando una LM tenga calibración dada, mostrar Y = (M/P)/d₁ + (d₂/d₁)i con sus valores numéricos. Mantener en el recorrido principal el detalle del cruce y las ecuaciones. Reservar la vista completa de los interceptos a una ventana opcional «Ver interceptos», con un único acceso por ejercicio resuelto. No repetirla en preparaciones, ampliaciones ordinarias ni síntesis. Los casos A y B son ejercicios independientes. La consulta pausa el audio, conserva el punto y permite regreso en pausa o continuación explícita. No anticipar respuestas antes del intento. En la lectura sin JavaScript usar un bloque desplegable cerrado. Calcular funciones y cortes desde MF.relations, sin copiarlos a mano ni tratar las prolongaciones algebraicas como nuevos equilibrios.

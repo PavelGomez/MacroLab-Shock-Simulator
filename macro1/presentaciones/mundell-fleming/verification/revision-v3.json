@@ -1,0 +1,9 @@
+{
+  "visual_revision": "3-rectas-interceptos",
+  "controller_assertions": 775,
+  "all_seven_mp3_unchanged": true,
+  "audio_timing_unchanged": true,
+  "notation": "LM: Y = (M/P)/d₁ + (d₂/d₁)i",
+  "intercepts": "Ambos ejes en la vista completa; detalle del cruce conservado",
+  "browser": "Prueba interactiva pendiente por el bloqueo previamente documentado"
+}

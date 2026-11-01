@@ -1,0 +1,13 @@
+/* La presentación ocupa la ventana de estudio; Macro 1 conserva su estado debajo. */
+body.narration-open{overflow:hidden}
+#class8-narration{width:min(1600px,96vw);height:94vh;height:94dvh;max-width:none;max-height:96vh;margin:auto;padding:0;border:1px solid #9fb4bb;border-radius:10px;background:#f8f8f3;color:#193b4b;overflow:hidden}
+#class8-narration[open]{display:grid;grid-template-rows:auto minmax(0,1fr)}
+#class8-narration::backdrop{background:#193b4bcc}
+#class8-narration .narration-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid #c8d7d8;background:white}
+#class8-narration .narration-header span{font:700 10px/1.4 system-ui,sans-serif;letter-spacing:.12em}
+#class8-narration h2{margin:4px 0 0;font:400 23px/1.25 Georgia,serif}
+#class8-narration nav{display:flex;flex-wrap:wrap;gap:8px}
+#class8-narration .btn{font-size:13px;min-height:44px}
+#class8-narration iframe{display:block;width:100%;height:100%;min-height:0;border:0;background:#f8f8f3}
+#class8-narration :focus-visible{outline:3px solid #b95220;outline-offset:3px}
+@media(max-width:700px){#class8-narration{width:100vw;height:100vh;height:100dvh;max-height:100vh;max-height:100dvh;border:0;border-radius:0}#class8-narration .narration-header{padding:9px 12px;display:block}#class8-narration h2{font-size:20px}#class8-narration nav{margin-top:9px}#class8-narration .btn{font-size:12px;padding:8px 10px}}

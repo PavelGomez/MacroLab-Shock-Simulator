@@ -1,0 +1,47 @@
+{
+  "method": "Reconocimiento local de las siete entradas de capítulo. No escucha humana.",
+  "headings": [
+    {
+      "chapter": 1,
+      "expected": "Capítulo 1. Una misma política, dos regímenes",
+      "recognized": "Capítulo 1, una misma política dos regímenes.",
+      "seconds": 3.357375
+    },
+    {
+      "chapter": 2,
+      "expected": "Capítulo 2. La demanda por producción nacional",
+      "recognized": "Capítulo 2, la demanda por producción nacional.",
+      "seconds": 3.313833333333333
+    },
+    {
+      "chapter": 3,
+      "expected": "Capítulo 3. Una sola economía para comparar",
+      "recognized": "Capítulo 3, una sola economía para comparar.",
+      "seconds": 3.114375
+    },
+    {
+      "chapter": 4,
+      "expected": "Capítulo 4. ge aumenta y el dólar puede flotar",
+      "recognized": "Capítulo 4, Je aumenta y el dólar puede flotar.",
+      "seconds": 3.163291666666667
+    },
+    {
+      "chapter": 5,
+      "expected": "Capítulo 5. Defender una paridad cambia el cierre",
+      "recognized": "Capítulo 5, defender una paridad cambia el cierre.",
+      "seconds": 3.45
+    },
+    {
+      "chapter": 6,
+      "expected": "Capítulo 6. Un ejercicio nuevo para recuperar el método",
+      "recognized": "Capítulo 6, un ejercicio nuevo para recuperar el método.",
+      "seconds": 3.800666666666667
+    },
+    {
+      "chapter": 7,
+      "expected": "Capítulo 7. Los supuestos sostienen la conclusión",
+      "recognized": "Capítulo 7, los supuestos sostienen la conclusión.",
+      "seconds": 3.520583333333333
+    }
+  ]
+}

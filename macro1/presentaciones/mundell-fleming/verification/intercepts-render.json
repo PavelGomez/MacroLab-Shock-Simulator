@@ -1,0 +1,75 @@
+{
+  "method": "WeasyPrint, consultas estáticas sin navegador; desplazamiento comprobado solo por estructura CSS.",
+  "records": [
+    {
+      "file": "intercepts-1440-base.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-fixedFiscal.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-fixedMoney.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-floatFiscal.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-floatMoney.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-practiceA.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-1440-practiceB.html",
+      "width": 1440,
+      "height": 1037.6839024390242
+    },
+    {
+      "file": "intercepts-390-base.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-fixedFiscal.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-fixedMoney.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-floatFiscal.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-floatMoney.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-practiceA.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    },
+    {
+      "file": "intercepts-390-practiceB.html",
+      "width": 390,
+      "height": 1322.5600000000002
+    }
+  ]
+}

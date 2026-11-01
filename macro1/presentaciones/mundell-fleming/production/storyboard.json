@@ -1,0 +1,2340 @@
+{
+  "title": "IS–LM abierto · Mundell–Fleming",
+  "subtitle": "El régimen cambiario cambia el mecanismo",
+  "date": "2026-11-01",
+  "chapters": [
+    {
+      "id": "abrir",
+      "index": 0,
+      "title": "¿Qué cambia al abrir la economía?"
+    },
+    {
+      "id": "modelo",
+      "index": 1,
+      "title": "¿Cómo se conectan bienes, dinero y activos?"
+    },
+    {
+      "id": "base",
+      "index": 2,
+      "title": "¿Cómo se resuelve el equilibrio inicial?"
+    },
+    {
+      "id": "flotacion",
+      "index": 3,
+      "title": "¿Qué ocurre cuando el dólar flota?"
+    },
+    {
+      "id": "fijo",
+      "index": 4,
+      "title": "¿Qué cambia si se defiende una paridad?"
+    },
+    {
+      "id": "recuperar",
+      "index": 5,
+      "title": "¿Puedes resolver y explicar el mecanismo?"
+    },
+    {
+      "id": "interpretar",
+      "index": 6,
+      "title": "¿Hasta dónde llega la conclusión?"
+    }
+  ],
+  "slides": [
+    {
+      "id": 1,
+      "chapter": 0,
+      "title": "Una misma política, dos regímenes",
+      "goal": "Predecir por qué el régimen cambiario modifica la respuesta de la producción.",
+      "kicker": "UNA PREGUNTA PARA EMPEZAR",
+      "visual": "opening",
+      "screen": [
+        "El Gobierno aumenta sus compras.",
+        "¿Sube lo mismo la producción si el dólar flota o si se mantiene fijo?"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Una empresa vende vino al exterior y compra maquinaria importada. Sus ventas dependen de la actividad, pero sus ingresos y sus costos también dependen del precio del dólar. Ahora imagina que el Gobierno aumenta sus compras. ¿Basta con el multiplicador que aprendimos en una economía cerrada para anticipar cuánto crecerá la producción?"
+        },
+        {
+          "kind": "speech",
+          "text": "El modelo de Mundell y Fleming abre esa pregunta. Añade el comercio de bienes y servicios, las decisiones sobre activos internacionales y una regla cambiaria. Compararemos la misma expansión bajo flotación y bajo un dólar fijo. Antes de avanzar, escribe una predicción, aunque todavía no sepas justificarla."
+        },
+        {
+          "kind": "speech",
+          "text": "El objetivo es que puedas resolver un equilibrio abierto y explicar quién ajusta en cada régimen. Escucha por capítulos. Las consultas pausan la voz y permiten regresar al mismo instante. Todas las cifras del modelo serán ejercicios docentes, no estimaciones ni pronósticos de Chile."
+        },
+        {
+          "kind": "study",
+          "seconds": 8,
+          "text": "Predice: ¿el régimen cambiario puede cambiar el efecto del gasto público sobre la producción?"
+        }
+      ],
+      "terms": [
+        "mundell",
+        "regimen"
+      ],
+      "deep": "",
+      "prompt": "Predice: ¿el régimen cambiario puede cambiar el efecto del gasto público sobre la producción?",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "La pregunta económica",
+          "lines": [
+            "Compras públicas aumentan.",
+            "La empresa vende al exterior y compra maquinaria importada.",
+            "¿Basta el multiplicador de una economía cerrada?"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Dos reglas para el mismo impulso",
+          "lines": [
+            "Flotación: el precio del dólar puede ajustar.",
+            "Cambio fijo: la autoridad defiende una paridad.",
+            "Antes de conocer el resultado, predice si la producción cambia igual."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Qué podrás resolver",
+          "lines": [
+            "Calcular un equilibrio abierto.",
+            "Comparar la misma política bajo ambos regímenes.",
+            "Explicar el resultado y los supuestos que lo sostienen."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "chapter": 0,
+      "title": "Exportar, importar y comprar activos",
+      "goal": "Distinguir comercio real, saldo externo y transacciones financieras.",
+      "kicker": "BIENES, SERVICIOS Y ACTIVOS",
+      "visual": "trade",
+      "screen": [
+        "X: ventas a no residentes. IM: compras a no residentes.",
+        "XN = X − IM"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Una viña residente en Chile vende vino a un comprador de Canadá: exporta un bien. Un hotel chileno recibe a una visitante residente en Perú: exporta un servicio. Llamaremos equis a las exportaciones de bienes y servicios. Importar es la operación inversa: residentes compran bienes o servicios a no residentes. Usaremos i eme para importaciones, porque eme ya significa dinero."
+        },
+        {
+          "kind": "speech",
+          "text": "Las exportaciones netas, equis ene, son exportaciones menos importaciones. Si, en un mismo trimestre y en unidades comparables, exportamos trescientos e importamos trescientos diez, el saldo es menos diez. No significa que las exportaciones sean negativas. Tampoco es toda la cuenta corriente: faltan, entre otros componentes, rentas y transferencias."
+        },
+        {
+          "kind": "speech",
+          "text": "Comprar un bono extranjero es adquirir un activo financiero. No es importar una máquina ni exportar un servicio. Esa separación importa: puede aumentar la demanda de dólares sin que cambie hoy el comercio. Mantendremos identificados el canal comercial y el canal financiero durante toda la clase."
+        }
+      ],
+      "terms": [
+        "exportaciones",
+        "importaciones",
+        "xn",
+        "activos"
+      ],
+      "deep": "saldos",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Definir cada operación",
+          "lines": [
+            "X: bienes y servicios vendidos a no residentes.",
+            "IM: bienes y servicios comprados a no residentes.",
+            "IM designa importaciones; M se reserva al dinero."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Construir el saldo",
+          "lines": [
+            "XN = X − IM",
+            "XN = 300 − 310 = −10",
+            "X sigue siendo positivo: un saldo negativo no es una exportación negativa."
+          ],
+          "note": "Mismo trimestre y misma unidad. La cuenta corriente añade rentas y transferencias.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Separar comercio y cartera",
+          "lines": [
+            "Comprar una máquina externa: importación de un bien.",
+            "Comprar un bono externo: adquisición de un activo financiero.",
+            "Ambas operaciones pueden demandar dólares; solo la primera entra en IM."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "chapter": 0,
+      "title": "El precio del dólar: E = CLP/USD",
+      "goal": "Leer correctamente una depreciación y calcular su efecto en una compra en dólares.",
+      "kicker": "CONVENCIÓN DEL CURSO",
+      "visual": "exchange",
+      "screen": [
+        "E ↑: depreciación del peso. E ↓: apreciación.",
+        "Un horno de USD 1.000: $900.000 → $990.000"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "E mayúscula es el número de pesos chilenos que cuesta un dólar estadounidense. La unidad se escribe pesos chilenos por dólar. Si pasa de novecientos a novecientos noventa, cada dólar cuesta más pesos: el peso se deprecia. Si e disminuye, el peso se aprecia. No inviertas esta convención al leer los gráficos."
+        },
+        {
+          "kind": "speech",
+          "text": "Un horno de mil dólares cuesta novecientos mil pesos con e igual a novecientos, y novecientos noventa mil con e igual a novecientos noventa. Conservamos fijo su precio en dólares y omitimos fletes e impuestos. La diferencia es noventa mil pesos. Dividirla por el costo inicial da un aumento de diez por ciento."
+        },
+        {
+          "kind": "speech",
+          "text": "Para un comprador extranjero, un producto chileno de nueve mil pesos puede abaratarse en dólares. Pero una empresa exportadora también puede importar insumos o deber dólares. La depreciación no mejora automáticamente sus utilidades. Bajo un régimen fijo, cambiar oficialmente la paridad hacia arriba se llama devaluación; mantenerla constante es otra decisión."
+        }
+      ],
+      "terms": [
+        "e",
+        "depreciacion",
+        "apreciacion",
+        "devaluacion"
+      ],
+      "deep": "real",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Leer la cotización",
+          "lines": [
+            "E = pesos chilenos / dólar estadounidense",
+            "E: 900 → 990 CLP/USD",
+            "E aumenta: depreciación del peso. E disminuye: apreciación."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Calcular el costo del horno",
+          "lines": [
+            "USD 1.000 × 900 = $900.000",
+            "USD 1.000 × 990 = $990.000",
+            "Diferencia: $990.000 − $900.000 = $90.000",
+            "Variación: ($90.000 / $900.000) × 100 = 10 %"
+          ],
+          "note": "Mismo precio en dólares; se omiten fletes e impuestos.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Comparar la mirada del comprador externo",
+          "lines": [
+            "Producto chileno de $9.000:",
+            "Con E = 900: 9.000 / 900 = USD 10",
+            "Con E = 990: 9.000 / 990 ≈ USD 9,09",
+            "En cambio fijo, elevar la paridad oficial se llama devaluación."
+          ],
+          "note": "El margen de una empresa también depende de insumos, deuda y contratos.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "chapter": 0,
+      "title": "Ingreso y dólar afectan el saldo externo",
+      "goal": "Separar un movimiento por ingreso de un desplazamiento por tipo de cambio.",
+      "kicker": "UNA RELACIÓN DE COMPORTAMIENTO",
+      "visual": "xn",
+      "screen": [
+        "XN = 140 − 0,10Y + 0,20E",
+        "Y ↑ → más importaciones. E ↑ → mejora neta supuesta."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Resumamos el canal comercial. La función de exportaciones netas es equis sub cero, menos equis sub uno por ye, más equis sub dos por e. Ye es producción e ingreso interno. El componente autónomo reúne factores que dejamos dados, incluida la demanda externa. No representa las exportaciones totales."
+        },
+        {
+          "kind": "speech",
+          "text": "En nuestra calibración, equis ene es ciento cuarenta menos cero coma diez por ye, más cero coma veinte por e. Con un dólar de novecientos y producción de tres mil trescientos, obtenemos menos diez. Si solo aumenta la producción en doscientas unidades, el saldo baja veinte. Es un movimiento sobre la misma recta. Si solo sube e en cien pesos por dólar, el saldo sube veinte y la recta se desplaza."
+        },
+        {
+          "kind": "speech",
+          "text": "El signo positivo del dólar es un supuesto de respuesta comercial favorable después del ajuste de cantidades, con precios dados. Las importaciones pueden encarecerse antes de que sus cantidades cambien. El modelo no afirma que el saldo mejore inmediatamente ni fija cuántos meses tarda."
+        }
+      ],
+      "terms": [
+        "xn",
+        "x0",
+        "x1",
+        "x2",
+        "y"
+      ],
+      "deep": "comercio",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Introducir la función",
+          "lines": [
+            "XN = x₀ − x₁Y + x₂E",
+            "Y: producción e ingreso interno.",
+            "x₀: componente autónomo neto; no son las exportaciones totales."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Mostrar la calibración y las dos comparaciones",
+          "lines": [
+            "XN = 140 − 0,10Y + 0,20E",
+            "Base: Y = 3.300; E = 900",
+            "XN₀ = 140 − 330 + 180 = −10",
+            "Solo Y aumenta: Y = 3.500; E = 900",
+            "XN = 140 − 350 + 180 = −30 → ΔXN = −20",
+            "Solo E aumenta: Y = 3.300; E = 1.000",
+            "XN = 140 − 330 + 200 = 10 → ΔXN = 20"
+          ],
+          "note": "Son dos comparaciones independientes desde la base, no shocks acumulados.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Precisar el supuesto comercial",
+          "lines": [
+            "x₂ = 0,20 > 0: respuesta neta favorable al aumento de E.",
+            "Precios internos y externos dados; las cantidades deben poder ajustar.",
+            "No garantiza una mejora inmediata del valor del saldo."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "title": "La demanda por producción nacional",
+      "goal": "Introducir la IS abierta distinguiendo definición de gasto y condición de equilibrio.",
+      "kicker": "EL PUENTE DESDE IS–LM CERRADO",
+      "visual": "goods",
+      "screen": [
+        "Z = C + I + G + X − IM",
+        "Equilibrio de bienes: Y = Z"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "En la economía cerrada sumábamos consumo, inversión y compras públicas. Ahora parte de esas compras puede corresponder a producción extranjera. Para obtener demanda por producción nacional, restamos las importaciones y sumamos lo que los no residentes compran de nuestra producción."
+        },
+        {
+          "kind": "speech",
+          "text": "Zeta designa esa demanda planeada. Se define como ce más i mayúscula más ge más equis ene. La igualdad entre ye y zeta es una condición distinta: el equilibrio del mercado de bienes. Fuera del equilibrio, las ventas planeadas y la producción pueden diferir, generando inventarios involuntarios. No confundas esa condición sobre planes con la identidad de las cuentas realizadas."
+        },
+        {
+          "kind": "speech",
+          "text": "Conservamos las relaciones conocidas. El consumo es ce sub cero más ce sub uno por el ingreso disponible, ye menos impuestos te. La inversión es be sub cero más be sub uno por ye, menos be sub dos por la tasa i. Te es un monto fijo. La tasa entra en porcentaje anual: cuatro significa cuatro por ciento. Abrir el modelo añade el saldo externo, pero conserva estos mecanismos."
+        }
+      ],
+      "terms": [
+        "is",
+        "z",
+        "consumo",
+        "inversion",
+        "tasa"
+      ],
+      "deep": "identidad",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Pasar del gasto total a producción nacional",
+          "lines": [
+            "Gasto de residentes: C + I + G",
+            "Agregar ventas a no residentes: + X",
+            "Restar producción extranjera incluida en el gasto: − IM"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Separar definición y equilibrio",
+          "lines": [
+            "Definición: XN = X − IM",
+            "Definición: Z = C + I + G + XN",
+            "Equilibrio de bienes: Y = Z"
+          ],
+          "note": "Fuera del equilibrio pueden aparecer inventarios involuntarios.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Conservar las funciones de conducta",
+          "lines": [
+            "C = c₀ + c₁(Y − T)",
+            "I = b₀ + b₁Y − b₂i",
+            "T: impuestos fijos; c₁: fracción consumida del ingreso disponible.",
+            "b₁: respuesta de inversión a Y; b₂: respuesta por punto porcentual de i.",
+            "i = 4 representa 4 % anual."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "chapter": 1,
+      "title": "Construir la IS abierta, paso a paso",
+      "goal": "Sustituir, distribuir y reunir términos para obtener la relación de equilibrio de bienes.",
+      "kicker": "DERIVACIÓN",
+      "visual": "derive",
+      "screen": [
+        "A = c₀ − c₁T + b₀ + G + x₀",
+        "a = 1 − c₁ − b₁ + x₁ > 0",
+        "aY = A − b₂i + x₂E; α = 1/a"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Sustituyamos consumo, inversión y exportaciones netas en la condición ye igual a zeta. Distribuir el consumo entrega ce sub uno por ye menos ce sub uno por te. La inversión añade be sub uno por ye y resta el efecto de la tasa. El saldo externo resta equis sub uno por ye y añade el efecto del dólar."
+        },
+        {
+          "kind": "speech",
+          "text": "Reunimos los términos con ye a la izquierda. Restamos ce sub uno por ye y be sub uno por ye, y sumamos equis sub uno por ye en ambos lados. El coeficiente que queda es uno menos ce sub uno menos be sub uno más equis sub uno. Lo llamaremos a minúscula. Reservamos a mayúscula para el gasto autónomo, como en las clases previas: consumo autónomo, menos el consumo reducido por impuestos, más inversión autónoma, compras públicas y componente autónomo neto externo. Mayúscula y minúscula cumplen funciones distintas."
+        },
+        {
+          "kind": "speech",
+          "text": "La ecuación dice que a minúscula, multiplicada por la producción, es igual al gasto autónomo a mayúscula, menos be sub dos multiplicado por la tasa, más equis sub dos multiplicado por el tipo de cambio. Dividimos todos los términos por a minúscula, que suponemos positiva. Su inverso es alfa, el multiplicador de bienes a un dólar y una tasa dados. Esa respuesta parcial todavía no es el efecto final bajo flotación: allí también cambia el dólar."
+        }
+      ],
+      "terms": [
+        "coeficiente",
+        "autonomo",
+        "is",
+        "multiplicador"
+      ],
+      "deep": "derivacion",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Sustituir y distribuir",
+          "lines": [
+            "Y = c₀ + c₁(Y − T) + b₀ + b₁Y − b₂i + G + x₀ − x₁Y + x₂E",
+            "c₁(Y − T) = c₁Y − c₁T",
+            "Y = c₀ + c₁Y − c₁T + b₀ + b₁Y − b₂i + G + x₀ − x₁Y + x₂E"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Reunir Y y mantener la notación del curso",
+          "lines": [
+            "Restar c₁Y y b₁Y; sumar x₁Y en ambos lados.",
+            "(1 − c₁ − b₁ + x₁)Y = c₀ − c₁T + b₀ + G + x₀ − b₂i + x₂E",
+            "a = 1 − c₁ − b₁ + x₁",
+            "A = c₀ − c₁T + b₀ + G + x₀"
+          ],
+          "note": "A mayúscula sigue representando gasto autónomo. a minúscula es un coeficiente distinto.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Dividir todos los términos por a",
+          "lines": [
+            "aY = A − b₂i + x₂E",
+            "(aY)/a = A/a − (b₂/a)i + (x₂/a)E",
+            "Y = (A − b₂i + x₂E)/a",
+            "α = 1/a = ∂Y/∂G, con i y E dados."
+          ],
+          "note": "a es el inverso del multiplicador parcial α; A es el gasto autónomo.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "chapter": 1,
+      "title": "La condición externa: BP horizontal",
+      "goal": "Explicar el cierre financiero simplificado y por qué no obliga a XN = 0.",
+      "kicker": "UNA CONDICIÓN, NO UNA IDENTIDAD",
+      "visual": "bp",
+      "screen": [
+        "BP: i = i*",
+        "Movilidad perfecta + activos comparables + prima y depreciación esperada nulas"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Una pequeña economía abierta toma la tasa internacional como dada. Pequeña significa que sus decisiones no cambian esa tasa mundial. Si los activos son comparables y existe movilidad perfecta de capitales, una diferencia de rendimientos genera presión para cambiar de cartera."
+        },
+        {
+          "kind": "speech",
+          "text": "Para escribir i igual a i asterisco, añadimos dos supuestos decisivos: prima por riesgo nula y depreciación esperada nula en el horizonte considerado. I asterisco es la tasa externa; ambas tasas usan el mismo horizonte anual y la misma unidad porcentual. La condición financiera aparece como una recta horizontal a esa tasa. La llamaremos be pe, por la representación tradicional del equilibrio externo."
+        },
+        {
+          "kind": "speech",
+          "text": "La recta no exige exportaciones netas iguales a cero. Un déficit de bienes y servicios puede tener financiamiento externo. Tampoco es la identidad contable de toda la balanza de pagos. Estamos usando una condición de equilibrio financiero simplificada. En la profundización veremos cómo entran las expectativas y una prima constante sin confundirlas con movilidad imperfecta."
+        }
+      ],
+      "terms": [
+        "bp",
+        "movilidad",
+        "tasaexterna",
+        "prima"
+      ],
+      "deep": "paridad",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Declarar el arbitraje",
+          "lines": [
+            "Economía pequeña: la tasa externa se toma como dada.",
+            "Activos comparables y movilidad perfecta de capitales.",
+            "Un diferencial de rendimientos genera presión para cambiar la cartera."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Obtener la condición simplificada",
+          "lines": [
+            "Prima por riesgo = 0",
+            "Depreciación esperada = 0",
+            "BP: i = i*",
+            "Ambas tasas se expresan en % anual y para el mismo horizonte."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "No confundir dos condiciones",
+          "lines": [
+            "i = i* no implica XN = 0.",
+            "Un déficit de bienes y servicios puede coexistir con financiamiento externo.",
+            "BP horizontal no es la identidad contable de toda la balanza de pagos."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "chapter": 1,
+      "title": "El régimen decide qué variable ajusta",
+      "goal": "Elegir el orden de solución correcto y conectar la LM conocida con el cierre externo.",
+      "kicker": "ANTES DE CALCULAR",
+      "visual": "regimes",
+      "screen": [
+        "LM: M/P = d₁Y − d₂i",
+        "Flotación: i → Y → E. Fijo: i → Y → M/P."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "La ele eme conserva su significado: oferta real de dinero igual a demanda real. Eme es dinero nominal y pe es el nivel de precios. La demanda aumenta con producción y disminuye con tasa. Los coeficientes de sub uno y de sub dos son positivos. Con dinero real dado, sumar de sub dos por i y dividir por de sub uno permite despejar ye."
+        },
+        {
+          "kind": "speech",
+          "text": "Bajo flotación, en este modelo la política fija el dinero real y el dólar ajusta. Primero be pe da la tasa, luego ele eme da la producción, y finalmente i ese permite recuperar el dólar. No significa que el dólar ocurra después en un reloj: es un orden algebraico para resolver relaciones simultáneas."
+        },
+        {
+          "kind": "speech",
+          "text": "Bajo cambio fijo, la autoridad fija e y debe permitir que el dinero acomode la defensa de esa paridad. Primero be pe da i; luego i ese, con el dólar dado, entrega ye; por último ele eme calcula el dinero requerido. No puedes fijar independientemente dólar y dinero y exigir que todas las ecuaciones sigan cerrando."
+        }
+      ],
+      "terms": [
+        "lm",
+        "dinero",
+        "regimen"
+      ],
+      "deep": "cierre",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Despejar LM sin saltar operaciones",
+          "lines": [
+            "M/P = d₁Y − d₂i",
+            "Sumar d₂i: M/P + d₂i = d₁Y",
+            "Dividir por d₁ > 0: Y = (M/P + d₂i)/d₁",
+            "Recta LM: Y = (M/P)/d₁ + (d₂/d₁)i",
+            "M/P: oferta real de dinero; d₁ y d₂: coeficientes positivos."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Resolver bajo flotación",
+          "lines": [
+            "Dato de política: M/P",
+            "1. BP entrega i = i*.",
+            "2. LM entrega Y = (M/P + d₂i*)/d₁.",
+            "3. IS entrega E = (aY − A + b₂i*)/x₂."
+          ],
+          "note": "Orden algebraico de relaciones simultáneas; no es un reloj de ajuste.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Resolver bajo cambio fijo",
+          "lines": [
+            "Dato de política: E",
+            "1. BP entrega i = i*.",
+            "2. IS entrega Y = (A − b₂i* + x₂E)/a.",
+            "3. LM entrega M/P = d₁Y − d₂i*."
+          ],
+          "note": "El dinero acomoda la defensa de la paridad.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "chapter": 2,
+      "title": "Una sola economía para comparar",
+      "goal": "Leer parámetros, unidades y valores exógenos de la calibración común.",
+      "kicker": "CALIBRACIÓN DIDÁCTICA · NO DATOS DE CHILE",
+      "visual": "calibration",
+      "screen": [
+        "C = 100 + 0,75(Y − 80)",
+        "I = 160 + 0,15Y − 15i",
+        "XN = 140 − 0,10Y + 0,20E",
+        "G = 200; M/P = 1.450; i* = 4 %"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Usaremos la misma economía en los cuatro experimentos. Producto y gastos son flujos reales de un trimestre docente, medidos a precios de referencia. El dinero real es un saldo, no un gasto trimestral. Los coeficientes de su demanda conectan ese saldo con el ingreso del trimestre. Las tasas son porcentajes anuales y e se mide en pesos por dólar."
+        },
+        {
+          "kind": "speech",
+          "text": "El consumo autónomo es cien y la propensión marginal a consumir es cero coma setenta y cinco. Los impuestos fijos son ochenta. La inversión autónoma es ciento sesenta; por cada unidad adicional de producción aumenta cero coma quince, y por cada punto porcentual de tasa disminuye quince. El gasto público inicial es doscientos."
+        },
+        {
+          "kind": "speech",
+          "text": "La demanda real de dinero es cero coma cincuenta por ye menos cincuenta por i. La oferta real es mil cuatrocientos cincuenta y la tasa externa es cuatro por ciento. Con los coeficientes comerciales anteriores, a minúscula resulta cero coma veinte y el gasto autónomo a mayúscula resulta quinientos cuarenta. Conservaremos precisión en las cuentas y redondearemos solo al mostrar. Cada política partirá nuevamente de esta base."
+        }
+      ],
+      "terms": [
+        "calibracion",
+        "coeficiente",
+        "autonomo",
+        "dinero",
+        "tasa"
+      ],
+      "deep": "parametros",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Fijar unidades antes de calcular",
+          "lines": [
+            "Y, C, I, G, T y XN: flujos reales por trimestre docente.",
+            "M/P y Md: stocks reales.",
+            "i e i*: porcentajes anuales. E: CLP/USD."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Leer la conducta de hogares y empresas",
+          "lines": [
+            "C = 100 + 0,75(Y − 80)",
+            "I = 160 + 0,15Y − 15i",
+            "G = 200",
+            "c₀ = 100; c₁ = 0,75; T = 80.",
+            "b₀ = 160; b₁ = 0,15; b₂ = 15."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Preparar la base algebraica",
+          "lines": [
+            "Md = 0,50Y − 50i; M/P = 1.450; i* = 4 %",
+            "LM: Y = (1.450 + 50i)/0,50 = 2.900 + 100i",
+            "a = 1 − 0,75 − 0,15 + 0,10 = 0,20",
+            "A = 100 − 0,75 × 80 + 160 + 200 + 140",
+            "A = 100 − 60 + 160 + 200 + 140 = 540",
+            "α = 1/0,20 = 5, con i y E dados."
+          ],
+          "note": "A es gasto autónomo; a es el coeficiente de Y.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "chapter": 2,
+      "title": "Resolver primero BP y LM",
+      "goal": "Determinar tasa y producción iniciales con el cierre de flotación.",
+      "kicker": "EQUILIBRIO INICIAL · PASOS 1 Y 2",
+      "visual": "solveLM",
+      "screen": [
+        "i = i* = 4 %",
+        "1.450 = 0,50Y − 50 × 4",
+        "1.650 = 0,50Y → Y = 3.300"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Partimos con flotación y dinero real dado. Be pe fija la tasa doméstica en cuatro por ciento. Sustituye ese cuatro en ele eme: mil cuatrocientos cincuenta es igual a cero coma cincuenta por la producción, menos cincuenta por cuatro. Multiplicar cincuenta por cuatro da doscientos."
+        },
+        {
+          "kind": "speech",
+          "text": "Sumamos doscientos a ambos lados para conservar la igualdad. Quedan mil seiscientos cincuenta iguales a cero coma cincuenta por ye. Ahora dividimos ambos lados por cero coma cincuenta. Obtenemos ye igual a tres mil trescientos. Ya tenemos el par que satisface dinero y la condición externa."
+        },
+        {
+          "kind": "speech",
+          "text": "En la figura, localiza la horizontal be pe en cuatro por ciento y busca su cruce con ele eme. La proyección vertical entrega tres mil trescientos en el eje de producción. Todavía debemos encontrar el dólar que permite que bienes también cierre. La intersección de estas dos relaciones no nos autoriza a elegir cualquier e: esa elección debe satisfacer i ese."
+        }
+      ],
+      "terms": [
+        "bp",
+        "lm",
+        "y"
+      ],
+      "deep": "base",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Usar BP y sustituir la tasa",
+          "lines": [
+            "BP: i = i* = 4 %",
+            "LM: 1.450 = 0,50Y − 50 × 4",
+            "Recta LM: Y = 2.900 + 100i",
+            "50 × 4 = 200",
+            "1.450 = 0,50Y − 200"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Sumar y después dividir",
+          "lines": [
+            "1.450 + 200 = 0,50Y − 200 + 200",
+            "1.650 = 0,50Y",
+            "1.650 / 0,50 = (0,50Y) / 0,50",
+            "Y = 3.300"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Interpretar el cruce",
+          "lines": [
+            "LM ∩ BP: (Y, i) = (3.300; 4 %)",
+            "LM: i = 0 → Y = 2.900; Y = 0 → i = −29 %",
+            "La proyección sobre el eje horizontal entrega Y = 3.300.",
+            "Falta elegir E para que IS también pase por ese equilibrio."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "chapter": 2,
+      "title": "Recuperar E y cerrar las cuentas",
+      "goal": "Resolver el dólar inicial y comprobar bienes, dinero y condición externa.",
+      "kicker": "EQUILIBRIO INICIAL · PASOS 3 Y 4",
+      "visual": "base",
+      "screen": [
+        "IS: Y = 2.700 − 75i + E",
+        "3.300 = 2.400 + E → E = 900",
+        "C = 2.515; I = 595; XN = −10"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "La i ese calibrada es cero coma veinte por ye igual a quinientos cuarenta menos quince por i más cero coma veinte por e. Dividir cada término por cero coma veinte entrega ye igual a dos mil setecientos menos setenta y cinco por i más e."
+        },
+        {
+          "kind": "speech",
+          "text": "Sustituimos una producción de tres mil trescientos y una tasa de cuatro por ciento. Multiplicar setenta y cinco por cuatro da trescientos. Por tanto, tres mil trescientos es igual a dos mil cuatrocientos más el tipo de cambio. Restamos dos mil cuatrocientos y obtenemos e igual a novecientos pesos por dólar. Este precio corresponde a la economía docente, no a una predicción de mercado."
+        },
+        {
+          "kind": "speech",
+          "text": "Comprobemos con las funciones originales. El consumo es dos mil quinientos quince, la inversión quinientos noventa y cinco y las exportaciones netas menos diez. Sumados a doscientos de gasto público dan tres mil trescientos. La demanda de dinero es mil seiscientos cincuenta menos doscientos: mil cuatrocientos cincuenta. La tasa local y la externa son cuatro. Los tres cierres se cumplen aunque el saldo comercial ampliado sea negativo."
+        }
+      ],
+      "terms": [
+        "is",
+        "xn",
+        "equilibrio"
+      ],
+      "deep": "base",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Dividir cada término de IS",
+          "lines": [
+            "0,20Y = 540 − 15i + 0,20E",
+            "(0,20Y)/0,20 = 540/0,20 − (15/0,20)i + (0,20/0,20)E",
+            "540/0,20 = 2.700; 15/0,20 = 75; 0,20/0,20 = 1",
+            "Y = 2.700 − 75i + E"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Sustituir Y e i para recuperar E",
+          "lines": [
+            "3.300 = 2.700 − 75 × 4 + E",
+            "75 × 4 = 300",
+            "3.300 = 2.700 − 300 + E = 2.400 + E",
+            "3.300 − 2.400 = 2.400 + E − 2.400",
+            "E = 900 CLP/USD"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Comprobar los tres cierres",
+          "lines": [
+            "C = 100 + 0,75(3.300 − 80) = 2.515",
+            "I = 160 + 0,15 × 3.300 − 15 × 4 = 595",
+            "XN = 140 − 330 + 180 = −10",
+            "Bienes: 2.515 + 595 + 200 − 10 = 3.300",
+            "Dinero: 0,50 × 3.300 − 50 × 4 = 1.450",
+            "BP: 4 = 4"
+          ],
+          "note": "Las tres condiciones cierran aunque XN sea negativo.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "chapter": 3,
+      "title": "G aumenta y el dólar puede flotar",
+      "goal": "Predecir qué variables pueden cambiar sin confundir el impulso inicial con el resultado final.",
+      "kicker": "PREDICE ANTES DE MIRAR LA RESPUESTA",
+      "visual": "questionFiscal",
+      "screen": [
+        "G: 200 → 220. M/P: 1.450. i*: 4 %.",
+        "¿Cambian Y, E y XN?"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Vuelve al equilibrio inicial. El Gobierno aumenta ge de doscientos a doscientos veinte y deja constantes los impuestos. Seguimos con flotación, dinero real de mil cuatrocientos cincuenta y tasa externa de cuatro por ciento. Antes de responder por intuición, identifica qué dos ecuaciones quedaron exactamente iguales."
+        },
+        {
+          "kind": "speech",
+          "text": "Si congeláramos el dólar y la tasa, el multiplicador de bienes sería cinco: veinte de gasto desplazaría la i ese en cien unidades de producción. Pero congelar el dólar es solo una comparación parcial. En el régimen que estamos estudiando, e tiene permiso para ajustar."
+        },
+        {
+          "kind": "speech",
+          "text": "Anticipa tres resultados: producción final, precio del dólar y saldo externo. Pregúntate si ele eme y be pe pueden seguir cruzándose en otro producto sin cambiar sus parámetros. Luego explica qué tendría que ocurrir con las compras externas netas para absorber más gasto público cuando producción e inversión no aumentan. Tienes unos segundos para anotar tu respuesta; la siguiente diapositiva cierra el mecanismo."
+        },
+        {
+          "kind": "study",
+          "seconds": 12,
+          "text": "Anota tu predicción para ΔY, ΔE y ΔXN."
+        }
+      ],
+      "terms": [
+        "flotacion",
+        "multiplicador",
+        "xn"
+      ],
+      "deep": "",
+      "prompt": "Anota tu predicción para ΔY, ΔE y ΔXN.",
+      "answer": "Con el cierre básico: ΔY = 0; ΔE = −100 CLP/USD; ΔXN = −20.",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Identificar qué permanece dado",
+          "lines": [
+            "G: 200 → 220 → ΔG = 20",
+            "M/P = 1.450; i* = 4 %; impuestos y parámetros constantes.",
+            "LM sin cambios: Y = 2.900 + 100i",
+            "LM y BP no cambian."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Separar el impulso parcial",
+          "lines": [
+            "a = 0,20 → α = 1/a = 5",
+            "Con i y E dados: ΔY de bienes = αΔG = 5 × 20 = 100",
+            "E está congelado solo en esta comparación parcial."
+          ],
+          "note": "Todavía no es la respuesta final bajo flotación.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Predecir el equilibrio final",
+          "lines": [
+            "Pregunta 1: ¿puede cambiar el cruce de LM y BP?",
+            "Pregunta 2: ¿qué debe ocurrir con E para cerrar IS?",
+            "Pregunta 3: ¿cómo cambia XN?"
+          ],
+          "note": "Anota tu intento antes de revelar la respuesta o pasar a la diapositiva 13.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "chapter": 3,
+      "title": "La apreciación compensa el impulso fiscal",
+      "goal": "Resolver y explicar el desplazamiento de gasto externo bajo flotación.",
+      "kicker": "POLÍTICA FISCAL · FLOTACIÓN",
+      "visual": "floatFiscal",
+      "screen": [
+        "Y = 3.300; i = 4 %",
+        "E: 900 → 800; XN: −10 → −30",
+        "ΔG + ΔXN = 20 − 20 = 0"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Ele eme y be pe no cambiaron: la producción final permanece en tres mil trescientos y la tasa en cuatro. La nueva i ese es ye igual a dos mil ochocientos menos setenta y cinco por i más e. Sustituir los valores finales entrega tres mil trescientos iguales a dos mil quinientos más e. El dólar baja a ochocientos: el peso se aprecia."
+        },
+        {
+          "kind": "speech",
+          "text": "A la tasa inicial, la expansión de demanda tendería a elevar el rendimiento local. La presión por comprar activos locales aprecia el peso. Con la respuesta comercial supuesta, esa apreciación reduce exportaciones netas y neutraliza la expansión de demanda nacional. Las flechas explican presiones; no describen una trayectoria temporal estimada."
+        },
+        {
+          "kind": "speech",
+          "text": "El saldo externo baja de menos diez a menos treinta: cae veinte, lo mismo que aumentó ge. Consumo e inversión no cambian. Observa que la i ese final coincide con la inicial en el plano de producción y tasa, aunque ge y e son distintos. El efecto nulo sobre producción agregada es un resultado condicional: cambian el dólar, la composición del gasto y las exposiciones sectoriales."
+        }
+      ],
+      "terms": [
+        "flotacion",
+        "apreciacion",
+        "xn"
+      ],
+      "deep": "fiscalflota",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Calcular el dólar después del aumento de G",
+          "lines": [
+            "LM y BP sin cambios: Y = 3.300; i = 4 %",
+            "LM: Y = 2.900 + 100i",
+            "A: 540 → 560; A/a: 2.700 → 2.800",
+            "Nueva IS: Y = 2.800 − 75i + E",
+            "3.300 = 2.800 − 75 × 4 + E = 2.500 + E",
+            "E = 3.300 − 2.500 = 800 CLP/USD"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Ver las presiones y el retorno de IS",
+          "lines": [
+            "A E = 900, G + 20 desplaza IS hacia la derecha.",
+            "La presión de una tasa mayor aumenta la demanda por activos locales.",
+            "El peso se aprecia: E pasa de 900 a 800.",
+            "El menor XN devuelve IS a su posición inicial."
+          ],
+          "note": "Las flechas comparan desplazamientos y presiones; no asignan tiempos de ajuste.",
+          "flow": [
+            "G ↑ 20",
+            "IS → a E fija",
+            "presión i ↑",
+            "demanda de activos locales ↑",
+            "E ↓ 100",
+            "XN ↓ 20",
+            "IS ←"
+          ]
+        },
+        {
+          "block": 2,
+          "title": "Comprobar la compensación",
+          "lines": [
+            "XN₀ = 140 − 330 + 180 = −10",
+            "XN₁ = 140 − 330 + 160 = −30",
+            "ΔXN = −30 − (−10) = −20",
+            "ΔG + ΔXN = 20 − 20 = 0",
+            "C = 2.515 e I = 595 no cambian.",
+            "2.515 + 595 + 220 − 30 = 3.300"
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "chapter": 3,
+      "title": "Más dinero con flotación",
+      "goal": "Predecir el canal cambiario de la expansión monetaria desde la base común.",
+      "kicker": "UN EXPERIMENTO NUEVO DESDE LA BASE",
+      "visual": "questionMoney",
+      "screen": [
+        "M/P: 1.450 → 1.550. G vuelve a 200.",
+        "¿Puede bajar permanentemente i si i* sigue en 4 %?"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Regresa otra vez a la base. No sumes este experimento al aumento anterior de gasto. Ge vuelve a doscientos y el dólar inicial es novecientos. Ahora la oferta real de dinero aumenta en cien: pasa de mil cuatrocientos cincuenta a mil quinientos cincuenta. Se mantienen los precios y la tasa externa."
+        },
+        {
+          "kind": "speech",
+          "text": "En una economía cerrada reconocerías una presión inicial a la baja de la tasa. Aquí los inversionistas pueden comprar activos externos. Si el rendimiento doméstico tendiera a bajar de cuatro, esa recomposición presionaría al alza el precio del dólar: el peso se depreciaría. Después, la respuesta comercial ayuda a elevar la demanda por producción nacional."
+        },
+        {
+          "kind": "speech",
+          "text": "Predice el resultado final antes de calcularlo. Usa be pe para i, luego ele eme para ye y finalmente i ese para e. ¿El mayor ingreso puede empeorar una parte del saldo externo aunque el dólar aumente? Separa el efecto de las importaciones inducidas del efecto cambiario. Esa distinción permitirá comprobar la cuenta completa."
+        },
+        {
+          "kind": "study",
+          "seconds": 12,
+          "text": "Resuelve 1.550 = 0,50Y − 200; después usa IS para E."
+        }
+      ],
+      "terms": [
+        "flotacion",
+        "dinero",
+        "depreciacion"
+      ],
+      "deep": "",
+      "prompt": "Resuelve 1.550 = 0,50Y − 200; después usa IS para E.",
+      "answer": "Y = 3.500; i = 4 %; E = 1.100; XN = 10.",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Reiniciar y cambiar solo dinero",
+          "lines": [
+            "Base: G = 200; M/P = 1.450; E inicial = 900.",
+            "Nuevo dinero real: M/P = 1.550 → Δ(M/P) = 100",
+            "LM nueva: Y = 3.100 + 100i",
+            "i* = 4 % permanece dada."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Separar presión inicial y tasa final",
+          "lines": [
+            "El exceso de oferta monetaria presiona a una tasa menor.",
+            "La compra de activos externos presiona a una depreciación.",
+            "Con la respuesta comercial supuesta aumenta demanda nacional."
+          ],
+          "note": "No es una baja permanente de i por debajo de i*.",
+          "flow": [
+            "M/P ↑",
+            "presión i ↓",
+            "activos externos ↑",
+            "E ↑",
+            "demanda nacional ↑"
+          ]
+        },
+        {
+          "block": 2,
+          "title": "Preparar tu cálculo",
+          "lines": [
+            "1. BP: i = 4.",
+            "2. LM: 1.550 = 0,50Y − 200.",
+            "3. IS: Y = 2.400 + E.",
+            "4. XN: separar −0,10ΔY y 0,20ΔE."
+          ],
+          "note": "Calcula antes de consultar los resultados de la diapositiva 15.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "chapter": 3,
+      "title": "El dólar y el ingreso cierran la expansión",
+      "goal": "Resolver la expansión monetaria y descomponer XN e inversión.",
+      "kicker": "POLÍTICA MONETARIA · FLOTACIÓN",
+      "visual": "floatMoney",
+      "screen": [
+        "Y: 3.300 → 3.500; E: 900 → 1.100",
+        "ΔXN = −0,10 × 200 + 0,20 × 200 = 20",
+        "ΔI = 0,15 × 200 − 15 × 0 = 30"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Be pe mantiene la tasa en cuatro. La nueva ele eme da mil quinientos cincuenta iguales a cero coma cincuenta por ye menos doscientos. Sumamos doscientos y dividimos por cero coma cincuenta: la producción aumenta a tres mil quinientos. En la i ese original, tres mil quinientos es igual a dos mil cuatrocientos más e. El dólar llega a mil cien."
+        },
+        {
+          "kind": "speech",
+          "text": "El saldo externo mejora de menos diez a diez. Su cambio tiene dos componentes: el mayor ingreso reduce el saldo en veinte por importaciones inducidas, mientras la depreciación lo mejora en cuarenta. El cambio neto es más veinte. No confundas el efecto aislado del dólar con el saldo final después del aumento de producción."
+        },
+        {
+          "kind": "speech",
+          "text": "El consumo sube a dos mil seiscientos sesenta y cinco y la inversión a seiscientos veinticinco. La inversión crece treinta porque el ingreso aumenta doscientas unidades y la tasa final no cambia. Sumamos consumo, inversión, gasto público y saldo externo: obtenemos tres mil quinientos. El efecto de este modelo con dinero dado no es una estimación de una rebaja de la tasa de política chilena."
+        }
+      ],
+      "terms": [
+        "flotacion",
+        "xn",
+        "inversion"
+      ],
+      "deep": "monetariaflota",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Resolver producción y dólar",
+          "lines": [
+            "BP: i = 4 %",
+            "1.550 = 0,50Y − 200",
+            "LM nueva: Y = 3.100 + 100i",
+            "1.550 + 200 = 0,50Y → Y = 1.750/0,50 = 3.500",
+            "3.500 = 2.400 + E → E = 1.100",
+            "ΔY = 200; ΔE = 200"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Separar ambos efectos sobre XN",
+          "lines": [
+            "Efecto ingreso: −0,10 × 200 = −20",
+            "Efecto dólar: 0,20 × 200 = 40",
+            "ΔXN = −20 + 40 = 20",
+            "XN₁ = XN₀ + ΔXN = −10 + 20 = 10"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Cerrar la inversión y las cuentas",
+          "lines": [
+            "C = 100 + 0,75(3.500 − 80) = 2.665",
+            "I = 160 + 0,15 × 3.500 − 15 × 4 = 625",
+            "ΔI = 0,15 × 200 − 15 × 0 = 30",
+            "2.665 + 625 + 200 + 10 = 3.500"
+          ],
+          "note": "La tasa final no cambia: el aumento de I procede del canal de ingreso.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "chapter": 4,
+      "title": "Defender una paridad cambia el cierre",
+      "goal": "Explicar por qué M/P se vuelve endógeno bajo tipo de cambio fijo.",
+      "kicker": "E = 900 SE MANTIENE FIJO",
+      "visual": "intervention",
+      "screen": [
+        "Comprar divisas → entregar pesos → M aumenta",
+        "Vender divisas → recibir pesos → M disminuye"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Cambiemos la regla institucional. La autoridad se compromete a sostener el dólar en novecientos pesos. Para que esa promesa sea creíble, suponemos reservas suficientes y ausencia de una esterilización que intente mantener independiente la cantidad de dinero. Los precios siguen dados."
+        },
+        {
+          "kind": "speech",
+          "text": "Si existe presión de apreciación, la autoridad compra divisas y entrega pesos. Esa operación aumenta el dinero local. Si hay presión de depreciación, vende divisas y recibe pesos, retirando dinero. Con precios constantes, esos cambios nominales también modifican la oferta real. No calcularemos la pérdida de reservas porque el modelo no especifica un balance completo ni una trayectoria de flujos."
+        },
+        {
+          "kind": "speech",
+          "text": "La producción se determina ahora en i ese con e e i dados. Ele eme nos dice cuánto dinero necesita ese equilibrio. La causalidad institucional importa: el dinero que aparece después de una expansión fiscal es acomodación para defender la paridad. No es una segunda política independiente que podamos elegir libremente. Predice cómo cambia, por eso, la respuesta fiscal que acabamos de estudiar bajo flotación."
+        }
+      ],
+      "terms": [
+        "fijo",
+        "reservas",
+        "esterilizacion"
+      ],
+      "deep": "intervencion",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Cambiar la regla institucional",
+          "lines": [
+            "Paridad defendida: E = 900 CLP/USD",
+            "Precios dados, reservas suficientes y compromiso creíble.",
+            "No se mantiene un dinero independiente mediante esterilización."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Mostrar las dos operaciones",
+          "lines": [
+            "Presión de apreciación: comprar divisas y entregar pesos → M/P ↑",
+            "Presión de depreciación: vender divisas y recibir pesos → M/P ↓"
+          ],
+          "note": "Con P fijo, el efecto nominal también cambia el dinero real. No se calcula una trayectoria de reservas.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Resolver con dinero endógeno",
+          "lines": [
+            "1. BP fija i = i*.",
+            "2. Con E dado, IS determina Y.",
+            "3. LM calcula el M/P requerido.",
+            "Recta con dinero endógeno: Y = 2(M/P) + 100i"
+          ],
+          "note": "El dinero que acomoda la defensa no es otra decisión independiente.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "chapter": 4,
+      "title": "Expansión fiscal con dólar fijo",
+      "goal": "Calcular la producción y el dinero requerido por la defensa de la paridad.",
+      "kicker": "G: 200 → 220 · E = 900",
+      "visual": "fixedFiscal",
+      "screen": [
+        "Primero: BP e IS con E fijo",
+        "Después: LM calcula el dinero necesario"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Desde la misma base, aumenta ge de doscientos a doscientos veinte. Esta vez el dólar permanece en novecientos. La tasa sigue en cuatro. Antes de revelar el gráfico final, calcula la producción con la nueva i ese: dos mil ochocientos menos setenta y cinco por cuatro, más novecientos. Luego calcula la demanda de dinero correspondiente."
+        },
+        {
+          "kind": "study",
+          "seconds": 10,
+          "text": "Calcula Y y el M/P requerido con E = 900."
+        },
+        {
+          "kind": "speech",
+          "text": "La producción llega a tres mil cuatrocientos. La ele eme exige la mitad de tres mil cuatrocientos, menos cincuenta por cuatro. La mitad son mil setecientos y el segundo término son doscientos. Al restar queda una oferta de dinero real de mil quinientos: cincuenta más que al inicio. La compra de divisas evita la apreciación y acomoda esa expansión monetaria. El desplazamiento fiscal permanece en el equilibrio final."
+        },
+        {
+          "kind": "speech",
+          "text": "El saldo externo cae a menos veinte por las importaciones inducidas, aunque el dólar no cambió. El consumo es dos mil quinientos noventa y la inversión seiscientos diez. Sumados a doscientos veinte de gasto público y menos veinte de saldo externo dan tres mil cuatrocientos. La producción aumenta cien, con dinero endógeno y paridad creíble. Cada cifra describe el mismo equilibrio, no decisiones independientes superpuestas."
+        }
+      ],
+      "terms": [
+        "fijo",
+        "reservas",
+        "lm"
+      ],
+      "deep": "fiscalfijo",
+      "prompt": "¿Cuánto dinero real requiere la defensa de E = 900?",
+      "answer": "Y = 3.400; M/P = 1.500; XN = −20.",
+      "revealAfter": 2,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Intentar antes de revelar",
+          "lines": [
+            "G = 220; E = 900; i = 4.",
+            "Y = 2.800 − 75 × 4 + 900",
+            "Después: M/P = 0,50Y − 50 × 4",
+            "LM: Y = 2(M/P) + 100i"
+          ],
+          "note": "Calcula ambas expresiones antes de revelar la solución.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Obtener la producción y el dinero requerido",
+          "lines": [
+            "Y = 2.800 − 300 + 900 = 3.400",
+            "M/P = 0,50 × 3.400 − 50 × 4",
+            "M/P = 1.700 − 200 = 1.500",
+            "LM requerida: Y = 3.000 + 100i",
+            "Δ(M/P) = 1.500 − 1.450 = 50"
+          ],
+          "note": "Comprar divisas evita la apreciación y expande el dinero requerido.",
+          "flow": [
+            "G ↑ 20",
+            "IS →",
+            "presión de apreciación",
+            "compra de divisas",
+            "M/P ↑ 50",
+            "LM →"
+          ]
+        },
+        {
+          "block": 3,
+          "title": "Comprobar el nuevo equilibrio",
+          "lines": [
+            "C = 100 + 0,75(3.400 − 80) = 2.590",
+            "I = 160 + 0,15 × 3.400 − 15 × 4 = 610",
+            "XN = 140 − 340 + 180 = −20",
+            "2.590 + 610 + 220 − 20 = 3.400",
+            "ΔY = 3.400 − 3.300 = 100"
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "chapter": 4,
+      "title": "Un intento monetario que se revierte",
+      "goal": "Detectar la incompatibilidad de una expansión monetaria autónoma permanente con la paridad.",
+      "kicker": "M/P INTENTA SUBIR A 1.550 · E = 900",
+      "visual": "fixedMoney",
+      "screen": [
+        "¿Pueden coexistir E = 900 y M/P = 1.550?",
+        "Comprueba bienes, dinero y BP antes de responder."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Vuelve a la base del régimen fijo, con ge igual a doscientos. La autoridad intenta aumentar el dinero real de mil cuatrocientos cincuenta a mil quinientos cincuenta, pero mantiene la promesa del dólar a novecientos. ¿Puede conservar ambos objetivos con movilidad perfecta y tasa externa de cuatro? Usa primero i ese, que no cambió."
+        },
+        {
+          "kind": "study",
+          "seconds": 10,
+          "text": "Con i = 4 y E = 900, calcula Y y luego la demanda real de dinero."
+        },
+        {
+          "kind": "speech",
+          "text": "I ese mantiene la producción en tres mil trescientos. A ese ingreso y esa tasa, la demanda real de dinero sigue siendo mil cuatrocientos cincuenta. Una oferta de mil quinientos cincuenta no sería equilibrio monetario. La presión inicial a una tasa menor induce salida hacia activos externos y presión de depreciación. Para defender la paridad, la autoridad vende divisas y retira dinero local."
+        },
+        {
+          "kind": "speech",
+          "text": "La expansión autónoma se revierte y la ele eme final coincide con la inicial. La producción, la tasa, el dólar y el saldo externo vuelven a sus valores de base. La conclusión se refiere a la falta de autonomía monetaria permanente bajo estos supuestos. No dice que las operaciones sobre reservas no importen ni describe una crisis de reservas agotadas."
+        }
+      ],
+      "terms": [
+        "fijo",
+        "reservas",
+        "trilema"
+      ],
+      "deep": "monetariafijo",
+      "prompt": "¿Qué ecuación falla si dejas M/P en 1.550?",
+      "answer": "La demanda es 1.450: sobra 100 de oferta real. La defensa revierte la expansión.",
+      "revealAfter": 2,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Comprobar si ambas metas pueden coexistir",
+          "lines": [
+            "G = 200; E = 900; i = 4.",
+            "Intento: M/P = 1.550",
+            "LM del intento: Y = 3.100 + 100i",
+            "IS: Y = 2.700 − 75 × 4 + 900",
+            "Después calcula Md = 0,50Y − 50 × 4."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Mostrar la incompatibilidad y la defensa",
+          "lines": [
+            "IS: Y = 2.700 − 300 + 900 = 3.300",
+            "Md = 0,50 × 3.300 − 50 × 4 = 1.450",
+            "LM inicial = final: Y = 2.900 + 100i",
+            "Oferta pretendida − demanda = 1.550 − 1.450 = 100",
+            "Para sostener E, la venta de divisas retira esos pesos."
+          ],
+          "note": "",
+          "flow": [
+            "M/P intenta ↑ 100",
+            "presión i ↓",
+            "presión E ↑",
+            "venta de divisas",
+            "retiro de pesos",
+            "M/P vuelve a 1.450"
+          ]
+        },
+        {
+          "block": 3,
+          "title": "Reconocer el equilibrio final",
+          "lines": [
+            "Y = 3.300; i = 4 %; E = 900",
+            "M/P = 1.450; XN = −10",
+            "La LM final coincide con la inicial."
+          ],
+          "note": "Sin autonomía monetaria permanente bajo este cierre; no se modela una crisis de reservas.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "chapter": 4,
+      "title": "Comparar las cuatro políticas",
+      "goal": "Sintetizar resultados condicionados al régimen sin memorizar etiquetas de eficacia.",
+      "kicker": "CADA EXPERIMENTO PARTE DE LA BASE",
+      "visual": "matrix",
+      "screen": [
+        "Flotación: ajusta E. Fijo: ajusta M/P.",
+        "La tasa final es 4 % en las cuatro comparaciones."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Mira la tabla por columnas antes de memorizar resultados. En flotación, dinero y be pe determinan el producto. El aumento de ge modifica el dólar y el saldo externo, pero no ye. El aumento de dinero modifica ye y requiere una depreciación que permita cerrar bienes."
+        },
+        {
+          "kind": "speech",
+          "text": "En el régimen fijo, la tasa y el dólar están dados. La expansión fiscal eleva la producción y la autoridad acomoda el dinero. El intento de expansión monetaria independiente se revierte al defender la paridad. En los cuatro experimentos la tasa final es cuatro. Eso no significa que el canal financiero esté ausente: justamente su restricción explica los ajustes."
+        },
+        {
+          "kind": "speech",
+          "text": "Los cambios del saldo externo tampoco son iguales: menos veinte con la expansión fiscal flotante, más veinte con la monetaria flotante, menos diez con la fiscal fija y cero con el intento monetario fijo. Son cambios respecto de la base, no niveles finales. El cuadro resume una economía con movilidad perfecta, precios dados y respuesta comercial favorable. Sin declarar esas condiciones, la tabla deja de ser una conclusión rigurosa."
+        },
+        {
+          "kind": "study",
+          "seconds": 8,
+          "text": "Sin mirar la tabla, explica qué variable ajusta en cada régimen."
+        }
+      ],
+      "terms": [
+        "regimen",
+        "flotacion",
+        "fijo",
+        "xn"
+      ],
+      "deep": "resultados",
+      "prompt": "Sin mirar la tabla, explica qué variable ajusta en cada régimen.",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Leer primero la flotación",
+          "lines": [
+            "Fiscal: M/P y BP sin cambios → ΔY = 0; E ajusta.",
+            "Monetaria: M/P aumenta → Y aumenta; E permite cerrar bienes.",
+            "La tabla principal muestra niveles finales.",
+            "LM base: Y = 2.900 + 100i; monetaria flotante: Y = 3.100 + 100i"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Leer después la paridad fija",
+          "lines": [
+            "Fiscal: E e i dados → Y aumenta; M/P acomoda.",
+            "Monetaria: la defensa revierte el intento de expansión autónoma.",
+            "i final = 4 % en los cuatro casos.",
+            "LM fiscal fija: Y = 3.000 + 100i; monetaria fija final: Y = 2.900 + 100i"
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Distinguir niveles y variaciones del saldo",
+          "lines": [
+            "Fiscal, flotación: −30 − (−10) = −20",
+            "Monetaria, flotación: 10 − (−10) = 20",
+            "Fiscal, fijo: −20 − (−10) = −10",
+            "Intento monetario, fijo: −10 − (−10) = 0"
+          ],
+          "note": "Cada diferencia se calcula respecto de la misma base.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "chapter": 5,
+      "title": "Un ejercicio nuevo para recuperar el método",
+      "goal": "Transferir el orden de solución a shocks pequeños y comprobarlo sin copiar resultados.",
+      "kicker": "INTENTA ANTES DE REVELAR",
+      "visual": "retrieval",
+      "screen": [
+        "A. Flotación: M/P aumenta en 50.",
+        "B. Cambio fijo: G aumenta en 10.",
+        "Cada caso parte de la base."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Ahora resuelve dos ejercicios nuevos. En el caso a, hay flotación y el dinero real aumenta cincuenta, con ge constante. En el caso be, el dólar permanece en novecientos y el gasto público aumenta diez. Ambos parten de la base, por separado. Anota para cada uno producción, tasa, dólar y dinero final."
+        },
+        {
+          "kind": "speech",
+          "text": "En el primero, empieza por be pe y ele eme. Después usa i ese para el dólar. En el segundo, empieza por be pe e i ese con e fijo; ele eme entrega el dinero requerido. No cambies el orden porque el impulso se parezca al ejercicio anterior. El régimen decide qué variable queda dada."
+        },
+        {
+          "kind": "study",
+          "seconds": 15,
+          "text": "Calcula ambos casos. Puedes pausar si necesitas más tiempo."
+        },
+        {
+          "kind": "speech",
+          "text": "En el caso a, la producción llega a tres mil cuatrocientos y el dólar a mil pesos; el dinero final es mil quinientos. En el caso be, la producción llega a tres mil trescientos cincuenta, el dólar sigue en novecientos y el dinero requerido es mil cuatrocientos setenta y cinco. La tasa es cuatro en ambos. Abre la práctica para sustituir en las ecuaciones originales y comparar tu procedimiento, no solo el resultado."
+        }
+      ],
+      "terms": [
+        "equilibrio",
+        "flotacion",
+        "fijo"
+      ],
+      "deep": "practica",
+      "prompt": "Resuelve A y B antes de consultar la solución.",
+      "answer": "A: Y = 3.400; i = 4 %; E = 1.000; M/P = 1.500. B: Y = 3.350; i = 4 %; E = 900; M/P = 1.475.",
+      "revealAfter": 3,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Plantear dos ejercicios independientes",
+          "lines": [
+            "A: flotación, M/P = 1.450 + 50 = 1.500; G = 200.",
+            "B: cambio fijo, G = 200 + 10 = 210; E = 900.",
+            "En ambos: i* = 4 %.",
+            "Caso A, LM: Y = 3.000 + 100i. Caso B: Y = 2(M/P) + 100i."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Elegir el orden antes de calcular",
+          "lines": [
+            "Caso A: BP → LM → IS.",
+            "Caso B: BP → IS → LM.",
+            "No acumules los shocks; cada uno parte de la base."
+          ],
+          "note": "Anota tu intento antes de consultar la respuesta.",
+          "flow": []
+        },
+        {
+          "block": 3,
+          "title": "Resolver A y B con todas las operaciones",
+          "lines": [
+            "A: Y = (1.500 + 50 × 4)/0,50 = 3.400",
+            "A: E = 3.400 − 2.700 + 75 × 4 = 1.000",
+            "B: A autónomo = 540 + 10 = 550; A/a = 2.750",
+            "B: Y = 2.750 − 75 × 4 + 900 = 3.350",
+            "B: M/P = 0,50 × 3.350 − 50 × 4 = 1.475",
+            "B, recta LM final: Y = 2.950 + 100i",
+            "i = 4 % en ambos."
+          ],
+          "note": "Las letras A y B de los casos no sustituyen a la variable A de gasto autónomo.",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "chapter": 5,
+      "title": "El trilema y la variable que falta",
+      "goal": "Explicar la incompatibilidad entre las tres opciones institucionales.",
+      "kicker": "UNA RESTRICCIÓN DEL CIERRE",
+      "visual": "trilemma",
+      "screen": [
+        "Tipo de cambio fijo",
+        "Movilidad libre de capitales",
+        "Política monetaria independiente"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "El trilema resume una incompatibilidad. No podemos mantener simultáneamente un tipo de cambio fijo, libre movilidad de capitales y una política monetaria independiente. En nuestro caso básico, la movilidad perfecta y la paridad creíble fijan la tasa local. Defender el dólar obliga a acomodar el dinero."
+        },
+        {
+          "kind": "speech",
+          "text": "Si una autoridad pretende conservar el dólar fijo y un dinero arbitrario, prueba a sustituir ambas metas en i ese, ele eme y be pe. En general, alguna condición no cerrará. El problema no se resuelve agregando una flecha a un gráfico: hay que modificar una regla, restringir la movilidad o abandonar la independencia monetaria."
+        },
+        {
+          "kind": "speech",
+          "text": "Con flotación se abandona la meta fija de e. En una aplicación moderna con tasa de política, las expectativas cambiarias permiten diferencias entre la tasa local y la externa. Por eso nuestro i igual a i asterisco no debe trasladarse literalmente a toda decisión real. Ya puedes explicar el mecanismo central: cada régimen define qué precio o cantidad absorbe la presión creada por una política."
+        }
+      ],
+      "terms": [
+        "trilema",
+        "movilidad",
+        "regimen"
+      ],
+      "deep": "paridad",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Identificar las tres opciones",
+          "lines": [
+            "Tipo de cambio fijo.",
+            "Libre movilidad de capitales.",
+            "Política monetaria independiente.",
+            "No pueden sostenerse las tres simultáneamente."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Detectar qué condición dejaría de cerrar",
+          "lines": [
+            "Con E = 900 e i = 4, IS exige Y = 3.300.",
+            "Con ese Y e i, LM exige M/P = 1.450.",
+            "LM compatible: Y = 2.900 + 100i; intento: Y = 3.100 + 100i",
+            "Pretender M/P = 1.550 deja un exceso de oferta de 100."
+          ],
+          "note": "Para conservarlo habría que cambiar una regla o el cierre.",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Conectar con una política moderna",
+          "lines": [
+            "Con flotación se abandona una meta fija de E.",
+            "Expectativas y riesgo permiten diferencias entre i e i* en un cierre más amplio.",
+            "No traslades literalmente i = i* a cualquier decisión de TPM."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "chapter": 6,
+      "title": "Los supuestos sostienen la conclusión",
+      "goal": "Reconocer los límites de la respuesta comercial y del cierre financiero.",
+      "kicker": "ANTES DE APLICAR EL RESULTADO",
+      "visual": "limits",
+      "screen": [
+        "Precios dados y capacidad de respuesta",
+        "Arbitraje sin prima ni depreciación esperada",
+        "Respuesta comercial favorable; paridad creíble"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "La comparación se apoya en varios supuestos que tienen funciones distintas. Los precios dados y la capacidad disponible permiten que la demanda modifique producción en el corto plazo. Si la capacidad está restringida o cambian los precios, la respuesta puede incluir inflación y otros ajustes que aquí no calculamos."
+        },
+        {
+          "kind": "speech",
+          "text": "El coeficiente positivo del dólar en exportaciones netas supone que las cantidades responden favorablemente en el horizonte relevante. En el corto plazo, el valor de las importaciones puede subir antes de que bajen sus cantidades. La profundización sobre la curva jota explica ese riesgo. Tampoco basta la depreciación nominal si los precios internos suben al mismo tiempo."
+        },
+        {
+          "kind": "speech",
+          "text": "La tasa igual a la externa requiere los supuestos financieros que declaramos. Una prima por riesgo constante mueve la horizontal a otra altura; no crea por sí sola una be pe inclinada. La movilidad imperfecta necesita una especificación adicional. En el régimen fijo, reservas, credibilidad y ausencia de esterilización incompatible sostienen el resultado. Estas condiciones explican cuándo usar el modelo y cuándo ampliar sus ecuaciones."
+        }
+      ],
+      "terms": [
+        "precios",
+        "prima",
+        "curvaj",
+        "esterilizacion"
+      ],
+      "deep": "comercio",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Producción y precios",
+          "lines": [
+            "Precios dados + capacidad disponible → Y puede responder a demanda.",
+            "Con restricción de capacidad o precios variables, faltan ecuaciones de inflación y oferta."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "Respuesta comercial",
+          "lines": [
+            "x₂ > 0 resume la mejora neta después del ajuste de cantidades.",
+            "Antes pueden subir los pagos por importaciones.",
+            "El aumento de precios internos puede compensar la depreciación nominal."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Cierre financiero e institucional",
+          "lines": [
+            "Prima y depreciación esperada nulas → i = i*.",
+            "Prima exógena constante ρ → i = i* + ρ: BP sigue horizontal.",
+            "Movilidad imperfecta requiere otra especificación.",
+            "En cambio fijo hacen falta reservas, credibilidad y acomodación monetaria."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "chapter": 6,
+      "title": "Chile: flotación con una tasa de política",
+      "goal": "Distinguir el cierre pedagógico de la operación monetaria del Banco Central de Chile.",
+      "kicker": "CONTEXTO INSTITUCIONAL · FUENTE PRIMARIA",
+      "visual": "chile",
+      "screen": [
+        "Chile: metas de inflación + tipo de cambio flexible",
+        "La TPM es el instrumento operacional principal.",
+        "Una decisión de TPM requiere un cierre distinto."
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "El Banco Central de Chile describe su marco como metas de inflación con tipo de cambio flexible. La tasa de política monetaria, llamada te pe eme, es su principal instrumento operacional. La liquidez se administra para orientar la tasa interbancaria hacia ese objetivo. No es la misma regla que escoger un dinero real fijo en cada ejercicio."
+        },
+        {
+          "kind": "speech",
+          "text": "La comparación de Mundell y Fleming sigue siendo útil para identificar canales: cartera, dólar, comercio y producción. Pero el resultado de más dinero con tasa externa fija no mide directamente el efecto de una rebaja de la te pe eme. Para estudiar esa decisión necesitamos expectativas, riesgos, otras tasas y la reacción de precios. Tampoco la neutralización fiscal exacta es una conclusión empírica sobre Chile."
+        },
+        {
+          "kind": "speech",
+          "text": "La institución admite intervenciones cambiarias excepcionales. Eso no equivale por sí solo a prometer una paridad permanente. Esta diapositiva utiliza información institucional verificada del Banco Central; no usa series de coyuntura ni estima coeficientes. En las fuentes puedes revisar la fecha de consulta y distinguir este contexto real de las calibraciones docentes del resto de la clase."
+        }
+      ],
+      "terms": [
+        "tpm",
+        "flotacion",
+        "paridad"
+      ],
+      "deep": "chile",
+      "prompt": "",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Ver el instrumento operacional",
+          "lines": [
+            "Marco del BCCh: metas de inflación + flotación cambiaria.",
+            "TPM: tasa de política monetaria.",
+            "La liquidez se administra para orientar la tasa interbancaria hacia la TPM."
+          ],
+          "note": "",
+          "flow": [
+            "objetivo de TPM",
+            "administración de liquidez",
+            "tasa interbancaria cercana al objetivo"
+          ]
+        },
+        {
+          "block": 1,
+          "title": "Distinguir el ejercicio de la aplicación",
+          "lines": [
+            "M/P dado es el cierre pedagógico usado aquí.",
+            "Una rebaja de TPM requiere expectativas, riesgos, crédito y precios.",
+            "La neutralización fiscal exacta no es un resultado empírico demostrado para Chile."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Precisar qué documenta la fuente",
+          "lines": [
+            "Una intervención excepcional no es por sí sola una paridad permanente.",
+            "Fuente institucional: Banco Central de Chile, consulta 01-11-2026.",
+            "Los parámetros numéricos de la clase siguen siendo didácticos."
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "chapter": 6,
+      "title": "Explicar antes de decidir",
+      "goal": "Aplicar los canales a una exposición empresarial y formular una síntesis con límites.",
+      "kicker": "CIERRE Y TICKET DE SALIDA",
+      "visual": "business",
+      "screen": [
+        "Cobros: USD 10.000; pagos: USD 6.000",
+        "Flujo neto expuesto: USD 4.000",
+        "E: 900 → 990 → diferencia de $360.000"
+      ],
+      "blocks": [
+        {
+          "kind": "speech",
+          "text": "Volvamos a la empresa. En un caso ficticio, cobra diez mil dólares y paga seis mil dólares de insumos en el mismo período. Sin cambios de cantidades, contratos ni coberturas, queda expuesta por cuatro mil dólares netos. Con un dólar de novecientos, ese flujo equivale a tres millones seiscientos mil pesos. Con novecientos noventa, equivale a tres millones novecientos sesenta mil: la diferencia es trescientos sesenta mil pesos."
+        },
+        {
+          "kind": "speech",
+          "text": "Ese cambio no es utilidad neta. Faltan salarios, impuestos, deuda, otros costos y fechas de pago. Una importadora sin cobros en dólares enfrenta otra exposición. El modelo ayuda a ordenar preguntas, pero no decide por sí solo si conviene comprar, esperar o cubrir un pago. Para una decisión concreta pediríamos monedas de facturación, vencimientos, capacidad y respuesta de clientes."
+        },
+        {
+          "kind": "speech",
+          "text": "Cierra con cuatro frases propias. Primero, qué añade abrir i ese ele eme. Segundo, por qué be pe horizontal admite un saldo externo negativo. Tercero, qué variable ajusta en cada régimen. Cuarto, qué supuesto revisarías antes de aplicar la conclusión a una empresa chilena. Si puedes responder sin mirar, has recuperado el mecanismo y también su alcance."
+        },
+        {
+          "kind": "study",
+          "seconds": 12,
+          "text": "Escribe las cuatro frases del ticket de salida."
+        }
+      ],
+      "terms": [
+        "exposicion",
+        "xn",
+        "regimen"
+      ],
+      "deep": "empresa",
+      "prompt": "Escribe las cuatro frases del ticket de salida.",
+      "answer": "",
+      "revealAfter": null,
+      "source": "nota9",
+      "steps": [
+        {
+          "block": 0,
+          "title": "Calcular el flujo neto expuesto",
+          "lines": [
+            "USD 10.000 − USD 6.000 = USD 4.000",
+            "4.000 × 900 = $3.600.000",
+            "4.000 × 990 = $3.960.000",
+            "$3.960.000 − $3.600.000 = $360.000"
+          ],
+          "note": "Mismo período, cantidades y contratos; sin coberturas.",
+          "flow": []
+        },
+        {
+          "block": 1,
+          "title": "No confundirlo con utilidad",
+          "lines": [
+            "Faltan salarios, impuestos, deuda, otros costos y fechas de pago.",
+            "Pedir monedas de facturación, vencimientos, capacidad y respuesta de clientes.",
+            "Una importadora sin cobros en dólares enfrenta otra exposición."
+          ],
+          "note": "",
+          "flow": []
+        },
+        {
+          "block": 2,
+          "title": "Responder el ticket de salida",
+          "lines": [
+            "1. ¿Qué añade abrir IS–LM?",
+            "2. ¿Por qué BP horizontal admite XN negativo?",
+            "3. ¿Qué variable ajusta en cada régimen?",
+            "4. ¿Qué supuesto revisarías antes de aplicar el resultado?"
+          ],
+          "note": "",
+          "flow": []
+        }
+      ]
+    }
+  ],
+  "glossary": [
+    {
+      "key": "mundell",
+      "label": "Mundell–Fleming",
+      "definition": "Extensión de IS–LM a una pequeña economía abierta. Añade comercio, activos internacionales y régimen cambiario; sus resultados dependen del cierre elegido."
+    },
+    {
+      "key": "exportaciones",
+      "label": "X · Exportaciones",
+      "definition": "Ventas de bienes y servicios de residentes a no residentes. No exige que el servicio cruce físicamente la frontera."
+    },
+    {
+      "key": "importaciones",
+      "label": "IM · Importaciones",
+      "definition": "Compras de bienes y servicios de residentes a no residentes. Se usa IM para reservar M al dinero."
+    },
+    {
+      "key": "xn",
+      "label": "XN · Exportaciones netas",
+      "definition": "X − IM, con mismo período, valoración y unidad. No es toda la cuenta corriente ni el saldo de toda la balanza de pagos."
+    },
+    {
+      "key": "activos",
+      "label": "Activos financieros",
+      "definition": "Derechos a pagos futuros, como bonos o depósitos. Comprar activos externos pertenece al canal financiero, no a IM."
+    },
+    {
+      "key": "e",
+      "label": "E · Tipo de cambio nominal",
+      "definition": "CLP/USD: pesos chilenos por dólar. E mayor significa depreciación del peso. En los ejercicios E es un precio docente, no una cotización observada."
+    },
+    {
+      "key": "depreciacion",
+      "label": "Depreciación",
+      "definition": "Aumento de E en CLP/USD bajo flotación: el peso pierde valor respecto del dólar."
+    },
+    {
+      "key": "apreciacion",
+      "label": "Apreciación",
+      "definition": "Disminución de E en CLP/USD bajo flotación: el peso gana valor respecto del dólar."
+    },
+    {
+      "key": "devaluacion",
+      "label": "Devaluación y revaluación",
+      "definition": "En un régimen fijo, elevar la paridad oficial en CLP/USD es devaluar; reducirla es revaluar."
+    },
+    {
+      "key": "x0",
+      "label": "x₀ · Componente autónomo neto",
+      "definition": "Término de XN que reúne factores dados, incluida demanda externa. No equivale a exportaciones totales."
+    },
+    {
+      "key": "x1",
+      "label": "x₁ · Respuesta a Y",
+      "definition": "Unidades reales adicionales importadas por una unidad adicional de ingreso, con lo demás constante. Es 0,10 en la calibración."
+    },
+    {
+      "key": "x2",
+      "label": "x₂ · Respuesta a E",
+      "definition": "Variación de XN por un CLP/USD adicional, manteniendo Y constante. El signo positivo resume una respuesta comercial favorable, no necesariamente inmediata."
+    },
+    {
+      "key": "y",
+      "label": "Y · Producción e ingreso",
+      "definition": "Flujo real por trimestre docente. Los gastos se valoran en una unidad real común a precios de referencia."
+    },
+    {
+      "key": "z",
+      "label": "Z · Demanda planeada",
+      "definition": "C + I + G + XN: demanda por producción nacional. Y = Z es la condición de equilibrio de bienes."
+    },
+    {
+      "key": "is",
+      "label": "IS abierta",
+      "definition": "Relación de equilibrio de bienes: aY = A − b₂i + x₂E. A cada E dada tiene pendiente negativa en el plano (Y, i)."
+    },
+    {
+      "key": "lm",
+      "label": "LM",
+      "definition": "Condición M/P = Md = d₁Y − d₂i. Despejada: Y = (M/P)/d₁ + (d₂/d₁)i. Base: Y = 2.900 + 100i. Con dinero real 1.500: Y = 3.000 + 100i; con 1.550: Y = 3.100 + 100i. Las rectas son crecientes."
+    },
+    {
+      "key": "bp",
+      "label": "BP horizontal",
+      "definition": "Condición externa simplificada i = i*. Requiere movilidad perfecta, activos comparables, prima y depreciación esperada nulas. No impone XN = 0."
+    },
+    {
+      "key": "consumo",
+      "label": "C · Consumo",
+      "definition": "C = c₀ + c₁(Y − T). c₀ = 100, c₁ = 0,75 y T = 80 son supuestos docentes. T es fijo."
+    },
+    {
+      "key": "inversion",
+      "label": "I · Inversión planeada",
+      "definition": "I = b₀ + b₁Y − b₂i. Responde al nivel de Y y a i; b₁Y no es el acelerador dinámico basado en el cambio de producción."
+    },
+    {
+      "key": "tasa",
+      "label": "i · Tasa doméstica",
+      "definition": "Porcentaje anual. i = 4 significa 4 %, no 0,04. Pasar de 4 a 5 son +1 punto porcentual y +25 % relativo."
+    },
+    {
+      "key": "tasaexterna",
+      "label": "i* · Tasa internacional",
+      "definition": "Tasa exógena de activos comparables, para el mismo horizonte de i. El asterisco no denota aquí producción potencial ni equilibrio de Y."
+    },
+    {
+      "key": "coeficiente",
+      "label": "a · Coeficiente de Y",
+      "definition": "a = 1 − c₁ − b₁ + x₁ = 0,20 > 0. Aparece al reunir términos en bienes. Esta condición no demuestra estabilidad dinámica de todo el modelo."
+    },
+    {
+      "key": "autonomo",
+      "label": "A · Gasto autónomo",
+      "definition": "A = c₀ − c₁T + b₀ + G + x₀ = 540 en la base. Mantiene la función de A de las clases previas. El factor del lado de Y se llama a minúscula; el multiplicador es α = 1/a."
+    },
+    {
+      "key": "multiplicador",
+      "label": "Multiplicador de bienes",
+      "definition": "α = ∂Y/∂G = 1/a = 5 manteniendo i, E, T y parámetros constantes. El efecto final depende del régimen."
+    },
+    {
+      "key": "dinero",
+      "label": "M/P y Md · Dinero real",
+      "definition": "M/P es oferta real; Md es demanda real. Son stocks, distintos de los flujos de gasto. d₁ = 0,50; d₂ = 50."
+    },
+    {
+      "key": "regimen",
+      "label": "Régimen cambiario",
+      "definition": "Regla sobre el tipo de cambio. El ejercicio distingue flotación con M/P dado y E endógeno, de fijo con E dado y M/P endógeno."
+    },
+    {
+      "key": "flotacion",
+      "label": "Flotación",
+      "definition": "E ajusta sin una paridad objetivo permanente. El cierre pedagógico usa dinero dado; no representa directamente el régimen operacional de TPM."
+    },
+    {
+      "key": "fijo",
+      "label": "Tipo de cambio fijo",
+      "definition": "La autoridad defiende E con operaciones de divisas. En el caso básico M/P acomoda, con paridad creíble y reservas suficientes."
+    },
+    {
+      "key": "reservas",
+      "label": "Reservas internacionales",
+      "definition": "Activos externos de la autoridad. Comprarlas entregando pesos expande dinero; venderlas recibiendo pesos lo contrae, sin esterilización."
+    },
+    {
+      "key": "esterilizacion",
+      "label": "Esterilización",
+      "definition": "Operación que compensa el efecto monetario de una intervención cambiaria. El cierre fijo básico excluye mantener así un dinero independiente permanentemente."
+    },
+    {
+      "key": "movilidad",
+      "label": "Movilidad perfecta de capitales",
+      "definition": "Caso límite de arbitraje con activos comparables. No basta por sí sola para escribir i = i*: también se fijan prima y depreciación esperada en cero."
+    },
+    {
+      "key": "prima",
+      "label": "ρ · Prima por riesgo",
+      "definition": "Compensación adicional en puntos porcentuales. Una prima exógena constante desplaza una BP horizontal; no genera por sí sola una BP inclinada."
+    },
+    {
+      "key": "paridad",
+      "label": "Paridad descubierta de tasas (UIP)",
+      "definition": "Aproximación: i ≈ i* + 100(E esperado − E actual)/E actual + ρ. Usa tasas y expectativas del mismo horizonte. La versión básica anula los últimos términos."
+    },
+    {
+      "key": "trilema",
+      "label": "Trilema",
+      "definition": "Incompatibilidad entre cambio fijo, libre movilidad de capitales y autonomía monetaria simultáneas."
+    },
+    {
+      "key": "precios",
+      "label": "Precios dados",
+      "definition": "Se mantienen los precios internos y externos para aislar mecanismos. No implica que la inflación real sea siempre cero."
+    },
+    {
+      "key": "curvaj",
+      "label": "Curva J",
+      "definition": "Posible deterioro inicial del saldo tras depreciación, seguido de mejora al ajustar cantidades. No es una ley universal."
+    },
+    {
+      "key": "tpm",
+      "label": "TPM · Tasa de política monetaria",
+      "definition": "Principal instrumento operacional del BCCh. La liquidez se administra para orientar la tasa interbancaria al objetivo; difiere del dinero fijo del ejercicio."
+    },
+    {
+      "key": "equilibrio",
+      "label": "Equilibrio y comprobación",
+      "definition": "Deben cumplirse simultáneamente bienes, dinero y condición externa. Se comprueba sustituyendo en las funciones originales."
+    },
+    {
+      "key": "calibracion",
+      "label": "Calibración didáctica",
+      "definition": "Parámetros elegidos para estudiar mecanismos y comparar escenarios. No son estimaciones de Chile ni datos observados."
+    },
+    {
+      "key": "exposicion",
+      "label": "Exposición cambiaria",
+      "definition": "Sensibilidad de flujos, activos o pasivos a E. Su efecto depende de monedas, cantidades, contratos, coberturas y fechas; no equivale automáticamente a utilidad."
+    }
+  ],
+  "deep": {
+    "saldos": {
+      "title": "Qué incluye cada saldo",
+      "html": "<p><strong>XN = X − IM</strong> incluye bienes y servicios. La balanza comercial de bienes excluye servicios. La cuenta corriente añade ingresos primarios y secundarios. La identidad de la balanza de pagos no es la recta BP del gráfico.</p><p>Ejercicio: X = 300 e IM pasa de 310 a 330. XN pasa de −10 a −30 aunque X no cambie.</p>"
+    },
+    "real": {
+      "title": "Tipo de cambio nominal y real",
+      "html": "<p><strong>q = E·P<sub>ext</sub>/P</strong>. q compara el precio de una canasta externa, convertido a pesos, con el de una canasta interna comparable. P<sub>ext</sub> es precio externo en moneda extranjera; P, precio interno.</p><p>A precios dados, q se mueve proporcionalmente con E; no son numéricamente iguales. Si usas índices, declara su base. Una inflación interna mayor puede compensar la depreciación nominal.</p>"
+    },
+    "comercio": {
+      "title": "La respuesta comercial y sus rezagos",
+      "html": "<p>El supuesto x₂ &gt; 0 resume una mejora neta tras ajustar cantidades. El valor en pesos de importaciones puede aumentar primero.</p><p>La condición de Marshall–Lerner, en su versión habitual alrededor de un saldo inicialmente equilibrado y bajo supuestos de oferta y precios, requiere que las elasticidades precio de las cantidades exportadas e importadas, en valor absoluto, sumen más de uno. Una elasticidad es el cambio porcentual de una cantidad ante 1 % de cambio en su precio relativo.</p><p>La curva J describe un posible deterioro inicial seguido de mejora. No garantiza una forma temporal ni un número de meses.</p>"
+    },
+    "identidad": {
+      "title": "Contabilidad, conducta y equilibrio",
+      "html": "<p><strong>Definición:</strong> XN = X − IM y Z = C + I + G + XN.</p><p><strong>Conducta:</strong> C, I, XN y Md son planes descritos por funciones supuestas.</p><p><strong>Equilibrio:</strong> Y = Z elimina inventarios involuntarios; M/P = Md cierra dinero; i = i* cierra el caso financiero simplificado. La identidad realizada de bienes incorpora inversión efectivamente realizada e inventarios.</p>"
+    },
+    "derivacion": {
+      "title": "La derivación completa y el multiplicador parcial",
+      "html": "<div class=\"equation small-eq\">Y = c₀ + c₁Y − c₁T + b₀ + b₁Y − b₂i + G + x₀ − x₁Y + x₂E<br>(1 − c₁ − b₁ + x₁)Y = c₀ − c₁T + b₀ + G + x₀ − b₂i + x₂E<br>aY = A − b₂i + x₂E<br>Y = (A − b₂i + x₂E)/a</div><p>Con c₁ = 0,75; b₁ = 0,15, el denominador cerrado es 0,10. Al añadir x₁ = 0,10 es 0,20. A i y E dadas, el multiplicador de G baja de 10 a 5. No es el efecto fiscal final bajo flotación.</p>"
+    },
+    "paridad": {
+      "title": "Expectativas y prima: una extensión del cierre",
+      "html": "<div class=\"equation small-eq\">i ≈ i* + 100·(E<sub>esperado</sub> − E)/E + ρ</div><p>Es una aproximación de la paridad descubierta para rendimientos de igual horizonte, con tasas expresadas en porcentaje y prima ρ en puntos porcentuales. La depreciación esperada tiene signo positivo con E = CLP/USD.</p><p>Si E esperado = E y ρ = 0, queda i = i*. Si ρ es exógena y constante, BP sigue horizontal en i = i* + ρ. Movilidad imperfecta requiere especificar una relación adicional; una prima distinta entre escenarios no produce por sí sola pendiente.</p>"
+    },
+    "cierre": {
+      "title": "Variables dadas y endógenas",
+      "html": "<p>En ambos regímenes se fijan impuestos, parámetros, precios y tasa externa. <strong>Flotación:</strong> se da M/P y se resuelven i, Y, E. <strong>Fijo:</strong> se da E y se resuelven i, Y, M/P.</p><p>El orden de despeje no indica un reloj de ajuste. El sistema compara equilibrios estáticos; las presiones financieras explican el mecanismo sin asignarles tiempos ni velocidades.</p><div class=\"equation small-eq\">LM: Y = (M/P)/d₁ + (d₂/d₁)i</div>"
+    },
+    "parametros": {
+      "title": "Unidades y parámetros de la base",
+      "html": "<p>Flujos reales por trimestre docente: Y, C, I, G, T, X e IM. Stocks reales: M/P y Md. Tasas i e i*: % anual, con valor 4 para 4 %. E: CLP/USD. Precios dados.</p><p>c₀ = 100; c₁ = 0,75; T = 80; b₀ = 160; b₁ = 0,15; b₂ = 15; G = 200; x₀ = 140; x₁ = 0,10; x₂ = 0,20; d₁ = 0,50; d₂ = 50; M/P = 1.450; i* = 4.</p><p>Descomposición compatible, en el rango de estos ejercicios: X = 210 + 0,10E; IM = 70 + 0,10Y − 0,10E. El efecto de E ya está incorporado: no se vuelven a multiplicar IM por E.</p><div class=\"equation small-eq\">LM de la base: Y = 2.900 + 100i</div>"
+    },
+    "base": {
+      "title": "Comprobar el equilibrio inicial",
+      "html": "<div class=\"equation small-eq\">C = 100 + 0,75(3.300 − 80) = 2.515<br>I = 160 + 0,15·3.300 − 15·4 = 595<br>XN = 140 − 0,10·3.300 + 0,20·900 = −10<br>2.515 + 595 + 200 − 10 = 3.300<br>0,50·3.300 − 50·4 = 1.450<br>i − i* = 4 − 4 = 0</div><p>X = 300 e IM = 310 en la descomposición compatible. BP no impone XN = 0.</p><div class=\"equation small-eq\">IS: Y = 3.600 − 75i; LM: Y = 2.900 + 100i</div>"
+    },
+    "fiscalflota": {
+      "title": "Fiscal en flotación: cuentas y alcance",
+      "html": "<p>G = 220; i = 4; M/P = 1.450; Y = 3.300; E = 800; C = 2.515; I = 595; XN = −30.</p><div class=\"equation\">2.515 + 595 + 220 − 30 = 3.300</div><p>Con dinero, tasa externa y precios dados, ΔY = 0. En IS: x₂ΔE = −ΔG; ΔE = −20/0,20 = −100. Como ΔY = 0, ΔXN = x₂ΔE = −20.</p><p>La curva inicial y la final coinciden en (Y, i), aunque G y E difieran. La curva discontinua con G nuevo y E inicial es una comparación parcial, no un equilibrio final de los tres cierres.</p><div class=\"equation small-eq\">IS inicial = final: Y = 3.600 − 75i; IS parcial: Y = 3.700 − 75i; LM: Y = 2.900 + 100i</div>"
+    },
+    "monetariaflota": {
+      "title": "Monetaria en flotación: cuentas y canales",
+      "html": "<p>M/P = 1.550; i = 4; G = 200; Y = 3.500; E = 1.100; C = 2.665; I = 625; XN = 10.</p><div class=\"equation\">2.665 + 625 + 200 + 10 = 3.500</div><p>ΔY = Δ(M/P)/d₁ = 200. En bienes, aΔY = x₂ΔE, por lo que ΔE = 200. ΔXN = −20 + 40 = 20. ΔI = b₁ΔY − b₂Δi = 30.</p><div class=\"equation small-eq\">IS final: Y = 3.800 − 75i; LM final: Y = 3.100 + 100i</div>"
+    },
+    "intervencion": {
+      "title": "Intervención y dinero endógeno",
+      "html": "<p>Comprar divisas entregando pesos aumenta dinero; vender divisas recibiendo pesos lo reduce. Con P fijo se mueve M/P. Se omiten detalles de multiplicación bancaria y una contabilidad completa de reservas.</p><p>La esterilización compensa el efecto monetario de una intervención. Sostener permanentemente una cantidad de dinero independiente no es compatible con este cierre de cambio fijo y movilidad perfecta. No se modelan crisis, reservas agotadas ni ataques especulativos.</p>"
+    },
+    "fiscalfijo": {
+      "title": "Fiscal con paridad: todas las cuentas",
+      "html": "<p>G = 220; E = 900; i = 4; Y = 3.400; M/P = 1.500; C = 2.590; I = 610; XN = −20.</p><div class=\"equation\">2.590 + 610 + 220 − 20 = 3.400</div><p>ΔY = ΔG/a = 100. Dinero requerido: Δ(M/P) = d₁ΔY = 50. El dinero acomoda la defensa del dólar; no es otro impulso autónomo.</p><div class=\"equation small-eq\">IS final: Y = 3.700 − 75i; LM final: Y = 3.000 + 100i</div>"
+    },
+    "monetariafijo": {
+      "title": "El intento monetario y la inconsistencia",
+      "html": "<p>Con G = 200; E = 900 e i = 4, IS da Y = 3.300. LM requiere M/P = 1.450.</p><div class=\"equation\">1.550 − (0,50·3.300 − 50·4) = 100</div><p>El residuo monetario de 100 muestra por qué la combinación pretendida no cierra. Vender divisas y retirar pesos revierte la expansión. El modelo no cuantifica una trayectoria ni el stock final de reservas.</p><div class=\"equation small-eq\">LM inicial = final: Y = 2.900 + 100i; intento: Y = 3.100 + 100i</div>"
+    },
+    "resultados": {
+      "title": "Resultados y unidades",
+      "html": "<div id=\"resultsTable\"></div><p>Los cuatro shocks son independientes desde la base. Los cambios de i son puntos porcentuales; E está en CLP/USD; Y, C, I y XN son flujos reales por trimestre docente; M/P es stock real.</p>"
+    },
+    "practica": {
+      "title": "Soluciones de la recuperación",
+      "html": "<p><strong>A, flotación:</strong> M/P = 1.500; i = 4; Y = 3.400; E = 1.000; C = 2.590; I = 610; XN = 0. Suma de bienes: 2.590 + 610 + 200 + 0 = 3.400.</p><p><strong>B, fijo:</strong> G = 210; i = 4; E = 900; Y = 3.350; M/P = 1.475; C = 2.552,5; I = 602,5; XN = −15. Suma: 2.552,5 + 602,5 + 210 − 15 = 3.350.</p><div class=\"equation small-eq\">Caso A: LM, Y = 3.000 + 100i. Caso B: LM, Y = 2.950 + 100i</div>"
+    },
+    "chile": {
+      "title": "El cierre pedagógico y el marco del BCCh",
+      "html": "<p>El BCCh combina metas de inflación y flotación. Su principal instrumento operacional es la TPM; administra liquidez para que la tasa interbancaria se ubique en torno a ese objetivo. No mantiene una paridad cambiaria permanente y admite intervenciones excepcionales.</p><p>Fuente primaria: <a href=\"https://www.bcentral.cl/es/web/banco-central/areas/politica-monetaria\" target=\"_blank\" rel=\"noopener\">Banco Central de Chile, Política Monetaria</a>, consulta 1 de noviembre de 2026. La página documenta instituciones; no estima el modelo. Sus indicadores de coyuntura no se incorporan a esta presentación.</p>"
+    },
+    "empresa": {
+      "title": "Exposición empresarial: cálculo y datos faltantes",
+      "html": "<div class=\"equation small-eq\">USD 10.000 − USD 6.000 = USD 4.000<br>4.000 × 900 = $3.600.000<br>4.000 × 990 = $3.960.000<br>Diferencia = $360.000</div><p>Caso ficticio, mismo período, sin cobertura ni cambio de cantidades. No es utilidad neta. Faltan costos, impuestos, financiamiento y fechas. Para decidir se requieren contratos, monedas, vencimientos, capacidad, demanda y coberturas.</p>"
+    }
+  },
+  "voice": {
+    "engine": "Kokoro-82M ONNX v1.0",
+    "voice": "em_alex",
+    "lang": "es",
+    "speed": 0.9,
+    "atempo": 1.04
+  },
+  "revision": "2-pasos-visibles",
+  "visualRevision": "3-rectas-interceptos",
+  "previousTimeline": [
+    {
+      "id": 1,
+      "chapter": 0,
+      "start": 0,
+      "end": 68.6875
+    },
+    {
+      "id": 2,
+      "chapter": 0,
+      "start": 68.6875,
+      "end": 133.63429166666666
+    },
+    {
+      "id": 3,
+      "chapter": 0,
+      "start": 133.63429166666666,
+      "end": 196.12083333333337
+    },
+    {
+      "id": 4,
+      "chapter": 0,
+      "start": 196.12083333333337,
+      "end": 258.525
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "start": 0,
+      "end": 65.4315
+    },
+    {
+      "id": 6,
+      "chapter": 1,
+      "start": 65.4315,
+      "end": 133.81875
+    },
+    {
+      "id": 7,
+      "chapter": 1,
+      "start": 133.81875,
+      "end": 200.44079166666668
+    },
+    {
+      "id": 8,
+      "chapter": 1,
+      "start": 200.44079166666668,
+      "end": 262.275667
+    },
+    {
+      "id": 9,
+      "chapter": 2,
+      "start": 0,
+      "end": 66.87379166666666
+    },
+    {
+      "id": 10,
+      "chapter": 2,
+      "start": 66.87379166666666,
+      "end": 125.5724583333333
+    },
+    {
+      "id": 11,
+      "chapter": 2,
+      "start": 125.5724583333333,
+      "end": 190.954792
+    },
+    {
+      "id": 12,
+      "chapter": 3,
+      "start": 0,
+      "end": 75.55170833333334
+    },
+    {
+      "id": 13,
+      "chapter": 3,
+      "start": 75.55170833333334,
+      "end": 142.42395833333333
+    },
+    {
+      "id": 14,
+      "chapter": 3,
+      "start": 142.42395833333333,
+      "end": 216.07945833333335
+    },
+    {
+      "id": 15,
+      "chapter": 3,
+      "start": 216.07945833333335,
+      "end": 282.460792
+    },
+    {
+      "id": 16,
+      "chapter": 4,
+      "start": 0,
+      "end": 68.91129166666667
+    },
+    {
+      "id": 17,
+      "chapter": 4,
+      "start": 68.91129166666667,
+      "end": 150.72025
+    },
+    {
+      "id": 18,
+      "chapter": 4,
+      "start": 150.72025,
+      "end": 227.54583333333335
+    },
+    {
+      "id": 19,
+      "chapter": 4,
+      "start": 227.54583333333335,
+      "end": 302.470458
+    },
+    {
+      "id": 20,
+      "chapter": 5,
+      "start": 0,
+      "end": 78.67204166666666
+    },
+    {
+      "id": 21,
+      "chapter": 5,
+      "start": 78.67204166666666,
+      "end": 143.785958
+    },
+    {
+      "id": 22,
+      "chapter": 6,
+      "start": 0,
+      "end": 71.046875
+    },
+    {
+      "id": 23,
+      "chapter": 6,
+      "start": 71.046875,
+      "end": 141.80862499999998
+    },
+    {
+      "id": 24,
+      "chapter": 6,
+      "start": 141.80862499999998,
+      "end": 226.496333
+    }
+  ]
+}

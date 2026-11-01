@@ -1,0 +1,1 @@
+Copias exactas de antecedentes docentes. No se modificaron. Los hashes y las rutas originales constan en production/source-manifest.json. Se conservaron como referencias, no como instrucciones del encargo. La navegación y los estilos originales de estas copias pueden depender de sus carpetas de procedencia; los documentos de docs/ son la lectura preparada para esta entrega.

@@ -1,0 +1,175 @@
+{
+  "status": "PASS decoding and authored silences; ASR samples require content inspection",
+  "chapters": [
+    {
+      "chapter": 1,
+      "decoded_seconds": 258.525,
+      "peak": 0.79205322265625,
+      "study_pauses": [
+        {
+          "slide": 1,
+          "start": 59.9875,
+          "end": 67.9875,
+          "rms": 0.0
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "decoded_seconds": 272.26054166666665,
+      "peak": 0.80682373046875,
+      "study_pauses": []
+    },
+    {
+      "chapter": 3,
+      "decoded_seconds": 192.66891666666666,
+      "peak": 0.796966552734375,
+      "study_pauses": []
+    },
+    {
+      "chapter": 4,
+      "decoded_seconds": 282.4607916666667,
+      "peak": 0.795654296875,
+      "study_pauses": [
+        {
+          "slide": 12,
+          "start": 62.851708333333335,
+          "end": 74.85170833333333,
+          "rms": 0.0
+        },
+        {
+          "slide": 14,
+          "start": 203.37945833333336,
+          "end": 215.37945833333336,
+          "rms": 0.0
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "decoded_seconds": 302.47045833333334,
+      "peak": 0.798919677734375,
+      "study_pauses": [
+        {
+          "slide": 17,
+          "start": 91.50479166666666,
+          "end": 101.50479166666666,
+          "rms": 0.0
+        },
+        {
+          "slide": 18,
+          "start": 172.92570833333335,
+          "end": 182.92570833333335,
+          "rms": 0.0
+        },
+        {
+          "slide": 19,
+          "start": 293.0704583333334,
+          "end": 301.0704583333334,
+          "rms": 0.0
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "decoded_seconds": 143.78595833333333,
+      "peak": 0.811676025390625,
+      "study_pauses": [
+        {
+          "slide": 20,
+          "start": 39.92016666666666,
+          "end": 54.92016666666666,
+          "rms": 0.0
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "decoded_seconds": 226.49633333333333,
+      "peak": 0.7886962890625,
+      "study_pauses": [
+        {
+          "slide": 24,
+          "start": 213.09633333333335,
+          "end": 225.09633333333335,
+          "rms": 0.0
+        }
+      ]
+    }
+  ],
+  "asr_samples": [
+    {
+      "slide": 3,
+      "chapter": 1,
+      "start": 155.85087500000003,
+      "end": 173.8419166666667,
+      "expected": "Un horno de mil dólares cuesta novecientos mil pesos con e igual a novecientos, y novecientos noventa mil con e igual a novecientos noventa. Conservamos fijo su precio en dólares y omitimos fletes e impuestos. La diferencia es noventa mil pesos. Dividirla por el costo inicial da un aumento de diez por ciento.",
+      "recognized": "Un horno de mil dólares cuesta 900 mil pesos con e igual a 900 y 990 mil con e igual a 990. Conservamos fijo su precio en dólares y omitimos fletes e impuestos. La diferencia es 90 mil pesos. Dividirla por el costo inicial da un aumento de 10%.",
+      "language": "es"
+    },
+    {
+      "slide": 6,
+      "chapter": 2,
+      "start": 117.92229166666665,
+      "end": 142.55362499999998,
+      "expected": "La ecuación dice que a minúscula, multiplicada por la producción, es igual al gasto autónomo a mayúscula, menos be sub dos multiplicado por la tasa, más equis sub dos multiplicado por el tipo de cambio. Dividimos todos los términos por a minúscula, que suponemos positiva. Su inverso es alfa, el multiplicador de bienes a un dólar y una tasa dados. Esa respuesta parcial todavía no es el efecto final bajo flotación: allí también cambia el dólar.",
+      "recognized": "A ecuación dice que a minúscula, multiplicada por la producción, es igual al gasto autónomo a mayúscula, menos B sub 2 multiplicado por la tasa, más X sub 2 multiplicado por el tipo de cambio. Dividimos todos los términos por a minúscula, que suponemos positiva. Su inverso es alpha, el multiplicador de bien es a un dólar y una tasa dados. Esa respuesta parcial todavía no es el efecto final bajo flotación, allí también cambia el dólar.",
+      "language": "es"
+    },
+    {
+      "slide": 10,
+      "chapter": 3,
+      "start": 71.29316666666666,
+      "end": 87.778625,
+      "expected": "Partimos con flotación y dinero real dado. Be pe fija la tasa doméstica en cuatro por ciento. Sustituye ese cuatro en ele eme: mil cuatrocientos cincuenta es igual a cero coma cincuenta por la producción, menos cincuenta por cuatro. Multiplicar cincuenta por cuatro da doscientos.",
+      "recognized": "Partimos con flotación y dinero real dado. Vepe, fija la tasa doméstica en 4%. Sustituye ese 4 en el EM. 1450 es igual a 0,50 por la producción, menos 50 por 4. Multiplicar 50 por 4 dados cientos.",
+      "language": "es"
+    },
+    {
+      "slide": 11,
+      "chapter": 3,
+      "start": 144.20020833333334,
+      "end": 166.00175000000002,
+      "expected": "Sustituimos una producción de tres mil trescientos y una tasa de cuatro por ciento. Multiplicar setenta y cinco por cuatro da trescientos. Por tanto, tres mil trescientos es igual a dos mil cuatrocientos más el tipo de cambio. Restamos dos mil cuatrocientos y obtenemos e igual a novecientos pesos por dólar. Este precio corresponde a la economía docente, no a una predicción de mercado.",
+      "recognized": "Sustituimos una producción de 3.300 y una tasa de 4 por ciento, multiplicar 75 por 4 de 300. Por tanto, 3.300 es igual a 2.400 más el tipo de cambio. Restamos 2.400 y obtenemos e igual a 900 pesos por dólar. Este precio corresponde a la economía docente, no a una predicción de mercado.",
+      "language": "es"
+    },
+    {
+      "slide": 17,
+      "chapter": 5,
+      "start": 101.50479166666666,
+      "end": 125.04154166666666,
+      "expected": "La producción llega a tres mil cuatrocientos. La ele eme exige la mitad de tres mil cuatrocientos, menos cincuenta por cuatro. La mitad son mil setecientos y el segundo término son doscientos. Al restar queda una oferta de dinero real de mil quinientos: cincuenta más que al inicio. La compra de divisas evita la apreciación y acomoda esa expansión monetaria. El desplazamiento fiscal permanece en el equilibrio final.",
+      "recognized": "La producción llega a 3.400, la LM exige la mitad de 3.400, menos 50 por 4, la mitad son 1.700 y el segundo término son 200, al restar queda una oferta de dinero real de 1.500, 50 más que al inicio, la compra de divisas evita la apreciación y acomoda esa expansión monetaria, el desplazamiento fiscal permanece en el equilibrio final.",
+      "language": "es"
+    },
+    {
+      "slide": 18,
+      "chapter": 5,
+      "start": 182.92570833333335,
+      "end": 205.14375,
+      "expected": "I ese mantiene la producción en tres mil trescientos. A ese ingreso y esa tasa, la demanda real de dinero sigue siendo mil cuatrocientos cincuenta. Una oferta de mil quinientos cincuenta no sería equilibrio monetario. La presión inicial a una tasa menor induce salida hacia activos externos y presión de depreciación. Para defender la paridad, la autoridad vende divisas y retira dinero local.",
+      "recognized": "Y ese mantiene la producción en 3.300. A ese ingreso y esa tasa, la demanda real de dinero sigue siendo 1.450. Una oferta de 1.550 no sería equilibrio monetario. La presión inicial a una tasa menor induce salidas y activos externos y presión de depreciación. Para defender la paridad, la autoridad vende divisas y retira dinero local.",
+      "language": "es"
+    },
+    {
+      "slide": 20,
+      "chapter": 6,
+      "start": 54.92016666666666,
+      "end": 77.42204166666666,
+      "expected": "En el caso a, la producción llega a tres mil cuatrocientos y el dólar a mil pesos; el dinero final es mil quinientos. En el caso be, la producción llega a tres mil trescientos cincuenta, el dólar sigue en novecientos y el dinero requerido es mil cuatrocientos setenta y cinco. La tasa es cuatro en ambos. Abre la práctica para sustituir en las ecuaciones originales y comparar tu procedimiento, no solo el resultado.",
+      "recognized": "En el caso A, la producción llega a 3.400 y el dólar a 1.000 pesos. El dinero final es 1.500. En el caso B, la producción llega a 3.350. El dólar sigue en 900 y el dinero requerido es 1.475. La tasa es 4 en ambos. Abre la práctica para sustituir en las ecuaciones originales y comparar tu procedimiento no solo el resultado.",
+      "language": "es"
+    },
+    {
+      "slide": 24,
+      "chapter": 7,
+      "start": 144.26424999999998,
+      "end": 168.02058333333332,
+      "expected": "Volvamos a la empresa. En un caso ficticio, cobra diez mil dólares y paga seis mil dólares de insumos en el mismo período. Sin cambios de cantidades, contratos ni coberturas, queda expuesta por cuatro mil dólares netos. Con un dólar de novecientos, ese flujo equivale a tres millones seiscientos mil pesos. Con novecientos noventa, equivale a tres millones novecientos sesenta mil: la diferencia es trescientos sesenta mil pesos.",
+      "recognized": "Volvamos a la empresa. En un caso ficticio cobra 10.000 dólares y paga 6.000 dólares de insumos en el mismo periodo. Sin cambios de cantidades, contratos ni coberturas queda expuesta por 4.000 dólares netos. Con un dólar de 900, ese flujo equivale a 3.600.000 pesos. Con 990, equivale a 3.960.000, la diferencia es 360.000 pesos.",
+      "language": "es"
+    }
+  ],
+  "limits": "Reconocimiento automático local: no sustituye una escucha humana ni acredita naturalidad percibida."
+}
