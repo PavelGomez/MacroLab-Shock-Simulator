@@ -14,3 +14,6 @@ Docente_privado/
 # jsdom se instala localmente con  npm install  y queda declarado en package.json.
 node_modules/
 npm-debug.log*
+
+# También excluir enlaces locales a dependencias del entorno de pruebas.
+/node_modules

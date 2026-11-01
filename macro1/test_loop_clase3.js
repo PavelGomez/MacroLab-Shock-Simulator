@@ -163,7 +163,7 @@ async function main() {
   eq(consoleErrors.length, 0, "la carga en jsdom no produce errores de consola");
   ok(typeof L === "object", "la superficie de inspección MacroLabLoop está expuesta");
   // v0.8.0: se agrega «Lab · Relación LM» (declarado); la Ruta y los labs anteriores no cambian de lugar.
-  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 10, "diez pestañas al separar Bonos y Mercado de dinero");
+  eq(w.document.querySelectorAll('#tabs [role="tab"]').length, 11, "once pestañas con Bonos, Mercado de dinero y Economía abierta");
   L.selectClass("3");
   eq(w.document.querySelectorAll("#classSteps [data-class-step]").length, 6, "siguen siendo seis pasos visibles");
   eq(L.LOOP_ARTIFACT, "macro1/index.html", "el artefacto declarado es la URL estable");
@@ -611,7 +611,7 @@ async function main() {
   // Tramo 4-7 (Especificación §5): la vista ampliada tiene dos tablas; cada una se
   // verifica por separado: 1 encabezado + 3 clases (20 celdas) y 1 encabezado + 4 clases (25).
   { const grids=q(w3, "#globalEditorialMap")?[...q(w3, "#globalEditorialMap").querySelectorAll(".editorial-map-grid")]:[];
-    ok(grids.length===2&&grids[0].querySelectorAll(".editorial-map-cell").length===20&&grids[1].querySelectorAll(".editorial-map-cell").length===25, "v0.6.5 · la ruta muestra la matriz del tramo 1–3 (tres clases) y la del tramo 4–7 (cuatro clases), con cuatro estaciones cada una"); }
+    ok(grids.length===3&&grids[0].querySelectorAll(".editorial-map-cell").length===20&&grids[1].querySelectorAll(".editorial-map-cell").length===25&&grids[2].querySelectorAll(".editorial-map-cell").length===10, "v0.6.5 · la ruta conserva las matrices 1–3 y 4–7 y añade la Clase 8, con cuatro estaciones cada una"); }
   ok(/Mapamundi de Macro 1: el curso completo/.test(q(w3, "#globalEditorialMap").textContent)&&/Esta tabla no representa el final del curso/.test(q(w3, "#globalEditorialMap").textContent), "mapamundi · distingue el curso completo del detalle de clases 1–3");
   eq(q(w3, ".world-track").querySelectorAll(".world-stop").length, 7, "mapamundi · muestra la entrada y los seis territorios curriculares");
   ok(/Entrada · Leer evidencia/.test(q(w3, ".world-stop.current").textContent)&&/Usted está aquí/i.test(q(w3, ".world-stop.current").textContent), "mapamundi · Clase 1 ubica al alumno en la entrada del curso");

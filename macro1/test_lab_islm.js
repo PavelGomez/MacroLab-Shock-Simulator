@@ -154,7 +154,7 @@ Object.keys(w.eval("ISLM_PRESETS")).forEach(k => ["equilibrio", "deseq", "efecto
 load("ISLM-EX-12"); L.drawIslm(); ok(/la IS se corre 300/.test(doc.getElementById("islmChart").textContent), "la flecha dice cuánto se corre la IS");
 load("ISLM-EX-15"); L.drawIslm(); ok(/en horas/.test(doc.getElementById("islmChart").textContent) && /en semanas/.test(doc.getElementById("islmChart").textContent), "el camino de ajuste rotula las dos velocidades");
 const tabs = [...doc.querySelectorAll('#tabs [role="tab"]')].map(t => t.textContent.trim());
-ok(tabs.join("|") === "Ruta por clases|Lab · Índices|Lab · PIB por gasto|Lab · Mercado de bienes|Lab · Bonos|Lab · Mercado de dinero|Lab · Relación LM|Lab · Curva IS|Lab · IS-LM|Lab · Mercado laboral", "las diez pestañas en el orden de las notas");
+ok(tabs.join("|") === "Ruta por clases|Lab · Índices|Lab · PIB por gasto|Lab · Mercado de bienes|Lab · Bonos|Lab · Mercado de dinero|Lab · Relación LM|Lab · Curva IS|Lab · IS-LM|Lab · Economía abierta|Lab · Mercado laboral", "las once pestañas en el orden de las notas, incluida economía abierta");
 const panel = doc.getElementById("islm").textContent;
 ok(!/cierre docente|cierre [AB]\b|tres piezas|crowding-out|domina el desplazamiento/i.test(panel), "la ventana no usa terminología antigua");
 ok(/efecto desplazamiento/.test(panel) && /no es efecto desplazamiento/.test(panel), "la ventana separa el efecto de la tasa por decisión monetaria del efecto desplazamiento");

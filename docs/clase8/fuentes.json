@@ -1,0 +1,10 @@
+{
+  "consulted_at": "2026-11-01",
+  "historical_window": true,
+  "sources": [
+    {"id":"bcch-e-annual","institution":"Banco Central de Chile","url":"https://si3.bcentral.cl/Siete/ES/Siete/Cuadro/CAP_TIPO_CAMBIO/MN_TIPO_CAMBIO4/DOLAR_OBS_ADO?cbCalculo=NONE&cbFechaBase=&cbFechaDiaria=2023&cbFrecuencia=ANNUAL","series":"Dólar observado","frequency":"diaria, agregada a promedio anual","unit":"CLP/USD","data":[{"period":2020,"value":792.22,"status":"observado"},{"period":2021,"value":759.27,"status":"observado"}],"limit":"No equivale a variación entre dos fechas del año; valores publicados redondeados y sujetos a revisión."},
+    {"id":"bcch-ipom-sep2022-t2","institution":"Banco Central de Chile","url":"https://www.bcentral.cl/documents/33528/3718177/IPoM_Septiembre_2022.pdf/85c3d8c9-6ffc-99d0-0534-bc6602dd7014?t=1662668094107","publication":"IPoM septiembre 2022, tabla 2","series":"Precio del cobre BML","frequency":"anual","unit":"centavos USD/libra","data":[{"period":2021,"value":423,"status":"observado en esta edición"},{"period":2022,"value":400,"status":"proyectado en esta edición"}],"limit":"El dato proyectado conserva su estado de proyección de septiembre 2022; no se presenta como resultado efectivo."},
+    {"id":"bcch-ipom-dec2021","institution":"Banco Central de Chile","url":"https://www.bcentral.cl/resumen-ipom/-/detalle/resumen-ipom-diciembre-2021","publication":"IPoM diciembre 2021","use":"Contexto cualitativo de comercio, preferencia por activos y depreciación; sin atribuir causalidad exclusiva ni calcular contribuciones.","limit":"No se usa casi 18 % como variación de cierre de todo el año ni se mezcla con promedios anuales de E."},
+    {"id":"bcch-regime","institution":"Banco Central de Chile","url":"https://www.bcentral.cl/es/web/banco-central/areas/politica-monetaria","use":"TPM y régimen de flotación cambiaria","limit":"Se cita la institución y su operación; no se usa la cifra móvil de TPM como calibración."}
+  ]
+}

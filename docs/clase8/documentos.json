@@ -1,0 +1,38 @@
+[
+  {
+    "source": "nota",
+    "file": "macro1/notas/nota-b5-mundell-fleming-alumno.html",
+    "pdf": "macro1/notas/Nota9_Mundell_Fleming_alumno.pdf",
+    "title": "Nota de estudio 9 · Mundell-Fleming"
+  },
+  {
+    "source": "cronica",
+    "file": "macro1/notas/cronica-clase8-chile-2026.html",
+    "pdf": "macro1/notas/cronica-clase8.pdf",
+    "title": "El horno que se paga en dólares"
+  },
+  {
+    "source": "ayudantia",
+    "file": "macro1/notas/ayudantias/ayudantia-clase8-mundell-fleming.html",
+    "pdf": "macro1/notas/ayudantias/ayudantia-clase8-mundell-fleming.pdf",
+    "title": "Ayudantía · Clase 8 · Mundell-Fleming"
+  },
+  {
+    "source": "pauta",
+    "file": "macro1/notas/pautas/pauta-clase8-mundell-fleming.html",
+    "pdf": "macro1/notas/pautas/pauta-clase8-mundell-fleming.pdf",
+    "title": "Pauta de práctica · Clase 8"
+  },
+  {
+    "source": "ficha",
+    "file": "macro1/notas/ficha-indicadores-clase8.html",
+    "pdf": "macro1/notas/ficha-indicadores-clase8.pdf",
+    "title": "Ficha de indicadores · Economía abierta"
+  },
+  {
+    "source": "cuaderno",
+    "file": "macro1/notas/cuaderno-clase8.html",
+    "pdf": "macro1/notas/cuaderno-clase8.pdf",
+    "title": "Cuaderno de trabajo · Clase 8"
+  }
+]
