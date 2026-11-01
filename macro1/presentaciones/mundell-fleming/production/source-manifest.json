@@ -1,0 +1,17 @@
+[
+  {
+    "original": "/Users/pgomez/Documents/GPT/Macro1_GPT/06_MacroLab/Clase8_Mundell_Fleming/macro1/notas/nota-b5-mundell-fleming-alumno.html",
+    "copy": "sources/nota-b5-mundell-fleming-alumno.html",
+    "sha256": "f007d63077ccc7add030fd6d489f63ef6076e6a830c7b6c8fabaa2504a3c2273"
+  },
+  {
+    "original": "/Users/pgomez/Documents/GPT/Macro1_GPT/04_Biblioteca_bloques_2026-07/bloques/MAC1_Bloque5_ISLM_BP_abierta_v0.2.md",
+    "copy": "sources/MAC1_Bloque5_ISLM_BP_abierta_v0.2.md",
+    "sha256": "c720e306ce0ceeb1ac7e74547e38cb69068d8cd96c74bfd6954fdb342ca9a557"
+  },
+  {
+    "original": "/Users/pgomez/Documents/GPT/Macro1_GPT/04_Biblioteca_bloques_2026-07/gobierno/Convencion_sellada_tipo_de_cambio.md",
+    "copy": "sources/Convencion_sellada_tipo_de_cambio.md",
+    "sha256": "5713163a0082c2c1a1bc4c78a1b072603fae8ae3515119e5514f20a337672fd7"
+  }
+]

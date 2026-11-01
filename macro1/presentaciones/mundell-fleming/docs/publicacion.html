@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es-CL"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Publicar y compartir · Mundell–Fleming</title><style>body{margin:0;background:#f8f8f3;color:#193b4b;font:17px/1.7 system-ui,sans-serif}main{max-width:920px;margin:auto;padding:35px 25px 65px}h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.2}h1{font-size:40px}h2{font-size:29px;margin-top:34px}a{color:#205f8b}li{margin:10px 0}code{font-size:14px;overflow-wrap:anywhere}pre{white-space:pre-wrap;background:white;border:1px solid #d6dfdd;padding:20px;font:15px/1.6 system-ui}aside{background:#fff3e5;border-left:3px solid #b95220;padding:12px 18px}small{color:#526774}</style></head><body><main>
+<p><a href="../index.html">← Abrir la presentación</a> · <a href="guia.html">Guía de uso</a></p>
+<h1>Publicar y compartir el aula</h1>
+<p>La entrega está preparada para subirla como un sitio estático: HTML, JavaScript, estilos y siete MP3 locales. No necesita servidor de aplicaciones ni herramientas de producción. Esta guía no crea una dirección pública; esa dirección la proporciona el portal o el alojamiento que elijas.</p>
+<p><strong>Archivo que debes usar:</strong> <code>COMPARTIR_Mundell_Fleming_Macro1.zip</code>, aproximadamente 21 MB. Al extraerlo encontrarás <code>PRESENTACION_MUNDELL_FLEMING/index.html</code>. Conserva la estructura de carpetas completa.</p>
+<h2>En el portal del curso</h2>
+<p>Si el portal permite publicar un conjunto de archivos HTML, sube el paquete como recurso web y selecciona <code>index.html</code> como entrada. Adjuntar el ZIP sin extraerlo sirve para que los estudiantes descarguen el aula y estudien sin conexión.</p>
+<p><strong>Si usas Moodle:</strong></p>
+<ol>
+<li>Activa la edición del curso y agrega un recurso <strong>Archivo</strong>. Nómbralo «IS–LM abierto: aula narrada de Mundell–Fleming».</li>
+<li>Sube el ZIP. En el administrador de archivos del recurso, selecciónalo y elige <strong>Descomprimir</strong>.</li>
+<li>Entra en la carpeta extraída, selecciona <code>index.html</code> y elige <strong>Establecer como archivo principal</strong>.</li>
+<li>En Apariencia, usa <strong>Abrir</strong> o <strong>Nueva ventana</strong>, si está disponible, para dar espacio a la presentación. Guarda y muestra el recurso.</li>
+<li>Comparte el enlace del recurso del curso. El estudiante ingresará con su cuenta institucional.</li>
+</ol>
+<p>Procedimiento basado en la <a href="https://docs.moodle.org/en/File_resource_settings" target="_blank" rel="noopener">documentación oficial de Moodle: archivos y páginas web</a>, consultada el 1 de noviembre de 2026. Los nombres de las opciones dependen de la traducción y configuración institucional.</p>
+<p>Si el portal descarga el HTML en vez de ejecutarlo, o restringe JavaScript, usa alojamiento web y agrega su dirección como recurso URL. Pegar el contenido de <code>index.html</code> en el editor de texto del portal no conserva el aula. Si el límite de carga es inferior al tamaño del ZIP, el administrador debe ampliarlo o debes usar la opción de enlace web.</p>
+<h2>Un enlace web para el portal y el correo</h2>
+<p>Un servidor web institucional puede alojar la carpeta completa y entregarte una URL HTTPS. Solicita que <code>index.html</code> sea la entrada y que se mantengan las rutas relativas a <code>assets/</code> y <code>docs/</code>. Para enlaces enviados por correo, esta es la alternativa que permite abrir el aula directamente.</p>
+<p><strong>También puedes usar GitHub Pages:</strong></p>
+<ol>
+<li>Crea un repositorio, por ejemplo <code>mundell-fleming-macro1</code>. Con GitHub Free, el repositorio debe ser público; el sitio quedará accesible en internet.</li>
+<li>Sube el <strong>contenido de la carpeta extraída</strong>, conservando subcarpetas. <code>index.html</code> debe quedar en la raíz del repositorio. Incluye el archivo vacío <code>.nojekyll</code>. Subir solo el ZIP no publica la presentación.</li>
+<li>Abre <strong>Settings → Pages → Deploy from a branch</strong>. Elige la rama <code>main</code> y <code>/(root)</code>; guarda.</li>
+<li>Cuando finalice la publicación, copia la dirección que aparece en <strong>Visit site</strong>. Usa esa misma dirección en el portal y en el correo.</li>
+</ol>
+<p>Fuentes: <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site" target="_blank" rel="noopener">crear un sitio en GitHub Pages</a> y <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener">configurar la fuente de publicación</a>, consultadas el 1 de noviembre de 2026.</p>
+<h2>Mensaje listo para adaptar</h2>
+<p>Reemplaza <code>[ENLACE DEL AULA]</code> por la URL real del portal o del sitio publicado. Una ruta de tu computador, como <code>/Users/…/index.html</code>, no permite acceder desde otros equipos. <a href="correo_estudiantes.txt">Descargar texto del correo</a>.</p>
+<pre>Asunto: Macroeconomía I · Aula narrada de Mundell–Fleming
+
+Estimadas y estimados:
+
+Ya está disponible el aula narrada de IS–LM abierto:
+[ENLACE DEL AULA]
+
+Son siete capítulos y cerca de 28 minutos de audio, además del tiempo que dediquen a calcular y practicar. Pulsen «Escuchar» para comenzar. Predigan los resultados antes de revelar las respuestas; pueden revisar los pasos, la transcripción y los interceptos cuando lo necesiten.
+
+Si el enlace corresponde al portal, ingresen con su cuenta del curso.
+
+Saludos,
+Profesor Pável Gómez</pre>
+<h2>Al subir la versión definitiva</h2>
+<p>Comprueba con la vista de estudiante que se escucha el audio, avanza la diapositiva 13, abre «Ver interceptos» y vuelve al mismo instante. Si el aula ya estaba abierta, recarga la pestaña para recibir esta revisión. Las hojas de estilos y los scripts llevan versión de caché 4; los MP3 conservan la voz y los tiempos aprobados.</p>
+<p>El progreso se guarda en el navegador y equipo usados cuando está permitido. No se sincroniza entre dispositivos ni se envían respuestas o calificaciones al portal. La entrega no es un paquete SCORM. Para estudiar sin conexión, distribuye el ZIP y pide extraerlo antes de abrir <code>index.html</code>.</p>
+<aside>La verificación realizada incluye modelo y controles con DOM/audio simulados y composición estática en tres tamaños. La prueba multimedia en el portal y navegadores de destino sigue pendiente: el entorno de revisión bloqueó el acceso local del navegador. <a href="verificacion.html">Registro de comprobaciones y límites</a>.</aside>
+</main></body></html>

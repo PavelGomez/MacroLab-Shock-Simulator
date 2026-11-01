@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="description" content="Mundell–Fleming para Macroeconomía I: presentación narrada, predicciones, gráficos, ejercicios y glosario. Paquete local sin conexión.">
+ <title>IS–LM abierto · Mundell–Fleming | Macro1</title>
+ <link rel="stylesheet" href="assets/styles.css?v=4">
+ <script src="assets/model.js?v=4" defer></script><script src="assets/visuals.js?v=4" defer></script><script src="assets/lesson.js?v=4" defer></script><script src="assets/app.js?v=4" defer></script>
+</head>
+<body>
+ <a class="skip" href="#main">Saltar al contenido</a>
+ <header class="topbar"><a class="brand" href="index.html" aria-label="Macro1, inicio"><span class="brandmark">m<sub>1</sub></span><span>MACRO1<small>ECONOMÍA ABIERTA</small></span></a><nav aria-label="Recursos"><a href="docs/guia.html" data-pause>Guía de uso</a><button data-action="sources">Fuentes</button><button data-action="glossary">Glosario ＋</button></nav></header>
+ <main id="main" tabindex="-1">
+  <section class="heading"><p class="eyebrow">MACROECONOMÍA I · CLASE A TU RITMO</p><h1>IS–LM abierto · Mundell–Fleming</h1><p id="lessonMeta">Presentación narrada y práctica de recuperación</p></section>
+  <div class="layout">
+   <div class="workspace">
+    <article id="stage" class="stage" tabindex="0" aria-label="Diapositiva actual">
+     <div class="stage-meta"><span id="chapterLabel"></span><span id="slideCount"></span></div>
+     <p id="kicker" class="eyebrow orange"></p><h2 id="slideTitle"></h2>
+     <div id="visual" class="visual"></div>
+     <p id="sourceLine" class="source-line">Calibración didáctica · no son datos de Chile</p>
+     <div class="stage-tools"><button data-action="figure">Ampliar figura / ecuación</button><button data-action="slide">Ampliar diapositiva</button></div>
+    </article>
+    <section class="player" aria-label="Reproductor de la narración">
+     <label for="timeline" class="sr-only">Posición en el capítulo</label><input id="timeline" type="range" min="0" max="1" step="0.1" value="0" aria-valuetext="Cargando audio">
+     <div class="transport"><button id="play" class="primary" aria-label="Escuchar narración">▶ Escuchar</button><button id="back10" aria-label="Retroceder diez segundos">↶ 10 s</button><button id="forward10" aria-label="Avanzar diez segundos">10 s ↷</button><button id="previous" aria-label="Diapositiva anterior">‹ Diap.</button><button id="next" aria-label="Diapositiva siguiente">Diap. ›</button><label for="speed">Velocidad <select id="speed"><option value="0.75">0,75×</option><option value="1" selected>1×</option><option value="1.15">1,15×</option><option value="1.25">1,25×</option><option value="1.5">1,5×</option><option value="1.75">1,75×</option><option value="2">2×</option></select></label><output id="clock">0:00 / 0:00</output></div>
+     <div class="options"><label><input id="stopChapter" type="checkbox" checked> Detenerse al final de cada capítulo</label><label><input id="showSpeech" type="checkbox"> Mostrar texto de locución</label></div>
+     <p id="status" class="small" role="status">Audio en pausa. Pulsa Escuchar para comenzar.</p>
+     <p id="audioError" class="error" role="alert" hidden></p>
+     <div id="study" class="study" hidden><strong id="studyText"></strong><button id="skipStudy">Terminar este silencio</button><button id="pauseStudy">Pausar para seguir pensando</button></div>
+     <p id="speech" class="speech" hidden></p>
+     <div id="chapterEnd" class="chapter-end" hidden><h3>Capítulo terminado</h3><p>Explica el mecanismo con tus palabras antes de continuar.</p><button id="replay">Repetir capítulo</button><button id="nextChapter" class="primary">Continuar al siguiente capítulo →</button></div>
+    </section>
+    <section class="explore" aria-label="Profundización opcional"><h2>Detenerse y explorar</h2><div class="explore-buttons"><button id="deep" class="primary">Profundizar</button><button data-action="practice">Practicar y comprobar</button><button data-action="transcript">Transcripción con tiempos</button></div><div id="terms" class="term-links"></div><p class="small">Las consultas pausan la voz y conservan el instante. Puedes regresar en pausa o continuar explícitamente.</p></section>
+   </div>
+   <aside class="toc" aria-label="Índice de capítulos y diapositivas"><h2>Elige un capítulo</h2><p class="small">Predice, calcula y explica.</p><nav id="chapters" aria-label="Capítulos"></nav><details open><summary>Diapositivas del capítulo</summary><nav id="slides" aria-label="Diapositivas"></nav></details><details><summary>Teclado y estudio</summary><p>En la diapositiva: Espacio reproduce o pausa; flechas izquierda y derecha saltan diez segundos; Page Up y Page Down cambian diapositiva.</p><p>Tab recorre los controles. Escape cierra una consulta y vuelve en pausa. Usa las flechas propias del navegador cuando el foco está en la barra temporal.</p><p>Desmarca la detención al final del capítulo para escuchar de manera continua.</p></details><p class="small" id="storageStatus"></p><a href="docs/guion.html" data-pause>Guion íntegro →</a><a href="docs/nota_docente.html" data-pause>Nota docente y fuentes →</a></aside>
+  </div>
+ </main>
+ <footer>Macro1 · Profesor Pável Gómez · Ingeniería Comercial · Universidad Finis Terrae · noviembre de 2026<br>Voz sintética local: Kokoro / em_alex. Modelo docente, no herramienta de pronóstico.</footer>
+ <dialog id="consultation" aria-labelledby="dialogTitle"><div class="dialog-top"><div><p class="eyebrow">CONSULTA · NARRACIÓN EN PAUSA</p><h2 id="dialogTitle"></h2></div><button id="closeDialog" aria-label="Cerrar consulta y regresar en pausa">✕</button></div><p id="returnPoint" class="small"></p><div id="dialogBody"></div><div class="dialog-bottom"><button id="returnPaused">Volver en pausa</button><button id="returnPlay" class="primary">Volver y continuar escuchando</button></div></dialog>
+ <audio id="audio" preload="metadata" aria-label="Narración por capítulos"></audio>
+ <noscript><p>Esta presentación utiliza JavaScript. Puedes estudiar sin interacción con el <a href="docs/guion.html">guion íntegro</a> y la <a href="docs/nota_docente.html">nota docente</a>. Los MP3 están en assets/audio.</p></noscript>
+ <div class="sr-only" id="announcement" aria-live="polite"></div>
+<script src="assets/macrolab.js?v=1"></script>
+</body></html>

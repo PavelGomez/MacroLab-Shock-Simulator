@@ -1,0 +1,128 @@
+{
+  "method": "Suites Node/JSDOM; no navegador real.",
+  "results": [
+    {
+      "suite": "test_auditoria_transversal.js",
+      "status": "PASS",
+      "tail": [
+        "Aserciones: 18 · fallos: 0",
+        "RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_clase8_mundell_fleming.js",
+      "status": "PASS",
+      "tail": [
+        "Clase 8 · 683 comprobaciones · ecuaciones, variantes, histórico, ruta, revisión, reporte y recursos: OK"
+      ]
+    },
+    {
+      "suite": "test_dinero_comparacion.js",
+      "status": "PASS",
+      "tail": [
+        "test_dinero_comparacion.js — 159 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_enunciados_glosario.js",
+      "status": "PASS",
+      "tail": [
+        "test_enunciados_glosario.js — 775 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_experimentacion.js",
+      "status": "PASS",
+      "tail": [
+        "test_experimentacion.js — 208 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_export_import_continuidad.js",
+      "status": "PASS",
+      "tail": [
+        "test_export_import_continuidad.js — 36 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_formulas_clases4_7.js",
+      "status": "PASS",
+      "tail": [
+        "",
+        "Aserciones: 284 · fallos: 0",
+        "RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_formulas_selladas.js",
+      "status": "PASS",
+      "tail": [
+        "",
+        "Aserciones: 435 · fallos: 0",
+        "RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_lab_is.js",
+      "status": "PASS",
+      "tail": [
+        "test_lab_is.js — 156 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_lab_islm.js",
+      "status": "PASS",
+      "tail": [
+        "test_lab_islm.js — 513 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_lab_lm.js",
+      "status": "PASS",
+      "tail": [
+        "test_lab_lm.js — 174 aserciones · RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_loop_clase3.js",
+      "status": "PASS",
+      "tail": [
+        "",
+        "Aserciones: 264 · fallos: 0",
+        "RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_navigation.js",
+      "status": "PASS",
+      "tail": [
+        "27 navigation assertions passed"
+      ]
+    },
+    {
+      "suite": "test_paquete.js",
+      "status": "PASS",
+      "tail": [
+        "",
+        "Comprobaciones: 1190 · fallos: 0 · advertencias: 0",
+        "RESULTADO: OK"
+      ]
+    },
+    {
+      "suite": "test_presentacion_clase8.js",
+      "status": "PASS",
+      "tail": [
+        "26 comprobaciones de integración narrada aprobadas (DOM simulado)."
+      ]
+    },
+    {
+      "suite": "test_retroalimentacion_pedagogica.js",
+      "status": "PASS",
+      "tail": [
+        "",
+        "Aserciones: 948 · fallos: 0",
+        "RESULTADO: OK"
+      ]
+    }
+  ]
+}

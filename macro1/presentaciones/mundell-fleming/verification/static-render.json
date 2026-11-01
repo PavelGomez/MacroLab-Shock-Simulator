@@ -1,0 +1,509 @@
+{
+  "method": "WeasyPrint: HTML/CSS estático sin navegador; media queries resueltas al ancho solicitado; no comprueba interacción.",
+  "records": [
+    {
+      "file": "1440-01.html",
+      "width": 1440,
+      "stage_height": 847.4248,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-02.html",
+      "width": 1440,
+      "stage_height": 814.8648000000001,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-03.html",
+      "width": 1440,
+      "stage_height": 814.8648000000001,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-04.html",
+      "width": 1440,
+      "stage_height": 1149.0960695312497,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-05.html",
+      "width": 1440,
+      "stage_height": 877.8248000000001,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-06.html",
+      "width": 1440,
+      "stage_height": 957.6211476562501,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-07.html",
+      "width": 1440,
+      "stage_height": 912.5448000000001,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-08.html",
+      "width": 1440,
+      "stage_height": 980.24368671875,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-09.html",
+      "width": 1440,
+      "stage_height": 1106.2247999999997,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-10.html",
+      "width": 1440,
+      "stage_height": 1140.5621170731706,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-11.html",
+      "width": 1440,
+      "stage_height": 1251.9621170731707,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-12.html",
+      "width": 1440,
+      "stage_height": 960.8047999999999,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-13.html",
+      "width": 1440,
+      "stage_height": 1413.3021561356704,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-14.html",
+      "width": 1440,
+      "stage_height": 1003.3047999999999,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-15.html",
+      "width": 1440,
+      "stage_height": 1436.5267655106704,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-16.html",
+      "width": 1440,
+      "stage_height": 879.9848,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-17.html",
+      "width": 1440,
+      "stage_height": 1436.5375076981704,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-18.html",
+      "width": 1440,
+      "stage_height": 1413.2767655106704,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-19.html",
+      "width": 1440,
+      "stage_height": 1133.4048,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-20.html",
+      "width": 1440,
+      "stage_height": 1203.1847999999998,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-21.html",
+      "width": 1440,
+      "stage_height": 1132.562221875,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-22.html",
+      "width": 1440,
+      "stage_height": 837.4248,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-23.html",
+      "width": 1440,
+      "stage_height": 1010.5283546875,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "1440-24.html",
+      "width": 1440,
+      "stage_height": 890.8648000000001,
+      "stage_width": 1080.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-01.html",
+      "width": 820,
+      "stage_height": 1023.2199999999998,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-02.html",
+      "width": 820,
+      "stage_height": 986.2507421874998,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-03.html",
+      "width": 820,
+      "stage_height": 1023.2399999999998,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-04.html",
+      "width": 820,
+      "stage_height": 1567.625552591463,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-05.html",
+      "width": 820,
+      "stage_height": 1119.44,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-06.html",
+      "width": 820,
+      "stage_height": 1153.485078125,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-07.html",
+      "width": 820,
+      "stage_height": 1060.6999999999998,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-08.html",
+      "width": 820,
+      "stage_height": 1207.6475976562501,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-09.html",
+      "width": 820,
+      "stage_height": 1497.3199999999997,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-10.html",
+      "width": 820,
+      "stage_height": 1620.410975609756,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-11.html",
+      "width": 820,
+      "stage_height": 1783.870975609756,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-12.html",
+      "width": 820,
+      "stage_height": 1313.2999999999997,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-13.html",
+      "width": 820,
+      "stage_height": 1946.211014672256,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-14.html",
+      "width": 820,
+      "stage_height": 1372.5499999999997,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-15.html",
+      "width": 820,
+      "stage_height": 1942.346893578506,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-16.html",
+      "width": 820,
+      "stage_height": 1271.1771093749999,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-17.html",
+      "width": 820,
+      "stage_height": 2024.446366234756,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-18.html",
+      "width": 820,
+      "stage_height": 1959.185624047256,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-19.html",
+      "width": 820,
+      "stage_height": 1612.4,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-20.html",
+      "width": 820,
+      "stage_height": 1443.6799999999996,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-21.html",
+      "width": 820,
+      "stage_height": 1546.057421875,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-22.html",
+      "width": 820,
+      "stage_height": 1109.3,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-23.html",
+      "width": 820,
+      "stage_height": 1157.37177734375,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "820-24.html",
+      "width": 820,
+      "stage_height": 1115.8999999999999,
+      "stage_width": 780.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-01.html",
+      "width": 390,
+      "stage_height": 1255.7599999999995,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-02.html",
+      "width": 390,
+      "stage_height": 1339.3414843749997,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-03.html",
+      "width": 390,
+      "stage_height": 1188.5199999999998,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-04.html",
+      "width": 390,
+      "stage_height": 1791.9982096354158,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-05.html",
+      "width": 390,
+      "stage_height": 1337.4799999999998,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-06.html",
+      "width": 390,
+      "stage_height": 1345.8763476562501,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-07.html",
+      "width": 390,
+      "stage_height": 1277.9999999999995,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-08.html",
+      "width": 390,
+      "stage_height": 1458.93208984375,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-09.html",
+      "width": 390,
+      "stage_height": 1810.1799999999996,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-10.html",
+      "width": 390,
+      "stage_height": 1637.773333333333,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-11.html",
+      "width": 390,
+      "stage_height": 1808.763333333333,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-12.html",
+      "width": 390,
+      "stage_height": 1505.3299999999997,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-13.html",
+      "width": 390,
+      "stage_height": 2521.956966145834,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-14.html",
+      "width": 390,
+      "stage_height": 1499.5899999999997,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-15.html",
+      "width": 390,
+      "stage_height": 2387.0013997395845,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-16.html",
+      "width": 390,
+      "stage_height": 1746.0064062499998,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-17.html",
+      "width": 390,
+      "stage_height": 2481.789388020834,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-18.html",
+      "width": 390,
+      "stage_height": 2456.117395833334,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-19.html",
+      "width": 390,
+      "stage_height": 2119.24,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-20.html",
+      "width": 390,
+      "stage_height": 1882.4399999999996,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-21.html",
+      "width": 390,
+      "stage_height": 1747.537421875,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-22.html",
+      "width": 390,
+      "stage_height": 1442.4799999999996,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-23.html",
+      "width": 390,
+      "stage_height": 1521.9835546874997,
+      "stage_width": 366.0,
+      "page_count": 1
+    },
+    {
+      "file": "390-24.html",
+      "width": 390,
+      "stage_height": 1362.7899999999997,
+      "stage_width": 366.0,
+      "page_count": 1
+    }
+  ]
+}

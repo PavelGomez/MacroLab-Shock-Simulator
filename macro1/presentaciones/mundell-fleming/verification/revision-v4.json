@@ -1,0 +1,30 @@
+{
+  "revision": "4-interceptos-opcionales",
+  "status": "PASS",
+  "date": "2026-11-01",
+  "assertions": 870,
+  "main": "Sin vista completa ni rótulos adicionales de cortes en el recorrido principal. Rectas IS y LM como Y = F(i) conservadas.",
+  "entry_slides": {
+    "base": 11,
+    "floatFiscal": 13,
+    "floatMoney": 15,
+    "fixedFiscal": 17,
+    "fixedMoney": 18,
+    "practiceA": 20,
+    "practiceB": 20
+  },
+  "consultation": "Una ventana por ejercicio, pausa, instante y diapositiva conservados, foco devuelto, regreso en pausa o continuación explícita. No anticipa predicciones.",
+  "static": "24 diapositivas en tres anchos y 14 consultas en dos anchos; WeasyPrint, sin navegador. Tres hojas de contacto del recorrido y ampliaciones de consultas inspeccionadas.",
+  "audio": "7 MP3 idénticos por SHA-256 al respaldo de revisión 3. Guion, tiempos y pasos del timeline idénticos salvo visualRevision.",
+  "limits": "Pendiente prueba multimedia real en portal/navegadores de destino; acceso file:// bloqueado en revisión anterior. La simulación no certifica navegador, tacto ni lector de pantalla.",
+  "publication": "Guía Moodle, servidor estático y GitHub Pages; correo modelo con marcador de URL. No se ha creado un enlace público.",
+  "audio_sha256": {
+    "capitulo-01.mp3": "d997654e7ce13ace335929a1a21ed87464429ff88b81ed467f35488d40fed634",
+    "capitulo-02.mp3": "03fe3b2fa6c598e0f244ef3f490d76d2888e456549e7721903d90d0d3dfde128",
+    "capitulo-03.mp3": "4bfb63f7f45e93d5500afe50bece0ea57b1306faa864fa066bf41945a40dcb3b",
+    "capitulo-04.mp3": "2df4c9ef344ad1620c4dad80cfe670d3f0a4d83e44b46723ec23d5a9f2fb3d20",
+    "capitulo-05.mp3": "4b3b33d0fcc297321f840666bf7709c1e51a3b3380ed3d62d5343ab820b5f395",
+    "capitulo-06.mp3": "cc62e10b9199b7d28daaee9ba275def15913a46f747255b5a1dcbbafb52c9b58",
+    "capitulo-07.mp3": "67e32814c915df1fc748c599fe60bed1320aae591c3e10333c51fc84c74d8047"
+  }
+}

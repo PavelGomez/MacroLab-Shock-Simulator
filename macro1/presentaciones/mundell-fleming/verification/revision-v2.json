@@ -1,0 +1,18 @@
+{
+  "revision": "2-pasos-visibles",
+  "slides": 24,
+  "paragraphs_with_visible_steps": 72,
+  "controller_assertions": 695,
+  "voice_config_unchanged": true,
+  "audio_chapters_changed": [
+    2,
+    3
+  ],
+  "duration": 1678.668,
+  "real_browser_test": "Pendiente: bloqueo previo de file://",
+  "notation": {
+    "autonomous": "A",
+    "coefficient": "a",
+    "partial_multiplier": "α = 1/a"
+  }
+}

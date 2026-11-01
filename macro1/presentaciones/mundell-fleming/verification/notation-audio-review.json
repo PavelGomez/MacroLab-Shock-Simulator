@@ -1,0 +1,18 @@
+{
+  "voice_unchanged": true,
+  "method": "Reconocimiento local; no reemplaza escucha humana",
+  "passages": [
+    {
+      "slide": 6,
+      "block": 1,
+      "expected": "Reunimos los términos con ye a la izquierda. Restamos ce sub uno por ye y be sub uno por ye, y sumamos equis sub uno por ye en ambos lados. El coeficiente que queda es uno menos ce sub uno menos be sub uno más equis sub uno. Lo llamaremos a minúscula. Reservamos a mayúscula para el gasto autónomo, como en las clases previas: consumo autónomo, menos el consumo reducido por impuestos, más inversión autónoma, compras públicas y componente autónomo neto externo. Mayúscula y minúscula cumplen funciones distintas.",
+      "recognized": "reunimos los términos con G a la izquierda. Restamos C sub 1 por G y B sub 1 por G y sumamos EX sub 1 por G en ambos lados. El coeficiente que queda es 1 menos C sub 1 menos B sub 1 más EX sub 1. Lo llamaremos a minúscula. Reservamos a mayúscula para el gasto autónomo, como en las clases previas. Consumo autónomo, menos el consumo reducido por impuestos, más inversión autónoma, compras públicas y componente autónomo neto externo. mayúscula y minúscula cumple en funciones distintas."
+    },
+    {
+      "slide": 9,
+      "block": 2,
+      "expected": "La demanda real de dinero es cero coma cincuenta por ye menos cincuenta por i. La oferta real es mil cuatrocientos cincuenta y la tasa externa es cuatro por ciento. Con los coeficientes comerciales anteriores, a minúscula resulta cero coma veinte y el gasto autónomo a mayúscula resulta quinientos cuarenta. Conservaremos precisión en las cuentas y redondearemos solo al mostrar. Cada política partirá nuevamente de esta base.",
+      "recognized": "La demanda real de dinero es 0,50 por L menos 50 por I. La oferta real es 1450 y la tasa externa es 4 por ciento. Con los coeficientes comerciales anteriores, a minúscula resulta 0,20 y el gasto autónomo a mayúscula resulta 540. Conservaremos precisión en las cuentas y redondearemos solo al mostrar. Cada política partirá nuevamente de esta base."
+    }
+  ]
+}

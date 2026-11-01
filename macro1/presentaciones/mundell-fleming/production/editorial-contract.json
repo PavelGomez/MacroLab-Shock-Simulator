@@ -1,0 +1,516 @@
+{
+  "revision": "2-pasos-visibles",
+  "review": "Revisión conjunta de los 72 párrafos: cálculo, mecanismo, unidades y presencia efectiva de la pieza aludida. Cambiar voz o pasos exige revisar este contrato explícitamente.",
+  "notation": {
+    "autonomous": "A",
+    "coefficient": "a",
+    "partial_multiplier": "α = 1/a"
+  },
+  "paragraphs": [
+    {
+      "slide": 1,
+      "block": 0,
+      "title": "La pregunta económica",
+      "voice_sha256": "6a853934dbe929778385aec933d9a03696fe763f8692e973735cca9c3d9f2fb3",
+      "visible_sha256": "dc2ad29c756d5dc9fc07aed44f0885bc9fe32208a94e0cade756ad8a7c158895"
+    },
+    {
+      "slide": 1,
+      "block": 1,
+      "title": "Dos reglas para el mismo impulso",
+      "voice_sha256": "b512ee260507465ed7ca253e692ec1b43d485abe004f434831fe04d9a6ef02a4",
+      "visible_sha256": "57c6570b2d6e0256f14f49ac9ee4448ae92a9041da6f3d6b4bdda2bd66a2ccb6"
+    },
+    {
+      "slide": 1,
+      "block": 2,
+      "title": "Qué podrás resolver",
+      "voice_sha256": "7d0e12b00e39adc0fc0f30f351d3282e3ecb5080b08957687866881f70b5fa4d",
+      "visible_sha256": "60bfce87e66b4f4a64211210ca956ff92da674af4e86429cc71c0c09722a3dd3"
+    },
+    {
+      "slide": 2,
+      "block": 0,
+      "title": "Definir cada operación",
+      "voice_sha256": "b30663a31359cc30919b3cfac9d162cf0e6caf1ebe61afab792d6e244aa44278",
+      "visible_sha256": "3ee7dc29d27bf009c92b8fdb9acbee8c7f76f47b6725877fc2ef2cfbe5047d88"
+    },
+    {
+      "slide": 2,
+      "block": 1,
+      "title": "Construir el saldo",
+      "voice_sha256": "bd8e29546a500209c1c0964a9d076f8f80c2c0ee0f24775e0a617c93e4ffb061",
+      "visible_sha256": "f2ad3e1d46beddedb471dbf76293fe05b6fcecb493c667103e177b52aa6c3484"
+    },
+    {
+      "slide": 2,
+      "block": 2,
+      "title": "Separar comercio y cartera",
+      "voice_sha256": "868f004fd28b5667dde7f44d0df32ec4f3f560e7869813847ef68415d983450e",
+      "visible_sha256": "a98a439753b389845b13f2fa159b3208c681560c9ad7802fad33110eb9eca915"
+    },
+    {
+      "slide": 3,
+      "block": 0,
+      "title": "Leer la cotización",
+      "voice_sha256": "8eb757595349c65173bb92203c9f7cad6418bc8868428c8ea37de81ab858b68f",
+      "visible_sha256": "b66ff26ad5d579e986cfbfbac25be54e894dd40b57e64498568bd5714808cad4"
+    },
+    {
+      "slide": 3,
+      "block": 1,
+      "title": "Calcular el costo del horno",
+      "voice_sha256": "06b88240f574e2b90f860379b6700163e9d2c3b3fcfa6557d029d9f49c7acf7a",
+      "visible_sha256": "c6dd4188a6ace187457cf1871542590cfe5d06e79f48ca74a9c7791fa45d7bf3"
+    },
+    {
+      "slide": 3,
+      "block": 2,
+      "title": "Comparar la mirada del comprador externo",
+      "voice_sha256": "0b80bcd3a698c7ce5af44bdbc59d70bb5737cc671339ba7abb4c9f890478ef1f",
+      "visible_sha256": "1ae99d85f8538e767b83a7703baa3d9824d003002fb5f4e5be8757679cba4098"
+    },
+    {
+      "slide": 4,
+      "block": 0,
+      "title": "Introducir la función",
+      "voice_sha256": "8684ae7b222480b3bfc0583c948640b80b2d384ab831954b6fe4c36010d65c9c",
+      "visible_sha256": "03d54347fc0f8261a5b655a018147aaa646f3307e95a4b5ed2d71c2eb343cb32"
+    },
+    {
+      "slide": 4,
+      "block": 1,
+      "title": "Mostrar la calibración y las dos comparaciones",
+      "voice_sha256": "a37e76f3c913435ff3acbe206b0797e367f1db6a877f2ea0ba3840ebba77df37",
+      "visible_sha256": "e67dcddd722a91e9ad1fee7f7b1aee79faa1b5885b7277d7276fd69bac801204"
+    },
+    {
+      "slide": 4,
+      "block": 2,
+      "title": "Precisar el supuesto comercial",
+      "voice_sha256": "391ff027cd7f8edafbc5e287caabf156df802ac23ff52cf9071bf67d2cac9b61",
+      "visible_sha256": "7696a211a24cc5d2a7b419dc2823a716bc0759dd7b606ad825bad90aadd0659f"
+    },
+    {
+      "slide": 5,
+      "block": 0,
+      "title": "Pasar del gasto total a producción nacional",
+      "voice_sha256": "52728165967a400ede9d6b2d30849f1bde578a9045c9d426f10c4045acd63ea7",
+      "visible_sha256": "fe3d1d70f6824e8a74c959b72f39e7f67c637dd3ef14028343f7d161e22bdfe9"
+    },
+    {
+      "slide": 5,
+      "block": 1,
+      "title": "Separar definición y equilibrio",
+      "voice_sha256": "fe3282b6cd55f3128dea79492903f5642c62bfc3402a93a450b789c6ea2934a4",
+      "visible_sha256": "6027aa3089b1e2500bac58e508ed8c6445b8db4c82e15441d31254c6b8823716"
+    },
+    {
+      "slide": 5,
+      "block": 2,
+      "title": "Conservar las funciones de conducta",
+      "voice_sha256": "4fcf5f871d334951ed8e3c491368fbd4ddda011b66236ca1c6f2ec02e8950d08",
+      "visible_sha256": "82f512677bfd1b53632032d5b54947569fbe2c09c2413ff8a544e522163644ab"
+    },
+    {
+      "slide": 6,
+      "block": 0,
+      "title": "Sustituir y distribuir",
+      "voice_sha256": "572cbe68a0b21573bf15de49d2a4a6006bf99e609fb253450b05c0f3c5fbc44e",
+      "visible_sha256": "c4abc615855a422dc023aaf2d586f9d3acec5696da66baa0829ce6d5a6c9946a"
+    },
+    {
+      "slide": 6,
+      "block": 1,
+      "title": "Reunir Y y mantener la notación del curso",
+      "voice_sha256": "8003fa6c42757a88723f6e24366cdc6ef2de5614172bf6ec0eb9674b0de19228",
+      "visible_sha256": "277fad0d8f8ef182e8479d78864ed1e6a6f743654afad0696a06b938229a165e"
+    },
+    {
+      "slide": 6,
+      "block": 2,
+      "title": "Dividir todos los términos por a",
+      "voice_sha256": "8a9727ba69b9cd70d003ba13b70730c45afe89ae1f65cd2ea0f5418bde11df3b",
+      "visible_sha256": "757e690783bd7bea659b93289f1fb181ce14e3f02c70a3c8323a640044111bd4"
+    },
+    {
+      "slide": 7,
+      "block": 0,
+      "title": "Declarar el arbitraje",
+      "voice_sha256": "a8f3e7c2bda54952343a5e5da5c25b1e2608da2e82dee01c1c71c4021c8232dd",
+      "visible_sha256": "21c3726b80677015201e27c034338e3d26269340c2f26093f25bf34014085b42"
+    },
+    {
+      "slide": 7,
+      "block": 1,
+      "title": "Obtener la condición simplificada",
+      "voice_sha256": "f857b4576c348a7759c428761f1a2257ce44c3ea8f188c065b883440a487069d",
+      "visible_sha256": "86b78edc5641dae01e4049a42d69c5a88919524b2e32067e5cdd7ffdc6a2b773"
+    },
+    {
+      "slide": 7,
+      "block": 2,
+      "title": "No confundir dos condiciones",
+      "voice_sha256": "439a22c91c9b928a13f82fae2b6caa48a0ab9741a1e388103da54163c2ad1dbe",
+      "visible_sha256": "526fa9518987d1b89e272251987bd80d65ca2387142836a654a57a2a1dd4d9d2"
+    },
+    {
+      "slide": 8,
+      "block": 0,
+      "title": "Despejar LM sin saltar operaciones",
+      "voice_sha256": "3c35ab6cf0a5c9da148f56698ac0f70ae9acff87485649a17fe9cf7c6eebd00a",
+      "visible_sha256": "63eb47b46106695654f82e008f832812b7f946023f25e632d3d56d80e2478bcc"
+    },
+    {
+      "slide": 8,
+      "block": 1,
+      "title": "Resolver bajo flotación",
+      "voice_sha256": "1113e44e388bc11ac20306ee9137221732f5bac1ce214d06f6e8b605598081e9",
+      "visible_sha256": "00c24d40221cff4191d96dd6a2485de6c58c42f2fde6a396d40e79755f059a03"
+    },
+    {
+      "slide": 8,
+      "block": 2,
+      "title": "Resolver bajo cambio fijo",
+      "voice_sha256": "bc2435ee4ee0eed815cc405f207ac36f3f364e43e6a46606b37dbeb2cec3c8d8",
+      "visible_sha256": "bf8d13d095527fd47374ffd13a8194a5d20144d9ad19b41d463bae1183be6867"
+    },
+    {
+      "slide": 9,
+      "block": 0,
+      "title": "Fijar unidades antes de calcular",
+      "voice_sha256": "4cdee1dece6aa44fb8d88da1c8211a1b3819631e6618efc82a2a5f7969714112",
+      "visible_sha256": "962e7500120bd3d330bb9f51e4520ed9ae338d54703b3f6353dc5cb4c1fd0b2b"
+    },
+    {
+      "slide": 9,
+      "block": 1,
+      "title": "Leer la conducta de hogares y empresas",
+      "voice_sha256": "2a6bb8a5bca940abec99507a181fe50261aa5f0a52cfd11bca99077c86d00ef0",
+      "visible_sha256": "60232db7f9f2d1ac00cd6cdc0af7055c9c5329f0cedaa59e765b368809be6667"
+    },
+    {
+      "slide": 9,
+      "block": 2,
+      "title": "Preparar la base algebraica",
+      "voice_sha256": "ccd136638ced8ff70e2b916a94f8f71ff247174ace92edf65a701dc031d2a406",
+      "visible_sha256": "b2a09c27785b1207a973d752d8c55dc1c780772c6d193adc0925a5ce26140b97"
+    },
+    {
+      "slide": 10,
+      "block": 0,
+      "title": "Usar BP y sustituir la tasa",
+      "voice_sha256": "a4dd19abda6b3662bb4566af636c269266858851948dd6b21da5b9ddec5b2f12",
+      "visible_sha256": "f90a5e0d8c2c3b751e790354e9926a90b81ec7f6707af7ed7e5be54d8ac39648"
+    },
+    {
+      "slide": 10,
+      "block": 1,
+      "title": "Sumar y después dividir",
+      "voice_sha256": "5d74b0854591ac5f3a4ffa12ee35db28f7755285a522417270bb5b03a523fb26",
+      "visible_sha256": "47aed8cc439297dda3125094653d2a373ec9e8bdf8476ed315edcf3180bbcfc7"
+    },
+    {
+      "slide": 10,
+      "block": 2,
+      "title": "Interpretar el cruce",
+      "voice_sha256": "cf5322ef958221613785f75f3ef2fc6ff65dce39c0d463fc89490ba159c93864",
+      "visible_sha256": "29cffc62ac373f755ff77de6e4481ed6462570d342ba41cb4539dfe2ad322f4b"
+    },
+    {
+      "slide": 11,
+      "block": 0,
+      "title": "Dividir cada término de IS",
+      "voice_sha256": "8971b94b60bae88bf5a3c345bb8a40ba0e9597c694f20ae36e23352b63340422",
+      "visible_sha256": "c6f1d3a06b148b774d559764c522a81c3d5834d30f114eca189cf59af96d94ff"
+    },
+    {
+      "slide": 11,
+      "block": 1,
+      "title": "Sustituir Y e i para recuperar E",
+      "voice_sha256": "f368b4b7f200ab990e1f011b1d31b291daa368a148afe8d8ce7b72d796bf7526",
+      "visible_sha256": "a8702d9062626fa340f888521a830ee85703823694961457347076356575fa66"
+    },
+    {
+      "slide": 11,
+      "block": 2,
+      "title": "Comprobar los tres cierres",
+      "voice_sha256": "6d5ff87c1c291208d449064b6dd46c14811abf2ccfa804f13323b4769d72c6d4",
+      "visible_sha256": "3ebaf96ee63ce78e97aa0e668674e26ea794a88c5336684819813cc4fddd921b"
+    },
+    {
+      "slide": 12,
+      "block": 0,
+      "title": "Identificar qué permanece dado",
+      "voice_sha256": "2a5d284fe7bcdaf83ca8339a1ae300ab600bc8443fc58b6abe4028525f279e03",
+      "visible_sha256": "8b530a67ce8005093d8c120f6836c500d7eda77df10794456286397fa777ce3f"
+    },
+    {
+      "slide": 12,
+      "block": 1,
+      "title": "Separar el impulso parcial",
+      "voice_sha256": "75dba3f3a675921063cde2d0c98ee0ca301139c8ace9e79bcc2d2901e1fec143",
+      "visible_sha256": "6a01f1ce00dab746e1e71c9ef9526760c14a3b440aeacb9e3b2f296e9ad7a463"
+    },
+    {
+      "slide": 12,
+      "block": 2,
+      "title": "Predecir el equilibrio final",
+      "voice_sha256": "c741e38afa70e37df6056cee70f51ba6509272359b6b245ead3479429476ef2a",
+      "visible_sha256": "57c0203fb9763a8c40ec6dfd7db0dbddc30815f12cf0544836e81a1960cec0cc"
+    },
+    {
+      "slide": 13,
+      "block": 0,
+      "title": "Calcular el dólar después del aumento de G",
+      "voice_sha256": "ad0d064e34f061277d42d8702a329ed83bbc1fc95838e524dd8f45c4ed5f4c53",
+      "visible_sha256": "2779be1f6ce76679bf87af4840008f9c1382e8e1885a97a420a050f13a3d4905"
+    },
+    {
+      "slide": 13,
+      "block": 1,
+      "title": "Ver las presiones y el retorno de IS",
+      "voice_sha256": "0f792c8c7b4654894d1ae4a2a37c71be9f67963d67a2f7930b1c4265749bdcc0",
+      "visible_sha256": "d59f4fe6382c91af4fd33e4453a914d2e7d3cdd3d1e334a25b1129e18b645323"
+    },
+    {
+      "slide": 13,
+      "block": 2,
+      "title": "Comprobar la compensación",
+      "voice_sha256": "a9452072dea70e6f947efa75c4556b495d9758bb79d03801f4054d772f425547",
+      "visible_sha256": "c03f48f7a900f5d5fc5df682e4132fdde0330084e7b6cf74e9cf1ea46aedae33"
+    },
+    {
+      "slide": 14,
+      "block": 0,
+      "title": "Reiniciar y cambiar solo dinero",
+      "voice_sha256": "b46aced80f6d637db331e8ef877aaa941331367b2e0438e2ed957bb5c1c4dc39",
+      "visible_sha256": "543d5a874a630f29fa97b8a3d4ac577f3afa6e9667876ab10afa54725ced1dd0"
+    },
+    {
+      "slide": 14,
+      "block": 1,
+      "title": "Separar presión inicial y tasa final",
+      "voice_sha256": "312034efd779c64725142332543ec6250b58392f441d18e543c456bb2c6257f1",
+      "visible_sha256": "c7d7fd7c1964876447b5447fc36437e35b2890dd320be1971400c086ad2a3809"
+    },
+    {
+      "slide": 14,
+      "block": 2,
+      "title": "Preparar tu cálculo",
+      "voice_sha256": "8f569d329a7f33530079dc91441654f436a0b06a0fa731b2d7cda6315dfbfcf9",
+      "visible_sha256": "0d64fe7c26164b4359a1181f633e2d7f820fed3450379decdf5d6bb1dfe14e17"
+    },
+    {
+      "slide": 15,
+      "block": 0,
+      "title": "Resolver producción y dólar",
+      "voice_sha256": "5adadd7f97185fa0354b5d811fd4f56bc24c7fdac5f90be06d183db18d5843fe",
+      "visible_sha256": "b124eb61d24e0eebd66287c385d8dd4f581f982cd0fe32b121c642d64a28065c"
+    },
+    {
+      "slide": 15,
+      "block": 1,
+      "title": "Separar ambos efectos sobre XN",
+      "voice_sha256": "4b326599b586091b78b69d1df825792b08cfc7586b5b0c66dfae9f85e0983bd9",
+      "visible_sha256": "397d032093f4740dcd84d3baac4d08c29b5d931c31e72741cbca1d54cdb10b83"
+    },
+    {
+      "slide": 15,
+      "block": 2,
+      "title": "Cerrar la inversión y las cuentas",
+      "voice_sha256": "083c9cbd0fce1c57e366b969574391fe34f670a457845fed06fe7008fa40c504",
+      "visible_sha256": "3af934a61975537ec6cf53db4fdd32cf2829dfe60eebd48a803b427348163a50"
+    },
+    {
+      "slide": 16,
+      "block": 0,
+      "title": "Cambiar la regla institucional",
+      "voice_sha256": "0c96fb2482514a6c01c8a8713fb93ddb1f1efd84d508e2722f78174ec9199654",
+      "visible_sha256": "d2258c91e8a5970cebb2d28a2bd1d5d8601b53759a19dffb739cbd02a18ad211"
+    },
+    {
+      "slide": 16,
+      "block": 1,
+      "title": "Mostrar las dos operaciones",
+      "voice_sha256": "7cb098a7224726f43c5586f8c3172b63b70de552bc11de2cc0627256749ff74a",
+      "visible_sha256": "d8488b8c6a02d665cac776610d0de42450b889ab65e997f2ef65d7c32865efee"
+    },
+    {
+      "slide": 16,
+      "block": 2,
+      "title": "Resolver con dinero endógeno",
+      "voice_sha256": "53a6d84674d8422ed42b3841557e63d46c0af30a4006d650409b9d8273aafc69",
+      "visible_sha256": "f0fd0b99b51060891f23d1cb7f179d9deadd23d60bc557e23cf7b706b961c4b1"
+    },
+    {
+      "slide": 17,
+      "block": 0,
+      "title": "Intentar antes de revelar",
+      "voice_sha256": "292ea94a94c0c0d619f28fa4011ce4358bc4d52d719580f355901d2575eb0033",
+      "visible_sha256": "d62ee765a713454ec75c01a32c67690a9ba98cbe36c9e85be24a8d2b2b269ae0"
+    },
+    {
+      "slide": 17,
+      "block": 2,
+      "title": "Obtener la producción y el dinero requerido",
+      "voice_sha256": "4c8f764d8b84f956345631669588cc3fd5d802eefb1f18c1f08096174a69205e",
+      "visible_sha256": "f2589074e4d077274faabcf0224292eb5235279850d420b2eb7e0d8d1b76a8f5"
+    },
+    {
+      "slide": 17,
+      "block": 3,
+      "title": "Comprobar el nuevo equilibrio",
+      "voice_sha256": "3527b19a55c13b338a9039493ddbb53a38ffcdbcd41a3502ebec9816faa3028f",
+      "visible_sha256": "d7c09be547fd40a5ef0da7a54b5be0eb7682bf2d9fdfcdae26edb8e9aee78268"
+    },
+    {
+      "slide": 18,
+      "block": 0,
+      "title": "Comprobar si ambas metas pueden coexistir",
+      "voice_sha256": "1164cdfc99c6ea77c1254f338175bc81e330465f57e559dda46927b060b02cb4",
+      "visible_sha256": "e20d16eed3a2b7d0bb5aec796182156ecdcacaf2d9731fe59068e71e5e732fd5"
+    },
+    {
+      "slide": 18,
+      "block": 2,
+      "title": "Mostrar la incompatibilidad y la defensa",
+      "voice_sha256": "632290e7a4bf69e9f68068d4756915521d621d7c720a5e622bbf920d4007901d",
+      "visible_sha256": "586e4110e05c2c4ffa05d806b28b6e8b4250fdeeab03313412eb73ed3398828b"
+    },
+    {
+      "slide": 18,
+      "block": 3,
+      "title": "Reconocer el equilibrio final",
+      "voice_sha256": "84969668206ee3292b4f88f46d841978adff6c5723c055d19f0ac267a6b00b19",
+      "visible_sha256": "69531604cd32bf95997b0d39148d01079b5187df839bfe26a4f4b7ce04050c45"
+    },
+    {
+      "slide": 19,
+      "block": 0,
+      "title": "Leer primero la flotación",
+      "voice_sha256": "3797e6d90ccd73eaebf465ee227533ad461e86242b3442667b5a24815ec90af5",
+      "visible_sha256": "3d92261f1568d156dbad39b0d2bd07d30a65e6e3718a487fe1bb0022847d2890"
+    },
+    {
+      "slide": 19,
+      "block": 1,
+      "title": "Leer después la paridad fija",
+      "voice_sha256": "4c25bec2e39192f6f952f372b2f494e5eeceef4ccac012d4e9c337c517dc3df8",
+      "visible_sha256": "9abe6c31f0cd98f3bcf32f7a2f58970c29a7b4f99ff3ec798e34c4355d6f0646"
+    },
+    {
+      "slide": 19,
+      "block": 2,
+      "title": "Distinguir niveles y variaciones del saldo",
+      "voice_sha256": "a776913f160c0f85eb803753ec3a97fee0d1414526d284abb83866b81855adc7",
+      "visible_sha256": "33d9fe290f7cdbf8ae7911f50e338de0d74a1e9917f9632cbad1323793fc964f"
+    },
+    {
+      "slide": 20,
+      "block": 0,
+      "title": "Plantear dos ejercicios independientes",
+      "voice_sha256": "eb5690200984b2081274729f76db6094121e15145cf5ec53be5168e129c2aa64",
+      "visible_sha256": "7e237b40f372126dd717382411b4e698563f81d1d14aac72f9433e3b2409c709"
+    },
+    {
+      "slide": 20,
+      "block": 1,
+      "title": "Elegir el orden antes de calcular",
+      "voice_sha256": "6fe46caff13462b31f9cf9db475db002f38a3b3bda17f307f01522ddc52bb615",
+      "visible_sha256": "e54610780c8dfc5df32818f90b912c5c39f5fb36252aa6c576db10915890af67"
+    },
+    {
+      "slide": 20,
+      "block": 3,
+      "title": "Resolver A y B con todas las operaciones",
+      "voice_sha256": "26a870b99dd289290b6e7e94a29fa47be59a59f068be91a394577b73d0d12194",
+      "visible_sha256": "df1c6615fca61ba62dd4b9d7f077e1640a7428207e2c72321bb4446d286d383e"
+    },
+    {
+      "slide": 21,
+      "block": 0,
+      "title": "Identificar las tres opciones",
+      "voice_sha256": "148e66d172b5db691e0d7f614cfab8b924fd63aeec060e97a5eb07c267fe7129",
+      "visible_sha256": "5c65394689351f2b41ff23ff5acfc280739a0503e9eb67ebb7139938dfa993e1"
+    },
+    {
+      "slide": 21,
+      "block": 1,
+      "title": "Detectar qué condición dejaría de cerrar",
+      "voice_sha256": "f3a5df8a3a0660daacddcada73da92c405f45314cc0fa51c1869095fa7b96fae",
+      "visible_sha256": "48aab30436162e8576f290cb2739f7234b6063e7a2b4970910fe224116f8b41e"
+    },
+    {
+      "slide": 21,
+      "block": 2,
+      "title": "Conectar con una política moderna",
+      "voice_sha256": "26ce2539ad98b0ed2d848ec80d563bd4c9dda3be0a9ebc89f300e32f28eb1706",
+      "visible_sha256": "a6dcf8008589969080345adf2383274632da70ecc6d8c2ac715b7c096511f993"
+    },
+    {
+      "slide": 22,
+      "block": 0,
+      "title": "Producción y precios",
+      "voice_sha256": "5a31f0b73b75b4c99ff74dd7851a8f17d68e35ecbec8175634155a3f4b2173d7",
+      "visible_sha256": "f369291f0a02758c28a7884f25ddf195958f521cbc9255290203feb01492f5c3"
+    },
+    {
+      "slide": 22,
+      "block": 1,
+      "title": "Respuesta comercial",
+      "voice_sha256": "53fe6ae85d6ea0a1b82cb3064b22a709110112fa863c5bfa61df6ddce14e16f8",
+      "visible_sha256": "5a5259dfde308935834cfc3c68f36b3244cb6f349cdb6d3abbf5131e39bd34f7"
+    },
+    {
+      "slide": 22,
+      "block": 2,
+      "title": "Cierre financiero e institucional",
+      "voice_sha256": "5a2d79b01c1c568e8b42e3db3fadf48081f35de6d8f36e46ba48161f23724cb9",
+      "visible_sha256": "90acb2a6ccffbfe792021b6ad40ff600c55b3eec82f2b6b0856b1ffa8bfcac85"
+    },
+    {
+      "slide": 23,
+      "block": 0,
+      "title": "Ver el instrumento operacional",
+      "voice_sha256": "08600a81fd54ab746e89299c15f7cfa6e570340c4b5a0ea0320e526bbe890110",
+      "visible_sha256": "aa35684cdf4a1b9a8e91d066c9a58f6a466074f2fa2754fe41af29733dbd5a8d"
+    },
+    {
+      "slide": 23,
+      "block": 1,
+      "title": "Distinguir el ejercicio de la aplicación",
+      "voice_sha256": "ae0394c6be41df9b87d4fd12bcbfc3cf723b60c1d0ae2fa644ac008183921730",
+      "visible_sha256": "547957d71c228c7d58bcff5d067a0f0be90482560d85f267d66bcb090539b08c"
+    },
+    {
+      "slide": 23,
+      "block": 2,
+      "title": "Precisar qué documenta la fuente",
+      "voice_sha256": "c15158d256e79689443f32c3cb76fa99e8d2f59e1fcb8031b60fb4fcd9de424e",
+      "visible_sha256": "a8d9cf5155d871ce4f6066ed2001f431f34f94ed325017488fca152999bcbd3e"
+    },
+    {
+      "slide": 24,
+      "block": 0,
+      "title": "Calcular el flujo neto expuesto",
+      "voice_sha256": "f9c1d0ae69f5c65c1e414263ae7a08122a5927b1acd9d7463379861cfa0b1799",
+      "visible_sha256": "91ac271119e3c5b2488992691fb2b1c021aff1d5ccabc39827437bcde45d59b3"
+    },
+    {
+      "slide": 24,
+      "block": 1,
+      "title": "No confundirlo con utilidad",
+      "voice_sha256": "36dd6578abc3c0266c27c139d9aa1832aa80f1d7ab568e5d1066f132bf46ac56",
+      "visible_sha256": "c975c8104d97000bdbf389310731942334a92575bdbdb630611b9e7d1a6e7c2d"
+    },
+    {
+      "slide": 24,
+      "block": 2,
+      "title": "Responder el ticket de salida",
+      "voice_sha256": "a4d7d4817dae7b40451066ac875a46903deb79e66178170fd51b48ce8e8c7b78",
+      "visible_sha256": "b6b5111b18ec9d0d309be5b4667eec2da7274607264c21b2625203cc76d111ba"
+    }
+  ],
+  "visualRevision": "3-rectas-interceptos"
+}
