@@ -278,12 +278,12 @@
     {
       "id": "clase8-guia-ejercicios-pauta",
       "file": "notas/pautas/pauta-guia-ejercicios-clase8-mundell-fleming.html",
-      "pdf": "notas/pautas/pauta-guia-ejercicios-clase8-mundell-fleming.pdf",
       "title": "Pauta y rúbrica · Guía de ejercicios · Clase 8",
       "kind": "practica",
       "audience": "estudiantes",
       "linked_from_class": 8,
-      "published": true
+      "published": false,
+      "note": "Bloqueada temporalmente el 16-11-2026 por decisión docente: el archivo publicado es un aviso de no disponibilidad, sin enlaces desde la Ruta ni el catálogo. El original (HTML y PDF, versión 1 del 15-11-2026) se conserva fuera del repositorio."
     },
     {
       "id": "clase8-ficha",
