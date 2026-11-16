@@ -266,6 +266,26 @@
       "published": true
     },
     {
+      "id": "clase8-guia-ejercicios",
+      "file": "notas/ayudantias/guia-ejercicios-clase8-mundell-fleming.html",
+      "pdf": "notas/ayudantias/guia-ejercicios-clase8-mundell-fleming.pdf",
+      "title": "Guía de ejercicios · Clase 8 · Mundell-Fleming",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
+      "id": "clase8-guia-ejercicios-pauta",
+      "file": "notas/pautas/pauta-guia-ejercicios-clase8-mundell-fleming.html",
+      "pdf": "notas/pautas/pauta-guia-ejercicios-clase8-mundell-fleming.pdf",
+      "title": "Pauta y rúbrica · Guía de ejercicios · Clase 8",
+      "kind": "practica",
+      "audience": "estudiantes",
+      "linked_from_class": 8,
+      "published": true
+    },
+    {
       "id": "clase8-ficha",
       "file": "notas/ficha-indicadores-clase8.html",
       "pdf": "notas/ficha-indicadores-clase8.pdf",
